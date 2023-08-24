@@ -6,6 +6,10 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebSmileSoft", "WebSmileSoft\WebSmileSoft.csproj", "{DD3EF3F4-265A-4484-B9D4-73201759016C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EpSmileSoft", "EpSmileSoft\EpSmileSoft.csproj", "{E8F1BB24-96F8-4D5D-A7A2-82F5784C5B24}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3BF07992-C57F-40F5-B680-B581839D021F} = {3BF07992-C57F-40F5-B680-B581839D021F}
+		{8AB88BBE-241C-4552-80E6-1FB12F61F027} = {8AB88BBE-241C-4552-80E6-1FB12F61F027}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{11E74CA3-32DA-439B-8199-41AA114C66F2}"
 EndProject
@@ -13,22 +17,22 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{4EDAACF7-508D-40E0-8DED-23223C647C75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{CC4E3702-361C-4260-BBA0-ED1C2568F12D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{CC4E3702-361C-4260-BBA0-ED1C2568F12D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{4AB44630-AABB-48FB-BB84-D2D559E5757F} = {4AB44630-AABB-48FB-BB84-D2D559E5757F}
 		{C1B26D39-4961-4A3B-8277-1871F17B6F43} = {C1B26D39-4961-4A3B-8277-1871F17B6F43}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{C1B26D39-4961-4A3B-8277-1871F17B6F43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{C1B26D39-4961-4A3B-8277-1871F17B6F43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Entities", "Domain.Entities\Domain.Entities.csproj", "{3BF07992-C57F-40F5-B680-B581839D021F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Entities", "Domain.Entities\Domain.Entities.csproj", "{3BF07992-C57F-40F5-B680-B581839D021F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Core", "Domain.Core\Domain.Core.csproj", "{8AB88BBE-241C-4552-80E6-1FB12F61F027}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Core", "Domain.Core\Domain.Core.csproj", "{8AB88BBE-241C-4552-80E6-1FB12F61F027}"
 	ProjectSection(ProjectDependencies) = postProject
 		{CC4E3702-361C-4260-BBA0-ED1C2568F12D} = {CC4E3702-361C-4260-BBA0-ED1C2568F12D}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Interfaces", "Domain.Interfaces\Domain.Interfaces.csproj", "{4AB44630-AABB-48FB-BB84-D2D559E5757F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Interfaces", "Domain.Interfaces\Domain.Interfaces.csproj", "{4AB44630-AABB-48FB-BB84-D2D559E5757F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3BF07992-C57F-40F5-B680-B581839D021F} = {3BF07992-C57F-40F5-B680-B581839D021F}
 	EndProjectSection

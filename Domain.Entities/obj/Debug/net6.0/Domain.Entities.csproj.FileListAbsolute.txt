@@ -1,0 +1,12 @@
+C:\Users\santi\Source\Repos\SmileSoft\Domain.Entities\bin\Debug\net6.0\Domain.Entities.deps.json
+C:\Users\santi\Source\Repos\SmileSoft\Domain.Entities\bin\Debug\net6.0\Domain.Entities.dll
+C:\Users\santi\Source\Repos\SmileSoft\Domain.Entities\bin\Debug\net6.0\Domain.Entities.pdb
+C:\Users\santi\Source\Repos\SmileSoft\Domain.Entities\obj\Debug\net6.0\Domain.Entities.csproj.AssemblyReference.cache
+C:\Users\santi\Source\Repos\SmileSoft\Domain.Entities\obj\Debug\net6.0\Domain.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\santi\Source\Repos\SmileSoft\Domain.Entities\obj\Debug\net6.0\Domain.Entities.AssemblyInfoInputs.cache
+C:\Users\santi\Source\Repos\SmileSoft\Domain.Entities\obj\Debug\net6.0\Domain.Entities.AssemblyInfo.cs
+C:\Users\santi\Source\Repos\SmileSoft\Domain.Entities\obj\Debug\net6.0\Domain.Entities.csproj.CoreCompileInputs.cache
+C:\Users\santi\Source\Repos\SmileSoft\Domain.Entities\obj\Debug\net6.0\Domain.Entities.dll
+C:\Users\santi\Source\Repos\SmileSoft\Domain.Entities\obj\Debug\net6.0\refint\Domain.Entities.dll
+C:\Users\santi\Source\Repos\SmileSoft\Domain.Entities\obj\Debug\net6.0\Domain.Entities.pdb
+C:\Users\santi\Source\Repos\SmileSoft\Domain.Entities\obj\Debug\net6.0\ref\Domain.Entities.dll
