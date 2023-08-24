@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "ENgCepF0w/1T2bKC/EnkL8JVBGuhriTaEaJrh6rtv9LPokvYSPlgE0EEcHDWbqt6rM7mq+7zd8QqNh8ii5awxw==",
+  "dgSpecHash": "JzwxbNb19WeUrxYdS4mYrR71juJK0Tou2Poft6S6i+RDp4gKqgfw/h2fz1/zq5doJwCdI/LuoeHNyIo20RE5AA==",
   "success": true,
   "projectFilePath": "C:\\Users\\santi\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\santi\\.nuget\\packages\\coverlet.msbuild\\6.0.0\\coverlet.msbuild.6.0.0.nupkg.sha512",
+    "C:\\Users\\santi\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.3.4\\microsoft.codeanalysis.analyzers.3.3.4.nupkg.sha512",
+    "C:\\Users\\santi\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }
