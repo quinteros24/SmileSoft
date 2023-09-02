@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA5lEtoHkKlU2X7PebfgPDywAAAAACAAAAAAAQZgAAAAEAACAAAABuZzlH4x71h0BByg0bc15yA0/MYhMbxnyU5MKSDTHcqQAAAAAOgAAAAAIAACAAAABcDwfO37jFAeqoy1fl44bPF6gEmamsDOaMWaXax8FryIAAAAAFrj7NrPzN1xq9F3P6lOTtP+HpprqMf2aH265EkhqaJSyeaiFiDBr2+ZsdwdF5I56irK/IICIOdcboVAUkB0ZtR/rzVDQcMnKuQ6LjFpesWngellxjS3YUL7uBCYuHGCoVu1mflfO6cW0iczjEc+3aG2r452W92YfxeD8yH6XsrUAAAAD/QxaiNxJlu53UTOpUIcVwWWD7Iv0zePmg8B6BhrJjHwxyLeCLDlnM4lPKZD3CC/UOHVXuUKg+2PMruBna5XrS</EncryptedPassword>
+    <History>False|2023-09-01T02:47:42.3531167Z;</History>
+    <LastFailureDetails />
+    <_PublishTargetUrl>ftps://waws-prod-blu-463.ftp.azurewebsites.windows.net/site/wwwroot</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="appsettings.Development.json">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="appsettings.json">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="web.config">
+      <publishTime>08/31/2023 21:42:27</publishTime>
+    </File>
+    <File Include="WebSmileSoft.deps.json">
+      <publishTime>08/31/2023 21:42:20</publishTime>
+    </File>
+    <File Include="WebSmileSoft.dll">
+      <publishTime>08/31/2023 21:42:19</publishTime>
+    </File>
+    <File Include="WebSmileSoft.exe">
+      <publishTime>08/31/2023 21:42:19</publishTime>
+    </File>
+    <File Include="WebSmileSoft.pdb">
+      <publishTime>08/31/2023 21:42:19</publishTime>
+    </File>
+    <File Include="WebSmileSoft.runtimeconfig.json">
+      <publishTime>08/31/2023 21:42:20</publishTime>
+    </File>
+    <File Include="wwwroot/css/site.css">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/favicon.ico">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/js/site.js">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/js/Utilities.js">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css.map">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap.css">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap.css.map">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap.min.css">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css.map">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js.map">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/js/bootstrap.js">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/js/bootstrap.js.map">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/js/bootstrap.min.js">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/LICENSE">
+      <publishTime>08/23/2023 23:28:59</publishTime>
+    </File>
+    <File Include="wwwroot/WebSmileSoft.styles.css">
+      <publishTime>08/31/2023 21:42:19</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

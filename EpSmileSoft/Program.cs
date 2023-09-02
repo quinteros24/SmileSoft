@@ -1,4 +1,5 @@
 using EpSmileSoft.Extensions;
+using Domain.Interfaces;
 
 namespace EpSmilesoft
 {
@@ -17,12 +18,12 @@ namespace EpSmilesoft
                        .AllowAnyHeader();
             }));
 
-            //IConfigManager? _configuManager = null;
-            //builder.Services.AddSingleton<IConfigManager>((serviceProvider) =>
-            //{
-            //    _configuManager = builder.Configuration.GetSection("ConnectionStrings").Get<ConfigManager>();
-            //    return _configuManager;
-            //});
+            IConfigManager? _configuManager = null;
+            builder.Services.AddSingleton<IConfigManager>((serviceProvider) =>
+            {
+                _configuManager = builder.Configuration.GetSection("ConnectionStrings").Get<ConfigManager>();
+                return _configuManager;
+            });
 
 
             //Dependences

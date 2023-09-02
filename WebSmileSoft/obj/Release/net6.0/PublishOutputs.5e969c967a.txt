@@ -1,0 +1,7 @@
+C:\Users\santi\Source\Repos\SmileSoft\WebSmileSoft\obj\Release\net6.0\PubTmp\Out\WebSmileSoft.exe
+C:\Users\santi\Source\Repos\SmileSoft\WebSmileSoft\obj\Release\net6.0\PubTmp\Out\appsettings.Development.json
+C:\Users\santi\Source\Repos\SmileSoft\WebSmileSoft\obj\Release\net6.0\PubTmp\Out\appsettings.json
+C:\Users\santi\Source\Repos\SmileSoft\WebSmileSoft\obj\Release\net6.0\PubTmp\Out\WebSmileSoft.dll
+C:\Users\santi\Source\Repos\SmileSoft\WebSmileSoft\obj\Release\net6.0\PubTmp\Out\WebSmileSoft.deps.json
+C:\Users\santi\Source\Repos\SmileSoft\WebSmileSoft\obj\Release\net6.0\PubTmp\Out\WebSmileSoft.runtimeconfig.json
+C:\Users\santi\Source\Repos\SmileSoft\WebSmileSoft\obj\Release\net6.0\PubTmp\Out\WebSmileSoft.pdb
