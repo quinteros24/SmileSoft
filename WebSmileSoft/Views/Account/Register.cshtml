@@ -6,7 +6,7 @@
     <link rel="icon" href="~/img/logo-nav.png" asp-append-version="true">
 </head>
 
- <section class="bg-light d-flex flex-column min-vh-100">
+<section class="bg-light d-flex flex-column min-vh-100">
     <div class="container flex-grow-1">
         <div class="d-flex justify-content-center align-items-center vh-100">
             <div class="shadow p-5 ">
@@ -27,7 +27,7 @@
                         <div class="input-group">
                             <div class="input-group-text">Apellidos</div>
                             <input type="text" class="form-control" id="userLastNameRegister"
-                                placeholder="Apellidos">
+                                   placeholder="Apellidos">
                         </div>
                     </div>
 
@@ -98,7 +98,7 @@
                         <div class="input-group">
                             <span class="input-group-text">Confirmar contraseña</span>
                             <input type="password" id="confirmPassword" class="form-control"
-                                placeholder="Password123#" />
+                                   placeholder="Password123#" />
                         </div>
                     </div>
 
@@ -120,7 +120,22 @@
     </div>
     
 
-    <script src="~/assets/js/bs-init.js" asp-append-version="true"></script>
-    <script src="~/assets/js/Register.js" asp-append-version="true"></script>
-
+    
 </section>
+
+
+<script>
+    document.getElementById('registerButton').addEventListener('click', function (event) {
+        debugger;
+        event.preventDefault(); // Evita la recarga de la página
+
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Aun estamos Trabajando!'
+        })
+    });
+</script>
+
+<script src="~/assets/js/bs-init.js" asp-append-version="true"></script>
+<script src="~/assets/js/Register.js" asp-append-version="true"></script>
