@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\santi\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj": {}
+    "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj": {}
   },
   "projects": {
-    "C:\\Users\\santi\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj": {
+    "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\santi\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj",
+        "projectUniqueName": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj",
         "projectName": "Domain.Entities",
-        "projectPath": "C:\\Users\\santi\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj",
-        "packagesPath": "C:\\Users\\santi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\santi\\Source\\Repos\\SmileSoft\\Domain.Entities\\obj\\",
+        "projectPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj",
+        "packagesPath": "C:\\Users\\Alejandro Vasquez\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Entities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\santi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Alejandro Vasquez\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -73,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
