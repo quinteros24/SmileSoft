@@ -49,6 +49,7 @@ namespace Repository.Queries
                     $"                WHERE\n" +
                     $"                    U.uID = @ExistantUser AND U.uPassword = @Password\n" +
                     $"                SELECT '0' AS OutputCodeError, 'Inicio de sesión con éxito' AS OutputMessageError, 'Parameters' AS TableName\n" +
+                    $"                UPDATE dbo.Users SET uIsBlocked = 0, uFailedAttempts = 0 WHERE uID = @ExistantUser\n" +
                     $"            END\n" +
                     $"        END\n" +
                     $"    END\n" +
