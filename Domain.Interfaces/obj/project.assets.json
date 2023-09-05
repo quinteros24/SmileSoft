@@ -7331,19 +7331,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\santi\\.nuget\\packages\\": {}
+    "C:\\Users\\Usuario\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\santi\\Source\\Repos\\SmileSoft\\Domain.Interfaces\\Domain.Interfaces.csproj",
+      "projectUniqueName": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Domain.Interfaces\\Domain.Interfaces.csproj",
       "projectName": "Domain.Interfaces",
-      "projectPath": "C:\\Users\\santi\\Source\\Repos\\SmileSoft\\Domain.Interfaces\\Domain.Interfaces.csproj",
-      "packagesPath": "C:\\Users\\santi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\santi\\Source\\Repos\\SmileSoft\\Domain.Interfaces\\obj\\",
+      "projectPath": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Domain.Interfaces\\Domain.Interfaces.csproj",
+      "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Domain.Interfaces\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\santi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7357,8 +7357,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\santi\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj": {
-              "projectPath": "C:\\Users\\santi\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj"
+            "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj": {
+              "projectPath": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj"
             }
           }
         }
@@ -7410,7 +7410,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
