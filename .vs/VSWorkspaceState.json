@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Domain.Entities",
+    "\\Repository",
+    "\\Repository\\Queries",
+    "\\WebSmileSoft",
+    "\\WebSmileSoft\\Controllers"
   ],
-  "SelectedNode": "\\SolutionSmileSoft.sln",
+  "SelectedNode": "\\WebSmileSoft\\Controllers\\AccountController.cs",
   "PreviewInSolutionExplorer": false
 }
