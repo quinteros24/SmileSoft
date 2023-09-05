@@ -1,0 +1,39 @@
+html {
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.video-fluid {
+    width: 50%;
+    height: auto;
+}
+
+.img-backup {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .video-fluid {
+        display: none;
+    }
+
+    .img-backup {
+        display: block;
+    }
+}
+

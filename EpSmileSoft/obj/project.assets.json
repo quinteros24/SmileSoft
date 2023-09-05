@@ -8387,19 +8387,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\santi\\.nuget\\packages\\": {}
+    "C:\\Users\\Alejandro Vasquez\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\santi\\Source\\Repos\\SmileSoft\\EpSmileSoft\\EpSmileSoft.csproj",
+      "projectUniqueName": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\EpSmileSoft\\EpSmileSoft.csproj",
       "projectName": "EpSmileSoft",
-      "projectPath": "C:\\Users\\santi\\Source\\Repos\\SmileSoft\\EpSmileSoft\\EpSmileSoft.csproj",
-      "packagesPath": "C:\\Users\\santi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\santi\\Source\\Repos\\SmileSoft\\EpSmileSoft\\obj\\",
+      "projectPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\EpSmileSoft\\EpSmileSoft.csproj",
+      "packagesPath": "C:\\Users\\Alejandro Vasquez\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\EpSmileSoft\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\santi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Alejandro Vasquez\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8407,15 +8407,14 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\sdk\\7.0.304\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\santi\\Source\\Repos\\SmileSoft\\Domain.Core\\Domain.Core.csproj": {
-              "projectPath": "C:\\Users\\santi\\Source\\Repos\\SmileSoft\\Domain.Core\\Domain.Core.csproj"
+            "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Core\\Domain.Core.csproj": {
+              "projectPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Core\\Domain.Core.csproj"
             }
           }
         }
@@ -8490,7 +8489,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

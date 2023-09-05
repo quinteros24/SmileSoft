@@ -1,0 +1,126 @@
+﻿@{
+    ViewData["Title"] = "Registrarte";
+}
+<head>
+    <title>Register</title>
+    <link rel="icon" href="~/img/logo-nav.png" asp-append-version="true">
+</head>
+
+ <section class="bg-light d-flex flex-column min-vh-100">
+    <div class="container flex-grow-1">
+        <div class="d-flex justify-content-center align-items-center vh-100">
+            <div class="shadow p-5 ">
+                <div class="d-flex flex-column align-items-center mb-4">
+                    <img src="~/assets/img/logo-2.png" class="img-fluid w-25" alt="SmileSoftLogo">
+                </div>
+                <form class="row" action="" method="">
+                    <div class="col-md-6 mb-3">
+                        <label class="visually-hidden" for="specificSizeInputName">Nombres</label>
+                        <div class="input-group">
+                            <div class="input-group-text">Nombres</div>
+                            <input type="text" class="form-control" id="userNameRegister" placeholder="Ingresar Nombre">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="visually-hidden" for="specificSizeInputGroupUsername">Apellidos</label>
+                        <div class="input-group">
+                            <div class="input-group-text">Apellidos</div>
+                            <input type="text" class="form-control" id="userLastNameRegister"
+                                placeholder="Apellidos">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <div class="input-group">
+                            <select id="options" class="form-select" size="1">
+                                <option value="TI">Tarjeta de Identidad</option>
+                                <option value="CC">Cedula de Ciudadania</option>
+                                <option value="CE">Cedula de Extranjeria</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-9 mb-3">
+                        <div class="input-group">
+                            <!--<label class="form-outline" for="IdNumber">Numero</label>-->
+                            <span class="input-group-text" id="inputGroup-sizing-default">Documento</span>
+                            <input type="text" id="IdNumber" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text">Fecha de nacimiento</span>
+                            <input type="date" id="birthDate" class="form-control " />
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <div class="input-group" id="genderOptions">
+                            <label class="input-group-text" for="genderSelect">Género</label>
+                            <select class="form-select" id="genderSelect">
+                                <option selected disabled>Seleccionar</option>
+                                <option value="masculino">Masculino</option>
+                                <option value="femenino">Femenino</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <div class=" input-group">
+                            <span class="input-group-text">Dirección</span>
+                            <input type="text" id="address" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text">Numero de celular</span>
+                            <input type="number" id="mobileNumber" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="input-group col-12 mb-3">
+                        <span class="input-group-text">Correo electrónico</span>
+                        <input type="email" id="email" class="form-control " placeholder="usuario@example.com" />
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <div class="input-group ">
+                            <span class="input-group-text">Contraseña</span>
+                            <input type="password" id="password" class="form-control g" placeholder="Password123#" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text">Confirmar contraseña</span>
+                            <input type="password" id="confirmPassword" class="form-control"
+                                placeholder="Password123#" />
+                        </div>
+                    </div>
+
+                    <div id="passwordHelpBlock" class="form-text">
+                        Tu contraseña debe ser minimo de 8 caracteres, debe contener letras, números o caracteres
+                        especiales, y no debe contener espacios o emojis.
+                    </div>
+
+                    <div class="text-end mt-4">
+                        <button type="submit" id="registerButton" class="btn btn-primary d-block btn-user w-100">
+                            <strong>Registrarte</strong>
+                        </button>
+                    </div>
+                </form>
+                <hr>
+                <div class="text-center"><a class="small" href="@Url.Action("Login","Account")">Ya tienes Cuenta? Inicia Sesión!</a></div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="~/assets/js/bs-init.js" asp-append-version="true"></script>
+    <script src="~/assets/js/Register.js" asp-append-version="true"></script>
+
+</section>
