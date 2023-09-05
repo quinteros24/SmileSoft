@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "siMhOzTnSXIrMwmzCZJNFfb4Nb+uXko95gVa5BTqYB7Wrwfi/XtN7yofwX9B/b9wS3oaVSamb2h2gHRrO8d0pg==",
+  "dgSpecHash": "/nq/t9gFiELLx6nIN7LN1aNTC89Ri5G9ApnHXZP5Bseq+1WyTDbxDrkTE6Cz9uHBHj4mKn+3YN9zpSNuhDggGA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj",
+  "projectFilePath": "C:\\Users\\santiago.quintero\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Alejandro Vasquez\\.nuget\\packages\\coverlet.msbuild\\6.0.0\\coverlet.msbuild.6.0.0.nupkg.sha512",
-    "C:\\Users\\Alejandro Vasquez\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.3.4\\microsoft.codeanalysis.analyzers.3.3.4.nupkg.sha512",
-    "C:\\Users\\Alejandro Vasquez\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+    "C:\\Users\\santiago.quintero\\.nuget\\packages\\coverlet.msbuild\\6.0.0\\coverlet.msbuild.6.0.0.nupkg.sha512",
+    "C:\\Users\\santiago.quintero\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.3.4\\microsoft.codeanalysis.analyzers.3.3.4.nupkg.sha512",
+    "C:\\Users\\santiago.quintero\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
   "logs": []
 }
