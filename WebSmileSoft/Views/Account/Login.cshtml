@@ -2,43 +2,38 @@
     ViewData["Title"] = "SmileSoft";
 }
 
-<section class="bg-light d-flex flex-column min-vh-100">
-    <div class="container flex-grow-1">
-        <div class="row justify-content-center">
-            <div class="col-md-9 col-lg-12 col-xl-10">
-                <div class="card shadow-lg o-hidden border-0 my-5">
-                    <div class="card-body p-0 shadow">
-                        <div class="row">
-                            <div class="col-lg-6 d-none d-lg-flex">
-                                <div class="flex-grow-1 bounce animated bg-login-image d-flex ms-5" style="background-image: url(&quot;assets/img/logo-r.png&quot;);"></div>
+<section class="row justify-content-center">
+    <div class="col-md-9 col-lg-12 col-xl-10">
+        <div class="card shadow-lg o-hidden border-0 my-5">
+            <div class="card-body p-0 shadow">
+                <div class="row">
+                    <div class="col-lg-6 d-none d-lg-flex">
+                        <div class="flex-grow-1 bounce animated bg-login-image d-flex ms-5" style="background-image: url(&quot;assets/img/logo-r.png&quot;);"></div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h4 class="text-dark mb-4" data-bss-hover-animate="pulse"><strong>Iniciar Sesión</strong></h4>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h4 class="text-dark mb-4" data-bss-hover-animate="pulse"><strong>Iniciar Sesión</strong></h4>
-                                    </div>
-                                    <form class="user" id="formlogin">
-                                        <div class="mb-3"><input class="form-control form-control-user" type="text" id="UserLogin" aria-describedby="emailHelp" placeholder="Ingresa tu Correo Electrónico" name="email"></div>
-                                        <div class="mb-3"><input class="form-control form-control-user" type="password" id="Password" placeholder="Contraseña" name="password"></div>
-                                        <div class="mb-3">
-                                            @* <div class="custom-control custom-checkbox small">
-                                                <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="formCheck-1"><label class="form-check-label custom-control-label" for="formCheck-1">Recordarme</label></div>
-                                            </div> *@
-                                        </div><button class="btn btn-primary d-block btn-user w-100" type="submit" id="loginButton" onclick="validarInicioSesion()"><strong>Ingresar</strong></button>
-                                        <hr>
+                            <form class="user" id="formlogin">
+                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="UserLogin" aria-describedby="emailHelp" placeholder="Ingresa tu Correo Electrónico" name="email"></div>
+                                <div class="mb-3"><input class="form-control form-control-user" type="password" id="Password" placeholder="Contraseña" name="password"></div>
+                                <div class="mb-3">
+                                    @* <div class="custom-control custom-checkbox small">
+                                    <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="formCheck-1"><label class="form-check-label custom-control-label" for="formCheck-1">Recordarme</label></div>
+                                    </div> *@
+                                </div><button class="btn btn-primary d-block btn-user w-100" type="submit" id="loginButton" onclick="validarInicioSesion()"><strong>Ingresar</strong></button>
+                                <hr>
 
-                                    </form>
-                                    <div class="text-center"><a class="small" href="@Url.Action("ForgotPassword","Account")">Olvidaste la Contraseña?</a></div>
-                                    <div class="text-center"><a class="small" href="@Url.Action("Register","Account")">Registrarse</a></div>
-                                </div>
-                            </div>
+                            </form>
+                            <div class="text-center"><a class="small" href="@Url.Action("ForgotPassword","Account")">Olvidaste la Contraseña?</a></div>
+                            <div class="text-center"><a class="small" href="@Url.Action("Register","Account")">Registrarse</a></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
 </section>
 
 
@@ -48,11 +43,14 @@
 <script>
     function validarInicioSesion() {
         console.log(1);
+        event.preventDefault();
         let username = document.getElementById("UserLogin").value;
         let password = document.getElementById("Password").value;
 
-        if (username === "" || password === "") {
-            alert("Por favor ingresar todos los campos");
+        if (username === "") {
+            Swal.fire('Por favor, ingrese su nombre de usuario');
+        } else if (password === "") {
+            Swal.fire('Por favor, ingrese su contraseña');
         } else {
             let data = {
                 UserLogin: username,
@@ -68,9 +66,12 @@
                 success: function (response) {
                     if (response.codeStatus == 0) {
                         //ir a la vista
-                        alert(response.messageStatus);
+                        Swal.fire(response.messageStatus);
+                        //alert(response.messageStatus);
+                        window.location.href = '@Url.Action("Index", "Home")';
                     } else {
-                        alert('Inicio de sesión fallido, ' + response.messageStatus);
+                        Swal.fire("Inicio de sesión fallido. " + response.messageStatus);
+                        //alert('Inicio de sesión fallido, ' + response.messageStatus);
                     }
                 },
                 error: function (error) {
@@ -81,4 +82,3 @@
     }
 
 </script>
-
