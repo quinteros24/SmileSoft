@@ -2,7 +2,9 @@
     ViewData["Title"] = "SmileSoft";
 }
 
-        <section class="row justify-content-center">
+<section class="bg-light d-flex flex-column min-vh-100">
+    <div class="container flex-grow-1">
+        <div class="row justify-content-center">
             <div class="col-md-9 col-lg-12 col-xl-10">
                 <div class="card shadow-lg o-hidden border-0 my-5">
                     <div class="card-body p-0 shadow">
@@ -34,10 +36,51 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+    
+</section>
 
 
-@* <script src="~/assets/js/bs-init.js" asp-append-version="true"></script>
+@*<script src="~/assets/js/bs-init.js" asp-append-version="true"></script>
+<script src="~/assets/js/Login.js" asp-append-version="true"></script>*@
+
+<script>
+    function validarInicioSesion() {
+        console.log(1);
+        let username = document.getElementById("UserLogin").value;
+        let password = document.getElementById("Password").value;
+
+        if (username === "" || password === "") {
+            alert("Por favor ingresar todos los campos");
+        } else {
+            let data = {
+                UserLogin: username,
+                password: password
+            };
+            $.ajax({
+                type: "POST",
+                url: '@ViewBag.urlEndPoint' + '/api/Session/v1/Login',
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                async: false,
+                dataType: "json",
+                success: function (response) {
+                    if (response.codeStatus == 0) {
+                        //ir a la vista
+                        alert(response.messageStatus);
+                    } else {
+                        alert('Inicio de sesión fallido, ' + response.messageStatus);
+                    }
+                },
+                error: function (error) {
+                    console.log("Error.");
+                }
+            });
+        }
+    }
+
+<script src="~/assets/js/bs-init.js" asp-append-version="true"></script>
 <script src="~/assets/js/login.js" asp-append-version="true"></script>
 
  *@
