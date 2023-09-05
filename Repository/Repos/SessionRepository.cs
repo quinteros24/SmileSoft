@@ -53,8 +53,6 @@ namespace Repository.Repos
             }
             if (genericResponseModel.RecordsQuantity == 0)
             {
-                genericResponseModel.MessageStatus = "USER HAS NOT BEEN FOUND";
-                genericResponseModel.CodeStatus = "404";
                 genericResponseModel.Status = false;
             }
             else
