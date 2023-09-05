@@ -1,12 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
-using System.Diagnostics.Metrics;
 using System.Text;
-using System.Threading.Tasks;
 using WebSmileSoft.Models;
-
+using WebSmileSoft.Interfaces;
 
 namespace WebSmileSoft.Controllers
 {
@@ -14,14 +11,12 @@ namespace WebSmileSoft.Controllers
     {
         //private readonly SignInManager<ApplicationUser> _signInManager;
         //private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ISettings _settings;
 
-        //public AccountController(
-        //    SignInManager<ApplicationUser> signInManager,
-        //    UserManager<ApplicationUser> userManager)
-        //{
-        //    _signInManager = signInManager;
-        //    _userManager = userManager;
-        //}
+        public AccountController(ISettings settings)
+        {
+            _settings = settings;
+        }
 
         //// Acción para la página de inicio de sesión
         public IActionResult Login()
@@ -36,27 +31,23 @@ namespace WebSmileSoft.Controllers
             var HttpClient = new HttpClient();
             var content = new StringContent(JsonConvert.SerializeObject(ItemLogin), Encoding.UTF8, "application/json");
 
-            //Petición
-            var response = await HttpClient.PostAsJsonAsync("https://ep-smilesoft-develop.azurewebsites.net/api/Session/v1/Login", content);
+            LoginViewModelResponse? LoginViewModelItem = new();
+            var response = await HttpClient.PostAsJsonAsync(_settings.urlEndPoint, content);
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStringAsync();
                 JObject jsonObject = JObject.Parse(json);
                 var data = jsonObject["itemJson"];
                 string? jsonData = data != null ? data.ToString() : String.Empty;
-                LoginViewModelResponse? LoginViewModelItem = new();
-                GenericResponseModel GenericResponseItem = new();
 
-                LoginViewModelItem = JsonConvert.DeserializeObject<LoginViewModelResponse>(jsonData);
-                return LoginViewModelItem;
-
+                if(!String.IsNullOrEmpty(jsonData))
+                {
+                    LoginViewModelItem = JsonConvert.DeserializeObject<LoginViewModelResponse>(jsonData);
+                }
+                return LoginViewModelItem!;
             }
             else
-            {
-                // Manejar el error de autenticación
-                ModelState.AddModelError("", "Error en el inicio de sesión.");
-                return null;
-            }
+                return LoginViewModelItem;
         }
 
 

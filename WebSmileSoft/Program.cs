@@ -1,7 +1,17 @@
+using WebSmileSoft.Interfaces;
+using WebSmileSoft.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
+builder.Services.AddSingleton<ISettings>((serviceProvider) =>
+{
+    return builder.Configuration.GetSection("Settings").Get<Settings>();
+});
+
 
 var app = builder.Build();
 
