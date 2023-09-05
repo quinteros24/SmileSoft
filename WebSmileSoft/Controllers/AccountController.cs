@@ -21,18 +21,19 @@ namespace WebSmileSoft.Controllers
         //// Acción para la página de inicio de sesión
         public IActionResult Login()
         {
+            ViewBag.urlEndPoint = _settings.urlEndPoint;
             return View();
         }
 
 
         [HttpPost]
-        public async Task<LoginViewModelResponse> Login([FromBody]LoginViewModelRequest ItemLogin)
+        public async Task<LoginViewModelResponse> Login([FromBody] LoginViewModelRequest ItemLogin)
         {
             var HttpClient = new HttpClient();
-            var content = new StringContent(JsonConvert.SerializeObject(ItemLogin), Encoding.UTF8, "application/json");
+            //var content = new StringContent(JsonConvert.SerializeObject(ItemLogin), Encoding.UTF8, "application/json");
 
             LoginViewModelResponse? LoginViewModelItem = new();
-            var response = await HttpClient.PostAsJsonAsync(_settings.urlEndPoint, content);
+            var response = await HttpClient.PostAsJsonAsync(_settings.urlEndPoint + "/api/Session/v1/Login", ItemLogin);
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStringAsync();
