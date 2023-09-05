@@ -48,6 +48,8 @@ namespace EpSmilesoft
 
             app.MapControllers();
 
+            app.UseCors(MyAllowSpecificOrigins);
+
 
             //IConfiguration configuration = app.Configuration;
             IWebHostEnvironment environment = app.Environment;

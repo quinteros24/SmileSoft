@@ -5,3 +5,15 @@ C:\Users\santi\Source\Repos\SmileSoft\WebSmileSoft\obj\Release\net6.0\PubTmp\Out
 C:\Users\santi\Source\Repos\SmileSoft\WebSmileSoft\obj\Release\net6.0\PubTmp\Out\WebSmileSoft.deps.json
 C:\Users\santi\Source\Repos\SmileSoft\WebSmileSoft\obj\Release\net6.0\PubTmp\Out\WebSmileSoft.runtimeconfig.json
 C:\Users\santi\Source\Repos\SmileSoft\WebSmileSoft\obj\Release\net6.0\PubTmp\Out\WebSmileSoft.pdb
+C:\Users\santi\Source\Repos\SmileSoft\WebSmileSoft\obj\Release\net6.0\PubTmp\Out\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\santi\Source\Repos\SmileSoft\WebSmileSoft\obj\Release\net6.0\PubTmp\Out\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\santi\Source\Repos\SmileSoft\WebSmileSoft\obj\Release\net6.0\PubTmp\Out\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\santi\Source\Repos\SmileSoft\WebSmileSoft\obj\Release\net6.0\PubTmp\Out\Microsoft.EntityFrameworkCore.dll
+C:\Users\santi\Source\Repos\SmileSoft\WebSmileSoft\obj\Release\net6.0\PubTmp\Out\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\santi\Source\Repos\SmileSoft\WebSmileSoft\obj\Release\net6.0\PubTmp\Out\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\santi\Source\Repos\SmileSoft\WebSmileSoft\obj\Release\net6.0\PubTmp\Out\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\santi\Source\Repos\SmileSoft\WebSmileSoft\obj\Release\net6.0\PubTmp\Out\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\santi\Source\Repos\SmileSoft\WebSmileSoft\obj\Release\net6.0\PubTmp\Out\Microsoft.Extensions.Identity.Core.dll
+C:\Users\santi\Source\Repos\SmileSoft\WebSmileSoft\obj\Release\net6.0\PubTmp\Out\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\santi\Source\Repos\SmileSoft\WebSmileSoft\obj\Release\net6.0\PubTmp\Out\Newtonsoft.Json.dll
+C:\Users\santi\Source\Repos\SmileSoft\WebSmileSoft\obj\Release\net6.0\PubTmp\Out\System.Diagnostics.DiagnosticSource.dll
