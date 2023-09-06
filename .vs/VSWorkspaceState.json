@@ -2,8 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\Repository",
-    "\\Repository\\Queries"
+    "\\Repository\\Queries",
+    "\\WebSmileSoft",
+    "\\WebSmileSoft\\Views",
+    "\\WebSmileSoft\\Views\\Account"
   ],
-  "SelectedNode": "\\Repository\\Queries\\SessionQueries.cs",
+  "SelectedNode": "\\WebSmileSoft\\Views\\Account\\Login.cshtml",
   "PreviewInSolutionExplorer": false
 }
