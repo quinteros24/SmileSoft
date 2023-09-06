@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Repository",
+    "\\Repository\\Queries"
   ],
-  "SelectedNode": "\\SolutionSmileSoft.sln",
+  "SelectedNode": "\\Repository\\Queries\\SessionQueries.cs",
   "PreviewInSolutionExplorer": false
 }
