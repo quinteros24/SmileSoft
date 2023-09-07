@@ -5,8 +5,12 @@
     "\\Repository",
     "\\Repository\\Queries",
     "\\WebSmileSoft",
-    "\\WebSmileSoft\\Controllers"
+    "\\WebSmileSoft\\Controllers",
+    "\\WebSmileSoft\\Views",
+    "\\WebSmileSoft\\Views\\Shared",
+    "\\WebSmileSoft\\Views\\Shared\\Components",
+    "\\WebSmileSoft\\Views\\Shared\\Components\\NavbarSup"
   ],
-  "SelectedNode": "\\WebSmileSoft\\Controllers\\AccountController.cs",
+  "SelectedNode": "\\WebSmileSoft\\Views\\Shared\\Components\\NavbarSup\\_NavbarSup.cshtml",
   "PreviewInSolutionExplorer": false
 }

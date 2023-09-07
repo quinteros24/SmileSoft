@@ -69,6 +69,18 @@
       "PackagePath": "staticwebassets\\assets\\fonts\\XRXX3I6Li01BKofIMNaORs71cA.woff2"
     },
     {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\2.png",
+      "PackagePath": "staticwebassets\\assets\\img\\anuncios\\2.png"
+    },
+    {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\3.png",
+      "PackagePath": "staticwebassets\\assets\\img\\anuncios\\3.png"
+    },
+    {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\top.png",
+      "PackagePath": "staticwebassets\\assets\\img\\anuncios\\top.png"
+    },
+    {
       "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\avatars\\avatar1.jpeg",
       "PackagePath": "staticwebassets\\assets\\img\\avatars\\avatar1.jpeg"
     },
