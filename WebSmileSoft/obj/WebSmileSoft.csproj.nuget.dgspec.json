@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\WebSmileSoft.csproj": {}
+    "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\WebSmileSoft.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\WebSmileSoft.csproj": {
+    "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\WebSmileSoft.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\WebSmileSoft.csproj",
+        "projectUniqueName": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\WebSmileSoft.csproj",
         "projectName": "WebSmileSoft",
-        "projectPath": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\WebSmileSoft.csproj",
-        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\obj\\",
+        "projectPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\WebSmileSoft.csproj",
+        "packagesPath": "C:\\Users\\Alejandro Vasquez\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Alejandro Vasquez\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -43,6 +43,10 @@
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.21, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.16, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",

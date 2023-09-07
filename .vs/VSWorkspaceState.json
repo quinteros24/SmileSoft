@@ -1,11 +1,12 @@
 {
   "ExpandedNodes": [
     "",
+    "\\Domain.Entities",
     "\\Repository",
     "\\Repository\\Queries",
     "\\WebSmileSoft",
+    "\\WebSmileSoft\\Controllers",
     "\\WebSmileSoft\\Views",
-    "\\WebSmileSoft\\Views\\Account",
     "\\WebSmileSoft\\Views\\Shared",
     "\\WebSmileSoft\\Views\\Shared\\Components",
     "\\WebSmileSoft\\Views\\Shared\\Components\\NavbarSup"

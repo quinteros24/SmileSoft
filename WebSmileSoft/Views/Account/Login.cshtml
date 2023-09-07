@@ -1,8 +1,8 @@
 ﻿@{
     ViewData["Title"] = "SmileSoft";
 }
-
-<section class="row justify-content-center">
+<section class="container flex-grow-1">
+<div class="row justify-content-center">
     <div class="col-md-9 col-lg-12 col-xl-10">
         <div class="card shadow-lg o-hidden border-0 my-5">
             <div class="card-body p-0 shadow">
@@ -26,14 +26,15 @@
                                 <hr>
 
                             </form>
-                            <div class="text-center"><a class="small" href="@Url.Action("ForgotPassword","Account")">Olvidaste la Contraseña?</a></div>
-                            <div class="text-center"><a class="small" href="@Url.Action("Register","Account")">Registrarse</a></div>
+                            <div class="text-center"><a class="small" href="@Url.Action("ForgotPassword", "Account")">Olvidaste la Contraseña?</a></div>
+                            <div class="text-center"><a class="small" href="@Url.Action("Register", "Account")">Registrarse</a></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </section>
 
 
@@ -43,7 +44,6 @@
 <script>
     function validarInicioSesion() {
         console.log(1);
-        event.preventDefault();
         let username = document.getElementById("UserLogin").value;
         let password = document.getElementById("Password").value;
 
