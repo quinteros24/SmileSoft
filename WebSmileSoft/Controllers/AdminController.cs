@@ -16,6 +16,10 @@ namespace WebSmileSoft.Controllers
         {
             return View("~/Views/Admin/ViewTable.cshtml");
         }
+        public IActionResult Index()
+        {
+            return View("~/Views/Admin/Dashboard.cshtml");
+        }
 
         //public AdminController(
         //    UserManager<ApplicationUser> userManager,

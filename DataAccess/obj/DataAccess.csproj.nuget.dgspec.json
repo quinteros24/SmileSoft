@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\DataAccess\\DataAccess.csproj": {}
+    "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\DataAccess\\DataAccess.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\DataAccess\\DataAccess.csproj": {
+    "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\DataAccess\\DataAccess.csproj",
-        "packagesPath": "C:\\Users\\Alejandro Vasquez\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\DataAccess\\obj\\",
+        "projectPath": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\DataAccess\\DataAccess.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Alejandro Vasquez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

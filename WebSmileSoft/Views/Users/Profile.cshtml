@@ -9,8 +9,8 @@
         <div class="col-lg-4">
             <div class="card mb-3">
                 <div class="card-body text-center shadow">
-                    <img class="rounded-circle mb-3 mt-4" src="~/assets/img/dogs/image2.jpeg" width="160" height="160">
-                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="button">Cambiar Foto</button></div>
+                    <img class="rounded-circle mb-3 mt-4" src="~/assets/img/logo-r.png" width="160" height="160">
+                    @* <div class="mb-3"><button class="btn btn-primary btn-sm" type="button">Cambiar Foto</button></div> *@
                 </div>
             </div>
             <div class="card shadow mb-4">
@@ -48,6 +48,31 @@
                 <div class="col">
                     <div class="card shadow mb-3">
                         <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold">Datos Personales</p>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3"><label class="form-label" for="user_names"><strong>Nombres</strong></label><input class="form-control" type="text" id="user_names" placeholder="Juan Pedro" name="user_names" disabled></div>
+                                </div>
+                                <div class="col">
+                                    <div class="mb-3"><label class="form-label" for="user_lastnames"><strong>Apellidos</strong></label><input class="form-control" type="text" id="user_lastnames" placeholder="Sanchez ramirez" name="user_lastnames" disabled></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3"><label class="form-label" for="tipo_documento"><strong>Tipo Documento</strong></label><input class="form-control" type="text" id="tipo_documento" placeholder="C.C." name="tipo_documento" disabled></div>
+                                </div>
+                                <div class="col">
+                                    <div class="mb-3"><label class="form-label" for="id_number"><strong>Identificación</strong></label><input class="form-control" type="text" id="id_number" placeholder="1088313131" name="id_number" disabled></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card shadow mb-3">
+                        <div class="card-header py-3">
                             <p class="text-primary m-0 fw-bold">Configuración del usuario</p>
                         </div>
                         <div class="card-body">
@@ -58,14 +83,6 @@
                                     </div>
                                     <div class="col">
                                         <div class="mb-3"><label class="form-label" for="email"><strong>Correo Electrónico&nbsp;</strong></label><input class="form-control" type="email" id="email" placeholder="user@example.com" name="email"></div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>Nombre</strong></label><input class="form-control" type="text" id="first_name" placeholder="John" name="first_name"></div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="mb-3"><label class="form-label" for="last_name"><strong>Apellidos</strong></label><input class="form-control" type="text" id="last_name" placeholder="Doe" name="last_name"></div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -82,7 +99,7 @@
                     </div>
                     <div class="card shadow">
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 fw-bold">Ajustes de contacto</p>
+                            <p class="text-primary m-0 fw-bold">Datos de contacto</p>
                         </div>
                         <div class="card-body">
                             <form>
@@ -100,9 +117,27 @@
                                         <div class="mb-3"><label class="form-label" for="phone_number"><strong>Numero Celular</strong></label><input class="form-control" type="text" id="phone_number" placeholder="3024214750" name="phone_number"></div>
                                     </div>
                                     <div class="col">
-                                        <div class="mb-3"><label class="form-label" for="house_number"><strong>Numero Fijo</strong></label><input class="form-control" type="text" id="house_number" placeholder="6063388779" name="house_number"></div>
+                                        <div class="mb-3"><label class="form-label" for="house_number"><strong>Telefono Fijo</strong></label><input class="form-control" type="text" id="house_number" placeholder="6063388779" name="house_number"></div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <form>
+                                                    <div class="mb-3">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input" type="checkbox" id="formCheck-1" required>
+                                                            <label class="form-check-label" for="formCheck-1">
+                                                                <strong>Acepto los términos y condiciones de uso de los datos registrados en este sitio.</strong>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+
                                 <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Guardar</button></div>
                             </form>
                         </div>

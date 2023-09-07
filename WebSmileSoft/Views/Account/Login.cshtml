@@ -44,13 +44,19 @@
 <script>
     function validarInicioSesion() {
         console.log(1);
+        event.preventDefault();
         let username = document.getElementById("UserLogin").value;
         let password = document.getElementById("Password").value;
 
         if (username === "") {
-            Swal.fire('Por favor, ingrese su nombre de usuario');
+            Swal.fire({
+                text: 'Por favor, ingrese su nombre de usuario',
+                confirmButtonColor: '#008dc9'});
         } else if (password === "") {
-            Swal.fire('Por favor, ingrese su contraseña');
+            Swal.fire({
+                text: 'Por favor, ingrese su contraseña',
+                confirmButtonColor: '#008dc9'
+            });
         } else {
             let data = {
                 UserLogin: username,
@@ -70,7 +76,10 @@
                         //alert(response.messageStatus);
                         window.location.href = '@Url.Action("Index", "Home")';
                     } else {
-                        Swal.fire("Inicio de sesión fallido. " + response.messageStatus);
+                        Swal.fire({
+                            text: "Inicio de sesión fallido. " + response.messageStatus,
+                            confirmButtonColor: '#008dc9'
+                        });
                         //alert('Inicio de sesión fallido, ' + response.messageStatus);
                     }
                 },

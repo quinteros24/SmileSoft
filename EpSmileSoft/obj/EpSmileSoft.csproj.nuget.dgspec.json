@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\EpSmileSoft\\EpSmileSoft.csproj": {}
+    "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\EpSmileSoft\\EpSmileSoft.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\DataAccess\\DataAccess.csproj": {
+    "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\DataAccess\\DataAccess.csproj",
-        "packagesPath": "C:\\Users\\Alejandro Vasquez\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\DataAccess\\obj\\",
+        "projectPath": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\DataAccess\\DataAccess.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Alejandro Vasquez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -89,17 +89,17 @@
         }
       }
     },
-    "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Core\\Domain.Core.csproj": {
+    "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Domain.Core\\Domain.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Core\\Domain.Core.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Domain.Core\\Domain.Core.csproj",
         "projectName": "Domain.Core",
-        "projectPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Core\\Domain.Core.csproj",
-        "packagesPath": "C:\\Users\\Alejandro Vasquez\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Core\\obj\\",
+        "projectPath": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Domain.Core\\Domain.Core.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Domain.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Alejandro Vasquez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -113,8 +113,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Repository\\Repository.csproj": {
-                "projectPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Repository\\Repository.csproj"
+              "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Repository\\Repository.csproj": {
+                "projectPath": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Repository\\Repository.csproj"
               }
             }
           }
@@ -160,17 +160,17 @@
         }
       }
     },
-    "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj": {
+    "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj",
         "projectName": "Domain.Entities",
-        "projectPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj",
-        "packagesPath": "C:\\Users\\Alejandro Vasquez\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Entities\\obj\\",
+        "projectPath": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Domain.Entities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Alejandro Vasquez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -233,17 +233,17 @@
         }
       }
     },
-    "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Interfaces\\Domain.Interfaces.csproj": {
+    "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Domain.Interfaces\\Domain.Interfaces.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Interfaces\\Domain.Interfaces.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Domain.Interfaces\\Domain.Interfaces.csproj",
         "projectName": "Domain.Interfaces",
-        "projectPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Interfaces\\Domain.Interfaces.csproj",
-        "packagesPath": "C:\\Users\\Alejandro Vasquez\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Interfaces\\obj\\",
+        "projectPath": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Domain.Interfaces\\Domain.Interfaces.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Domain.Interfaces\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Alejandro Vasquez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -257,8 +257,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj": {
-                "projectPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj"
+              "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj": {
+                "projectPath": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj"
               }
             }
           }
@@ -314,17 +314,17 @@
         }
       }
     },
-    "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\EpSmileSoft\\EpSmileSoft.csproj": {
+    "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\EpSmileSoft\\EpSmileSoft.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\EpSmileSoft\\EpSmileSoft.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\EpSmileSoft\\EpSmileSoft.csproj",
         "projectName": "EpSmileSoft",
-        "projectPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\EpSmileSoft\\EpSmileSoft.csproj",
-        "packagesPath": "C:\\Users\\Alejandro Vasquez\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\EpSmileSoft\\obj\\",
+        "projectPath": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\EpSmileSoft\\EpSmileSoft.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\EpSmileSoft\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Alejandro Vasquez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -338,8 +338,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Core\\Domain.Core.csproj": {
-                "projectPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Core\\Domain.Core.csproj"
+              "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Domain.Core\\Domain.Core.csproj": {
+                "projectPath": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Domain.Core\\Domain.Core.csproj"
               }
             }
           }
@@ -418,17 +418,17 @@
         }
       }
     },
-    "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Repository\\Repository.csproj": {
+    "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Repository\\Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Repository\\Repository.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Repository\\Repository.csproj",
         "projectName": "Repository",
-        "projectPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Repository\\Repository.csproj",
-        "packagesPath": "C:\\Users\\Alejandro Vasquez\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Repository\\obj\\",
+        "projectPath": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Repository\\Repository.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Repository\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Alejandro Vasquez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -442,11 +442,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\DataAccess\\DataAccess.csproj"
+              "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\DataAccess\\DataAccess.csproj"
               },
-              "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Interfaces\\Domain.Interfaces.csproj": {
-                "projectPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Interfaces\\Domain.Interfaces.csproj"
+              "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Domain.Interfaces\\Domain.Interfaces.csproj": {
+                "projectPath": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Domain.Interfaces\\Domain.Interfaces.csproj"
               }
             }
           }

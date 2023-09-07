@@ -8,5 +8,6 @@ document.getElementById('resetpasswordbutton').addEventListener('click', functio
         icon: 'error',
         title: 'Oops...',
         text: 'Aun estamos Trabajando!',
+        confirmButtonColor: '#008dc9'
     })
 });
