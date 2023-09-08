@@ -1,16 +1,17 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Domain.Entities",
     "\\Repository",
     "\\Repository\\Queries",
     "\\WebSmileSoft",
     "\\WebSmileSoft\\Controllers",
     "\\WebSmileSoft\\Views",
+    "\\WebSmileSoft\\Views\\Account",
+    "\\WebSmileSoft\\Views\\Admin",
     "\\WebSmileSoft\\Views\\Shared",
     "\\WebSmileSoft\\Views\\Shared\\Components",
     "\\WebSmileSoft\\Views\\Shared\\Components\\NavbarSup"
   ],
-  "SelectedNode": "\\WebSmileSoft\\Views\\Shared\\Components\\NavbarSup\\_NavbarSup.cshtml",
+  "SelectedNode": "\\WebSmileSoft\\Controllers\\AdminController.cs",
   "PreviewInSolutionExplorer": false
 }
