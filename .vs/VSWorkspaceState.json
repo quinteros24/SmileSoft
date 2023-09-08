@@ -1,7 +1,6 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Repository\\Queries",
     "\\WebSmileSoft",
     "\\WebSmileSoft\\Controllers",
     "\\WebSmileSoft\\Views",
@@ -11,6 +10,6 @@
     "\\WebSmileSoft\\Views\\Shared\\Components",
     "\\WebSmileSoft\\Views\\Shared\\Components\\NavbarSup"
   ],
-  "SelectedNode": "\\WebSmileSoft\\Views\\Admin\\Dashboard.cshtml",
+  "SelectedNode": "\\WebSmileSoft\\Views\\Account\\Login.cshtml",
   "PreviewInSolutionExplorer": false
 }
