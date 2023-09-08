@@ -22,7 +22,7 @@
                                     @* <div class="custom-control custom-checkbox small">
                                     <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="formCheck-1"><label class="form-check-label custom-control-label" for="formCheck-1">Recordarme</label></div>
                                     </div> *@
-                                </div><button class="btn btn-primary d-block btn-user w-100" type="submit" id="loginButton" onclick="validarInicioSesion()"><strong>Ingresar</strong></button>
+                                </div><button class="btn btn-primary" type="button">Button</button><button class="btn btn-primary d-block btn-user w-100" type="submit" id="loginButton" onclick="validarInicioSesion()"><strong>Ingresar</strong></button>
                                 <hr>
 
                             </form>
@@ -58,6 +58,7 @@
                 confirmButtonColor: '#008dc9'
             });
         } else {
+
             let data = {
                 UserLogin: username,
                 password: password
