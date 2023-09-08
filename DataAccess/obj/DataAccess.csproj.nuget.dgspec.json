@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\santi\\Source\\Repos\\SmileSoft\\DataAccess\\DataAccess.csproj": {}
+    "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\DataAccess\\DataAccess.csproj": {}
   },
   "projects": {
-    "C:\\Users\\santi\\Source\\Repos\\SmileSoft\\DataAccess\\DataAccess.csproj": {
+    "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\santi\\Source\\Repos\\SmileSoft\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "C:\\Users\\santi\\Source\\Repos\\SmileSoft\\DataAccess\\DataAccess.csproj",
-        "packagesPath": "C:\\Users\\santi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\santi\\Source\\Repos\\SmileSoft\\DataAccess\\obj\\",
+        "projectPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\DataAccess\\DataAccess.csproj",
+        "packagesPath": "C:\\Users\\Alejandro Vasquez\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\santi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Alejandro Vasquez\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -39,6 +39,36 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.CodeAnalysis.Analyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.3.4, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.5, )"
+            },
+            "coverlet.msbuild": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -55,7 +85,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
