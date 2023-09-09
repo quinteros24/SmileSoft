@@ -1,16 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Domain.Entities",
-    "\\Repository",
-    "\\Repository\\Queries",
     "\\WebSmileSoft",
-    "\\WebSmileSoft\\Controllers",
     "\\WebSmileSoft\\Views",
+    "\\WebSmileSoft\\Views\\Admin",
+    "\\WebSmileSoft\\Views\\Admin\\RoleManagement",
+    "\\WebSmileSoft\\Views\\Admin\\UserManagement",
     "\\WebSmileSoft\\Views\\Shared",
     "\\WebSmileSoft\\Views\\Shared\\Components",
-    "\\WebSmileSoft\\Views\\Shared\\Components\\NavbarSup"
+    "\\WebSmileSoft\\Views\\Shared\\Components\\Footer",
+    "\\WebSmileSoft\\Views\\Shared\\Components\\Sidebar"
   ],
-  "SelectedNode": "\\WebSmileSoft\\Views\\Shared\\Components\\NavbarSup\\_NavbarSup.cshtml",
+  "SelectedNode": "\\WebSmileSoft\\Views\\Shared\\Components\\Footer\\_Footer.cshtml",
   "PreviewInSolutionExplorer": false
 }
