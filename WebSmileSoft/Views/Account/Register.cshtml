@@ -6,8 +6,7 @@
     <link rel="icon" href="~/img/logo-nav.png" asp-append-version="true">
 </head>
 
-<section class="bg-light d-flex flex-column min-vh-100">
-    <div class="container flex-grow-1">
+    <section class="container flex-grow-1">
         <div class="d-flex justify-content-center align-items-center vh-100">
             <div class="shadow p-5 ">
                 <div class="d-flex flex-column align-items-center mb-4">
@@ -31,8 +30,10 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3 mb-3">
+                    <div class="col-md-6 mb-3">
+                    <label class="visually-hidden" for="Tipo_Documento">Tipo de Documento</label>
                         <div class="input-group">
+                        <div class="input-group-text">Tipo de Documento</div>
                             <select id="options" class="form-select" size="1">
                                 <option value="TI">Tarjeta de Identidad</option>
                                 <option value="CC">Cedula de Ciudadania</option>
@@ -41,7 +42,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-9 mb-3">
+                    <div class="col-md-6 mb-3">
                         <div class="input-group">
                             <!--<label class="form-outline" for="IdNumber">Numero</label>-->
                             <span class="input-group-text" id="inputGroup-sizing-default">Documento</span>
@@ -117,25 +118,24 @@
                 <div class="text-center"><a class="small" href="@Url.Action("Login","Account")">Ya tienes Cuenta? Inicia Sesión!</a></div>
             </div>
         </div>
-    </div>
+    </section>
     
 
-    
-</section>
 
-
+@section Scripts {
 <script>
     document.getElementById('registerButton').addEventListener('click', function (event) {
-        debugger;
         event.preventDefault(); // Evita la recarga de la página
 
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Aun estamos Trabajando!'
+            text: 'Aun estamos Trabajando!',
+            confirmButtonColor: '#008dc9'
         })
     });
 </script>
 
 <script src="~/assets/js/bs-init.js" asp-append-version="true"></script>
 <script src="~/assets/js/Register.js" asp-append-version="true"></script>
+}

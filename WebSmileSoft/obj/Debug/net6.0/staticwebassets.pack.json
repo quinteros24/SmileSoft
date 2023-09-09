@@ -29,6 +29,10 @@
       "PackagePath": "staticwebassets\\assets\\css\\site.css"
     },
     {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\table_style.css",
+      "PackagePath": "staticwebassets\\assets\\css\\table_style.css"
+    },
+    {
       "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXV3I6Li01BKofIMeaBXso.woff2",
       "PackagePath": "staticwebassets\\assets\\fonts\\XRXV3I6Li01BKofIMeaBXso.woff2"
     },
@@ -69,24 +73,20 @@
       "PackagePath": "staticwebassets\\assets\\fonts\\XRXX3I6Li01BKofIMNaORs71cA.woff2"
     },
     {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\2.png",
+      "PackagePath": "staticwebassets\\assets\\img\\anuncios\\2.png"
+    },
+    {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\3.png",
+      "PackagePath": "staticwebassets\\assets\\img\\anuncios\\3.png"
+    },
+    {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\top.png",
+      "PackagePath": "staticwebassets\\assets\\img\\anuncios\\top.png"
+    },
+    {
       "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\avatars\\avatar1.jpeg",
       "PackagePath": "staticwebassets\\assets\\img\\avatars\\avatar1.jpeg"
-    },
-    {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\avatars\\avatar2.jpeg",
-      "PackagePath": "staticwebassets\\assets\\img\\avatars\\avatar2.jpeg"
-    },
-    {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\avatars\\avatar3.jpeg",
-      "PackagePath": "staticwebassets\\assets\\img\\avatars\\avatar3.jpeg"
-    },
-    {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\avatars\\avatar4.jpeg",
-      "PackagePath": "staticwebassets\\assets\\img\\avatars\\avatar4.jpeg"
-    },
-    {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\avatars\\avatar5.jpeg",
-      "PackagePath": "staticwebassets\\assets\\img\\avatars\\avatar5.jpeg"
     },
     {
       "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\bg-working-min.png",
@@ -99,10 +99,6 @@
     {
       "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\bg-working.png",
       "PackagePath": "staticwebassets\\assets\\img\\bg-working.png"
-    },
-    {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\dogs\\image2.jpeg",
-      "PackagePath": "staticwebassets\\assets\\img\\dogs\\image2.jpeg"
     },
     {
       "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\forgotpass.png",
@@ -161,8 +157,8 @@
       "PackagePath": "staticwebassets\\assets\\js\\changetheme.js"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\site.js",
-      "PackagePath": "staticwebassets\\assets\\js\\site.js"
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\forgotpassword.js",
+      "PackagePath": "staticwebassets\\assets\\js\\forgotpassword.js"
     },
     {
       "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\theme.js",
