@@ -22,3 +22,15 @@ C:\Users\santiago.quintero\Source\Repos\SmileSoft\DataAccess\obj\Debug\net6.0\Da
 C:\Users\santiago.quintero\Source\Repos\SmileSoft\DataAccess\obj\Debug\net6.0\refint\DataAccess.dll
 C:\Users\santiago.quintero\Source\Repos\SmileSoft\DataAccess\obj\Debug\net6.0\DataAccess.pdb
 C:\Users\santiago.quintero\Source\Repos\SmileSoft\DataAccess\obj\Debug\net6.0\ref\DataAccess.dll
+C:\Users\Usuario\Source\Repos\SmileSoft\DataAccess\bin\Debug\net6.0\DataAccess.deps.json
+C:\Users\Usuario\Source\Repos\SmileSoft\DataAccess\bin\Debug\net6.0\DataAccess.dll
+C:\Users\Usuario\Source\Repos\SmileSoft\DataAccess\bin\Debug\net6.0\DataAccess.pdb
+C:\Users\Usuario\Source\Repos\SmileSoft\DataAccess\obj\Debug\net6.0\DataAccess.csproj.AssemblyReference.cache
+C:\Users\Usuario\Source\Repos\SmileSoft\DataAccess\obj\Debug\net6.0\DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Source\Repos\SmileSoft\DataAccess\obj\Debug\net6.0\DataAccess.AssemblyInfoInputs.cache
+C:\Users\Usuario\Source\Repos\SmileSoft\DataAccess\obj\Debug\net6.0\DataAccess.AssemblyInfo.cs
+C:\Users\Usuario\Source\Repos\SmileSoft\DataAccess\obj\Debug\net6.0\DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Source\Repos\SmileSoft\DataAccess\obj\Debug\net6.0\DataAccess.dll
+C:\Users\Usuario\Source\Repos\SmileSoft\DataAccess\obj\Debug\net6.0\refint\DataAccess.dll
+C:\Users\Usuario\Source\Repos\SmileSoft\DataAccess\obj\Debug\net6.0\DataAccess.pdb
+C:\Users\Usuario\Source\Repos\SmileSoft\DataAccess\obj\Debug\net6.0\ref\DataAccess.dll

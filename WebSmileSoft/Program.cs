@@ -13,6 +13,7 @@ builder.Services.AddSingleton<ISettings>((serviceProvider) =>
 });
 
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
