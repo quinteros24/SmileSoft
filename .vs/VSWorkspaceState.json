@@ -1,15 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\Domain.Entities",
     "\\WebSmileSoft",
-    "\\WebSmileSoft\\Controllers",
     "\\WebSmileSoft\\Views",
-    "\\WebSmileSoft\\Views\\Account",
     "\\WebSmileSoft\\Views\\Admin",
+    "\\WebSmileSoft\\Views\\Admin\\UserManagement",
     "\\WebSmileSoft\\Views\\Shared",
     "\\WebSmileSoft\\Views\\Shared\\Components",
-    "\\WebSmileSoft\\Views\\Shared\\Components\\NavbarSup"
+    "\\WebSmileSoft\\Views\\Shared\\Components\\Footer",
+    "\\WebSmileSoft\\Views\\Shared\\Components\\Sidebar"
   ],
-  "SelectedNode": "\\WebSmileSoft\\Views\\Account\\Login.cshtml",
+  "SelectedNode": "\\Domain.Entities\\GenericResponseModel.cs",
   "PreviewInSolutionExplorer": false
 }
