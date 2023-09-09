@@ -60,58 +60,40 @@
 
 
  @{
-    <nav class="navbar align-items-start sidebar accordion p-2">
-        <div class="container-fluid d-flex flex-column p-0">
-            <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0"
-                   href="#">
-                    <img src="~/assets/img/logo-nav.png" class="img-fluid">
-                    <div class="sidebar-brand-icon rotate-n-15"></div>
-                    <div class="sidebar-brand-text mx-3"></div>
-                </a>
-                <hr class="sidebar-divider my-0">
-                <ul class="navbar-nav text-light text-center" id="accordionSidebar">
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Index","Admin")">
-                            <i class="fas fa-tachometer-alt "></i><span class="ms-2">Dashboard</span>
-                        </a>
-                    </li>
-                   @*  <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Profile","Profile")" ">
-                            <i class="fas fa-user "></i><span class="ms-2">Perfil</span>
-                        </a>
-                    </li> *@
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Table","Admin")">
-                            <i class="fas fa-table "></i><span class="ms-2">Consultar Usuarios</span>
-                        </a>
-                    </li>
-                    @* <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Login","Account")" ">
-                            <i class="far fa-user-circle "></i><span class="ms-2">Inciar Sesión</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Register","Account")">
-                            <i class="fas fa-user-circle "></i><span class="ms-2">Registrarse</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("ForgotPassword","Account")">
-                            <i class="fas fa-lock "></i><span class="ms-2">Olvidaste Contraseña</span>
-                        </a>
-            </li>*@
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Login","Account")">
-                    <i class="fas fa-sign-out-alt fa-sm fa-fw me-2"></i><span class="ms-2">Cerrar Sesión</span>
-                        </a>
-            </li>
-                </ul>
+     <nav class="navbar align-items-start sidebar accordion p-2">
+         <div class="container-fluid d-flex flex-column p-0">
+             <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0"
+                asp-controller="Home" asp-action="Index">
+                 <img src="~/assets/img/logo-nav.png" class="img-fluid">
+                 <div class="sidebar-brand-icon rotate-n-15"></div>
+                 <div class="sidebar-brand-text mx-3"></div>
+             </a>
+             <hr class="sidebar-divider my-0">
+             <ul class="navbar-nav text-light text-center" id="accordionSidebar">
+                 <li class="nav-item">
+                     <a class="nav-link" asp-controller="Admin" asp-action="Index">
+                         <i class="fas fa-tachometer-alt "></i><span class="ms-2">Dashboard</span>
+                     </a>
+                 </li>
+                 <!-- Otros elementos de menú -->
+                 <li class="nav-item">
+                     <a class="nav-link" asp-controller="Admin" asp-action="Table">
+                         <i class="fas fa-table "></i><span class="ms-2">Consultar Usuarios</span>
+                     </a>
+                 </li>
+                 <li class="nav-item">
+                     <a class="nav-link" asp-controller="Account" asp-action="Login">
+                         <i class="fas fa-sign-out-alt fa-sm fa-fw me-2"></i><span class="ms-2">Cerrar Sesión</span>
+                     </a>
+                 </li>
+             </ul>
 
-                <div class="text-center  d-none d-md-inline">
-                    <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
-                </div>
-            </div>
-        </nav>
+             <div class="text-center d-none d-md-inline">
+                 <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
+             </div>
+         </div>
+     </nav>
+
 
 }
                 @section scripts {
