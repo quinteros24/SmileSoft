@@ -5,98 +5,108 @@ using WebSmileSoft.Models; // Asegúrate de importar el espacio de nombres de tu
 
 namespace WebSmileSoft.Controllers
 {
-    [Authorize(Roles = "Administrador")] // Asegura que solo los usuarios autenticados con el rol de "Administrador" puedan acceder a este controlador
+    //[Authorize(Roles = "Administrador")] // Asegura que solo los usuarios autenticados con el rol de "Administrador" puedan acceder a este controlador
     public class AdminController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        //private readonly UserManager<ApplicationUser> _userManager;
+        //private readonly RoleManager<IdentityRole> _roleManager;
 
-        public AdminController(
-            UserManager<ApplicationUser> userManager,
-            RoleManager<IdentityRole> roleManager)
+
+        public IActionResult Table()
         {
-            _userManager = userManager;
-            _roleManager = roleManager;
+            return View("~/Views/Admin/ViewTable.cshtml");
+        }
+        public IActionResult Index()
+        {
+            return View("~/Views/Admin/Dashboard.cshtml");
         }
 
-        // Acción para la gestión de usuarios
-        public IActionResult UserManagement()
-        {
-            List<ApplicationUser> users = _userManager.Users.ToList();
-            return View(users);
-        }
+        //public AdminController(
+        //    UserManager<ApplicationUser> userManager,
+        //    RoleManager<IdentityRole> roleManager)
+        //{
+        //    _userManager = userManager;
+        //    _roleManager = roleManager;
+        //}
 
-        // Acción para ver los detalles de un usuario específico
-        public async Task<IActionResult> UserDetails(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //// Acción para la gestión de usuarios
+        //public IActionResult UserManagement()
+        //{
+        //    List<ApplicationUser> users = _userManager.Users.ToList();
+        //    return View(users);
+        //}
 
-            ApplicationUser user = await _userManager.FindByIdAsync(id);
+        //// Acción para ver los detalles de un usuario específico
+        //public async Task<IActionResult> UserDetails(string id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            if (user == null)
-            {
-                return NotFound();
-            }
+        //    ApplicationUser user = await _userManager.FindByIdAsync(id);
 
-            return View(user);
-        }
+        //    if (user == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-        // Acción para editar un usuario
-        public async Task<IActionResult> EditUser(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //    return View(user);
+        //}
 
-            ApplicationUser user = await _userManager.FindByIdAsync(id);
+        //// Acción para editar un usuario
+        //public async Task<IActionResult> EditUser(string id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            if (user == null)
-            {
-                return NotFound();
-            }
+        //    ApplicationUser user = await _userManager.FindByIdAsync(id);
 
-            return View(user);
-        }
+        //    if (user == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-        // POST: Acción para guardar los cambios después de editar un usuario
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditUser(string id, [Bind("Id,UserName,Email,")] ApplicationUser user)
-        {
-            if (id != user.Id)
-            {
-                return NotFound();
-            }
+        //    return View(user);
+        //}
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    await _userManager.UpdateAsync(user);
-                }
-                catch (Exception)
-                {
-                    // Manejar errores de actualización aquí
-                    throw;
-                }
+        //// POST: Acción para guardar los cambios después de editar un usuario
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> EditUser(string id, [Bind("Id,UserName,Email,")] ApplicationUser user)
+        //{
+        //    if (id != user.Id)
+        //    {
+        //        return NotFound();
+        //    }
 
-                return RedirectToAction(nameof(UserManagement));
-            }
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            await _userManager.UpdateAsync(user);
+        //        }
+        //        catch (Exception)
+        //        {
+        //            // Manejar errores de actualización aquí
+        //            throw;
+        //        }
 
-            return View(user);
-        }
+        //        return RedirectToAction(nameof(UserManagement));
+        //    }
 
-        // Acción para la gestión de roles
-        public IActionResult RoleManagement()
-        {
-            List<IdentityRole> roles = _roleManager.Roles.ToList();
-            return View(roles);
-        }
+        //    return View(user);
+        //}
 
-        // Otras acciones relacionadas con la administración del sistema
+        //// Acción para la gestión de roles
+        //public IActionResult RoleManagement()
+        //{
+        //    List<IdentityRole> roles = _roleManager.Roles.ToList();
+        //    return View(roles);
+        //}
+
+        //// Otras acciones relacionadas con la administración del sistema
     }
 }
