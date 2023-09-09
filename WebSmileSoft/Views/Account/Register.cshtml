@@ -30,8 +30,10 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3 mb-3">
+                    <div class="col-md-6 mb-3">
+                    <label class="visually-hidden" for="Tipo_Documento">Tipo de Documento</label>
                         <div class="input-group">
+                        <div class="input-group-text">Tipo de Documento</div>
                             <select id="options" class="form-select" size="1">
                                 <option value="TI">Tarjeta de Identidad</option>
                                 <option value="CC">Cedula de Ciudadania</option>
@@ -40,7 +42,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-9 mb-3">
+                    <div class="col-md-6 mb-3">
                         <div class="input-group">
                             <!--<label class="form-outline" for="IdNumber">Numero</label>-->
                             <span class="input-group-text" id="inputGroup-sizing-default">Documento</span>
@@ -120,19 +122,20 @@
     
 
 
-
+@section Scripts {
 <script>
     document.getElementById('registerButton').addEventListener('click', function (event) {
-        debugger;
         event.preventDefault(); // Evita la recarga de la página
 
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Aun estamos Trabajando!'
+            text: 'Aun estamos Trabajando!',
+            confirmButtonColor: '#008dc9'
         })
     });
 </script>
 
 <script src="~/assets/js/bs-init.js" asp-append-version="true"></script>
 <script src="~/assets/js/Register.js" asp-append-version="true"></script>
+}

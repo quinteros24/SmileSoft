@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.ContentModel;
+using WebSmileSoft.Models;
 
 namespace WebSmileSoft.Controllers
 {
@@ -8,9 +10,15 @@ namespace WebSmileSoft.Controllers
         // GET: HomeController1
         public ActionResult Index()
         {
-            return View("~/Views/Users/Profile.cshtml");
+            return View("~/Views/Profile/Profile.cshtml");
         }
-
+        // Prueba Carrousel Añadir Imagenes Automaticamente
+        public IActionResult Anuncios()
+        {
+            var directorioImagenes = @"~\assets\img\anuncios\";
+            var rutasDeImagenes = Directory.GetFiles(directorioImagenes);
+            return PartialView("_Anuncios", rutasDeImagenes);
+        }
         // GET: HomeController1/Details/5
         public ActionResult Details(int id)
         {

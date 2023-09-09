@@ -1,6 +1,25 @@
 ﻿@{
     ViewData["Title"] = "SmileSoft";
 }
+<script>
+var rememberMeCheckbox = document.getElementById("rememberMe");
+
+    // Verifica si el usuario ya había seleccionado "Recordar usuario" anteriormente
+    if (localStorage.getItem("rememberUser") === "true") {
+        rememberMeCheckbox.checked = true;
+    }
+
+    // Agrega un controlador de eventos para guardar el estado del checkbox cuando cambie
+    rememberMeCheckbox.addEventListener("change", function () {
+        if (rememberMeCheckbox.checked) {
+            // Si el usuario selecciona "Recordar usuario", guarda la elección en el almacenamiento local
+            localStorage.setItem("rememberUser", "true");
+        } else {
+            // Si el usuario desmarca "Recordar usuario", elimina la elección del almacenamiento local
+            localStorage.removeItem("rememberUser");
+        }
+    });
+    </script>
 <section class="container flex-grow-1">
 <div class="row justify-content-center">
     <div class="col-md-9 col-lg-12 col-xl-10">
@@ -19,9 +38,9 @@
                                 <div class="mb-3"><input class="form-control form-control-user" type="text" id="UserLogin" aria-describedby="emailHelp" placeholder="Ingresa tu Correo Electrónico" name="email"></div>
                                 <div class="mb-3"><input class="form-control form-control-user" type="password" id="Password" placeholder="Contraseña" name="password"></div>
                                 <div class="mb-3">
-                                    @* <div class="custom-control custom-checkbox small">
-                                    <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="formCheck-1"><label class="form-check-label custom-control-label" for="formCheck-1">Recordarme</label></div>
-                                    </div> *@
+                                    <div class="custom-control custom-checkbox small">
+                                            <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="remember_me"><label class="form-check-label custom-control-label" for="remember_me">Recordarme</label></div>
+                                    </div>
                                 </div><button class="btn btn-primary d-block btn-user w-100" type="submit" id="loginButton" onclick="validarInicioSesion()"><strong>Ingresar</strong></button>
                                 <hr>
 
@@ -37,21 +56,27 @@
 </div>
 </section>
 
-
-@*<script src="~/assets/js/bs-init.js" asp-append-version="true"></script>
-<script src="~/assets/js/Login.js" asp-append-version="true"></script>*@
-
+@section Scripts {
+@* <script src="~/assets/js/Login.js" asp-append-version="true"></script> *@
 <script>
     function validarInicioSesion() {
         console.log(1);
+        event.preventDefault();
         let username = document.getElementById("UserLogin").value;
         let password = document.getElementById("Password").value;
 
         if (username === "") {
-            Swal.fire('Por favor, ingrese su nombre de usuario');
+            Swal.fire({
+                text: 'Por favor, ingrese su nombre de usuario',
+                confirmButtonColor: '#008dc9'
+            });
         } else if (password === "") {
-            Swal.fire('Por favor, ingrese su contraseña');
+            Swal.fire({
+                text: 'Por favor, ingrese su contraseña',
+                confirmButtonColor: '#008dc9'
+            });
         } else {
+
             let data = {
                 UserLogin: username,
                 password: password
@@ -66,19 +91,22 @@
                 success: function (response) {
                     if (response.codeStatus == 0) {
                         //ir a la vista
-                        //Swal.fire(response.messageStatus);
+                        Swal.fire(response.messageStatus);
                         //alert(response.messageStatus);
                         window.location.href = '@Url.Action("Index", "Home")';
-                    } else {
-                        Swal.fire("Inicio de sesión fallido. " + response.messageStatus);
-                        //alert('Inicio de sesión fallido, ' + response.messageStatus);
-                    }
-                },
-                error: function (error) {
-                    console.log("Error.");
-                }
-            });
-        }
-    }
+                } else {
 
-</script>
+                    Swal.fire({
+                        text: "Inicio de sesión fallido. " + response.messageStatus,
+                        confirmButtonColor: '#008dc9'
+                    });
+                    //alert('Inicio de sesión fallido, ' + response.messageStatus);
+                }
+            },
+            error: function (error) {
+                console.log("Error.");
+            }
+        });
+    }
+        }</script>
+}

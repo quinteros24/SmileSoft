@@ -8,6 +8,7 @@ namespace EpSmileSoft.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [Tags("Controlador encargado de gestionar la sesión de los usuarios")]
+
     public class SessionController : ControllerBase
     {
         private readonly ISessionCore _sessionCore;
