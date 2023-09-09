@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" asp-append-version="true">
     <link rel="stylesheet" href="~/assets/css/Footer-Clean-icons.css" asp-append-version="true">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" asp-append-version="true"></script>
-
+    @await RenderSectionAsync("Heads", required: false)
 </head>
 
 <body class="bg-light d-flex flex-column min-vh-100">
