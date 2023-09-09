@@ -58,33 +58,33 @@ namespace WebSmileSoft.Controllers
         //}
 
         // POST: Acción para guardar los cambios después de editar un paciente
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("Id,Nombre,Apellido,Edad,")] Patient patient)
-        {
-            if (id != patient.Id)
-            {
-                return NotFound();
-            }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult Edit(int id, [Bind("Id,Nombre,Apellido,Edad,")] Patient patient)
+        //{
+        //    if (id != patient.Id)
+        //    {
+        //        return NotFound();
+        //    }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(patient);
-                    _context.SaveChanges();
-                }
-                catch (Exception)
-                {
-                    // Manejar errores de actualización aquí
-                    throw;
-                }
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            _context.Update(patient);
+        //            _context.SaveChanges();
+        //        }
+        //        catch (Exception)
+        //        {
+        //            // Manejar errores de actualización aquí
+        //            throw;
+        //        }
 
-                return RedirectToAction(nameof(Index));
-            }
+        //        return RedirectToAction(nameof(Index));
+        //    }
 
-            return View(patient);
-        }
+        //    return View(patient);
+        //}
 
         // Otras acciones relacionadas con la gestión de pacientes
     }
