@@ -95,6 +95,7 @@
                     {
                     <tr>
                         <td>@usuario.Nombre</td>
+                        <td>@usuario.Apellido</td>
                         <td>@usuario.Rol</td>
                         <td>@usuario.Consultorio</td>
                         <td>@usuario.Edad</td>
@@ -107,11 +108,12 @@
                         <td>@usuario.NumeroCelular</td>
                         <td>@usuario.CorreoElectronico</td>
                         <td>
-                            <a class="btn btn-primary btn-sm edit-user" data-toggle="tooltip" title="Editar" data-id="@usuario.Id"><i class="far fa-edit"></i>
-
-                        </a>
+                           @* <a class="btn btn-primary btn-sm edit-user" data-toggle="tooltip" title="Editar" data-id="@usuario.Id"><i class="far fa-edit"></i></a>
                             <a class="btn btn-danger btn-sm delete-user" data-toggle="tooltip" title="Eliminar" data-id="@usuario.Id"><i class="fas fa-trash"></i></a>
-                            <a class="btn btn-warning btn-sm deactivate-user" data-toggle="tooltip" title="Inactivar" data-id="@usuario.Id"><i class="fas fa-ban"></i></a>
+                            <a class="btn btn-warning btn-sm deactivate-user" data-toggle="tooltip" title="Inactivar" data-id="@usuario.Id"><i class="fas fa-ban"></i></a>*@
+                            <a class="btn btn-primary btn-sm edit-user" data-toggle="modal" data-target="#editModal" data-id="@usuario.Id"><i class="far fa-edit"></i></a>
+                            <a class="btn btn-danger btn-sm delete-user" data-toggle="modal" data-target="#deleteModal" data-id="@usuario.Id"><i class="fas fa-trash"></i></a>
+                            <a class="btn btn-warning btn-sm deactivate-user" data-toggle="modal" data-target="#deactivateModal" data-id="@usuario.Id"><i class="fas fa-ban"></i></a>
                         </td>
                     </tr>
                     }
@@ -122,67 +124,207 @@
         <a class="btn btn-success" href="#">Agregar Usuario</a>
     </div>
 
+    <!-- Modal de Edición -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Editar Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Aquí coloca los campos de edición, por ejemplo: -->
+                    <form>
+                        <div class="mb-3">
+                            <label for="editNombre" class="form-label">Nombre:</label>
+                            <input type="text" class="form-control" id="editNombre" name="editNombre">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editRol" class="form-label">Rol:</label>
+                            <input type="text" class="form-control" id="editRol" name="editRol">
+                        </div>
+                        <!-- Agrega más campos de edición aquí según sea necesario -->
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="saveChanges">Guardar Cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal de Eliminación -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <!-- ... (contenido del modal de eliminación) -->
+    </div>
+
+    <!-- Modal de Inactivación -->
+    <div class="modal fade" id="deactivateModal" tabindex="-1" role="dialog" aria-labelledby="deactivateModalLabel" aria-hidden="true">
+        <!-- ... (contenido del modal de inactivación) -->
+    </div>
+
+
                                     }
 
 
                             @section Scripts{
-    <script>
-        // Espera a que el documento esté listo
-        $(document).ready(function () {
-            // Controlador de clic para el botón "Editar"
-            $(".edit-user").click(function () {
-                // Obtiene el valor de data-id
-                var userId = $(this).data("id");
+    // <script>
+    //     // Espera a que el documento esté listo
+    //     $(document).ready(function () {
+    //         // Controlador de clic para el botón "Editar"
+    //         $(".edit-user").click(function () {
+    //             // Obtiene el valor de data-id
+    //             var userId = $(this).data("id");
 
-                // Realiza alguna acción, como redireccionar a la página de edición del usuario
-                window.location.href = "/Admin/UserManagement/Editar/" + userId;
-            });
+    //             // Realiza alguna acción, como redireccionar a la página de edición del usuario
+    //             window.location.href = "/Admin/UserManagement/Editar/" + userId;
+    //         });
 
-            // Controlador de clic para el botón "Eliminar"
-            $(".delete-user").click(function () {
-                // Obtiene el valor de data-id
-                var userId = $(this).data("id");
+    //         // Controlador de clic para el botón "Eliminar"
+    //         $(".delete-user").click(function () {
+    //             // Obtiene el valor de data-id
+    //             var userId = $(this).data("id");
 
-                // Puedes mostrar un cuadro de diálogo de confirmación aquí
-                var confirmDelete = confirm("¿Estás seguro de que deseas eliminar este usuario?");
+    //             // Puedes mostrar un cuadro de diálogo de confirmación aquí
+    //             var confirmDelete = confirm("¿Estás seguro de que deseas eliminar este usuario?");
 
-                // Si el usuario confirma la eliminación
-                if (confirmDelete) {
-                    // Realiza una solicitud AJAX para eliminar el usuario en el servidor
-                    $.ajax({
-                        url: "/Admin/UserManagement/Eliminar/" + userId,
-                        type: "POST",
-                        success: function (result) {
-                            // Actualiza la vista o realiza alguna otra acción
-                            alert("Usuario eliminado correctamente");
-                        },
-                        error: function () {
-                            alert("Error al eliminar el usuario");
-                        }
-                    });
-                }
-            });
+    //             // Si el usuario confirma la eliminación
+    //             if (confirmDelete) {
+    //                 // Realiza una solicitud AJAX para eliminar el usuario en el servidor
+    //                 $.ajax({
+    //                     url: "/Admin/UserManagement/Eliminar/" + userId,
+    //                     type: "POST",
+    //                     success: function (result) {
+    //                         // Actualiza la vista o realiza alguna otra acción
+    //                         alert("Usuario eliminado correctamente");
+    //                     },
+    //                     error: function () {
+    //                         alert("Error al eliminar el usuario");
+    //                     }
+    //                 });
+    //             }
+    //         });
 
-            // Controlador de clic para el botón "Inactivar"
-            $(".deactivate-user").click(function () {
-                // Obtiene el valor de data-id
-                var userId = $(this).data("id");
+    //         // Controlador de clic para el botón "Inactivar"
+    //         $(".deactivate-user").click(function () {
+    //             // Obtiene el valor de data-id
+    //             var userId = $(this).data("id");
 
-                // Realiza una solicitud AJAX para inactivar el usuario en el servidor
-                $.ajax({
-                    url: "/Admin/UserManagement/Inactivar/" + userId,
-                    type: "POST",
-                    success: function (result) {
-                        // Actualiza la vista o realiza alguna otra acción
-                        alert("Usuario inactivado correctamente");
-                    },
-                    error: function () {
-                        alert("Error al inactivar el usuario");
-                    }
-                });
-            });
-        });
-    </script>
+    //             // Realiza una solicitud AJAX para inactivar el usuario en el servidor
+    //             $.ajax({
+    //                 url: "/Admin/UserManagement/Inactivar/" + userId,
+    //                 type: "POST",
+    //                 success: function (result) {
+    //                     // Actualiza la vista o realiza alguna otra acción
+    //                     alert("Usuario inactivado correctamente");
+    //                 },
+    //                 error: function () {
+    //                     alert("Error al inactivar el usuario");
+    //                 }
+    //             });
+    //         });
+    //     });
+
+   
+                   $(document).ready(function () {
+                       // Controlador de clic para el botón "Editar"
+                   $(".edit-user").click(function () {
+                       // Obtiene el valor de data-id
+                       var userId = $(this).data("id");
+                       console.log(userId);
+
+                       // Realiza alguna acción, como redireccionar a la página de edición del usuario
+                       // window.location.href = "/Admin/UserManagement/Editar/" + userId;
+
+                       // Aquí deberías cargar los datos del usuario en el modal
+                       // Por ejemplo, si tienes un objeto JavaScript con los datos del usuario, puedes hacer lo siguiente:
+                       var userData = {
+                           Nombre: "Nombre del Usuario",
+                           Rol: "Rol del Usuario",
+                           // Agrega más propiedades según sea necesario
+                       };
+
+                       // Llena los campos del modal con los datos del usuario
+                       $("#editNombre").val(userData.Nombre);
+                       $("#editRol").val(userData.Rol);
+
+                       // Abre el modal de edición
+                       $("#editModal").modal("show");
+                   });
+               //Este código se ejecutará cuando se hace clic en el botón "Editar".Debes ajustar la lógica para cargar los datos del usuario desde tu sistema y llenar los campos del modal con esos datos.
+
+
+
+
+                       // Controlador de clic para el botón "Eliminar"
+                       $(".delete-user").click(function () {
+                           // Obtiene el valor de data-id
+                           var userId = $(this).data("id");
+
+                           // Abre el modal de eliminación correspondiente
+                           $("#deleteModal").modal("show");
+
+                           // Puedes pasar el userId al modal de eliminación si lo necesitas
+                           $("#deleteModal").data("userId", userId);
+                       });
+
+                       // Controlador de clic para el botón "Inactivar"
+                       $(".deactivate-user").click(function () {
+                           // Obtiene el valor de data-id
+                           var userId = $(this).data("id");
+
+                           // Abre el modal de inactivación correspondiente
+                           $("#deactivateModal").modal("show");
+
+                           // Puedes pasar el userId al modal de inactivación si lo necesitas
+                           $("#deactivateModal").data("userId", userId);
+                       });
+
+                       // Controlador de clic para el botón de confirmación de eliminación
+                       $("#confirmDelete").click(function () {
+                           // Obtiene el userId del modal de eliminación
+                           var userId = $("#deleteModal").data("userId");
+
+                           // Realiza una solicitud AJAX para eliminar el usuario en el servidor
+                           $.ajax({
+                               url: "/Admin/UserManagement/Eliminar/" + userId,
+                               type: "POST",
+                               success: function (result) {
+                                   // Actualiza la vista o realiza alguna otra acción
+                                   alert("Usuario eliminado correctamente");
+                                   $("#deleteModal").modal("hide");
+                               },
+                               error: function () {
+                                   alert("Error al eliminar el usuario");
+                               }
+                           });
+                       });
+
+                       // Controlador de clic para el botón de confirmación de inactivación
+                       $("#confirmDeactivate").click(function () {
+                           // Obtiene el userId del modal de inactivación
+                           var userId = $("#deactivateModal").data("userId");
+
+                           // Realiza una solicitud AJAX para inactivar el usuario en el servidor
+                           $.ajax({
+                               url: "/Admin/UserManagement/Inactivar/" + userId,
+                               type: "POST",
+                               success: function (result) {
+                                   // Actualiza la vista o realiza alguna otra acción
+                                   alert("Usuario inactivado correctamente");
+                                   $("#deactivateModal").modal("hide");
+                               },
+                               error: function () {
+                                   alert("Error al inactivar el usuario");
+                               }
+                           });
+                       });
+                   });
+
+    // </script>
+    
 
 
                             }

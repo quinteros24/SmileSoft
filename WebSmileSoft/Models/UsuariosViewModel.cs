@@ -6,6 +6,7 @@ namespace WebSmileSoft.Models
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
+        public string Apellido { get; set; }
         public string Rol { get; set; }
         public string Consultorio { get; set; }
         public int Edad { get; set; }
