@@ -1,192 +1,15 @@
 ﻿@using System.Collections.Specialized
+@using WebSmileSoft.Models;
+@* @model WebSmileSoft.Models.UsuariosModel[] *@
+@model List<UsuariosModel>
 
 @{
     ViewData["Title"] = "Tabla";
 }
 @{
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
-    <style>
-        section {
-            color: #404E67;
-            background: #F5F7FA;
-            font-family: 'Open Sans', sans-serif;
-        }
-
-        .table-wrapper {
-            width: 100%;
-            max-width: 1200px;
-            margin: 10px auto;
-            background: #fff;
-            padding: 20px;
-            box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-        }
-
-        .table-title {
-            padding-bottom: 10px;
-            margin: 0 0 10px;
-        }
-
-            .table-title h2 {
-                margin: 6px 0 0;
-                font-size: 22px;
-            }
-
-            .table-title .add-new {
-                float: right;
-                height: 30px;
-                font-weight: bold;
-                font-size: 12px;
-                text-shadow: none;
-                min-width: 100px;
-                border-radius: 50px;
-                line-height: 13px;
-            }
-
-                .table-title .add-new i {
-                    margin-right: 4px;
-                }
-
-        table.table {
-            width: 100%;
-            table-layout: fixed;
-        }
-
-            table.table tr th,
-            table.table tr td {
-                border-color: #e9e9e9;
-                padding: 10px; /* Aumenta el espacio interno de las celdas */
-            }
-
-            table.table th i {
-                font-size: 13px;
-                margin: 0 5px;
-                cursor: pointer;
-            }
-
-            table.table th:last-child {
-                width: 100px;
-            }
-
-            table.table td a {
-                cursor: pointer;
-                display: inline-block;
-                margin: 0 5px;
-                min-width: 24px;
-            }
-
-                table.table td a.add {
-                    color: #27C46B;
-                }
-
-                table.table td a.edit {
-                    color: #FFC107;
-                }
-
-                table.table td a.delete {
-                    color: #E34724;
-                }
-
-            table.table td i {
-                font-size: 19px;
-            }
-
-            table.table td a.add i {
-                font-size: 24px;
-                margin-right: -1px;
-                position: relative;
-                top: 3px;
-            }
-
-            table.table .form-control {
-                height: 32px;
-                line-height: 32px;
-                box-shadow: none;
-                border-radius: 2px;
-            }
-
-                table.table .form-control.error {
-                    border-color: #f50000;
-                }
-
-            table.table td .add {
-                display: none;
-            }
-    </style>
 
 
-    <script>
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-            var actions = $("table td:last-child").html();
-
-            // Append table with add row form on add new button click
-            $(".add-new").click(function () {
-                $(this).attr("disabled", "disabled");
-                var index = $("table tbody tr:last-child").index();
-                var row = '<tr>' +
-                    '<td><input type="text" class="form-control" name="firstName" id="firstName"></td>' +
-                    '<td><input type="text" class="form-control" name="lastName" id="lastName"></td>' +
-                    '<td><input type="text" class="form-control" name="documentType" id="documentType"></td>' +
-                    '<td><input type="text" class="form-control" name="documentNumber" id="documentNumber"></td>' +
-                    '<td><input type="text" class="form-control" name="birthDate" id="birthDate"></td>' +
-                    '<td><input type="text" class="form-control" name="gender" id="gender"></td>' +
-                    '<td><input type="text" class="form-control" name="address" id="address"></td>' +
-                    '<td><input type="text" class="form-control" name="phoneNumber" id="phoneNumber"></td>' +
-                    '<td><input type="text" class="form-control" name="email" id="email"></td>' +
-                    '<td><input type="password" class="form-control" name="password" id="password"></td>' +
-                    '<td>' + actions + '</td>' +
-                    '</tr>';
-                $("table").append(row);
-                $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
-                $('[data-toggle="tooltip"]').tooltip();
-            });
-
-            // Add row on add button click
-            $(document).on("click", ".add", function () {
-                var empty = false;
-                var input = $(this).parents("tr").find('input[type="text"], input[type="password"]');
-                input.each(function () {
-                    if (!$(this).val()) {
-                        $(this).addClass("error");
-                        empty = true;
-                    } else {
-                        $(this).removeClass("error");
-                    }
-                });
-                $(this).parents("tr").find(".error").first().focus();
-                if (!empty) {
-                    input.each(function () {
-                        $(this).parent("td").html($(this).val());
-                    });
-                    $(this).parents("tr").find(".add, .edit").toggle();
-                    $(".add-new").removeAttr("disabled");
-                }
-            });
-
-            // Edit row on edit button click
-            $(document).on("click", ".edit", function () {
-                $(this).parents("tr").find("td:not(:last-child)").each(function () {
-                    $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
-                });
-                $(this).parents("tr").find(".add, .edit").toggle();
-                $(".add-new").attr("disabled", "disabled");
-            });
-
-            // Delete row on delete button click
-            $(document).on("click", ".delete", function () {
-                $(this).parents("tr").remove();
-                $(".add-new").removeAttr("disabled");
-            });
-        });
-    </script>
-
+  
 // <script>
 //         $(document).ready(function () {
 //             $('[data-toggle="tooltip"]').tooltip();
@@ -244,276 +67,122 @@
 }
 
 
-@* @{
-    <Section>
-        <h3 class="text-dark mb-4">CRUD Usuarios</h3>
-        <div class="card shadow">
-            <div class="card-header py-3">
-                <p class="text-primary m-0 fw-bold">Información de Usuarios</p>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6 text-nowrap">
-                        <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
-                            <label class="form-label">
-                                Mostrar
-                                <select class="d-inline-block form-select form-select-sm">
-                                    <option value="10" selected="">10</option>
-                                    <option value="25">25</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
-                                </select>&nbsp;
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="text-md-end dataTables_filter" id="dataTable_filter"><label class="form-label"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Buscar"></label></div>
-                    </div>
-                </div>
-                <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                    <table class="table my-0" id="dataTable">
-                        <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Rol</th>
-                            <th>Consultorio</th>
-                            <th>Edad</th>
-                            <th>Ultimo Ingreso</th>
-                            <th>Documento</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td><img class="rounded-circle me-2" width="30" height="30" src="~/assets/img/avatars/avatar1.jpeg">Airi Satou</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                            <td>33</td>
-                            <td>2008/11/28</td>
-                            <td>$162,700</td>
-                        </tr>
-                        <tr>
-                            <td><img class="rounded-circle me-2" width="30" height="30" src="~/assets/img/avatars/avatar1.jpeg">Angelica Ramos</td>
-                            <td>Chief Executive Officer(CEO)</td>
-                            <td>London</td>
-                            <td>47</td>
-                            <td>2009/10/09<br></td>
-                            <td>$1,200,000</td>
-                        </tr>
-                        <tr>
-                            <td><img class="rounded-circle me-2" width="30" height="30" src="~/assets/img/avatars/avatar1.jpeg">Ashton Cox</td>
-                            <td>Junior Technical Author</td>
-                            <td>San Francisco</td>
-                            <td>66</td>
-                            <td>2009/01/12<br></td>
-                            <td>$86,000</td>
-                        </tr>
-                        <tr>
-                            <td><img class="rounded-circle me-2" width="30" height="30" src="~/assets/img/avatars/avatar1.jpeg">Bradley Greer</td>
-                            <td>Software Engineer</td>
-                            <td>London</td>
-                            <td>41</td>
-                            <td>2012/10/13<br></td>
-                            <td>$132,000</td>
-                        </tr>
-                        <tr>
-                            <td><img class="rounded-circle me-2" width="30" height="30" src="~/assets/img/avatars/avatar1.jpeg">Brenden Wagner</td>
-                            <td>Software Engineer</td>
-                            <td>San Francisco</td>
-                            <td>28</td>
-                            <td>2011/06/07<br></td>
-                            <td>$206,850</td>
-                        </tr>
-                        <tr>
-                            <td><img class="rounded-circle me-2" width="30" height="30" src="~/assets/img/avatars/avatar1.jpeg">Brielle Williamson</td>
-                            <td>Integration Specialist</td>
-                            <td>New York</td>
-                            <td>61</td>
-                            <td>2012/12/02<br></td>
-                            <td>$372,000</td>
-                        </tr>
-                        <tr>
-                            <td><img class="rounded-circle me-2" width="30" height="30" src="~/assets/img/avatars/avatar1.jpeg">Bruno Nash<br></td>
-                            <td>Software Engineer</td>
-                            <td>London</td>
-                            <td>38</td>
-                            <td>2011/05/03<br></td>
-                            <td>$163,500</td>
-                        </tr>
-                        <tr>
-                            <td><img class="rounded-circle me-2" width="30" height="30" src="~/assets/img/avatars/avatar1.jpeg">Caesar Vance</td>
-                            <td>Pre-Sales Support</td>
-                            <td>New York</td>
-                            <td>21</td>
-                            <td>2011/12/12<br></td>
-                            <td>$106,450</td>
-                        </tr>
-                        <tr>
-                            <td><img class="rounded-circle me-2" width="30" height="30" src="~/assets/img/avatars/avatar1.jpeg">Cara Stevens</td>
-                            <td>Sales Assistant</td>
-                            <td>New York</td>
-                            <td>46</td>
-                            <td>2011/12/06<br></td>
-                            <td>$145,600</td>
-                        </tr>
-                        <tr>
-                            <td><img class="rounded-circle me-2" width="30" height="30" src="~/assets/img/avatars/avatar1.jpeg">Cedric Kelly</td>
-                            <td>Senior JavaScript Developer</td>
-                            <td>Edinburgh</td>
-                            <td>22</td>
-                            <td>2012/03/29<br></td>
-                            <td>$433,060</td>
-                        </tr>
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <td><strong>Nombre</strong></td>
-                            <td><strong>Rol</strong></td>
-                            <td><strong>Consultorio</strong></td>
-                            <td><strong>Edad</strong></td>
-                            <td><strong>Ultimo Ingreso</strong></td>
-                            <td><strong>Documento</strong></td>
-                        </tr>
-                        </tfoot>
-                    </table>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 align-self-center">
-                        <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Mostrando 1 de 10 de 27</p>
-                    </div>
-                    <div class="col-md-6">
-                        <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                            <ul class="pagination">
-                                <li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </Section>
+                                    @{
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable">
+            <!-- Encabezados de columna -->
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Rol</th>
+                    <th>Consultorio</th>
+                    <th>Edad</th>
+                    <th>Ultimo Ingreso</th>
+                    <th>Documento</th>
+                    <th>Tipo de Documento</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Género</th>
+                    <th>Dirección</th>
+                    <th>Número de Celular</th>
+                    <th>Correo Electrónico</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+         
+            <tbody>
+            <tbody>
+                    @foreach (var usuario in Model)
+                    {
+                    <tr>
+                        <td>@usuario.Nombre</td>
+                        <td>@usuario.Rol</td>
+                        <td>@usuario.Consultorio</td>
+                        <td>@usuario.Edad</td>
+                        <td>@usuario.UltimoIngreso</td>
+                        <td>@usuario.Documento</td>
+                        <td>@usuario.TipoDocumento</td>
+                        <td>@usuario.FechaNacimiento</td>
+                        <td>@usuario.Genero</td>
+                        <td>@usuario.Direccion</td>
+                        <td>@usuario.NumeroCelular</td>
+                        <td>@usuario.CorreoElectronico</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm edit-user" data-toggle="tooltip" title="Editar" data-id="@usuario.Id"><i class="far fa-edit"></i>
 
-}
- *@
- 
-@* @{
-    <section>
-        <div class="container-lg">
-            <div class="table-responsive">
-                <div class="table-wrapper">
-                    <div class="table-title">
-                        <div class="row">
-                            <div class="col-sm-8"><h2>Employee <b>Details</b></h2></div>
-                            <div class="col-sm-4">
-                                <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
-                            </div>
-                        </div>
-                    </div>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Department</th>
-                                <th>Phone</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>John Doe</td>
-                                <td>Administration</td>
-                                <td>(171) 555-2222</td>
-                                <td>
-                                    <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                                    <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Peter Parker</td>
-                                <td>Customer Service</td>
-                                <td>(313) 555-5735</td>
-                                <td>
-                                    <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                                    <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Fran Wilson</td>
-                                <td>Human Resources</td>
-                                <td>(503) 555-9931</td>
-                                <td>
-                                    <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                                    <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section>
+                        </a>
+                            <a class="btn btn-danger btn-sm delete-user" data-toggle="tooltip" title="Eliminar" data-id="@usuario.Id"><i class="fas fa-trash"></i></a>
+                            <a class="btn btn-warning btn-sm deactivate-user" data-toggle="tooltip" title="Inactivar" data-id="@usuario.Id"><i class="fas fa-ban"></i></a>
+                        </td>
+                    </tr>
+                    }
+            </tbody>
+        </table>
+    </div>
+    <div class="text-end">
+        <a class="btn btn-success" href="#">Agregar Usuario</a>
+    </div>
+
+                                    }
 
 
-}
+                            @section Scripts{
+    <script>
+        // Espera a que el documento esté listo
+        $(document).ready(function () {
+            // Controlador de clic para el botón "Editar"
+            $(".edit-user").click(function () {
+                // Obtiene el valor de data-id
+                var userId = $(this).data("id");
 
- *@
- 
-@{<section>
-        <div class="container-lg">
-            <div class="table-responsive">
-                <div class="table-wrapper">
-                    <div class="table-title">
-                        <div class="row">
-                            <div class="col-sm-8"><h2>Detalles de <b>Usuarios Registrados</b></h2></div>
-                            <div class="col-sm-4">
-                                <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Agregar Nuevo Usuario</button>
-                            </div>
-                        </div>
-                    </div>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Document Type</th>
-                                <th>Document Number</th>
-                                <th>Birth Date</th>
-                                <th>Gender</th>
-                                <th>Address</th>
-                                <th>Phone Number</th>
-                                <th>Email</th>
-                                <th>Password</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>John</td>
-                                <td>Doe</td>
-                                <td>Passport</td>
-                                <td>AB123456</td>
-                                <td>1980-01-15</td>
-                                <td>Male</td>
-                                <td>123 Main St</td>
-                                <td>(171) 555-2222</td>
-                                <td>john@example.com</td>
-                                <td>********</td>
-                                <td>
-                                    <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                                    <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                                </td>
-                            </tr>
-                            <!-- Agrega más filas aquí según sea necesario -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-  </section>}
+                // Realiza alguna acción, como redireccionar a la página de edición del usuario
+                window.location.href = "/Admin/UserManagement/Editar/" + userId;
+            });
+
+            // Controlador de clic para el botón "Eliminar"
+            $(".delete-user").click(function () {
+                // Obtiene el valor de data-id
+                var userId = $(this).data("id");
+
+                // Puedes mostrar un cuadro de diálogo de confirmación aquí
+                var confirmDelete = confirm("¿Estás seguro de que deseas eliminar este usuario?");
+
+                // Si el usuario confirma la eliminación
+                if (confirmDelete) {
+                    // Realiza una solicitud AJAX para eliminar el usuario en el servidor
+                    $.ajax({
+                        url: "/Admin/UserManagement/Eliminar/" + userId,
+                        type: "POST",
+                        success: function (result) {
+                            // Actualiza la vista o realiza alguna otra acción
+                            alert("Usuario eliminado correctamente");
+                        },
+                        error: function () {
+                            alert("Error al eliminar el usuario");
+                        }
+                    });
+                }
+            });
+
+            // Controlador de clic para el botón "Inactivar"
+            $(".deactivate-user").click(function () {
+                // Obtiene el valor de data-id
+                var userId = $(this).data("id");
+
+                // Realiza una solicitud AJAX para inactivar el usuario en el servidor
+                $.ajax({
+                    url: "/Admin/UserManagement/Inactivar/" + userId,
+                    type: "POST",
+                    success: function (result) {
+                        // Actualiza la vista o realiza alguna otra acción
+                        alert("Usuario inactivado correctamente");
+                    },
+                    error: function () {
+                        alert("Error al inactivar el usuario");
+                    }
+                });
+            });
+        });
+    </script>
+
+
+                            }

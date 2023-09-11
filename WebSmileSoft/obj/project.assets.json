@@ -10146,19 +10146,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Alejandro Vasquez\\.nuget\\packages\\": {}
+    "C:\\Users\\Usuario\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\WebSmileSoft.csproj",
+      "projectUniqueName": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\WebSmileSoft.csproj",
       "projectName": "WebSmileSoft",
-      "projectPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\WebSmileSoft.csproj",
-      "packagesPath": "C:\\Users\\Alejandro Vasquez\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\obj\\",
+      "projectPath": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\WebSmileSoft.csproj",
+      "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Alejandro Vasquez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
