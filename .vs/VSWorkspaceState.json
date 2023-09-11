@@ -11,6 +11,6 @@
     "\\WebSmileSoft\\Views\\Shared\\Components\\Footer",
     "\\WebSmileSoft\\Views\\Shared\\Components\\Sidebar"
   ],
-  "SelectedNode": "\\Domain.Entities\\GenericResponseModel.cs",
+  "SelectedNode": "\\WebSmileSoft\\Views\\Admin\\ViewTable.cshtml",
   "PreviewInSolutionExplorer": false
 }
