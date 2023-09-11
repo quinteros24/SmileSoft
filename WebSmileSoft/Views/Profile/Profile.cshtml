@@ -6,15 +6,13 @@
 
     <div class="row mb-3">
         <div class="col-lg-4">
-            <div class="card mb-3">
-                <div class="card-body text-center shadow">
-                    <img class="rounded-circle mb-3 mt-4" src="~/assets/img/logo-r.png" width="160" height="160">
-                    @* <div class="mb-3"><button class="btn btn-primary btn-sm" type="button">Cambiar Foto</button></div> *@
+            @* <div class="card mb-3"><div class="card-body text-center shadow">
+                    <img class="rounded-circle img-fluid" src="~/assets/img/logo-r.png" width="200px"><div class="mb-3"><button class="btn btn-primary btn-sm" type="button">Cambiar Foto</button></div>
                 </div>
-            </div>
-            @await Html.PartialAsync("_Anuncios", (List<string>)Model)
+            </div> *@
+           @*  @await Html.PartialAsync("_Anuncios", (List<string>)Model) *@
 
-            @* <div class="card shadow mb-4">
+            <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="text-primary fw-bold m-0">Anuncios</h6>
                 </div>
@@ -44,7 +42,7 @@
                         <li data-bs-target="#carousel-1" data-bs-slide-to="2"></li>
                     </ol>
                 </div>
-            </div> *@
+            </div>
         </div>
         <div class="col-lg-8">
 
