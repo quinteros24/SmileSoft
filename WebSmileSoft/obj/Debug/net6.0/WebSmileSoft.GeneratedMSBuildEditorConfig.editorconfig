@@ -9,129 +9,129 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = WebSmileSoft
 build_property.RootNamespace = WebSmileSoft
-build_property.ProjectDir = C:\Users\Usuario\Source\Repos\SmileSoft\WebSmileSoft\
+build_property.ProjectDir = C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\WebSmileSoft\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Usuario\Source\Repos\SmileSoft\WebSmileSoft
+build_property.MSBuildProjectDirectory = C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\WebSmileSoft
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Account/ForgotPassword.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/Account/ForgotPassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Account/Login.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Account/Register.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Account/_ViewStart.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/Account/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxfVmlld1N0YXJ0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Admin/Dashboard.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/Admin/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRGFzaGJvYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Admin/RoleManagement/Index.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/Admin/RoleManagement/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUm9sZU1hbmFnZW1lbnRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Admin/UserManagement/EditUser.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/Admin/UserManagement/EditUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlck1hbmFnZW1lbnRcRWRpdFVzZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Admin/UserManagement/Index.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/Admin/UserManagement/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlck1hbmFnZW1lbnRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Admin/ViewTable.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/Admin/ViewTable.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVmlld1RhYmxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Doctor/Profile/Edit.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/Doctor/Profile/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jdG9yXFByb2ZpbGVcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Doctor/Profile/Index.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/Doctor/Profile/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jdG9yXFByb2ZpbGVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Home/Error.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/Home/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFcnJvci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Home/Index.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Home/Privacy.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Modules/shedule.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/Modules/shedule.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9kdWxlc1xzaGVkdWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Modules/ViewAppointments.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/Modules/ViewAppointments.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9kdWxlc1xWaWV3QXBwb2ludG1lbnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Patient/Edit.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/Patient/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Patient/Index.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/Patient/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Profile/Profile.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/Profile/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Profile/_Anuncios.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/Profile/_Anuncios.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxfQW51bmNpb3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Shared/Components/Footer/_Footer.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/Shared/Components/Footer/_Footer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcRm9vdGVyXF9Gb290ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Shared/Components/NavbarSup/_NavbarSup.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/Shared/Components/NavbarSup/_NavbarSup.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcTmF2YmFyU3VwXF9OYXZiYXJTdXAuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Shared/Components/Sidebar/_Sidebar.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/Shared/Components/Sidebar/_Sidebar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcU2lkZWJhclxfU2lkZWJhci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Shared/Error.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Shared/_LoginPartial.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/_ViewImports.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/_ViewStart.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Shared/_Layout.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-j4jlruwdi9
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Shared/_LayoutAccount.cshtml]
+[C:/Users/Alejandro Vasquez/Source/Repos/SmileSoft/WebSmileSoft/Views/Shared/_LayoutAccount.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRBY2NvdW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = b-0drp3m3hci

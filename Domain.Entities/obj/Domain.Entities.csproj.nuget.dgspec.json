@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj": {}
+    "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj": {
+    "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj",
+        "projectUniqueName": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj",
         "projectName": "Domain.Entities",
-        "projectPath": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj",
-        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\Domain.Entities\\obj\\",
+        "projectPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Entities\\Domain.Entities.csproj",
+        "packagesPath": "C:\\Users\\Alejandro Vasquez\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\Domain.Entities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Alejandro Vasquez\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
