@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
+@{
 <div class="bg-video d-flex justify-content-center align-items-center">
     <video class="video-fluid" autoplay muted loop>
         <source src="~/assets/img/bg-working.mp4" type="video/mp4">
@@ -9,4 +9,51 @@
     </video>
     <img src="~/assets/img/bg-working.png" alt="Imagen de respaldo" class="img-fluid w-50 img-backup">
 </div>
+<div class="blog-slider">
+    <div class="blog-slider__wrp swiper-wrapper">
+        <div class="blog-slider__item swiper-slide">
+            <div class="blog-slider__img"><img src="https://res.cloudinary.com/muhammederdem/image/upload/v1535759872/kuldar-kalvik-799168-unsplash.jpg"></div>
+            <div class="blog-slider__content">
+                <span class="blog-slider__code">26 December 2019</span>
+                <div class="blog-slider__title">
+                    <p>Lorem Ipsum Dolor</p>
+                </div>
+                <div class="blog-slider__text">
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi?</p>
+                </div><a class="blog-slider__button" href="#">READ MORE</a>
+            </div>
+        </div>
+        <div class="blog-slider__item swiper-slide">
+            <div class="blog-slider__img"><img src="https://res.cloudinary.com/muhammederdem/image/upload/v1535759872/kuldar-kalvik-799168-unsplash.jpg"></div>
+            <div class="blog-slider__content">
+                <span class="blog-slider__code">26 December 2019</span>
+                <div class="blog-slider__title">
+                    <p>Lorem Ipsum Dolor</p>
+                </div>
+                <div class="blog-slider__text">
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi?</p>
+                </div><a class="blog-slider__button" href="#">READ MORE</a>
+            </div>
+        </div>
+        <div class="blog-slider__item swiper-slide">
+            <div class="blog-slider__img"><img src="https://res.cloudinary.com/muhammederdem/image/upload/v1535759872/kuldar-kalvik-799168-unsplash.jpg"></div>
+            <div class="blog-slider__content">
+                <span class="blog-slider__code">26 December 2019</span>
+                <div class="blog-slider__title">
+                    <p>Lorem Ipsum Dolor</p>
+                </div>
+                <div class="blog-slider__text">
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi?</p>
+                </div><a class="blog-slider__button" href="#">READ MORE</a>
+            </div>
+        </div>
+    </div>
+    <div class="blog-slider__pagination"></div>
+</div>
+}
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/js/responsive-blog-card-slider-01-swiper-bundle.min.js"></script>
+    <script src="~/assets/js/responsive-blog-card-slider-02-responsive-blog-card-slider.js"></script>
+}
 

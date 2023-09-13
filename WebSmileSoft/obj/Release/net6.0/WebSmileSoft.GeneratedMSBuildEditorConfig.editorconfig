@@ -48,8 +48,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlck1hbmFnZW1lbnRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Admin/ViewTable.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVmlld1RhYmxlLmNzaHRtbA==
+[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Admin/UserManagement/ViewTableUsers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlck1hbmFnZW1lbnRcVmlld1RhYmxlVXNlcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Doctor/Profile/Edit.cshtml]
