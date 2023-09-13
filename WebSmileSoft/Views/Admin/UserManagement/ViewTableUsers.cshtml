@@ -68,7 +68,7 @@
 
 
 @{
-    <div class="text-end">
+    <div class="text-end my-2">
         <a class="btn btn-success add-user-btn " data-toggle="modal" data-target="#addUserModal"><i class="fas fa-user-plus"> </i> Agregar Usuario</a>
     </div>
     <div class="table-responsive">
@@ -77,15 +77,11 @@
             <thead>
                 <tr>
                     <th>Nombre</th>
+                    <th>Apellido</th>
                     <th>Rol</th>
-                    <th>Consultorio</th>
                     <th>Edad</th>
-                    <th>Ultimo Ingreso</th>
-                    <th>Documento</th>
                     <th>Tipo de Documento</th>
-                    <th>Fecha de Nacimiento</th>
-                    <th>Género</th>
-                    <th>Dirección</th>
+                    <th>Documento</th>
                     <th>Número de Celular</th>
                     <th>Correo Electrónico</th>
                     <th>Acciones</th>
@@ -100,14 +96,9 @@
                         <td>@usuario.Nombre</td>
                         <td>@usuario.Apellido</td>
                         <td>@usuario.Rol</td>
-                        <td>@usuario.Consultorio</td>
                         <td>@usuario.Edad</td>
-                        <td>@usuario.UltimoIngreso</td>
-                        <td>@usuario.Documento</td>
                         <td>@usuario.TipoDocumento</td>
-                        <td>@usuario.FechaNacimiento</td>
-                        <td>@usuario.Genero</td>
-                        <td>@usuario.Direccion</td>
+                        <td>@usuario.Documento</td>
                         <td>@usuario.NumeroCelular</td>
                         <td>@usuario.CorreoElectronico</td>
                         <td>
