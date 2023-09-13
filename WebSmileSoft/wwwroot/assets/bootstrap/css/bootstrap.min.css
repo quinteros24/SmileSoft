@@ -8403,6 +8403,10 @@ fieldset:disabled .btn {
   --bs-text-opacity: 1;
   color: rgba(var(--bs-white-rgb), var(--bs-text-opacity)) !important;
 }
+.text-logo {
+    --bs-text-opacity: 1;
+    color: rgba(0, 105, 149, var(--bs-text-opacity)) !important;
+}
 .text-body {
   --bs-text-opacity: 1;
   color: rgba(var(--bs-body-color-rgb), var(--bs-text-opacity)) !important;
@@ -8661,12 +8665,13 @@ fieldset:disabled .btn {
     var(--bs-bg-opacity)
   ) !important;
 }
+.bg-side {
+    --bs-bg-opacity: 1;
+    background-color: rgba( 0, 230, 200, var(--bs-bg-opacity) ) !important;
+}
 .bg-secondary {
-  --bs-bg-opacity: 1;
-  background-color: rgba(
-    var(--bs-secondary-rgb),
-    var(--bs-bg-opacity)
-  ) !important;
+    --bs-bg-opacity: 1;
+    background-color: rgba( var(--bs-secondary-rgb), var(--bs-bg-opacity) ) !important;
 }
 .bg-success {
   --bs-bg-opacity: 1;
