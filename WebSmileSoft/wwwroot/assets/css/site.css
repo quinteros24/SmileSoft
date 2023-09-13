@@ -37,3 +37,8 @@ body {
     }
 }
 
+.img-hover:hover {
+    transform: scale(1.1); /* Aumenta el tamaño en un 10% */
+    transition: transform 0.3s ease; /* Agrega una transición suave */
+}
+

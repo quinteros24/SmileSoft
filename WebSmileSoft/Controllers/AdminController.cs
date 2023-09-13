@@ -21,6 +21,11 @@ namespace WebSmileSoft.Controllers
             return View("~/Views/Admin/Dashboard.cshtml");
         }
 
+        public IActionResult UserManagement()
+        {
+            return View("~/Views/Admin/UserManagement/Index.cshtml");
+        }
+
         //public IActionResult Usuarios()
         //{
         //    // Obtener datos de la base de datos (reemplaza esto con tu lógica)
@@ -49,7 +54,7 @@ namespace WebSmileSoft.Controllers
         //    return View("~/Views/Admin/ViewTable.cshtml", usuarios);
         //}
 
-        public IActionResult Table()
+        public IActionResult TableUsers()
         {
             // Obtener datos de la base de datos (reemplaza esto con tu lógica)
                 var usuarios = new List<UsuariosModel>
@@ -71,7 +76,7 @@ namespace WebSmileSoft.Controllers
         };
 
                 // Pasa los datos a la vista
-                return View("~/Views/Admin/ViewTable.cshtml", usuarios);
+                return View("~/Views/Admin/UserManagement/ViewTableUsers.cshtml", usuarios);
         }
 
         //public AdminController(
