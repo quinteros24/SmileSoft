@@ -169,6 +169,10 @@
       "PackagePath": "staticwebassets\\assets\\js\\Utilities.js"
     },
     {
+      "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\bootstrap.min.js"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\bs-init.js",
       "PackagePath": "staticwebassets\\assets\\js\\bs-init.js"
     },
@@ -179,6 +183,14 @@
     {
       "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\forgotpassword.js",
       "PackagePath": "staticwebassets\\assets\\js\\forgotpassword.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\jquery.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\jquery.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\popper.js",
+      "PackagePath": "staticwebassets\\assets\\js\\popper.js"
     },
     {
       "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\responsive-blog-card-slider-01-swiper-bundle.min.js",
