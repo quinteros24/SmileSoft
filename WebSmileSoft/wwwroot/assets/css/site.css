@@ -42,3 +42,11 @@ body {
     transition: transform 0.3s ease; /* Agrega una transición suave */
 }
 
+.nav-item:hover {
+    /*background-color: #f8f9fa;*/
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    color: #0094ff;
+    transition: transform 0.3s ease; /* Agrega una transición suave */
+}
+
