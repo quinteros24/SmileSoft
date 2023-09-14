@@ -35,8 +35,9 @@ namespace Domain.Core
                 expires: DateTime.Now.AddMinutes(30),
                 signingCredentials: creds
             );
-            GenericResponseModel responseModel = await _genericsRepository.UpdateTokenSession(uID, token, newToken);
-                
+            var newTokenString = new JwtSecurityTokenHandler().WriteToken(newToken);
+            GenericResponseModel responseModel = await _genericsRepository.UpdateTokenSession(uID, token, newTokenString);
+            responseModel.ItemJson = responseModel.Status? newTokenString : null;
             return responseModel;
         }
     }

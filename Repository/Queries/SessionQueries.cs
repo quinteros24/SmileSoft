@@ -41,8 +41,8 @@ namespace Repository.Queries
                     $"                    dtID,\n" +
                     $"                    uDocument,\n" +
                     $"                    uToken,\n" +
-                    $"                    uStatus,\n" +
-                    $"                    uIsBlocked,\n" +
+                    $"                    IIF(uStatus = 1, 1, 0) AS uStatus,\n" +
+                    $"                    IIF(uIsBlocked = 1, 1, 0) AS uIsBlocked,\n" +
                     $"                    'OBJECT' AS TableName\n" +
                     $"                FROM\n" +
                     $"                    dbo.Users AS U\n" +

@@ -23,7 +23,9 @@ namespace Repository
             if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
             {
                 DataTable dt = ItemResponseDB.DtObject;
-
+                genericResponseModel.CodeStatus = dt.Rows[0]["outputCodeError"].ToString();
+                genericResponseModel.MessageStatus = dt.Rows[0]["outputMessageError"].ToString();
+                genericResponseModel.Status = genericResponseModel.CodeStatus == "0";
             }
             return genericResponseModel;
         }

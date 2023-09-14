@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Domain.Interfaces.Core;
 using Domain.Interfaces;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace EpSmileSoft.Controllers
 {
@@ -32,8 +33,12 @@ namespace EpSmileSoft.Controllers
                 {
                     LoginModelResponse user = (LoginModelResponse)ItemGenericResponseModel.ItemJson;
                     GenericResponseModel ItemGenericResponseTOKEN = await _genericsCore.GenerateJWToken(user.uID, user.uLoginName!, String.Empty);
+                    if (ItemGenericResponseTOKEN.ItemJson is string stringValue)
+                    {
+                        user.uToken = stringValue;
+                    }
+                    ItemGenericResponseModel.ItemJson = user;
                 }
-                //Retornar el token
                 return ItemGenericResponseModel;
             }
             catch
