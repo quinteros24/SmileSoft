@@ -2,11 +2,11 @@
 
 namespace WebSmileSoft.ViewComponents
 {
-    public class NavbarSupViewComponent : ViewComponent
+    public class NavbarViewComponent : ViewComponent
     {
         public IViewComponentResult Invoke()
         {
-            return View("_NavbarSup");
+            return View(viewName: "_Navbar");
         }
     }
 }

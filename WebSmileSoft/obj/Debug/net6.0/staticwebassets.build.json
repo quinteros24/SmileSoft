@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+sY1Ha1gLjnb8j8XUm8c0wrs6j5M4drkTZTJsLUWafo=",
+  "Hash": "8gR6nW2+6Z3wrjIvjnxAXn+jPtKBytFqONllV6AFLos=",
   "Source": "WebSmileSoft",
   "BasePath": "_content/WebSmileSoft",
   "Mode": "Default",
@@ -406,6 +406,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\img\\anuncios\\3.png"
+    },
+    {
+      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\SmileSoft.png",
+      "SourceId": "WebSmileSoft",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "BasePath": "_content/WebSmileSoft",
+      "RelativePath": "assets/img/anuncios/SmileSoft.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\anuncios\\SmileSoft.png"
     },
     {
       "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\top.png",
@@ -899,6 +916,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\js\\theme.js"
+    },
+    {
+      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\UserSessionControl.js",
+      "SourceId": "WebSmileSoft",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "BasePath": "_content/WebSmileSoft",
+      "RelativePath": "assets/js/UserSessionControl.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\js\\UserSessionControl.js"
     },
     {
       "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\Utilities.js",

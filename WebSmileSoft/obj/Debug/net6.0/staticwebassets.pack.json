@@ -89,6 +89,10 @@
       "PackagePath": "staticwebassets\\assets\\img\\anuncios\\3.png"
     },
     {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\SmileSoft.png",
+      "PackagePath": "staticwebassets\\assets\\img\\anuncios\\SmileSoft.png"
+    },
+    {
       "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\top.png",
       "PackagePath": "staticwebassets\\assets\\img\\anuncios\\top.png"
     },
@@ -167,6 +171,10 @@
     {
       "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\Register.js",
       "PackagePath": "staticwebassets\\assets\\js\\Register.js"
+    },
+    {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\UserSessionControl.js",
+      "PackagePath": "staticwebassets\\assets\\js\\UserSessionControl.js"
     },
     {
       "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\Utilities.js",
