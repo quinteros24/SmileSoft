@@ -178,5 +178,60 @@
             $('#carousel-1').carousel('cycle');
         });
     </script>
+
+    <script>
+        function validarCambioDeContraseña() {
+        console.log(1);
+        event.preventDefault();
+        let password = document.getElementById("password").value;
+        let repeat_password = document.getElementById("repeat_password").value;
+
+            if (password === "") {
+            Swal.fire({
+                text: 'Por favor, ingrese su contraseña',
+                confirmButtonColor: '#008dc9'
+            });
+            } else if (repeat_password === "") {
+            Swal.fire({
+                text: 'Por favor, ingrese la confirmación de la contraseña',
+                confirmButtonColor: '#008dc9'
+            });
+            } else if (password != repeat_password) {
+            Swal.fire({
+                 text: 'Las contraseñas deben ser iguales',
+                 confirmButtonColor: '#008dc9'
+            });
+        } else {
+
+            let data = {
+                  Password: password,
+                  Repeat_password: repeat_password
+            };
+            $.ajax({
+                type: "POST",
+                url: '@ViewBag.urlEndPoint' + '/api/Users/v1/ChangePassword',
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                async: false,
+                dataType: "json",
+                success: function (response) {
+                    if (response.codeStatus == 0) {
+                       
+                } else {
+
+                    Swal.fire({
+                        text: "Hubo un fallo" + response.messageStatus,
+                        confirmButtonColor: '#008dc9'
+                    });
+                    //alert('Inicio de sesión fallido, ' + response.messageStatus);
+                }
+            },
+            error: function (error) {
+                console.log("Error.");
+            }
+        });
+    }
+        }
+    </script>
                             
 }

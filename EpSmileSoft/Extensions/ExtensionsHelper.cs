@@ -12,12 +12,15 @@ namespace EpSmileSoft.Extensions
         public static void AddRepositoryService(this IServiceCollection services)
         {
             //Repositories
-            //services.AddScoped<IOrdersManageRepository, OrdersManageRepository>();
             services.AddTransient<ISessionRepository, SessionRepository>();
+            services.AddScoped<IUsersRepository, UsersRepository>();
+
+           
 
             //Service Core
-            //services.AddScoped<IOrdersManagerCore, OrdersManagerCore>();
             services.AddTransient<ISessionCore, SessionCore>();
+            services.AddScoped<IUsersCore, UsersCore>();
+
 
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
         }

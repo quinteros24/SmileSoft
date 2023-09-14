@@ -25,6 +25,32 @@ namespace WebSmileSoft.Controllers
             return View();
         }
 
+        
+        [HttpPost]
+        public async Task<ChangePasswordViewModelResponse> ChangePassword([FromBody] ChangePasswordViewModelRequest Item)
+        {
+            var HttpClient = new HttpClient();
+            //var content = new StringContent(JsonConvert.SerializeObject(ItemLogin), Encoding.UTF8, "application/json");
+
+            ChangePasswordViewModelResponse? ChangePasswordViewModelItem = new();
+            var response = await HttpClient.PostAsJsonAsync(_settings.urlEndPoint + "/api/Users/v1/ChangePassword", Item);
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                JObject jsonObject = JObject.Parse(json);
+                var data = jsonObject["itemJson"];
+                string? jsonData = data != null ? data.ToString() : String.Empty;
+
+                if (!String.IsNullOrEmpty(jsonData))
+                {
+                    ChangePasswordViewModelItem = JsonConvert.DeserializeObject<ChangePasswordViewModelResponse>(jsonData);
+                }
+                return ChangePasswordViewModelItem!;
+            }
+            else
+                return ChangePasswordViewModelItem;
+        }
+
 
         [HttpPost]
         public async Task<LoginViewModelResponse> Login([FromBody] LoginViewModelRequest ItemLogin)
