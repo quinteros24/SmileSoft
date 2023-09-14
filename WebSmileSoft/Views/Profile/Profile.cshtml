@@ -53,10 +53,10 @@
                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                             </svg>Seguridad
                         </a>
-                        @*<a href="#notification"
+                        <a href="#medicaldata"
                     data-toggle="tab"
                     class="nav-item nav-link has-icon nav-link-faded">
-                    <svg xmlns="http://www.w3.org/2000/svg"
+                    @*<svg xmlns="http://www.w3.org/2000/svg"
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
@@ -68,8 +68,8 @@
                     class="feather feather-bell mr-2">
                     <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
                     <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                    </svg>Notificaciones
-                    </a>*@
+                        </svg>*@<i class="fas fa-plus mr-2 mx-2"> </i>Datos Medicos
+                    </a>
                         <a href="#account"
                            data-toggle="tab"
                            class="nav-item nav-link has-icon nav-link-faded">
@@ -95,28 +95,7 @@
                 <div class="card-header py-3">
                     <h6 class="text-primary fw-bold m-0">Anuncios</h6>
                 </div>
-                <div id="carousel-1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img class="w-100 d-block" src="~/assets/img/anuncios/top.png" alt="Slide Image">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="w-100 d-block" src="~/assets/img/anuncios/2.png" alt="Slide Image">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="w-100 d-block" src="~/assets/img/anuncios/3.png" alt="Slide Image">
-                        </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#carousel-1" role="button" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carousel-1" role="button" data-bs-slide="next">
-                        <span class="carousel-control-next-icon"></span>
-                        <span class="visually-hidden">Next</span>
-                    </a>
-
-                </div>
+                <partial name="_Anuncios"/>
             </div>
         </div>
         <div class="col-md-8">
@@ -203,135 +182,13 @@
                 <div class="card-body tab-content">
                     <!-- Datos Basicos -->
 
-                    <div class="tab-pane active" id="profile">
-                        <h6>Información de tu Perfil</h6>
-                        <hr />
-                        <div class="card shadow mb-3">
-                            <div class="card-header py-3">
-                                <p class="text-primary m-0 fw-bold">Datos Personales</p>
-                            </div>
-                            <div class="card-body">
-                                <form>
-                                    <div class="row">
-
-                                        <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="user_names"><strong>Nombres</strong></label><input class="form-control" type="text" id="user_names" placeholder="Juan Pedro" name="user_names"></div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="user_lastnames"><strong>Apellidos</strong></label><input class="form-control" type="text" id="user_lastnames" placeholder="Sanchez ramirez" name="user_lastnames"></div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="tipo_documento"><strong>Tipo Documento</strong></label><input class="form-control" type="text" id="tipo_documento" placeholder="C.C." name="tipo_documento" disabled></div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="id_number"><strong>Identificación</strong></label><input class="form-control" type="text" id="id_number" placeholder="1088313131" name="id_number" disabled></div>
-                                        </div>
-                                    </div><hr />
-                                    <div class="mb-3"><button class="btn btn-primary btn-sm btn-en-desarrollo" type="submit">Guardar</button></div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="card shadow">
-                            <div class="card-header py-3">
-                                <p class="text-primary m-0 fw-bold">Datos de contacto</p>
-                            </div>
-                            <div class="card-body">
-                                <form>
-                                    <div class="row">
-                                        <div class="mb-3"><label class="form-label" for="address"><strong>Correo Electronico </strong></label><input class="form-control" type="email" id="email" placeholder="emilio@smilesoft.com" name="email"></div>
-                                    </div> <div class="row">
-                                        <div class="mb-3"><label class="form-label" for="address"><strong>Dirección </strong></label><input class="form-control" type="text" id="address" placeholder="Sunset Blvd, 38" name="address"></div>
-                                    </div>@*<div class="row">
-                                <div class="col">
-                                <div class="mb-3"><label class="form-label" for="city"><strong>Ciudad</strong></label><input class="form-control" type="text" id="city" placeholder="Los Angeles" name="city"></div>
-                                </div>
-                                <div class="col">
-                                <div class="mb-3"><label class="form-label" for="country"><strong>Departamento</strong></label><input class="form-control" type="text" id="country" placeholder="USA" name="country"></div>
-                                </div>
-                                </div>*@
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="phone_number"><strong>Numero Celular</strong></label><input class="form-control" type="text" id="phone_number" placeholder="3024214750" name="phone_number"></div>
-                                        </div>
-                                        @*<div class="col">
-                                    <div class="mb-3"><label class="form-label" for="house_number"><strong>Telefono Fijo</strong></label><input class="form-control" type="text" id="house_number" placeholder="6063388779" name="house_number"></div>
-                                    </div>*@
-                                        @*<div class="card-body">
-                                    <div class="row">
-                                    <div class="col-md-12">
-                                    <form>
-                                    <div class="mb-3">
-                                    <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="formCheck-2" required>
-                                    <label class="form-check-label" for="formCheck-2">
-                                    <strong>Acepto los términos y condiciones de uso de los datos registrados en este sitio.</strong>
-                                    </label>
-                                    </div>
-                                    </div>
-
-                                    </form>
-                                    </div>
-                                    </div>
-                                    </div>*@
-                                    </div>
-
-                                    <div class="mb-3"><button class="btn btn-primary btn-sm btn-en-desarrollo" type="submit">Actualizar Datos</button></div>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- Datos de Estudios Solo PERFIL DE DOCTOR -->
-                        @*if (User.IsInRole("Doctor"))
-                    {*@
-                            <div class="card shadow my-2" >
-                                <div class="card-header py-3">
-                                    <p class="text-primary m-0 fw-bold">Datos de Estudios</p>
-                                </div>
-                                <div class="card-body">
-                                    <form>
-                                        <!-- nivel académico,  título,  universidad ,  especialidad , tarjeta profesional-->
-                                        <div class="row">
-                                            <div class="mb-3"><label class="form-label" for="TituloAcademico"><strong>Titulo Académico </strong></label><input class="form-control" type="text" id="TituloAcademico" placeholder="Odontologo" name="TituloAcademico"></div>
-                                        </div> <div class="row">
-                                            <div class="mb-3"><label class="form-label" for="Especialidad"><strong>Especialidad </strong></label><input class="form-control" type="text" id="Especialidad" placeholder="Especialidad" name="Especialidad"></div>
-                                        </div>
-                                    <div class="mb-3">
-                                        <label for="Especialidad">Selecciona un Rol:</label>
-                                        <select id="Especialidad" name="Especialidad" class="form-control">
-                                            @foreach (var especialidad in ViewBag.EspecialidadList)
-                                            {
-                                                <option value="@especialidad.Value">@especialidad.Text</option>
-                                            }
-                                        </select>
-                                    </div>
-                                        <div class="mb-3"><button class="btn btn-primary btn-sm btn-en-desarrollo" type="submit">Actualizar Datos</button></div>
-                                    </form>
-                                </div>
-                            </div>
-                        @*}*@
-                    </div>
+                    <partial name="_BasicData" />
                     <!-- Opciones de Cuenta -->
-
+                
                     <div class="tab-pane" id="account">
                         <h6>Opciones de la Cuenta</h6>
                         <hr />
                         <form>
-                            @*
-                        <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text"
-                        class="form-control"
-                        id="username"
-                        aria-describedby="usernameHelp"
-                        placeholder="Ingresa Tu nombre de Usuario"
-                        value="kennethvaldez"/>
-                        <small id="usernameHelp" class="form-text text-muted">
-                        After changing your username, your old username becomes
-                        available for anyone else to claim.
-                        </small>
-                        </div>
-                        <hr/>*@
                             <div class="form-group">
                                 <label class="d-block text-danger">Desactivar la Cuenta</label>
                                 <p class="text-muted font-size-sm">
@@ -345,52 +202,7 @@
                         </form>
                     </div>
                     <div class="tab-pane" id="security">
-                        <h6>Ajustes de Seguridad</h6>
-                        <hr />
-                        <div class="card-body">
-                            <form>
-                                <div class="row">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="passwordActual">
-                                            <strong>Ingresa tu Antigua Contraseña</strong>
-                                        </label><input class="form-control" type="password" id="passwordActual" placeholder="Password123#" name="password">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="mb-3"><label class="form-label" for="NewPassword"><strong>Ingresa Tu Nueva Contraseña</strong></label><input class="form-control" type="password" id="NewPassword" placeholder="Password123#" name="NewPassword"></div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="mb-3"><label class="form-label" for="Repeat_Password"><strong>Confirma la Nueva Contraseña</strong></label><input class="form-control" type="password" id="Repeat_Password" placeholder="Password123#" name="Repeat_Password"></div>
-                                    </div>
-                                </div>
-                                <div class="mb-3"><button class="btn btn-primary btn-sm btn-en-desarrollo" type="submit">Cambiar Contraseña</button></div>
-                            </form>
-                        </div>
-
-                        <hr />
-
-                        @*<form>
-                    <div class="form-group mb-0">
-                    <label class="d-block">Sessions</label>
-                    <p class="font-size-sm text-secondary">
-                    This is a list of devices that have logged into your
-                    account. Revoke any sessions that you do not recognize.
-                    </p>
-                    <ul class="list-group list-group-sm">
-                    <li class="list-group-item has-icon">
-                    <div>
-                    <h6 class="mb-0">San Francisco City 190.24.335.55</h6>
-                    <small class="text-muted">Your current session seen in United States</small>
-                    </div>
-                    <button class="btn btn-light btn-sm ml-auto"
-                    type="button">
-                    More info
-                    </button>
-                    </li>
-                    </ul>
-                    </div>
-                    </form>*@
+                        <partial name="_Security" />
                     </div>
                     @*<div class="tab-pane" id="notification">
                 <h6>Opciones de Notificaciones</h6>
@@ -476,27 +288,9 @@
                 </div>
                 </form>
                 </div>
-                <div class="tab-pane" id="billing">
-                <h6>BILLING SETTINGS</h6>
-                <hr/>
-                <form>
-                <div class="form-group">
-                <label class="d-block mb-0">Payment Method</label>
-                <div class="small text-muted mb-3">
-                You have not added a payment method
-                </div>
-                <button class="btn btn-info" type="button">
-                Add Payment Method
-                </button>
-                </div>
-                <div class="form-group mb-0">
-                <label class="d-block">Payment History</label>
-                <div class="border border-gray-500 bg-gray-200 p-3 text-center font-size-sm">
-                You have not made any payment.
-                </div>
-                </div>
-                </form>
-                </div>*@
+                *@<div class="tab-pane" id="medicaldata">
+                        <partial name="_DatosMedicos" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -529,14 +323,5 @@
     <script src="~/assets/js/bootstrap.min.js"></script>
     <script src="~/assets/js/theme.js"></script>
     <script type="text/javascript"></script>
-    <script>
-        $(document).ready(function () {
-            // Iniciar el carrusel
-            $('#carousel-1').carousel();
-
-            // Establecer la rotación automática
-            $('#carousel-1').carousel('cycle');
-        });
-    </script>
-
+  
         }

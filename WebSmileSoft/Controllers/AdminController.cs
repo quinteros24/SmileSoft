@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using WebSmileSoft.Models; // Asegúrate de importar el espacio de nombres de tus modelos de usuario y roles
 
 namespace WebSmileSoft.Controllers
@@ -31,6 +33,7 @@ namespace WebSmileSoft.Controllers
             return View("~/Views/Admin/SiteManagement/Index.cshtml");
         }
 
+        
         //public IActionResult Usuarios()
         //{
         //    // Obtener datos de la base de datos (reemplaza esto con tu lógica)
@@ -62,7 +65,7 @@ namespace WebSmileSoft.Controllers
         public IActionResult TableUsers()
         {
             // Obtener datos de la base de datos (reemplaza esto con tu lógica)
-                var usuarios = new List<UsuariosModel>
+            var usuarios = new List<UsuariosModel>
         {
            new UsuariosModel { Id = 1, Nombre = "Juan",  Apellido = "Mora Smile", Rol = "Administrador", Consultorio = "Consultorio 1", Edad = 25, UltimoIngreso = DateTime.Parse("12/12/2020"), Documento = "123456789", TipoDocumento = "Cedula", FechaNacimiento = DateTime.Parse("12/12/1995"), Genero = "Masculino", Direccion = "Calle 1", NumeroCelular = "123456789", CorreoElectronico = "juan@mile.com" },
             new UsuariosModel { Id = 2, Nombre = "Pedro", Apellido = "Mora Smile",Rol = "Usuario", Consultorio = "Consultorio 2", Edad = 25, UltimoIngreso = DateTime.Parse("12/12/2020"), Documento = "123456789", TipoDocumento = "Cedula", FechaNacimiento = DateTime.Parse("12/12/1995"), Genero = "Masculino", Direccion = "Calle 1", NumeroCelular = "123456789", CorreoElectronico = "pedro@mile.com" },
@@ -80,8 +83,8 @@ namespace WebSmileSoft.Controllers
 
         };
 
-                // Pasa los datos a la vista
-                return View("~/Views/Admin/UserManagement/ViewTableUsers.cshtml", usuarios);
+            // Pasa los datos a la vista
+            return View("~/Views/Admin/UserManagement/ViewTableUsers.cshtml", usuarios);
         }
 
         //public AdminController(
