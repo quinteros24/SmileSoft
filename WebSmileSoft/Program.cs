@@ -24,6 +24,13 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("DoctorPolicy", policy =>
+    {
+        policy.RequireRole("Doctor");
+    });
+});
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
