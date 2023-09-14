@@ -3,8 +3,7 @@
     "",
     "\\WebSmileSoft",
     "\\WebSmileSoft\\Views",
-    "\\WebSmileSoft\\Views\\Admin",
-    "\\WebSmileSoft\\Views\\Admin\\SiteManagement",
+    "\\WebSmileSoft\\Views\\Account",
     "\\WebSmileSoft\\Views\\Shared",
     "\\WebSmileSoft\\Views\\Shared\\Components",
     "\\WebSmileSoft\\Views\\Shared\\Components\\Sidebar",
@@ -13,6 +12,6 @@
     "\\WebSmileSoft\\wwwroot\\assets\\bootstrap",
     "\\WebSmileSoft\\wwwroot\\assets\\bootstrap\\css"
   ],
-  "SelectedNode": "\\WebSmileSoft\\Views\\Admin\\SiteManagement\\Index.cshtml",
+  "SelectedNode": "\\WebSmileSoft\\Views\\Account\\ForgotPassword.cshtml",
   "PreviewInSolutionExplorer": false
 }
