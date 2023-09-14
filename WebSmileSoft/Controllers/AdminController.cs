@@ -26,6 +26,11 @@ namespace WebSmileSoft.Controllers
             return View("~/Views/Admin/UserManagement/Index.cshtml");
         }
 
+        public IActionResult SiteManagement()
+        {
+            return View("~/Views/Admin/SiteManagement/Index.cshtml");
+        }
+
         //public IActionResult Usuarios()
         //{
         //    // Obtener datos de la base de datos (reemplaza esto con tu lógica)

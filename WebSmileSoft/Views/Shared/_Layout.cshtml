@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="es">
+ <!-- data-bs-theme="dark" -->
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,7 +17,8 @@
 
     <!-- Custom fonts for this template -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" asp-append-version="true">
-
+ 
+    
     <!-- Custom Icons for this template -->
     <link rel="stylesheet" href="~/assets/css/Features-Small-Icons-Color-icons.css" asp-append-version="true">
 
@@ -37,7 +39,7 @@
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
                 <!-- TopBar -->
-                @await Component.InvokeAsync("NavbarSup")
+                @await Component.InvokeAsync("Navbar")
                 <div class="container-fluid">
                     <!-- Page Content -->
                     @* <div class="container"> *@
@@ -60,6 +62,36 @@
 
     <!-- Custom scripts for all pages-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+<script src="~/assets/js/UserSessionControl.js" asp-append-version="true"></script>
+<script>
+        // Variable simulada para la autenticación
+        let isLoggedIn = false;
+
+        // Agrega un manejador para el evento popstate
+        window.addEventListener('popstate', function (event) {
+            // Simula la autenticación. En un entorno real, verificarías si el usuario está autenticado.
+            if (!isLoggedIn) {
+                // Redirecciona al usuario a la página de inicio de sesión simulada
+                alert('Debes iniciar sesión para retroceder.');
+                // Puedes reemplazar la alerta con una redirección real si lo deseas.
+                window.location.href = '@Url.Action("Login", "Account")'; // Cambia '/login' por la URL de tu página de inicio de sesión simulada.
+                // También puedes permitir el retroceso cambiando el valor de isLoggedIn a true.
+                // isLoggedIn = true;
+
+                // Para evitar que el usuario retroceda, puedes agregar una entrada ficticia en el historial.
+                // Esto evitará que el usuario vuelva a la página anterior.
+                history.pushState(null, null, window.location.href);
+            }
+        });
+
+        // Esto es solo un ejemplo de cómo cambiar el estado de autenticación.
+        // Puedes simular la autenticación real según tus necesidades.
+        //document.getElementById('loginButton').addEventListener('click', function () {
+         //   isLoggedIn = true;
+          //  alert('Has iniciado sesión.');
+        //});
+</script>
+    
+@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
