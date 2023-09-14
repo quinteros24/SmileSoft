@@ -12,7 +12,13 @@ builder.Services.AddSingleton<ISettings>((serviceProvider) =>
     return builder.Configuration.GetSection("Settings").Get<Settings>();
 });
 
-
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("DoctorPolicy", policy =>
+    {
+        policy.RequireRole("Doctor");
+    });
+});
 
 var app = builder.Build();
 
@@ -24,13 +30,6 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("DoctorPolicy", policy =>
-    {
-        policy.RequireRole("Doctor");
-    });
-});
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

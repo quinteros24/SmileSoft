@@ -97,6 +97,10 @@
       "PackagePath": "staticwebassets\\assets\\img\\anuncios\\top.png"
     },
     {
+      "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\weareworking.png",
+      "PackagePath": "staticwebassets\\assets\\img\\anuncios\\weareworking.png"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\avatars\\avatar1.jpeg",
       "PackagePath": "staticwebassets\\assets\\img\\avatars\\avatar1.jpeg"
     },
@@ -167,6 +171,10 @@
     {
       "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\user_profile.png",
       "PackagePath": "staticwebassets\\assets\\img\\profiles\\user_profile.png"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\AlertDesarrollo.js",
+      "PackagePath": "staticwebassets\\assets\\js\\AlertDesarrollo.js"
     },
     {
       "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\Login.js",
