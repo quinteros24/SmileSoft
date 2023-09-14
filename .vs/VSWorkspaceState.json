@@ -11,6 +11,6 @@
     "\\WebSmileSoft\\wwwroot\\assets\\bootstrap",
     "\\WebSmileSoft\\wwwroot\\assets\\bootstrap\\css"
   ],
-  "SelectedNode": "\\WebSmileSoft\\wwwroot\\assets\\bootstrap\\css\\bootstrap.min.css",
+  "SelectedNode": "\\WebSmileSoft\\Views\\Shared\\Components\\Sidebar\\_Sidebar.cshtml",
   "PreviewInSolutionExplorer": false
 }
