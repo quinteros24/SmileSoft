@@ -9,8 +9,9 @@
     "\\WebSmileSoft\\wwwroot",
     "\\WebSmileSoft\\wwwroot\\assets",
     "\\WebSmileSoft\\wwwroot\\assets\\bootstrap",
-    "\\WebSmileSoft\\wwwroot\\assets\\bootstrap\\css"
+    "\\WebSmileSoft\\wwwroot\\assets\\bootstrap\\css",
+    "\\WebSmileSoft\\wwwroot\\assets\\js"
   ],
-  "SelectedNode": "\\SolutionSmileSoft.sln",
+  "SelectedNode": "\\WebSmileSoft\\wwwroot\\assets\\js\\UserSessionControl.js",
   "PreviewInSolutionExplorer": false
 }
