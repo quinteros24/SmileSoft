@@ -3,7 +3,7 @@ var inactivityTimeout;
 // Función para restablecer el tiempo de inactividad
 function resetInactivityTimer() {
     clearTimeout(inactivityTimeout);
-    inactivityTimeout = setTimeout(logoutUser, 900000); // 10 segundos (10000 milisegundos)
+    inactivityTimeout = setTimeout(logoutUser, 10000); // 10 segundos (10000 milisegundos)
 }
 
 function logoutUser() {
