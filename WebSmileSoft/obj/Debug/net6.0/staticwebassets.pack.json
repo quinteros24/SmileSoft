@@ -37,6 +37,10 @@
       "PackagePath": "staticwebassets\\assets\\css\\site.css"
     },
     {
+      "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\styles.css",
+      "PackagePath": "staticwebassets\\assets\\css\\styles.css"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\table_style.css",
       "PackagePath": "staticwebassets\\assets\\css\\table_style.css"
     },
@@ -217,12 +221,8 @@
       "PackagePath": "staticwebassets\\assets\\js\\popper.js"
     },
     {
-      "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\responsive-blog-card-slider-01-swiper-bundle.min.js",
-      "PackagePath": "staticwebassets\\assets\\js\\responsive-blog-card-slider-01-swiper-bundle.min.js"
-    },
-    {
-      "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\responsive-blog-card-slider-02-responsive-blog-card-slider.js",
-      "PackagePath": "staticwebassets\\assets\\js\\responsive-blog-card-slider-02-responsive-blog-card-slider.js"
+      "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\sidebar.js",
+      "PackagePath": "staticwebassets\\assets\\js\\sidebar.js"
     },
     {
       "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\theme.js",

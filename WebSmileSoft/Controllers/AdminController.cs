@@ -87,6 +87,41 @@ namespace WebSmileSoft.Controllers
             return View("~/Views/Admin/UserManagement/ViewTableUsers.cshtml", usuarios);
         }
 
+        public IActionResult TableDoctor()
+        {
+            // Obtener datos de la base de datos (reemplaza esto con tu lógica)
+            var doctores = new List<UsuariosModel>
+        {
+           new UsuariosModel { Id = 1, Nombre = "Juan",  Apellido = "Mora Smile", Rol = "Administrador", Consultorio = "Consultorio 1", Edad = 25, UltimoIngreso = DateTime.Parse("12/12/2020"), Documento = "123456789", TipoDocumento = "Cedula", FechaNacimiento = DateTime.Parse("12/12/1995"), Genero = "Masculino", Direccion = "Calle 1", NumeroCelular = "123456789", CorreoElectronico = "juan@mile.com" },
+            new UsuariosModel { Id = 2, Nombre = "Pedro", Apellido = "Mora Smile",Rol = "Usuario", Consultorio = "Consultorio 2", Edad = 25, UltimoIngreso = DateTime.Parse("12/12/2020"), Documento = "123456789", TipoDocumento = "Cedula", FechaNacimiento = DateTime.Parse("12/12/1995"), Genero = "Masculino", Direccion = "Calle 1", NumeroCelular = "123456789", CorreoElectronico = "pedro@mile.com" },
+            new UsuariosModel { Id = 3, Nombre = "Maria", Apellido = "Mora Smile",Rol = "Usuario", Consultorio = "Consultorio 3", Edad = 25, UltimoIngreso = DateTime.Parse("12/12/2020"), Documento = "123456789", TipoDocumento = "Cedula", FechaNacimiento = DateTime.Parse("12/12/1995"), Genero = "Femenino", Direccion = "Calle 1", NumeroCelular = "123456789", CorreoElectronico = "maria@mile.com" },
+            new UsuariosModel { Id = 4, Nombre = "Carlos",Apellido = "Mora Smile", Rol = "Administrador", Consultorio = "Consultorio 4", Edad = 30, UltimoIngreso = DateTime.Parse("11/11/2020"), Documento = "987654321", TipoDocumento = "Pasaporte", FechaNacimiento = DateTime.Parse("10/10/1990"), Genero = "Masculino", Direccion = "Calle 2", NumeroCelular = "987654321", CorreoElectronico = "carlos@mile.com" },
+            new UsuariosModel { Id = 5, Nombre = "Ana", Apellido = "Mora Smile",Rol = "Usuario", Consultorio = "Consultorio 5", Edad = 28, UltimoIngreso = DateTime.Parse("10/10/2020"), Documento = "555555555", TipoDocumento = "Cedula", FechaNacimiento = DateTime.Parse("09/09/1993"), Genero = "Femenino", Direccion = "Calle 3", NumeroCelular = "555555555", CorreoElectronico = "ana@mile.com" },
+            
+
+        };
+
+            // Pasa los datos a la vista
+            return View("~/Views/Admin/UserManagement/ViewTableUsers.cshtml", doctores);
+        }
+        public IActionResult TableAdmin()
+        {
+            // Obtener datos de la base de datos (reemplaza esto con tu lógica)
+            var administradores = new List<UsuariosModel>
+        {
+            new UsuariosModel { Id = 1, Nombre = "Juan",  Apellido = "Mora Smile", Rol = "Administrador", Consultorio = "Consultorio 1", Edad = 25, UltimoIngreso = DateTime.Parse("12/12/2020"), Documento = "123456789", TipoDocumento = "Cedula", FechaNacimiento = DateTime.Parse("12/12/1995"), Genero = "Masculino", Direccion = "Calle 1", NumeroCelular = "123456789", CorreoElectronico = "juan@mile.com" },
+            new UsuariosModel { Id = 2, Nombre = "Pedro", Apellido = "Mora Smile",Rol = "Usuario", Consultorio = "Consultorio 2", Edad = 25, UltimoIngreso = DateTime.Parse("12/12/2020"), Documento = "123456789", TipoDocumento = "Cedula", FechaNacimiento = DateTime.Parse("12/12/1995"), Genero = "Masculino", Direccion = "Calle 1", NumeroCelular = "123456789", CorreoElectronico = "pedro@mile.com" },
+            new UsuariosModel { Id = 3, Nombre = "Maria", Apellido = "Mora Smile",Rol = "Usuario", Consultorio = "Consultorio 3", Edad = 25, UltimoIngreso = DateTime.Parse("12/12/2020"), Documento = "123456789", TipoDocumento = "Cedula", FechaNacimiento = DateTime.Parse("12/12/1995"), Genero = "Femenino", Direccion = "Calle 1", NumeroCelular = "123456789", CorreoElectronico = "maria@mile.com" },
+            new UsuariosModel { Id = 4, Nombre = "Carlos",Apellido = "Mora Smile", Rol = "Administrador", Consultorio = "Consultorio 4", Edad = 30, UltimoIngreso = DateTime.Parse("11/11/2020"), Documento = "987654321", TipoDocumento = "Pasaporte", FechaNacimiento = DateTime.Parse("10/10/1990"), Genero = "Masculino", Direccion = "Calle 2", NumeroCelular = "987654321", CorreoElectronico = "carlos@mile.com" },
+            new UsuariosModel { Id = 5, Nombre = "Ana", Apellido = "Mora Smile",Rol = "Usuario", Consultorio = "Consultorio 5", Edad = 28, UltimoIngreso = DateTime.Parse("10/10/2020"), Documento = "555555555", TipoDocumento = "Cedula", FechaNacimiento = DateTime.Parse("09/09/1993"), Genero = "Femenino", Direccion = "Calle 3", NumeroCelular = "555555555", CorreoElectronico = "ana@mile.com" },
+            new UsuariosModel { Id = 6, Nombre = "Pablo",Apellido = "Mora Smile", Rol = "Usuario", Consultorio = "Consultorio 6", Edad = 35, UltimoIngreso = DateTime.Parse("09/09/2020"), Documento = "777777777", TipoDocumento = "Cedula", FechaNacimiento = DateTime.Parse("08/08/1986"), Genero = "Masculino", Direccion = "Calle 4", NumeroCelular = "777777777", CorreoElectronico = "pablo@mile.com" },
+
+        };
+
+            // Pasa los datos a la vista
+            return View("~/Views/Admin/UserManagement/ViewTableUsers.cshtml", administradores);
+        }
+
         //public AdminController(
         //    UserManager<ApplicationUser> userManager,
         //    RoleManager<IdentityRole> roleManager)

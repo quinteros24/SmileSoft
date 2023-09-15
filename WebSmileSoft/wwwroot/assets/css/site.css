@@ -44,9 +44,18 @@ body {
 
 .nav-item:hover {
     /*background-color: #f8f9fa;*/
-    background-color: #f8f9fa;
+    /*    background-color: #f8f9fa;*/
+    transform: scale(1.05);
     border-radius: 5px;
-    color: #0094ff;
+    /*    color: #0094ff;*/
     transition: transform 0.3s ease; /* Agrega una transición suave */
 }
 
+
+/* styles.css */
+
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    transition: transform 0.3s ease; /* Agrega una transición suave */
+}
