@@ -1,5 +1,46 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿
 @{
+ViewData["Title"] = "User Management";
 }
+@{
+    <div class="container text-primary border rounded border-0 p-4 p-lg-5 py-4 py-xl-5 shadow-lg">
+        <div class="row mb-5">
+            <div class="col-md-8 col-xl-6 text-center mx-auto">
+                <h2 >Administración de Usuarios</h2>
+            </div>
+        </div>
+        <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+            <div class="col">
+                <div class="d-flex justify-content-xxl-center">
+                    <div class="px-3">
+                        <h2 class=" d-xxl-flex justify-content-xxl-center">Usuarios</h2><a asp-action="TableUsers" asp-controller="Admin">
+                            <p><img class="rounded img-fluid img-hover" data-bss-hover-animate="pulse" width="300" src="~/assets/img/profiles/user_profile.png" alt="User Profile img"></p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="d-flex justify-content-xxl-center">
+                    <div class="px-3">
+                        <h2 class=" d-xxl-flex justify-content-xxl-center">Odontologos</h2><a asp-action="TableUsers" asp-controller="Admin">
+                            <p><img class="rounded img-fluid d-xxl-flex justify-content-xxl-center img-hover" data-bss-hover-animate="pulse" width="300" src="~/assets/img/profiles/doctor_profile.png" alt="Dentist Profile img"></p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="d-flex justify-content-xxl-center">
+                    <div class="px-3">
+                        <h2 class=" d-xxl-flex justify-content-xxl-center">Administradores</h2><a asp-action="TableUsers" asp-controller="Admin">
+                            <p><img class="rounded img-fluid d-xxl-flex justify-content-xxl-center img-hover" data-bss-hover-animate="pulse" width="300" src="~/assets/img/profiles/admin_profile.png" alt="Admin Profile img"></p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+                @section Scripts{
+@*     <script src="assets/js/bs-init.js"></script> *@
+                }
