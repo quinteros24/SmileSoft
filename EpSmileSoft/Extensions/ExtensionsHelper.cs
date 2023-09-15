@@ -3,7 +3,8 @@ using Domain.Interfaces.Repository;
 using Domain.Interfaces.Core;
 using Repository.Repos;
 using Domain.Core;
-
+using Domain.Interfaces;
+using Repository;
 
 namespace EpSmileSoft.Extensions
 {
@@ -12,12 +13,14 @@ namespace EpSmileSoft.Extensions
         public static void AddRepositoryService(this IServiceCollection services)
         {
             //Repositories
+            services.AddScoped<IGenericsRepository, GenericsRepository>();
             services.AddTransient<ISessionRepository, SessionRepository>();
             services.AddScoped<IUsersRepository, UsersRepository>();
 
-           
+
 
             //Service Core
+            services.AddScoped<IGenericsCore, GenericsCore>();
             services.AddTransient<ISessionCore, SessionCore>();
             services.AddScoped<IUsersCore, UsersCore>();
 
