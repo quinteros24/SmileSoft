@@ -50,3 +50,11 @@ body {
     transition: transform 0.3s ease; /* Agrega una transición suave */
 }
 
+
+/* styles.css */
+
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    transition: transform 0.3s ease; /* Agrega una transición suave */
+}
