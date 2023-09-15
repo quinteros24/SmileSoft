@@ -93,7 +93,7 @@ var rememberMeCheckbox = document.getElementById("rememberMe");
                 success: function (response) {
                     if (response.codeStatus == 0) {
                         //ir a la vista
-                        Swal.fire(response.messageStatus);
+                        //Swal.fire(response.messageStatus);
                         //alert(response.messageStatus);
                         window.location.href = '@Url.Action("Index", "Home")';
                 } else {

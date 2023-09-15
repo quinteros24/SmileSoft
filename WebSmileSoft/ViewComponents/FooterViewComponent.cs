@@ -6,7 +6,7 @@ namespace WebSmileSoft.ViewComponents
     {
         public IViewComponentResult Invoke()
         {
-            return View("_Footer");
+            return View(viewName: "_Footer");
         }
     }
 }

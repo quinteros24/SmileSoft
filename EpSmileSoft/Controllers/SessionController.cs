@@ -1,7 +1,9 @@
 ﻿using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Domain.Interfaces.Core;
-
+using Domain.Interfaces;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace EpSmileSoft.Controllers
 {
@@ -12,9 +14,11 @@ namespace EpSmileSoft.Controllers
     public class SessionController : ControllerBase
     {
         private readonly ISessionCore _sessionCore;
-        public SessionController(ISessionCore sessionCore) 
+        private readonly IGenericsCore _genericsCore;
+        public SessionController(ISessionCore sessionCore, IGenericsCore genericsCore) 
         {
             _sessionCore = sessionCore;
+            _genericsCore = genericsCore;
         }
 
         /// <summary> Verificación de datos e inicio de sesión </summary>
@@ -25,6 +29,16 @@ namespace EpSmileSoft.Controllers
             try
             {
                 GenericResponseModel ItemGenericResponseModel = await _sessionCore.Login(Item);
+                if (ItemGenericResponseModel.ItemJson is not null)
+                {
+                    LoginModelResponse user = (LoginModelResponse)ItemGenericResponseModel.ItemJson;
+                    GenericResponseModel ItemGenericResponseTOKEN = await _genericsCore.GenerateJWToken(user.uID, user.uLoginName!, String.Empty);
+                    if (ItemGenericResponseTOKEN.ItemJson is string stringValue)
+                    {
+                        user.uToken = stringValue;
+                    }
+                    ItemGenericResponseModel.ItemJson = user;
+                }
                 return ItemGenericResponseModel;
             }
             catch

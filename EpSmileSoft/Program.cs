@@ -1,5 +1,8 @@
 using EpSmileSoft.Extensions;
 using Domain.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace EpSmilesoft
 {
@@ -17,6 +20,26 @@ namespace EpSmilesoft
                        .AllowAnyMethod()
                        .AllowAnyHeader();
             }));
+
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => {
+                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+
+                    ValidateIssuer = true,
+
+                    ValidateAudience = true,
+
+                    ValidateLifetime = true,
+
+                    ValidateIssuerSigningKey = true,
+
+                    ValidIssuer = builder.Configuration["Jwt:Issuer"],
+
+                    ValidAudience = builder.Configuration["Jwt:Audience"],
+
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+                };
+            });
 
             IConfigManager? _configuManager = null;
             builder.Services.AddSingleton<IConfigManager>((serviceProvider) =>

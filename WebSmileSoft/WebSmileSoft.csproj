@@ -16,6 +16,18 @@
   <ItemGroup>
     <None Include="Views\Home\Index.cshtml" />
     <None Include="Views\Home\Privacy.cshtml" />
+    <None Include="wwwroot\assets\js\bootstrap.min.js" />
+    <None Include="wwwroot\assets\js\bs-init.js" />
+    <None Include="wwwroot\assets\js\changetheme.js" />
+    <None Include="wwwroot\assets\js\forgotpassword.js" />
+    <None Include="wwwroot\assets\js\jquery.min.js" />
+    <None Include="wwwroot\assets\js\Login.js" />
+    <None Include="wwwroot\assets\js\popper.js" />
+    <None Include="wwwroot\assets\js\Register.js" />
+    <None Include="wwwroot\assets\js\responsive-blog-card-slider-01-swiper-bundle.min.js" />
+    <None Include="wwwroot\assets\js\responsive-blog-card-slider-02-responsive-blog-card-slider.js" />
+    <None Include="wwwroot\assets\js\theme.js" />
+    <None Include="wwwroot\assets\js\Utilities.js" />
   </ItemGroup>
 
   <ItemGroup>
