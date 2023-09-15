@@ -3,6 +3,7 @@
     "",
     "\\WebSmileSoft",
     "\\WebSmileSoft\\Views",
+    "\\WebSmileSoft\\Views\\Home",
     "\\WebSmileSoft\\Views\\Shared",
     "\\WebSmileSoft\\Views\\Shared\\Components",
     "\\WebSmileSoft\\Views\\Shared\\Components\\Sidebar",
@@ -12,6 +13,6 @@
     "\\WebSmileSoft\\wwwroot\\assets\\bootstrap\\css",
     "\\WebSmileSoft\\wwwroot\\assets\\js"
   ],
-  "SelectedNode": "\\WebSmileSoft\\wwwroot\\assets\\js\\UserSessionControl.js",
+  "SelectedNode": "\\WebSmileSoft\\Views\\Home\\About.cshtml",
   "PreviewInSolutionExplorer": false
 }
