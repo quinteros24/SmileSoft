@@ -100,8 +100,7 @@
  
     
     <!-- Custom Icons for this template -->
-    <link rel="stylesheet" href="~/assets/css/Features-Small-Icons-Color-icons.css" asp-append-version="true">
-
+    <link href="~\assets\css\footer-clean-icons.css" rel="stylesheet" />
     <!-- Custom Animations for this template -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" asp-append-version="true">
 
@@ -128,9 +127,9 @@
                 </div>
             </div>
             <!-- Footer -->
-            @await Component.InvokeAsync("Footer")
+            
         </div>
-    </div>@* <a class="border rounded d-inline scroll-to-top" href="#page-top" style="display:none"><i class="fas fa-angle-up" style="display:none"></i></a> *@
+    </div>@await Component.InvokeAsync("Footer")@* <a class="border rounded d-inline scroll-to-top" href="#page-top" style="display:none"><i class="fas fa-angle-up" style="display:none"></i></a> *@
     <!-- Custom Theme Script -->
     <script src="~/assets/js/theme.js" asp-append-version="true"></script>
     <!-- Bootstrap core JavaScript -->

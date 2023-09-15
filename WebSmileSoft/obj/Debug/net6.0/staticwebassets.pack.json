@@ -9,10 +9,6 @@
       "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\Features-Small-Icons-Color-icons.css",
-      "PackagePath": "staticwebassets\\assets\\css\\Features-Small-Icons-Color-icons.css"
-    },
-    {
       "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\Footer-Clean-icons.css",
       "PackagePath": "staticwebassets\\assets\\css\\Footer-Clean-icons.css"
     },
@@ -27,10 +23,6 @@
     {
       "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\loader.css",
       "PackagePath": "staticwebassets\\assets\\css\\loader.css"
-    },
-    {
-      "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\responsive-blog-card-slider.css",
-      "PackagePath": "staticwebassets\\assets\\css\\responsive-blog-card-slider.css"
     },
     {
       "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\site.css",
