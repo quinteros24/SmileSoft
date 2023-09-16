@@ -1,9 +1,10 @@
 ﻿
 @{
 ViewData["Title"] = "User Management";
+    <link rel="stylesheet" href="~/assets/css/Responsive-UI-Card.css">
 }
 @{
-    <div class="container text-primary border rounded border-0 p-4 p-lg-5 py-4 py-xl-5 shadow-lg">
+    @*<div class="container text-primary border rounded border-0 p-4 p-lg-5 py-4 py-xl-5 shadow-lg">
         <div class="row mb-5">
             <div class="col-md-8 col-xl-6 text-center mx-auto">
                 <h2 >Administración de Usuarios</h2>
@@ -34,6 +35,50 @@ ViewData["Title"] = "User Management";
                         <h2 class=" d-xxl-flex justify-content-xxl-center">Administradores</h2><a asp-action="TableAdmin" asp-controller="Admin">
                             <p><img class="rounded img-fluid d-xxl-flex justify-content-xxl-center img-hover" data-bss-hover-animate="pulse" width="300" src="~/assets/img/profiles/admin_profile.png" alt="Admin Profile img"></p>
                         </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+    <h3>Administración de Usuarios </h3>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="blog-card blog-card-blog">
+                    <div class="blog-card-image">
+                        <a href="#"> <img class="img" src="~/assets/img/profiles/user-p.png"> </a>
+                        <div class="ripple-cont"></div>
+                    </div>
+                    <div class="blog-table">
+                        <h4 class="blog-category blog-text-success"><i class="far fa-user"></i> Usuarios</h4>
+                        
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-4">
+                <div class="blog-card blog-card-blog">
+                    <div class="blog-card-image">
+                        <a href="#"> <img class="img" src="~/assets/img/profiles/doctor.png"/> </a>
+                        <div class="ripple-cont"></div>
+                    </div>
+                    <div class="blog-table">
+                        <h4 class="blog-category blog-text-success"><i class="fas fa-plus-square"></i> Doctores</h4>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="blog-card blog-card-blog">
+                    <div class="blog-card-image">
+                        <a href="#"> <img class="img" src="~/assets/img/profiles/admin-p.png"> </a>
+                        <div class="ripple-cont"></div>
+                    </div>
+                    <div class="blog-table">
+                        <h4 class="blog-category blog-text-success"><i class="far fa-user-circle"></i> Administradores</h4>
+                        
                     </div>
                 </div>
             </div>

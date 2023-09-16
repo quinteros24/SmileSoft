@@ -25,6 +25,10 @@
       "PackagePath": "staticwebassets\\assets\\css\\Nunito.css"
     },
     {
+      "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\Responsive-UI-Card.css",
+      "PackagePath": "staticwebassets\\assets\\css\\Responsive-UI-Card.css"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\loader.css",
       "PackagePath": "staticwebassets\\assets\\css\\loader.css"
     },
@@ -161,12 +165,24 @@
       "PackagePath": "staticwebassets\\assets\\img\\logoAlt.png"
     },
     {
+      "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\admin-p.png",
+      "PackagePath": "staticwebassets\\assets\\img\\profiles\\admin-p.png"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\admin_profile.png",
       "PackagePath": "staticwebassets\\assets\\img\\profiles\\admin_profile.png"
     },
     {
+      "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\doctor.png",
+      "PackagePath": "staticwebassets\\assets\\img\\profiles\\doctor.png"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\doctor_profile.png",
       "PackagePath": "staticwebassets\\assets\\img\\profiles\\doctor_profile.png"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\user-p.png",
+      "PackagePath": "staticwebassets\\assets\\img\\profiles\\user-p.png"
     },
     {
       "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\user_profile.png",
