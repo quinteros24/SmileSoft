@@ -123,7 +123,26 @@
             </tbody>
         </table>
     </div>
-   
+
+    <!-- Paginación -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Anterior">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <!-- Agrega más páginas aquí según sea necesario -->
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Siguiente">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 
     <!-- Modal de Edición -->
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -209,26 +228,71 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="addUserModalLabel">Agregar Usuario</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+
                 </div>
                 <div class="modal-body">
                     <form id="add-user-form">
                         <!-- Campos del formulario -->
                         <div class="form-group">
-                            <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                            <label for="nombres">  * Nombres:</label>
+                            <input type="text" class="form-control" id="nombres" name="nombres" required>
                         </div>
                         <div class="form-group">
-                            <label for="rol">Rol</label>
-                            <input type="text" class="form-control" id="rol" name="rol" required>
+                            <label for="apellidos">* Apellidos:</label>
+                            <input type="text" class="form-control" id="apellidos" name="apellidos" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="celular">Número de Celular:</label>
+                            <input type="text" class="form-control" id="celular" name="celular" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="correo">* Correo Electrónico:</label>
+                            <input type="email" class="form-control" id="correo" name="correo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="direccion">Dirección:</label>
+                            <input type="text" class="form-control" id="direccion" name="direccion" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tipoDocumento">* Tipo de Documento:</label>
+                            <select class="form-control" id="tipoDocumento" name="tipoDocumento" required>
+                                <option value="cc">Cedula de Ciudadania (CC)</option>
+                                <option value="ce">Cedula de Extranjeria (CE)</option>
+                                <option value="ti">Tarjeta de Identidad (TI)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="numeroDocumento">* Número de Documento:</label>
+                            <input type="text" class="form-control" id="numeroDocumento" name="numeroDocumento" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="usuario">* Usuario:</label>
+                            <input type="text" class="form-control" id="usuario" name="usuario" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">* Contraseña:</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="genero">Género:</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="genero" id="masculino" value="Masculino" required>
+                                <label class="form-check-label" for="masculino">Masculino</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="genero" id="femenino" value="Femenino" required>
+                                <label class="form-check-label" for="femenino">Femenino</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+                            <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" required>
                         </div>
                         <!-- Agrega los campos restantes aquí -->
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     <button type="button" class="btn btn-primary" id="add-user">Agregar</button>
                 </div>
             </div>
@@ -381,14 +445,66 @@
                 $("#addUserModal").modal("show");
             });
 
+
+
+
+            // Función para permitir solo números en un campo de entrada
+            function allowNumbersOnly(inputField) {
+                inputField.value = inputField.value.replace(/[^0-9]/g, '');
+            }
+
+            // Aplica la función a los campos de celular y número de documento
+            $("#celular").on("input", function () {
+                allowNumbersOnly(this);
+            });
+
+            $("#numeroDocumento").on("input", function () {
+                allowNumbersOnly(this);
+            });
+
             // Controlador de clic para el botón "Agregar"
             $("#add-user").click(function () {
                 // Obtiene los datos del formulario
                 var userData = {
-                    nombre: $("#nombre").val(),
-                    rol: $("#rol").val(),
-                    // Agrega los demás campos del formulario aquí
+                    nombres: $("#nombres").val(),
+                    apellidos: $("#apellidos").val(),
+                    celular: $("#celular").val(),
+                    correo: $("#correo").val(),
+                    direccion: $("#direccion").val(),
+                    tipoDocumento: $("#tipoDocumento").val(),
+                    numeroDocumento: $("#numeroDocumento").val(),
+                    usuario: $("#usuario").val(),
+                    password: $("#password").val(),
+                    genero: $("input[name='genero']:checked").val(), // Obtiene el valor del radio button seleccionado
+                    fechaNacimiento: $("#fechaNacimiento").val()
                 };
+
+                //Validar campos obligatorios
+
+                if (!userData.nombres || !userData.apellidos || !userData.correo || !userData.tipoDocumento ||!userData.numeroDocumento || !userData.usuario || !userData.password) {
+                    alert("Por favor, complete todos los campos obligatorios.");
+                    return; 
+                }
+
+                // Validación de la contraseña
+                var password = userData.password;
+                var passwordError = "";
+
+                if (password.length < 8) {
+                    passwordError = "La contraseña debe tener al menos 8 caracteres.";
+                } else if (!/[A-Z]/.test(password)) {
+                    passwordError = "La contraseña debe contener al menos una letra mayúscula.";
+                } else if (!/[a-z]/.test(password)) {
+                    passwordError = "La contraseña debe contener al menos una letra minúscula.";
+                } else if (!/\d/.test(password)) {
+                    passwordError = "La contraseña debe contener al menos un número.";
+                }
+
+                // Muestra el mensaje de error si es necesario
+                if (passwordError) {
+                    alert(passwordError);
+                    return; // Detiene la ejecución si la contraseña no cumple con los requisitos
+                }
 
                 // Realiza una solicitud AJAX para agregar el usuario en el servidor
                 $.ajax({
@@ -397,9 +513,10 @@
                     data: userData,
                     success: function (result) {
                         // Actualiza la vista o realiza alguna otra acción
+                        $("#addUserModal").modal("hide");
                         alert("Usuario agregado correctamente");
                         // Cierra el modal de agregar usuario
-                        $("#addUserModal").modal("hide");
+
                     },
                     error: function () {
                         alert("Error al agregar el usuario");
