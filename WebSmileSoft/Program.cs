@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using WebSmileSoft.Interfaces;
 using WebSmileSoft.Models;
 
@@ -12,7 +13,19 @@ builder.Services.AddSingleton<ISettings>((serviceProvider) =>
     return builder.Configuration.GetSection("Settings").Get<Settings>();
 });
 
-
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("DoctorPolicy", policy =>
+    {
+        policy.RequireRole("Doctor");
+    });
+});
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Account/Login"; // Ruta de inicio de sesión
+        options.AccessDeniedPath = "/Account/AccessDenied"; // Ruta para acceso no autorizado
+    });
 
 var app = builder.Build();
 

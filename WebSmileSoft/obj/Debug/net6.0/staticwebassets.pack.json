@@ -9,12 +9,12 @@
       "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\Features-Small-Icons-Color-icons.css",
-      "PackagePath": "staticwebassets\\assets\\css\\Features-Small-Icons-Color-icons.css"
-    },
-    {
       "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\Footer-Clean-icons.css",
       "PackagePath": "staticwebassets\\assets\\css\\Footer-Clean-icons.css"
+    },
+    {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\FooterStyle.css",
+      "PackagePath": "staticwebassets\\assets\\css\\FooterStyle.css"
     },
     {
       "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\Login.css",
@@ -25,16 +25,20 @@
       "PackagePath": "staticwebassets\\assets\\css\\Nunito.css"
     },
     {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\Responsive-UI-Card.css",
+      "PackagePath": "staticwebassets\\assets\\css\\Responsive-UI-Card.css"
+    },
+    {
       "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\loader.css",
       "PackagePath": "staticwebassets\\assets\\css\\loader.css"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\responsive-blog-card-slider.css",
-      "PackagePath": "staticwebassets\\assets\\css\\responsive-blog-card-slider.css"
-    },
-    {
       "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\site.css",
       "PackagePath": "staticwebassets\\assets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\styles.css",
+      "PackagePath": "staticwebassets\\assets\\css\\styles.css"
     },
     {
       "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\table_style.css",
@@ -81,6 +85,10 @@
       "PackagePath": "staticwebassets\\assets\\fonts\\XRXX3I6Li01BKofIMNaORs71cA.woff2"
     },
     {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\Dark_background_1920x1080.png",
+      "PackagePath": "staticwebassets\\assets\\img\\Dark_background_1920x1080.png"
+    },
+    {
       "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\2.png",
       "PackagePath": "staticwebassets\\assets\\img\\anuncios\\2.png"
     },
@@ -95,6 +103,10 @@
     {
       "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\top.png",
       "PackagePath": "staticwebassets\\assets\\img\\anuncios\\top.png"
+    },
+    {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\weareworking.png",
+      "PackagePath": "staticwebassets\\assets\\img\\anuncios\\weareworking.png"
     },
     {
       "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\avatars\\avatar1.jpeg",
@@ -115,6 +127,10 @@
     {
       "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\bg-working.png",
       "PackagePath": "staticwebassets\\assets\\img\\bg-working.png"
+    },
+    {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\forgot-pass.png",
+      "PackagePath": "staticwebassets\\assets\\img\\forgot-pass.png"
     },
     {
       "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\forgotpass.png",
@@ -153,16 +169,32 @@
       "PackagePath": "staticwebassets\\assets\\img\\logoAlt.png"
     },
     {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\admin-p.png",
+      "PackagePath": "staticwebassets\\assets\\img\\profiles\\admin-p.png"
+    },
+    {
       "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\admin_profile.png",
       "PackagePath": "staticwebassets\\assets\\img\\profiles\\admin_profile.png"
+    },
+    {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\doctor.png",
+      "PackagePath": "staticwebassets\\assets\\img\\profiles\\doctor.png"
     },
     {
       "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\doctor_profile.png",
       "PackagePath": "staticwebassets\\assets\\img\\profiles\\doctor_profile.png"
     },
     {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\user-p.png",
+      "PackagePath": "staticwebassets\\assets\\img\\profiles\\user-p.png"
+    },
+    {
       "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\user_profile.png",
       "PackagePath": "staticwebassets\\assets\\img\\profiles\\user_profile.png"
+    },
+    {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\AlertDesarrollo.js",
+      "PackagePath": "staticwebassets\\assets\\js\\AlertDesarrollo.js"
     },
     {
       "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\Login.js",
@@ -205,12 +237,8 @@
       "PackagePath": "staticwebassets\\assets\\js\\popper.js"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\responsive-blog-card-slider-01-swiper-bundle.min.js",
-      "PackagePath": "staticwebassets\\assets\\js\\responsive-blog-card-slider-01-swiper-bundle.min.js"
-    },
-    {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\responsive-blog-card-slider-02-responsive-blog-card-slider.js",
-      "PackagePath": "staticwebassets\\assets\\js\\responsive-blog-card-slider-02-responsive-blog-card-slider.js"
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\sidebar.js",
+      "PackagePath": "staticwebassets\\assets\\js\\sidebar.js"
     },
     {
       "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\theme.js",

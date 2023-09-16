@@ -1,27 +1,107 @@
 ﻿<!DOCTYPE html>
-<html lang="es">
+<html lang="es" >
  <!-- data-bs-theme="dark" -->
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - WebSmileSoft</title>
+    <!-- Theme -->
+    <script>
+        (function () {
 
+            // JavaScript snippet handling Dark/Light mode switching
+
+            const getStoredTheme = () => localStorage.getItem('theme');
+            const setStoredTheme = theme => localStorage.setItem('theme', theme);
+            const forcedTheme = document.documentElement.getAttribute('data-bss-forced-theme');
+
+            const getPreferredTheme = () => {
+
+                if (forcedTheme) return forcedTheme;
+
+                const storedTheme = getStoredTheme();
+                if (storedTheme) {
+                    return storedTheme;
+                }
+
+                const pageTheme = document.documentElement.getAttribute('data-bs-theme');
+
+                if (pageTheme) {
+                    return pageTheme;
+                }
+
+                return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+
+            const setTheme = theme => {
+                if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.documentElement.setAttribute('data-bs-theme', 'dark');
+                } else {
+                    document.documentElement.setAttribute('data-bs-theme', theme);
+                }
+            }
+
+            setTheme(getPreferredTheme());
+
+            const showActiveTheme = (theme, focus = false) => {
+                const themeSwitchers = [].slice.call(document.querySelectorAll('.theme-switcher'));
+
+                if (!themeSwitchers.length) return;
+
+                document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+                    element.classList.remove('active');
+                    element.setAttribute('aria-pressed', 'false');
+                });
+
+                for (const themeSwitcher of themeSwitchers) {
+
+                    const btnToActivate = themeSwitcher.querySelector('[data-bs-theme-value="' + theme + '"]');
+
+                    if (btnToActivate) {
+                        btnToActivate.classList.add('active');
+                        btnToActivate.setAttribute('aria-pressed', 'true');
+                    }
+                }
+            }
+
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+                const storedTheme = getStoredTheme();
+                if (storedTheme !== 'light' && storedTheme !== 'dark') {
+                    setTheme(getPreferredTheme());
+                }
+            });
+
+            window.addEventListener('DOMContentLoaded', () => {
+                showActiveTheme(getPreferredTheme());
+
+                document.querySelectorAll('[data-bs-theme-value]')
+                    .forEach(toggle => {
+                        toggle.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const theme = toggle.getAttribute('data-bs-theme-value');
+                            setStoredTheme(theme);
+                            setTheme(theme);
+                            showActiveTheme(theme);
+                        })
+                    })
+            });
+        })();
+    </script>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.min.css" asp-append-version="true">
-
 
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="~/assets/css/Nunito.css" asp-append-version="true">
     <link rel="stylesheet" href="~/assets/css/site.css" asp-append-version="true" />
+    <link href="~/assets/css/loader.css" rel="stylesheet" />
     @* <link rel="stylesheet" href="~/assets/css/responsive-blog-card-slider.css"> *@
 
     <!-- Custom fonts for this template -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" asp-append-version="true">
- 
+    
     
     <!-- Custom Icons for this template -->
-    <link rel="stylesheet" href="~/assets/css/Features-Small-Icons-Color-icons.css" asp-append-version="true">
-
+    <link href="~/assets/css/footer-clean-icons.css" rel="stylesheet" />
     <!-- Custom Animations for this template -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" asp-append-version="true">
 
@@ -37,22 +117,20 @@
         <!-- Sidebar -->
         @await Component.InvokeAsync("Sidebar")
         <div class="d-flex flex-column" id="content-wrapper">
-            <div id="content">
+            <div id="content" class="back">
                 <!-- TopBar -->
                 @await Component.InvokeAsync("Navbar")
                 <div class="container-fluid">
                     <!-- Page Content -->
-                    @* <div class="container"> *@
                     <main role="main">
                         @RenderBody()
                     </main>
-                    @* </div> *@
                 </div>
             </div>
             <!-- Footer -->
-            @await Component.InvokeAsync("Footer")
+           
         </div>
-    </div>@* <a class="border rounded d-inline scroll-to-top" href="#page-top" style="display:none"><i class="fas fa-angle-up" style="display:none"></i></a> *@
+    </div> @await Component.InvokeAsync("Footer")@* <a class="border rounded d-inline scroll-to-top" href="#page-top" style="display:none"><i class="fas fa-angle-up" style="display:none"></i></a> *@
     <!-- Custom Theme Script -->
     <script src="~/assets/js/theme.js" asp-append-version="true"></script>
     <!-- Bootstrap core JavaScript -->
@@ -63,34 +141,7 @@
     <!-- Custom scripts for all pages-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" asp-append-version="true"></script>
 <script src="~/assets/js/UserSessionControl.js" asp-append-version="true"></script>
-<script>
-        // Variable simulada para la autenticación
-        let isLoggedIn = false;
-
-        // Agrega un manejador para el evento popstate
-        window.addEventListener('popstate', function (event) {
-            // Simula la autenticación. En un entorno real, verificarías si el usuario está autenticado.
-            if (!isLoggedIn) {
-                // Redirecciona al usuario a la página de inicio de sesión simulada
-                alert('Debes iniciar sesión para retroceder.');
-                // Puedes reemplazar la alerta con una redirección real si lo deseas.
-                window.location.href = '@Url.Action("Login", "Account")'; // Cambia '/login' por la URL de tu página de inicio de sesión simulada.
-                // También puedes permitir el retroceso cambiando el valor de isLoggedIn a true.
-                // isLoggedIn = true;
-
-                // Para evitar que el usuario retroceda, puedes agregar una entrada ficticia en el historial.
-                // Esto evitará que el usuario vuelva a la página anterior.
-                history.pushState(null, null, window.location.href);
-            }
-        });
-
-        // Esto es solo un ejemplo de cómo cambiar el estado de autenticación.
-        // Puedes simular la autenticación real según tus necesidades.
-        //document.getElementById('loginButton').addEventListener('click', function () {
-         //   isLoggedIn = true;
-          //  alert('Has iniciado sesión.');
-        //});
-</script>
+    <script src="~/assets/js/AlertDesarrollo.js" asp-append-version="true"></script>
     
 @await RenderSectionAsync("Scripts", required: false)
 </body>
