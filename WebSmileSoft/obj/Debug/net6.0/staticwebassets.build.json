@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8gR6nW2+6Z3wrjIvjnxAXn+jPtKBytFqONllV6AFLos=",
+  "Hash": "NTBfdMtkwuNq7h9IXsygHEK9XXKzz7HDk71K7JoHK1c=",
   "Source": "WebSmileSoft",
   "BasePath": "_content/WebSmileSoft",
   "Mode": "Default",
@@ -68,23 +68,6 @@
       "OriginalItemSpec": "wwwroot\\assets\\bootstrap\\css\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\Features-Small-Icons-Color-icons.css",
-      "SourceId": "WebSmileSoft",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
-      "BasePath": "_content/WebSmileSoft",
-      "RelativePath": "assets/css/Features-Small-Icons-Color-icons.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\css\\Features-Small-Icons-Color-icons.css"
-    },
-    {
       "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\Footer-Clean-icons.css",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
@@ -100,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\css\\Footer-Clean-icons.css"
+    },
+    {
+      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\FooterStyle.css",
+      "SourceId": "WebSmileSoft",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "BasePath": "_content/WebSmileSoft",
+      "RelativePath": "assets/css/FooterStyle.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\css\\FooterStyle.css"
     },
     {
       "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\loader.css",
@@ -153,12 +153,12 @@
       "OriginalItemSpec": "wwwroot\\assets\\css\\Nunito.css"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\responsive-blog-card-slider.css",
+      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\Responsive-UI-Card.css",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
-      "RelativePath": "assets/css/responsive-blog-card-slider.css",
+      "RelativePath": "assets/css/Responsive-UI-Card.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -167,7 +167,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\css\\responsive-blog-card-slider.css"
+      "OriginalItemSpec": "wwwroot\\assets\\css\\Responsive-UI-Card.css"
     },
     {
       "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\site.css",
@@ -185,6 +185,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\styles.css",
+      "SourceId": "WebSmileSoft",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "BasePath": "_content/WebSmileSoft",
+      "RelativePath": "assets/css/styles.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\css\\styles.css"
     },
     {
       "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\table_style.css",
@@ -442,6 +459,23 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\anuncios\\top.png"
     },
     {
+      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\weareworking.png",
+      "SourceId": "WebSmileSoft",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "BasePath": "_content/WebSmileSoft",
+      "RelativePath": "assets/img/anuncios/weareworking.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\anuncios\\weareworking.png"
+    },
+    {
       "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\avatars\\avatar1.jpeg",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
@@ -542,6 +576,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\img\\forgotpass.png"
+    },
+    {
+      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\forgot-pass.png",
+      "SourceId": "WebSmileSoft",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "BasePath": "_content/WebSmileSoft",
+      "RelativePath": "assets/img/forgot-pass.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\forgot-pass.png"
     },
     {
       "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logo-1.png",
@@ -697,6 +748,40 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\profiles\\admin_profile.png"
     },
     {
+      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\admin-p.png",
+      "SourceId": "WebSmileSoft",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "BasePath": "_content/WebSmileSoft",
+      "RelativePath": "assets/img/profiles/admin-p.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\profiles\\admin-p.png"
+    },
+    {
+      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\doctor.png",
+      "SourceId": "WebSmileSoft",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "BasePath": "_content/WebSmileSoft",
+      "RelativePath": "assets/img/profiles/doctor.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\profiles\\doctor.png"
+    },
+    {
       "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\doctor_profile.png",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
@@ -729,6 +814,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\img\\profiles\\user_profile.png"
+    },
+    {
+      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\user-p.png",
+      "SourceId": "WebSmileSoft",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "BasePath": "_content/WebSmileSoft",
+      "RelativePath": "assets/img/profiles/user-p.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\profiles\\user-p.png"
+    },
+    {
+      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\AlertDesarrollo.js",
+      "SourceId": "WebSmileSoft",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "BasePath": "_content/WebSmileSoft",
+      "RelativePath": "assets/js/AlertDesarrollo.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\js\\AlertDesarrollo.js"
     },
     {
       "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\bootstrap.min.js",
@@ -867,12 +986,12 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\Register.js"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\responsive-blog-card-slider-01-swiper-bundle.min.js",
+      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\sidebar.js",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
-      "RelativePath": "assets/js/responsive-blog-card-slider-01-swiper-bundle.min.js",
+      "RelativePath": "assets/js/sidebar.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -881,24 +1000,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\js\\responsive-blog-card-slider-01-swiper-bundle.min.js"
-    },
-    {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\responsive-blog-card-slider-02-responsive-blog-card-slider.js",
-      "SourceId": "WebSmileSoft",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
-      "BasePath": "_content/WebSmileSoft",
-      "RelativePath": "assets/js/responsive-blog-card-slider-02-responsive-blog-card-slider.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\js\\responsive-blog-card-slider-02-responsive-blog-card-slider.js"
+      "OriginalItemSpec": "wwwroot\\assets\\js\\sidebar.js"
     },
     {
       "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\theme.js",

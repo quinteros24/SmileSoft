@@ -2,6 +2,8 @@
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.Text;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using WebSmileSoft.Models;
 using WebSmileSoft.Interfaces;
 
@@ -39,6 +41,10 @@ namespace WebSmileSoft.Controllers
                 var json = await response.Content.ReadAsStringAsync();
                 JObject jsonObject = JObject.Parse(json);
                 var data = jsonObject["itemJson"];
+                //mostrar el json por consola
+
+
+
                 string? jsonData = data != null ? data.ToString() : String.Empty;
 
                 if(!String.IsNullOrEmpty(jsonData))
@@ -52,30 +58,7 @@ namespace WebSmileSoft.Controllers
         }
 
 
-        //// POST: Acción para el inicio de sesión (manejar el formulario de inicio de sesión)
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Login(LoginViewModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var result = await _signInManager.PasswordSignInAsync(
-        //            model.UserName,
-        //            model.Password,
-        //            model.RememberMe,
-        //            lockoutOnFailure: false);
-
-        //        if (result.Succeeded)
-        //        {
-        //            // Redirige a la página de inicio o a la página deseada después del inicio de sesión
-        //            return RedirectToAction("Index", "Home");
-        //        }
-        //        // Agrega aquí el manejo de errores en el inicio de sesión si es necesario
-        //    }
-        //    return View(model);
-        //}
-
-        ////// Acción para la página de registro
+        
         public IActionResult Register()
         {
             return View();
@@ -111,15 +94,20 @@ namespace WebSmileSoft.Controllers
         //    return View(model);
         //}
 
-        ////// Acción para el cierre de sesión
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Logout()
-        //{
-        //    await _signInManager.SignOutAsync();
-        //    // Redirige a la página de inicio o a la página deseada después del cierre de sesión
-        //    return RedirectToAction("Login", "Account");
-        //}
+        // Acción para el cierre de sesión
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            //await _signInManager.SignOutAsync();
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            // Redirige a la página de inicio o a la página deseada después del cierre de sesión
+            return RedirectToAction("Login", "Account");
+        }
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
 
         // Otras acciones y métodos relacionados con la autenticación
     }

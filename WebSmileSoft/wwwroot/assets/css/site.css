@@ -38,7 +38,19 @@ body {
 }
 
 .img-hover:hover {
-    transform: scale(1.1); /* Aumenta el tamaño en un 10% */
-    transition: transform 0.3s ease; /* Agrega una transición suave */
+    transform: scale(1.02); /* Aumenta el tamaño en un 10% */
+    transition: transform 0.4s ease; /* Agrega una transición suave */
 }
+
+.nav-item:hover {
+    /*background-color: #f8f9fa;*/
+    /*    background-color: #f8f9fa;*/
+    transform: scale(1.01);
+    border-radius: 5px;
+    /*    color: #0094ff;*/
+    transition: transform 0.4s ease; /* Agrega una transición suave */
+}
+
+
+/* styles.css */
 
