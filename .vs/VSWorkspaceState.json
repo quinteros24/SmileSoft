@@ -3,14 +3,15 @@
     "",
     "\\WebSmileSoft",
     "\\WebSmileSoft\\Views",
-    "\\WebSmileSoft\\Views\\Admin",
-    "\\WebSmileSoft\\Views\\Admin\\UserManagement",
+    "\\WebSmileSoft\\Views\\Shared",
+    "\\WebSmileSoft\\Views\\Shared\\Components",
+    "\\WebSmileSoft\\Views\\Shared\\Components\\Sidebar",
     "\\WebSmileSoft\\wwwroot",
     "\\WebSmileSoft\\wwwroot\\assets",
     "\\WebSmileSoft\\wwwroot\\assets\\bootstrap",
     "\\WebSmileSoft\\wwwroot\\assets\\bootstrap\\css",
     "\\WebSmileSoft\\wwwroot\\assets\\js"
   ],
-  "SelectedNode": "\\WebSmileSoft\\Views\\Admin\\UserManagement\\Index.cshtml",
+  "SelectedNode": "\\WebSmileSoft\\Views\\Shared\\Components\\Sidebar\\_Sidebar.cshtml",
   "PreviewInSolutionExplorer": false
 }
