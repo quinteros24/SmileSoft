@@ -13,7 +13,7 @@ namespace Repository.Queries
         {
             //SI EL USUARIO NO SE ENCUENTRA EL MENSAJE SIGUE SIENDO EL MISMO
             return  $"BEGIN TRY\n" +
-                    $"    UPDATE dbo.Users SET uPassword = HASHBYTES('SHA2_256',Cast('{Item.Password }' AS VARCHAR(8000)))\n" +
+                    $"    UPDATE dbo.Users SET uPassword = HASHBYTES('SHA2_256',Cast('{Item.Password}' AS VARCHAR(8000)))\n" +
                     $"    WHERE [uID] = {Item.UID} \n" +
                     $"    SELECT '0' AS OutputCodeError, 'Se ha cambiado la contraseña.' AS OutputMessageError\n" +
                     $"END TRY\n" +

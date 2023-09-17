@@ -26,7 +26,7 @@ namespace WebSmileSoft.Controllers
         }
 
         
-        [HttpPost]
+      /*  [HttpPost]
         public async Task<ChangePasswordViewModelResponse> ChangePassword([FromBody] ChangePasswordViewModelRequest Item)
         {
             var HttpClient = new HttpClient();
@@ -49,7 +49,7 @@ namespace WebSmileSoft.Controllers
             }
             else
                 return ChangePasswordViewModelItem;
-        }
+        }*/
 
 
         [HttpPost]
