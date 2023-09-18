@@ -1,13 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace WebSmileSoft.Models.Response
+﻿namespace WebSmileSoft.Models
 {
     public class ChangePasswordViewModelResponse
     {
-        //Atributos del response
-    }
-    public class ChangePasswordViewModelRequest
-    {
-        //Atributos del request
+
     }
 }

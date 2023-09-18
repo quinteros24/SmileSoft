@@ -84,6 +84,7 @@ var rememberMeCheckbox = document.getElementById("rememberMe");
                 password: password
             };
             $.ajax({
+              
                 type: "POST",
                 url: '@ViewBag.urlEndPoint' + '/api/Session/v1/Login',
                 data: JSON.stringify(data),
@@ -92,6 +93,7 @@ var rememberMeCheckbox = document.getElementById("rememberMe");
                 dataType: "json",
                 success: function (response) {
                     if (response.codeStatus == 0) {
+                        //console.log("hace algo");
                         //ir a la vista
                         //Swal.fire(response.messageStatus);
                         //alert(response.messageStatus);
