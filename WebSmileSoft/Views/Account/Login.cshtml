@@ -1,116 +1,116 @@
 ﻿@{
     ViewData["Title"] = "SmileSoft";
 }
-@* <script>
-var rememberMeCheckbox = document.getElementById("rememberMe");
 
-    // Verifica si el usuario ya había seleccionado "Recordar usuario" anteriormente
-    if (localStorage.getItem("rememberUser") === "true") {
-        rememberMeCheckbox.checked = true;
-    }
-
-    // Agrega un controlador de eventos para guardar el estado del checkbox cuando cambie
-    rememberMeCheckbox.addEventListener("change", function () {
-        if (rememberMeCheckbox.checked) {
-            // Si el usuario selecciona "Recordar usuario", guarda la elección en el almacenamiento local
-            localStorage.setItem("rememberUser", "true");
-        } else {
-            // Si el usuario desmarca "Recordar usuario", elimina la elección del almacenamiento local
-            localStorage.removeItem("rememberUser");
-        }
-    });
-    </script> *@
 @{
-<section class="container flex-grow-1">
-<div class="row justify-content-center">
-    <div class="col-md-9 col-lg-12 col-xl-10">
-        <div class="card shadow-lg o-hidden border-0 my-5">
-            <div class="card-body p-0 shadow">
-                <div class="row">
-                    <div class="col-lg-6 d-none d-lg-flex">
-                        <div class="flex-grow-1 bounce animated bg-login-image d-flex ms-5"></div>
-                        <img src="~/assets/img/logo-r.png" class="img-fluid">
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="p-5">
-                            <div class="text-center">
-                                <h4 class="text-dark mb-4" data-bss-hover-animate="pulse"><strong>Iniciar Sesión</strong></h4>
+    <section class="container flex-grow-1">
+        <div class="row justify-content-center">
+            <div class="col-md-9 col-lg-12 col-xl-10">
+                <div class="card shadow-lg o-hidden border-0 my-5">
+                    <div class="card-body p-0 shadow">
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-flex">
+                                <div class="flex-grow-1 bounce animated bg-login-image d-flex ms-5"></div>
+                                <img src="~/assets/img/logo-r.png" class="img-fluid">
                             </div>
-                            <form class="user" id="formlogin">
-                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="UserLogin" aria-describedby="emailHelp" placeholder="Ingresa tu Correo Electrónico" name="email"></div>
-                                <div class="mb-3"><input class="form-control form-control-user" type="password" id="Password" placeholder="Contraseña" name="password"></div>
-                                <div class="mb-3">
-                                    <div class="custom-control custom-checkbox small">
-                                            <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="remember_me"><label class="form-check-label custom-control-label" for="remember_me">Recordarme</label></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h4 class="text-dark mb-4" data-bss-hover-animate="pulse"><strong>Iniciar Sesión</strong></h4>
                                     </div>
-                                </div><button class="btn btn-primary d-block btn-user w-100" type="submit" id="loginButton" onclick="validarInicioSesion()"><strong>Ingresar</strong></button>
-                                <hr>
+                                    <form class="user" id="formlogin">
+                                        <div class="mb-3"><input class="form-control form-control-user" type="text" id="UserLogin" aria-describedby="emailHelp" placeholder="Username" name="Username"></div>
+                                        <div class="mb-3"><input class="form-control form-control-user" type="password" id="Password" placeholder="Contraseña" name="password"></div>
+                                        <div class="mb-3">
+                                            <div class="custom-control custom-checkbox small">
+                                                <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="remember_me"><label class="form-check-label custom-control-label" for="remember_me">Recordarme</label></div>
+                                            </div>
+                                        </div><button class="btn btn-primary d-block btn-user w-100" type="submit" id="loginButton" onclick="validarInicioSesion()"><strong>Ingresar</strong></button>
+                                        <hr>
 
-                            </form>
-                            <div class="text-center"><a class="small" asp-controller="Account" asp-action="ForgotPassword">Olvidaste la Contraseña?</a></div>
-                            <div class="text-center"><a class="small" asp-controller="Account" asp-action="Register">Registrarse</a></div>
+                                    </form>
+                                    <div class="text-center"><a class="small" asp-controller="Account" asp-action="ForgotPassword">Olvidaste la Contraseña?</a></div>
+                                    <div class="text-center"><a class="small" asp-controller="Account" asp-action="Register">Registrarse</a></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-</section>
+    </section>
 }
 @section Scripts {
-@* <script src="~/assets/js/Login.js" asp-append-version="true"></script> *@
-<script>
-    function validarInicioSesion() {
-        console.log(1);
-        event.preventDefault();
-        let username = document.getElementById("UserLogin").value;
-        let password = document.getElementById("Password").value;
+    @* <script src="~/assets/js/Login.js" asp-append-version="true"></script> *@
+    <script>
+        function validarInicioSesion() {
+            console.log("Script Iniciar Sesion");
+            event.preventDefault();
+            let username = document.getElementById("UserLogin").value;
+            let password = document.getElementById("Password").value;
 
-        if (username === "") {
-            Swal.fire({
-                text: 'Por favor, ingrese su nombre de usuario',
-                confirmButtonColor: '#008dc9'
-            });
-        } else if (password === "") {
-            Swal.fire({
-                text: 'Por favor, ingrese su contraseña',
-                confirmButtonColor: '#008dc9'
-            });
-        } else {
+            if (username === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su nombre de usuario',
+                    confirmButtonColor: '#008dc9'
+                });
+            } else if (password === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su contraseña',
+                    confirmButtonColor: '#008dc9'
+                });
+            } else {
 
-            let data = {
-                UserLogin: username,
-                password: password
-            };
-            $.ajax({
-              
-                type: "POST",
-                url: '@ViewBag.urlEndPoint' + '/api/Session/v1/Login',
-                data: JSON.stringify(data),
-                contentType: "application/json",
-                async: false,
-                dataType: "json",
-                success: function (response) {
-                    if (response.codeStatus == 0) {
-                        //console.log("hace algo");
-                        //ir a la vista
-                        //Swal.fire(response.messageStatus);
-                        //alert(response.messageStatus);
-                        window.location.href = '@Url.Action("Index", "Home")';
-                } else {
+                let data = {
+                    UserLogin: username,
+                    password: password
+                };
+                $.ajax({
 
-                    Swal.fire({
-                        text: "Inicio de sesión fallido. " + response.messageStatus,
-                        confirmButtonColor: '#008dc9'
-                    });
-                    //alert('Inicio de sesión fallido, ' + response.messageStatus);
-                }
-            },
-            error: function (error) {
-                console.log("Error.");
+                    type: "POST",
+                    url: '@ViewBag.urlEndPoint' + '/api/Session/v1/Login',
+                    data: JSON.stringify(data),
+                    contentType: "application/json",
+                    
+                    dataType: "json",
+                    success: function (response) {
+                        // console.log(response);
+                        // console.log("Token: " + response.itemJson.uToken);
+                        // console.log("ID: " + response.itemJson.uID);
+                        // console.log("Nombre: " + response.itemJson.uName);
+                        // console.log("Apellido: " + response.itemJson.uLastName);
+                        if (response.codeStatus == 0) {
+                            //console.log("hace algo");
+                            //ir a la vista
+                            //Swal.fire(response.messageStatus);
+
+                            sessionStorage.setItem('accessToken', response.itemJson.uToken);
+                            sessionStorage.setItem('userRole', response.itemJson.utID);
+                            sessionStorage.setItem('userID', response.itemJson.uID);
+                            sessionStorage.setItem('userFName', response.itemJson.uName);
+                            sessionStorage.setItem('userLName', response.itemJson.uLastName);
+                            //alert(response.messageStatus);
+                            // console.log("Inicio de sesión exitoso.");
+                            // console.log("Token: " + sessionStorage.getItem('accessToken'));
+                            // console.log("ID: " + sessionStorage.getItem('userID'));
+                            // console.log("Rol: " + sessionStorage.getItem('userRole'));
+                            // console.log("Nombre: " + sessionStorage.getItem('userFName'));
+                            // console.log("Apellido: " + sessionStorage.getItem('userLName'));
+
+                            window.location.href = '@Url.Action("Index", "Home")';
+                        } else {
+
+                            Swal.fire({
+                                text: "Inicio de sesión fallido. " + response.messageStatus,
+                                confirmButtonColor: '#008dc9'
+                            });
+                            //alert('Inicio de sesión fallido, ' + response.messageStatus);
+                        }
+                    },
+                    error: function (error) {
+                        console.log("Error.");
+                    }
+                });
             }
-        });
-    }
         }</script>
 }

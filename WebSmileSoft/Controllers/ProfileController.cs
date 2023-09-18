@@ -6,9 +6,11 @@ using WebSmileSoft.Interfaces;
 using WebSmileSoft.Models;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebSmileSoft.Controllers
 {
+   
     public class ProfileController : Controller
     {
 
@@ -38,13 +40,7 @@ namespace WebSmileSoft.Controllers
             };
             return View("~/Views/Profile/Profile.cshtml", especialidadesOdontologia);
         }
-        // Prueba Carrousel Añadir Imagenes Automaticamente
-        public IActionResult Anuncios()
-        {
-            var directorioImagenes = @"~\assets\img\anuncios\";
-            var rutasDeImagenes = Directory.GetFiles(directorioImagenes);
-            return PartialView("_Anuncios", rutasDeImagenes);
-        }
+        
 
         public IActionResult Especialidades()
         {
@@ -67,61 +63,7 @@ namespace WebSmileSoft.Controllers
 
             return PartialView("_Especialidades", especialidadesOdontologia);
         }
-        // GET: HomeController1/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-
-        // GET: HomeController1/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-
-        // POST: HomeController1/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: HomeController1/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: HomeController1/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: HomeController1/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+       
         [HttpPost]
         public async Task<ChangePasswordViewModelResponse> ChangePassword([FromBody] ChangePasswordViewModelRequest Item)
         {
@@ -147,19 +89,6 @@ namespace WebSmileSoft.Controllers
                 return ChangePasswordViewModelItem;
         }
 
-        // POST: HomeController1/Delete/5
-       [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+       
     }
 }

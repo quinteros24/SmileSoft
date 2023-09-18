@@ -2,8 +2,11 @@
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.Text;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using WebSmileSoft.Models;
 using WebSmileSoft.Interfaces;
+using System.Security.Claims;
 
 namespace WebSmileSoft.Controllers
 {
@@ -25,33 +28,6 @@ namespace WebSmileSoft.Controllers
             return View();
         }
 
-        
-      /*  [HttpPost]
-        public async Task<ChangePasswordViewModelResponse> ChangePassword([FromBody] ChangePasswordViewModelRequest Item)
-        {
-            var HttpClient = new HttpClient();
-            //var content = new StringContent(JsonConvert.SerializeObject(ItemLogin), Encoding.UTF8, "application/json");
-
-            ChangePasswordViewModelResponse? ChangePasswordViewModelItem = new();
-            var response = await HttpClient.PostAsJsonAsync(_settings.urlEndPoint + "/api/Users/v1/ChangePassword", Item);
-            if (response.IsSuccessStatusCode)
-            {
-                var json = await response.Content.ReadAsStringAsync();
-                JObject jsonObject = JObject.Parse(json);
-                var data = jsonObject["itemJson"];
-                string? jsonData = data != null ? data.ToString() : String.Empty;
-
-                if (!String.IsNullOrEmpty(jsonData))
-                {
-                    ChangePasswordViewModelItem = JsonConvert.DeserializeObject<ChangePasswordViewModelResponse>(jsonData);
-                }
-                return ChangePasswordViewModelItem!;
-            }
-            else
-                return ChangePasswordViewModelItem;
-        }*/
-
-
         [HttpPost]
         public async Task<LoginViewModelResponse> Login([FromBody] LoginViewModelRequest ItemLogin)
         {
@@ -65,43 +41,69 @@ namespace WebSmileSoft.Controllers
                 var json = await response.Content.ReadAsStringAsync();
                 JObject jsonObject = JObject.Parse(json);
                 var data = jsonObject["itemJson"];
+                //mostrar el json por consola
+                Console.WriteLine(data);
+
+                //Prueba de Cookies
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, ItemLogin.UserLogin),
+                    // Agregar otros claims según sea necesario
+                };
+
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var authProperties = new AuthenticationProperties
+                {
+                    IsPersistent = true, // Mantener la sesión activa después del cierre del navegador
+                };
+
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
+
                 string? jsonData = data != null ? data.ToString() : String.Empty;
 
-                if(!String.IsNullOrEmpty(jsonData))
+                if (!String.IsNullOrEmpty(jsonData))
                 {
                     LoginViewModelItem = JsonConvert.DeserializeObject<LoginViewModelResponse>(jsonData);
                 }
                 return LoginViewModelItem!;
             }
             else
+            {
+                ModelState.AddModelError(string.Empty, "Credenciales no válidas");
                 return LoginViewModelItem;
+            }
         }
-
-
-        //// POST: Acción para el inicio de sesión (manejar el formulario de inicio de sesión)
         //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Login(LoginViewModel model)
+        //public async Task<IActionResult> Login(string username, string password)
         //{
-        //    if (ModelState.IsValid)
+        //    // Verificar las credenciales del usuario (esto depende de tu lógica de autenticación)
+        //    if (EsCredencialValida(username, password))
         //    {
-        //        var result = await _signInManager.PasswordSignInAsync(
-        //            model.UserName,
-        //            model.Password,
-        //            model.RememberMe,
-        //            lockoutOnFailure: false);
-
-        //        if (result.Succeeded)
+        //        var claims = new List<Claim>
         //        {
-        //            // Redirige a la página de inicio o a la página deseada después del inicio de sesión
-        //            return RedirectToAction("Index", "Home");
-        //        }
-        //        // Agrega aquí el manejo de errores en el inicio de sesión si es necesario
+        //            new Claim(ClaimTypes.Name, username),
+        //            // Agregar otros claims según sea necesario
+        //        };
+
+        //        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+        //        var authProperties = new AuthenticationProperties
+        //        {
+        //            IsPersistent = true, // Mantener la sesión activa después del cierre del navegador
+        //        };
+
+        //        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
+
+        //        return RedirectToAction("Index", "Home"); // Redirigir a la página principal después del inicio de sesión exitoso
         //    }
-        //    return View(model);
+        //    else
+        //    {
+        //        ModelState.AddModelError(string.Empty, "Credenciales no válidas");
+        //        return View(); // Mostrar la vista de inicio de sesión con un mensaje de error
+        //    }
         //}
 
-        ////// Acción para la página de registro
+
+
         public IActionResult Register()
         {
             return View();
@@ -137,15 +139,20 @@ namespace WebSmileSoft.Controllers
         //    return View(model);
         //}
 
-        ////// Acción para el cierre de sesión
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Logout()
-        //{
-        //    await _signInManager.SignOutAsync();
-        //    // Redirige a la página de inicio o a la página deseada después del cierre de sesión
-        //    return RedirectToAction("Login", "Account");
-        //}
+
+        // Acción para el cierre de sesión
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            // Redirige a la página de inicio o a la página deseada después del cierre de sesión
+            return RedirectToAction("Login", "Account");
+        }
+        
 
         // Otras acciones y métodos relacionados con la autenticación
     }

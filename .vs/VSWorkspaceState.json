@@ -3,6 +3,7 @@
     "",
     "\\WebSmileSoft",
     "\\WebSmileSoft\\Views",
+    "\\WebSmileSoft\\Views\\Profile",
     "\\WebSmileSoft\\Views\\Shared",
     "\\WebSmileSoft\\Views\\Shared\\Components",
     "\\WebSmileSoft\\Views\\Shared\\Components\\Sidebar",
@@ -11,6 +12,6 @@
     "\\WebSmileSoft\\wwwroot\\assets\\bootstrap",
     "\\WebSmileSoft\\wwwroot\\assets\\bootstrap\\css"
   ],
-  "SelectedNode": "\\SolutionSmileSoft.sln",
+  "SelectedNode": "\\WebSmileSoft\\Views\\Profile\\_Security.cshtml",
   "PreviewInSolutionExplorer": false
 }

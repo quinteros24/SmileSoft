@@ -2,7 +2,7 @@
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
-<nav class="navbar navbar-expand shadow mb-4 topbar static-top" >
+<nav id="nav_bar" class="navbar navbar-expand shadow mb-4 topbar static-top bg-primary text-light">
     <div class="container-fluid">
         <button class="btn btn-link d-md-none rounded-circle me-3"
                 id="sidebarToggleTop" type="button">
@@ -147,7 +147,7 @@
                 <div class="shadow dropdown-list dropdown-menu dropdown-menu-end"
                      aria-labelledby="alertsDropdown"></div>
             </li>*@
-            <li class="theme-switcher nav-item dropdown">
+            <li class="theme-switcher nav-item dropdown  no-arrow">
                 <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-sun-fill mb-1">
                         <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path>
@@ -171,16 +171,15 @@
                 </div>
             </li>
                 <div class="d-none d-sm-block topbar-divider"><hr /> </div>
-            <li class="nav-item dropdown no-arrow">
+            <li class="nav-item dropdown no-arrow z-3">
                 <div class="nav-item dropdown no-arrow">
                     <a class="dropdown-toggle nav-link"
                        aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                        <span class="d-none d-lg-inline me-2 text-gray-600 small">
-                            Santiago
+                        <span class="d-none d-lg-inline me-2 small text-light" style="font-weight: bold;" id="nombreUsuario">SmileSoft Team
                         </span><img class="border rounded-circle img-profile"
                                     src="~/assets/img/avatars/avatar1.jpeg">
                     </a>
-                    <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
+                    <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in z-3">
                         <a class="dropdown-item" asp-controller="Profile" asp-action="Index">
                             <i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>Perfil
                         </a> @*<a class="dropdown-item" href="#">
@@ -200,6 +199,37 @@
 </nav>
 
 @section scripts {
+
+    <script>
+        function updateNavbarBackground(selectedColor) {
+            // Obtén una referencia a la barra de navegación por su ID
+            const navbar = document.getElementById("nav_bar");
+
+            // Elimina todas las clases de fondo de la barra de navegación
+            navbar.classList.remove("bg-primary", "bg-danger", "bg-success");
+
+            // Agrega la clase de color seleccionada a la barra de navegación
+            navbar.classList.add(selectedColor);
+        }
+        </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        // Recupera el nombre y apellido del usuario desde sessionStorage
+        var userFName = sessionStorage.getItem('userFName');
+        var userLName = sessionStorage.getItem('userLName');
+
+        // Verifica si las variables tienen valores
+        if (userFName !== null && userLName !== null) {
+            // Construye el nombre completo y muestra en la etiqueta <span>
+            var nombreCompleto = userFName + ' ' + userLName;
+            var spanNombre = document.getElementById('nombreUsuario');
+            spanNombre.textContent = nombreCompleto;
+        } else {
+            console.log('No se encontraron datos en sessionStorage');
+        }
+        });
+    </script>
+
     <!-- Scripts específicos para esta vista parcial -->
     <script src="~/assets/js/theme.js" asp-append-version="true"></script>
     <script src='https://code.jquery.com/jquery-3.7.0.min.js' asp-append-version="true"></script>
