@@ -15,10 +15,15 @@ namespace EpSmileSoft.Extensions
             //Repositories
             services.AddScoped<IGenericsRepository, GenericsRepository>();
             services.AddTransient<ISessionRepository, SessionRepository>();
+            services.AddScoped<IUsersRepository, UsersRepository>();
+
+
 
             //Service Core
             services.AddScoped<IGenericsCore, GenericsCore>();
             services.AddTransient<ISessionCore, SessionCore>();
+            services.AddScoped<IUsersCore, UsersCore>();
+
 
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
         }

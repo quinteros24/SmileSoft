@@ -298,7 +298,7 @@
 }
 
 @section Scripts{
-
+    @* <script src="~/assets/js/Login.js" asp-append-version="true"></script> *@
     <script>
         // Agrega un manejador de eventos para la clase "btn-en-desarrollo"
         document.addEventListener("DOMContentLoaded", function () {
@@ -318,10 +318,81 @@
         });
     </script>
 
+
+    <script>
+        function validarCambioDeContraseña() {
+
+            console.log(1);
+            event.preventDefault();
+            let password = document.getElementById("NewPassword").value;
+            let repeat_password = document.getElementById("Repeat_Password").value;
+
+            let uID = 1;
+
+            if (password === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su nueva contraseña',
+                    confirmButtonColor: '#008dc9'
+                });
+            } else if (repeat_password === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese la confirmación de la contraseña nueva',
+                    confirmButtonColor: '#008dc9'
+                });
+            } else if (password != repeat_password) {
+                Swal.fire({
+                    text: 'Las contraseñas deben ser iguales',
+                    confirmButtonColor: '#008dc9'
+                });
+            } else {
+
+                let data = {
+                    Password: password,
+                    UID: uID
+                };
+               
+                $.ajax({
+                   
+                    type: "POST",
+                    url: '@ViewBag.urlEndPoint' + '/api/Users/v1/ChangePassword',
+
+                    data: JSON.stringify(data),
+                    contentType: "application/json",
+                    async: false,
+                    dataType: "json",
+                    success: function (response) {
+
+                        // console.log("Solicitud exitosa. Datos enviados:", data);
+                        // console.log("Respuesta del servidor:", response);
+                        if (response.codeStatus == 0) {
+                            
+                            //window.location.href = '@Url.Action("Index", "")';
+                            Swal.fire({
+                                text: 'Contraseña actulizada con exito',
+                                confirmButtonColor: '#008dc9'
+                            });
+                        } else {
+
+                            Swal.fire({
+                                text: "Hubo un fallo" + response.messageStatus,
+                                confirmButtonColor: '#008dc9'
+                            });
+                            //alert('Inicio de sesión fallido, ' + response.messageStatus);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.log("Error.");
+                    }
+                });
+            }
+        }
+    </script>
+   
+
+}
+
     <script src="~/assets/js/jquery.min.js"></script>
     <script src="~/assets/js/popper.js"></script>
     <script src="~/assets/js/bootstrap.min.js"></script>
     <script src="~/assets/js/theme.js"></script>
     <script type="text/javascript"></script>
-  
-        }
