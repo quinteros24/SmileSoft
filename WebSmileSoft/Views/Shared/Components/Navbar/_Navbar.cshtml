@@ -175,8 +175,7 @@
                 <div class="nav-item dropdown no-arrow">
                     <a class="dropdown-toggle nav-link"
                        aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                        <span class="d-none d-lg-inline me-2 small text-light" style="font-weight: bold;">
-                            Smilesoft team
+                        <span class="d-none d-lg-inline me-2 small text-light" style="font-weight: bold;" id="nombreUsuario">SmileSoft Team
                         </span><img class="border rounded-circle img-profile"
                                     src="~/assets/img/avatars/avatar1.jpeg">
                     </a>
@@ -213,6 +212,24 @@
             navbar.classList.add(selectedColor);
         }
         </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        // Recupera el nombre y apellido del usuario desde sessionStorage
+        var userFName = sessionStorage.getItem('userFName');
+        var userLName = sessionStorage.getItem('userLName');
+
+        // Verifica si las variables tienen valores
+        if (userFName !== null && userLName !== null) {
+            // Construye el nombre completo y muestra en la etiqueta <span>
+            var nombreCompleto = userFName + ' ' + userLName;
+            var spanNombre = document.getElementById('nombreUsuario');
+            spanNombre.textContent = nombreCompleto;
+        } else {
+            console.log('No se encontraron datos en sessionStorage');
+        }
+        });
+    </script>
+
     <!-- Scripts específicos para esta vista parcial -->
     <script src="~/assets/js/theme.js" asp-append-version="true"></script>
     <script src='https://code.jquery.com/jquery-3.7.0.min.js' asp-append-version="true"></script>
