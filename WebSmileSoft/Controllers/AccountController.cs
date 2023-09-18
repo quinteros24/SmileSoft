@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using WebSmileSoft.Models;
 using WebSmileSoft.Interfaces;
+using System.Security.Claims;
 
 namespace WebSmileSoft.Controllers
 {
@@ -27,33 +28,6 @@ namespace WebSmileSoft.Controllers
             return View();
         }
 
-        
-      /*  [HttpPost]
-        public async Task<ChangePasswordViewModelResponse> ChangePassword([FromBody] ChangePasswordViewModelRequest Item)
-        {
-            var HttpClient = new HttpClient();
-            //var content = new StringContent(JsonConvert.SerializeObject(ItemLogin), Encoding.UTF8, "application/json");
-
-            ChangePasswordViewModelResponse? ChangePasswordViewModelItem = new();
-            var response = await HttpClient.PostAsJsonAsync(_settings.urlEndPoint + "/api/Users/v1/ChangePassword", Item);
-            if (response.IsSuccessStatusCode)
-            {
-                var json = await response.Content.ReadAsStringAsync();
-                JObject jsonObject = JObject.Parse(json);
-                var data = jsonObject["itemJson"];
-                string? jsonData = data != null ? data.ToString() : String.Empty;
-
-                if (!String.IsNullOrEmpty(jsonData))
-                {
-                    ChangePasswordViewModelItem = JsonConvert.DeserializeObject<ChangePasswordViewModelResponse>(jsonData);
-                }
-                return ChangePasswordViewModelItem!;
-            }
-            else
-                return ChangePasswordViewModelItem;
-        }*/
-
-
         [HttpPost]
         public async Task<LoginViewModelResponse> Login([FromBody] LoginViewModelRequest ItemLogin)
         {
@@ -68,23 +42,68 @@ namespace WebSmileSoft.Controllers
                 JObject jsonObject = JObject.Parse(json);
                 var data = jsonObject["itemJson"];
                 //mostrar el json por consola
+                Console.WriteLine(data);
 
+                //Prueba de Cookies
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, ItemLogin.UserLogin),
+                    // Agregar otros claims según sea necesario
+                };
 
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var authProperties = new AuthenticationProperties
+                {
+                    IsPersistent = true, // Mantener la sesión activa después del cierre del navegador
+                };
+
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
 
                 string? jsonData = data != null ? data.ToString() : String.Empty;
 
-                if(!String.IsNullOrEmpty(jsonData))
+                if (!String.IsNullOrEmpty(jsonData))
                 {
                     LoginViewModelItem = JsonConvert.DeserializeObject<LoginViewModelResponse>(jsonData);
                 }
                 return LoginViewModelItem!;
             }
             else
+            {
+                ModelState.AddModelError(string.Empty, "Credenciales no válidas");
                 return LoginViewModelItem;
+            }
         }
+        //[HttpPost]
+        //public async Task<IActionResult> Login(string username, string password)
+        //{
+        //    // Verificar las credenciales del usuario (esto depende de tu lógica de autenticación)
+        //    if (EsCredencialValida(username, password))
+        //    {
+        //        var claims = new List<Claim>
+        //        {
+        //            new Claim(ClaimTypes.Name, username),
+        //            // Agregar otros claims según sea necesario
+        //        };
+
+        //        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+        //        var authProperties = new AuthenticationProperties
+        //        {
+        //            IsPersistent = true, // Mantener la sesión activa después del cierre del navegador
+        //        };
+
+        //        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
+
+        //        return RedirectToAction("Index", "Home"); // Redirigir a la página principal después del inicio de sesión exitoso
+        //    }
+        //    else
+        //    {
+        //        ModelState.AddModelError(string.Empty, "Credenciales no válidas");
+        //        return View(); // Mostrar la vista de inicio de sesión con un mensaje de error
+        //    }
+        //}
 
 
-        
+
         public IActionResult Register()
         {
             return View();
@@ -120,20 +139,20 @@ namespace WebSmileSoft.Controllers
         //    return View(model);
         //}
 
+
         // Acción para el cierre de sesión
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
-            //await _signInManager.SignOutAsync();
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
             // Redirige a la página de inicio o a la página deseada después del cierre de sesión
             return RedirectToAction("Login", "Account");
         }
-        public IActionResult AccessDenied()
-        {
-            return View();
-        }
+        
 
         // Otras acciones y métodos relacionados con la autenticación
     }

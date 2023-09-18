@@ -5,70 +5,60 @@
 
 @{
     <nav aria-label="breadcrumb" class="main-breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
-            <li class="breadcrumb-item">Usuario</li>
-            <li class="breadcrumb-item active" aria-current="page">
-                Ajustes de Usuario
-            </li>
-        </ol>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li class="breadcrumb-item">Usuario</li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Ajustes de Usuario
+                </li>
+            </ol>
     </nav>
 
     <div class="row gutters-sm">
-        <div class="col-md-4 d-none d-md-block">
-            <div class="card">
-                <div class="card-body">
-                    <nav class="nav flex-column nav-pills nav-gap-y-1">
-                        <a href="#profile"
-                           data-toggle="tab"
-                           class="nav-item nav-link has-icon nav-link-faded active">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                 width="24"
-                                 height="24"
-                                 viewBox="0 0 24 24"
-                                 fill="none"
-                                 stroke="currentColor"
-                                 stroke-width="2"
-                                 stroke-linecap="round"
-                                 stroke-linejoin="round"
-                                 class="feather feather-user mr-2">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="12" cy="7" r="4"></circle>
-                            </svg>Información Personal
-                        </a>
+            <div class="col-md-4 d-none d-md-block">
+                <div class="card">
+                    <div class="card-body">
+                        <nav class="nav flex-column nav-pills nav-gap-y-1">
+                            <a href="#profile"
+                               data-toggle="tab"
+                               class="nav-item nav-link has-icon nav-link-faded active">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     width="24"
+                                     height="24"
+                                     viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="2"
+                                     stroke-linecap="round"
+                                     stroke-linejoin="round"
+                                     class="feather feather-user mr-2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>Información Personal
+                            </a>
 
-                        <a href="#security"
-                           data-toggle="tab"
-                           class="nav-item nav-link has-icon nav-link-faded">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                 width="24"
-                                 height="24"
-                                 viewBox="0 0 24 24"
-                                 fill="none"
-                                 stroke="currentColor"
-                                 stroke-width="2"
-                                 stroke-linecap="round"
-                                 stroke-linejoin="round"
-                                 class="feather feather-shield mr-2">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                            </svg>Seguridad
-                        </a>
-                        <a href="#medicaldata"
+                            <a href="#security"
+                               data-toggle="tab"
+                               class="nav-item nav-link has-icon nav-link-faded">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     width="24"
+                                     height="24"
+                                     viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="2"
+                                     stroke-linecap="round"
+                                     stroke-linejoin="round"
+                                     class="feather feather-shield mr-2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                </svg>Seguridad
+                            </a>
+
+                            <!-- Mostrar Datos Medicos (Desactivado Sprint 2) -->
+                            @*<a href="#medicaldata"
                     data-toggle="tab"
                     class="nav-item nav-link has-icon nav-link-faded">
-                    @*<svg xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="feather feather-bell mr-2">
-                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                        </svg>*@<i class="fas fa-plus mr-2 mx-2"> </i>Datos Medicos
+                    <i class="fas fa-plus mr-2 mx-2"> </i>Datos Medicos
                     </a>
                         <a href="#account"
                            data-toggle="tab"
@@ -86,125 +76,128 @@
                                 <circle cx="12" cy="12" r="3"></circle>
                                 <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                             </svg>Opciones de Cuenta
-                        </a>
+                        </a>*@
 
-                    </nav>
+                        </nav>
+                    </div>
+                </div>
+                <div class="card shadow mb-4 my-2">
+                    <div class="card-header py-3">
+                        <h6 class="text-primary fw-bold m-0">Anuncios</h6>
+                    </div>
+                    <partial name="_Anuncios"/>
                 </div>
             </div>
-            <div class="card shadow mb-4 my-2">
-                <div class="card-header py-3">
-                    <h6 class="text-primary fw-bold m-0">Anuncios</h6>
-                </div>
-                <partial name="_Anuncios"/>
-            </div>
-        </div>
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header border-bottom mb-3 d-flex d-md-none">
-                    <ul class="nav nav-tabs card-header-tabs nav-gap-x-1"
-                        role="tablist">
-                        <li class="nav-item">
-                            <a href="#profile"
-                               data-toggle="tab"
-                               class="nav-link has-icon active">
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                     width="24"
-                                     height="24"
-                                     viewBox="0 0 24 24"
-                                     fill="none"
-                                     stroke="currentColor"
-                                     stroke-width="2"
-                                     stroke-linecap="round"
-                                     stroke-linejoin="round"
-                                     class="feather feather-user">
-                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                    <circle cx="12" cy="7" r="4"></circle>
-                                </svg>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#account" data-toggle="tab" class="nav-link has-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                     width="24"
-                                     height="24"
-                                     viewBox="0 0 24 24"
-                                     fill="none"
-                                     stroke="currentColor"
-                                     stroke-width="2"
-                                     stroke-linecap="round"
-                                     stroke-linejoin="round"
-                                     class="feather feather-settings">
-                                    <circle cx="12" cy="12" r="3"></circle>
-                                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                                </svg>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#security"
-                               data-toggle="tab"
-                               class="nav-link has-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                     width="24"
-                                     height="24"
-                                     viewBox="0 0 24 24"
-                                     fill="none"
-                                     stroke="currentColor"
-                                     stroke-width="2"
-                                     stroke-linecap="round"
-                                     stroke-linejoin="round"
-                                     class="feather feather-shield">
-                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                                </svg>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#notification"
-                               data-toggle="tab"
-                               class="nav-link has-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                     width="24"
-                                     height="24"
-                                     viewBox="0 0 24 24"
-                                     fill="none"
-                                     stroke="currentColor"
-                                     stroke-width="2"
-                                     stroke-linecap="round"
-                                     stroke-linejoin="round"
-                                     class="feather feather-bell">
-                                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                                </svg>
-                            </a>
-                        </li>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header border-bottom mb-3 d-flex d-md-none">
+                        <ul class="nav nav-tabs card-header-tabs nav-gap-x-1"
+                            role="tablist">
+                            <li class="nav-item">
+                                <a href="#profile"
+                                   data-toggle="tab"
+                                   class="nav-link has-icon active">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                         width="24"
+                                         height="24"
+                                         viewBox="0 0 24 24"
+                                         fill="none"
+                                         stroke="currentColor"
+                                         stroke-width="2"
+                                         stroke-linecap="round"
+                                         stroke-linejoin="round"
+                                         class="feather feather-user">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="12" cy="7" r="4"></circle>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#account" data-toggle="tab" class="nav-link has-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                         width="24"
+                                         height="24"
+                                         viewBox="0 0 24 24"
+                                         fill="none"
+                                         stroke="currentColor"
+                                         stroke-width="2"
+                                         stroke-linecap="round"
+                                         stroke-linejoin="round"
+                                         class="feather feather-settings">
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#security"
+                                   data-toggle="tab"
+                                   class="nav-link has-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                         width="24"
+                                         height="24"
+                                         viewBox="0 0 24 24"
+                                         fill="none"
+                                         stroke="currentColor"
+                                         stroke-width="2"
+                                         stroke-linecap="round"
+                                         stroke-linejoin="round"
+                                         class="feather feather-shield">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#notification"
+                                   data-toggle="tab"
+                                   class="nav-link has-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                         width="24"
+                                         height="24"
+                                         viewBox="0 0 24 24"
+                                         fill="none"
+                                         stroke="currentColor"
+                                         stroke-width="2"
+                                         stroke-linecap="round"
+                                         stroke-linejoin="round"
+                                         class="feather feather-bell">
+                                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                                    </svg>
+                                </a>
+                            </li>
 
-                    </ul>
-                </div>
-                <div class="card-body tab-content">
-                    <!-- Datos Basicos -->
+                        </ul>
+                    </div>
+                    <div class="card-body tab-content">
+                        <!-- Datos Basicos -->
 
-                    <partial name="_BasicData" />
-                    <!-- Opciones de Cuenta -->
-                
-                    <div class="tab-pane" id="account">
-                        <h6>Opciones de la Cuenta</h6>
-                        <hr />
-                        <form>
-                            <div class="form-group">
-                                <label class="d-block text-danger">Desactivar la Cuenta</label>
-                                <p class="text-muted font-size-sm">
-                                    Una vez des clic en desactivar la cuenta y confirmes, seras redirigido a la pagina de inicio de sesion.
-                                    Por favor ten en cuenta que no podras volver a iniciar sesion con esta cuenta.
-                                </p>
-                            </div>
-                            <button class="btn btn-danger btn-en-desarrollo" type="button" disabled>
-                                Desactivar Cuenta
-                            </button>
-                        </form>
-                    </div>
-                    <div class="tab-pane" id="security">
-                        <partial name="_Security" />
-                    </div>
-                    @*<div class="tab-pane" id="notification">
+                        <partial name="_BasicData" />
+                        <!-- Opciones de Cuenta -->
+                    
+                        <div class="tab-pane" id="account">
+                            <h6>Opciones de la Cuenta</h6>
+                            <hr />
+                            <form>
+                                <div class="form-group">
+                                    <label class="d-block text-danger">Desactivar la Cuenta</label>
+                                    <p class="text-muted font-size-sm">
+                                        Una vez des clic en desactivar la cuenta y confirmes, seras redirigido a la pagina de inicio de sesion.
+                                        Por favor ten en cuenta que no podras volver a iniciar sesion con esta cuenta.
+                                    </p>
+                                </div>
+                                <button class="btn btn-danger btn-en-desarrollo" type="button" disabled>
+                                    Desactivar Cuenta
+                                </button>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="security">
+                            <partial name="_Security" />
+                        </div>
+                        
+
+                        <!-- Opciones de Notificaciones / a Futuro -->
+                        @*<div class="tab-pane" id="notification">
                 <h6>Opciones de Notificaciones</h6>
                 <hr/>
                 <form>
@@ -288,12 +281,14 @@
                 </div>
                 </form>
                 </div>
-                *@<div class="tab-pane" id="medicaldata">
+                *@
+                        <!-- Mostrar Campo Datos Medicos de los doctores -->
+                        @*<div class="tab-pane" id="medicaldata">
                         <partial name="_DatosMedicos" />
+                    </div>*@
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 }
 
@@ -322,13 +317,14 @@
     <script>
         function validarCambioDeContraseña() {
 
-            console.log(1);
+            console.log("Cambiar Contrasena");
             event.preventDefault();
             let password = document.getElementById("NewPassword").value;
             let repeat_password = document.getElementById("Repeat_Password").value;
 
-            let uID = 1;
+            let uID = sessionStorage.getItem('userID');;
 
+            console.log("ID del Usuario"+ uID);
             if (password === "") {
                 Swal.fire({
                     text: 'Por favor, ingrese su nueva contraseña',

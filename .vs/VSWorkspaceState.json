@@ -2,8 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\WebSmileSoft",
-    "\\WebSmileSoft\\Controllers",
     "\\WebSmileSoft\\Views",
+    "\\WebSmileSoft\\Views\\Profile",
     "\\WebSmileSoft\\Views\\Shared",
     "\\WebSmileSoft\\Views\\Shared\\Components",
     "\\WebSmileSoft\\Views\\Shared\\Components\\Sidebar",
@@ -12,6 +12,6 @@
     "\\WebSmileSoft\\wwwroot\\assets\\bootstrap",
     "\\WebSmileSoft\\wwwroot\\assets\\bootstrap\\css"
   ],
-  "SelectedNode": "\\WebSmileSoft\\Controllers\\ProfileController.cs",
+  "SelectedNode": "\\WebSmileSoft\\Views\\Profile\\_Security.cshtml",
   "PreviewInSolutionExplorer": false
 }
