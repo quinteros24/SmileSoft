@@ -25,7 +25,7 @@
             url: '@ViewBag.urlEndPoint' + '/api/Session/v1/Login',
             data: JSON.stringify(data),
             contentType: "application/json",
-            async: false,
+            //async: false,
             dataType: "json",
             success: function (response) {
                 if (response.codeStatus == 0) {
