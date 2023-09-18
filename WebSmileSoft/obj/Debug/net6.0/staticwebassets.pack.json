@@ -193,6 +193,10 @@
       "PackagePath": "staticwebassets\\assets\\img\\profiles\\user_profile.png"
     },
     {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\trabajando.png",
+      "PackagePath": "staticwebassets\\assets\\img\\trabajando.png"
+    },
+    {
       "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\AlertDesarrollo.js",
       "PackagePath": "staticwebassets\\assets\\js\\AlertDesarrollo.js"
     },

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "IpwyZZoy3G6jYT1uzXalUrB355lbGdJ6Zp0er4avu/Y=",
+  "Hash": "C51lyxCIS6OzuOOnkyu8a8zP8rk0ScJBIseHsEYLcV8=",
   "Source": "WebSmileSoft",
   "BasePath": "_content/WebSmileSoft",
   "Mode": "Default",
@@ -848,6 +848,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\img\\profiles\\user-p.png"
+    },
+    {
+      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\trabajando.png",
+      "SourceId": "WebSmileSoft",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "BasePath": "_content/WebSmileSoft",
+      "RelativePath": "assets/img/trabajando.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\trabajando.png"
     },
     {
       "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\AlertDesarrollo.js",
