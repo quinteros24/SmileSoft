@@ -17,5 +17,20 @@ namespace Domain.Core
             GenericResponseModel ItemGenericResponseModel = await _usersRepository.ChangePassword(Item);
             return ItemGenericResponseModel;
         }
+
+        public async Task<GenericResponseModel> ViewUsers(int utID)
+        {
+            GenericResponseModel ItemGenericResponseModel = await _usersRepository.ViewUsers(utID);
+            return ItemGenericResponseModel;
+        }
+
+        public async Task<GenericResponseModel> CreateUpdateUsers(ViewUsersModelRequest Item)
+        {
+            GenericResponseModel ItemGenericResponseModel = await _usersRepository.CreateUpdateUsers(Item);
+            return ItemGenericResponseModel;
+        }
+
+
+     
     }
 }

@@ -28,11 +28,16 @@
             //async: false,
             dataType: "json",
             success: function (response) {
+                console.log(response);
                 if (response.codeStatus == 0) {
                     //ir a la vista
+                    sessionStorage.setItem("jwtToken", response.uToken);
+                    sessionStorage.setItem("userFName", response.uName);
+                    sessionStorage.setItem("userLName", response.uLastName);
+                    sessionStorage.setItem("UserRole", response.uTID);
                     //Swal.fire(response.messageStatus);
                     //alert(response.messageStatus);
-                    window.location.href = '@Url.Action("Index", "Home")';
+                    //window.location.href = '@Url.Action("Index", "Home")';
                 } else {
                     
                     Swal.fire({
