@@ -1,0 +1,275 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    <nav aria-label="breadcrumb" class="main-breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Inicio</a></li>
+            <li class="breadcrumb-item">Sitio</li>
+            <li class="breadcrumb-item active" aria-current="page">
+                Ajustes del Sitio
+            </li>
+        </ol>
+    </nav>
+
+    <div class="row gutters-sm">
+        <div class="col-md-4 d-none d-md-block">
+            <div class="card">
+                <div class="card-body">
+                    <nav class="nav flex-column nav-pills nav-gap-y-1">
+                        <!-- Ajustes del Sitio -->
+                        <a href="#sitesettings"
+                           data-toggle="tab"
+                           class="nav-item nav-link has-icon nav-link-faded">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 width="24"
+                                 height="24"
+                                 viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="2"
+                                 stroke-linecap="round"
+                                 stroke-linejoin="round"
+                                 class="feather feather-settings mr-2">
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                            </svg>Ajustes del Sitio
+                        </a>
+                        @*<a href="#contentsettings"
+                           data-toggle="tab"
+                           class="nav-item nav-link has-icon nav-link-faded">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 width="24"
+                                 height="24"
+                                 viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="2"
+                                 stroke-linecap="round"
+                                 stroke-linejoin="round"
+                                 class="feather feather-shield mr-2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>Ajustes de Contenido
+                        </a>*@
+
+
+                    </nav>
+                </div>
+            </div>
+            <div class="card shadow mb-4 my-2">
+                <div class="card-header py-3">
+                    <h4 class="text-danger align-content-center fw-bold m-0">Importante!!</h4>
+                </div>
+                <div>
+                            <img class="w-100 img-fluid rounded" src="~/assets/img/anuncios/SmileSoft.png" alt="Slide Image">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header border-bottom mb-3 d-flex d-md-none">
+                    <ul class="nav nav-tabs card-header-tabs nav-gap-x-1"
+                        role="tablist">
+                        <li class="nav-item">
+                            <a href="#sitesettings" data-toggle="tab" class="nav-link has-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     width="24"
+                                     height="24"
+                                     viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="2"
+                                     stroke-linecap="round"
+                                     stroke-linejoin="round"
+                                     class="feather feather-settings">
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                                </svg>
+                            </a>
+                        </li>
+                        @*<li class="nav-item">
+                            <a href="#contentsettings"
+                               data-toggle="tab"
+                               class="nav-link has-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     width="24"
+                                     height="24"
+                                     viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="2"
+                                     stroke-linecap="round"
+                                     stroke-linejoin="round"
+                                     class="feather feather-shield">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                </svg>
+                            </a>
+                        </li>*@
+
+                    </ul>
+                </div>
+            <div class="card-body tab-content">
+            <!-- Ajustes del Sitio -->
+            <div class="tab-pane active" id="sitesettings">
+                <h6>Opciones del Sitio</h6>
+                <hr/>
+                <div class="card shadow mb-3">
+                    <div class="card-header py-3">
+                        <p class="text-primary m-0 fw-bold">Logos del Sitio</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <form>
+
+
+                                    <div class="mb-3">
+                                        <label for="ChangeLogo" class="form-label"><span id="ChangeLogoLabel">Cambiar Logo del Login</span></label>
+                                        <input class="form-control" type="file" id="ChangeLogo" disabled>
+                                                <div class="mb-3 my-2 "><button class="btn btn-primary btn-en-desarrollo" type="submit" disabled>Subir</button></div>
+                    
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col">    
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="ChangeMainLogo" class="form-label">Cambiar Logo Menu Principal</label>
+                                                <input class="form-control" type="file" id="ChangeMainLogo" disabled>
+                                                <div class="mb-3 my-2">
+                                                    <button class="btn btn-primary btn-en-desarrollo" type="submit" disabled>Subir</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card shadow mb-3">
+                    <div class="card-header py-3">
+                        <p class="text-primary m-0 fw-bold">Colores del Sitio</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="BackgroundColor" class="form-label"> Cambiar Color Fondo del Sitio</label>
+                                                <input type="color" class="form-control form-control-color" id="BackgroundColor" value="#563d7c" title="Escoger Color" style="width: 6.5rem;">
+                                            </div><button type="button" class="btn btn-primary my-2 btn-en-desarrollo">
+                                        Actualizar
+                                    </button>
+                                </form></div>
+                            <div class="col">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="SidebarColor">Cambiar Color de la Barra Lateral</label>
+                                                <input type="color" class="form-control form-control-color" id="SidebarColor" value="#be1522" title="Escoger Color" style="width: 6.5rem;" />
+                                            </div><button type="button" class="btn btn-primary my-2 btn-en-desarrollo">
+                                        Actualizar
+                                    </button></form></div>
+                            <div class="col">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="NavbarColor">Cambiar Color de la Barra Superior</label>
+                                                <input type="color" class="form-control form-control-color" id="NavbarColor" value="#be1522" title="Escoger Color" style="width: 6.5rem;" />
+                                    </div>
+                                            <button type="button" class="btn btn-primary my-2 btn-en-desarrollo">
+                                        Actualizar
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Fin Ajustes del -->
+            <!-- Ajustes de Contenido -->
+            <div class="tab-pane" id="contentsettings">
+                <h6>Ajustes del Contenido</h6>
+                <hr/>
+                <form>
+                    <div class="form-group">
+                        <label class="d-block">Change Password</label>
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Enter your old password"/>
+                        <input type="text"
+                               class="form-control mt-1"
+                               placeholder="New password"/>
+                        <input type="text"
+                               class="form-control mt-1"
+                               placeholder="Confirm new password"/>
+                    </div>
+                </form>
+                <hr/>
+                <form>
+                    <div class="form-group">
+                        <label class="d-block">Two Factor Authentication</label>
+                                <button class="btn btn-info btn-en-desarrollo" type="button">
+                            Enable two-factor authentication
+                        </button>
+                        <p class="small text-muted mt-2">
+                            Two-factor authentication adds an additional layer of
+                            security to your account by requiring more than just a
+                            password to log in.
+                        </p>
+                    </div>
+                </form>
+                <hr/>
+                <form>
+                    <div class="form-group mb-0">
+                        <label class="d-block">Sessions</label>
+                        <p class="font-size-sm text-secondary">
+                            This is a list of devices that have logged into your
+                            account. Revoke any sessions that you do not recognize.
+                        </p>
+                        <ul class="list-group list-group-sm">
+                            <li class="list-group-item has-icon">
+                                <div>
+                                    <h6 class="mb-0">San Francisco City 190.24.335.55</h6>
+                                    <small class="text-muted">Your current session seen in United States</small>
+                                </div>
+                                        <button class="btn btn-light btn-sm ml-auto btn-en-desarrollo"
+                                        type="button">
+                                    More info
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+            <!-- Fin Ajustes de Contenido -->
+
+            </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts{
+
+    <script>
+        // Agrega un manejador de eventos para la clase "btn-en-desarrollo"
+        document.addEventListener("DOMContentLoaded", function () {
+            const buttons = document.querySelectorAll(".btn-en-desarrollo");
+            event.preventDefault();
+            buttons.forEach(function (button) {
+                button.addEventListener("click", function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Esta Función esta en Desarrollo!',
+                        confirmButtonColor: '#008dc9'
+                    })
+                });
+            });
+        });
+    </script>
+    <script src="~/assets/js/jquery.min.js"></script> 
+    <script src="~/assets/js/popper.js"></script> 
+    <script src="~/assets/js/bootstrap.min.js"></script> 
+    <script src="~/assets/js/theme.js"></script>
+    <script type="text/javascript"></script>
+}
+
