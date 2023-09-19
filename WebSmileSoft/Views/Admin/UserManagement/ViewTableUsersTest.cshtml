@@ -7,7 +7,7 @@
     ViewData["Title"] = "Tabla";
 }
 @{
-
+    
 
 
     // <script>
@@ -70,145 +70,145 @@
 @{
 
     <nav aria-label="breadcrumb" class="main-breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Inicio</a></li>
-            <li class="breadcrumb-item">Administracion de Usuarios</li>
-            <li class="breadcrumb-item active" aria-current="page">
-                CRUD Usuarios
-            </li>
-        </ol>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Inicio</a></li>
+                <li class="breadcrumb-item">Administracion de Usuarios</li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    CRUD Usuarios
+                </li>
+            </ol>
     </nav>
     <div class="text-end my-2">
-        <a class="btn btn-success add-user-btn " data-toggle="modal" data-target="#addUserModal"><i class="fas fa-user-plus"> </i> Agregar Usuario</a>
+            <a class="btn btn-success add-user-btn " data-toggle="modal" data-target="#addUserModal"><i class="fas fa-user-plus"> </i> Agregar Usuario</a>
     </div>
     <div class="table-responsive">
-        <table class="table table-bordered" id="dataTable">
-            <!-- Encabezados de columna -->
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Rol</th>
-                    <!-- Agrega aquí más encabezados según sea necesario -->
-                    <th>Acciones</th>
-                </tr>
-            </thead>
+            <table class="table table-bordered" id="dataTable">
+                <!-- Encabezados de columna -->
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Rol</th>
+                        <!-- Agrega aquí más encabezados según sea necesario -->
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
 
-            <tbody>
-                <!-- Los usuarios se cargarán aquí a través de AJAX -->
-            </tbody>
-        </table>
+                <tbody>
+                    <!-- Los usuarios se cargarán aquí a través de AJAX -->
+                </tbody>
+            </table>
     </div>
    
 
     <!-- Modal de Edición -->
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">Editar Usuario</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Aquí coloca los campos de edición, por ejemplo: -->
-                    <form>
-                        <div class="mb-3">
-                            <label for="editNombre" class="form-label">Nombre:</label>
-                            <input type="text" class="form-control" id="editNombre" name="editNombre">
-                        </div>
-                        <div class="mb-3">
-                            <label for="editRol" class="form-label">Rol:</label>
-                            <input type="text" class="form-control" id="editRol" name="editRol">
-                        </div>
-                        <!-- Agrega más campos de edición aquí según sea necesario -->
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" id="saveChanges">Guardar Cambios</button>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editModalLabel">Editar Usuario</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Aquí coloca los campos de edición, por ejemplo: -->
+                        <form>
+                            <div class="mb-3">
+                                <label for="editNombre" class="form-label">Nombre:</label>
+                                <input type="text" class="form-control" id="editNombre" name="editNombre">
+                            </div>
+                            <div class="mb-3">
+                                <label for="editRol" class="form-label">Rol:</label>
+                                <input type="text" class="form-control" id="editRol" name="editRol">
+                            </div>
+                            <!-- Agrega más campos de edición aquí según sea necesario -->
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" id="saveChanges">Guardar Cambios</button>
+                    </div>
                 </div>
             </div>
-        </div>
     </div>
 
 
     <!-- Modal de Eliminación -->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Eliminar Usuario</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>¿Estás seguro de que deseas eliminar este usuario?</p>
-                    <p><strong>Nombre:</strong> <span id="delete-username"></span></p>
-                    <p><strong>Rol:</strong> <span id="delete-userrole"></span></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-danger" id="confirm-delete">Eliminar</button>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Eliminar Usuario</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>¿Estás seguro de que deseas eliminar este usuario?</p>
+                        <p><strong>Nombre:</strong> <span id="delete-username"></span></p>
+                        <p><strong>Rol:</strong> <span id="delete-userrole"></span></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-danger" id="confirm-delete">Eliminar</button>
+                    </div>
                 </div>
             </div>
-        </div>
     </div>
 
 
     <!-- Modal de Inactivación -->
     <div class="modal fade" id="deactivateModal" tabindex="-1" role="dialog" aria-labelledby="deactivateModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deactivateModalLabel">Inactivar Usuario</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>¿Estás seguro de que deseas inactivar este usuario?</p>
-                    <p><strong>Nombre:</strong> <span id="deactivate-username"></span></p>
-                    <p><strong>Rol:</strong> <span id="deactivate-userrole"></span></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-warning" id="confirm-deactivate">Inactivar</button>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deactivateModalLabel">Inactivar Usuario</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>¿Estás seguro de que deseas inactivar este usuario?</p>
+                        <p><strong>Nombre:</strong> <span id="deactivate-username"></span></p>
+                        <p><strong>Rol:</strong> <span id="deactivate-userrole"></span></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-warning" id="confirm-deactivate">Inactivar</button>
+                    </div>
                 </div>
             </div>
-        </div>
     </div>
 
     <!-- Modal de Agregar Usuario -->
     <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addUserModalLabel">Agregar Usuario</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="add-user-form">
-                        <!-- Campos del formulario -->
-                        <div class="form-group">
-                            <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="rol">Rol</label>
-                            <input type="text" class="form-control" id="rol" name="rol" required>
-                        </div>
-                        <!-- Agrega los campos restantes aquí -->
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" id="add-user">Agregar</button>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addUserModalLabel">Agregar Usuario</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="add-user-form">
+                            <!-- Campos del formulario -->
+                            <div class="form-group">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="rol">Rol</label>
+                                <input type="text" class="form-control" id="rol" name="rol" required>
+                            </div>
+                            <!-- Agrega los campos restantes aquí -->
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="add-user">Agregar</button>
+                    </div>
                 </div>
             </div>
-        </div>
     </div>
 
 
@@ -218,41 +218,59 @@
 @section Scripts {
 
     <script>
-        $(document).ready(function () {
-            // Realizar solicitud AJAX para obtener la lista de usuarios
-            var utID = 1;
-            $.ajax({
-                url: '@ViewBag.urlEndPoint' + '/api/Session/v1/ViewUsers',
-                type: 'GET',
-                data: JSON.stringify(utID),
-                contentType: "application/json",
-                dataType: 'json',
-                success: function (data) {
-                    // Procesar los datos recibidos y agregar filas a la tabla
-                    var tbody = $('#dataTable');
-                    tbody.empty(); // Limpia cualquier contenido existente en la tabla
+               
+            // "uID": 0,
+            //     "utID": 0,
+            //         "uName": "string",
+            //             "uLastName": "string",
+            //                 "uCellphone": "string",
+            //                     "uAddress": "string",
+            //                         "uLoginName": "string",
+            //                             "uEmailAddress": "string",
+            //                                 "dtID": 0,
+            //                                     "uDocument": "string",
+            //                                         "uStatus": 0,
+            //                                             "uIsBlocked": 0,
+            //                                                 "uPassword": "string"
+            $(document).ready(function () {
+                // Realizar solicitud AJAX para obtener la lista de usuarios
+                var utID = 1;
 
-                    $.each(data, function (index, usuario) {
-                        // Agregar una fila a la tabla para cada usuario
-                        var row = '<tr>' +
-                            '<td>' + usuario.Nombre + '</td>' +
-                            '<td>' + usuario.Apellido + '</td>' +
-                            '<td>' + usuario.Rol + '</td>' +
-                            // Agrega más columnas según los datos del usuario
-                            '<td>' +
-                            '<a href="#" class="btn btn-primary btn-sm edit-user" data-id="' + usuario.Id + '">Editar</a>' +
-                            // Agrega enlaces o botones similares para eliminar e inactivar usuarios
-                            '</td>' +
-                            '</tr>';
+                $.ajax({
+                    url: '@ViewBag.urlEndPoint' + '/api/Users/v1/ViewUsers',
+                    type: 'GET',
+                    data: {'utID': utID},
+                    contentType: "application/json",
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log("Respuesta del Servidor " + data);
+                        // Procesar los datos recibidos y agregar filas a la tabla
+                        var tbody = $('#dataTable');
+                        tbody.empty(); // Limpia cualquier contenido existente en la tabla
 
-                        tbody.append(row);
-                    });
-                },
-                error: function (error) {
-                    console.log('Error al obtener la lista de usuarios.');
-                }
+                        $.each(data.itemJson, function (index, usuario) {
+                            // Agregar una fila a la tabla para cada usuario
+                            var row = '<tr>' +
+                                '<td>' + usuario.uName + '</td>' +
+                                '<td>' + usuario.uLastName + '</td>' +
+                                '<td>' + usuario.utID + '</td>' +
+                              
+                                // Agrega más columnas según los datos del usuario
+                                '<td>' +
+                                '<a href="#" class="btn btn-primary btn-sm edit-user" data-id="' + usuario.uID + '">Editar</a>' +
+                                // Agrega enlaces o botones similares para eliminar e inactivar usuarios
+                                '</td>' +
+                                '</tr>';
+
+                            tbody.append(row);
+                        });
+                    },
+                    error: function (error) {
+                        console.log('Error al obtener la lista de usuarios.');
+                    }
+                });
             });
-        });
+
 
 
 </script>

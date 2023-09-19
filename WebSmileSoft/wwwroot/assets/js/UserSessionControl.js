@@ -24,4 +24,3 @@ document.addEventListener('keydown', resetInactivityTimer);
 // Inicia el temporizador al cargar la página
 resetInactivityTimer();
 
-

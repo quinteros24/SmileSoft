@@ -2,7 +2,7 @@
 {
     public interface ISettings
     {
-        string UrlEndPoint { get; }
+        string urlEndPoint { get; }
         int TimeOutSession { get; }
         string Environment { get; }
     }
