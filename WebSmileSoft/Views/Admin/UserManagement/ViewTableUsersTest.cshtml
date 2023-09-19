@@ -218,41 +218,58 @@
 @section Scripts {
 
     <script>
-        $(document).ready(function () {
-            // Realizar solicitud AJAX para obtener la lista de usuarios
-            var utID = 1;
-            $.ajax({
-                url: '@ViewBag.urlEndPoint' + '/api/Session/v1/ViewUsers',
-                type: 'GET',
-                data: JSON.stringify(utID),
-                contentType: "application/json",
-                dataType: 'json',
-                success: function (data) {
-                    // Procesar los datos recibidos y agregar filas a la tabla
-                    var tbody = $('#dataTable');
-                    tbody.empty(); // Limpia cualquier contenido existente en la tabla
+               
+            // "uID": 0,
+            //     "utID": 0,
+            //         "uName": "string",
+            //             "uLastName": "string",
+            //                 "uCellphone": "string",
+            //                     "uAddress": "string",
+            //                         "uLoginName": "string",
+            //                             "uEmailAddress": "string",
+            //                                 "dtID": 0,
+            //                                     "uDocument": "string",
+            //                                         "uStatus": 0,
+            //                                             "uIsBlocked": 0,
+            //                                                 "uPassword": "string"
+            $(document).ready(function () {
+                // Realizar solicitud AJAX para obtener la lista de usuarios
+                var utID = 1;
 
-                    $.each(data, function (index, usuario) {
-                        // Agregar una fila a la tabla para cada usuario
-                        var row = '<tr>' +
-                            '<td>' + usuario.Nombre + '</td>' +
-                            '<td>' + usuario.Apellido + '</td>' +
-                            '<td>' + usuario.Rol + '</td>' +
-                            // Agrega más columnas según los datos del usuario
-                            '<td>' +
-                            '<a href="#" class="btn btn-primary btn-sm edit-user" data-id="' + usuario.Id + '">Editar</a>' +
-                            // Agrega enlaces o botones similares para eliminar e inactivar usuarios
-                            '</td>' +
-                            '</tr>';
+                $.ajax({
+                    url: '@ViewBag.urlEndPoint' + '/api/Users/v1/ViewUsers',
+                    type: 'GET',
+                    data: JSON.stringify(utID),
+                    contentType: "application/json",
+                    dataType: 'json',
+                    success: function (response) {
+                        console.log("Respuesta del Servidor " + response);
+                        // Procesar los datos recibidos y agregar filas a la tabla
+                        var tbody = $('#dataTable');
+                        tbody.empty(); // Limpia cualquier contenido existente en la tabla
 
-                        tbody.append(row);
-                    });
-                },
-                error: function (error) {
-                    console.log('Error al obtener la lista de usuarios.');
-                }
+                        $.each(response.itemJson, function (index, usuario) {
+                            // Agregar una fila a la tabla para cada usuario
+                            var row = '<tr>' +
+                                '<td>' + usuario.uName + '</td>' +
+                                '<td>' + usuario.uLastName + '</td>' +
+                                '<td>' + usuario.utID + '</td>' +
+                                // Agrega más columnas según los datos del usuario
+                                '<td>' +
+                                '<a href="#" class="btn btn-primary btn-sm edit-user" data-id="' + usuario.uID + '">Editar</a>' +
+                                // Agrega enlaces o botones similares para eliminar e inactivar usuarios
+                                '</td>' +
+                                '</tr>';
+
+                            tbody.append(row);
+                        });
+                    },
+                    error: function (error) {
+                        console.log('Error al obtener la lista de usuarios.');
+                    }
+                });
             });
-        });
+
 
 
 </script>

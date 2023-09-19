@@ -21,21 +21,25 @@ namespace WebSmileSoft.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.urlEndPoint = _settings.urlEndPoint;
             return View("~/Views/Admin/Dashboard.cshtml");
         }
 
         public IActionResult UserManagement()
         {
+            ViewBag.urlEndPoint = _settings.urlEndPoint;
             return View("~/Views/Admin/UserManagement/Index.cshtml");
         }
 
         public IActionResult SiteManagement()
         {
+            ViewBag.urlEndPoint = _settings.urlEndPoint;
             return View("~/Views/Admin/SiteManagement/Index.cshtml");
         }
 
         public IActionResult TableUsers()
         {
+            ViewBag.urlEndPoint = _settings.urlEndPoint;
             // Obtener datos de la base de datos (reemplaza esto con tu lógica)
             var usuarios = new List<UsuariosModel>
         {
@@ -96,7 +100,7 @@ namespace WebSmileSoft.Controllers
 
         public IActionResult TableUsersTest()
         {
-            ViewBag.urlEndPoint = _settings.UrlEndPoint;
+            ViewBag.urlEndPoint = _settings.urlEndPoint;
             // Obtener datos de la base de datos (reemplaza esto con tu lógica)
         //    var usuarios = new List<UsuariosModel>
         //{
