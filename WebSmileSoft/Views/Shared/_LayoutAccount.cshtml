@@ -89,6 +89,29 @@
         })();
     </script>
     <!-- Fin Selector de Tema -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Tu código aquí
+        
+        var rememberMeCheckbox = document.getElementById("remember_me");
+
+        // Verifica si el usuario ya había seleccionado "Recordar usuario" anteriormente
+        if (localStorage.getItem("rememberUser") === "true") {
+            rememberMeCheckbox.checked = true;
+        }
+
+        // Agrega un controlador de eventos para guardar el estado del checkbox cuando cambie
+        rememberMeCheckbox.addEventListener("change", function () {
+            if (rememberMeCheckbox.checked) {
+                // Si el usuario selecciona "Recordar usuario", guarda la elección en el almacenamiento local
+                localStorage.setItem("rememberUser", "true");
+            } else {
+                // Si el usuario desmarca "Recordar usuario", elimina la elección del almacenamiento local
+                localStorage.removeItem("rememberUser");
+            }
+        });
+        });
+    </script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.min.css" asp-append-version="true">
     <!-- Font Awesome -->
@@ -97,7 +120,7 @@
     <link rel="stylesheet" href="~/assets/css/Nunito.css" asp-append-version="true">
 
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="~/assets/css/site.css" asp-append-version="true" />
+    @* <link rel="stylesheet" href="~/assets/css/site.css" asp-append-version="true" /> *@
 
     <!-- Custom Icons for this template -->
     <link rel="stylesheet" href="~/assets/css/Footer-Clean-icons.css" asp-append-version="true">
@@ -115,8 +138,7 @@
     <!-- Fin Contenido de las Otras Vistas-->
     @* <a class="border rounded d-inline scroll-to-top" href="#page-top" style="display:none"><i class="fas fa-angle-up" style="display:none"></i></a> *@
     <!-- Footer -->
-
-    @await Component.InvokeAsync("Footer")
+    @*await Component.InvokeAsync("Footer") *@
     
     
     <!-- Scripts -->

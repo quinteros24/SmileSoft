@@ -85,6 +85,10 @@
       "PackagePath": "staticwebassets\\assets\\fonts\\XRXX3I6Li01BKofIMNaORs71cA.woff2"
     },
     {
+      "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\Dark_background_1920x1080.png",
+      "PackagePath": "staticwebassets\\assets\\img\\Dark_background_1920x1080.png"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\2.png",
       "PackagePath": "staticwebassets\\assets\\img\\anuncios\\2.png"
     },
@@ -187,6 +191,10 @@
     {
       "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\user_profile.png",
       "PackagePath": "staticwebassets\\assets\\img\\profiles\\user_profile.png"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\trabajando.png",
+      "PackagePath": "staticwebassets\\assets\\img\\trabajando.png"
     },
     {
       "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\AlertDesarrollo.js",
