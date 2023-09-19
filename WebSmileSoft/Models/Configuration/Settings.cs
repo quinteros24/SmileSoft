@@ -4,7 +4,7 @@ namespace WebSmileSoft.Models
 {
     public class Settings : ISettings
     {
-        public string urlEndPoint { get; set; } = String.Empty;
+        public string UrlEndPoint { get; set; } = String.Empty;
 
         public int TimeOutSession { get; set; } = 0;
 

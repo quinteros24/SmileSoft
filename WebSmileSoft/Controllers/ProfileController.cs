@@ -27,7 +27,7 @@ namespace WebSmileSoft.Controllers
         // GET: HomeController1
         public ActionResult Index()
         {
-            ViewBag.urlEndPoint = _settings.urlEndPoint;
+            ViewBag.urlEndPoint = _settings.UrlEndPoint;
             var especialidadesOdontologia = new List<EspecialidadOdontologia>
             {
                 new EspecialidadOdontologia { Id = 1, Nombre = "Odontología General", Descripcion = "Atención dental general" },
@@ -71,7 +71,7 @@ namespace WebSmileSoft.Controllers
             //var content = new StringContent(JsonConvert.SerializeObject(ItemLogin), Encoding.UTF8, "application/json");
 
             ChangePasswordViewModelResponse? ChangePasswordViewModelItem = new();
-            var response = await HttpClient.PostAsJsonAsync(_settings.urlEndPoint + "/api/Users/v1/ChangePassword", Item);
+            var response = await HttpClient.PostAsJsonAsync(_settings.UrlEndPoint + "/api/Users/v1/ChangePassword", Item);
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStringAsync();

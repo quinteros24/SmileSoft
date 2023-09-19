@@ -1,6 +1,8 @@
+using System.Configuration;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using WebSmileSoft.Interfaces;
 using WebSmileSoft.Models;
@@ -15,7 +17,6 @@ builder.Services.AddSingleton<ISettings>((serviceProvider) =>
 {
     return builder.Configuration.GetSection("Settings").Get<Settings>();
 });
-
 
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
