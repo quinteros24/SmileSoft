@@ -7,12 +7,14 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using WebSmileSoft.Models;
 using WebSmileSoft.Interfaces;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
+using System.Net.Http.Headers;
 
 namespace WebSmileSoft.Controllers
 {
     public class AccountController : Controller
     {
-        //private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         //private readonly UserManager<ApplicationUser> _userManager;
         private readonly ISettings _settings;
 
@@ -21,6 +23,7 @@ namespace WebSmileSoft.Controllers
             _settings = settings;
         }
 
+
         //// Acción para la página de inicio de sesión
         public IActionResult Login()
         {
@@ -28,11 +31,14 @@ namespace WebSmileSoft.Controllers
             return View();
         }
 
+
+
         [HttpPost]
         public async Task<LoginViewModelResponse> Login([FromBody] LoginViewModelRequest ItemLogin)
         {
             var HttpClient = new HttpClient();
             //var content = new StringContent(JsonConvert.SerializeObject(ItemLogin), Encoding.UTF8, "application/json");
+            HttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             LoginViewModelResponse? LoginViewModelItem = new();
             var response = await HttpClient.PostAsJsonAsync(_settings.urlEndPoint + "/api/Session/v1/Login", ItemLogin);
@@ -73,39 +79,64 @@ namespace WebSmileSoft.Controllers
                 return LoginViewModelItem;
             }
         }
+
+
         //[HttpPost]
-        //public async Task<IActionResult> Login(string username, string password)
+        //public async Task<IActionResult> Login([FromBody] LoginViewModelRequest ItemLogin)
         //{
-        //    // Verificar las credenciales del usuario (esto depende de tu lógica de autenticación)
-        //    if (EsCredencialValida(username, password))
+        //    try
         //    {
-        //        var claims = new List<Claim>
+        //        using var httpClient = new HttpClient();
+
+        //        // Añade el encabezado Content-Type para indicar que se envía JSON.
+        //        httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+        //        // Serializa el objeto ItemLogin como JSON y envíalo en el cuerpo de la solicitud.
+        //        var jsonContent = new StringContent(JsonConvert.SerializeObject(ItemLogin), Encoding.UTF8, "application/json");
+        //        var response = await httpClient.PostAsync("https://ep-smilesoft-develop.azurewebsites.net/api/Session/v1/Login", jsonContent);
+
+        //        if (response.IsSuccessStatusCode)
         //        {
-        //            new Claim(ClaimTypes.Name, username),
+        //            var json = await response.Content.ReadAsStringAsync();
+        //            JObject jsonObject = JObject.Parse(json);
+
+        //            // Verifica si la respuesta contiene un token de acceso y otros datos necesarios.
+        //            if (jsonObject.TryGetValue("itemJson", out var data))
+        //            {
+        //                // Prueba de Cookies
+        //                var claims = new List<Claim>
+        //        {
+        //            new Claim(ClaimTypes.Name, ItemLogin.UserLogin),
         //            // Agregar otros claims según sea necesario
         //        };
 
-        //        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-        //        var authProperties = new AuthenticationProperties
-        //        {
-        //            IsPersistent = true, // Mantener la sesión activa después del cierre del navegador
-        //        };
+        //                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+        //                var authProperties = new AuthenticationProperties
+        //                {
+        //                    IsPersistent = true, // Mantener la sesión activa después del cierre del navegador
+        //                };
 
-        //        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
+        //                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
 
-        //        return RedirectToAction("Index", "Home"); // Redirigir a la página principal después del inicio de sesión exitoso
-        //    }
-        //    else
-        //    {
+        //                return RedirectToAction("Index", "Home");
+        //            }
+        //        }
+
         //        ModelState.AddModelError(string.Empty, "Credenciales no válidas");
-        //        return View(); // Mostrar la vista de inicio de sesión con un mensaje de error
+        //        return View(); // Puedes personalizar esta parte para mostrar un mensaje de error.
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Manejo de excepciones
+        //        ModelState.AddModelError(string.Empty, "Error en la solicitud: " + ex.Message);
+        //        return View(); // Puedes personalizar esta parte para mostrar un mensaje de error.
         //    }
         //}
 
 
-
         public IActionResult Register()
         {
+            ViewBag.urlEndPoint = _settings.urlEndPoint;
             return View();
         }
         public IActionResult ForgotPassword()
