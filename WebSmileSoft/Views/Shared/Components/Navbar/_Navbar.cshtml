@@ -187,7 +187,7 @@
                         </a><a class="dropdown-item" href="#">
                             <i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>Log de Actividades
                         </a> *@
-                        <div class="dropdown-divider"></div><a class="dropdown-item" asp-controller="Account" asp-action="Login">
+                        <div class="dropdown-divider"></div><a class="dropdown-item" onclick="CerrarSesion()" style="user-select: none;">
                             <i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>Cerrar
                             Sesión
                         </a>
@@ -229,9 +229,21 @@
         }
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Obtén el elemento del enlace de cierre de sesión por su ID
+            const logoutLink = document.getElementById('logoutLink');
+
+            // Agrega un controlador de eventos click al enlace
+            logoutLink.addEventListener('click', function (e) {
+                // Borra el Session Storage
+                sessionStorage.clear();
+            });
+        });
+    </script>
 
     <!-- Scripts específicos para esta vista parcial -->
-    <script src="~/assets/js/theme.js" asp-append-version="true"></script>
-    <script src='https://code.jquery.com/jquery-3.7.0.min.js' asp-append-version="true"></script>
+    @* <script src="~/assets/js/theme.js" asp-append-version="true"></script>
+    <script src='https://code.jquery.com/jquery-3.7.0.min.js' asp-append-version="true"></script> *@
 }
 

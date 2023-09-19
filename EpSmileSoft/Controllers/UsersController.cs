@@ -32,5 +32,41 @@ namespace EpSmileSoft.Controllers
             }
         }
 
+        [HttpGet]
+         [Route("v1/ViewUsers")]
+         public async Task<GenericResponseModel> ViewUsers(int utID)
+         {
+             try
+             {
+                 GenericResponseModel ItemGenericResponseModel = await _usersCore.ViewUsers(utID);
+                 return ItemGenericResponseModel;
+             }
+             catch
+             {
+                 return new GenericResponseModel();
+             }
+         }
+
+        [HttpPost]
+        [Route("v1/CreateUpdateUsers")]
+        public async Task<GenericResponseModel> CreateUpdateUsers([FromBody] ViewUsersModelRequest Item)
+        {
+            try
+            {
+                GenericResponseModel ItemGenericResponseModel = await _usersCore.CreateUpdateUsers(Item);
+                return ItemGenericResponseModel;
+            }
+            catch
+            {
+                return new GenericResponseModel();
+            }
+        }
+
+
+
+
+
+
+
     }
 }
