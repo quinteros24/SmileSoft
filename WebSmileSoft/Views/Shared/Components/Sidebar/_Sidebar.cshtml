@@ -1,62 +1,4 @@
 ﻿@using System.Security.Claims
-@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@* @{
-       <nav class="navbar align-items-start sidebar accordion p-2 shadow">
-            <div class="container-fluid d-flex flex-column p-0">
-                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0"
-                   href="#">
-                    <img src="~/assets/img/logo-nav.png" class="img-fluid">
-                    <div class="sidebar-brand-icon rotate-n-15"></div>
-                    <div class="sidebar-brand-text mx-3"></div>
-                </a>
-                <hr class="sidebar-divider my-0">
-                <ul class="navbar-nav text-light text-center" id="accordionSidebar">
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Index","Admin")">
-                            <i class="fas fa-tachometer-alt "></i><span class="ms-2">Dashboard</span>
-                        </a>
-                    </li>
-                   @*  <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Profile","Profile")" ">
-                            <i class="fas fa-user "></i><span class="ms-2">Perfil</span>
-                        </a>
-                    </li> *@@*
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Table","Admin")">
-                            <i class="fas fa-table "></i><span class="ms-2">Consultar Usuarios</span>
-                        </a>
-                    </li>
-                    @* <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Login","Account")" ">
-                            <i class="far fa-user-circle "></i><span class="ms-2">Inciar Sesión</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Register","Account")">
-                            <i class="fas fa-user-circle "></i><span class="ms-2">Registrarse</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("ForgotPassword","Account")">
-                            <i class="fas fa-lock "></i><span class="ms-2">Olvidaste Contraseña</span>
-                        </a>
-            </li>*@@*
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Login","Account")">
-                    <i class="fas fa-sign-out-alt fa-sm fa-fw me-2"></i><span class="ms-2">Cerrar Sesión</span>
-                        </a>
-            </li>
-                </ul>
-
-                <div class="text-center  d-none d-md-inline">
-                    <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
-                </div>
-            </div>
-        </nav>
-
-} *@
 
 
 @{
@@ -78,15 +20,15 @@
                 <!-- Otros elementos de menú -->
 
                
-                <li class="nav-item">
+                @*<li class="nav-item">
                     <a class="nav-link" asp-controller="Admin" asp-action="UserManagement">
                         <i class="fas fa-table "></i><span class="ms-2">Administrar Usuarios</span>
                     </a>
 
-                </li>
+                </li>*@
                 <li class="nav-item no-arrow dropend">
                         <a class="dropdown-toggle nav-link no-arrow"
-                           aria-expanded="false" data-bs-toggle="dropdown" href="#">
+                       aria-expanded="false" data-bs-toggle="dropdown" asp-controller="Admin" asp-action="UserManagement">
                             <i class="fas fa-table "></i><span class="ms-2">Administrar Usuarios</span>
                         </a>
                         <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in no-arrow">
@@ -104,26 +46,17 @@
                         
                     </div>
             </li>
-                <li class="nav-item">
+                @*<li class="nav-item">
                     <a class="nav-link" asp-controller="Admin" asp-action="SiteManagement">
                         <i class="fas fa-tools "></i><span class="ms-2">Administrar Sitio</span>
                     </a>
-                </li>
-                @*<li class="nav-item">
-                    <a class="nav-link" asp-controller="Profile" asp-action="ChangePassword">
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw me-2"></i><span class="ms-2">Cambiar Contraseña</span>
-                    </a>
                 </li>*@
                 <li class="nav-item">
-                    <a class="nav-link" asp-controller="Account" asp-action="Logout">
+                    <a class="nav-link" onclick="CerrarSesion()" style="user-select: none;">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw me-2"></i><span class="ms-2">Cerrar Sesión</span>
                     </a>
                 </li>
             </ul>
-
-            @*<div class="text-center d-none d-md-inline">
-                <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
-            </div>*@
         </div>
         
     </nav>
@@ -131,20 +64,7 @@
 
 }
 @section scripts {
-    // <script>
-    //    document.addEventListener("DOMContentLoaded", function() {
-    //     const adminUsersLink = document.querySelector(".dropdown > a");
-
-    //     adminUsersLink.addEventListener("click", function(e) {
-    //         e.preventDefault();
-    //         const dropdownContent = this.nextElementSibling;
-    //         dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
-    //     });
-    // });
-    // </script>
-
-
     <!-- Scripts específicos para esta vista parcial -->
-    @* <script src="~/assets/js/theme.js" asp-append-version="true"></script>
-    <script src='https://code.jquery.com/jquery-3.7.0.min.js' asp-append-version="true"></script> *@
+    
+    
 }

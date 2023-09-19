@@ -14,27 +14,27 @@
                 </div>
                 <form class="row" action="" method="">
                     <div class="col-md-6 mb-3">
-                        <label class="visually-hidden" for="specificSizeInputName">Nombres</label>
+                    <label class="visually-hidden" for="userFirstNameRegister">Nombres</label>
                         <div class="input-group">
                             <div class="input-group-text">Nombres</div>
-                            <input type="text" class="form-control" id="userNameRegister" placeholder="Ingresar Nombre">
+                        <input type="text" class="form-control" id="userFirstNameRegister" placeholder="Ingresar Nombre">
                         </div>
                     </div>
 
                     <div class="col-md-6 mb-3">
-                        <label class="visually-hidden" for="specificSizeInputGroupUsername">Apellidos</label>
+                    <label class="visually-hidden" for="userLastNameRegister">Apellidos</label>
                         <div class="input-group">
                             <div class="input-group-text">Apellidos</div>
-                            <input type="text" class="form-control" id="userLastNameRegister"
+                        <input type="text" class="form-control" id="userLastNameRegister"
                                    placeholder="Apellidos">
                         </div>
                     </div>
 
                     <div class="col-md-6 mb-3">
-                    <label class="visually-hidden" for="Tipo_Documento">Tipo de Documento</label>
+                    <label class="visually-hidden" for="tipo_documento">Tipo de Documento</label>
                         <div class="input-group">
                         <div class="input-group-text">Tipo de Documento</div>
-                            <select id="options" class="form-select" size="1">
+                            <select id="tipo_documento" class="form-select" size="1">
                                 <option value="TI">Tarjeta de Identidad</option>
                                 <option value="CC">Cedula de Ciudadania</option>
                                 <option value="CE">Cedula de Extranjeria</option>
@@ -50,14 +50,14 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 mb-3">
+                @*<div class="col-md-6 mb-3">
                         <div class="input-group">
                             <span class="input-group-text">Fecha de nacimiento</span>
                             <input type="date" id="birthDate" class="form-control " />
                         </div>
-                    </div>
+                    </div>*@
 
-                    <div class="col-md-6 mb-3">
+                    @*<div class="col-md-6 mb-3">
                         <div class="input-group" id="genderOptions">
                             <label class="input-group-text" for="genderSelect">Género</label>
                             <select class="form-select" id="genderSelect">
@@ -67,7 +67,7 @@
                                 <option value="otro">Otro</option>
                             </select>
                         </div>
-                    </div>
+                    </div>*@
 
                     <div class="col-md-6 mb-3">
                         <div class=" input-group">
@@ -83,10 +83,18 @@
                         </div>
                     </div>
 
-                    <div class="input-group col-12 mb-3">
+                    <div class="col-md-6 mb-3">
+                    <div class="input-group ">
                         <span class="input-group-text">Correo electrónico</span>
-                        <input type="email" id="email" class="form-control " placeholder="usuario@example.com" />
+                        <input type="email" id="email" class="form-control " placeholder="usuario@example.com"/>
                     </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                    <div class="input-group ">
+                        <span class="input-group-text">Nombre de Usuario</span>
+                        <input type="text" id="userNameRegister" class="form-control " placeholder="nombre.apellido" />
+                    </div>
+                </div>
 
                     <div class="col-md-6 mb-3">
                         <div class="input-group ">

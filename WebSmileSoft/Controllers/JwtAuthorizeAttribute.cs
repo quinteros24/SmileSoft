@@ -22,7 +22,7 @@ namespace WebSmileSoft.Controllers
 
             if (userRole != _role)
             {
-                context.Result = new ForbidResult(); // O cualquier otro resultado que desees
+                context.Result = new ForbidResult(); //
             }
         }
     }

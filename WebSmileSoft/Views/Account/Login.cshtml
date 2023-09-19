@@ -4,6 +4,7 @@
 
 @{
     <section class="container flex-grow-1">
+        <div id="loader" class="loader"></div>
         <div class="row justify-content-center">
             <div class="col-md-9 col-lg-12 col-xl-10">
                 <div class="card shadow-lg o-hidden border-0 my-5">
@@ -25,7 +26,7 @@
                                             <div class="custom-control custom-checkbox small">
                                                 <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="remember_me"><label class="form-check-label custom-control-label" for="remember_me">Recordarme</label></div>
                                             </div>
-                                        </div><button class="btn btn-primary d-block btn-user w-100" type="submit" id="loginButton" onclick="validarInicioSesion()"><strong>Ingresar</strong></button>
+                                        </div><button class="btn btn-primary d-block btn-user w-100" type="submit" id="loginButton" onclick="mostrarCarga(); validarInicioSesion();"><strong>Ingresar</strong></button>
                                         <hr>
 
                                     </form>
@@ -41,7 +42,7 @@
     </section>
 }
 @section Scripts {
-    @* <script src="~/assets/js/Login.js" asp-append-version="true"></script> *@
+    <script src="~/assets/js/Login.js" asp-append-version="true"></script>
     <script>
         function validarInicioSesion() {
             console.log("Script Iniciar Sesion");
@@ -113,4 +114,16 @@
                 });
             }
         }</script>
+    <script>
+        function mostrarCarga() {
+            Swal.fire({
+                title: 'Cargando',
+                html: 'Por favor, espere un momento',
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading()
+                },
+            });
+        }
+    </script>
 }
