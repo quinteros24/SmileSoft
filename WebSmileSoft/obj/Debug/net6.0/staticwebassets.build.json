@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "qG1/b/XJHYgwd9lHsQ2Fh869dCkR/uWCMaIZwtfAwQc=",
+  "Hash": "rONwKRaseIXmXmep2puT4px/TXYDQFAAebmB7+EygNw=",
   "Source": "WebSmileSoft",
   "BasePath": "_content/WebSmileSoft",
   "Mode": "Default",
@@ -561,6 +561,23 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\bg-working-min.png"
     },
     {
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\Dark_background_1920x1080.png",
+      "SourceId": "WebSmileSoft",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "BasePath": "_content/WebSmileSoft",
+      "RelativePath": "assets/img/Dark_background_1920x1080.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\Dark_background_1920x1080.png"
+    },
+    {
       "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\forgotpass.png",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
@@ -831,6 +848,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\img\\profiles\\user-p.png"
+    },
+    {
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\trabajando.png",
+      "SourceId": "WebSmileSoft",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "BasePath": "_content/WebSmileSoft",
+      "RelativePath": "assets/img/trabajando.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\trabajando.png"
     },
     {
       "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\AlertDesarrollo.js",

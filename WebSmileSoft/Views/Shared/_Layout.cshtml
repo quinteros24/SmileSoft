@@ -112,12 +112,12 @@
 
 </head>
 
-<body id="page-top" class="d-flex flex-column min-vh-100">
+<body id="page-top">
     <div id="wrapper">
         <!-- Sidebar -->
         @await Component.InvokeAsync("Sidebar")
         <div class="d-flex flex-column" id="content-wrapper">
-            <div id="content">
+            <div id="content" class="back">
                 <!-- TopBar -->
                 @await Component.InvokeAsync("Navbar")
                 <div class="container-fluid">
@@ -128,9 +128,9 @@
                 </div>
             </div>
             <!-- Footer -->
-            
+            @*await Component.InvokeAsync("Footer")*@
         </div>
-    </div>@await Component.InvokeAsync("Footer")@* <a class="border rounded d-inline scroll-to-top" href="#page-top" style="display:none"><i class="fas fa-angle-up" style="display:none"></i></a> *@
+    </div> @* <a class="border rounded d-inline scroll-to-top" href="#page-top" style="display:none"><i class="fas fa-angle-up" style="display:none"></i></a> *@
     <!-- Custom Theme Script -->
     <script src="~/assets/js/theme.js" asp-append-version="true"></script>
     <!-- Bootstrap core JavaScript -->
@@ -142,7 +142,51 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" asp-append-version="true"></script>
 <script src="~/assets/js/UserSessionControl.js" asp-append-version="true"></script>
     <script src="~/assets/js/AlertDesarrollo.js" asp-append-version="true"></script>
-    
+<script>
+        function checkTokenAndRedirect() {
+            // Verifica si existe un token en sessionStorage u otras condiciones de autenticación
+            const token = sessionStorage.getItem('accessToken'); // Reemplaza 'token' con el nombre real de tu token en sessionStorage
+            console.log("Validando Token"+token);
+            if (!token) {
+                // No se encontró un token, redirige al usuario a la página de inicio de sesión
+                window.location.href = '/Account/Login'; // Reemplaza con la URL correcta
+            }
+        }
+
+        // Llama a la función para verificar el token cuando carga la página
+        checkTokenAndRedirect();
+
+        // Llama a la función para verificar el token cada minuto
+        setInterval(checkTokenAndRedirect, 60000); // 60000 milisegundos = 1 minuto
+
+        // Resto del contenido de tu página aquí
+    </script>
+    <script>
+        function CerrarSesion() {
+            console.log("Cerrando Sesión");
+            // Borra el Session Storage
+            sessionStorage.clear();
+            window.location.href = '/Account/Login';
+        }
+
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Recupera el nombre y apellido del usuario desde sessionStorage
+            var userFName = sessionStorage.getItem('userFName');
+            var userLName = sessionStorage.getItem('userLName');
+
+            // Verifica si las variables tienen valores
+            if (userFName !== null && userLName !== null) {
+                // Construye el nombre completo y muestra en la etiqueta <span>
+                var nombreCompleto = userFName + ' ' + userLName;
+                var spanNombre = document.getElementById('nombreUsuario');
+                spanNombre.textContent = nombreCompleto;
+            } else {
+                console.log('No se encontraron datos en sessionStorage');
+            }
+        });
+    </script>
 @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
