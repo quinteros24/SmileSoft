@@ -1,6 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\WebSmileSoft",
+    "\\WebSmileSoft\\Views",
+    "\\WebSmileSoft\\Views\\Admin",
+    "\\WebSmileSoft\\Views\\Admin\\UserManagement"
   ],
+  "SelectedNode": "\\WebSmileSoft\\Views\\Admin\\UserManagement\\ViewTableUsersTest.cshtml",
   "PreviewInSolutionExplorer": false
 }
