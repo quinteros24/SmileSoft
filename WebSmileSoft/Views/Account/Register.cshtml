@@ -117,7 +117,7 @@
                     </div>
 
                     <div class="text-end mt-4">
-                        <button type="submit" id="registerButton" class="btn btn-primary d-block btn-user w-100">
+                    <button type="submit"  class="btn btn-primary d-block btn-user w-100" onclick="mostrarCarga(); registrarUsuario();">
                             <strong>Registrarte</strong>
                         </button>
                     </div>
@@ -131,7 +131,81 @@
 
 
 @section Scripts {
-<script>
+    <script>
+        function registrarUsuario() {
+            debugger;
+            console.log("Script Registrar Usuario");
+            event.preventDefault();
+            // Obtener todos los datos del formulario
+            
+                // "uID": 0,
+                //     "utID": 0,
+                //         "uName": "string",
+                //             "uLastName": "string",
+                //                 "uCellphone": "string",
+                //                     "uAddress": "string",
+                //                         "uLoginName": "string",
+                //                             "uEmailAddress": "string",
+                //                                 "dtID": 0,
+                //                                     "uDocument": "string",
+                //                                         "uStatus": 0,
+                //                                             "uIsBlocked": 0,
+                //                                                 "uPassword": "string"
+            
+            // Obtener los valores del nombre y apellido
+            let firstName = $('#userFirstNameRegister').val();
+            let lastName = $('#userLastNameRegister').val();
+            //console.log("Ruta Endpoint " + @ViewBag.urlEndPoint );
+            // Crear el nombre de usuario concatenando el nombre y el apellido (asegúrate de validar si ambos valores existen)
+            let userName = (firstName && lastName) ? (firstName + '.' + lastName) : '';
+            console.log("Nombre de Usuario" + userName);
+            let userData = {
+                uID: 0, // El ID del usuario se establece en 0 para que el API lo genere automáticamente
+                utID: 3, // El ID del tipo de usuario se establece en 1 para que el API lo genere automáticamente
+                uName: $('#userFirstNameRegister').val(),
+                uLastName: $('#userLastNameRegister').val(),
+                dtID: $('#tipo_documento').val(),
+                uDocument: 1,
+                uAddress: $('#address').val(),
+                uCellphone: $('#mobileNumber').val(),
+                uEmailAddress: $('#email').val(),
+                //uLoginName: $('#userNameRegister').val(),
+                uLoginName: userName,
+                uPassword: $('#password').val(),
+                uStatus: 1 // Puedes establecer el estado del usuario según tus necesidades
+            };
+
+            // Realizar la solicitud AJAX para registrar el usuario
+            $.ajax({
+                type: 'POST',
+                url: '@ViewBag.urlEndPoint' + '/api/Users/v1/CreateUpdateUsers', // Ruta para crear o actualizar usuarios
+                data: JSON.stringify(userData),
+                contentType: 'application/json',
+                success: function (response) {
+                    if (response.OutputCodeError === '0') {
+                        // Registro exitoso, puedes redirigir al usuario o mostrar un mensaje de éxito
+                        alert('Usuario registrado con éxito.');
+                    } else if (response.OutputCodeError === '-1') {
+                        // El usuario ya existe en la base de datos
+                        alert('Este usuario ya existe en la base de datos.');
+                    } else {
+                        // Manejar otros códigos de error si es necesario
+                        alert('Error: ' + response.OutputMessageError);
+                    }
+                },
+                error: function (error) {
+                    // Manejar errores de la solicitud AJAX
+                    console.error('Error al registrar usuario:', error);
+                }
+            });
+        }
+
+
+    </script>
+
+
+
+@* <script>
     document.getElementById('registerButton').addEventListener('click', function (event) {
         event.preventDefault(); // Evita la recarga de la página
 
@@ -142,8 +216,8 @@
             confirmButtonColor: '#008dc9'
         })
     });
-</script>
+</script> *@
 
 <script src="~/assets/js/bs-init.js" asp-append-version="true"></script>
-<script src="~/assets/js/Register.js" asp-append-version="true"></script>
+@* <script src="~/assets/js/Register.js" asp-append-version="true"></script> *@
 }
