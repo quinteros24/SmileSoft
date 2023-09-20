@@ -17,8 +17,8 @@ namespace WebSmileSoft.Models
         {
         }
 
-        public object Doctors { get; internal set; }
-        public object Patients { get; internal set; }
+        //public object Doctors { get; internal set; }
+        //public object Patients { get; internal set; }
     }
    
 }
