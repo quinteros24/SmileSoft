@@ -9,11 +9,11 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = WebSmileSoft
 build_property.RootNamespace = WebSmileSoft
-build_property.ProjectDir = C:\Users\Usuario\Source\Repos\SmileSoft\WebSmileSoft\
+build_property.ProjectDir = C:\Users\Usuario\source\repos\SmileSoft\WebSmileSoft\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Usuario\Source\Repos\SmileSoft\WebSmileSoft
+build_property.MSBuildProjectDirectory = C:\Users\Usuario\source\repos\SmileSoft\WebSmileSoft
 build_property._RazorSourceGeneratorDebug = 
 
 [C:/Users/Usuario/source/repos/SmileSoft/WebSmileSoft/Views/Account/AccessDenied.cshtml]
