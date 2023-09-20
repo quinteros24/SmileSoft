@@ -116,7 +116,7 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top contenido">
     <div id="wrapper">
         <!-- Sidebar -->
         @await Component.InvokeAsync("Sidebar")
@@ -216,6 +216,30 @@
                 $("#liAdmin").hide();
                 $("#liDoctor").hide();
                 $("#liUser").css("display", "block");
+            }
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            var userRole = sessionStorage.getItem('userRole');
+            console.log("userRole: " + userRole);
+            if (userRole == 1) {
+                $("#divAdmin").css("display", "block");
+                $("#divDoctor").hide();
+                $("#divUser").hide();
+            }
+            else if (userRole == 2) {
+                $("#divAdmin").hide();
+                $("#divDoctor").css("display", "block");
+                $("#divUser").hide();
+            }
+            else if (userRole == 3) {
+                $("#divAdmin").hide();
+                $("#divDoctor").hide();
+                $("#divUser").css("display", "block");
+            }
+            else if (userRole == 1 || userRole == 2 || userRole == 3) {
+                $("#contenido").css("display", "block");
             }
         });
     </script>
