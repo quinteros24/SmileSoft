@@ -14,6 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Home\About.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Home\About.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <None Include="Views\Home\Privacy.cshtml" />
     <None Include="wwwroot\assets\js\bootstrap.min.js" />
@@ -24,16 +29,23 @@
     <None Include="wwwroot\assets\js\Login.js" />
     <None Include="wwwroot\assets\js\popper.js" />
     <None Include="wwwroot\assets\js\Register.js" />
-    <None Include="wwwroot\assets\js\responsive-blog-card-slider-01-swiper-bundle.min.js" />
-    <None Include="wwwroot\assets\js\responsive-blog-card-slider-02-responsive-blog-card-slider.js" />
     <None Include="wwwroot\assets\js\theme.js" />
     <None Include="wwwroot\assets\js\Utilities.js" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.22" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.21" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Home\About.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Home\About.cshtml" />
   </ItemGroup>
 
 </Project>

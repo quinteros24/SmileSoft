@@ -68,7 +68,7 @@
 
 
 @{
-    <div class="text-end">
+    <div class="text-end my-2">
         <a class="btn btn-success add-user-btn " data-toggle="modal" data-target="#addUserModal"><i class="fas fa-user-plus"> </i> Agregar Usuario</a>
     </div>
     <div class="table-responsive">
@@ -77,15 +77,11 @@
             <thead>
                 <tr>
                     <th>Nombre</th>
+                    <th>Apellido</th>
                     <th>Rol</th>
-                    <th>Consultorio</th>
                     <th>Edad</th>
-                    <th>Ultimo Ingreso</th>
-                    <th>Documento</th>
                     <th>Tipo de Documento</th>
-                    <th>Fecha de Nacimiento</th>
-                    <th>Género</th>
-                    <th>Dirección</th>
+                    <th>Documento</th>
                     <th>Número de Celular</th>
                     <th>Correo Electrónico</th>
                     <th>Acciones</th>
@@ -100,14 +96,9 @@
                         <td>@usuario.Nombre</td>
                         <td>@usuario.Apellido</td>
                         <td>@usuario.Rol</td>
-                        <td>@usuario.Consultorio</td>
                         <td>@usuario.Edad</td>
-                        <td>@usuario.UltimoIngreso</td>
-                        <td>@usuario.Documento</td>
                         <td>@usuario.TipoDocumento</td>
-                        <td>@usuario.FechaNacimiento</td>
-                        <td>@usuario.Genero</td>
-                        <td>@usuario.Direccion</td>
+                        <td>@usuario.Documento</td>
                         <td>@usuario.NumeroCelular</td>
                         <td>@usuario.CorreoElectronico</td>
                         <td>
@@ -123,7 +114,7 @@
             </tbody>
         </table>
     </div>
-
+    @*
     <!-- Paginación -->
     <nav aria-label="Page navigation">
         <ul class="pagination">
@@ -143,6 +134,7 @@
             </li>
         </ul>
     </nav>
+    *@
 
     <!-- Modal de Edición -->
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -167,14 +159,15 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     <button type="button" class="btn btn-primary" id="saveChanges">Guardar Cambios</button>
                 </div>
             </div>
         </div>
     </div>
 
-
+    @*
     <!-- Modal de Eliminación -->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -197,7 +190,7 @@
             </div>
         </div>
     </div>
-
+    *@
 
     <!-- Modal de Inactivación -->
     <div class="modal fade" id="deactivateModal" tabindex="-1" role="dialog" aria-labelledby="deactivateModalLabel" aria-hidden="true">
@@ -205,7 +198,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="deactivateModalLabel">Inactivar Usuario</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Cerrar">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -215,7 +208,7 @@
                     <p><strong>Rol:</strong> <span id="deactivate-userrole"></span></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     <button type="button" class="btn btn-warning" id="confirm-deactivate">Inactivar</button>
                 </div>
             </div>
@@ -296,10 +289,12 @@
                             <label for="fechaNacimiento">Fecha de Nacimiento:</label>
                             <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" required>
                         </div>
+                        @*
                         <div class="form-group">
                             <label for="especialidad">Especialidad:</label>
                             <input type="text" class="form-control" id="especialidad" name="especialidad">
                         </div>
+                        *@
                         <!-- Agrega los campos restantes aquí -->
                     </form>
                 </div>
@@ -325,9 +320,47 @@
 
     <script>
 
-
-
         $(document).ready(function () {
+
+            //
+            // Realizar solicitud AJAX para obtener la lista de usuarios
+            var utID = 1;
+            console.log('@ViewBag.urlEndPoint')
+            $.ajax({
+                url: 'https://ep-smilesoft-develop.azurewebsites.net' + '/api/Users/v1/ViewUsers',
+                type: 'GET',
+                data: {'utID':utID},
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    // Procesar los datos recibidos y agregar filas a la tabla
+                    var tbody = $('#dataTable');
+                    tbody.empty(); // Limpia cualquier contenido existente en la tabla
+
+                    $.each(data.itemJson, function (index, usuario) {
+                        // Agregar una fila a la tabla para cada usuario
+                        var row = '<tr>' +
+                            '<td>' + usuario.uName + '</td>' +
+                            '<td>' + usuario.uLastName + '</td>' +
+                            '<td>' + usuario.utID + '</td>' +
+                            // Agrega más columnas según los datos del usuario
+                            '<td>' +
+                            //'<a href="#" class="btn btn-primary btn-sm edit-user" data-id="' + usuario.Id + '">Editar</a>' +
+                            '<a class="btn btn-primary btn-sm edit-user" data-toggle="modal" data-target="#editModal" data-id="' + usuario.Id + '"> <i class="far fa-edit" > </i></a >'
+                            // Agrega enlaces o botones similares para eliminar e inactivar usuarios
+                            '</td>' +
+                            '</tr>';
+
+                        tbody.append(row);
+                    });
+                },
+                error: function (error) {
+                    console.log('Error al obtener la lista de usuarios.');
+                }
+            });
+
+
             // Controlador de clic para el botón "Editar"
             $(".edit-user").click(function () {
                 // Obtiene el valor de data-id
@@ -336,8 +369,8 @@
 
                 // Realiza una solicitud AJAX para obtener los datos del usuario desde el servidor
                 $.ajax({
-                    url: "/Admin/UserManagement/ObtenerUsuario/" + userId, // Reemplaza con la URL correcta para obtener los datos del usuario
-                    type: "GET",
+                    url: "'https://ep-smilesoft-develop.azurewebsites.net' + '/api/Users/v1/CreateUpdateUsers'" + userId, // Reemplaza con la URL correcta para obtener los datos del usuario
+                    type: "POST",
                     success: function (userData) {
                         // Llena los campos del formulario de edición con los datos del usuario
                         $("#nombres").val(userData.nombres);
@@ -401,7 +434,7 @@
             $("#confirm-deactivate").click(function () {
                 var userId = $(this).data("id");
                 $.ajax({
-                    url: '/Usuarios/Deshabilitar/' + userId, // Reemplaza la URL con la correcta
+                    url: 'https://ep-smilesoft-develop.azurewebsites.net' + '/api/Users/v1/CreateUpdateUsers' + userId, // Reemplaza la URL con la correcta
                     type: 'POST', // O el método HTTP correcto para tu aplicación
                     success: function (data) {
                         // Cierra el modal de deshabilitación
@@ -440,30 +473,34 @@
                 // Controlador de clic para el botón "Agregar"
                 $("#add-user").click(function () {
                     // Obtiene los datos del formulario
+                
                     var userData = {
-                        nombres: $("#nombres").val(),
-                        apellidos: $("#apellidos").val(),
-                        celular: $("#celular").val(),
-                        correo: $("#correo").val(),
-                        direccion: $("#direccion").val(),
-                        tipoDocumento: $("#tipoDocumento").val(),
-                        numeroDocumento: $("#numeroDocumento").val(),
-                        usuario: $("#usuario").val(),
-                        password: $("#password").val(),
-                        genero: $("input[name='genero']:checked").val(), // Obtiene el valor del radio button seleccionado
-                        fechaNacimiento: $("#fechaNacimiento").val(),
-                        tipoUsuario: $("#tipoUsuario").val()
+                        utID: 3,
+                        uName: $("#nombres").val(),
+                        uLastName: $("#apellidos").val(),
+                        uCellphone: $("#celular").val(),
+                        uEmailAddress: $("#correo").val(),
+                        uAddress: $("#direccion").val(),
+                        uLoginName: $("#usuario").val(),
+                        uPassword: $("#password").val(),
+                        dtID: 1,
+                        uDocument: $("#numeroDocumento").val()
+                        //genero: $("input[name='genero']:checked").val(), // Obtiene el valor del radio button seleccionado
+                        //fechaNacimiento: $("#fechaNacimiento").val(),
+                        
                     };
 
                     //Validar campos obligatorios
-
-                if (!userData.nombres || !userData.apellidos || !userData.correo || !userData.tipoDocumento || !userData.numeroDocumento || !userData.usuario || !userData.password || !userData.tipoUsuario) {
+                    @*
+                if (!userData.nombres || !userData.apellidos || !userData.tipoDocumento || !userData.numeroDocumento || !userData.usuario || !userData.password || !userData.tipoUsuario) {
                         alert("Por favor, complete todos los campos obligatorios.");
                         return;
                     }
+                    *@
+                //!userData.correo ||
 
-                    // Validación de la contraseña
-                    var password = userData.password;
+                // Validación de la contraseña
+                    var password = userData.uPassword;
                     var passwordError = "";
 
                     if (password.length < 8) {
@@ -484,14 +521,17 @@
 
                     // Realiza una solicitud AJAX para agregar el usuario en el servidor
                     $.ajax({
-                        url: "/Admin/UserManagement/Agregar", // Ruta para agregar el usuario
                         type: "POST",
-                        data: userData,
+                    url: 'https://ep-smilesoft-develop.azurewebsites.net' + '/api/Users/v1/CreateUpdateUsers', // Ruta para agregar el usuario
+                        data: JSON.stringify(userData), // Convierte userData a JSON
+                        contentType: "application/json", // Especifica el tipo de contenido
+
+                        dataType: "json",
                         success: function (result) {
-                            // Actualiza la vista o realiza alguna otra acción
+                        // Actualiza la vista o realiza alguna otra acción
                             $("#addUserModal").modal("hide");
                             alert("Usuario agregado correctamente");
-                            // Cierra el modal de agregar usuario
+                        // Cierra el modal de agregar usuario
 
                         },
                         error: function () {

@@ -1,3 +1,7 @@
+using System.Text;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using WebSmileSoft.Interfaces;
 using WebSmileSoft.Models;
 
@@ -14,6 +18,17 @@ builder.Services.AddSingleton<ISettings>((serviceProvider) =>
 
 
 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Account/Login"; // Ruta de inicio de sesión
+        options.LogoutPath = "/Account/Login"; // Ruta de cierre de sesión
+    });
+builder.Services.Configure<CookieAuthenticationOptions>(options =>
+{
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(15); // Expira en 30 minutos
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -27,9 +42,12 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseRouting();
+app.UseAuthentication();
 
 app.UseAuthorization();
+app.UseRouting();
+
+
 
 app.MapControllerRoute(
     name: "default",
