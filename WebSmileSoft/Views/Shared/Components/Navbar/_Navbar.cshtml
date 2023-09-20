@@ -147,7 +147,7 @@
                 <div class="shadow dropdown-list dropdown-menu dropdown-menu-end"
                      aria-labelledby="alertsDropdown"></div>
             </li>*@
-            <li class="theme-switcher nav-item dropdown  no-arrow">
+            <li class="theme-switcher nav-item dropdown no-arrow z-3">
                 <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-sun-fill mb-1">
                         <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path>
@@ -181,14 +181,14 @@
                     </a>
                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in z-3">
                         <a class="dropdown-item" asp-controller="Profile" asp-action="Index">
-                            <i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>Perfil
+                            <i class="fas fa-user fa-sm fa-fw"></i>Ajustes de Usuario
                         </a> @*<a class="dropdown-item" href="#">
                             <i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>Ajustes
                         </a><a class="dropdown-item" href="#">
                             <i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>Log de Actividades
                         </a> *@
-                        <div class="dropdown-divider"></div><a class="dropdown-item" asp-controller="Account" asp-action="Login">
-                            <i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>Cerrar
+                        <div class="dropdown-divider"></div><a class="dropdown-item" onclick="CerrarSesion()" style="user-select: none;">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw"></i>Cerrar
                             Sesión
                         </a>
                     </div>
@@ -212,26 +212,22 @@
             navbar.classList.add(selectedColor);
         }
         </script>
+    
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-        // Recupera el nombre y apellido del usuario desde sessionStorage
-        var userFName = sessionStorage.getItem('userFName');
-        var userLName = sessionStorage.getItem('userLName');
+        document.addEventListener('DOMContentLoaded', function () {
+            // Obtén el elemento del enlace de cierre de sesión por su ID
+            const logoutLink = document.getElementById('logoutLink');
 
-        // Verifica si las variables tienen valores
-        if (userFName !== null && userLName !== null) {
-            // Construye el nombre completo y muestra en la etiqueta <span>
-            var nombreCompleto = userFName + ' ' + userLName;
-            var spanNombre = document.getElementById('nombreUsuario');
-            spanNombre.textContent = nombreCompleto;
-        } else {
-            console.log('No se encontraron datos en sessionStorage');
-        }
+            // Agrega un controlador de eventos click al enlace
+            logoutLink.addEventListener('click', function (e) {
+                // Borra el Session Storage
+                sessionStorage.clear();
+            });
         });
     </script>
 
     <!-- Scripts específicos para esta vista parcial -->
-    <script src="~/assets/js/theme.js" asp-append-version="true"></script>
-    <script src='https://code.jquery.com/jquery-3.7.0.min.js' asp-append-version="true"></script>
+    @* <script src="~/assets/js/theme.js" asp-append-version="true"></script>
+    <script src='https://code.jquery.com/jquery-3.7.0.min.js' asp-append-version="true"></script> *@
 }
 

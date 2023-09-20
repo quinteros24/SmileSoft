@@ -79,38 +79,13 @@
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Rol</th>
-                    <th>Edad</th>
-                    <th>Tipo de Documento</th>
-                    <th>Documento</th>
-                    <th>Número de Celular</th>
-                    <th>Correo Electrónico</th>
+                    <!-- Agrega aquí más encabezados según sea necesario -->
                     <th>Acciones</th>
                 </tr>
             </thead>
 
             <tbody>
-            <tbody>
-                    @foreach (var usuario in Model)
-                    {
-                    <tr>
-                        <td>@usuario.Nombre</td>
-                        <td>@usuario.Apellido</td>
-                        <td>@usuario.Rol</td>
-                        <td>@usuario.Edad</td>
-                        <td>@usuario.TipoDocumento</td>
-                        <td>@usuario.Documento</td>
-                        <td>@usuario.NumeroCelular</td>
-                        <td>@usuario.CorreoElectronico</td>
-                        <td>
-                                @* <a class="btn btn-primary btn-sm edit-user" data-toggle="tooltip" title="Editar" data-id="@usuario.Id"><i class="far fa-edit"></i></a>
-                    <a class="btn btn-danger btn-sm delete-user" data-toggle="tooltip" title="Eliminar" data-id="@usuario.Id"><i class="fas fa-trash"></i></a>
-                    <a class="btn btn-warning btn-sm deactivate-user" data-toggle="tooltip" title="Inactivar" data-id="@usuario.Id"><i class="fas fa-ban"></i></a>*@
-                            <a class="btn btn-primary btn-sm edit-user" data-toggle="modal" data-target="#editModal" data-id="@usuario.Id"><i class="far fa-edit"></i></a>
-                                @*<a class="btn btn-danger btn-sm delete-user" data-toggle="modal" data-target="#deleteModal" data-id="@usuario.Id"><i class="fas fa-trash"></i></a>*@
-                            <a class="btn btn-warning btn-sm deactivate-user" data-toggle="modal" data-target="#deactivateModal" data-id="@usuario.Id"><i class="fas fa-ban"></i></a>
-                        </td>
-                    </tr>
-                    }
+                <!-- Los usuarios se cargarán aquí a través de AJAX -->
             </tbody>
         </table>
     </div>
@@ -324,7 +299,7 @@
 
             //
             // Realizar solicitud AJAX para obtener la lista de usuarios
-            var utID = 1;
+            var utID = 3;
             console.log('@ViewBag.urlEndPoint')
             $.ajax({
                 url: 'https://ep-smilesoft-develop.azurewebsites.net' + '/api/Users/v1/ViewUsers',
