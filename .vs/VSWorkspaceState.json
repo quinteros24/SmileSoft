@@ -1,18 +1,6 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\WebSmileSoft",
-    "\\WebSmileSoft\\Views",
-    "\\WebSmileSoft\\Views\\Account",
-    "\\WebSmileSoft\\Views\\Shared",
-    "\\WebSmileSoft\\Views\\Shared\\Components",
-    "\\WebSmileSoft\\Views\\Shared\\Components\\Navbar",
-    "\\WebSmileSoft\\wwwroot",
-    "\\WebSmileSoft\\wwwroot\\assets",
-    "\\WebSmileSoft\\wwwroot\\assets\\bootstrap",
-    "\\WebSmileSoft\\wwwroot\\assets\\bootstrap\\css",
-    "\\WebSmileSoft\\wwwroot\\assets\\js"
+    ""
   ],
-  "SelectedNode": "\\WebSmileSoft\\Views\\Account\\Login.cshtml",
   "PreviewInSolutionExplorer": false
 }

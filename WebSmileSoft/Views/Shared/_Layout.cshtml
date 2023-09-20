@@ -187,6 +187,28 @@
             }
         });
     </script>
+    <script>
+            $(document).ready(function () {
+                var userRole = sessionStorage.getItem('userRole');
+                console.log("userRole: " + userRole);
+                if (userRole == 1) {
+                $("#liAdmin").css("display", "block");
+                $("#liDoctor").css("display", "block");
+                $("#liUser").css("display", "block");
+                }
+                else if (userRole == 2) {
+                    $("#liAdmin").hide();
+                $("#liDoctor").css("display", "block");
+                    $("#liUser").hide();
+                }
+                else if (userRole == 3) {
+                    $("#liAdmin").hide();
+                    $("#liDoctor").hide();
+                $("#liUser").css("display", "block");
+                }
+            });
+    </script>
+ 
 @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
