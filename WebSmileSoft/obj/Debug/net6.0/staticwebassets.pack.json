@@ -249,6 +249,58 @@
       "PackagePath": "staticwebassets\\assets\\js\\theme.js"
     },
     {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\plugins\\table\\datatable\\button-ext\\buttons.html5.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\table\\datatable\\button-ext\\buttons.html5.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\plugins\\table\\datatable\\button-ext\\buttons.print.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\table\\datatable\\button-ext\\buttons.print.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\plugins\\table\\datatable\\button-ext\\dataTables.buttons.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\table\\datatable\\button-ext\\dataTables.buttons.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\plugins\\table\\datatable\\button-ext\\jszip.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\table\\datatable\\button-ext\\jszip.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\plugins\\table\\datatable\\custom_dt_custom.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\table\\datatable\\custom_dt_custom.css"
+    },
+    {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\plugins\\table\\datatable\\custom_dt_html5.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\table\\datatable\\custom_dt_html5.css"
+    },
+    {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\plugins\\table\\datatable\\custom_dt_miscellaneous.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\table\\datatable\\custom_dt_miscellaneous.css"
+    },
+    {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\plugins\\table\\datatable\\custom_dt_multiple_tables.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\table\\datatable\\custom_dt_multiple_tables.css"
+    },
+    {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\plugins\\table\\datatable\\custom_miscellaneous.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\table\\datatable\\custom_miscellaneous.js"
+    },
+    {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\plugins\\table\\datatable\\datatables.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\table\\datatable\\datatables.css"
+    },
+    {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\plugins\\table\\datatable\\datatables.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\table\\datatable\\datatables.js"
+    },
+    {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\plugins\\table\\datatable\\dt-custom-setting.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\table\\datatable\\dt-custom-setting.js"
+    },
+    {
+      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\plugins\\table\\datatable\\dt-global_style.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\table\\datatable\\dt-global_style.css"
+    },
+    {
       "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },

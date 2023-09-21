@@ -1,3 +1,5 @@
+/* Option 2: Import via CSS */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
 html {
   font-size: 14px;
   font-family: 'Roboto', sans-serif;
@@ -49,4 +51,9 @@ body {
     border-radius: 5px;
     /*    color: #0094ff;*/
     transition: transform 0.4s ease; /* Agrega una transición suave */
+}
+
+/* Oculta todos los elementos de menú por defecto */
+#liAdmin, #liDoctor, #liUser, #divAdmin, #divDoctor, #divUser, #contenido {
+    display: none;
 }
