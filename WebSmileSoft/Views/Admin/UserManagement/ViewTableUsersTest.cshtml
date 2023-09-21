@@ -29,109 +29,110 @@
 
     <div class="card-body">
         @*<div class="row">
-            <div class="col-md-6 text-nowrap">
-                <div id="dataTable_length"
-                     class="dataTables_length"
-                     aria-controls="dataTable">
-                    <label class="form-label">
-                        Mostrar
-                        <select class="d-inline-block form-select form-select-sm">
-                            <option value="5" selected="">5</option>
-                            <option value="10">10</option>
-                            <option value="15">15</option>
-                            <option value="50">50</option>
-                        </select>&nbsp;
-                    </label>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="text-md-end dataTables_filter"
-                     id="dataTable_filter">
-                    <label class="form-label">
-                        <input type="search"
-                               class="form-control form-control-sm"
-                               aria-controls="dataTable"
-                               placeholder="Buscar" />
-                    </label>
-                </div>
-            </div>
-        </div>
-        *@
+    <div class="col-md-6 text-nowrap">
+    <div id="dataTable_length"
+    class="dataTables_length"
+    aria-controls="dataTable">
+    <label class="form-label">
+    Mostrar
+    <select class="d-inline-block form-select form-select-sm">
+    <option value="5" selected="">5</option>
+    <option value="10">10</option>
+    <option value="15">15</option>
+    <option value="50">50</option>
+    </select>&nbsp;
+    </label>
+    </div>
+    </div>
+    <div class="col-md-6">
+    <div class="text-md-end dataTables_filter"
+    id="dataTable_filter">
+    <label class="form-label">
+    <input type="search"
+    class="form-control form-control-sm"
+    aria-controls="dataTable"
+    placeholder="Buscar" />
+    </label>
+    </div>
+    </div>
+    </div>
+    *@
         <div class="table-responsive">
-            <table class="table my-0 display table-hover " id="userTable"
-                   data-toggle="table"
-                   data-height="460"
-                   data-pagination="true"
-                   data-search="true">
-                <!-- Encabezados de columna -->
-                <thead class="table-light">
-                    <tr>
-                        <th data-field="uID">ID</th>
-                        <th data-field="utID">Rol</th>
-                        <th data-field="uName">Nombre</th>
-                        <th data-field="uLastName">Apellido</th>
-                        <th data-field="UDocument">Documento</th>
-                        <th data-field="uIsCloked">Ultimo Ingreso</th>
-                        <th data-field="uStatus">Estado</th>
-                        <!-- Agrega aquí más encabezados según sea necesario -->
-                        <th data-field="actions">Acciones</th>
-                    </tr>
-                </thead>
+            @*<table class="table my-0 display table-hover " id="userTable"
+        data-toggle="table"
+        data-height="460"
+        data-pagination="true"
+        data-search="true">
+        <table id="html5-extension" class="table table-hover non-hover">
+        <!-- Encabezados de columna -->
+        <thead>
+        <tr>
+        <th>ID</th>
+        <th>Rol</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Documento</th>
+        <th>Ultimo Ingreso</th>
+        <th>Estado</th>
+        <!-- Agrega aquí más encabezados según sea necesario -->
+        <th class="dt-no-sorting">Acciones</th>
+        </tr>
+        </thead>
 
-                <tbody id="dataTable">
-                    <!-- Los usuarios se cargarán aquí a través de AJAX -->
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td><strong>ID</strong></td>
-                        <td><strong>Rol</strong></td>
-                        <td><strong>Nombre</strong></td>
-                        <td><strong>Apellido</strong></td>
-                        <td><strong>Documento</strong></td>
-                        <td><strong>Ultimo Ingreso</strong></td>
-                        <td><strong>Estado</strong></td>
-                        <td><strong>Acciones</strong></td>
-                    </tr>
-                </tfoot>
-            </table>
+        <tbody id="dataTable">
+
+        <!-- Los usuarios se cargarán aquí a través de AJAX -->
+        </tbody>
+        <tfoot>
+        <tr>
+        <td><strong>ID</strong></td>
+        <td><strong>Rol</strong></td>
+        <td><strong>Nombre</strong></td>
+        <td><strong>Apellido</strong></td>
+        <td><strong>Documento</strong></td>
+        <td><strong>Ultimo Ingreso</strong></td>
+        <td><strong>Estado</strong></td>
+        <td><strong>Acciones</strong></td>
+        </tr>
+
+        </tfoot>
+        </table>
         </div>
         @*<div class="row">
-            <div class="col-md-6 align-self-center">
-                <p id="dataTable_info"
-                   class="dataTables_info"
-                   role="status"
-                   aria-live="polite">
-                    Mostrando 1 de 10 de 27
-                </p>
-            </div>
-            <div class="col-md-6">
-                <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                    <ul class="pagination">
-                        <li class="page-item disabled">
-                            <a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-link" href="#">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+        <div class="col-md-6 align-self-center">
+        <p id="dataTable_info"
+        class="dataTables_info"
+        role="status"
+        aria-live="polite">
+        Mostrando 1 de 10 de 27
+        </p>
+        </div>
+        <div class="col-md-6">
+        <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+        <ul class="pagination">
+        <li class="page-item disabled">
+        <a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a>
+        </li>
+        <li class="page-item active">
+        <a class="page-link" href="#">1</a>
+        </li>
+        <li class="page-item">
+        <a class="page-link" href="#">2</a>
+        </li>
+        <li class="page-item">
+        <a class="page-link" href="#">3</a>
+        </li>
+        <li class="page-item">
+        <a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a>
+        </li>
+        </ul>
+        </nav>
+        </div>
         </div>*@
 
-       
-
+            <table id="example" class="table table-hover non-hover" width="100%"></table>
+        </div>
     </div>
-
-
 
     <!-- Modal de Edición -->
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -165,7 +166,6 @@
     </div>
 
 
-
     <!-- Modal de Inactivación -->
     <div class="modal fade" id="deactivateModal" tabindex="-1" role="dialog" aria-labelledby="deactivateModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -188,7 +188,6 @@
             </div>
         </div>
     </div>
-
 
     @*
     <div class="form-group">
@@ -305,12 +304,10 @@
         </div>
     </div>
 
-
-
 }
 
 @section Scripts {
-    
+
 
     <script>
 
@@ -328,6 +325,53 @@
         //                                             "uIsBlocked": 0,
         //                                                 "uPassword": "string"
         //Visualizar Datos en Tabla Funciona OK -- Falta Agregar Botones
+        // $(document).ready(function () {
+        //     verusers(3);
+        // });
+        // function verusers(utID) {
+        //     // Realizar solicitud AJAX para obtener la lista de usuarios
+        //     // var utID = 1;
+
+        //     $.ajax({
+        //         url: '@ViewBag.urlEndPoint' + '/api/Users/v1/ViewUsers',
+        //         type: 'GET',
+        //         data: { 'utID': utID },
+        //         contentType: "application/json",
+        //         dataType: 'json',
+        //         success: function (data) {
+        //             console.log("Respuesta del Servidor " + data);
+        //             // Procesar los datos recibidos y agregar filas a la tabla
+        //             var tbody = $('#dataTable');
+        //             tbody.empty(); // Limpia cualquier contenido existente en la tabla
+
+        //             $.each(data.itemJson, function (index, usuario) {
+        //                 // Agregar una fila a la tabla para cada usuario
+
+        //                 var row = '<tr>' +
+        //                     '<td>' + usuario.uID + '</td>' +
+        //                     '<td>' + usuario.utID + '</td>' +
+        //                     '<td>' + usuario.uName + '</td>' +
+        //                     '<td>' + usuario.uLastName + '</td>' +
+        //                     '<td>' + usuario.uDocument + '</td>' +
+        //                     '<td>' + usuario.uIsBlocked + '</td>' +
+        //                     '<td>' + usuario.uStatus + '</td>' +
+
+        //                     // Agrega más columnas según los datos del usuario
+        //                     '<td>' +
+        //                     '<a class="btn btn-primary btn-sm edit-user" data-toggle="modal" data-target="#deactivateModal" data-id="' + usuario.uID + '">Editar</a>' +
+        //                     '<a class="btn btn-warning btn-sm deactivate-user" data-toggle="modal" data-target="#deactivateModal" data-id="' + usuario.uID + '"><i class="fas fa-ban"></i></a>'
+        //                 // Agrega enlaces o botones similares para eliminar e inactivar usuarios
+        //                 '</td>' +
+        //                     '</tr>';
+
+        //                 tbody.append(row);
+        //             });
+        //         },
+        //         error: function (error) {
+        //             console.log('Error al obtener la lista de usuarios.');
+        //         }
+        //     });
+        // };
         $(document).ready(function () {
             verusers(3);
         });
@@ -344,38 +388,110 @@
                 success: function (data) {
                     console.log("Respuesta del Servidor " + data);
                     // Procesar los datos recibidos y agregar filas a la tabla
-                    var tbody = $('#dataTable');
-                    tbody.empty(); // Limpia cualquier contenido existente en la tabla
-
+                    var dataSet = [];
+                    let users = data.itemJson;
+                    console.table(users);
+                    var rolesMapping = {
+                        1: 'Administrador',
+                        2: 'Doctores',
+                        3: 'Pacientes'
+                    };
                     $.each(data.itemJson, function (index, usuario) {
-                        // Agregar una fila a la tabla para cada usuario
-
-                        var row = '<tr>' +
-                            '<td>' + usuario.uID + '</td>' +
-                            '<td>' + usuario.utID + '</td>' +
-                            '<td>' + usuario.uName + '</td>' +
-                            '<td>' + usuario.uLastName + '</td>' +
-                            '<td>' + usuario.uDocument + '</td>' +
-                            '<td>' + usuario.uIsBlocked + '</td>' +
-                            '<td>' + usuario.uStatus + '</td>' +
-
-                            // Agrega más columnas según los datos del usuario
-                            '<td>' +
-                            '<a class="btn btn-primary btn-sm edit-user" data-toggle="modal" data-target="#deactivateModal" data-id="' + usuario.uID + '">Editar</a>' +
-                            '<a class="btn btn-warning btn-sm deactivate-user" data-toggle="modal" data-target="#deactivateModal" data-id="' + usuario.uID + '"><i class="fas fa-ban"></i></a>'
-                        // Agrega enlaces o botones similares para eliminar e inactivar usuarios
-                        '</td>' +
-                            '</tr>';
-
-                        tbody.append(row);
+                        var rol = rolesMapping[usuario.utID];
+                        var rowData = [
+                            usuario.uID,
+                            rol,
+                            usuario.utID,
+                            usuario.uLoginName,
+                            usuario.uName,
+                            usuario.uLastName,
+                            usuario.uEmailAddress,
+                            usuario.uCellphone,
+                            usuario.dtID,
+                            usuario.uDocument,
+                            usuario.uIsBlocked,
+                            usuario.uStatus
+                        ];
+                        dataSet.push(rowData);
                     });
-                },
-                error: function (error) {
-                    console.log('Error al obtener la lista de usuarios.');
+
+                    // Inicializa o actualiza el DataTable con los datos procesados
+                    table = $('#example').DataTable({
+                        // new DataTable('#example', {
+                        columns: [
+                            { title: 'ID' },
+                            { title: 'Rol' },
+                            { title: 'Usuario' },
+                            { title: 'Nombre' },
+                            { title: 'Apellidos' },
+                            { title: 'Correo Electronico' },
+                            { title: 'Celular' },
+                            { title: 'Tipo Documento' },
+                            { title: 'Documento' },
+                            { title: 'Bloqueado' },
+                            { title: 'Estado' },
+                            {
+                                title: 'Acciones',
+                                orderable: false, // Para desactivar la ordenación en esta columna
+                                data: null, // Usaremos la columna "Acciones" solo para botones
+                                defaultContent: '<button class="btn btn-primary btn-sm" id="btnEditar" data-toggle="modal" data-target="#editModal">Editar</button>' +
+                                    '<button class="btn btn-danger btn-sm deactivate-button" id="btnDesactivar" data-toggle="modal" data-target="#deactivateModal">Desactivar</button>'
+                            }
+                        ],
+                        data: dataSet,
+                        dom: 'Bfrtip',
+                        "dom": "<'dt--top-section'<'row'<'col-sm-12 col-md-6 d-flex justify-content-md-start justify-content-center'B><'col-sm-12 col-md-6 d-flex justify-content-md-end justify-content-center mt-md-0 mt-3'f>>>" +
+                            "<'table-responsive'tr>" +
+                            "<'dt--bottom-section d-sm-flex justify-content-sm-between text-center'<'dt--pages-count  mb-sm-0 mb-3'i><'dt--pagination'p>>",
+                        buttons: {
+                            buttons: [
+                                { extend: 'copy', className: 'btn btn-sm' },
+                                { extend: 'print', className: 'btn btn-sm',
+                                    messageTop: 'Tabla de Usuarios SmileSoft',
+                                },
+                                {
+                                    extend: 'spacer',
+                                    style: 'bar',
+                                    text: 'Export files:'
+                                },
+                                { extend: 'csv', className: 'btn btn-sm' },
+                                { extend: 'excel', className: 'btn btn-sm' },
+                            ]
+                            },
+                        select: true,
+                        destroy: true,
+                        language: {
+                            url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-CO.json',
+                        },
+
+                    });
+                    table.column(11).nodes().to$().find('#btnEditar').click(function () {
+                        // Maneja la acción del botón aquí
+                        var data = table.row($(this).parents('tr')).data();
+                        //alert('Editar ID: ' + data[0]);
+                        Swal.fire({
+                            title: 'Editar',
+                            text: 'Editar ID: ' + data[0],
+                            icon: 'info',
+                            confirmButtonText: 'Aceptar'
+                        });
+                    });
+                    table.column(11).nodes().to$().find('#btnDesactivar').click(function () {
+                        // Maneja la acción de desactivación aquí
+                        var data = table.row($(this).parents('tr')).data();
+                        //alert('Desactivar ID: ' + data[0]);
+                        Swal.fire({
+                            title: 'Desactivar',
+                            text: 'Desactivar ID: ' + data[0],
+                            icon: 'info',
+                            confirmButtonText: 'Aceptar'
+                        });
+                    });
+
                 }
             });
         };
-       
+
 
         // Controlador de clic para el botón "Editar"
         $(".edit-user").click(function () {
@@ -486,7 +602,7 @@
                 uAddress: $("#direccion").val(),
                 uLoginName: $("#usuario").val(),
                 uPassword: $("#password").val(),
-                dtID: 1,
+                dtID: $("#tipoDocumento").val(),
                 uDocument: $("#numeroDocumento").val()
                 //genero: $("input[name='genero']:checked").val(), // Obtiene el valor del radio button seleccionado
                 //fechaNacimiento: $("#fechaNacimiento").val(),
@@ -506,10 +622,10 @@
             return;
             }*@
 
-                                                        //!userData.correo ||
+                                                                        //!userData.correo ||
 
-                                                        // Validación de la contraseña
-                            var password = userData.uPassword;
+                                                                        // Validación de la contraseña
+                                            var password = userData.uPassword;
             var passwordError = "";
 
             if (password.length < 8) {
@@ -577,12 +693,14 @@
                 },
                 willClose: () => {
                     // Aquí puedes realizar acciones adicionales después de que se cierre la ventana de carga, si es necesario.
-                    console.log('La ventana de carga se cerró después de 1 segundo');
+                    //console.log('La ventana de carga se cerró después de 1 segundo');
                 }
             });
         }
 
 
     </script>
-    
+   
+
+
         }
