@@ -31,6 +31,13 @@
     <None Include="wwwroot\assets\js\Register.js" />
     <None Include="wwwroot\assets\js\theme.js" />
     <None Include="wwwroot\assets\js\Utilities.js" />
+    <None Include="wwwroot\assets\plugins\table\datatable\button-ext\buttons.html5.min.js" />
+    <None Include="wwwroot\assets\plugins\table\datatable\button-ext\buttons.print.min.js" />
+    <None Include="wwwroot\assets\plugins\table\datatable\button-ext\dataTables.buttons.min.js" />
+    <None Include="wwwroot\assets\plugins\table\datatable\button-ext\jszip.min.js" />
+    <None Include="wwwroot\assets\plugins\table\datatable\custom_miscellaneous.js" />
+    <None Include="wwwroot\assets\plugins\table\datatable\datatables.js" />
+    <None Include="wwwroot\assets\plugins\table\datatable\dt-custom-setting.js" />
   </ItemGroup>
 
   <ItemGroup>
