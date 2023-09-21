@@ -9,11 +9,11 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = WebSmileSoft
 build_property.RootNamespace = WebSmileSoft
-build_property.ProjectDir = C:\Users\Usuario\source\repos\SmileSoft\WebSmileSoft\
+build_property.ProjectDir = C:\Users\Usuario\Source\Repos\SmileSoft\WebSmileSoft\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Usuario\source\repos\SmileSoft\WebSmileSoft
+build_property.MSBuildProjectDirectory = C:\Users\Usuario\Source\Repos\SmileSoft\WebSmileSoft
 build_property._RazorSourceGeneratorDebug = 
 
 [C:/Users/Usuario/source/repos/SmileSoft/WebSmileSoft/Views/Account/AccessDenied.cshtml]
@@ -64,12 +64,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlck1hbmFnZW1lbnRcVmlld1RhYmxlVXNlcnNUZXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/source/repos/SmileSoft/WebSmileSoft/Views/Doctor/Profile/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jdG9yXFByb2ZpbGVcRWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Usuario/source/repos/SmileSoft/WebSmileSoft/Views/Doctor/Profile/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jdG9yXFByb2ZpbGVcSW5kZXguY3NodG1s
+[C:/Users/Usuario/source/repos/SmileSoft/WebSmileSoft/Views/Doctor/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jdG9yXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Usuario/source/repos/SmileSoft/WebSmileSoft/Views/Home/Error.cshtml]
@@ -82,18 +78,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Usuario/source/repos/SmileSoft/WebSmileSoft/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Usuario/source/repos/SmileSoft/WebSmileSoft/Views/Modules/shedule.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9kdWxlc1xzaGVkdWxlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Usuario/source/repos/SmileSoft/WebSmileSoft/Views/Modules/ViewAppointments.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9kdWxlc1xWaWV3QXBwb2ludG1lbnRzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Usuario/source/repos/SmileSoft/WebSmileSoft/Views/Patient/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Usuario/source/repos/SmileSoft/WebSmileSoft/Views/Patient/Index.cshtml]
@@ -138,10 +122,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Usuario/source/repos/SmileSoft/WebSmileSoft/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Usuario/source/repos/SmileSoft/WebSmileSoft/Views/Shared/_LoginPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Usuario/source/repos/SmileSoft/WebSmileSoft/Views/Shared/_ValidationScriptsPartial.cshtml]

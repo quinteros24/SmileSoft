@@ -48,4 +48,9 @@
     <_ContentIncludedByDefault Remove="Views\Home\About.cshtml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Modules\" />
+    <Folder Include="wwwroot\assets\plugins\" />
+  </ItemGroup>
+
 </Project>

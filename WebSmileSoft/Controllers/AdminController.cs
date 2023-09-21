@@ -104,7 +104,14 @@ namespace WebSmileSoft.Controllers
             // Pasa los datos a la vista
             return View("~/Views/Admin/UserManagement/ViewTableUsers.cshtml", administradores);
         }
-        
+
+        public IActionResult TableUsersTest()
+        {
+            ViewBag.urlEndPoint = _settings.urlEndPoint;
+
+            return View("~/Views/Admin/UserManagement/ViewTableUsersTest.cshtml");
+        }
+
         //[HttpPost]
         //public async Task<CreateUpdateUsersViewModelResponse> CreateUpdateUsers([FromBody] ChangePasswordViewModelRequest Item)
         //{

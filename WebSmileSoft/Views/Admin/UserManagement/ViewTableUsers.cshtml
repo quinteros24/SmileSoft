@@ -87,6 +87,12 @@
             <tbody>
                 <!-- Los usuarios se cargarán aquí a través de AJAX -->
             </tbody>
+            @* <a class="btn btn-primary btn-sm edit-user" data-toggle="tooltip" title="Editar" data-id="@usuario.Id"><i class="far fa-edit"></i></a>
+        <a class="btn btn-danger btn-sm delete-user" data-toggle="tooltip" title="Eliminar" data-id="@usuario.Id"><i class="fas fa-trash"></i></a>
+        <a class="btn btn-warning btn-sm deactivate-user" data-toggle="tooltip" title="Inactivar" data-id="@usuario.Id"><i class="fas fa-ban"></i></a>
+            <a class="btn btn-primary btn-sm edit-user" data-toggle="modal" data-target="#editModal" data-id="@usuario.Id"><i class="far fa-edit"></i></a>
+           <a class="btn btn-danger btn-sm delete-user" data-toggle="modal" data-target="#deleteModal" data-id="@usuario.Id"><i class="fas fa-trash"></i></a>
+        <a class="btn btn-warning btn-sm deactivate-user" data-toggle="modal" data-target="#deactivateModal" data-id="@usuario.Id"><i class="fas fa-ban"></i></a>*@
         </table>
     </div>
     @*
@@ -322,7 +328,8 @@
                             // Agrega más columnas según los datos del usuario
                             '<td>' +
                             //'<a href="#" class="btn btn-primary btn-sm edit-user" data-id="' + usuario.Id + '">Editar</a>' +
-                            '<a class="btn btn-primary btn-sm edit-user" data-toggle="modal" data-target="#editModal" data-id="' + usuario.Id + '"> <i class="far fa-edit" > </i></a >'
+                            '<a class="btn btn-primary btn-sm edit-user" data-toggle="modal" data-target="#editModal" data-id="'+usuario.Id +'"> <i class="far fa-edit" > </i></a>'
+
                             // Agrega enlaces o botones similares para eliminar e inactivar usuarios
                             '</td>' +
                             '</tr>';

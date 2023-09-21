@@ -92,27 +92,30 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             // Tu código aquí
-        
-        var rememberMeCheckbox = document.getElementById("remember_me");
 
-        // Verifica si el usuario ya había seleccionado "Recordar usuario" anteriormente
-        if (localStorage.getItem("rememberUser") === "true") {
-            rememberMeCheckbox.checked = true;
-        }
+            var rememberMeCheckbox = document.getElementById("remember_me");
 
-        // Agrega un controlador de eventos para guardar el estado del checkbox cuando cambie
-        rememberMeCheckbox.addEventListener("change", function () {
-            if (rememberMeCheckbox.checked) {
-                // Si el usuario selecciona "Recordar usuario", guarda la elección en el almacenamiento local
-                localStorage.setItem("rememberUser", "true");
-            } else {
-                // Si el usuario desmarca "Recordar usuario", elimina la elección del almacenamiento local
-                localStorage.removeItem("rememberUser");
+            // Verifica si el usuario ya había seleccionado "Recordar usuario" anteriormente
+            if (localStorage.getItem("rememberUser") === "true") {
+                rememberMeCheckbox.checked = true;
             }
-        });
+
+            // Agrega un controlador de eventos para guardar el estado del checkbox cuando cambie
+            rememberMeCheckbox.addEventListener("change", function () {
+                if (rememberMeCheckbox.checked) {
+                    // Si el usuario selecciona "Recordar usuario", guarda la elección en el almacenamiento local
+                    localStorage.setItem("rememberUser", "true");
+                } else {
+                    // Si el usuario desmarca "Recordar usuario", elimina la elección del almacenamiento local
+                    localStorage.removeItem("rememberUser");
+                }
+            });
         });
     </script>
+
+    <script src="~/assets/plugins/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     
+    <!-- END GLOBAL MANDATORY SCRIPTS -->
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.min.css" asp-append-version="true">
     <!-- Font Awesome -->
