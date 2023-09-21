@@ -25,9 +25,9 @@
                                         <div class="mb-3"><input class="form-control form-control-user" type="text" id="UserLogin" aria-describedby="emailHelp" placeholder="Username" name="Username"></div>
                                         <div class="mb-3"><input class="form-control form-control-user" type="password" id="Password" placeholder="Contraseña" name="password"></div>
                                         <div class="mb-3">
-                                            @*<div class="custom-control custom-checkbox small">
+                                            <div class="custom-control custom-checkbox small">
                                                 <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="remember_me"><label class="form-check-label custom-control-label" for="remember_me">Recordarme</label></div>
-                                            </div>*@
+                                            </div>
                                         </div><button class="btn btn-primary d-block btn-user w-100" type="submit" id="loginButton" onclick="mostrarCarga(); validarInicioSesion();"><strong>Ingresar</strong></button>
                                         <hr>
 
@@ -45,7 +45,7 @@
 
                                     </form>*@
                                     @*<div class="text-center"><a class="small" asp-controller="Account" asp-action="ForgotPassword">Olvidaste la Contraseña?</a></div>*@
-                                    @*<div class="text-center"><a class="small" asp-controller="Account" asp-action="Register">Registrarse</a></div>*@
+                                    <div class="text-center"><a class="small" asp-controller="Account" asp-action="Register">Registrarse</a></div>
                                 </div>
                             </div>
                         </div>
@@ -104,6 +104,7 @@
                             sessionStorage.setItem('userID', response.itemJson.uID);
                             sessionStorage.setItem('userFName', response.itemJson.uName);
                             sessionStorage.setItem('userLName', response.itemJson.uLastName);
+
                             //alert(response.messageStatus);
                             // console.log("Inicio de sesión exitoso.");
                             // console.log("Token: " + sessionStorage.getItem('accessToken'));

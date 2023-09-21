@@ -94,25 +94,37 @@
     <link rel="stylesheet" href="~/assets/css/Nunito.css" asp-append-version="true">
     <link rel="stylesheet" href="~/assets/css/site.css" asp-append-version="true" />
     <link href="~/assets/css/loader.css" rel="stylesheet" />
-    @* <link rel="stylesheet" href="~/assets/css/responsive-blog-card-slider.css"> *@
 
     <!-- Custom fonts for this template -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" asp-append-version="true">
-    
-    
+
     <!-- Custom Icons for this template -->
     <link href="~/assets/css/footer-clean-icons.css" rel="stylesheet" />
+
     <!-- Custom Animations for this template -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" asp-append-version="true">
 
     <!-- Custom Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" asp-append-version="true"></script>
-    @*  <script src="https://cdn.jsdelivr.net/npm/chart.js@latest/dist/Chart.min.js" asp-append-version="true"></script> *@
 
+    @* <!-- Bootstrap Table CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/bootstrap-table.min.css">
+
+    <!-- Bootstrap Table JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/bootstrap-table.min.js"></script> *@
+
+    <!-- BEGIN PAGE LEVEL CUSTOM STYLES -->
+    @* <link href="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.6/af-2.6.0/b-2.4.2/b-html5-2.4.2/b-print-2.4.2/r-2.5.0/sc-2.2.0/datatables.min.css" rel="stylesheet">
+ *@
+    <link href="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.6/af-2.6.0/b-2.4.2/b-html5-2.4.2/b-print-2.4.2/kt-2.10.0/r-2.5.0/sr-1.3.0/datatables.min.css" rel="stylesheet">
+    @* <link rel="stylesheet" type="text/css" href="~/assets/plugins/table/datatable/datatables.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/plugins/table/datatable/custom_dt_html5.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/plugins/table/datatable/dt-global_style.css"> *@
+    <!-- END PAGE LEVEL CUSTOM STYLES -->
 
 </head>
 
-<body id="page-top">
+<body id="page-top contenido">
     <div id="wrapper">
         <!-- Sidebar -->
         @await Component.InvokeAsync("Sidebar")
@@ -131,22 +143,27 @@
             @*await Component.InvokeAsync("Footer")*@
         </div>
     </div> @* <a class="border rounded d-inline scroll-to-top" href="#page-top" style="display:none"><i class="fas fa-angle-up" style="display:none"></i></a> *@
+
+
     <!-- Custom Theme Script -->
     <script src="~/assets/js/theme.js" asp-append-version="true"></script>
+
     <!-- Bootstrap core JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core plugin JavaScript-->
-    <script src='https://code.jquery.com/jquery-3.7.0.min.js' asp-append-version="true"></script>
 
-    <!-- Custom scripts for all pages-->
+    <!-- Core plugin JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" asp-append-version="true"></script>
+
+    <!-- Custom scripts for all pages -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" asp-append-version="true"></script>
-<script src="~/assets/js/UserSessionControl.js" asp-append-version="true"></script>
+    <script src="~/assets/js/UserSessionControl.js" asp-append-version="true"></script>
     <script src="~/assets/js/AlertDesarrollo.js" asp-append-version="true"></script>
-<script>
+
+    <script>
         function checkTokenAndRedirect() {
             // Verifica si existe un token en sessionStorage u otras condiciones de autenticación
             const token = sessionStorage.getItem('accessToken'); // Reemplaza 'token' con el nombre real de tu token en sessionStorage
-            console.log("Validando Token"+token);
+            console.log("Validando Token: " + token);
             if (!token) {
                 // No se encontró un token, redirige al usuario a la página de inicio de sesión
                 window.location.href = '/Account/Login'; // Reemplaza con la URL correcta
@@ -161,6 +178,7 @@
 
         // Resto del contenido de tu página aquí
     </script>
+
     <script>
         function CerrarSesion() {
             console.log("Cerrando Sesión");
@@ -168,8 +186,8 @@
             sessionStorage.clear();
             window.location.href = '/Account/Login';
         }
-
     </script>
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             // Recupera el nombre y apellido del usuario desde sessionStorage
@@ -187,6 +205,68 @@
             }
         });
     </script>
-@await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+        $(document).ready(function () {
+            var userRole = sessionStorage.getItem('userRole');
+            console.log("userRole: " + userRole);
+            if (userRole == 1) {
+                $("#liAdmin").css("display", "block");
+                $("#liDoctor").css("display", "block");
+                $("#liUser").css("display", "block");
+            }
+            else if (userRole == 2) {
+                $("#liAdmin").hide();
+                $("#liDoctor").css("display", "block");
+                $("#liUser").hide();
+            }
+            else if (userRole == 3) {
+                $("#liAdmin").hide();
+                $("#liDoctor").hide();
+                $("#liUser").css("display", "block");
+            }
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            var userRole = sessionStorage.getItem('userRole');
+            console.log("userRole: " + userRole);
+            if (userRole == 1) {
+                $("#divAdmin").css("display", "block");
+                $("#divDoctor").hide();
+                $("#divUser").hide();
+            }
+            else if (userRole == 2) {
+                $("#divAdmin").hide();
+                $("#divDoctor").css("display", "block");
+                $("#divUser").hide();
+            }
+            else if (userRole == 3) {
+                $("#divAdmin").hide();
+                $("#divDoctor").hide();
+                $("#divUser").css("display", "block");
+            }
+            else if (userRole == 1 || userRole == 2 || userRole == 3) {
+                $("#contenido").css("display", "block");
+            }
+        });
+    </script>
+
+    <!-- BEGIN PAGE LEVEL CUSTOM SCRIPTS -->
+    @* <script src="~/assets/plugins/table/datatable/datatables.js"></script>
+    <!-- NOTE TO Use Copy CSV Excel PDF Print Options You Must Include These Files  -->
+    <script src="~/assets/plugins/table/datatable/button-ext/dataTables.buttons.min.js"></script>
+    <script src="~/assets/plugins/table/datatable/button-ext/jszip.min.js"></script>
+    <script src="~/assets/plugins/table/datatable/button-ext/buttons.html5.min.js"></script>
+    <script src="~/assets/plugins/table/datatable/button-ext/buttons.print.min.js"></script> *@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.6/af-2.6.0/b-2.4.2/b-html5-2.4.2/b-print-2.4.2/r-2.5.0/sc-2.2.0/datatables.min.js"></script>
+    <!-- END PAGE LEVEL CUSTOM SCRIPTS -->
+
+    @* <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script> *@
+
+    @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>
