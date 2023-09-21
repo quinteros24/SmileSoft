@@ -90,7 +90,7 @@ $(document).ready(function() {
         },
         buttons: [
             {
-                text: 'Name',
+                text: 'ID',
                 className: 'btn btn-primary btn-sm toggle-vis mb-1',
                 action: function(e, dt, node, config ) {
                     var column = table.column( 0 );
@@ -98,7 +98,7 @@ $(document).ready(function() {
                 }
             },
             {
-                text: 'Position',
+                text: 'Rol',
                 className: 'btn btn-primary btn-sm toggle-vis mb-1',
                 action: function(e, dt, node, config ) {
                     var column = table.column( 1 );
@@ -106,7 +106,7 @@ $(document).ready(function() {
                 }
             },
             {
-                text: 'Office',
+                text: 'Nombre',
                 className: 'btn btn-primary btn-sm toggle-vis mb-1',
                 action: function(e, dt, node, config ) {
                     var column = table.column( 2 );
@@ -114,7 +114,7 @@ $(document).ready(function() {
                 }
             },
             {
-                text: 'Age',
+                text: 'Apellido',
                 className: 'btn btn-primary btn-sm toggle-vis mb-1',
                 action: function(e, dt, node, config ) {
                     var column = table.column( 3 );
@@ -122,7 +122,7 @@ $(document).ready(function() {
                 }
             },
             {
-                text: 'Start date',
+                text: 'Documento',
                 className: 'btn btn-primary btn-sm toggle-vis mb-1',
                 action: function(e, dt, node, config ) {
                     var column = table.column( 4 );
@@ -130,17 +130,25 @@ $(document).ready(function() {
                 }
             },
             {
-                text: 'Salary',
+                text: 'Ultimo Ingreso',
                 className: 'btn btn-primary btn-sm toggle-vis mb-1',
                 action: function(e, dt, node, config ) {
                     var column = table.column( 5 );
                     column.visible( ! column.visible() );
                 }
             },
+            {
+                text: 'Estado',
+                className: 'btn btn-primary btn-sm toggle-vis mb-1',
+                action: function (e, dt, node, config) {
+                    var column = table.column(6);
+                    column.visible(!column.visible());
+                }
+            },
         ],
         "stripeClasses": [],
-        "lengthMenu": [7, 10, 20, 50],
-        "pageLength": 7
+        "lengthMenu": [5, 10, 20, 50],
+        "pageLength": 5
     } );
 
 } );

@@ -4,14 +4,12 @@ var DTcustomsetting = {
           "previous": "<i class='flaticon-left-arrow-1'></i>",
           "next": "<i class='flaticon-right-arrow-1'></i>"
         },
-        "info": "Showing page _PAGE_ of _PAGES_"
+        "info": "Mostrando la pagina _PAGE_ of _PAGES_"
     },
 
 
 
 };
-
-
 
 var DTcustomsetting = {
     languagePagination: {
@@ -19,7 +17,7 @@ var DTcustomsetting = {
           "previous": "<i class='flaticon-left-arrow-1'></i>",
           "next": "<i class='flaticon-right-arrow-1'></i>"
         },
-        "info": "Showing page _PAGE_ of _PAGES_"
+        "info": "Mostrando la pagina _PAGE_ of _PAGES_"
     },
 
     languagePaginate: {
@@ -28,7 +26,7 @@ var DTcustomsetting = {
     }
 
     languageInfo: {
-    	"Showing page _PAGE_ of _PAGES_"
+    	"Mostrando la pagina _PAGE_ of _PAGES_"
     }
 
     
