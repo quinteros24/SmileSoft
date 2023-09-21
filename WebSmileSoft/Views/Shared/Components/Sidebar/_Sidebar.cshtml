@@ -12,52 +12,101 @@
             </a>
             <hr class="sidebar-divider my-0">
             <ul class="navbar-nav text-light text-center" id="accordionSidebar">
+            <!-- Elementos de menú -->
+                <li class="nav-item no-arrow dropend">
+                    <!-- ... Contenido del menú de administrador ... -->
+                    <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in no-arrow">
+                        <a class="dropdown-item" asp-action="TableUsers" asp-controller="Admin">
+                            <i class="fas fa-user"></i>
+                            Usuarios
+                        </a> <a class="dropdown-item" asp-action="TableDoctor" asp-controller="Admin">
+                            <i class="fas fa-plus-square"></i>
+                            Doctores
+                        </a><a class="dropdown-item" asp-action="TableAdmin" asp-controller="Admin">
+                            <i class="far fa-user-circle"></i>
+                            Administradores
+                        </a>
+                    </div>
+                   
+                </li>
+                <li class="nav-item no-arrow dropend" id="liAdmin">
+                    <!-- ... Contenido del menú de administrador ... -->
+                    <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in no-arrow">
+                        <a class="dropdown-item" asp-action="TableUsers" asp-controller="Admin">
+                            <i class="fas fa-user"></i>
+                            Usuarios
+                        </a> <a class="dropdown-item" asp-action="TableDoctor" asp-controller="Admin">
+                            <i class="fas fa-plus-square"></i>
+                            Doctores
+                        </a><a class="dropdown-item" asp-action="TableAdmin" asp-controller="Admin">
+                            <i class="far fa-user-circle"></i>
+                            Administradores
+                        </a>
+                    </div>
+                    <a class="nav-link" asp-controller="Admin" asp-action="TableUsersTest">
+                        <i class="bi bi-person-lines-fill"></i>
+
+                        <span class="ms-2">Administrar Usuarios Test</span>
+                    </a>
+                </li>
+               
+                    <!-- ... Contenido del menú de doctor ... -->
+                <li class="nav-item" id="liDoctor">
+
+                    <a class="nav-link" asp-controller="Admin" asp-action="UserManagement">
+                        <i class="fas fa-table "></i><span class="ms-2">Menu Doctor</span>
+                    </a>
+
+                </li>
+                <li class="nav-item" id="liUser">
+                    <!-- ... Contenido del menú de usuario ... --> 
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-table "></i><span class="ms-2">Menu Usuario</span>
+                    </a>
+                </li>
+
+
+
+
                 @*<li class="nav-item">
             <a class="nav-link" asp-controller="Admin" asp-action="Index">
             <i class="fas fa-tachometer-alt "></i><span class="ms-2">Dashboard</span>
             </a>
             </li>*@
                 <!-- Otros elementos de menú -->
-
-               
                 @*<li class="nav-item">
-                    <a class="nav-link" asp-controller="Admin" asp-action="UserManagement">
-                        <i class="fas fa-table "></i><span class="ms-2">Administrar Usuarios</span>
-                    </a>
-
-                </li>*@
-                <li class="nav-item no-arrow dropend">
-                        <a class="dropdown-toggle nav-link no-arrow"
-                       aria-expanded="false" data-bs-toggle="dropdown" asp-controller="Admin" asp-action="UserManagement">
-                            <i class="fas fa-table "></i><span class="ms-2">Administrar Usuarios</span>
-                        </a>
-                        <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in no-arrow">
-                            <a class="dropdown-item" asp-action="TableUsers" asp-controller="Admin">
-                                <i class="fas fa-user"></i>
-                                Usuarios
-                            </a> @*<a class="dropdown-item" asp-action="TableDoctor" asp-controller="Admin">
-                            <i class="fas fa-plus-square"></i>
-                                Doctores
-                            </a><a class="dropdown-item" asp-action="TableAdmin" asp-controller="Admin">
-                            <i class="far fa-user-circle"></i>
-                                Administradores
-                            </a>*@
-
-                        
-                    </div>
-            </li>
-                @*<li class="nav-item">
-                    <a class="nav-link" asp-controller="Admin" asp-action="SiteManagement">
-                        <i class="fas fa-tools "></i><span class="ms-2">Administrar Sitio</span>
-                    </a>
-                </li>*@
-
-                @*<li class="nav-item">
-            <a class="nav-link" asp-controller="Admin" asp-action="TableUsersTest">
-            <i class="fas fa-table "></i><span class="ms-2">Administrar Usuarios Test</span>
+            <a class="nav-link" asp-controller="Admin" asp-action="UserManagement">
+            <i class="fas fa-table "></i><span class="ms-2">Administrar Usuarios</span>
             </a>
 
             </li>*@
+                @*<li class="nav-item no-arrow dropend">
+            <a class="dropdown-toggle nav-link no-arrow"
+            aria-expanded="false" data-bs-toggle="dropdown" asp-controller="Admin" asp-action="UserManagement">
+            <i class="fas fa-table "></i><span class="ms-2">Administrar Usuarios</span>
+            </a>
+            <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in no-arrow">
+            <a class="dropdown-item" asp-action="TableUsers" asp-controller="Admin">
+            <i class="fas fa-user"></i>
+            Usuarios
+            </a> <a class="dropdown-item" asp-action="TableDoctor" asp-controller="Admin">
+            <i class="fas fa-plus-square"></i>
+            Doctores
+            </a><a class="dropdown-item" asp-action="TableAdmin" asp-controller="Admin">
+            <i class="far fa-user-circle"></i>
+            Administradores
+            </a>
+
+
+            </div>
+            </li>*@
+                <li class="nav-item">
+            <a class="nav-link" asp-controller="Admin" asp-action="SiteManagement">
+            <i class="fas fa-tools "></i><span class="ms-2">Administrar Sitio</span>
+            </a>
+            </li>
+
+
 
                 <li class="nav-item">
                     <a class="nav-link" onclick="CerrarSesion()" style="user-select: none;">
@@ -66,13 +115,14 @@
                 </li>
             </ul>
         </div>
-        
+
     </nav>
 
 
 }
 @section scripts {
     <!-- Scripts específicos para esta vista parcial -->
+    <!-- Script para ocultar opciones de la barra por tipo de usuario -->
     
-    
+
 }

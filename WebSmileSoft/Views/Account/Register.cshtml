@@ -1,18 +1,14 @@
 ﻿@{
     ViewData["Title"] = "Registrarte";
 }
-<head>
-    <title>Register</title>
-    <link rel="icon" href="~/img/logo-nav.png" asp-append-version="true">
-</head>
-
+@{
     <section class="container flex-grow-1">
         <div class="d-flex justify-content-center align-items-center vh-100">
             <div class="shadow p-5 ">
                 <div class="d-flex flex-column align-items-center mb-4">
                     <img src="~/assets/img/logo-2.png" class="img-fluid w-25" alt="SmileSoftLogo">
                 </div>
-                <form class="row" action="" method="">
+                <form class="row">
                     <div class="col-md-6 mb-3">
                     <label class="visually-hidden" for="userFirstNameRegister">Nombres</label>
                         <div class="input-group">
@@ -124,14 +120,17 @@
                 </form>
                 <hr>
                 <div class="text-center"><a class="small" href="@Url.Action("Login","Account")">Ya tienes Cuenta? Inicia Sesión!</a></div>
+                <div class="form-check" style="display:none"><input class="form-check-input custom-control-input" type="checkbox" id="remember_me"><label class="form-check-label custom-control-label" for="remember_me">Recordarme</label></div>
+
             </div>
         </div>
     </section>
-    
+}
 
 
 @section Scripts {
     <script>
+
         function registrarUsuario() {
             debugger;
             console.log("Script Registrar Usuario");
@@ -184,13 +183,31 @@
                 success: function (response) {
                     if (response.OutputCodeError === '0') {
                         // Registro exitoso, puedes redirigir al usuario o mostrar un mensaje de éxito
-                        alert('Usuario registrado con éxito.');
+                        //alert('Usuario registrado con éxito.');
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Usuario Registrado',
+                            text: 'Usuario registrado con éxito.',
+                            confirmButtonColor: '#008dc9'
+                        })
                     } else if (response.OutputCodeError === '-1') {
                         // El usuario ya existe en la base de datos
-                        alert('Este usuario ya existe en la base de datos.');
+                        //alert('Este usuario ya existe en la base de datos.');
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Este usuario ya existe en la base de datos.',
+                            confirmButtonColor: '#008dc9'
+                        })
                     } else {
                         // Manejar otros códigos de error si es necesario
                         alert('Error: ' + response.OutputMessageError);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Error: ' + response.OutputMessageError,
+                            confirmButtonColor: '#008dc9'
+                        })
                     }
                 },
                 error: function (error) {
@@ -218,6 +235,6 @@
     });
 </script> *@
 
-<script src="~/assets/js/bs-init.js" asp-append-version="true"></script>
+    @*<script src="~/assets/js/bs-init.js" asp-append-version="true"></script>*@
 @* <script src="~/assets/js/Register.js" asp-append-version="true"></script> *@
 }
