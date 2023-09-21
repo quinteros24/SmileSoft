@@ -9,8 +9,9 @@
     "\\WebSmileSoft\\wwwroot\\assets",
     "\\WebSmileSoft\\wwwroot\\assets\\bootstrap",
     "\\WebSmileSoft\\wwwroot\\assets\\bootstrap\\css",
+    "\\WebSmileSoft\\wwwroot\\assets\\css",
     "\\WebSmileSoft\\wwwroot\\assets\\js"
   ],
-  "SelectedNode": "\\WebSmileSoft\\Views\\Admin\\UserManagement\\ViewTableUsersTest.cshtml",
+  "SelectedNode": "\\WebSmileSoft\\wwwroot\\assets\\css\\site.css",
   "PreviewInSolutionExplorer": false
 }
