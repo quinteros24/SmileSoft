@@ -388,7 +388,8 @@
                     console.log("Respuesta del Servidor " + data);
                     // Procesar los datos recibidos y agregar filas a la tabla
                     var dataSet = [];
-
+                    let users = data.itemJson;
+                    console.table(users);
                     $.each(data.itemJson, function (index, usuario) {
                         var rowData = [
                             usuario.uID,
