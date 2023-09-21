@@ -1,77 +1,67 @@
-﻿
-@{
-ViewData["Title"] = "User Management";
+﻿@{
+    ViewData["Title"] = "User Management";
     <link rel="stylesheet" href="~/assets/css/Responsive-UI-Card.css">
 }
 
 
 @{
-    <nav aria-label="breadcrumb" class="main-breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Inicio</a></li>
-            <li class="breadcrumb-item">Administrar usuarios</li>
-            <li class="breadcrumb-item active" aria-current="page">
-                Escoge una opción
-            </li>
-        </ol>
-    </nav>
-    <div class="row blog-card blog-card-blog align-content-center">
-        <div class=" col-md-8 col-xl-6 text-center mx-auto text-primary mt-1">
-            <h2 >Administración de Usuarios</h2>
+    <div class="row">
+
+        <div class="row mb-1">
+            <div class="blog-card blog-card-blog d-flex align-items-center justify-content-center">
+                <h2 class="text-primary mt-2">Administración de Usuarios</h2>
+            </div>
         </div>
-    </div>
-    // <h3>Administración de Usuarios </h3>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="blog-card blog-card-blog">
-                    <a asp-action="TableUsers" asp-controller="Admin">
+        <div class="col-md-4">
+            <div class="blog-card blog-card-blog">
+                <a asp-action="TableUsers" asp-controller="Admin">
                     <div class="blog-card-image">
-                       <img class="img" src="~/assets/img/profiles/user-p.png"> 
-                        <div class="ripple-cont"></div>
-                        </div>
-                    </a>
-                    <div class="blog-table">
-                        <h4 class="blog-category blog-text-success"><i class="far fa-user"></i> Usuarios</h4>
-                        
-                    </div>
-                </div>
-            </div>
 
+                        <img class="rounded img-fluid img-hover" data-bss-hover-animate="pulse" src="~/assets/img/profiles/user-p.png" alt="User Profile img">
 
-            <div class="col-md-4">
-                <div class="blog-card blog-card-blog">
-                    <a asp-action="TableDoctor" asp-controller="Admin">
-                    <div class="blog-card-image">
-                         <img class="img" src="~/assets/img/profiles/doctor.png" /> 
-                        <div class="ripple-cont"></div>
-                        </div>
-                    </a>
-                    <div class="blog-table">
-                        <h4 class="blog-category blog-text-success"><i class="fas fa-plus-square"></i> Doctores</h4>
-                        
                     </div>
-                </div>
-            </div>
+                </a>
+                <div class="blog-table d-flex justify-content-center">
+                    <h3 class="blog-category blog-text-success ">Usuarios</h3>
 
-            <div class="col-md-4">
-                <div class="blog-card blog-card-blog">
-                    <a asp-action="TableAdmin" asp-controller="Admin">
-                    <div class="blog-card-image">
-                        <img class="img" src="~/assets/img/profiles/admin-p.png"> 
-                        <div class="ripple-cont"></div>
-                        </div>
-                    </a>
-                    <div class="blog-table">
-                        <h4 class="blog-category blog-text-success"><i class="far fa-user-circle"></i> Administradores</h4>
-                        
-                    </div>
                 </div>
             </div>
         </div>
+        <div class="col-md-4">
+            <div class="blog-card blog-card-blog">
+                <a asp-action="TableUsers" asp-controller="Admin">
+                    <div class="blog-card-image">
+
+                        <img class="rounded img-fluid img-hover" data-bss-hover-animate="pulse" src="~/assets/img/profiles/doctor.png" alt="Dentist Profile img">
+
+                    </div>
+                </a>
+                <div class="blog-table d-flex justify-content-center">
+                    <h3 class="blog-category blog-text-success"> Doctores</h3>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="blog-card blog-card-blog">
+                <a asp-action="TableUsers" asp-controller="Admin">
+                    <div class="blog-card-image">
+
+                        <img class="rounded img-fluid img-hover" data-bss-hover-animate="pulse" src="~/assets/img/profiles/admin-p.png" alt="Admin Profile img">
+
+                    </div>
+                </a>
+                <div class="blog-table d-flex justify-content-center">
+                    <h3 class="blog-category blog-text-success">Administradores</h3>
+
+                </div>
+            </div>
+        </div>
+
     </div>
+
 }
 
-                @section Scripts{
-@*     <script src="assets/js/bs-init.js"></script> *@
+@section Scripts{
+    @*     <script src="assets/js/bs-init.js"></script> *@
                 }

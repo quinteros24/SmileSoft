@@ -63,7 +63,7 @@
     //                 $(".add-new").removeAttr("disabled");
     //             });
     //         });
-    // </script>
+            // </script>
 }
 
 
@@ -79,42 +79,43 @@
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Rol</th>
-                    <th>Edad</th>
-                    <th>Tipo de Documento</th>
-                    <th>Documento</th>
-                    <th>Número de Celular</th>
-                    <th>Correo Electrónico</th>
+                    <!-- Agrega aquí más encabezados según sea necesario -->
                     <th>Acciones</th>
                 </tr>
             </thead>
 
             <tbody>
-            <tbody>
-                    @foreach (var usuario in Model)
-                    {
-                    <tr>
-                        <td>@usuario.Nombre</td>
-                        <td>@usuario.Apellido</td>
-                        <td>@usuario.Rol</td>
-                        <td>@usuario.Edad</td>
-                        <td>@usuario.TipoDocumento</td>
-                        <td>@usuario.Documento</td>
-                        <td>@usuario.NumeroCelular</td>
-                        <td>@usuario.CorreoElectronico</td>
-                        <td>
-                                @* <a class="btn btn-primary btn-sm edit-user" data-toggle="tooltip" title="Editar" data-id="@usuario.Id"><i class="far fa-edit"></i></a>
-                    <a class="btn btn-danger btn-sm delete-user" data-toggle="tooltip" title="Eliminar" data-id="@usuario.Id"><i class="fas fa-trash"></i></a>
-                    <a class="btn btn-warning btn-sm deactivate-user" data-toggle="tooltip" title="Inactivar" data-id="@usuario.Id"><i class="fas fa-ban"></i></a>*@
-                            <a class="btn btn-primary btn-sm edit-user" data-toggle="modal" data-target="#editModal" data-id="@usuario.Id"><i class="far fa-edit"></i></a>
-                            <a class="btn btn-danger btn-sm delete-user" data-toggle="modal" data-target="#deleteModal" data-id="@usuario.Id"><i class="fas fa-trash"></i></a>
-                            <a class="btn btn-warning btn-sm deactivate-user" data-toggle="modal" data-target="#deactivateModal" data-id="@usuario.Id"><i class="fas fa-ban"></i></a>
-                        </td>
-                    </tr>
-                    }
+                <!-- Los usuarios se cargarán aquí a través de AJAX -->
             </tbody>
+            @* <a class="btn btn-primary btn-sm edit-user" data-toggle="tooltip" title="Editar" data-id="@usuario.Id"><i class="far fa-edit"></i></a>
+        <a class="btn btn-danger btn-sm delete-user" data-toggle="tooltip" title="Eliminar" data-id="@usuario.Id"><i class="fas fa-trash"></i></a>
+        <a class="btn btn-warning btn-sm deactivate-user" data-toggle="tooltip" title="Inactivar" data-id="@usuario.Id"><i class="fas fa-ban"></i></a>
+            <a class="btn btn-primary btn-sm edit-user" data-toggle="modal" data-target="#editModal" data-id="@usuario.Id"><i class="far fa-edit"></i></a>
+           <a class="btn btn-danger btn-sm delete-user" data-toggle="modal" data-target="#deleteModal" data-id="@usuario.Id"><i class="fas fa-trash"></i></a>
+        <a class="btn btn-warning btn-sm deactivate-user" data-toggle="modal" data-target="#deactivateModal" data-id="@usuario.Id"><i class="fas fa-ban"></i></a>*@
         </table>
     </div>
-   
+    @*
+    <!-- Paginación -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Anterior">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <!-- Agrega más páginas aquí según sea necesario -->
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Siguiente">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    *@
 
     <!-- Modal de Edición -->
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -139,14 +140,15 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     <button type="button" class="btn btn-primary" id="saveChanges">Guardar Cambios</button>
                 </div>
             </div>
         </div>
     </div>
 
-
+    @*
     <!-- Modal de Eliminación -->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -169,7 +171,7 @@
             </div>
         </div>
     </div>
-
+    *@
 
     <!-- Modal de Inactivación -->
     <div class="modal fade" id="deactivateModal" tabindex="-1" role="dialog" aria-labelledby="deactivateModalLabel" aria-hidden="true">
@@ -177,7 +179,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="deactivateModalLabel">Inactivar Usuario</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Cerrar">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -187,7 +189,7 @@
                     <p><strong>Rol:</strong> <span id="deactivate-userrole"></span></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     <button type="button" class="btn btn-warning" id="confirm-deactivate">Inactivar</button>
                 </div>
             </div>
@@ -200,31 +202,96 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="addUserModalLabel">Agregar Usuario</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+
                 </div>
                 <div class="modal-body">
                     <form id="add-user-form">
                         <!-- Campos del formulario -->
                         <div class="form-group">
-                            <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                            <label for="tipoUsuario">* Tipo de Usuario:</label>
+                            <select class="form-control" id="tipoUsuario" name="tipoUsuario" required>
+                                <option value="Odontologo">Odontólogo</option>
+                                <option value="Paciente">Paciente</option>
+                                <option value="Administrador">Administrador</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="rol">Rol</label>
-                            <input type="text" class="form-control" id="rol" name="rol" required>
+                            <label for="nombres">* Nombres:</label>
+                            <input type="text" class="form-control" id="nombres" name="nombres" required>
                         </div>
+                        <div class="form-group">
+                            <label for="apellidos">* Apellidos:</label>
+                            <input type="text" class="form-control" id="apellidos" name="apellidos" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="celular">Número de Celular:</label>
+                            <input type="text" class="form-control" id="celular" name="celular" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="correo">* Correo Electrónico:</label>
+                            <input type="email" class="form-control" id="correo" name="correo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="direccion">Dirección:</label>
+                            <input type="text" class="form-control" id="direccion" name="direccion" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tipoDocumento">* Tipo de Documento:</label>
+                            <select class="form-control" id="tipoDocumento" name="tipoDocumento" required>
+                                <option value="cc">Cedula de Ciudadania (CC)</option>
+                                <option value="ce">Cedula de Extranjeria (CE)</option>
+                                <option value="ti">Tarjeta de Identidad (TI)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="numeroDocumento">* Número de Documento:</label>
+                            <input type="text" class="form-control" id="numeroDocumento" name="numeroDocumento" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="usuario">* Usuario:</label>
+                            <input type="text" class="form-control" id="usuario" name="usuario" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">* Contraseña:</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="genero">Género:</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="genero" id="masculino" value="Masculino" required>
+                                <label class="form-check-label" for="masculino">Masculino</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="genero" id="femenino" value="Femenino" required>
+                                <label class="form-check-label" for="femenino">Femenino</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+                            <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" required>
+                        </div>
+                        @*
+                        <div class="form-group">
+                            <label for="especialidad">Especialidad:</label>
+                            <input type="text" class="form-control" id="especialidad" name="especialidad">
+                        </div>
+                        *@
                         <!-- Agrega los campos restantes aquí -->
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     <button type="button" class="btn btn-primary" id="add-user">Agregar</button>
                 </div>
             </div>
         </div>
     </div>
+    @*
+    <div class="form-group">
+        <label for="universidad">Universidad:</label>
+        <input type="text" class="form-control" id="universidad" name="universidad">
+    </div>
+    *@
 
 
 
@@ -233,174 +300,231 @@
 @section Scripts {
 
     <script>
-        //     // Espera a que el documento esté listo
-        //     $(document).ready(function () {
-        //         // Controlador de clic para el botón "Editar"
-        //         $(".edit-user").click(function () {
-        //             // Obtiene el valor de data-id
-        //             var userId = $(this).data("id");
-
-        //             // Realiza alguna acción, como redireccionar a la página de edición del usuario
-        //             window.location.href = "/Admin/UserManagement/Editar/" + userId;
-        //         });
-
-        //         // Controlador de clic para el botón "Eliminar"
-        //         $(".delete-user").click(function () {
-        //             // Obtiene el valor de data-id
-        //             var userId = $(this).data("id");
-
-        //             // Puedes mostrar un cuadro de diálogo de confirmación aquí
-        //             var confirmDelete = confirm("¿Estás seguro de que deseas eliminar este usuario?");
-
-        //             // Si el usuario confirma la eliminación
-        //             if (confirmDelete) {
-        //                 // Realiza una solicitud AJAX para eliminar el usuario en el servidor
-        //                 $.ajax({
-        //                     url: "/Admin/UserManagement/Eliminar/" + userId,
-        //                     type: "POST",
-        //                     success: function (result) {
-        //                         // Actualiza la vista o realiza alguna otra acción
-        //                         alert("Usuario eliminado correctamente");
-        //                     },
-        //                     error: function () {
-        //                         alert("Error al eliminar el usuario");
-        //                     }
-        //                 });
-        //             }
-        //         });
-
-        //         // Controlador de clic para el botón "Inactivar"
-        //         $(".deactivate-user").click(function () {
-        //             // Obtiene el valor de data-id
-        //             var userId = $(this).data("id");
-
-        //             // Realiza una solicitud AJAX para inactivar el usuario en el servidor
-        //             $.ajax({
-        //                 url: "/Admin/UserManagement/Inactivar/" + userId,
-        //                 type: "POST",
-        //                 success: function (result) {
-        //                     // Actualiza la vista o realiza alguna otra acción
-        //                     alert("Usuario inactivado correctamente");
-        //                 },
-        //                 error: function () {
-        //                     alert("Error al inactivar el usuario");
-        //                 }
-        //             });
-        //         });
-        //     });
-
 
         $(document).ready(function () {
+
+            //
+            // Realizar solicitud AJAX para obtener la lista de usuarios
+            var utID = 3;
+            console.log('@ViewBag.urlEndPoint')
+            $.ajax({
+                url: 'https://ep-smilesoft-develop.azurewebsites.net' + '/api/Users/v1/ViewUsers',
+                type: 'GET',
+                data: {'utID':utID},
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    // Procesar los datos recibidos y agregar filas a la tabla
+                    var tbody = $('#dataTable');
+                    tbody.empty(); // Limpia cualquier contenido existente en la tabla
+
+                    $.each(data.itemJson, function (index, usuario) {
+                        // Agregar una fila a la tabla para cada usuario
+                        var row = '<tr>' +
+                            '<td>' + usuario.uName + '</td>' +
+                            '<td>' + usuario.uLastName + '</td>' +
+                            '<td>' + usuario.utID + '</td>' +
+                            // Agrega más columnas según los datos del usuario
+                            '<td>' +
+                            //'<a href="#" class="btn btn-primary btn-sm edit-user" data-id="' + usuario.Id + '">Editar</a>' +
+                            '<a class="btn btn-primary btn-sm edit-user" data-toggle="modal" data-target="#editModal" data-id="'+usuario.Id +'"> <i class="far fa-edit" > </i></a>'
+
+                            // Agrega enlaces o botones similares para eliminar e inactivar usuarios
+                            '</td>' +
+                            '</tr>';
+
+                        tbody.append(row);
+                    });
+                },
+                error: function (error) {
+                    console.log('Error al obtener la lista de usuarios.');
+                }
+            });
+
+
             // Controlador de clic para el botón "Editar"
             $(".edit-user").click(function () {
                 // Obtiene el valor de data-id
                 var userId = $(this).data("id");
                 console.log(userId);
 
-                // Realiza alguna acción, como redireccionar a la página de edición del usuario
-                // window.location.href = "/Admin/UserManagement/Editar/" + userId;
+                // Realiza una solicitud AJAX para obtener los datos del usuario desde el servidor
+                $.ajax({
+                    url: "'https://ep-smilesoft-develop.azurewebsites.net' + '/api/Users/v1/CreateUpdateUsers'" + userId, // Reemplaza con la URL correcta para obtener los datos del usuario
+                    type: "POST",
+                    success: function (userData) {
+                        // Llena los campos del formulario de edición con los datos del usuario
+                        $("#nombres").val(userData.nombres);
+                        $("#apellidos").val(userData.apellidos);
+                        $("#celular").val(userData.celular);
+                        $("#correo").val(userData.correo);
+                        $("#direccion").val(userData.direccion);
+                        $("#tipoDocumento").val(userData.tipoDocumento);
+                        $("#usuario").val(userData.usuario);
+                        $("input[name='genero'][value='" + userData.genero + "']").prop("checked", true);
+                        $("#fechaNacimiento").val(userData.fechaNacimiento);
 
-                // Aquí deberías cargar los datos del usuario en el modal
-                // Por ejemplo, si tienes un objeto JavaScript con los datos del usuario, puedes hacer lo siguiente:
-                var userData = {
-                    Nombre: "Nombre del Usuario",
-                    Rol: "Rol del Usuario",
-                    // Agrega más propiedades según sea necesario
-                };
-
-                // Llena los campos del modal con los datos del usuario
-                $("#editNombre").val(userData.Nombre);
-                $("#editRol").val(userData.Rol);
-
-                // Abre el modal de edición
-                $("#editModal").modal("show");
+                        // Abre el modal de edición
+                        $("#editModal").modal("show");
+                    },
+                    error: function () {
+                        alert("Error al obtener los datos del usuario");
+                    }
+                });
             });
-            //Este código se ejecutará cuando se hace clic en el botón "Editar".Debes ajustar la lógica para cargar los datos del usuario desde tu sistema y llenar los campos del modal con esos datos.
-
-
-
-
+        @*
             // Controlador de clic para el botón "Eliminar"
             $(".delete-user").click(function () {
-                // Obtén los detalles del usuario desde los atributos de datos
-                var userId = $(this).data("id");
-                var username = $(this).data("username");
-                var userrole = $(this).data("userrole");
+            // Obtén los detalles del usuario desde los atributos de datos
+            var userId = $(this).data("id");
+            var username = $(this).data("username");
+            var userrole = $(this).data("userrole");
 
-                // Llena los campos del modal de eliminación
-                $("#delete-username").text(username);
-                $("#delete-userrole").text(userrole);
+            // Llena los campos del modal de eliminación
+            $("#delete-username").text(username);
+            $("#delete-userrole").text(userrole);
 
-                // Abre el modal de eliminación
-                $("#deleteModal").modal("show");
+            // Abre el modal de eliminación
+            $("#deleteModal").modal("show");
             });
 
             // Controlador de clic para el botón "Confirmar Eliminación"
             $("#confirm-delete").click(function () {
-                // Aquí puedes realizar la eliminación del usuario, por ejemplo, a través de una solicitud AJAX
-                var userId = $(this).data("id");
+            // Aquí puedes realizar la eliminación del usuario, por ejemplo, a través de una solicitud AJAX
+            var userId = $(this).data("id");
 
-                // Cierra el modal de eliminación
-                $("#deleteModal").modal("hide");
+            // Cierra el modal de eliminación
+            $("#deleteModal").modal("hide");
             });
+            *@
+                $(".deactivate-user").click(function () {
+                    // Obtén los detalles del usuario desde los atributos de datos
+                    var userId = $(this).data("id");
+                    var username = $(this).data("username");
+                    var userrole = $(this).data("userrole");
 
-            $(".deactivate-user").click(function () {
-                // Obtén los detalles del usuario desde los atributos de datos
-                var userId = $(this).data("id");
-                var username = $(this).data("username");
-                var userrole = $(this).data("userrole");
+                    // Llena los campos del modal de inactivación
+                    $("#deactivate-username").text(username);
+                    $("#deactivate-userrole").text(userrole);
 
-                // Llena los campos del modal de inactivación
-                $("#deactivate-username").text(username);
-                $("#deactivate-userrole").text(userrole);
-
-                // Abre el modal de inactivación
-                $("#deactivateModal").modal("show");
-            });
+                    // Abre el modal de inactivación
+                    $("#deactivateModal").modal("show");
+                });
 
             // Controlador de clic para el botón "Confirmar Inactivación"
             $("#confirm-deactivate").click(function () {
-                // Aquí puedes realizar la inactivación del usuario, por ejemplo, a través de una solicitud AJAX
                 var userId = $(this).data("id");
-
-                // Cierra el modal de inactivación
-                $("#deactivateModal").modal("hide");
-            });
-
-            $(".add-user-btn").click(function () {
-                // Abre el modal de agregar usuario
-                $("#addUserModal").modal("show");
-            });
-
-            // Controlador de clic para el botón "Agregar"
-            $("#add-user").click(function () {
-                // Obtiene los datos del formulario
-                var userData = {
-                    nombre: $("#nombre").val(),
-                    rol: $("#rol").val(),
-                    // Agrega los demás campos del formulario aquí
-                };
-
-                // Realiza una solicitud AJAX para agregar el usuario en el servidor
                 $.ajax({
-                    url: "/Admin/UserManagement/Agregar", // Ruta para agregar el usuario
-                    type: "POST",
-                    data: userData,
-                    success: function (result) {
-                        // Actualiza la vista o realiza alguna otra acción
-                        alert("Usuario agregado correctamente");
-                        // Cierra el modal de agregar usuario
-                        $("#addUserModal").modal("hide");
+                    url: 'https://ep-smilesoft-develop.azurewebsites.net' + '/api/Users/v1/CreateUpdateUsers' + userId, // Reemplaza la URL con la correcta
+                    type: 'POST', // O el método HTTP correcto para tu aplicación
+                    success: function (data) {
+                        // Cierra el modal de deshabilitación
+                        $("#deactivateModal").modal("hide");
                     },
                     error: function () {
-                        alert("Error al agregar el usuario");
+                        alert("Error al deshabilitar el usuario");
                     }
                 });
             });
 
+                $(".add-user-btn").click(function () {
+                    // Abre el modal de agregar usuario
+                    $("#addUserModal").modal("show");
 
-        });
+
+                });
+
+
+
+
+                // Función para permitir solo números en un campo de entrada
+                function allowNumbersOnly(inputField) {
+                    inputField.value = inputField.value.replace(/[^0-9]/g, '');
+                }
+
+                // Aplica la función a los campos de celular y número de documento
+                $("#celular").on("input", function () {
+                    allowNumbersOnly(this);
+                });
+
+                $("#numeroDocumento").on("input", function () {
+                    allowNumbersOnly(this);
+                });
+
+                // Controlador de clic para el botón "Agregar"
+                $("#add-user").click(function () {
+                    // Obtiene los datos del formulario
+                
+                    var userData = {
+                        utID: 3,
+                        uName: $("#nombres").val(),
+                        uLastName: $("#apellidos").val(),
+                        uCellphone: $("#celular").val(),
+                        uEmailAddress: $("#correo").val(),
+                        uAddress: $("#direccion").val(),
+                        uLoginName: $("#usuario").val(),
+                        uPassword: $("#password").val(),
+                        dtID: 1,
+                        uDocument: $("#numeroDocumento").val()
+                        //genero: $("input[name='genero']:checked").val(), // Obtiene el valor del radio button seleccionado
+                        //fechaNacimiento: $("#fechaNacimiento").val(),
+                        
+                    };
+
+                    //Validar campos obligatorios
+                    @*
+                if (!userData.nombres || !userData.apellidos || !userData.tipoDocumento || !userData.numeroDocumento || !userData.usuario || !userData.password || !userData.tipoUsuario) {
+                        alert("Por favor, complete todos los campos obligatorios.");
+                        return;
+                    }
+                    *@
+                //!userData.correo ||
+
+                // Validación de la contraseña
+                    var password = userData.uPassword;
+                    var passwordError = "";
+
+                    if (password.length < 8) {
+                        passwordError = "La contraseña debe tener al menos 8 caracteres.";
+                    } else if (!/[A-Z]/.test(password)) {
+                        passwordError = "La contraseña debe contener al menos una letra mayúscula.";
+                    } else if (!/[a-z]/.test(password)) {
+                        passwordError = "La contraseña debe contener al menos una letra minúscula.";
+                    } else if (!/\d/.test(password)) {
+                        passwordError = "La contraseña debe contener al menos un número.";
+                    }
+
+                    // Muestra el mensaje de error si es necesario
+                    if (passwordError) {
+                        alert(passwordError);
+                        return; // Detiene la ejecución si la contraseña no cumple con los requisitos
+                    }
+
+                    // Realiza una solicitud AJAX para agregar el usuario en el servidor
+                    $.ajax({
+                        type: "POST",
+                    url: 'https://ep-smilesoft-develop.azurewebsites.net' + '/api/Users/v1/CreateUpdateUsers', // Ruta para agregar el usuario
+                        data: JSON.stringify(userData), // Convierte userData a JSON
+                        contentType: "application/json", // Especifica el tipo de contenido
+
+                        dataType: "json",
+                        success: function (result) {
+                        // Actualiza la vista o realiza alguna otra acción
+                            $("#addUserModal").modal("hide");
+                            alert("Usuario agregado correctamente");
+                        // Cierra el modal de agregar usuario
+
+                        },
+                        error: function () {
+                            alert("Error al agregar el usuario");
+                        }
+                    });
+                });
+
+
+            });
 
     </script>
-    
+
 }
