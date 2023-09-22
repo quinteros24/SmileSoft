@@ -7,8 +7,10 @@
     ViewData["Title"] = "Tabla";
 }
 
-@{
-
+    <!-- Pantalla de carga -->
+    <div id="loadingScreen" >
+        <div id="loadingSpinner"></div>
+    </div>
     <nav aria-label="breadcrumb" class="main-breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Inicio</a></li>
@@ -19,15 +21,15 @@
         </ol>
     </nav>
     <div class="mt-2 text-end my-2">
-        <button onclick="mostrarCarga(); verusers(1);" class="btn btn-primary">Administradores</button>
-        <button onclick="mostrarCarga(); verusers(2);" class="btn btn-danger">Doctores</button>
-        <button onclick="mostrarCarga(); verusers(3);" class="btn btn-secondary">Pacientes</button>
+        <button onclick="mostrarCarga();verusers(1);" class="btn btn-primary">Administradores</button>
+        <button onclick="mostrarCarga();verusers(2);" class="btn btn-danger">Doctores</button>
+        <button onclick="mostrarCarga();verusers(3);" class="btn btn-secondary">Pacientes</button>
 
         <a class="btn btn-success add-user-btn " data-toggle="modal" data-target="#addUserModal"><i class="fas fa-user-plus"> </i> Agregar Usuario</a>
 
     </div>
 
-    <div class="card-body">
+    <div class="card-body" id="content-container">
     <!-- Aquí va la tabla -->
         <div class="table-responsive card shadow d-flex">
             <table id="example" class="table table-hover non-hover mt-2 mb-2 table-striped" width="100%"></table>
@@ -204,7 +206,6 @@
         </div>
     </div>
 
-}
 
 @section Scripts {
 
@@ -214,12 +215,12 @@
         //Recibir el parametro de la funcion verusers(1) para filtrar por tipo de usuario
         $(document).ready(function () {
             verusers(3);
+            $("#loadingScreen").show();
         });
         //Funcion para visualizar la lista de usuarios en la tabla pasando como parametro el tipo de usuario
         function verusers(utID) {
             // Realizar solicitud AJAX para obtener la lista de usuarios
             // var utID = 1;
-
             $.ajax({
                 url: '@ViewBag.urlEndPoint' + '/api/Users/v1/ViewUsers',
                 type: 'GET',
@@ -227,6 +228,8 @@
                 contentType: "application/json",
                 dataType: 'json',
                 success: function (data) {
+                    $("#loadingScreen").hide();
+                    console.log("Respuesta del Servidor OK");
                     //console.log("Respuesta del Servidor " + data);
                     // Procesar los datos recibidos y agregar filas a la tabla
                     var dataSet = [];
@@ -575,21 +578,24 @@
         });
 
         function mostrarCarga() {
+            // Ocultar el contenido suavemente
+            $('#content-container').addClass('hide-content');
+
             Swal.fire({
                 title: 'Cargando',
                 html: 'Por favor, espere un momento',
-                timer: 1000,  // Tiempo en milisegundos (3 segundos)
+                timer: 1000,
                 timerProgressBar: true,
                 didOpen: () => {
                     Swal.showLoading();
                 },
                 willClose: () => {
                     // Aquí puedes realizar acciones adicionales después de que se cierre la ventana de carga, si es necesario.
-                    //console.log('La ventana de carga se cerró después de 1 segundo');
+                    // Por ejemplo, mostrar el contenido nuevamente.
+                    $('#content-container').removeClass('hide-content');
                 }
             });
         }
-
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
