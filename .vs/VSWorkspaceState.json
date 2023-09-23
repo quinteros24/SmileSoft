@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\WebSmileSoft",
+    "\\WebSmileSoft\\Views",
+    "\\WebSmileSoft\\Views\\Admin"
   ],
+  "SelectedNode": "\\WebSmileSoft\\Views\\Admin\\Dashboard.cshtml",
   "PreviewInSolutionExplorer": false
 }
