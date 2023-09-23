@@ -35,10 +35,10 @@ namespace Repository.Queries
         public static string CreateUpdateUsers(ViewUsersModelRequest Item)
         {
             string query =      $"BEGIN TRY\n" +
-                                $"    IF NOT EXISTS (SELECT TOP(1)* FROM dbo.Users WHERE uLoginName = '{Item.uLoginName}' OR uEmailAddress = '{Item.uLoginName}' OR uDocument = '{Item.uDocument}')\n" +
+                                $"    IF NOT EXISTS (SELECT TOP(1)* FROM dbo.Users WHERE uLoginName = '{Item.uLoginName}' OR uEmailAddress = '{Item.uEmailAddress}' OR uDocument = '{Item.uDocument}')\n" +
                                 $"    BEGIN \n" +
                                 $"        INSERT INTO dbo.Users (utID, uName, uLastName, uCellphone, uAddress, uLoginName, uEmailAddress, uPassword, dtID, uDocument, uStatus)\n" +
-                                $"       VALUES ({Item.utID}, '{Item.uName}', '{Item.uLastName}', '{Item.uCellphone}', '{Item.uAddress}', '{Item.uLoginName}', '{Item.uLoginName}',  HASHBYTES('SHA2_256',Cast('{Item.uPassword}' AS VARCHAR(8000))), {Item.dtID}, '{Item.uDocument}', {Item.uStatus});\n" +
+                                $"       VALUES ({Item.utID}, '{Item.uName}', '{Item.uLastName}', '{Item.uCellphone}', '{Item.uAddress}', '{Item.uLoginName}', '{Item.uEmailAddress}',  HASHBYTES('SHA2_256',Cast('{Item.uPassword}' AS VARCHAR(8000))), {Item.dtID}, '{Item.uDocument}', {Item.uStatus});\n" +
                                 $"        SELECT '0' AS OutputCodeError, 'Usuario registrado con exito.' AS OutputMessageError\n" +
                                 $"    END\n" +
                                 $"    ElSE\n" +
