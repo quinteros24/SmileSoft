@@ -1,259 +1,259 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\WebSmileSoft.bundle.scp.css",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\WebSmileSoft.bundle.scp.css",
       "PackagePath": "staticwebassets\\WebSmileSoft.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\bootstrap\\css\\bootstrap.min.css",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\bootstrap\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\Footer-Clean-icons.css",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\Footer-Clean-icons.css",
       "PackagePath": "staticwebassets\\assets\\css\\Footer-Clean-icons.css"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\FooterStyle.css",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\FooterStyle.css",
       "PackagePath": "staticwebassets\\assets\\css\\FooterStyle.css"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\Login.css",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\Login.css",
       "PackagePath": "staticwebassets\\assets\\css\\Login.css"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\Nunito.css",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\Nunito.css",
       "PackagePath": "staticwebassets\\assets\\css\\Nunito.css"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\Responsive-UI-Card.css",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\Responsive-UI-Card.css",
       "PackagePath": "staticwebassets\\assets\\css\\Responsive-UI-Card.css"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\loader.css",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\loader.css",
       "PackagePath": "staticwebassets\\assets\\css\\loader.css"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\site.css",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\site.css",
       "PackagePath": "staticwebassets\\assets\\css\\site.css"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\styles.css",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\styles.css",
       "PackagePath": "staticwebassets\\assets\\css\\styles.css"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\table_style.css",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\table_style.css",
       "PackagePath": "staticwebassets\\assets\\css\\table_style.css"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXV3I6Li01BKofIMeaBXso.woff2",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXV3I6Li01BKofIMeaBXso.woff2",
       "PackagePath": "staticwebassets\\assets\\fonts\\XRXV3I6Li01BKofIMeaBXso.woff2"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXV3I6Li01BKofINeaB.woff2",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXV3I6Li01BKofINeaB.woff2",
       "PackagePath": "staticwebassets\\assets\\fonts\\XRXV3I6Li01BKofINeaB.woff2"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXV3I6Li01BKofIO-aBXso.woff2",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXV3I6Li01BKofIO-aBXso.woff2",
       "PackagePath": "staticwebassets\\assets\\fonts\\XRXV3I6Li01BKofIO-aBXso.woff2"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXV3I6Li01BKofIOOaBXso.woff2",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXV3I6Li01BKofIOOaBXso.woff2",
       "PackagePath": "staticwebassets\\assets\\fonts\\XRXV3I6Li01BKofIOOaBXso.woff2"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXV3I6Li01BKofIOuaBXso.woff2",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXV3I6Li01BKofIOuaBXso.woff2",
       "PackagePath": "staticwebassets\\assets\\fonts\\XRXV3I6Li01BKofIOuaBXso.woff2"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXX3I6Li01BKofIMNaDRs4.woff2",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXX3I6Li01BKofIMNaDRs4.woff2",
       "PackagePath": "staticwebassets\\assets\\fonts\\XRXX3I6Li01BKofIMNaDRs4.woff2"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXX3I6Li01BKofIMNaHRs71cA.woff2",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXX3I6Li01BKofIMNaHRs71cA.woff2",
       "PackagePath": "staticwebassets\\assets\\fonts\\XRXX3I6Li01BKofIMNaHRs71cA.woff2"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXX3I6Li01BKofIMNaMRs71cA.woff2",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXX3I6Li01BKofIMNaMRs71cA.woff2",
       "PackagePath": "staticwebassets\\assets\\fonts\\XRXX3I6Li01BKofIMNaMRs71cA.woff2"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXX3I6Li01BKofIMNaNRs71cA.woff2",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXX3I6Li01BKofIMNaNRs71cA.woff2",
       "PackagePath": "staticwebassets\\assets\\fonts\\XRXX3I6Li01BKofIMNaNRs71cA.woff2"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXX3I6Li01BKofIMNaORs71cA.woff2",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXX3I6Li01BKofIMNaORs71cA.woff2",
       "PackagePath": "staticwebassets\\assets\\fonts\\XRXX3I6Li01BKofIMNaORs71cA.woff2"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\Dark_background_1920x1080.png",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\Dark_background_1920x1080.png",
       "PackagePath": "staticwebassets\\assets\\img\\Dark_background_1920x1080.png"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\2.png",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\2.png",
       "PackagePath": "staticwebassets\\assets\\img\\anuncios\\2.png"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\3.png",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\3.png",
       "PackagePath": "staticwebassets\\assets\\img\\anuncios\\3.png"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\SmileSoft.png",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\SmileSoft.png",
       "PackagePath": "staticwebassets\\assets\\img\\anuncios\\SmileSoft.png"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\top.png",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\top.png",
       "PackagePath": "staticwebassets\\assets\\img\\anuncios\\top.png"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\weareworking.png",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\weareworking.png",
       "PackagePath": "staticwebassets\\assets\\img\\anuncios\\weareworking.png"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\avatars\\avatar1.jpeg",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\avatars\\avatar1.jpeg",
       "PackagePath": "staticwebassets\\assets\\img\\avatars\\avatar1.jpeg"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\bg-dental.jpg",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\bg-dental.jpg",
       "PackagePath": "staticwebassets\\assets\\img\\bg-dental.jpg"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\bg-working-min.png",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\bg-working-min.png",
       "PackagePath": "staticwebassets\\assets\\img\\bg-working-min.png"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\bg-working.mp4",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\bg-working.mp4",
       "PackagePath": "staticwebassets\\assets\\img\\bg-working.mp4"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\bg-working.png",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\bg-working.png",
       "PackagePath": "staticwebassets\\assets\\img\\bg-working.png"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\forgot-pass.png",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\forgot-pass.png",
       "PackagePath": "staticwebassets\\assets\\img\\forgot-pass.png"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\forgotpass.png",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\forgotpass.png",
       "PackagePath": "staticwebassets\\assets\\img\\forgotpass.png"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logo-1-min.png",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logo-1-min.png",
       "PackagePath": "staticwebassets\\assets\\img\\logo-1-min.png"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logo-1.png",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logo-1.png",
       "PackagePath": "staticwebassets\\assets\\img\\logo-1.png"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logo-2-min.png",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logo-2-min.png",
       "PackagePath": "staticwebassets\\assets\\img\\logo-2-min.png"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logo-2.png",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logo-2.png",
       "PackagePath": "staticwebassets\\assets\\img\\logo-2.png"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logo-nav-min.png",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logo-nav-min.png",
       "PackagePath": "staticwebassets\\assets\\img\\logo-nav-min.png"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logo-nav.png",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logo-nav.png",
       "PackagePath": "staticwebassets\\assets\\img\\logo-nav.png"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logo-r.png",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logo-r.png",
       "PackagePath": "staticwebassets\\assets\\img\\logo-r.png"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logoAlt.png",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logoAlt.png",
       "PackagePath": "staticwebassets\\assets\\img\\logoAlt.png"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\admin-p.png",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\admin-p.png",
       "PackagePath": "staticwebassets\\assets\\img\\profiles\\admin-p.png"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\admin_profile.png",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\admin_profile.png",
       "PackagePath": "staticwebassets\\assets\\img\\profiles\\admin_profile.png"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\doctor.png",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\doctor.png",
       "PackagePath": "staticwebassets\\assets\\img\\profiles\\doctor.png"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\doctor_profile.png",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\doctor_profile.png",
       "PackagePath": "staticwebassets\\assets\\img\\profiles\\doctor_profile.png"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\user-p.png",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\user-p.png",
       "PackagePath": "staticwebassets\\assets\\img\\profiles\\user-p.png"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\user_profile.png",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\user_profile.png",
       "PackagePath": "staticwebassets\\assets\\img\\profiles\\user_profile.png"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\trabajando.png",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\trabajando.png",
       "PackagePath": "staticwebassets\\assets\\img\\trabajando.png"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\AlertDesarrollo.js",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\AlertDesarrollo.js",
       "PackagePath": "staticwebassets\\assets\\js\\AlertDesarrollo.js"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\Login.js",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\Login.js",
       "PackagePath": "staticwebassets\\assets\\js\\Login.js"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\Register.js",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\Register.js",
       "PackagePath": "staticwebassets\\assets\\js\\Register.js"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\UserSessionControl.js",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\UserSessionControl.js",
       "PackagePath": "staticwebassets\\assets\\js\\UserSessionControl.js"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\Utilities.js",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\Utilities.js",
       "PackagePath": "staticwebassets\\assets\\js\\Utilities.js"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\bootstrap.min.js",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\bootstrap.min.js",
       "PackagePath": "staticwebassets\\assets\\js\\bootstrap.min.js"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\bs-init.js",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\bs-init.js",
       "PackagePath": "staticwebassets\\assets\\js\\bs-init.js"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\changetheme.js",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\changetheme.js",
       "PackagePath": "staticwebassets\\assets\\js\\changetheme.js"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\forgotpassword.js",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\forgotpassword.js",
       "PackagePath": "staticwebassets\\assets\\js\\forgotpassword.js"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\jquery.min.js",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\jquery.min.js",
       "PackagePath": "staticwebassets\\assets\\js\\jquery.min.js"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\popper.js",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\popper.js",
       "PackagePath": "staticwebassets\\assets\\js\\popper.js"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\sidebar.js",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\sidebar.js",
       "PackagePath": "staticwebassets\\assets\\js\\sidebar.js"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\theme.js",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\theme.js",
       "PackagePath": "staticwebassets\\assets\\js\\theme.js"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\favicon.ico",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\favicon.ico.bak",
+      "Id": "C:\\Users\\Isa Ramos\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\favicon.ico.bak",
       "PackagePath": "staticwebassets\\favicon.ico.bak"
     },
     {
