@@ -6,6 +6,7 @@
 /.vs/SmileSoft/FileContentIndex
 /.vs/SmileSoft/v17
 /EpSmileSoft/Properties/PublishProfiles
+/DataAccess/obj/Debug/
 /DataAccess/obj/Debug/net6.0/DataAccess.assets.cache
 /DataAccess/obj/Debug/net6.0/DataAccess.csproj.AssemblyReference.cache
 /DataAccess/obj/Debug/net6.0/DataAccess.GeneratedMSBuildEditorConfig.editorconfig
@@ -50,6 +51,8 @@
 /Repository/obj/project.nuget.cache
 /Repository/obj/Repository.csproj.nuget.dgspec.json
 /Repository/obj/Repository.csproj.nuget.g.props
+/WebSmileSoft/obj/Debug/
+/WebSmileSoft/bin/Debug/
 /WebSmileSoft/obj/Debug/net6.0/apphost.exe
 /WebSmileSoft/obj/Debug/net6.0/project.razor.vs.json
 /WebSmileSoft/obj/Debug/net6.0/WebSmileSoft.assets.cache

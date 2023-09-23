@@ -1,22 +1,22 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@{
+
     <section>
-        <div class="d-sm-flex justify-content-between align-items-center mb-4">
-            <h3 class="mb-0 text-primary">Dashboard</h3>@*<a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Generate Report</a>*@
-        </div>
+        @* <div class="d-sm-flex justify-content-between align-items-center mb-4">
+            <h3 class="mb-0 text-primary">Dashboard</h3>@*<a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Generate Report</a>
+        </div> *@
         <div class="row">
             <div class="col-md-6 col-xl-3 mb-4">
                 <div class="card shadow border-start-primary py-2">
                     <div class="card-body">
                         <div class="row align-items-center no-gutters">
                             <div class="col me-2">
-                                <div class="text-uppercase text-primary fw-bold text-xs mb-1"><span>Usuarios Registrados</span></div>
-                                <div class=" fw-bold h5 mb-0"><span class="align-items-center">10</span></div><!-- Cargar datos de la base de datos -->
+                                <div class="text-uppercase text-primary fw-bold text-xs mb-1"><span>Pacientes Registrados</span></div>
+                                <div class=" fw-bold h5 mb-0"><span class="align-items-center" id="userCount"></span></div><!-- Cargar datos de la base de datos -->
                             </div>
-                            <div class="col-auto"><i class="fas fa-calendar fa-2x text-gray-300"></i></div>
-                        </div>
+                        <div class="col-auto"><i class="fa-solid fa-user fa-2x text-gray-300"></i></div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -25,15 +25,28 @@
                     <div class="card-body">
                         <div class="row align-items-center no-gutters">
                             <div class="col me-2">
-                                <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Usuarios Online</span></div>
-                                <div class=" fw-bold h5 mb-0"><span>8</span></div><!-- Cargar datos de la base de datos -->
+                                <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Doctores Registrados</span></div>
+                                <div class="fw-bold h5 mb-0"><span id="userDoctor"></span></div><!-- Cargar datos de la base de datos -->
                             </div>
-                            <div class="col-auto"><i class="fas fa-calendar fa-2x text-gray-300"></i></div>
+                        <div class="col-auto"><i class="fa-solid fa-user-doctor fa-2x text-gray-300"></i></div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-xl-3 mb-4">
+        <div class="col-md-6 col-xl-3 mb-4">
+            <div class="card shadow border-start-success py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col me-2">
+                            <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Administradores</span></div>
+                            <div class=" fw-bold h5 mb-0"><span id="userAdmin"></span></div><!-- Cargar datos de la base de datos -->
+                        </div>
+                        <div class="col-auto"><i class="fa-solid fa-user-shield fa-2x text-gray-300"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            @* <div class="col-md-6 col-xl-3 mb-4">
                 <div class="card shadow border-start-info py-2">
                     <div class="card-body">
                         <div class="row align-items-center no-gutters">
@@ -54,7 +67,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> *@
             <div class="col-md-6 col-xl-3 mb-4">
                 <div class="card shadow border-start-warning py-2">
                     <div class="card-body">
@@ -194,54 +207,84 @@
                 </div>
             </div>
         </div>*@
+    <span id="userCount"></span>
     </section>
-    }
+    
     @section Scripts {
+   
     <script>
-    //     var ctx = document.getElementById('grafica').getContext('2d');
 
-    //     // Función para generar datos aleatorios con tendencia alcista
-    //     function generarDatosAleatorios() {
-    //         var datos = [];
-    //         var valorInicial = Math.random() * 10; // Valor inicial aleatorio
+            $(document).ready(function () {
+                // Realizar solicitud AJAX para obtener la lista de usuarios y contarlos
+                var utID = 3;
+                $.ajax({
+                    url: 'https://ep-smilesoft-develop.azurewebsites.net' + '/api/Users/v1/ViewUsers',
+                    type: 'GET',
+                    data: { 'utID': utID },
+                    contentType: "application/json",
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log(data);
 
-    //         for (var i = 0; i < 12; i++) { // 12 meses
-    //             // Generar un número aleatorio entre 0 y 10 para la tendencia alcista
-    //             var aleatorio = Math.random() * 10;
-    //             valorInicial += aleatorio; // Añadir el valor aleatorio a la tendencia
+                        // Contar el número de usuarios del rol especificado
+                        var userCount = data.itemJson.length;
 
-    //             // Asegurarse de que los datos estén en el rango de 0 a 100
-    //             valorInicial = Math.min(Math.max(valorInicial, 0), 100);
+                        // Mostrar el número de usuarios en el elemento HTML con id "userCount"
+                        $("#userCount").text(userCount);
+  
+                    },
+                    error: function (error) {
+                        console.log('Error al obtener la lista de usuarios.');
+                    }
+                });
+                var utID = 2;
+            $.ajax({
+                url: 'https://ep-smilesoft-develop.azurewebsites.net' + '/api/Users/v1/ViewUsers',
+                type: 'GET',
+                data: { 'utID': utID },
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
 
-    //             datos.push(Math.round(valorInicial)); // Agregar el valor a los datos
-    //         }
-    //         return datos;
-    //     }
+                    // Contar el número de usuarios del rol especificado
+                    var userCount = data.itemJson.length;
 
-    //     var myChart = new Chart(ctx, {
-    //         type: 'line',
-    //         data: {
-    //             labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-    //             datasets: [{
-    //                 label: 'Usuarios Activos',
-    //                 data: generarDatosAleatorios(), // Generar datos aleatorios con tendencia alcista
-    //                 backgroundColor: 'rgba(78, 115, 223, 0.05)',
-    //                 borderColor: 'rgba(78, 115, 223, 1)',
-    //                 borderWidth: 1
-    //             }]
-    //         },
-    //         options: {
-    //             scales: {
-    //                 yAxes: [{
-    //                     ticks: {
-    //                         beginAtZero: true,
-    //                         stepSize: 20, // Establecer el paso entre los números en el eje Y
-    //                         max: 100 // Establecer el valor máximo del eje Y en 100
-    //                     }
-    //                 }]
-    //             }
-    //         }
-    //     });
-    // </script>
+                    // Mostrar el número de usuarios en el elemento HTML con id "userCount"
+                    $("#userDoctor").text(userCount);
 
+
+
+
+                },
+                error: function (error) {
+                    console.log('Error al obtener la lista de usuarios.');
+                }
+            });
+            var utID = 1;
+            $.ajax({
+                url: 'https://ep-smilesoft-develop.azurewebsites.net' + '/api/Users/v1/ViewUsers',
+                type: 'GET',
+                data: { 'utID': utID },
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+
+                    // Contar el número de usuarios del rol especificado
+                    var userCount = data.itemJson.length;
+
+                    // Mostrar el número de usuarios en el elemento HTML con id "userCount"
+                    $("#userAdmin").text(userCount);
+
+                },
+                error: function (error) {
+                    console.log('Error al obtener la lista de usuarios.');
+                }
+            });
+
+                // Resto de tu código...
+            });
+
+    </script>
 }

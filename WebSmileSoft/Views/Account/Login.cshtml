@@ -113,7 +113,24 @@
                             // console.log("Nombre: " + sessionStorage.getItem('userFName'));
                             // console.log("Apellido: " + sessionStorage.getItem('userLName'));
 
-                            window.location.href = '@Url.Action("Index", "Home")';
+                            // window.location.href = '@Url.Action("Index", "Home")';
+                            if (response.itemJson.utID === 1) {
+                                // Redirige al administrador a la vista de administrador
+                                window.location.href = '/admin/index';
+                            } else if (response.itemJson.utID === 2) {
+                                // Redirige al doctor a la vista de doctor
+                                window.location.href = '/doctor/index';
+                            } else if (response.itemJson.utID === 3) {
+                                // Redirige al usuario a la vista de usuario
+                                window.location.href = '/user/index';
+                            } else {
+                                // Manejar el caso de un rol desconocido o no autorizado
+                                //alert('Rol desconocido o no autorizado');
+                                Swal.fire({
+                                    text: 'Rol desconocido o no autorizado',
+                                    confirmButtonColor: '#008dc9'
+                                });
+                            }
                         } else {
 
                             Swal.fire({

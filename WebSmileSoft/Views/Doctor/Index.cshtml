@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="welcome-container shadow">
+    <h1>Bienvenido a SmileSoft ¡Doctor!</h1>
+    <span class="d-none d-lg-inline me-2 " style="font-weight: bold;" id="SaludoUsuario">
+        Usuario!
+    </span>
+</div>
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            Swal.fire({
+                title: 'Bienvenido',
+                text: '¡Hola ' + usuario + '!',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+            });
+        });
+    </script>
+}
