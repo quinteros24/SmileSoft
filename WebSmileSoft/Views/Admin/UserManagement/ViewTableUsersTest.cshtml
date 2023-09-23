@@ -7,8 +7,10 @@
     ViewData["Title"] = "Tabla";
 }
 
-@{
-
+    <!-- Pantalla de carga -->
+    <div id="loadingScreen" >
+        <div id="loadingSpinner"></div>
+    </div>
     <nav aria-label="breadcrumb" class="main-breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Inicio</a></li>
@@ -19,15 +21,15 @@
         </ol>
     </nav>
     <div class="mt-2 text-end my-2">
-        <button onclick="mostrarCarga(); verusers(1);" class="btn btn-primary">Administradores</button>
-        <button onclick="mostrarCarga(); verusers(2);" class="btn btn-danger">Doctores</button>
-        <button onclick="mostrarCarga(); verusers(3);" class="btn btn-secondary">Pacientes</button>
+        <button onclick="mostrarCarga();verusers(1);" class="btn btn-primary">Administradores</button>
+        <button onclick="mostrarCarga();verusers(2);" class="btn btn-danger">Doctores</button>
+        <button onclick="mostrarCarga();verusers(3);" class="btn btn-secondary">Pacientes</button>
 
         <a class="btn btn-success add-user-btn " data-toggle="modal" data-target="#addUserModal"><i class="fas fa-user-plus"> </i> Agregar Usuario</a>
 
     </div>
 
-    <div class="card-body">
+    <div class="card-body" id="content-container">
     <!-- Aquí va la tabla -->
         <div class="table-responsive card shadow d-flex">
             <table id="example" class="table table-hover non-hover mt-2 mb-2 table-striped" width="100%"></table>
@@ -35,59 +37,57 @@
     </div>
 
     <!-- Modal de Edición -->
-    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">Editar Usuario</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Aquí coloca los campos de edición, por ejemplo: -->
-                    <form>
-                        <div class="mb-3">
-                            <label for="editNombre" class="form-label">Nombre:</label>
-                            <input type="text" class="form-control" id="editNombre" name="editNombre">
-                        </div>
-                        <div class="mb-3">
-                            <label for="editRol" class="form-label">Rol:</label>
-                            <input type="text" class="form-control" id="editRol" name="editRol">
-                        </div>
-                        <!-- Agrega más campos de edición aquí según sea necesario -->
-                    </form>
-                </div>
-                <div class="modal-footer">
-
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" id="saveChanges">Guardar Cambios</button>
-                </div>
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Editar Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="editNombre" class="form-label">Nombre:</label>
+                        <input type="text" class="form-control" id="editNombre" name="editNombre">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editApellido" class="form-label">Apellido:</label>
+                        <input type="text" class="form-control" id="editApellido" name="editApellido">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editCorreo" class="form-label">Correo Electrónico:</label>
+                        <input type="email" class="form-control" id="editCorreo" name="editCorreo">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editCelular" class="form-label">Celular:</label>
+                        <input type="text" class="form-control" id="editCelular" name="editCelular">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editTipoDocumento" class="form-label">Tipo de Documento:</label>
+                        <input type="text" class="form-control" id="editTipoDocumento" name="editTipoDocumento">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editDocumento" class="form-label">Número de Documento:</label>
+                        <input type="text" class="form-control" id="editDocumento" name="editDocumento">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editIsBlocked" class="form-label">Bloqueado</label>
+                        <input type="number" class="form-control" id="editIsBlocked" name="editIsBlocked">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editStatus" class="form-label">Estado:</label>
+                        <input type="text" class="form-control" id="editStatus" name="editStatus" disabled>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="saveChangesBtn">Guardar Cambios</button>
             </div>
         </div>
     </div>
+</div>
 
-
-    <!-- Modal de Inactivación -->
-    <div class="modal fade" id="deactivateModal" tabindex="-1" role="dialog" aria-labelledby="deactivateModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deactivateModalLabel">Inactivar Usuario</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Cerrar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>¿Estás seguro de que deseas inactivar este usuario?</p>
-                    <p><strong>Nombre:</strong> <span id="deactivate-username"></span></p>
-                    <p><strong>Rol:</strong> <span id="deactivate-userrole"></span></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-warning" id="confirm-deactivate">Inactivar</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     @*
     <div class="form-group">
@@ -204,7 +204,6 @@
         </div>
     </div>
 
-}
 
 @section Scripts {
 
@@ -214,12 +213,12 @@
         //Recibir el parametro de la funcion verusers(1) para filtrar por tipo de usuario
         $(document).ready(function () {
             verusers(3);
+            $("#loadingScreen").show();
         });
         //Funcion para visualizar la lista de usuarios en la tabla pasando como parametro el tipo de usuario
         function verusers(utID) {
             // Realizar solicitud AJAX para obtener la lista de usuarios
             // var utID = 1;
-
             $.ajax({
                 url: '@ViewBag.urlEndPoint' + '/api/Users/v1/ViewUsers',
                 type: 'GET',
@@ -227,18 +226,29 @@
                 contentType: "application/json",
                 dataType: 'json',
                 success: function (data) {
+                    $("#loadingScreen").hide();
                     //console.log("Respuesta del Servidor " + data);
                     // Procesar los datos recibidos y agregar filas a la tabla
                     var dataSet = [];
                     let users = data.itemJson;
-                    //console.table(users);
+                    console.table(users);
                     var rolesMapping = {
                         1: 'Administrador',
                         2: 'Doctores',
                         3: 'Pacientes'
                     };
+                    var BlockMapping = {
+                        0: 'No Bloqueado',
+                        1: 'Bloqueado'
+                    };
+                    var StatusMapping = {
+                        0: 'Activo',
+                        1: 'Inactivo'
+                    };
                     $.each(data.itemJson, function (index, usuario) {
-                        var rol = rolesMapping[usuario.utID];
+                        let rol = rolesMapping[usuario.utID];
+                        let Block = BlockMapping[usuario.uIsBlocked];
+                        let Status = StatusMapping[usuario.uStatus];
                         var rowData = [
                             usuario.uID,
                             rol,
@@ -249,8 +259,8 @@
                             usuario.uCellphone,
                             usuario.dtID,
                             usuario.uDocument,
-                            usuario.uIsBlocked,
-                            usuario.uStatus
+                            Block,
+                            Status
                         ];
                         dataSet.push(rowData);
                     });
@@ -307,17 +317,92 @@
                         },
 
                     });
+
                     table.column(11).nodes().to$().find('#btnEditar').click(function () {
                         // Maneja la acción del botón aquí
                         var data = table.row($(this).parents('tr')).data();
-                        //alert('Editar ID: ' + data[0]);
-                        // Swal.fire({
-                        //     title: 'Editar',
-                        //     text: 'Editar ID: ' + data[0],
-                        //     icon: 'info',
-                        //     confirmButtonText: 'Aceptar'
-                        // });
+                        
+                        var userId = data[0]; // Supongamos que la primera columna contiene el ID del usuario
+                        var userData = {
+                            uID: userId,
+                            utID: data[1],
+                            uLoginName: data[2],
+                            uName: data[3],
+                            uLastName: data[4],
+                            uEmailAddress: data[5],
+                            uCellphone: data[6],
+                            dtID: data[7],
+                            uDocument: data[8],
+                            uIsBlocked: data[9],
+                            uStatus: data[10]
+                        };
+
+                        console.log("Usuario a Editar" + userData);
+                        //$("#editModal #userName").val(userData.uLoginName);
+                        // Llena otros campos del modal con datos del usuario
+                        // Llena los campos del formulario de edición con los datos del usuario
+                        $("#editNombre").val(userData.uName);
+                        $("#editApellido").val(userData.uLastName);
+                        $("#editCelular").val(userData.uCellphone);
+                        $("#editCorreo").val(userData.uEmailAddress);
+                        $("#editDireccion").val(userData.uAddress);
+                        $("#editTipoDocumento").val(userData.dtID);
+                        $("#editDocumento").val(userData.uDocument);
+                        $("#editIsBlocked").val(userData.uIsBlocked);
+                        $("#editStatus").val(userData.uStatus);
+
+                        // Abre el modal de edición
+                        $("#editModal").modal("show");
+
+
+                        console.log("Usuario a Editar" + userId);
+                        // Realiza una solicitud AJAX para obtener los detalles del usuario
+
+                        $("#saveChangesBtn").click(function () {
+                            // Obtén los datos actualizados del formulario de edición
+                            var updatedUserData = {
+                                // Recoge los datos actualizados desde los campos del formulario
+                                uID: userId,
+                                utID: $("#editRol").val(), // Supongamos que el campo de edición del rol tiene el id "editRol"
+                                uName: $("#editNombre").val(),
+                                uLastName: $("#editApellido").val(),
+                                uEmailAddress: $("#editCorreo").val(),
+                                uCellphone: $("#editCelular").val(),
+                                dtID: $("#editTipoDocumento").val(),
+                                uDocument: $("#editDocumento").val(),
+                                uIsBlocked: $("#editIsBlocked").val(),
+                                uStatus: $("#editStatus").val()
+                            };
+                            console.log("Usuario a Editar" + userId)
+                            // Realiza una solicitud AJAX para guardar los cambios en el servidor
+                            $.ajax({
+                                url: '@ViewBag.urlEndPoint' + '/api/Users/v1/CreateUpdateUsers', // Reemplaza con la URL correcta
+                                type: 'POST',
+                                data: JSON.stringify(updatedUserData), // Convierte updatedUserData a JSON
+                                contentType: "application/json", // Especifica el tipo de contenido
+                                dataType: "json",
+                                success: function (response) {
+                                    // Cierra el modal de edición
+                                    $("#editModal").modal("hide");
+
+                                    // Puedes realizar otras acciones después de guardar los cambios si es necesario
+                                    // Por ejemplo, actualizar la tabla con los datos modificados
+                                    // o mostrar un mensaje de éxito
+                                },
+                                error: function () {
+                                    $("#editModal").modal("hide");
+                                    Swal.fire({
+                                        title: 'Error',
+                                        text: 'Error al guardar los cambios',
+                                        icon: 'error',
+                                        confirmButtonText: 'Aceptar'
+                                    });
+                                }
+                            });
+                        });
                     });
+
+ 
                     table.column(11).nodes().to$().find('#btnDesactivar').click(function () {
                         // Maneja la acción de desactivación aquí
                         var data = table.row($(this).parents('tr')).data();
@@ -329,8 +414,7 @@
                         //var userId = data[0]; // Obtén el ID del usuario desde el botón
                         let dataUser = {
                             uID: userId,
-                            uIsBlocked: 1,
-                            uStatus: 1
+                            uStatus: 0
                         };
                         Swal.fire({
                             title: '¿Estás seguro de Desactivar? a:',
@@ -346,24 +430,22 @@
                                 //console.log("Desactivar 2" + userId);
                                 // Realiza la solicitud AJAX para desactivar el usuario
                                 $.ajax({
-                                    url: 'https://ep-smilesoft-develop.azurewebsites.net' + '/api/Users/v1/CreateUpdateUsers/',
-                                    type: 'POST', // O el método HTTP correcto para tu aplicación
+                                    url: '@ViewBag.urlEndPoint' + '/api/Users/v1/CreateUpdateUsers/',
+                                    type: 'POST', 
                                     data: JSON.stringify(dataUser),
                                     contentType: "application/json",
                                     //async: false,
                                     dataType: "json",
                                     success: function (response) {
                                         console.log("Respuesta del Servidor " + response);
-                                        // Cierra el modal de deshabilitación
-                                        //$("#deactivateModal").modal("hide");
+                                        
                                         Swal.fire({
                                             title: 'Usuario Desactivado',
                                             text: 'El usuario' + data[0] + 'se desactivó correctamente',
                                             icon: 'success',
                                             confirmButtonText: 'Aceptar'
                                         });
-                                        // Aquí puedes recargar la tabla o actualizar los datos como sea necesario
-                                        // Por ejemplo, si estás utilizando DataTables, puedes usar table.ajax.reload();
+                                        
 
                                     },
                                     error: function () {
@@ -385,87 +467,10 @@
         };
 
 
-        // Controlador de clic para el botón "Editar"
-        $(".edit-user").click(function () {
-            // Obtiene el valor de data-id
-            var userId = $(this).data("id");
-            console.log(userId);
-
-            // Realiza una solicitud AJAX para obtener los datos del usuario desde el servidor
-            $.ajax({
-                url: "'https://ep-smilesoft-develop.azurewebsites.net' + '/api/Users/v1/CreateUpdateUsers'" + userId, // Reemplaza con la URL correcta para obtener los datos del usuario
-                type: "POST",
-                success: function (userData) {
-                    // Llena los campos del formulario de edición con los datos del usuario
-                    $("#nombres").val(userData.nombres);
-                    $("#apellidos").val(userData.apellidos);
-                    $("#celular").val(userData.celular);
-                    $("#correo").val(userData.correo);
-                    $("#direccion").val(userData.direccion);
-                    $("#tipoDocumento").val(userData.tipoDocumento);
-                    $("#usuario").val(userData.usuario);
-                    $("input[name='genero'][value='" + userData.genero + "']").prop("checked", true);
-                    $("#fechaNacimiento").val(userData.fechaNacimiento);
-
-                    // Abre el modal de edición
-                    $("#editModal").modal("show");
-                },
-                error: function () {
-                    //alert("Error al obtener los datos del usuario");
-                    Swal.fire({
-                        title: 'Error',
-                        text: 'Error al obtener los datos del usuario',
-                        icon: 'error',
-                        confirmButtonText: 'Aceptar'
-                    });
-                }
-            });
-        });
-        $(".deactivate-user").click(function () {
-            // Obtén los detalles del usuario desde los atributos de datos
-            var userId = $(this).data("id");
-            var username = $(this).data("username");
-            var userrole = $(this).data("userrole");
-
-            // Llena los campos del modal de inactivación
-            $("#deactivate-username").text(username);
-            $("#deactivate-userrole").text(userrole);
-
-            // Abre el modal de inactivación
-            $("#deactivateModal").modal("show");
-        });
-
-        // Controlador de clic para el botón "Confirmar Inactivación"
-        $("#confirm-deactivate").click(function () {
-            var userId = $(this).data("id");
-            $.ajax({
-                url: 'https://ep-smilesoft-develop.azurewebsites.net' + '/api/Users/v1/CreateUpdateUsers' + userId, // Reemplaza la URL con la correcta
-                type: 'POST', // O el método HTTP correcto para tu aplicación
-                success: function (data) {
-                    // Cierra el modal de deshabilitación
-                    $("#deactivateModal").modal("hide");
-                },
-                error: function () {
-                    //alert("Error al deshabilitar el usuario");
-                    Swal.fire({
-                        title: 'Error',
-                        text: 'Error al deshabilitar el usuario',
-                        icon: 'error',
-                        confirmButtonText: 'Aceptar'
-                    });
-                }
-            });
-        });
-
         $(".add-user-btn").click(function () {
             // Abre el modal de agregar usuario
             $("#addUserModal").modal("show");
-
-
         });
-
-
-
 
         // Función para permitir solo números en un campo de entrada
         function allowNumbersOnly(inputField) {
@@ -575,21 +580,24 @@
         });
 
         function mostrarCarga() {
+            // Ocultar el contenido suavemente
+            $('#content-container').addClass('hide-content');
+
             Swal.fire({
                 title: 'Cargando',
                 html: 'Por favor, espere un momento',
-                timer: 1000,  // Tiempo en milisegundos (3 segundos)
+                timer: 1000,
                 timerProgressBar: true,
                 didOpen: () => {
                     Swal.showLoading();
                 },
                 willClose: () => {
                     // Aquí puedes realizar acciones adicionales después de que se cierre la ventana de carga, si es necesario.
-                    //console.log('La ventana de carga se cerró después de 1 segundo');
+                    // Por ejemplo, mostrar el contenido nuevamente.
+                    $('#content-container').removeClass('hide-content');
                 }
             });
         }
-
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
