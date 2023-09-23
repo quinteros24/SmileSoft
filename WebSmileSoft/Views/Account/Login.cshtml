@@ -61,6 +61,10 @@
         function validarInicioSesion() {
             console.log("Script Iniciar Sesion");
             event.preventDefault();
+            const urlEP = '@ViewBag.urlEndPoint';
+            sessionStorage.setItem("urlEP" , urlEP);
+            
+
             let username = document.getElementById("UserLogin").value;
             let password = document.getElementById("Password").value;
 
@@ -104,6 +108,7 @@
                             sessionStorage.setItem('userID', response.itemJson.uID);
                             sessionStorage.setItem('userFName', response.itemJson.uName);
                             sessionStorage.setItem('userLName', response.itemJson.uLastName);
+                            sessionStorage.setItem('userLogin', response.itemJson.uLoginName); ')
 
                             //alert(response.messageStatus);
                             // console.log("Inicio de sesión exitoso.");
