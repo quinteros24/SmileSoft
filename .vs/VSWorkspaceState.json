@@ -3,9 +3,8 @@
     "",
     "\\WebSmileSoft",
     "\\WebSmileSoft\\Views",
-    "\\WebSmileSoft\\Views\\Admin",
-    "\\WebSmileSoft\\Views\\Doctor"
+    "\\WebSmileSoft\\Views\\Admin"
   ],
-  "SelectedNode": "\\WebSmileSoft\\Views\\Doctor\\Index.cshtml",
+  "SelectedNode": "\\WebSmileSoft\\Views\\Admin\\Dashboard.cshtml",
   "PreviewInSolutionExplorer": false
 }
