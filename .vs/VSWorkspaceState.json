@@ -3,7 +3,8 @@
     "",
     "\\WebSmileSoft",
     "\\WebSmileSoft\\Views",
-    "\\WebSmileSoft\\Views\\Profile",
+    "\\WebSmileSoft\\Views\\Admin",
+    "\\WebSmileSoft\\Views\\Admin\\UserManagement",
     "\\WebSmileSoft\\wwwroot",
     "\\WebSmileSoft\\wwwroot\\assets",
     "\\WebSmileSoft\\wwwroot\\assets\\bootstrap",
@@ -11,6 +12,6 @@
     "\\WebSmileSoft\\wwwroot\\assets\\css",
     "\\WebSmileSoft\\wwwroot\\assets\\js"
   ],
-  "SelectedNode": "\\WebSmileSoft\\Views\\Profile\\Profile.cshtml",
+  "SelectedNode": "\\WebSmileSoft\\Views\\Admin\\UserManagement\\ViewTableUsersTest.cshtml",
   "PreviewInSolutionExplorer": false
 }
