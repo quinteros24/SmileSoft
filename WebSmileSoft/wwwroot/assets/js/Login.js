@@ -55,10 +55,10 @@
 //}
 //document.getElementById("loginButton").addEventListener("click", validarInicioSesion);
 
-function mostrarCarga() {
-    // Oculta el formulario de inicio de sesión
-    document.getElementById("loginForm").style.display = "none";
-    // Muestra el elemento de carga
-    document.getElementById("loader").style.display = "block";
-}
-document.getElementById("loginButton").addEventListener("submit", mostrarCarga);
+//function mostrarCarga() {
+//    // Oculta el formulario de inicio de sesión
+//    document.getElementById("loginForm").style.display = "none";
+//    // Muestra el elemento de carga
+//    document.getElementById("loader").style.display = "block";
+//}
+//document.getElementById("loginButton").addEventListener("submit", mostrarCarga);
