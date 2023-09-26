@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vcwQDu+YnYxQpJNdXuXmfE7jrFLxneaY6UuCUmlb+ds=",
+  "Hash": "EfSVskp0ptm5U21edr3SupzzESmohlUvpdFCGSmZ398=",
   "Source": "WebSmileSoft",
   "BasePath": "_content/WebSmileSoft",
   "Mode": "Default",
@@ -1018,23 +1018,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\js\\Register.js"
-    },
-    {
-      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\sidebar.js",
-      "SourceId": "WebSmileSoft",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
-      "BasePath": "_content/WebSmileSoft",
-      "RelativePath": "assets/js/sidebar.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\js\\sidebar.js"
     },
     {
       "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\theme.js",
