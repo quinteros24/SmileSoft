@@ -30,7 +30,12 @@ namespace Domain.Core
             return ItemGenericResponseModel;
         }
 
+        public async Task<GenericResponseModel> SetUserStatus(int uID, int uStatus)
+        {
+            GenericResponseModel ItemGenericResponseModel = await _usersRepository.SetUserStatus(uID, uStatus);
+            return ItemGenericResponseModel;
+        }
 
-     
+
     }
 }
