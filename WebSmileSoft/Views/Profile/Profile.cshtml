@@ -59,7 +59,7 @@
                     data-toggle="tab"
                     class="nav-item nav-link has-icon nav-link-faded">
                     <i class="fas fa-plus mr-2 mx-2"> </i>Datos Medicos
-                    </a>
+                    </a>*@
                     <a href="#account"
                     data-toggle="tab"
                     class="nav-item nav-link has-icon nav-link-faded">
@@ -76,7 +76,7 @@
                     <circle cx="12" cy="12" r="3"></circle>
                     <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                     </svg>Opciones de Cuenta
-                    </a>*@
+                    </a>
 
                     </nav>
                 </div>
@@ -186,7 +186,7 @@
                                     Por favor ten en cuenta que no podras volver a iniciar sesion con esta cuenta.
                                 </p>
                             </div>
-                            <button class="btn btn-danger btn-en-desarrollo" type="button" disabled>
+                            <button class="btn btn-danger" id="desactivarCuentabtn" type="button">
                                 Desactivar Cuenta
                             </button>
                         </form>
@@ -312,7 +312,99 @@
             });
         });
     </script>
+    <script>
+        // Obtén el userID del Session Storage
+        let userId = sessionStorage.getItem('userID');
 
+        // Comprueba si se tiene un userID válido
+        if (userId) {
+            // Realiza una solicitud AJAX para obtener los datos del usuario
+            $.ajax({
+                url: '@ViewBag.urlEndPoint' + '/api/Users/v1/ObtenerDatosUsuario/' + userId, // Reemplaza con la URL correcta
+                type: 'GET',
+                dataType: 'json',
+                success: function (userData) {
+                    // Verifica si se obtuvieron los datos del usuario correctamente
+                    if (userData) {
+                        // Llena los campos del formulario con los datos del usuario
+                        $("#username").val(userData.uLoginName);
+                        $("#tipoUsuarioe").val(userData.utID);
+                        $("#user_names").val(userData.uName);
+                        $("#user_lastnames").val(userData.uLastName);
+                        $("#editCorreo").val(userData.uEmailAddress);
+                        $("#birthDate").val(userData.fechaNacimiento);
+                        $("#genderSelect").val(userData.genero);
+                        $("#email").val(userData.correoElectronico);
+                        $("#address").val(userData.direccion);
+                        $("#phone_number").val(userData.celular);
+                        $("#id_number").val(userData.numeroDocumento);
+                    } else {
+                        // Manejar el caso en el que no se obtuvieron los datos del usuario
+                        //alert("No se pudieron obtener los datos del usuario.");
+                        Swal.fire({
+                            text: 'No se pudieron obtener los datos del usuario.',
+                            confirmButtonColor: '#008dc9'
+                        });
+                    }
+                },
+                error: function () {
+                    // Manejar el caso de error en la solicitud AJAX
+                    //alert("Error al obtener los datos del usuario.");
+                    Swal.fire({
+                        text: 'Error al obtener los datos del usuario.',
+                        confirmButtonColor: '#008dc9'
+                    });
+                }
+            });
+        }
+        $("#updateProfileForm").submit(function (e) {
+            e.preventDefault();
+
+            // Obtener los datos actualizados del formulario
+            let updatedUserData = {
+                uID: userId,
+                utID: parseInt($("#tipoUsuarioe").val()),
+                uLoginName: $("#username").val(),
+                uName: $("#user_names").val(),
+                uLastName: $("#user_lastnames").val(),
+                uEmailAddress: $("#editCorreo").val(),
+                fechaNacimiento: $("#birthDate").val(),
+                genero: $("#genderSelect").val(),
+                correoElectronico: $("#email").val(),
+                direccion: $("#address").val(),
+                celular: $("#phone_number").val(),
+                numeroDocumento: $("#id_number").val()
+            };
+
+            $.ajax({
+                url: '@ViewBag.urlEndPoint' + '/api/Users/v1/CreateUpdateUsers', // Reemplaza con la URL correcta
+                type: 'POST',
+                data: JSON.stringify(updatedUserData),
+                contentType: "application/json",
+                dataType: "json",
+                success: function (response) {
+                    Swal.fire({
+                        title: 'Datos Actualizados',
+                        text: 'Los datos del usuario se actualizaron correctamente',
+                        icon: 'success',
+                        confirmButtonText: 'Aceptar'
+                    });
+
+                    // Realiza otras acciones después de guardar los cambios si es necesario
+                },
+                error: function () {
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Error al guardar los cambios',
+                        icon: 'error',
+                        confirmButtonText: 'Aceptar'
+                    });
+                }
+            });
+        });
+
+
+</script>
 
     <script>
         function validarCambioDeContraseña() {
@@ -388,26 +480,30 @@
             }
         }
         function validarContraseña(password) {
+            // Verificar la longitud de la contraseña (debe tener al menos 8 caracteres)
             if (password.length < 8) {
                 return false;
             }
 
-            if (!/[a-zA-Z]/.test(password)) {
+            // Verificar si la contraseña contiene al menos una letra minúscula y una mayúscula
+            if (!/[a-z]/.test(password) || !/[A-Z]/.test(password)) {
                 return false;
             }
 
+            // Verificar si la contraseña contiene al menos un número
             if (!/\d/.test(password)) {
                 return false;
             }
 
-
+            // Verificar si la contraseña contiene espacios en blanco o caracteres especiales
             if (/\s/.test(password) || /[\uD800-\uDFFF]/.test(password)) {
                 return false;
             }
 
-
+            // Si la contraseña pasa todas las validaciones, es válida
             return true;
         }
+
     </script>
 
 

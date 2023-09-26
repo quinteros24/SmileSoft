@@ -62,7 +62,20 @@ namespace EpSmileSoft.Controllers
             }
         }
 
-
+        [HttpGet]
+        [Route("v1/SetUserStatus")]
+        public async Task<GenericResponseModel> SetUserStatus(int uID, int uStatus)
+        {
+            try
+            {
+                GenericResponseModel ItemResponseModel = await _usersCore.SetUserStatus(uID, uStatus);
+                return ItemResponseModel;
+            }
+            catch
+            {
+                return new GenericResponseModel();
+            }
+        }
 
 
 

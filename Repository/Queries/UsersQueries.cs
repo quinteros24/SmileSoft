@@ -81,5 +81,18 @@ namespace Repository.Queries
             }
             return query;
         }
+
+        public static string SetUserStatus(int uID, int uStatus)
+        {
+            string status = uStatus == 1 ? "activado" : "desactivado";
+            return $"IF EXISTS(SELECT uName FROM dbo.Users WHERE uID = {uID})\n" +
+                   $"BEGIN\n" +
+                   $"    DECLARE @name AS VARCHAR(100) = (SELECT uName FROM dbo.Users WHERE uID = {uID})\n" +
+                   $"    UPDATE dbo.Users SET uStatus = {uStatus} WHERE uID = {uID}\n" +
+                   $"    SELECT '0' AS OutputCodeError, 'El usuario @name se ha {status}' AS OutputMessageError\n" +
+                   $"END\n" +
+                   $"ELSE\n" +
+                   $"    SELECT '-1' AS OutputCodeError, 'El usuario no se ha encontrado' AS OutputMessageError\n";
+        }
     }
 }
