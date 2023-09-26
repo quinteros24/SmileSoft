@@ -718,7 +718,7 @@
             // Realiza una solicitud AJAX para agregar el usuario en el servidor
             $.ajax({
                 type: "POST",
-                url: 'https://ep-smilesoft-develop.azurewebsites.net' + '/api/Users/v1/CreateUpdateUsers', // Ruta para agregar el usuario
+                url: '@ViewBag.urlEndPoint' + '/api/Users/v1/CreateUpdateUsers', // Ruta para agregar el usuario
                 data: JSON.stringify(userData), // Convierte userData a JSON
                 contentType: "application/json", // Especifica el tipo de contenido
 

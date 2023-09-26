@@ -60,23 +60,23 @@
                     class="nav-item nav-link has-icon nav-link-faded">
                     <i class="fas fa-plus mr-2 mx-2"> </i>Datos Medicos
                     </a>*@
-                    <a href="#account"
-                    data-toggle="tab"
-                    class="nav-item nav-link has-icon nav-link-faded">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="feather feather-settings mr-2">
-                    <circle cx="12" cy="12" r="3"></circle>
-                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                    </svg>Opciones de Cuenta
-                    </a>
+                        <a href="#account"
+                           data-toggle="tab"
+                           class="nav-item nav-link has-icon nav-link-faded">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 width="24"
+                                 height="24"
+                                 viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="2"
+                                 stroke-linecap="round"
+                                 stroke-linejoin="round"
+                                 class="feather feather-settings mr-2">
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                            </svg>Opciones de Cuenta
+                        </a>
 
                     </nav>
                 </div>
@@ -284,8 +284,8 @@
                 *@
                     <!-- Mostrar Campo Datos Medicos de los doctores -->
                     <div class="tab-pane" id="medicaldata">
-                <partial name="_DatosMedicos" />
-                </div>
+                        <partial name="_DatosMedicos" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -319,44 +319,60 @@
         // Comprueba si se tiene un userID válido
         if (userId) {
             // Realiza una solicitud AJAX para obtener los datos del usuario
-            $.ajax({
-                url: '@ViewBag.urlEndPoint' + '/api/Users/v1/ObtenerDatosUsuario/' + userId, // Reemplaza con la URL correcta
-                type: 'GET',
-                dataType: 'json',
-                success: function (userData) {
-                    // Verifica si se obtuvieron los datos del usuario correctamente
-                    if (userData) {
-                        // Llena los campos del formulario con los datos del usuario
-                        $("#username").val(userData.uLoginName);
-                        $("#tipoUsuarioe").val(userData.utID);
-                        $("#user_names").val(userData.uName);
-                        $("#user_lastnames").val(userData.uLastName);
-                        $("#editCorreo").val(userData.uEmailAddress);
-                        $("#birthDate").val(userData.fechaNacimiento);
-                        $("#genderSelect").val(userData.genero);
-                        $("#email").val(userData.correoElectronico);
-                        $("#address").val(userData.direccion);
-                        $("#phone_number").val(userData.celular);
-                        $("#id_number").val(userData.numeroDocumento);
-                    } else {
-                        // Manejar el caso en el que no se obtuvieron los datos del usuario
-                        //alert("No se pudieron obtener los datos del usuario.");
-                        Swal.fire({
-                            text: 'No se pudieron obtener los datos del usuario.',
-                            confirmButtonColor: '#008dc9'
-                        });
-                    }
-                },
-                error: function () {
-                    // Manejar el caso de error en la solicitud AJAX
-                    //alert("Error al obtener los datos del usuario.");
-                    Swal.fire({
-                        text: 'Error al obtener los datos del usuario.',
-                        confirmButtonColor: '#008dc9'
-                    });
-                }
+            // sessionStorage.setItem('accessToken', response.itemJson.uToken);
+            // sessionStorage.setItem('userRole', response.itemJson.utID);
+            // sessionStorage.setItem('userID', response.itemJson.uID);
+            // sessionStorage.setItem('userFName', response.itemJson.uName);
+            // sessionStorage.setItem('userLName', response.itemJson.uLastName);
+            // sessionStorage.setItem('userLogin', response.itemJson.uLoginName);
+            // sessionStorage.setItem('userEmail', response.itemJson.uEmail);
+            // sessionStorage.setItem('userPhone', response.itemJson.uCellPhone);
+            // sessionStorage.setItem('userAddress', response.itemJson.uAddress);
+            // //sessionStorage.setItem('userBirthDate', response.itemJson.uBirthDate);
+            // //sessionStorage.setItem('userGender', response.itemJson.uGender);
+            // sessionStorage.setItem('userStatus', response.itemJson.uStatus);
+            //let userRol = sessionStorage.getItem('userRole');
+            let userStatus = sessionStorage.getItem('userStatus');
+            let userLogin = sessionStorage.getItem('userLogin');
+            let userFName = sessionStorage.getItem('userFName');
+            let userLName = sessionStorage.getItem('userLName');
+            let userEmail = sessionStorage.getItem('userEmail');
+            let userPhone = sessionStorage.getItem('userPhone');
+            let userAddress = sessionStorage.getItem('userAddress');
+            //let userBirthDate = sessionStorage.getItem('userBirthDate');
+            //let userGender = sessionStorage.getItem('userGender');
+            //let userStatus = sessionStorage.getItem('userStatus');
+
+            $("#username").val(userLogin);
+            //$("#tipoUsuarioe").val(userRol);
+            $("#user_names").val(userData.uName);
+            $("#user_lastnames").val(userData.uLastName);
+            $("#editCorreo").val(userData.uEmailAddress);
+            $("#birthDate").val(userData.fechaNacimiento);
+            $("#genderSelect").val(userData.genero);
+            $("#email").val(userData.correoElectronico);
+            $("#address").val(userData.direccion);
+            $("#phone_number").val(userData.celular);
+            $("#id_number").val(userData.numeroDocumento);
+        } else {
+            // Manejar el caso en el que no se obtuvieron los datos del usuario
+            //alert("No se pudieron obtener los datos del usuario.");
+            Swal.fire({
+                text: 'No se pudieron obtener los datos del usuario.',
+                confirmButtonColor: '#008dc9'
             });
         }
+                                },
+        error: function () {
+            // Manejar el caso de error en la solicitud AJAX
+            //alert("Error al obtener los datos del usuario.");
+            Swal.fire({
+                text: 'Error al obtener los datos del usuario.',
+                confirmButtonColor: '#008dc9'
+            });
+        }
+                            });
+                        }
         $("#updateProfileForm").submit(function (e) {
             e.preventDefault();
 
@@ -404,7 +420,7 @@
         });
 
 
-</script>
+    </script>
 
     <script>
         function validarCambioDeContraseña() {
@@ -432,12 +448,12 @@
                     text: 'Las contraseñas deben ser iguales',
                     confirmButtonColor: '#008dc9'
                 });
-            }else if (!validarContraseña(password)) {
+            } else if (!validarContraseña(password)) {
                 Swal.fire({
                     text: 'La contraseña no cumple con los requisitos.',
                     confirmButtonColor: '#008dc9'
                 });
-            }else {
+            } else {
 
                 let data = {
                     Password: password,
