@@ -14,7 +14,7 @@ ViewData["Title"] = "BasicData";
                 <p class="text-primary m-0 fw-bold">Datos Personales</p>
             </div>
             <div class="card-body">
-                <form>
+            <form >
                     <div class="row">
 
                         <div class="col">
@@ -41,15 +41,7 @@ ViewData["Title"] = "BasicData";
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <!-- Masculino
-                            Femenino
-                            No binario
-                            Género fluido
-                            Agénero
-                            Transgénero
-                            Cisgénero
-                            Intersexuales
-                            Otro-->
+                            
                             <div class="input-group" id="genderOptions">
                                 <label class="input-group-text" for="genderSelect">Género</label>
                                 <select class="form-select" id="genderSelect">
@@ -62,7 +54,7 @@ ViewData["Title"] = "BasicData";
                         </div>
                     </div>
                     <hr />
-                    <div class="mb-3"><button class="btn btn-primary btn-sm btn-en-desarrollo" type="submit">Actualizar Datos</button></div>
+                <div class="mb-3"><button class="btn btn-primary btn-sm" id="updateProfileForm" type="submit">Actualizar Datos</button></div>
                 </form>
             </div>
         </div>
@@ -82,23 +74,7 @@ ViewData["Title"] = "BasicData";
                             <div class="mb-3"><label class="form-label" for="phone_number"><strong>Numero Celular</strong></label><input class="form-control" type="text" id="phone_number" placeholder="3024214750" name="phone_number"></div>
                         </div>
                         
-                        @*<div class="card-body">
-                    <div class="row">
-                    <div class="col-md-12">
-                    <form>
-                    <div class="mb-3">
-                    <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="formCheck-2" required>
-                    <label class="form-check-label" for="formCheck-2">
-                    <strong>Acepto los términos y condiciones de uso de los datos registrados en este sitio.</strong>
-                    </label>
-                    </div>
-                    </div>
-
-                    </form>
-                    </div>
-                    </div>
-                    </div>*@
+                        
                     </div>
 
                     <div class="mb-3"><button class="btn btn-primary btn-sm btn-en-desarrollo" type="submit">Actualizar Datos</button></div>
@@ -106,13 +82,10 @@ ViewData["Title"] = "BasicData";
             </div>
         </div>
         <!-- Datos de Estudios Solo PERFIL DE DOCTOR -->
-        @*if (User.IsInRole("Doctor"))
-    {*@
+       @*  if (Session.Storage.getItem("rol") == "Doctor")
+            { *@
         <partial name="_Especialidades" />
-        @*}*@
+       @*  } *@
     </div>
 
 
-@section Scripts{
-    
-}

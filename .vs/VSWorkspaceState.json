@@ -3,10 +3,14 @@
     "",
     "\\WebSmileSoft",
     "\\WebSmileSoft\\Views",
-    "\\WebSmileSoft\\Views\\Admin",
-    "\\WebSmileSoft\\Views\\Doctor",
-    "\\WebSmileSoft\\Views\\Shared"
+    "\\WebSmileSoft\\Views\\Account",
+    "\\WebSmileSoft\\wwwroot",
+    "\\WebSmileSoft\\wwwroot\\assets",
+    "\\WebSmileSoft\\wwwroot\\assets\\bootstrap",
+    "\\WebSmileSoft\\wwwroot\\assets\\bootstrap\\css",
+    "\\WebSmileSoft\\wwwroot\\assets\\css",
+    "\\WebSmileSoft\\wwwroot\\assets\\js"
   ],
-  "SelectedNode": "\\WebSmileSoft\\Views\\Shared\\_LayoutAccount.cshtml",
+  "SelectedNode": "\\WebSmileSoft\\Views\\Account\\Register.cshtml",
   "PreviewInSolutionExplorer": false
 }

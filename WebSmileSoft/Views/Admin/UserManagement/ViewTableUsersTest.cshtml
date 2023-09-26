@@ -8,9 +8,9 @@
 }
 
 <!-- Pantalla de carga -->
-<div id="loadingScreen">
+@* <div id="loadingScreen">
     <div id="loadingSpinner"></div>
-</div>
+</div> *@
 <nav aria-label="breadcrumb" class="main-breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Inicio</a></li>
@@ -21,9 +21,12 @@
     </ol>
 </nav>
 <div class="mt-2 text-end my-2">
-    <button onclick="mostrarCarga();verusers(1);" class="btn btn-primary">Administradores</button>
+    @* <button onclick="mostrarCarga();verusers(1);" class="btn btn-primary">Administradores</button>
     <button onclick="mostrarCarga();verusers(2);" class="btn btn-danger">Doctores</button>
     <button onclick="mostrarCarga();verusers(3);" class="btn btn-secondary">Pacientes</button>
+   *@  <button onclick="verusers(1);" class="btn btn-primary">Administradores</button>
+    <button onclick="verusers(2);" class="btn btn-danger">Doctores</button>
+    <button onclick="verusers(3);" class="btn btn-secondary">Pacientes</button>
 
     <a class="btn btn-success add-user-btn " data-toggle="modal" data-target="#addUserModal"><i class="fas fa-user-plus"> </i> Agregar Usuario</a>
 
@@ -109,8 +112,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="mb-3">
-                <label for="usernamepass" class="form-label">Usuario</label>
-                <input type="text" class="form-control" id="usernamepass" name="usernamepass" disabled>
+               <span id="userNamePass" class="strong"></span>
             </div>
             <div class="modal-body">
                 <form>
@@ -260,6 +262,8 @@
         function verusers(utID) {
             // Realizar solicitud AJAX para obtener la lista de usuarios
             // var utID = 1;
+            mostrarCargando();
+
             $.ajax({
                 url: '@ViewBag.urlEndPoint' + '/api/Users/v1/ViewUsers',
                 type: 'GET',
@@ -355,11 +359,11 @@
                         select: true,
                         destroy: true,
                         language: {
-                            url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-CO.json',
+                            url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json',
                         },
 
                     });
-
+                    Swal.close();
                     table.column(11).nodes().to$().find('#btnEditar').click(function () {
                         // Maneja la acción del botón aquí
                         let data = table.row($(this).parents('tr')).data();
@@ -517,8 +521,11 @@
                         console.log("Contraseña " + userId)
                         let userNameEdit = data[3] + ' ' + data[4];
 
-                        $("#usernamepass").val(userNameEdit);
+                        //$("#usernamepass").val(userNameEdit);
+                        var userNamePassSpan = document.getElementById("userNamePass");
 
+                        // Establece el contenido del span
+                        userNamePassSpan.innerHTML = userNameEdit;
                         // Abre el modal de edición
                         $("#editPassword").modal("show");
 
@@ -591,26 +598,29 @@
             });
         };
         function validarContraseña(password) {
-            if (password.length < 8) {
-                return false;
-            }
+    // Requiere al menos 8 caracteres
+    if (password.length < 8) {
+        return false;
+    }
+    // Requiere al menos una letra minúscula
+    if (!/[a-z]/.test(password)) {
+        return false;
+    }
+    // Requiere al menos una letra mayúscula
+    if (!/[A-Z]/.test(password)) {
+        return false;
+    }
+    // Requiere al menos un dígito
+    if (!/\d/.test(password)) {
+        return false;
+    }
+    // agregar requisitos adicionales aquí, como caracteres especiales
+    // if (!/[!#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(password)) {
+    //     return false;
+    // }
 
-            if (!/[a-zA-Z]/.test(password)) {
-                return false;
-            }
-
-            if (!/\d/.test(password)) {
-                return false;
-            }
-
-
-            if (/\s/.test(password) || /[\uD800-\uDFFF]/.test(password)) {
-                return false;
-            }
-
-
-            return true;
-        }
+    return true;
+}
 
         $(".add-user-btn").click(function () {
             // Abre el modal de agregar usuario
@@ -654,48 +664,61 @@
             //Validar campos obligatorios
         @*
             if (!userData.nombres || !userData.apellidos || !userData.tipoDocumento || !userData.numeroDocumento || !userData.usuario || !userData.password || !userData.tipoUsuario) {
-            //alert("Por favor, complete todos los campos obligatorios.");
-            Swal.fire({
-            title: 'Error',
-            text: 'Por favor, complete todos los campos obligatorios.',
-            icon: 'error',
-            confirmButtonText: 'Aceptar'
-            });
+            mostrarMensajeError('Por favor, complete todos los campos obligatorios.');
             return;
-            }*@
-
+            }
+            *@
+                // function mostrarMensajeError(mensaje) {
+                //     Swal.fire({
+                //         title: 'Error',
+                //         text: mensaje,
+                //         icon: 'error',
+                //         confirmButtonText: 'Aceptar'
+                //     });
+                // }
                                                                                                 //!userData.correo ||
 
                                                                                                 // Validación de la contraseña
             let password = userData.uPassword;
-            let passwordError = "";
+            let passwordError = validarContraseña(password);
 
-            if (password.length < 8) {
-                passwordError = "La contraseña debe tener al menos 8 caracteres.";
-            } else if (!/[A-Z]/.test(password)) {
-                passwordError = "La contraseña debe contener al menos una letra mayúscula.";
-            } else if (!/[a-z]/.test(password)) {
-                passwordError = "La contraseña debe contener al menos una letra minúscula.";
-            } else if (!/\d/.test(password)) {
-                passwordError = "La contraseña debe contener al menos un número.";
+            if (passwordError) {
+                mostrarMensajeError(passwordError);
+                return;
+            }
+            function validarContraseña(password) {
+                if (password.length < 8) {
+                    return "La contraseña debe tener al menos 8 caracteres.";
+                }
+
+                if (!/[A-Z]/.test(password)) {
+                    return "La contraseña debe contener al menos una letra mayúscula.";
+                }
+
+                if (!/[a-z]/.test(password)) {
+                    return "La contraseña debe contener al menos una letra minúscula.";
+                }
+
+                if (!/\d/.test(password)) {
+                    return "La contraseña debe contener al menos un número.";
+                }
+
+                return null; // Si la contraseña cumple con los requisitos, retorna null
             }
 
-            // Muestra el mensaje de error si es necesario
-            if (passwordError) {
-                //alert(passwordError);
+            function mostrarMensajeError(mensaje) {
                 Swal.fire({
                     title: 'Error',
-                    text: passwordError,
+                    text: mensaje,
                     icon: 'error',
                     confirmButtonText: 'Aceptar'
                 });
-                return; // Detiene la ejecución si la contraseña no cumple con los requisitos
             }
 
             // Realiza una solicitud AJAX para agregar el usuario en el servidor
             $.ajax({
                 type: "POST",
-                url: 'https://ep-smilesoft-develop.azurewebsites.net' + '/api/Users/v1/CreateUpdateUsers', // Ruta para agregar el usuario
+                url: '@ViewBag.urlEndPoint' + '/api/Users/v1/CreateUpdateUsers', // Ruta para agregar el usuario
                 data: JSON.stringify(userData), // Convierte userData a JSON
                 contentType: "application/json", // Especifica el tipo de contenido
 
@@ -724,27 +747,42 @@
             });
         });
 
-        function mostrarCarga() {
-            // Ocultar el contenido suavemente
-            $('#content-container').addClass('hide-content');
+        // function mostrarCarga() {
+        //     // Ocultar el contenido suavemente
+        //     $('#content-container').addClass('hide-content');
 
+        //     Swal.fire({
+        //         title: 'Cargando',
+        //         html: 'Por favor, espere un momento',
+        //         timer: 1000,
+        //         timerProgressBar: true,
+        //         didOpen: () => {
+        //             Swal.showLoading();
+        //         },
+        //         willClose: () => {
+        //             // Aquí puedes realizar acciones adicionales después de que se cierre la ventana de carga, si es necesario.
+        //             // Por ejemplo, mostrar el contenido nuevamente.
+        //             $('#content-container').removeClass('hide-content');
+        //         }
+        //     });
+        // }
+        function mostrarCargando() {
             Swal.fire({
                 title: 'Cargando',
-                html: 'Por favor, espere un momento',
-                timer: 1000,
-                timerProgressBar: true,
-                didOpen: () => {
+                text: 'Por favor, espere un momento...',
+                showCancelButton: false,
+                showConfirmButton: false,
+                allowOutsideClick: false,
+                onBeforeOpen: () => {
                     Swal.showLoading();
-                },
-                willClose: () => {
-                    // Aquí puedes realizar acciones adicionales después de que se cierre la ventana de carga, si es necesario.
-                    // Por ejemplo, mostrar el contenido nuevamente.
-                    $('#content-container').removeClass('hide-content');
                 }
             });
         }
+
+        
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
+
         });
     </script>
 

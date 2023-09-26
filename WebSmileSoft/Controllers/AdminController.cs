@@ -21,7 +21,8 @@ namespace WebSmileSoft.Controllers
 
         public IActionResult Index()
         {
-            return View("~/Views/Admin/Dashboard.cshtml");
+            ViewBag.urlEndPoint = _settings.urlEndPoint;
+            return View();
         }
 
         public IActionResult ViewTableUsers()
@@ -34,11 +35,13 @@ namespace WebSmileSoft.Controllers
 
         public IActionResult UserManagement()
         {
+            ViewBag.urlEndPoint = _settings.urlEndPoint;
             return View("~/Views/Admin/UserManagement/Index.cshtml");
         }
 
         public IActionResult SiteManagement()
         {
+            ViewBag.urlEndPoint = _settings.urlEndPoint;
             return View("~/Views/Admin/SiteManagement/Index.cshtml");
         }
 

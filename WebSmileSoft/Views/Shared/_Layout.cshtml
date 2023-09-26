@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
-<html lang="es" >
- <!-- data-bs-theme="dark" -->
+<html lang="es">
+<!-- data-bs-theme="dark" -->
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -87,16 +87,16 @@
             });
         })();
     </script>
-    
+
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.min.css" asp-append-version="true">
 
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="~/assets/css/Nunito.css" asp-append-version="true">
     <link rel="stylesheet" href="~/assets/css/site.css" asp-append-version="true" />
-    <link href="~/assets/css/loader.css" rel="stylesheet" />
+    @* <link href="~/assets/css/loader.css" rel="stylesheet" /> *@
 
-    <!-- Custom fonts for this template --> 
+    <!-- Custom fonts for this template -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" asp-append-version="true" />
     @* <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" asp-append-version="true"> *@
 
@@ -117,30 +117,31 @@
 </head>
 
 <body id="page-top contenido">
-  
+    @* <div id="loadingOverlay">
+    <div id="loadingSpinner"></div>
+    </div> *@
     <div id="wrapper">
         <!-- Sidebar -->
         @await Component.InvokeAsync("Sidebar")
-        
+
         <div class="d-flex flex-column" id="content-wrapper">
-                <!-- navBar -->
-                
-                @await Component.InvokeAsync("Navbar")
-                
-                <div class="container-fluid">
+            <!-- navBar -->
+            @await Component.InvokeAsync("Navbar")
+
+            <div class="container-fluid">
                 <main role="main">
                     <!-- Page Content -->
-                        @RenderBody()
+                    @RenderBody()
                 </main>
-                </div>
-                
+            </div>
+
             <!-- Footer -->
-           @*  @await Component.InvokeAsync("Footer") *@
+            @*  @await Component.InvokeAsync("Footer") *@
         </div>
     </div> @* <a class="border rounded d-inline scroll-to-top" href="#page-top" style="display:none"><i class="fas fa-angle-up"></i></a> *@
 
-    
- 
+
+
     <!-- Custom Theme Script -->
     <script src="~/assets/js/theme.js" asp-append-version="true"></script>
 
@@ -174,7 +175,18 @@
 
         // Resto del contenido de tu página aquí
     </script>
+    <script>
+        function updateNavbarBackground(selectedColor) {
+            // Obtén una referencia a la barra de navegación por su ID
+            const navbar = document.getElementById("nav_bar");
 
+            // Elimina todas las clases de fondo de la barra de navegación
+            navbar.classList.remove("bg-primary", "bg-danger", "bg-success");
+
+            // Agrega la clase de color seleccionada a la barra de navegación
+            navbar.classList.add(selectedColor);
+        }
+    </script>
     <script>
         function CerrarSesion() {
             //console.log("Cerrando Sesión");
@@ -194,18 +206,24 @@
             var spanNombre = document.getElementById('nombreUsuario');
             var spanSaludo = document.getElementById('SaludoUsuario');
 
-            if (userFName !== null && userLName !== null && spanNombre && spanSaludo) {
+            if (userFName !== null && userLName !== null && spanNombre) {
                 // Construye el nombre completo y muestra en las etiquetas <span>
                 var nombreCompleto = userFName + ' ' + userLName;
                 spanNombre.textContent = nombreCompleto;
+               
+            } else if (userFName !== null && userLName !== null && spanSaludo) {
+                // Construye el nombre completo y muestra en las etiquetas <span>
+                var nombreCompleto = userFName + ' ' + userLName;
+
                 spanSaludo.textContent = nombreCompleto;
-            } else {
+            }
+            else {
                 console.log('No se encontraron datos en sessionStorage o algunos elementos HTML no existen.');
             }
         });
     </script>
 
-     <script>
+    <script>
         //<!-- Función para mostrar el menú de acuerdo al rol del usuario -->
         $(document).ready(function () {
             var userRole = sessionStorage.getItem('userRole');
@@ -230,59 +248,13 @@
                 $("#contenido").css("display", "block");
             }
         });
-        </script> @*
-    <script>
-        $(document).ready(function () {
-            var userRole = sessionStorage.getItem('userRole');
-            console.log("userRole: " + userRole);
-            if (userRole == 1) {
-                $("#liAdmin").css("display", "block");
-                $("#liDoctor").css("display", "block");
-                $("#liUser").css("display", "block");
-            }
-            else if (userRole == 2) {
-                $("#liAdmin").hide();
-                $("#liDoctor").css("display", "block");
-                $("#liUser").hide();
-            }
-            else if (userRole == 3) {
-                $("#liAdmin").hide();
-                $("#liDoctor").hide();
-                $("#liUser").css("display", "block");
-            }
-        });
     </script>
-    <script>
-        $(document).ready(function () {
-            var userRole = sessionStorage.getItem('userRole');
-            console.log("userRole: " + userRole);
-            if (userRole == 1) {
-                $("#divAdmin").css("display", "block");
-                $("#divDoctor").hide();
-                $("#divUser").hide();
-            }
-            else if (userRole == 2) {
-                $("#divAdmin").hide();
-                $("#divDoctor").css("display", "block");
-                $("#divUser").hide();
-            }
-            else if (userRole == 3) {
-                $("#divAdmin").hide();
-                $("#divDoctor").hide();
-                $("#divUser").css("display", "block");
-            }
-            else if (userRole == 1 || userRole == 2 || userRole == 3) {
-                $("#contenido").css("display", "block");
-            }
-        });
-    </script>*@
 
     <!-- BEGIN PAGE LEVEL CUSTOM SCRIPTS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.6/af-2.6.0/b-2.4.2/b-html5-2.4.2/b-print-2.4.2/r-2.5.0/sc-2.2.0/datatables.min.js"></script>
     <!-- END PAGE LEVEL CUSTOM SCRIPTS -->
-
     @* <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script> *@
 
     @await RenderSectionAsync("Scripts", required: false)
