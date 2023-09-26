@@ -102,7 +102,21 @@ namespace Repository.Repos
             return ResponseModel;
         }
 
-
+        public async Task<GenericResponseModel> SetUserStatus(int uID, int uStatus)
+        {
+            string query = UsersQueries.SetUserStatus(uID, uStatus);
+            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
+            ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
+            GenericResponseModel ResponseModel = new();
+            if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
+            {
+                DataTable dt = ItemResponseDB.DtObject;
+                ResponseModel.CodeStatus = dt.Rows[0]["OutputCodeError"].ToString();
+                ResponseModel.MessageStatus = dt.Rows[0]["OutputMessageError"].ToString();
+                ResponseModel.Status = ResponseModel.CodeStatus == "0";
+            }
+            return ResponseModel;
+        }
 
     }
 }
