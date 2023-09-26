@@ -94,11 +94,40 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" id="saveChangesBtn">Guardar Cambios</button>
+                <button type="button" class="btn btn-primary" id="savePasswordChangesBtn">Guardar Cambios</button>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Modal Cambio Contraseña -->
+<div class="modal fade" id="editPassword" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="passwordModalLabel">Cambiar Contraseña</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="mb-3">
+                <label for="usernamepass" class="form-label">Usuario</label>
+                <input type="text" class="form-control" id="usernamepass" name="usernamepass" disabled>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="newPassword" class="form-label">Nueva Contraseña:</label>
+                        <input type="password" class="form-control" id="newPassword" name="newPassword">
+                    </div> 
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="changePasswordBtn">Cambiar Contraseña</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 @*
@@ -297,7 +326,8 @@
                                 orderable: false, // Para desactivar la ordenación en esta columna
                                 data: null, // Usaremos la columna "Acciones" solo para botones
                                 defaultContent: '<button class="btn btn-primary btn-sm" id="btnEditar" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" title="Editar Usuario"><i class="fas fa-edit"></i></button>' +
-                                    '<button class="btn btn-danger btn-sm deactivate-button" id="btnDesactivar" data-toggle="modal" data-target="#deactivateModal" data-toggle="tooltip" title="Desactivar Usuario" > <i class="fas fa-ban"> </i></button > '
+                                    '<button class="btn btn-success btn-sm deactivate-button" id="btnDesactivar" data-toggle="modal" data-target="#deactivateModal" data-toggle="tooltip" title="Desactivar Usuario" > <i class="fas fa-ban"> </i></button > ' +
+                                    '<button class="btn btn-danger btn-sm password-button" id="btnPassword" data-toggle="modal" data-target="#passwordModal" data-toggle="tooltip" title="Cambiar Contraseña" > <i class="fa-solid fa-lock"></i></button > '
 
                             }
                         ],
@@ -419,8 +449,6 @@
                             });
                         });
                     });
-
-
                     table.column(11).nodes().to$().find('#btnDesactivar').click(function () {
                         // Maneja la acción de desactivación aquí
                         let data = table.row($(this).parents('tr')).data();
@@ -433,7 +461,9 @@
                         let dataUser = {
                             uID: userId,
                             uStatus: 0
-                        };
+                        }; //Ajustar para enviar si esta inactivo activar si esta activo desactivar
+                        // Muestra un mensaje de confirmación antes de desactivar el usuario
+
                         Swal.fire({
                             title: '¿Estás seguro de Desactivar? a:',
                             text: '¡ ' + userName + ' !',
@@ -479,11 +509,108 @@
                         });
 
                     });
+                    table.column(11).nodes().to$().find('#btnPassword').click(function () {
+                        // Maneja la acción del botón aquí
+                        let data = table.row($(this).parents('tr')).data();
+
+                        let userId = data[0]; // Supongamos que la primera columna contiene el ID del usuario
+                        console.log("Contraseña " + userId)
+                        let userNameEdit = data[3] + ' ' + data[4];
+
+                        $("#usernamepass").val(userNameEdit);
+
+                        // Abre el modal de edición
+                        $("#editPassword").modal("show");
+
+
+                        console.log("Usuario a Editar" + userId);
+                        // Realiza una solicitud AJAX para obtener los detalles del usuario
+
+                        $("#changePasswordBtn").click(function () {
+
+                            let password = $("#newPassword").val();
+                            if (!validarContraseña(password)) {
+                                Swal.fire({
+                                    text: 'La contraseña no cumple con los requisitos.',
+                                    confirmButtonColor: '#008dc9'
+                                });
+                            } else {
+                                // Obtén los datos actualizados del formulario de edición
+                                let updatedUserData = {
+                                    // Recoge los datos actualizados desde los campos del formulario
+                                    uID: userId,
+                                    Password: password
+                                };
+
+
+                                // Realiza una solicitud AJAX para guardar los cambios en el servidor
+                                $.ajax({
+                                    url: '@ViewBag.urlEndPoint' + '/api/Users/v1/ChangePassword', // Reemplaza con la URL correcta
+                                    type: 'POST',
+                                    data: JSON.stringify(updatedUserData), // Convierte updatedUserData a JSON
+                                    contentType: "application/json", // Especifica el tipo de contenido
+                                    dataType: "json",
+                                    success: function (response) {
+                                        // Cierra el modal de edición
+                                        if (response.codeStatus == 0) {
+                                            $("#editPassword").modal("hide");
+                                            //window.location.href = '@Url.Action("Index", "")';
+                                            Swal.fire({
+                                                text: 'Contraseña actualizada con exito',
+                                                confirmButtonColor: '#008dc9'
+                                            });
+                                        } else {
+
+                                            Swal.fire({
+                                                text: "Hubo un fallo" + response.messageStatus,
+                                                confirmButtonColor: '#008dc9'
+                                            });
+                                            //alert('Inicio de sesión fallido, ' + response.messageStatus);
+                                        }
+
+
+                                        // Puedes realizar otras acciones después de guardar los cambios si es necesario
+                                        // Por ejemplo, actualizar la tabla con los datos modificados
+                                        // o mostrar un mensaje de éxito
+                                    },
+                                    error: function () {
+                                        // $("#editModal").modal("hide");
+                                        // Swal.fire({
+                                        //     title: 'Error',
+                                        //     text: 'Error al guardar los cambios',
+                                        //     icon: 'error',
+                                        //     confirmButtonText: 'Aceptar'
+                                        // });
+                                    }
+                                });
+                            }
+                        });
+                    });
 
                 }
             });
         };
+        function validarContraseña(password) {
+            if (password.length < 8) {
+                return false;
+            }
 
+            if (!/[a-zA-Z]/.test(password)) {
+                return false;
+            }
+
+            if (!/\d/.test(password)) {
+                return false;
+            }
+
+
+            if (/\s/.test(password) || /[\uD800-\uDFFF]/.test(password)) {
+                return false;
+            }
+
+
+            return true;
+        }
 
         $(".add-user-btn").click(function () {
             // Abre el modal de agregar usuario

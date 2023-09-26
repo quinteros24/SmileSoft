@@ -340,7 +340,12 @@
                     text: 'Las contraseñas deben ser iguales',
                     confirmButtonColor: '#008dc9'
                 });
-            } else {
+            }else if (!validarContraseña(password)) {
+                Swal.fire({
+                    text: 'La contraseña no cumple con los requisitos.',
+                    confirmButtonColor: '#008dc9'
+                });
+            }else {
 
                 let data = {
                     Password: password,
@@ -351,7 +356,7 @@
 
                     type: "POST",
                     url: '@ViewBag.urlEndPoint' + '/api/Users/v1/ChangePassword',
-
+                    //header: { 'Authorization': 'Bearer ' + sessionStorage.getItem('accessToken') },
                     data: JSON.stringify(data),
                     contentType: "application/json",
                     //async: false,
@@ -364,7 +369,7 @@
 
                             //window.location.href = '@Url.Action("Index", "")';
                             Swal.fire({
-                                text: 'Contraseña actulizada con exito',
+                                text: 'Contraseña actualizada con exito',
                                 confirmButtonColor: '#008dc9'
                             });
                         } else {
@@ -381,6 +386,27 @@
                     }
                 });
             }
+        }
+        function validarContraseña(password) {
+            if (password.length < 8) {
+                return false;
+            }
+
+            if (!/[a-zA-Z]/.test(password)) {
+                return false;
+            }
+
+            if (!/\d/.test(password)) {
+                return false;
+            }
+
+
+            if (/\s/.test(password) || /[\uD800-\uDFFF]/.test(password)) {
+                return false;
+            }
+
+
+            return true;
         }
     </script>
 
