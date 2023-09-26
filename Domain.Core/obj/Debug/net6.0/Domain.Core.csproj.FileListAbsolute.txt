@@ -40,3 +40,24 @@ C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Domain.Core\obj\Debug\net6.0\D
 C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Domain.Core\obj\Debug\net6.0\refint\Domain.Core.dll
 C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Domain.Core\obj\Debug\net6.0\Domain.Core.pdb
 C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Domain.Core\obj\Debug\net6.0\ref\Domain.Core.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Core\bin\Debug\net6.0\Domain.Core.deps.json
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Core\bin\Debug\net6.0\Domain.Core.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Core\bin\Debug\net6.0\Domain.Core.pdb
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Core\bin\Debug\net6.0\DataAccess.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Core\bin\Debug\net6.0\Domain.Entities.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Core\bin\Debug\net6.0\Domain.Interfaces.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Core\bin\Debug\net6.0\Repository.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Core\bin\Debug\net6.0\Repository.pdb
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Core\bin\Debug\net6.0\DataAccess.pdb
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Core\bin\Debug\net6.0\Domain.Entities.pdb
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Core\bin\Debug\net6.0\Domain.Interfaces.pdb
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Core\obj\Debug\net6.0\Domain.Core.csproj.AssemblyReference.cache
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Core\obj\Debug\net6.0\Domain.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Core\obj\Debug\net6.0\Domain.Core.AssemblyInfoInputs.cache
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Core\obj\Debug\net6.0\Domain.Core.AssemblyInfo.cs
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Core\obj\Debug\net6.0\Domain.Core.csproj.CoreCompileInputs.cache
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Core\obj\Debug\net6.0\Domain.Core.csproj.CopyComplete
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Core\obj\Debug\net6.0\Domain.Core.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Core\obj\Debug\net6.0\refint\Domain.Core.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Core\obj\Debug\net6.0\Domain.Core.pdb
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Core\obj\Debug\net6.0\ref\Domain.Core.dll

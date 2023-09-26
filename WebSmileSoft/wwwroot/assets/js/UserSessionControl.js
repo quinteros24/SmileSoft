@@ -27,16 +27,29 @@ resetInactivityTimer();
 function verifyToken() {
     let data = {
         Password: password,
-        UID: uID
+        UID: uID,
+        token: token
     };
     // Realiza una solicitud al servidor para verificar el token
     const token = sessionStorage.getItem('accessToken');
-    fetch('https://ep-smilesoft-develop.azurewebsites.net/api/Generics/v1/GenerateJWToken', {
-        method: 'GET',
+    $.ajax({
+
+        type: "GET",
+        url: '@ViewBag.urlEndPoint' + '/api/Users/v1/GenerateJWToken',
+        data: JSON.stringify(data),
+        contentType: "application/json",
+        dataType: "json",
         headers: {
             'userID': parseInt(sessionStorage.getItem("userID")),
             'Authorization': 'Bearer ' + token // Agrega el token actual
-        }
+        },
+        console.log(response);
+               if (response.codeStatus == 0) {
+                    //ir a la vista
+                   sessionStorage.getItem("jwtToken", response.uToken);
+                   sessionStorage.getItem("userFName", response.uName);
+                   sessionStorage.getItem("userLName", response.uLastName);
+                   sessionStorage.getItem("UserRole", response.uTID);
     })
         .then(response => {
             if (response.status === 200) {
@@ -49,10 +62,10 @@ function verifyToken() {
         })
         .then(data => {
             // Almacena los datos del usuario en sessionStorage si el token es válido
-            sessionStorage.getItem("jwtToken", token);
-            sessionStorage.getItem("userFName", data.uName);
-            sessionStorage.getItem("userLName", data.uLastName);
-            sessionStorage.getItem("UserRole", data.uTID);
+            sessionStorage.setItem("jwtToken", token);
+            sessionStorage.setItem("userFName", data.uName);
+            sessionStorage.setItem("userLName", data.uLastName);
+            sessionStorage.setItem("UserRole", data.uTID);
         })
         .catch(error => {
             console.error('Error al verificar el token:', error);
