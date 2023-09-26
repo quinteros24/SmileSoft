@@ -163,7 +163,7 @@
             //console.log("Validando Token: " + token);
             if (!token) {
                 // No se encontró un token, redirige al usuario a la página de inicio de sesión
-                window.location.href = '/Account/Login'; // Reemplaza con la URL correcta
+                window.location.href = '@Url.Action("Login", "Account")'; // Reemplaza con la URL correcta
             }
         }
 
@@ -192,7 +192,7 @@
             //console.log("Cerrando Sesión");
             // Borra el Session Storage
             sessionStorage.clear();
-            window.location.href = '/Account/Login';
+            window.location.href = '@Url.Action("Login", "Account")';
         }
     </script>
 

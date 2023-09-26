@@ -82,15 +82,8 @@
 
                     dataType: "json",
                     success: function (response) {
-                        // console.log(response);
-                        // console.log("Token: " + response.itemJson.uToken);
-                        // console.log("ID: " + response.itemJson.uID);
-                        // console.log("Nombre: " + response.itemJson.uName);
-                        // console.log("Apellido: " + response.itemJson.uLastName);
+                        
                         if (response.codeStatus == 0) {
-                            //console.log("hace algo");
-                            //ir a la vista
-                            //Swal.fire(response.messageStatus);
 
                             sessionStorage.setItem('accessToken', response.itemJson.uToken);
                             sessionStorage.setItem('userRole', response.itemJson.utID);
@@ -98,24 +91,16 @@
                             sessionStorage.setItem('userFName', response.itemJson.uName);
                             sessionStorage.setItem('userLName', response.itemJson.uLastName);
                             sessionStorage.setItem('userLogin', response.itemJson.uLoginName);
-                            sessionStorage.setItem('userEmail', response.itemJson.uEmail);
-                            sessionStorage.setItem('userPhone', response.itemJson.uCellPhone);
+                            sessionStorage.setItem('userEmail', response.itemJson.uEmailAddress);
+                            sessionStorage.setItem('userPhone', response.itemJson.uCellphone);
                             sessionStorage.setItem('userAddress', response.itemJson.uAddress);
+                            sessionStorage.setItem('usertDocument', response.itemJson.dtID);
+                            sessionStorage.setItem('userDocument', response.itemJson.uDocument);
                             //sessionStorage.setItem('userBirthDate', response.itemJson.uBirthDate);
                             //sessionStorage.setItem('userGender', response.itemJson.uGender);
+                            sessionStorage.setItem('userBlock', response.itemJson.uIsBlocked);
                             sessionStorage.setItem('userStatus', response.itemJson.uStatus);
-                            //sessionStorage.setItem('userCreationDate', response.itemJson.uCreationDate);
-                            //sessionStorage.setItem('userLastUpdate', response.itemJson.uLastUpdate);
-
-
-                            //alert(response.messageStatus);
-                            // console.log("Inicio de sesión exitoso.");
-                            // console.log("Token: " + sessionStorage.getItem('accessToken'));
-                            // console.log("ID: " + sessionStorage.getItem('userID'));
-                            // console.log("Rol: " + sessionStorage.getItem('userRole'));
-                            // console.log("Nombre: " + sessionStorage.getItem('userFName'));
-                            // console.log("Apellido: " + sessionStorage.getItem('userLName'));
-
+                            
                             // window.location.href = '@Url.Action("Index", "Home")';
                             if (response.itemJson.utID === 1) {
                                 // Redirige al administrador a la vista de administrador

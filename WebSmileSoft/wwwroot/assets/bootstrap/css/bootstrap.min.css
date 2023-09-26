@@ -12290,8 +12290,11 @@ a:focus {
   }
 }
 .sidebar {
-  width: 6.5rem;
-  min-height: 100vh;
+    /*width: 6.5rem;
+  min-height: 100vh;*/
+    width: 6.5rem;
+    min-height: 100vh;
+    /*overflow-y: auto;*/ /* Agrega desplazamiento vertical si el contenido es demasiado largo */
 }
 .sidebar .nav-item {
   position: relative;
