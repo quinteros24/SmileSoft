@@ -120,7 +120,7 @@ namespace Repository.Repos
 
         public async Task<GenericResponseModel> GetUserDetails(int uID)
         {
-            string query = UsersQueries.ViewUsers(uID);
+            string query = UsersQueries.GetUserDetails(uID);
             Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
             ResponseDB ItemResponseDB = await dl.Consultds(query);
             List<ViewUsersModelRequest> ListUsers = new();
