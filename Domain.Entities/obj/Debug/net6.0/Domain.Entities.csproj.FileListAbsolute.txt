@@ -1,0 +1,36 @@
+C:\Users\Usuario\Source\Repos\SmileSoft\Domain.Entities\bin\Debug\net6.0\Domain.Entities.deps.json
+C:\Users\Usuario\Source\Repos\SmileSoft\Domain.Entities\bin\Debug\net6.0\Domain.Entities.dll
+C:\Users\Usuario\Source\Repos\SmileSoft\Domain.Entities\bin\Debug\net6.0\Domain.Entities.pdb
+C:\Users\Usuario\Source\Repos\SmileSoft\Domain.Entities\obj\Debug\net6.0\Domain.Entities.csproj.AssemblyReference.cache
+C:\Users\Usuario\Source\Repos\SmileSoft\Domain.Entities\obj\Debug\net6.0\Domain.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Source\Repos\SmileSoft\Domain.Entities\obj\Debug\net6.0\Domain.Entities.AssemblyInfoInputs.cache
+C:\Users\Usuario\Source\Repos\SmileSoft\Domain.Entities\obj\Debug\net6.0\Domain.Entities.AssemblyInfo.cs
+C:\Users\Usuario\Source\Repos\SmileSoft\Domain.Entities\obj\Debug\net6.0\Domain.Entities.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Source\Repos\SmileSoft\Domain.Entities\obj\Debug\net6.0\Domain.Entities.dll
+C:\Users\Usuario\Source\Repos\SmileSoft\Domain.Entities\obj\Debug\net6.0\refint\Domain.Entities.dll
+C:\Users\Usuario\Source\Repos\SmileSoft\Domain.Entities\obj\Debug\net6.0\Domain.Entities.pdb
+C:\Users\Usuario\Source\Repos\SmileSoft\Domain.Entities\obj\Debug\net6.0\ref\Domain.Entities.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Domain.Entities\bin\Debug\net6.0\Domain.Entities.deps.json
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Domain.Entities\bin\Debug\net6.0\Domain.Entities.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Domain.Entities\bin\Debug\net6.0\Domain.Entities.pdb
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Domain.Entities\obj\Debug\net6.0\Domain.Entities.csproj.AssemblyReference.cache
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Domain.Entities\obj\Debug\net6.0\Domain.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Domain.Entities\obj\Debug\net6.0\Domain.Entities.AssemblyInfoInputs.cache
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Domain.Entities\obj\Debug\net6.0\Domain.Entities.AssemblyInfo.cs
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Domain.Entities\obj\Debug\net6.0\Domain.Entities.csproj.CoreCompileInputs.cache
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Domain.Entities\obj\Debug\net6.0\Domain.Entities.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Domain.Entities\obj\Debug\net6.0\refint\Domain.Entities.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Domain.Entities\obj\Debug\net6.0\Domain.Entities.pdb
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Domain.Entities\obj\Debug\net6.0\ref\Domain.Entities.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Entities\bin\Debug\net6.0\Domain.Entities.deps.json
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Entities\bin\Debug\net6.0\Domain.Entities.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Entities\bin\Debug\net6.0\Domain.Entities.pdb
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Entities\obj\Debug\net6.0\Domain.Entities.csproj.AssemblyReference.cache
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Entities\obj\Debug\net6.0\Domain.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Entities\obj\Debug\net6.0\Domain.Entities.AssemblyInfoInputs.cache
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Entities\obj\Debug\net6.0\Domain.Entities.AssemblyInfo.cs
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Entities\obj\Debug\net6.0\Domain.Entities.csproj.CoreCompileInputs.cache
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Entities\obj\Debug\net6.0\Domain.Entities.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Entities\obj\Debug\net6.0\refint\Domain.Entities.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Entities\obj\Debug\net6.0\Domain.Entities.pdb
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Domain.Entities\obj\Debug\net6.0\ref\Domain.Entities.dll
