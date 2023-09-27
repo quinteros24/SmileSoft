@@ -1,0 +1,52 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<div class="container mt-5">
+    <h1 class="mb-4">Historias Clínicas</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <!-- Panel de búsqueda de pacientes -->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Buscar Paciente</h5>
+                    <form>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Nombre o ID del Paciente">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Buscar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <!-- Historias Clínicas -->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Historia Clínica de [Nombre del Paciente]</h5>
+                    <!-- Contenido de la Historia Clínica -->
+                    <div class="mb-3">
+                        <h6>Información Personal</h6>
+                        <p><strong>Nombre:</strong> [Nombre del Paciente]</p>
+                        <p><strong>Edad:</strong> [Edad del Paciente]</p>
+                        <p><strong>Fecha de Nacimiento:</strong> [Fecha de Nacimiento]</p>
+                    </div>
+                    <div class="mb-3">
+                        <h6>Historial Médico</h6>
+                        <p><strong>Diagnóstico:</strong> [Diagnóstico]</p>
+                        <p><strong>Tratamiento:</strong> [Tratamiento]</p>
+                        <!-- Agregar más detalles según sea necesario -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+   
+}

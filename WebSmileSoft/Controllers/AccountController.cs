@@ -9,6 +9,7 @@ using WebSmileSoft.Interfaces;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using System.Net.Http.Headers;
+using NuGet.Protocol.Plugins;
 
 namespace WebSmileSoft.Controllers
 {
@@ -24,12 +25,13 @@ namespace WebSmileSoft.Controllers
         }
 
 
-        //// Acción para la página de inicio de sesión
+        //Acción para la página de inicio de sesión
         public IActionResult Login()
         {
             ViewBag.urlEndPoint = _settings.urlEndPoint;
             return View();
         }
+
 
 
 
@@ -81,57 +83,6 @@ namespace WebSmileSoft.Controllers
         //}
 
 
-        //[HttpPost]
-        //public async Task<IActionResult> Login([FromBody] LoginViewModelRequest ItemLogin)
-        //{
-        //    try
-        //    {
-        //        using var httpClient = new HttpClient();
-
-        //        // Añade el encabezado Content-Type para indicar que se envía JSON.
-        //        httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-        //        // Serializa el objeto ItemLogin como JSON y envíalo en el cuerpo de la solicitud.
-        //        var jsonContent = new StringContent(JsonConvert.SerializeObject(ItemLogin), Encoding.UTF8, "application/json");
-        //        var response = await httpClient.PostAsync("https://ep-smilesoft-develop.azurewebsites.net/api/Session/v1/Login", jsonContent);
-
-        //        if (response.IsSuccessStatusCode)
-        //        {
-        //            var json = await response.Content.ReadAsStringAsync();
-        //            JObject jsonObject = JObject.Parse(json);
-
-        //            // Verifica si la respuesta contiene un token de acceso y otros datos necesarios.
-        //            if (jsonObject.TryGetValue("itemJson", out var data))
-        //            {
-        //                // Prueba de Cookies
-        //                var claims = new List<Claim>
-        //        {
-        //            new Claim(ClaimTypes.Name, ItemLogin.UserLogin),
-        //            // Agregar otros claims según sea necesario
-        //        };
-
-        //                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-        //                var authProperties = new AuthenticationProperties
-        //                {
-        //                    IsPersistent = true, // Mantener la sesión activa después del cierre del navegador
-        //                };
-
-        //                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
-
-        //                return RedirectToAction("Index", "Home");
-        //            }
-        //        }
-
-        //        ModelState.AddModelError(string.Empty, "Credenciales no válidas");
-        //        return View(); // Puedes personalizar esta parte para mostrar un mensaje de error.
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Manejo de excepciones
-        //        ModelState.AddModelError(string.Empty, "Error en la solicitud: " + ex.Message);
-        //        return View(); // Puedes personalizar esta parte para mostrar un mensaje de error.
-        //    }
-        //}
 
 
         public IActionResult Register()

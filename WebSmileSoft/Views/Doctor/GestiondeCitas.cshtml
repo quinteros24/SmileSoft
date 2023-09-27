@@ -1,0 +1,100 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<div class="container mt-5">
+    <h1 class="mb-4">Gestión de Citas</h1>
+
+    <!-- Calendario de Citas -->
+    <div class="card mb-4">
+        <div class="card-header">
+            Calendario de Citas
+        </div>
+        <div class="card-body">
+            <div id="calendar"></div>
+            <!-- Aquí puedes agregar un calendario o un componente de calendario -->
+            <!-- Por ejemplo, puedes usar FullCalendar.io o Bootstrap Datepicker -->
+            <!-- Añade el código necesario para mostrar y gestionar las citas -->
+        </div>
+    </div>
+
+    <!-- Lista de Citas Programadas -->
+    <div class="card">
+        <div class="card-header">
+            Citas Programadas
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Paciente</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Aquí puedes iterar a través de las citas y mostrarlas en filas de la tabla -->
+                    <tr>
+                        <td>2023-08-20</td>
+                        <td>10:00 AM</td>
+                        <td>Nombre del Paciente</td>
+                        <td>Programada</td>
+                        <td>
+                            <!-- Agregar botones de acciones, por ejemplo: -->
+                            <button type="button" class="btn btn-sm btn-primary" onclick="abrirCita()">Abrir</button>
+                            <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#editModal">Editar</button>
+                         
+                        </td>
+                    </tr>
+                    <!-- Puedes agregar más filas de citas aquí -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Editar de Cita</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Usuario</label>
+                        <input type="text" class="form-control" id="username" name="username" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="estadodeCita">Estado de la Cita</label>
+                        <select class="form-control" id="tipoUsuarioe" name="estadodeCita" required>
+                            <option value="1">Pendiente</option>
+                            <option value="2">Programada</option>
+                            <option value="3">Cancelada</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="saveChangesBtn">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+   <script>
+      
+              function abrirCita() {
+               window.location.href = '@Url.Action("AdministrarCitas", "Doctor")';
+           }
+    </script>
+   
+}

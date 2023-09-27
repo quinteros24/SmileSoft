@@ -1,0 +1,55 @@
+﻿@using System.Collections.Specialized
+@using WebSmileSoft.Models;
+@* @model WebSmileSoft.Models.UsuariosModel[] *@
+@model List<UsuariosModel>
+
+@{
+    ViewData["Title"] = "Tabla";
+}
+
+<!-- Pantalla de carga -->
+@* <div id="loadingScreen">
+    <div id="loadingSpinner"></div>
+</div> *@
+<nav aria-label="breadcrumb" class="main-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Inicio</a></li>
+        <li class="breadcrumb-item">Administracion de Usuarios</li>
+        <li class="breadcrumb-item active" aria-current="page">
+            CRUD Usuarios
+        </li>
+    </ol>
+</nav>
+<!-- Selectores de los tipos de Usuario a Listar -->
+<div class="mt-2 text-end my-2">
+   <button onclick="verusers(1);" class="btn btn-primary">Administradores</button>
+    <button onclick="verusers(2);" class="btn btn-danger">Doctores</button>
+    <button onclick="verusers(3);" class="btn btn-secondary">Pacientes</button>
+
+    <a class="btn btn-success add-user-btn " data-toggle="modal" data-target="#addUserModal"><i class="fas fa-user-plus"> </i> Agregar Usuario</a>
+
+</div>
+
+<div class="card-body" id="content-container">
+    <!-- Aquí va la tabla -->
+    <div class="table-responsive card shadow d-flex">
+        <table id="example" class="table table-hover non-hover mt-2 mb-2 table-striped" width="100%"></table>
+    </div>
+</div>
+
+<!-- Modal de Edición -->
+<partial name="_EditUser" />
+
+<!-- Modal Cambio Contraseña -->
+<partial name="_ChangePass" />
+
+<!-- Modal Agregar Usuarios -->
+<partial name="_AddUsers" />
+
+
+
+@section Scripts {
+
+    <script src="~/assets/js/control/tablesutilities.js"></script>
+
+        }

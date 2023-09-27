@@ -5,7 +5,7 @@ using WebSmileSoft.Models; // Asegúrate de importar el espacio de nombres de tu
 
 namespace WebSmileSoft.Controllers
 {
-    [Authorize] // Asegura que solo los usuarios autenticados puedan acceder a este controlador
+    /*[Authorize]*/ // Asegura que solo los usuarios autenticados puedan acceder a este controlador
     public class PatientController : Controller
     {
         private readonly ISettings _settings;
@@ -16,6 +16,22 @@ namespace WebSmileSoft.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.urlEndPoint = _settings.urlEndPoint;
+
+            return View();
+        }
+
+        public IActionResult GestiondeCitas()
+        {
+            ViewBag.urlEndPoint = _settings.urlEndPoint;
+
+            return View();
+        }
+
+        public IActionResult HistoriaClinicaPacientes()
+        {
+            ViewBag.urlEndPoint = _settings.urlEndPoint;
+
             return View();
         }
 

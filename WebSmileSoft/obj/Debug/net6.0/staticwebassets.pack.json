@@ -229,6 +229,10 @@
       "PackagePath": "staticwebassets\\assets\\js\\changetheme.js"
     },
     {
+      "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\control\\TablesUtilities.js",
+      "PackagePath": "staticwebassets\\assets\\js\\control\\TablesUtilities.js"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\forgotpassword.js",
       "PackagePath": "staticwebassets\\assets\\js\\forgotpassword.js"
     },
@@ -239,6 +243,10 @@
     {
       "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\popper.js",
       "PackagePath": "staticwebassets\\assets\\js\\popper.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\profile\\ProfileUtilities.js",
+      "PackagePath": "staticwebassets\\assets\\js\\profile\\ProfileUtilities.js"
     },
     {
       "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\theme.js",

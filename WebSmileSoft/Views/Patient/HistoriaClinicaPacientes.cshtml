@@ -1,0 +1,62 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="container mt-5">
+    <h1 class="mb-4">Historia Clínica del Paciente</h1>
+
+    <!-- Información del Paciente -->
+    <div class="card mb-4">
+        <div class="card-header">
+            Información del Paciente
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Nombre del Paciente</h5>
+            <p class="card-text"><strong>Fecha de Nacimiento:</strong> 01/01/1980</p>
+            <p class="card-text"><strong>Género:</strong> Masculino</p>
+            <p class="card-text"><strong>Teléfono:</strong> (123) 456-7890</p>
+            <p class="card-text"><strong>Correo Electrónico:</strong> paciente@example.com</p>
+            <p class="card-text"><strong>Dirección:</strong> Calle Principal, Ciudad</p>
+        </div>
+    </div>
+
+    <!-- Historia Clínica -->
+    <div class="card">
+        <div class="card-header">
+            Historia Clínica
+        </div>
+        <div class="card-body">
+            <!-- Registro de Visitas Médicas -->
+            <h5 class="card-title">Registro de Visitas Médicas</h5>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Médico</th>
+                        <th>Diagnóstico</th>
+                        <th>Tratamiento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2023-01-15</td>
+                        <td>Dr. López</td>
+                        <td>Gripe</td>
+                        <td>Medicación y reposo</td>
+                    </tr>
+                    <tr>
+                        <td>2022-08-20</td>
+                        <td>Dr. Pérez</td>
+                        <td>Presión Alta</td>
+                        <td>Medicación y dieta</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+   
+}

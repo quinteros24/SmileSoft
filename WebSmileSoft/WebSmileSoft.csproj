@@ -50,6 +50,7 @@
 
   <ItemGroup>
     <Folder Include="Views\Modules\" />
+    <Folder Include="wwwroot\assets\js\doctor\" />
     <Folder Include="wwwroot\assets\plugins\" />
   </ItemGroup>
 

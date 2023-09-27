@@ -82,7 +82,7 @@
             </div>
         </div>
     </div>
-    <button id="buscarUsuarioBtn" class="btn btn-primary">Buscar Usuario</button>
+    @* <button id="buscarUsuarioBtn" class="btn btn-primary">Buscar Usuario</button> *@
 
     <span id="userCount"></span>
 </section>
@@ -106,9 +106,11 @@
                     if (data.itemJson === null) {
                         $("#userCount").text("0");
                     } else {
+                       
                         // Mostrar el número de usuarios en el elemento HTML con id "userCount"
                         var userCount = data.itemJson.length;
                         $("#userCount").text(userCount);
+                        
                     }
 
                 },
@@ -133,6 +135,7 @@
                         // Mostrar el número de usuarios en el elemento HTML con id "userCount"
                         var userCount = data.itemJson.length;
                         $("#userDoctor").text(userCount);
+                       
                     }
 
 
@@ -155,9 +158,11 @@
                     if (data.itemJson === null) {
                         $("#userAdmin").text("0");
                     } else {
+                       
                         // Mostrar el número de usuarios en el elemento HTML con id "userCount"
                         var userCount = data.itemJson.length;
                         $("#userAdmin").text(userCount);
+                       
                     }
 
                 },
@@ -192,10 +197,12 @@
 
                         if (data.itemJson === null) {
                             console.log("No se cargó correctamente");
+
                         } else {
                             // Mostrar los datos en la consola o realizar otras acciones
                             console.log("Datos Cargados Correctamente");
                             console.log(data.itemJson);
+                           
                         }
                     },
                     error: function (error) {
