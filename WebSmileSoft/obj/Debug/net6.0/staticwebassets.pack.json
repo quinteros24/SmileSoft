@@ -241,10 +241,6 @@
       "PackagePath": "staticwebassets\\assets\\js\\popper.js"
     },
     {
-      "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\sidebar.js",
-      "PackagePath": "staticwebassets\\assets\\js\\sidebar.js"
-    },
-    {
       "Id": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\theme.js",
       "PackagePath": "staticwebassets\\assets\\js\\theme.js"
     },

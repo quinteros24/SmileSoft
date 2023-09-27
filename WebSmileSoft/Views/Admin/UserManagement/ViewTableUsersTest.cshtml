@@ -97,7 +97,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" id="savePasswordChangesBtn">Guardar Cambios</button>
+                <button type="button" class="btn btn-primary" id="saveChangesBtn">Guardar Cambios</button>
             </div>
         </div>
     </div>
@@ -172,9 +172,9 @@
                             <div class="form-group">
                                 <label for="tipoDocumento">* Tipo de Documento:</label>
                                 <select class="form-control" id="tipoDocumento" name="tipoDocumento" required>
-                                    <option value="cc">Cedula de Ciudadania (CC)</option>
-                                    <option value="ce">Cedula de Extranjeria (CE)</option>
-                                    <option value="ti">Tarjeta de Identidad (TI)</option>
+                                    <option value="1">Cedula de Ciudadania (CC)</option>
+                                    <option value="2">Cedula de Extranjeria (CE)</option>
+                                    <option value="3">Tarjeta de Identidad (TI)</option>
                                 </select>
                             </div>
 
@@ -646,7 +646,7 @@
             // Obtiene los datos del formulario
 
             var userData = {
-                utID: $("#tipoUsuario").val(),
+                utID: parseInt($("#tipoUsuario").val()),
                 uName: $("#nombres").val(),
                 uLastName: $("#apellidos").val(),
                 uCellphone: $("#celular").val(),
@@ -654,7 +654,7 @@
                 uAddress: $("#direccion").val(),
                 uLoginName: $("#usuario").val(),
                 uPassword: $("#password").val(),
-                dtID: $("#tipoDocumento").val(),
+                dtID: parseInt($("#tipoDocumento").val()),
                 uDocument: $("#numeroDocumento").val()
                 //genero: $("input[name='genero']:checked").val(), // Obtiene el valor del radio button seleccionado
                 //fechaNacimiento: $("#fechaNacimiento").val(),

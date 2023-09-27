@@ -15,24 +15,59 @@ ViewData["Title"] = "BasicData";
             </div>
             <div class="card-body">
             <form >
+                <div class="row">
+
+                    
+                        <div class="mb-3">
+                        <label class="form-label" for="username">
+                                <strong>Nombre de Usuario</strong>
+                            </label>
+                        <input class="form-control" type="text" id="username" placeholder="Nombre de Usuario" name="username" required>
+                        </div>
+                   
+                    
+                </div>
                     <div class="row">
 
                         <div class="col">
-                            <div class="mb-3"><label class="form-label" for="user_names"><strong>Nombres</strong></label><input class="form-control" type="text" id="user_names" placeholder="Juan Pedro" name="user_names"></div>
+                            <div class="mb-3">
+                                <label class="form-label" for="user_names">
+                                    <strong>Nombres</strong>
+                                    </label>
+                                    <input class="form-control" type="text" id="user_names" placeholder="Nombres" name="user_names">
+                                </div>
                         </div>
                         <div class="col">
-                            <div class="mb-3"><label class="form-label" for="user_lastnames"><strong>Apellidos</strong></label><input class="form-control" type="text" id="user_lastnames" placeholder="Sanchez ramirez" name="user_lastnames"></div>
+                            <div class="mb-3">
+                                <label class="form-label" for="user_lastnames">
+                                    <strong>Apellidos</strong>
+                                    </label>
+                                    <input class="form-control" type="text" id="user_lastnames" placeholder="Apellidos" name="user_lastnames">
+                                </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <div class="mb-3"><label class="form-label" for="tipo_documento"><strong>Tipo Documento</strong></label><input class="form-control" type="text" id="tipo_documento" placeholder="C.C." name="tipo_documento" disabled></div>
+                            <div class="mb-3">
+                                @* <label class="form-label" for="tipo_documento">
+                                    <strong>Tipo Documento</strong></label>
+                            <input class="form-control" type="text" id="id_type" placeholder="C.C." name="tipo_documento" disabled>
+                                 *@
+                            
+                                <label for="id_type" class="m-1"><strong>Tipo de Documento</strong></label>
+                                <select class="form-control" id="id_type" name="tipoDocumento" disabled>
+                                    <option value="1">Cedula de Ciudadania (CC)</option>
+                                    <option value="2">Cedula de Extranjeria (CE)</option>
+                                    <option value="3">Tarjeta de Identidad (TI)</option>
+                                </select>
+                            
+                             </div>
                         </div>
                         <div class="col">
-                            <div class="mb-3"><label class="form-label" for="id_number"><strong>Identificación</strong></label><input class="form-control" type="text" id="id_number" placeholder="1088313131" name="id_number" disabled></div>
+                            <div class="mb-3"><label class="form-label" for="id_number"><strong>Identificación</strong></label><input class="form-control" type="text" id="id_number" placeholder="Numero Documento" name="id_number" disabled></div>
                         </div>
                     </div>
-                    <div class="row">
+                    @* <div class="row">
                         <div class="col-md-6 mb-3">
                             <div class="input-group">
                                 <span class="input-group-text">Fecha de nacimiento</span>
@@ -52,9 +87,9 @@ ViewData["Title"] = "BasicData";
                                 </select>
                             </div>
                         </div>
-                    </div>
+                    </div> *@
                     <hr />
-                <div class="mb-3"><button class="btn btn-primary btn-sm" id="updateProfileForm" type="submit">Actualizar Datos</button></div>
+                <div class="mb-3"><button class="btn btn-primary btn-sm update-profile-button" type="button">Actualizar Datos</button></div>
                 </form>
             </div>
         </div>
@@ -65,19 +100,19 @@ ViewData["Title"] = "BasicData";
             <div class="card-body">
                 <form>
                     <div class="row">
-                        <div class="mb-3"><label class="form-label" for="address"><strong>Correo Electronico </strong></label><input class="form-control" type="email" id="email" placeholder="emilio@smilesoft.com" name="email"></div>
+                    <div class="mb-3"><label class="form-label" for="editCorreo"><strong>Correo Electronico </strong></label><input class="form-control" type="email" id="editCorreo" placeholder="correo@smilesoft.com" name="email"></div>
                     </div> <div class="row">
-                        <div class="mb-3"><label class="form-label" for="address"><strong>Dirección </strong></label><input class="form-control" type="text" id="address" placeholder="Sunset Blvd, 38" name="address"></div>
+                        <div class="mb-3"><label class="form-label" for="address"><strong>Dirección </strong></label><input class="form-control" type="text" id="address" placeholder="smile, cr 8" name="address"></div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <div class="mb-3"><label class="form-label" for="phone_number"><strong>Numero Celular</strong></label><input class="form-control" type="text" id="phone_number" placeholder="3024214750" name="phone_number"></div>
+                            <div class="mb-3"><label class="form-label" for="phone_number"><strong>Numero Celular</strong></label><input class="form-control" type="text" id="phone_number" placeholder="3014011111" name="phone_number"></div>
                         </div>
                         
                         
                     </div>
 
-                    <div class="mb-3"><button class="btn btn-primary btn-sm btn-en-desarrollo" type="submit">Actualizar Datos</button></div>
+                <div class="mb-3"><button class="btn btn-primary btn-sm update-profile-button" type="button">Actualizar Datos</button></div>
                 </form>
             </div>
         </div>
