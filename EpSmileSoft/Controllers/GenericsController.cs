@@ -14,11 +14,25 @@ namespace EpSmileSoft.Controllers
         {
             _genericsCore = genericsCore;
         }
+        public class TokenRequestModel
+        {
+            public string UserNameLogin { get; set; }
+            public string Token { get; set; }
+        }
 
+        //[HttpPost]
+        //[Route("v1/GenerateJWToken")]
+        //public async Task<GenericResponseModel> GenerateJWToken([FromHeader] int uID, [FromBody]  string userNameLogin, [FromBody] string token)
+        //{
+        //    return await _genericsCore.GenerateJWToken(uID, userNameLogin, token);
+        //}
         [HttpPost]
         [Route("v1/GenerateJWToken")]
-        public async Task<GenericResponseModel> GenerateJWToken([FromHeader] int uID, [FromBody]  string userNameLogin, [FromBody] string token)
+        public async Task<GenericResponseModel> GenerateJWToken([FromHeader] int uID, [FromBody] TokenRequestModel requestModel)
         {
+            string userNameLogin = requestModel.UserNameLogin;
+            string token = requestModel.Token;
+
             return await _genericsCore.GenerateJWToken(uID, userNameLogin, token);
         }
     }

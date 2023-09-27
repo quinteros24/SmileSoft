@@ -77,6 +77,21 @@ namespace EpSmileSoft.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("v1/GetUserDetails")]
+        public async Task<GenericResponseModel> GetUserDetails(int uID)
+        {
+            try
+            {
+                GenericResponseModel ItemGenericResponseModel = await _usersCore.GetUserDetails(uID);
+                return ItemGenericResponseModel;
+            }
+            catch
+            {
+                return new GenericResponseModel();
+            }
+        }
+
 
 
 
