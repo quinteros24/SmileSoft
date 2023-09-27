@@ -1,7 +1,6 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Domain.Core",
     "\\WebSmileSoft",
     "\\WebSmileSoft\\Views",
     "\\WebSmileSoft\\Views\\Profile",
@@ -12,6 +11,6 @@
     "\\WebSmileSoft\\wwwroot\\assets\\css",
     "\\WebSmileSoft\\wwwroot\\assets\\js"
   ],
-  "SelectedNode": "\\Domain.Core\\UsersCore.cs",
+  "SelectedNode": "\\SolutionSmileSoft.sln",
   "PreviewInSolutionExplorer": false
 }

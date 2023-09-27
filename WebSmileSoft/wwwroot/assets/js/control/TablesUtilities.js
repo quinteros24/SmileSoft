@@ -116,6 +116,7 @@ function verusers(utID) {
                 },
 
             });
+           
             Swal.close();
             table.column(11).nodes().to$().find('#btnEditar').click(function () {
                 // Maneja la acción del botón aquí
