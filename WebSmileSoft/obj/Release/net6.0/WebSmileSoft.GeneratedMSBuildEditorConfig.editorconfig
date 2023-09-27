@@ -40,28 +40,32 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Admin/RoleManagement/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUm9sZU1hbmFnZW1lbnRcSW5kZXguY3NodG1s
+[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Admin/SiteManagement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cU2l0ZU1hbmFnZW1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Admin/SiteManagement/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cU2l0ZU1hbmFnZW1lbnRcSW5kZXguY3NodG1s
+[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Admin/UserManagement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlck1hbmFnZW1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Admin/UserManagement/EditUser.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlck1hbmFnZW1lbnRcRWRpdFVzZXIuY3NodG1s
+[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Admin/UserManagement/ViewTableUsersAnterior.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlck1hbmFnZW1lbnRcVmlld1RhYmxlVXNlcnNBbnRlcmlvci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Admin/UserManagement/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlck1hbmFnZW1lbnRcSW5kZXguY3NodG1s
+[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Admin/ViewTableUsers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVmlld1RhYmxlVXNlcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Admin/UserManagement/ViewTableUsers.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlck1hbmFnZW1lbnRcVmlld1RhYmxlVXNlcnMuY3NodG1s
+[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Admin/_AddUsers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cX0FkZFVzZXJzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Admin/UserManagement/ViewTableUsersTest.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlck1hbmFnZW1lbnRcVmlld1RhYmxlVXNlcnNUZXN0LmNzaHRtbA==
+[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Admin/_ChangePass.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cX0NoYW5nZVBhc3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Admin/_EditUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cX0VkaXRVc2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Usuario/Source/Repos/SmileSoft/WebSmileSoft/Views/Doctor/GestiondeCitas.cshtml]

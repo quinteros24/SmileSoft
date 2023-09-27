@@ -1,0 +1,66 @@
+﻿<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Editar Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Usuario</label>
+                        <input type="text" class="form-control" id="username" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="tipoUsuarioe">* Tipo de Usuario:</label>
+                        <select class="form-control" id="tipoUsuarioe" name="tipoUsuarioe" required>
+                            <option value="2">Odontólogo</option>
+                            <option value="3">Paciente</option>
+                            <option value="1">Administrador</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editNombre" class="form-label">Nombre:</label>
+                        <input type="text" class="form-control" id="editNombre" name="editNombre">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editApellido" class="form-label">Apellido:</label>
+                        <input type="text" class="form-control" id="editApellido" name="editApellido">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editCorreo" class="form-label">Correo Electrónico:</label>
+                        <input type="email" class="form-control" id="editCorreo" name="editCorreo">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editCelular" class="form-label">Celular:</label>
+                        <input type="text" class="form-control" id="editCelular" name="editCelular">
+                    </div>
+                    <div class="form-group">
+                        <label for="tipoDocumentoe">* Tipo de Documento:</label>
+                        <select class="form-control" id="tipoDocumentoe" name="tipoDocumentoe" required>
+                            <option value="1">Cedula de Ciudadania (CC)</option>
+                            <option value="2">Cedula de Extranjeria (CE)</option>
+                            <option value="3">Tarjeta de Identidad (TI)</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editDocumento" class="form-label">Número de Documento:</label>
+                        <input type="text" class="form-control" id="editDocumento" name="editDocumento">
+                    </div>
+                    @*  <div class="mb-3">
+                    <label for="editIsBlocked" class="form-label">Bloqueado</label>
+                    <input type="number" class="form-control" id="editIsBlocked" name="editIsBlocked">
+                    </div> *@
+                    <div class="mb-3">
+                        <label for="editStatus" class="form-label">Estado:</label>
+                        <input type="text" class="form-control" id="editStatus" name="editStatus" disabled>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="saveChangesBtn">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
