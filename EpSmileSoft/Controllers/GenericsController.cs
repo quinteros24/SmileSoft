@@ -15,9 +15,9 @@ namespace EpSmileSoft.Controllers
             _genericsCore = genericsCore;
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("v1/GenerateJWToken")]
-        public async Task<GenericResponseModel> GenerateJWToken([FromHeader] int uID, string userNameLogin, string token)
+        public async Task<GenericResponseModel> GenerateJWToken([FromHeader] int uID, [FromBody]  string userNameLogin, [FromBody] string token)
         {
             return await _genericsCore.GenerateJWToken(uID, userNameLogin, token);
         }
