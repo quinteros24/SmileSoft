@@ -82,7 +82,8 @@
             </div>
         </div>
     </div>
-    
+    <button id="buscarUsuarioBtn" class="btn btn-primary">Buscar Usuario</button>
+
     <span id="userCount"></span>
 </section>
 
@@ -168,5 +169,42 @@
             // Resto de tu código...
         });
 
+    </script>
+
+    <script>
+
+        // Espera a que se cargue el documento
+        $(document).ready(function () {
+            // Adjunta un controlador de eventos de clic al botón
+            $("#buscarUsuarioBtn").click(function () {
+                var uID = 3;
+
+                console.log("Buscando al Usuario " + uID);
+
+                $.ajax({
+                    url: '@ViewBag.urlEndPoint' + '/api/Users/v1/GetUserDetails',
+                    type: 'GET',
+                    data: { 'uID': uID },
+                    contentType: "application/json",
+                    dataType: 'json',
+                    success: function (data) {
+                        //console.log(data);
+
+                        if (data.itemJson === null) {
+                            console.log("No se cargó correctamente");
+                        } else {
+                            // Mostrar los datos en la consola o realizar otras acciones
+                            console.log("Datos Cargados Correctamente");
+                            console.log(data.itemJson);
+                        }
+                    },
+                    error: function (error) {
+                        console.log('Error al obtener los detalles del usuario.');
+                    }
+                });
+            });
+        });
+
+           
     </script>
 }

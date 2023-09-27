@@ -32,6 +32,16 @@ namespace Repository.Queries
                 $"END CATCH";
         }
 
+        public static string GetUserDetails(int uID)
+        {
+            return $"BEGIN TRY\n " +
+                $"  SELECT *, 'OBJECT' AS TableName FROM dbo.Users WHERE [uID] = {uID}\n" +
+                $"    SELECT '0' AS OutputCodeError, 'Consulta correcta' AS OutputMessageError, 'Parameters' AS TableName\n" +
+                $"END TRY\n" +
+                $"BEGIN CATCH\n" +
+                $"    SELECT ERROR_NUMBER() AS OutputCodeError, ERROR_MESSAGE() AS OutputMessageError, 'Parameters' AS TableName\n" +
+                $"END CATCH";
+        }
         public static string CreateUpdateUsers(ViewUsersModelRequest Item)
         {
             string query =      $"BEGIN TRY\n" +

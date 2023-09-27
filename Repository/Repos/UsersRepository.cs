@@ -118,5 +118,53 @@ namespace Repository.Repos
             return ResponseModel;
         }
 
+        public async Task<GenericResponseModel> GetUserDetails(int uID)
+        {
+            string query = UsersQueries.ViewUsers(uID);
+            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
+            ResponseDB ItemResponseDB = await dl.Consultds(query);
+            List<ViewUsersModelRequest> ListUsers = new();
+            GenericResponseModel genericResponseModel = new();
+            if (ItemResponseDB != null && ItemResponseDB.DsObject != null)
+            {
+                foreach (DataTable dt in ItemResponseDB.DsObject.Tables)
+                {
+                    if (dt.Rows.Count > 0)
+                    {
+                        switch (dt.Rows[0]["TableName"])
+                        {
+                            case "OBJECT":
+                                ListUsers = Mapper.GetListFromDataTable<ViewUsersModelRequest>(dt);
+                                genericResponseModel.RecordsQuantity = dt.Rows.Count;
+                                break;
+                            case "Parameters":
+                                try
+                                {
+                                    genericResponseModel.MessageStatus = dt.Rows[0]["OutputMessageError"].ToString();
+                                    genericResponseModel.CodeStatus = dt.Rows[0]["OutputCodeError"].ToString();
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine(ex.ToString());
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+            }
+            if (genericResponseModel.RecordsQuantity == 0)
+            {
+                genericResponseModel.Status = false;
+            }
+            else
+            {
+                genericResponseModel.ItemJson = ListUsers;
+                genericResponseModel.Status = true;
+            }
+            return genericResponseModel;
+        }
+
     }
 }
