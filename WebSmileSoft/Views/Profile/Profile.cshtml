@@ -332,47 +332,59 @@
     </script>
     <script>
         // Obtén el userID del Session Storage
-        let userId = sessionStorage.getItem('userID');
 
-        // Comprueba si se tiene un userID válido
-        if (userId) {
+        $(document).ready(function () {
+            // Adjunta un controlador de eventos de clic al botón
+            let uID = sessionStorage.getItem('userID');
 
+            console.log("Buscando al Usuario " + uID);
 
+            $.ajax({
+                url: '@ViewBag.urlEndPoint' + '/api/Users/v1/GetUserDetails',
+                type: 'GET',
+                data: { 'uID': uID },
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (data) {
+                    console.log("Cargando Respuesta")
+                    console.log(data);
 
-            //let userRol = sessionStorage.getItem('userRole');
-            let userStatus = sessionStorage.getItem('userStatus');
-            let userLogin = sessionStorage.getItem('userLogin');
-            let userFName = sessionStorage.getItem('userFName');
-            let userLName = sessionStorage.getItem('userLName');
-            let userEmail = sessionStorage.getItem('userEmail');
-            let userPhone = sessionStorage.getItem('userPhone');
-            let userAddress = sessionStorage.getItem('userAddress');
-            let tDocument = sessionStorage.getItem('usertDocument');
-            let userDocument = sessionStorage.getItem('userDocument');
-            //let userBirthDate = sessionStorage.getItem('userBirthDate');
-            //let userGender = sessionStorage.getItem('userGender');
+                    if (data.itemJson === null) {
+                        console.log("No se cargó correctamente");
+                    } else {
+                       // Mostrar los datos en la consola o realizar otras acciones
+                            let userData = data.itemJson[0]; // Accede al primer elemento del arreglo
+ 
+                        // Llama a una función para actualizar el formulario con los datos recibidos
+                        console.log("Acutalizando Formulario")
+                        actualizarFormulario(userData);
+                    }
+                },
+                error: function (error) {
+                    console.log('Error al obtener los detalles del usuario.');
+                }
+            });
 
+            // Función para actualizar el formulario con los datos del usuario
+            function actualizarFormulario(userData) {
+                let StatusMapping = {
+                    0: 'Activo',
+                    1: 'Inactivo'
+                };
 
+                // Rellena los campos del formulario con los datos del usuario
+                $("#username").val(userData.uLoginName);
+                $("#user_names").val(userData.uName);
+                $("#user_lastnames").val(userData.uLastName);
+                $("#editCorreo").val(userData.uEmailAddress);
+                $("#address").val(userData.uAddress);
+                $("#phone_number").val(userData.uCellphone);
+                $("#id_type").val(userData.dtID);
+                $("#id_number").val(userData.uDocument);
+                $("#user_status").val(StatusMapping[userData.uStatus]);
+            }
+        });
 
-            let StatusMapping = {
-                0: 'Activo',
-                1: 'Inactivo'
-            };
-            let Status = StatusMapping[userStatus];
-            $("#username").val(userLogin);
-            //$("#tipoUsuarioe").val(userRol);
-            $("#user_names").val(userFName);
-            $("#user_lastnames").val(userLName);
-            $("#editCorreo").val(userEmail);
-            //$("#birthDate").val(userData.fechaNacimiento);
-            //$("#genderSelect").val(userData.genero);
-            //$("#email").val(userData.correoElectronico);
-            $("#address").val(userAddress);
-            $("#phone_number").val(userPhone);
-            $("#id_type").val(tDocument);
-            $("#id_number").val(userDocument);
-            $("#user_status").val(Status);
-        }
 
         $(".update-profile-button").click(function () {
 
@@ -597,10 +609,12 @@
 
 
 
-    <script src="~/assets/js/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous"></script>
     <script src="~/assets/js/popper.js"></script>
     <script src="~/assets/js/bootstrap.min.js"></script>
-    @*<script src="~/assets/js/theme.js"></script>
-<script type="text/javascript"></script>*@
+    <script src="~/assets/js/theme.js"></script>
+<script type="text/javascript"></script>
 
 }

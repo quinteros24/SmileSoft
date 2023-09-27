@@ -21,10 +21,7 @@
     </ol>
 </nav>
 <div class="mt-2 text-end my-2">
-    @* <button onclick="mostrarCarga();verusers(1);" class="btn btn-primary">Administradores</button>
-    <button onclick="mostrarCarga();verusers(2);" class="btn btn-danger">Doctores</button>
-    <button onclick="mostrarCarga();verusers(3);" class="btn btn-secondary">Pacientes</button>
-   *@  <button onclick="verusers(1);" class="btn btn-primary">Administradores</button>
+   <button onclick="verusers(1);" class="btn btn-primary">Administradores</button>
     <button onclick="verusers(2);" class="btn btn-danger">Doctores</button>
     <button onclick="verusers(3);" class="btn btn-secondary">Pacientes</button>
 
@@ -112,14 +109,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="mb-3">
-               <span id="userNamePass" class="strong"></span>
+                <span id="userNamePass" class="strong"></span>
             </div>
             <div class="modal-body">
                 <form>
                     <div class="mb-3">
                         <label for="newPassword" class="form-label">Nueva Contraseña:</label>
                         <input type="password" class="form-control" id="newPassword" name="newPassword">
-                    </div> 
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -290,10 +287,16 @@
                         1: 'Activo',
                         0: 'Inactivo'
                     };
+                    let DocumentType = {
+                        1: 'Cedula de Ciudadania (CC)',
+                        2: 'Cedula de Extranjeria (CE)'
+                        // 3: 'Tarjeta de Identidad (TI)'
+                    }
                     $.each(data.itemJson, function (index, usuario) {
                         let rol = rolesMapping[usuario.utID];
                         let Block = BlockMapping[usuario.uIsBlocked];
                         let Status = StatusMapping[usuario.uStatus];
+                        let DocumentT = DocumentType[usuario.dtID];
                         let rowData = [
                             usuario.uID,
                             rol,
@@ -302,7 +305,7 @@
                             usuario.uLastName,
                             usuario.uEmailAddress,
                             usuario.uCellphone,
-                            usuario.dtID,
+                            DocumentT,
                             usuario.uDocument,
                             Block,
                             Status
@@ -368,7 +371,7 @@
                         // Maneja la acción del botón aquí
                         let data = table.row($(this).parents('tr')).data();
 
-                        let userId = data[0]; // Supongamos que la primera columna contiene el ID del usuario
+                        let userId = data[0]; // la primera columna contiene el ID del usuario
                         let userData = {
                             uID: userId,
                             utID: data[1],
@@ -410,6 +413,7 @@
                             let status = $("#editStatus").val() == "Activo" ? 1 : 0;
                             let utID2 = $("#tipoUsuarioe").val();
                             console.log("Dato enviado " + utID2);
+                            console.log("Tipo Documento " + parseInt($("#editTipoDocumento").val()));
                             // Obtén los datos actualizados del formulario de edición
                             let updatedUserData = {
                                 // Recoge los datos actualizados desde los campos del formulario
@@ -598,29 +602,29 @@
             });
         };
         function validarContraseña(password) {
-    // Requiere al menos 8 caracteres
-    if (password.length < 8) {
-        return false;
-    }
-    // Requiere al menos una letra minúscula
-    if (!/[a-z]/.test(password)) {
-        return false;
-    }
-    // Requiere al menos una letra mayúscula
-    if (!/[A-Z]/.test(password)) {
-        return false;
-    }
-    // Requiere al menos un dígito
-    if (!/\d/.test(password)) {
-        return false;
-    }
-    // agregar requisitos adicionales aquí, como caracteres especiales
-    // if (!/[!#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(password)) {
-    //     return false;
-    // }
+            // Requiere al menos 8 caracteres
+            if (password.length < 8) {
+                return false;
+            }
+            // Requiere al menos una letra minúscula
+            if (!/[a-z]/.test(password)) {
+                return false;
+            }
+            // Requiere al menos una letra mayúscula
+            if (!/[A-Z]/.test(password)) {
+                return false;
+            }
+            // Requiere al menos un dígito
+            if (!/\d/.test(password)) {
+                return false;
+            }
+            // agregar requisitos adicionales aquí, como caracteres especiales
+            // if (!/[!#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(password)) {
+            //     return false;
+            // }
 
-    return true;
-}
+            return true;
+        }
 
         $(".add-user-btn").click(function () {
             // Abre el modal de agregar usuario
@@ -676,10 +680,10 @@
                 //         confirmButtonText: 'Aceptar'
                 //     });
                 // }
-                                                                                                //!userData.correo ||
+                //!userData.correo ||
 
-                                                                                                // Validación de la contraseña
-            let password = userData.uPassword;
+                // Validación de la contraseña
+                let password = userData.uPassword;
             let passwordError = validarContraseña(password);
 
             if (passwordError) {
@@ -779,7 +783,7 @@
             });
         }
 
-        
+
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
 
