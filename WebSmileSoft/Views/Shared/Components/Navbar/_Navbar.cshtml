@@ -175,7 +175,7 @@
                 <div class="nav-item dropdown no-arrow">
                     <a class="dropdown-toggle nav-link"
                        aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                        <span class="d-none d-lg-inline me-2 small text-light" style="font-weight: bold;" id="nombreUsuario">SmileSoft Team
+                        <span class="d-none d-lg-inline me-2 small text-light" style="font-weight: bold;" id="nombreUsuario">
                         </span><img class="border rounded-circle img-profile"
                                     src="~/assets/img/avatars/avatar1.jpeg">
                     </a>
@@ -201,19 +201,7 @@
 
 @section scripts {
 
-    <script>
-        function updateNavbarBackground(selectedColor) {
-            // Obtén una referencia a la barra de navegación por su ID
-            const navbar = document.getElementById("nav_bar");
 
-            // Elimina todas las clases de fondo de la barra de navegación
-            navbar.classList.remove("bg-primary", "bg-danger", "bg-success");
-
-            // Agrega la clase de color seleccionada a la barra de navegación
-            navbar.classList.add(selectedColor);
-        }
-        </script>
-    
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Obtén el elemento del enlace de cierre de sesión por su ID
