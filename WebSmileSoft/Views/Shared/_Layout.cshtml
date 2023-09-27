@@ -125,15 +125,27 @@
             });
             calendar.getOption('locale');
             calendar.render();
+
         });
 
     </script>
     <!-- END Calendar Script -->
+    <script src="~/assets/js/utilities.js"></script>
     @await Component.InvokeAsync("CommonData") <!-- Aquí "CommonData" se refiere al nombre de tu ViewComponent -->
 </head>
 
 
 <body id="page-top contenido">
+    <div class="loading-container">
+        <div class="loading">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
     @* <div id="loadingOverlay">
     <div id="loadingSpinner"></div>
     </div> *@
@@ -227,7 +239,7 @@
                 // Construye el nombre completo y muestra en las etiquetas <span>
                 var nombreCompleto = userFName + ' ' + userLName;
                 spanNombre.textContent = nombreCompleto;
-               
+
             } else if (userFName !== null && userLName !== null && spanSaludo) {
                 // Construye el nombre completo y muestra en las etiquetas <span>
                 var nombreCompleto = userFName + ' ' + userLName;
@@ -262,15 +274,29 @@
             }
         });
     </script>
-   
-    
+    <script>
+        // Función para ocultar el loader
+        function hideLoader() {
+            var loaderContainer = document.querySelector('.loading-container');
+            loaderContainer.style.display = 'none';
+        }
+
+        // Ejemplo de cómo puedes usar la función para ocultar el loader
+        // Simplemente llama a hideLoader() cuando quieras ocultar el loader.
+        // Por ejemplo, después de cargar tus datos o cuando se complete alguna acción.
+        setTimeout(function () {
+            // Cuando la tarea está completa, oculta el loader
+            hideLoader();
+        }, 300);
+    </script>
+
     <!-- BEGIN PAGE LEVEL CUSTOM SCRIPTS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.6/af-2.6.0/b-2.4.2/b-html5-2.4.2/b-print-2.4.2/r-2.5.0/sc-2.2.0/datatables.min.js"></script>
     <!-- END PAGE LEVEL CUSTOM SCRIPTS -->
     @* <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script> *@
-    
+
     @await RenderSectionAsync("Scripts", required: false)
 
 </body>

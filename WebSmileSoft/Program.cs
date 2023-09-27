@@ -26,6 +26,8 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.LogoutPath = "/Account/Login"; // Ruta de cierre de sesión
     });
 
+
+
 builder.Services.Configure<CookieAuthenticationOptions>(options =>
 {
     options.ExpireTimeSpan = TimeSpan.FromMinutes(15); // Expira en 30 minutos

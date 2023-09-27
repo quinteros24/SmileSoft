@@ -109,6 +109,7 @@
                         // Mostrar el número de usuarios en el elemento HTML con id "userCount"
                         var userCount = data.itemJson.length;
                         $("#userCount").text(userCount);
+                        hideLoader();
                     }
 
                 },
@@ -133,6 +134,7 @@
                         // Mostrar el número de usuarios en el elemento HTML con id "userCount"
                         var userCount = data.itemJson.length;
                         $("#userDoctor").text(userCount);
+                        hideLoader();
                     }
 
 
@@ -158,6 +160,7 @@
                         // Mostrar el número de usuarios en el elemento HTML con id "userCount"
                         var userCount = data.itemJson.length;
                         $("#userAdmin").text(userCount);
+                        hideLoader();
                     }
 
                 },
@@ -192,10 +195,12 @@
 
                         if (data.itemJson === null) {
                             console.log("No se cargó correctamente");
+
                         } else {
                             // Mostrar los datos en la consola o realizar otras acciones
                             console.log("Datos Cargados Correctamente");
                             console.log(data.itemJson);
+                            hideLoader();
                         }
                     },
                     error: function (error) {
