@@ -388,11 +388,11 @@
 
         $(".update-profile-button").click(function () {
 
-
+            //let uID = sessionStorage.getItem('userID');
             // Obtener los datos actualizados del formulario
             let updatedUserData = {
-                uID: parseInt(userId),
-                utID: parseInt(sessionStorage.getItem('userRole')),
+                uID: sessionStorage.getItem('userID'),
+                //utID: parseInt(sessionStorage.getItem('userRole')),
                 uLoginName: $("#username").val(),
                 uName: $("#user_names").val(),
                 uLastName: $("#user_lastnames").val(),
@@ -403,8 +403,8 @@
                 dtID: parseInt($("#id_type").val()),
                 uCellphone: $("#phone_number").val(),
                 uDocument: $("#id_number").val(),
-                uIsBlocked: parseInt(sessionStorage.getItem('userBlock')),
-                uStatus: parseInt(sessionStorage.getItem('userStatus'))
+                //uIsBlocked: parseInt(sessionStorage.getItem('userBlock')),
+                //uStatus: parseInt(sessionStorage.getItem('userStatus'))
             };
 
 

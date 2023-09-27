@@ -74,9 +74,13 @@
                         <label for="editCelular" class="form-label">Celular:</label>
                         <input type="text" class="form-control" id="editCelular" name="editCelular">
                     </div>
-                    <div class="mb-3">
-                        <label for="editTipoDocumento" class="form-label">Tipo de Documento:</label>
-                        <input type="text" class="form-control" id="editTipoDocumento" name="editTipoDocumento">
+                    <div class="form-group">
+                        <label for="tipoDocumentoe">* Tipo de Documento:</label>
+                        <select class="form-control" id="tipoDocumentoe" name="tipoDocumentoe" required>
+                            <option value="1">Cedula de Ciudadania (CC)</option>
+                            <option value="2">Cedula de Extranjeria (CE)</option>
+                            <option value="3">Tarjeta de Identidad (TI)</option>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="editDocumento" class="form-label">Número de Documento:</label>
@@ -280,7 +284,7 @@
                         3: 'Pacientes'
                     };
                     let BlockMapping = {
-                        0: 'No Bloqueado',
+                        0: 'Desbloqueado',
                         1: 'Bloqueado'
                     };
                     let StatusMapping = {
@@ -288,8 +292,8 @@
                         0: 'Inactivo'
                     };
                     let DocumentType = {
-                        1: 'Cedula de Ciudadania (CC)',
-                        2: 'Cedula de Extranjeria (CE)'
+                        1: 'CC',
+                        2: 'CE'
                         // 3: 'Tarjeta de Identidad (TI)'
                     }
                     $.each(data.itemJson, function (index, usuario) {
@@ -372,18 +376,40 @@
                         let data = table.row($(this).parents('tr')).data();
 
                         let userId = data[0]; // la primera columna contiene el ID del usuario
+                        let rolesMappingI = {
+                            Administrador : 1,
+                            Doctores : 2,
+                            Pacientes : 3
+                        };
+                        let BlockMappingI = {
+                            Desbloqueado: 0,
+                            Bloqueado : 1
+                        };
+                        let StatusMappingI = {
+                            Activo : 1,
+                            Inactivo : 0
+                        };
+                        let DocumentTypeI = {
+                            CC : 1,
+                            CE : 2
+                            // 3: 'Tarjeta de Identidad (TI)'
+                        }
+                        let rolI = rolesMappingI[data[1]];
+                        let BlockI = BlockMappingI[data[9]];
+                        let StatusI = StatusMappingI[data[10]];
+                        let DocumentTI = DocumentTypeI[data[7]];
                         let userData = {
                             uID: userId,
-                            utID: data[1],
+                            utID: rolI,
                             uLoginName: data[2],
                             uName: data[3],
                             uLastName: data[4],
                             uEmailAddress: data[5],
                             uCellphone: data[6],
-                            dtID: data[7],
+                            dtID: DocumentTI,
                             uDocument: data[8],
-                            uIsBlocked: data[9],
-                            uStatus: data[10]
+                            uIsBlocked: BlockI,
+                            uStatus: StatusI
                         };
 
                         console.log("Usuario a Editar" + userData);
@@ -397,7 +423,7 @@
                         $("#editCelular").val(userData.uCellphone);
                         $("#editCorreo").val(userData.uEmailAddress);
                         $("#editDireccion").val(userData.uAddress);
-                        $("#editTipoDocumento").val(userData.dtID);
+                        $("#tipoDocumentoe").val(userData.dtID);
                         $("#editDocumento").val(userData.uDocument);
                         //$("#editIsBlocked").val(userData.uIsBlocked);
                         $("#editStatus").val(userData.uStatus);
@@ -413,7 +439,7 @@
                             let status = $("#editStatus").val() == "Activo" ? 1 : 0;
                             let utID2 = $("#tipoUsuarioe").val();
                             console.log("Dato enviado " + utID2);
-                            console.log("Tipo Documento " + parseInt($("#editTipoDocumento").val()));
+                            console.log("Tipo Documento " + parseInt($("#tipoDocumentoe").val()));
                             // Obtén los datos actualizados del formulario de edición
                             let updatedUserData = {
                                 // Recoge los datos actualizados desde los campos del formulario
@@ -424,7 +450,7 @@
                                 uLastName: $("#editApellido").val(),
                                 uEmailAddress: $("#editCorreo").val(),
                                 uCellphone: $("#editCelular").val(),
-                                dtID: parseInt($("#editTipoDocumento").val()),
+                                dtID: parseInt($("#tipoDocumentoe").val()),
                                 uDocument: $("#editDocumento").val(),
                                 //uIsBlocked: $("#editIsBlocked").val(),
                                 uStatus: status

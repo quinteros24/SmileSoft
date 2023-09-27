@@ -60,7 +60,11 @@ body {
     border-radius: 5px;
     transition: background-color 0.4s ease, transform 0.4s ease; /* Agrega una transición suave tanto al color de fondo como al tamaño */
 }
+.hide-on-load {
+    display: none;
+}
 
+Modifica tu H
 /* Oculta todos los elementos de menú por defecto */
 #liAdmin, #liDoctor, #liUser, #divAdmin, #divDoctor, #divUser, #contenido {
     display: none;

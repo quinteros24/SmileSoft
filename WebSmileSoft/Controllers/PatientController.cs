@@ -16,6 +16,22 @@ namespace WebSmileSoft.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.urlEndPoint = _settings.urlEndPoint;
+
+            return View();
+        }
+
+        public IActionResult GestiondeCitas()
+        {
+            ViewBag.urlEndPoint = _settings.urlEndPoint;
+
+            return View();
+        }
+
+        public IActionResult HistoriaClinicaPacientes()
+        {
+            ViewBag.urlEndPoint = _settings.urlEndPoint;
+
             return View();
         }
 

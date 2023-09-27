@@ -1,0 +1,58 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<div class="container mt-5">
+    <h1 class="mb-4">Gestión de Citas</h1>
+
+    <!-- Calendario de Citas -->
+    <div class="card mb-4">
+        <div class="card-header">
+            Calendario de Citas
+        </div>
+        <div class="card-body">
+            <div id="calendar"></div>
+            <!-- Aquí puedes agregar un calendario o un componente de calendario -->
+            <!-- Por ejemplo, puedes usar FullCalendar.io o Bootstrap Datepicker -->
+            <!-- Añade el código necesario para mostrar y gestionar las citas -->
+        </div>
+    </div>
+
+    <!-- Lista de Citas Programadas -->
+    <div class="card">
+        <div class="card-header">
+            Citas Programadas
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Paciente</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Aquí puedes iterar a través de las citas y mostrarlas en filas de la tabla -->
+                    <tr>
+                        <td>2023-08-20</td>
+                        <td>10:00 AM</td>
+                        <td>Nombre del Paciente</td>
+                        <td>Programada</td>
+                        <td>
+                            <!-- Agregar botones de acciones, por ejemplo: -->
+                            <button class="btn btn-sm btn-info">Editar</button>
+                            <button class="btn btn-sm btn-danger">Cancelar</button>
+                        </td>
+                    </tr>
+                    <!-- Puedes agregar más filas de citas aquí -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

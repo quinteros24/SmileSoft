@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="es">
 <!-- data-bs-theme="dark" -->
 <head>
@@ -113,8 +114,23 @@
     <link href="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.6/af-2.6.0/b-2.4.2/b-html5-2.4.2/b-print-2.4.2/kt-2.10.0/r-2.5.0/sr-1.3.0/datatables.min.css" rel="stylesheet">
 
     <!-- END PAGE LEVEL CUSTOM STYLES -->
+    <!-- Calendar Script -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
+    <script>
 
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth'
+            });
+            calendar.getOption('locale');
+            calendar.render();
+        });
+
+    </script>
+    <!-- END Calendar Script -->
 </head>
+@await Component.InvokeAsync("CommonData") <!-- Aquí "CommonData" se refiere al nombre de tu ViewComponent -->
 
 <body id="page-top contenido">
     @* <div id="loadingOverlay">
@@ -222,7 +238,6 @@
             }
         });
     </script>
-
     <script>
         //<!-- Función para mostrar el menú de acuerdo al rol del usuario -->
         $(document).ready(function () {
@@ -230,25 +245,23 @@
             //console.log("userRole: " + userRole);
 
             if (userRole == 1) {
-                $("#liAdmin").css("display", "block");
-                $("#liDoctor").css("display", "block");
-                $("#liUser").css("display", "block");
                 $("#divAdmin").css("display", "block");
-            } else if (userRole == 2) {
-                $("#liAdmin").hide();
-                $("#liDoctor").css("display", "block");
-                $("#liUser").hide();
                 $("#divDoctor").css("display", "block");
+                $("#divUser").css("display", "block");
+            } else if (userRole == 2) {
+                $("#divAdmin").css("display", "none");
+                $("#divDoctor").css("display", "block");
+                $("#divUser").css("display", "none");
             } else if (userRole == 3) {
-                $("#liAdmin").hide();
-                $("#liDoctor").hide();
-                $("#liUser").css("display", "block");
+                $("#divAdmin").css("display", "none");
+                $("#divDoctor").css("display", "none");
                 $("#divUser").css("display", "block");
             } else if (userRole == 1 || userRole == 2 || userRole == 3) {
                 $("#contenido").css("display", "block");
             }
         });
     </script>
+   
 
     <!-- BEGIN PAGE LEVEL CUSTOM SCRIPTS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
