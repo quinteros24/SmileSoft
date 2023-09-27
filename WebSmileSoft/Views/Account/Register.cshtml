@@ -113,7 +113,7 @@
                     </div>
 
                     <div class="text-end mt-4">
-                    <button type="submit"  class="btn btn-primary d-block btn-user w-100" onclick="mostrarCarga(); registrarUsuario();">
+                    <button type="button"  class="btn btn-primary d-block btn-user w-100" onclick="registrarUsuario();">
                             <strong>Registrarte</strong>
                         </button>
                     </div>
@@ -132,94 +132,161 @@
 @section Scripts {
     <script>
 
-        function registrarUsuario() {
-            debugger;
-            console.log("Script Registrar Usuario");
-            event.preventDefault();
-            // Obtener todos los datos del formulario
-            
-                // "uID": 0,
-                //     "utID": 0,
-                //         "uName": "string",
-                //             "uLastName": "string",
-                //                 "uCellphone": "string",
-                //                     "uAddress": "string",
-                //                         "uLoginName": "string",
-                //                             "uEmailAddress": "string",
-                //                                 "dtID": 0,
-                //                                     "uDocument": "string",
-                //                                         "uStatus": 0,
-                //                                             "uIsBlocked": 0,
-                //                                                 "uPassword": "string"
-            
-            // Obtener los valores del nombre y apellido
-            let firstName = $('#userFirstNameRegister').val();
-            let lastName = $('#userLastNameRegister').val();
-            //console.log("Ruta Endpoint " + @ViewBag.urlEndPoint );
-            // Crear el nombre de usuario concatenando el nombre y el apellido (asegúrate de validar si ambos valores existen)
-            let userName = (firstName && lastName) ? (firstName + '.' + lastName) : '';
-            console.log("Nombre de Usuario" + userName);
-            let userData = {
-                uID: 0, // El ID del usuario se establece en 0 para que el API lo genere automáticamente
-                utID: 3, // El ID del tipo de usuario se establece en 1 para que el API lo genere automáticamente
-                uName: $('#userFirstNameRegister').val(),
-                uLastName: $('#userLastNameRegister').val(),
-                dtID: $('#tipo_documento').val(),
-                uDocument: 1,
-                uAddress: $('#address').val(),
-                uCellphone: $('#mobileNumber').val(),
-                uEmailAddress: $('#email').val(),
-                //uLoginName: $('#userNameRegister').val(),
-                uLoginName: userName,
-                uPassword: $('#password').val(),
-                uStatus: 1 // Puedes establecer el estado del usuario según tus necesidades
-            };
+        function validarContraseña(password) {
+            if (password.length < 8) {
+                return false;
+            }
 
-            // Realizar la solicitud AJAX para registrar el usuario
-            $.ajax({
-                type: 'POST',
-                url: '@ViewBag.urlEndPoint' + '/api/Users/v1/CreateUpdateUsers', // Ruta para crear o actualizar usuarios
-                data: JSON.stringify(userData),
-                contentType: 'application/json',
-                success: function (result) {
-                    if (response.OutputCodeError === '0') {
-                        // Registro exitoso, puedes redirigir al usuario o mostrar un mensaje de éxito
-                        //alert('Usuario registrado con éxito.');
-                        Swal.fire({
-                            title: 'Usuario Agregado',
-                            text: 'El usuario se agregó correctamente',
-                            icon: 'success',
-                            confirmButtonText: 'Aceptar'
-                        });
-                    } else if (response.OutputCodeError === '-1') {
-                        // El usuario ya existe en la base de datos
-                        //alert('Este usuario ya existe en la base de datos.');
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Este usuario ya existe en la base de datos.',
-                            confirmButtonColor: '#008dc9'
-                        })
-                    } else {
-                        // Manejar otros códigos de error si es necesario
-                        alert('Error: ' + response.OutputMessageError);
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Error: ' + response.OutputMessageError,
-                            confirmButtonColor: '#008dc9'
-                        })
-                    }
-                },
-                error: function (error) {
-                    // Manejar errores de la solicitud AJAX
-                    console.error('Error al registrar usuario:', error);
-                }
-            });
+            if (!/[a-zA-Z]/.test(password)) {
+                return false;
+            }
+
+            if (!/\d/.test(password)) {
+                return false;
+            }
+
+
+            if (/\s/.test(password) || /[\uD800-\uDFFF]/.test(password)) {
+                return false;
+            }
+
+           
+            return true;
         }
+        function registrarUsuario(){
+            let firstName = document.getElementById("userFirstNameRegister").value.trim();
+            let lastName = document.getElementById("userLastNameRegister").value.trim();
+            let documentID = document.getElementById("IdNumber").value.trim();
+            let address = document.getElementById("address").value.trim();
+            let mobileNumber = document.getElementById("mobileNumber").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let userRegister = document.getElementById("userNameRegister").value.trim();
+            let password = document.getElementById("password").value.trim();
+            let confirmPassword = document.getElementById("confirmPassword").value.trim();
+          
 
+            if (firstName === "" || lastName === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su nombre completo.',
+                    confirmButtonColor: '#008dc9'
+                });
+            }
+            else if (documentID === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su número de documento.',
+                    confirmButtonColor: '#008dc9'
+                });
+            }
+            else if (address === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su dirección.',
+                    confirmButtonColor: '#008dc9'
+                });
+            }
+            else if (mobileNumber === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su número de celular o telefono.',
+                    confirmButtonColor: '#008dc9'
+                });
+            } else if (email === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su correo electrónico.',
+                    confirmButtonColor: '#008dc9'
+                });
+            } else if (userRegister === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su usuario.',
+                    confirmButtonColor: '#008dc9'
+                });
+            } else if (password === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su contraseña.',
+                    confirmButtonColor: '#008dc9'
+                });
+            } else if (confirmPassword === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese la confirmación de su contraseña.',
+                    confirmButtonColor: '#008dc9'
+                });
+            } else if (!validarContraseña(password)) {
+                Swal.fire({
+                    text: 'La contraseña no cumple con los requisitos.',
+                    confirmButtonColor: '#008dc9'
+                });
+            } else if (confirmPassword != password) {
+                Swal.fire({
+                    text: 'Las contraseñas no coinciden.',
+                    confirmButtonColor: '#008dc9'
+                });
+            } else {
+                let data = {
+                    uID: 0,
+                    utID: 3,
+                    uName: firstName,
+                    ulastName: lastName,
+                    uDocument: documentID,
+                    uAddress: address,
+                    uCellphone: mobileNumber,
+                    uEmailAddress: email,
+                    uLoginName: userRegister,
+                    uPassword: password,
+                    dtID: 1,
+                    uStatus: 1,
+                    uIsBLocked: 0
+                };
+                $.ajax({
+                    type: 'POST',
+                    url: '@ViewBag.urlEndPoint' + '/api/Users/v1/CreateUpdateUsers', // Ruta para crear o actualizar usuarios
+                    data: JSON.stringify(data),
+                    contentType: 'application/json',
+                    success: function (response) {
+                        console.log(response.OutputCodeError);
+                        if (response.codeStatus === '0') {
+                            // Registro exitoso, puedes redirigir al usuario o mostrar un mensaje de éxito
+                            //alert('Usuario registrado con éxito.');
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Usuario Registrado',
+                                text: 'Usuario registrado con éxito.',
+                                confirmButtonColor: '#008dc9',
+                                allowOutsideClick: false,
+                                allowEscapeKey: false,
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = '@Url.Action("Login", "Account")';
+                                }
+                            });
+                        } else if (response.codeStatus === '-1') {
+                            // El usuario ya existe en la base de datos
+                            //alert('Este usuario ya existe en la base de datos.');
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Este usuario ya existe en la base de datos.',
+                                confirmButtonColor: '#008dc9'
+                            })
+                        } else {
+                            // Manejar otros códigos de error si es necesario
+                            alert('Error: ' + response.OutputMessageError);
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Error: ' + response.OutputMessageError,
+                                confirmButtonColor: '#008dc9'
+                            })
+                        }
+                    },
+                    error: function (error) {
+                        // Manejar errores de la solicitud AJAX
+                        console.error('Error al registrar usuario:', error);
+                    }
+                });
+            }
 
+        }
     </script>
+}
+    
 
 
 

@@ -35,10 +35,10 @@ namespace Repository.Queries
         public static string CreateUpdateUsers(ViewUsersModelRequest Item)
         {
             string query =      $"BEGIN TRY\n" +
-                                $"    IF NOT EXISTS (SELECT TOP(1)* FROM dbo.Users WHERE uLoginName = '{Item.uLoginName}' OR uEmailAddress = '{Item.uLoginName}' OR uDocument = '{Item.uDocument}')\n" +
+                                $"    IF NOT EXISTS (SELECT TOP(1)* FROM dbo.Users WHERE uLoginName = '{Item.uLoginName}' OR uEmailAddress = '{Item.uEmailAddress}' OR uDocument = '{Item.uDocument}')\n" +
                                 $"    BEGIN \n" +
                                 $"        INSERT INTO dbo.Users (utID, uName, uLastName, uCellphone, uAddress, uLoginName, uEmailAddress, uPassword, dtID, uDocument, uStatus)\n" +
-                                $"       VALUES ({Item.utID}, '{Item.uName}', '{Item.uLastName}', '{Item.uCellphone}', '{Item.uAddress}', '{Item.uLoginName}', '{Item.uLoginName}',  HASHBYTES('SHA2_256',Cast('{Item.uPassword}' AS VARCHAR(8000))), {Item.dtID}, '{Item.uDocument}', {Item.uStatus});\n" +
+                                $"       VALUES ({Item.utID}, '{Item.uName}', '{Item.uLastName}', '{Item.uCellphone}', '{Item.uAddress}', '{Item.uLoginName}', '{Item.uEmailAddress}',  HASHBYTES('SHA2_256',Cast('{Item.uPassword}' AS VARCHAR(8000))), {Item.dtID}, '{Item.uDocument}', {Item.uStatus});\n" +
                                 $"        SELECT '0' AS OutputCodeError, 'Usuario registrado con exito.' AS OutputMessageError\n" +
                                 $"    END\n" +
                                 $"    ElSE\n" +
@@ -80,6 +80,19 @@ namespace Repository.Queries
                    
             }
             return query;
+        }
+
+        public static string SetUserStatus(int uID, int uStatus)
+        {
+            string status = uStatus == 1 ? "activado" : "desactivado";
+            return $"IF EXISTS(SELECT uName FROM dbo.Users WHERE uID = {uID})\n" +
+                   $"BEGIN\n" +
+                   $"    DECLARE @name AS VARCHAR(100) = (SELECT uName FROM dbo.Users WHERE uID = {uID})\n" +
+                   $"    UPDATE dbo.Users SET uStatus = {uStatus} WHERE uID = {uID}\n" +
+                   $"    SELECT '0' AS OutputCodeError, 'El usuario @name se ha {status}' AS OutputMessageError\n" +
+                   $"END\n" +
+                   $"ELSE\n" +
+                   $"    SELECT '-1' AS OutputCodeError, 'El usuario no se ha encontrado' AS OutputMessageError\n";
         }
     }
 }
