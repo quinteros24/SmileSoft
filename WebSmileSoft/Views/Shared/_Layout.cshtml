@@ -232,6 +232,11 @@
             if (!token) {
                 // No se encontró un token, redirige al usuario a la página de inicio de sesión
                 window.location.href = '@Url.Action("Login", "Account")'; // Reemplaza con la URL correcta
+            } else if (sessionStorage.getItem('userStatus') == false){
+                console.log("Cuenta Inactiva")
+                sessionStorage.clear();
+                window.location.href = '@Url.Action("Login", "Account")';
+                //window.location.href = '@Url.Action("Login", "Account")'; // Reemplaza con la URL correcta
             }
         }
 
