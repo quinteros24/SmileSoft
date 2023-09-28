@@ -28,7 +28,7 @@ namespace Repository.Repos
             Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
             ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
             GenericResponseModel ResponseModel = new();
-            if(ItemResponseDB != null && ItemResponseDB.DtObject != null)
+            if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
             {
                 DataTable dt = ItemResponseDB.DtObject;
                 ResponseModel.CodeStatus = dt.Rows[0]["OutputCodeError"].ToString();
@@ -37,7 +37,7 @@ namespace Repository.Repos
             }
             return ResponseModel;
         }
-        
+
         public async Task<GenericResponseModel> ViewUsers(int utID)
         {
             string query = UsersQueries.ViewUsers(utID);
@@ -117,7 +117,6 @@ namespace Repository.Repos
             }
             return ResponseModel;
         }
-
         public async Task<GenericResponseModel> GetUserDetails(int uID)
         {
             string query = UsersQueries.GetUserDetails(uID);
@@ -165,6 +164,11 @@ namespace Repository.Repos
             }
             return genericResponseModel;
         }
-
+       
     }
+
 }
+   
+
+       
+

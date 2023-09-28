@@ -8,7 +8,12 @@ namespace Domain.Entities
 {
     public class ViewDoctorsModelResponse
     {
-        public string dID { get; set; }
+        public int dID { get; set; } 
+        public string? dAcademicLevel { get; set; }
+        public string? dDegree { get; set; }
+        public string? dUniversityName { get; set; }
+        public string? dSpeciality { get; set; }
+        public string? dProfessionalCard { get; set; }
         
     }
 }
