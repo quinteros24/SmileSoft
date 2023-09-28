@@ -20,6 +20,6 @@
         public int? gID { get; set; }
         public DateTime? uBirthDate { get; set; }
 
-        public ViewDoctorsModelResponse Doctors { get; set; }
+        //public ViewDoctorsModelResponse? Doctors { get; set; }
     }
 }

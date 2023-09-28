@@ -67,27 +67,29 @@
                         <div class="mb-3"><label class="form-label" for="id_number"><strong>Identificación</strong></label><input class="form-control" type="text" id="id_number" placeholder="Numero Documento" name="id_number" disabled></div>
                     </div>
                 </div>
-                @* <div class="row">
-                <div class="col-md-6 mb-3">
-                <div class="input-group">
-                <span class="input-group-text">Fecha de nacimiento</span>
-                <input type="date" id="birthDate" class="form-control " />
-                </div>
-                </div>
 
-                <div class="col-md-6 mb-3">
 
-                <div class="input-group" id="genderOptions">
-                <label class="input-group-text" for="genderSelect">Género</label>
-                <select class="form-select" id="genderSelect">
-                <option selected disabled>Seleccionar</option>
-                <option value="masculino">Masculino</option>
-                <option value="femenino">Femenino</option>
-                <option value="otros">Otro</option>
-                </select>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text">Fecha de nacimiento</span>
+                            <input type="date" id="birthDate" class="form-control " />
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <div class="input-group" id="genderOptions">
+                            <label class="input-group-text" for="genderSelect">Género</label>
+                            <select class="form-select" id="genderSelect">
+                                <option selected disabled>Seleccionar</option>
+                                <option value="0">Masculino</option>
+                                <option value="1">Femenino</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                </div>
-                </div> *@
                 <hr />
                 <div class="mb-3"><button class="btn btn-primary btn-sm update-profile-button" type="button">Actualizar Datos</button></div>
             </form>
@@ -119,10 +121,10 @@
     <!-- Datos de Estudios Solo PERFIL DE DOCTOR -->
     @*  if (Session.Storage.getItem("rol") == "Doctor")
     { *@
-    
-       <partial name="Especialidades" />
-        
-   
+
+    <partial name="Especialidades" />
+
+
     @*  } *@
 </div>
 

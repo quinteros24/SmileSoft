@@ -136,7 +136,7 @@ namespace Repository.Queries
                 if (!string.IsNullOrEmpty(Item.uDocument))
                     query += $"uDocument = '{Item.uDocument}', ";
 
-                //if (Item.uStatus)
+                //if (Item.uStatus != true)
                 //    query += $"uStatus = {Item.uStatus}, ";
 
                 if (Item.oID != 0)

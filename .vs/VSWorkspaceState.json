@@ -1,9 +1,9 @@
 {
   "ExpandedNodes": [
     "",
+    "\\Repository",
+    "\\Repository\\Repos",
     "\\WebSmileSoft",
-    "\\WebSmileSoft\\Views",
-    "\\WebSmileSoft\\Views\\Shared",
     "\\WebSmileSoft\\wwwroot",
     "\\WebSmileSoft\\wwwroot\\assets",
     "\\WebSmileSoft\\wwwroot\\assets\\bootstrap",
@@ -11,6 +11,6 @@
     "\\WebSmileSoft\\wwwroot\\assets\\css",
     "\\WebSmileSoft\\wwwroot\\assets\\js"
   ],
-  "SelectedNode": "\\WebSmileSoft\\Views\\Shared\\_Layout.cshtml",
+  "SelectedNode": "\\Repository\\Repos\\UsersRepository.cs",
   "PreviewInSolutionExplorer": false
 }
