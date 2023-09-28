@@ -39,6 +39,7 @@ namespace Repository.Queries
                     $"                    uLoginName,\n" +
                     $"                    uEmailAddress,\n" +
                     $"                    dtID,\n" +
+                    $"                    oID,\n" +
                     $"                    uDocument,\n" +
                     $"                    uToken,\n" +
                     $"                    IIF(uStatus = 1, 1, 0) AS uStatus,\n" +
