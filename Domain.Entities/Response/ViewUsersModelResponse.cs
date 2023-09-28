@@ -18,7 +18,10 @@ namespace Domain.Entities
         public string? uEmailAddress { get; set; }
         public int dtID { get; set; }
         public string? uDocument { get; set; }
-        public int uStatus { get; set; }
+        public bool uStatus { get; set; }
         public int uIsBlocked { get; set; }
+        public int? oID { get; set; }
+        public int? gID { get; set; }
+        public DateTime? uBirthDate { get; set; }
     }
 }
