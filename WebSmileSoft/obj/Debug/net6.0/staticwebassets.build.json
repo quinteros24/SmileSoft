@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/bG1VGXvoYFahDCUrP90yb+KmHSoZg50NNqAnWIoYIU=",
+  "Hash": "LJZCQX7ozGwRYZs+1igUibXFBkiVHmp2KuaP7K7y8Uw=",
   "Source": "WebSmileSoft",
   "BasePath": "_content/WebSmileSoft",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "WebSmileSoft\\wwwroot",
       "Source": "WebSmileSoft",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\obj\\Debug\\net6.0\\scopedcss\\bundle\\WebSmileSoft.styles.css",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\obj\\Debug\\net6.0\\scopedcss\\bundle\\WebSmileSoft.styles.css",
       "SourceId": "WebSmileSoft",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\obj\\Debug\\net6.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\obj\\Debug\\net6.0\\scopedcss\\bundle\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "WebSmileSoft.styles.css",
       "AssetKind": "All",
@@ -31,13 +31,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\obj\\Debug\\net6.0\\scopedcss\\bundle\\WebSmileSoft.styles.css"
+      "OriginalItemSpec": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\obj\\Debug\\net6.0\\scopedcss\\bundle\\WebSmileSoft.styles.css"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\WebSmileSoft.bundle.scp.css",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\WebSmileSoft.bundle.scp.css",
       "SourceId": "WebSmileSoft",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "WebSmileSoft.bundle.scp.css",
       "AssetKind": "All",
@@ -48,13 +48,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\WebSmileSoft.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\WebSmileSoft.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\bootstrap\\css\\bootstrap.min.css",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\bootstrap\\css\\bootstrap.min.css",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/bootstrap/css/bootstrap.min.css",
       "AssetKind": "All",
@@ -68,10 +68,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\bootstrap\\css\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\Footer-Clean-icons.css",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\Footer-Clean-icons.css",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/css/Footer-Clean-icons.css",
       "AssetKind": "All",
@@ -85,10 +85,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\css\\Footer-Clean-icons.css"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\FooterStyle.css",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\FooterStyle.css",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/css/FooterStyle.css",
       "AssetKind": "All",
@@ -102,10 +102,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\css\\FooterStyle.css"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\loader.css",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\loader.css",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/css/loader.css",
       "AssetKind": "All",
@@ -119,10 +119,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\css\\loader.css"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\Login.css",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\Login.css",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/css/Login.css",
       "AssetKind": "All",
@@ -136,10 +136,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\css\\Login.css"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\Nunito.css",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\Nunito.css",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/css/Nunito.css",
       "AssetKind": "All",
@@ -153,10 +153,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\css\\Nunito.css"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\Responsive-UI-Card.css",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\Responsive-UI-Card.css",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/css/Responsive-UI-Card.css",
       "AssetKind": "All",
@@ -170,10 +170,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\css\\Responsive-UI-Card.css"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\site.css",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\site.css",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/css/site.css",
       "AssetKind": "All",
@@ -187,10 +187,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\css\\site.css"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\styles.css",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\styles.css",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/css/styles.css",
       "AssetKind": "All",
@@ -204,10 +204,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\css\\styles.css"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\table_style.css",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\table_style.css",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/css/table_style.css",
       "AssetKind": "All",
@@ -221,10 +221,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\css\\table_style.css"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXV3I6Li01BKofIMeaBXso.woff2",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXV3I6Li01BKofIMeaBXso.woff2",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/fonts/XRXV3I6Li01BKofIMeaBXso.woff2",
       "AssetKind": "All",
@@ -238,10 +238,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\fonts\\XRXV3I6Li01BKofIMeaBXso.woff2"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXV3I6Li01BKofINeaB.woff2",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXV3I6Li01BKofINeaB.woff2",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/fonts/XRXV3I6Li01BKofINeaB.woff2",
       "AssetKind": "All",
@@ -255,10 +255,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\fonts\\XRXV3I6Li01BKofINeaB.woff2"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXV3I6Li01BKofIO-aBXso.woff2",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXV3I6Li01BKofIO-aBXso.woff2",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/fonts/XRXV3I6Li01BKofIO-aBXso.woff2",
       "AssetKind": "All",
@@ -272,10 +272,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\fonts\\XRXV3I6Li01BKofIO-aBXso.woff2"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXV3I6Li01BKofIOOaBXso.woff2",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXV3I6Li01BKofIOOaBXso.woff2",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/fonts/XRXV3I6Li01BKofIOOaBXso.woff2",
       "AssetKind": "All",
@@ -289,10 +289,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\fonts\\XRXV3I6Li01BKofIOOaBXso.woff2"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXV3I6Li01BKofIOuaBXso.woff2",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXV3I6Li01BKofIOuaBXso.woff2",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/fonts/XRXV3I6Li01BKofIOuaBXso.woff2",
       "AssetKind": "All",
@@ -306,10 +306,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\fonts\\XRXV3I6Li01BKofIOuaBXso.woff2"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXX3I6Li01BKofIMNaDRs4.woff2",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXX3I6Li01BKofIMNaDRs4.woff2",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/fonts/XRXX3I6Li01BKofIMNaDRs4.woff2",
       "AssetKind": "All",
@@ -323,10 +323,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\fonts\\XRXX3I6Li01BKofIMNaDRs4.woff2"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXX3I6Li01BKofIMNaHRs71cA.woff2",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXX3I6Li01BKofIMNaHRs71cA.woff2",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/fonts/XRXX3I6Li01BKofIMNaHRs71cA.woff2",
       "AssetKind": "All",
@@ -340,10 +340,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\fonts\\XRXX3I6Li01BKofIMNaHRs71cA.woff2"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXX3I6Li01BKofIMNaMRs71cA.woff2",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXX3I6Li01BKofIMNaMRs71cA.woff2",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/fonts/XRXX3I6Li01BKofIMNaMRs71cA.woff2",
       "AssetKind": "All",
@@ -357,10 +357,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\fonts\\XRXX3I6Li01BKofIMNaMRs71cA.woff2"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXX3I6Li01BKofIMNaNRs71cA.woff2",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXX3I6Li01BKofIMNaNRs71cA.woff2",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/fonts/XRXX3I6Li01BKofIMNaNRs71cA.woff2",
       "AssetKind": "All",
@@ -374,10 +374,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\fonts\\XRXX3I6Li01BKofIMNaNRs71cA.woff2"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXX3I6Li01BKofIMNaORs71cA.woff2",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\fonts\\XRXX3I6Li01BKofIMNaORs71cA.woff2",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/fonts/XRXX3I6Li01BKofIMNaORs71cA.woff2",
       "AssetKind": "All",
@@ -391,10 +391,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\fonts\\XRXX3I6Li01BKofIMNaORs71cA.woff2"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\2.png",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\2.png",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/img/anuncios/2.png",
       "AssetKind": "All",
@@ -408,10 +408,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\anuncios\\2.png"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\3.png",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\3.png",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/img/anuncios/3.png",
       "AssetKind": "All",
@@ -425,10 +425,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\anuncios\\3.png"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\SmileSoft.png",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\SmileSoft.png",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/img/anuncios/SmileSoft.png",
       "AssetKind": "All",
@@ -442,10 +442,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\anuncios\\SmileSoft.png"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\top.png",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\top.png",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/img/anuncios/top.png",
       "AssetKind": "All",
@@ -459,10 +459,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\anuncios\\top.png"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\weareworking.png",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\anuncios\\weareworking.png",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/img/anuncios/weareworking.png",
       "AssetKind": "All",
@@ -476,10 +476,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\anuncios\\weareworking.png"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\avatars\\avatar1.jpeg",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\avatars\\avatar1.jpeg",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/img/avatars/avatar1.jpeg",
       "AssetKind": "All",
@@ -493,10 +493,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\avatars\\avatar1.jpeg"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\bg-dental.jpg",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\bg-dental.jpg",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/img/bg-dental.jpg",
       "AssetKind": "All",
@@ -510,10 +510,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\bg-dental.jpg"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\bg-working.mp4",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\bg-working.mp4",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/img/bg-working.mp4",
       "AssetKind": "All",
@@ -527,10 +527,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\bg-working.mp4"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\bg-working.png",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\bg-working.png",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/img/bg-working.png",
       "AssetKind": "All",
@@ -544,10 +544,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\bg-working.png"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\bg-working-min.png",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\bg-working-min.png",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/img/bg-working-min.png",
       "AssetKind": "All",
@@ -561,10 +561,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\bg-working-min.png"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\Dark_background_1920x1080.png",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\Dark_background_1920x1080.png",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/img/Dark_background_1920x1080.png",
       "AssetKind": "All",
@@ -578,10 +578,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\Dark_background_1920x1080.png"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\forgotpass.png",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\forgotpass.png",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/img/forgotpass.png",
       "AssetKind": "All",
@@ -595,10 +595,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\forgotpass.png"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\forgot-pass.png",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\forgot-pass.png",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/img/forgot-pass.png",
       "AssetKind": "All",
@@ -612,10 +612,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\forgot-pass.png"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logo-1.png",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logo-1.png",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/img/logo-1.png",
       "AssetKind": "All",
@@ -629,10 +629,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\logo-1.png"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logo-1-min.png",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logo-1-min.png",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/img/logo-1-min.png",
       "AssetKind": "All",
@@ -646,10 +646,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\logo-1-min.png"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logo-2.png",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logo-2.png",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/img/logo-2.png",
       "AssetKind": "All",
@@ -663,10 +663,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\logo-2.png"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logo-2-min.png",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logo-2-min.png",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/img/logo-2-min.png",
       "AssetKind": "All",
@@ -680,10 +680,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\logo-2-min.png"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logoAlt.png",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logoAlt.png",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/img/logoAlt.png",
       "AssetKind": "All",
@@ -697,10 +697,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\logoAlt.png"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logo-nav.png",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logo-nav.png",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/img/logo-nav.png",
       "AssetKind": "All",
@@ -714,10 +714,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\logo-nav.png"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logo-nav-min.png",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logo-nav-min.png",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/img/logo-nav-min.png",
       "AssetKind": "All",
@@ -731,10 +731,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\logo-nav-min.png"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logo-r.png",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\logo-r.png",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/img/logo-r.png",
       "AssetKind": "All",
@@ -748,10 +748,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\logo-r.png"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\admin_profile.png",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\admin_profile.png",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/img/profiles/admin_profile.png",
       "AssetKind": "All",
@@ -765,10 +765,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\profiles\\admin_profile.png"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\admin-p.png",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\admin-p.png",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/img/profiles/admin-p.png",
       "AssetKind": "All",
@@ -782,10 +782,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\profiles\\admin-p.png"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\doctor.png",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\doctor.png",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/img/profiles/doctor.png",
       "AssetKind": "All",
@@ -799,10 +799,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\profiles\\doctor.png"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\doctor_profile.png",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\doctor_profile.png",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/img/profiles/doctor_profile.png",
       "AssetKind": "All",
@@ -816,10 +816,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\profiles\\doctor_profile.png"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\user_profile.png",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\user_profile.png",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/img/profiles/user_profile.png",
       "AssetKind": "All",
@@ -833,10 +833,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\profiles\\user_profile.png"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\user-p.png",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\profiles\\user-p.png",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/img/profiles/user-p.png",
       "AssetKind": "All",
@@ -850,10 +850,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\profiles\\user-p.png"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\trabajando.png",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\img\\trabajando.png",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/img/trabajando.png",
       "AssetKind": "All",
@@ -867,10 +867,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\trabajando.png"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\AlertDesarrollo.js",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\AlertDesarrollo.js",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/js/AlertDesarrollo.js",
       "AssetKind": "All",
@@ -884,10 +884,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\AlertDesarrollo.js"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\bootstrap.min.js",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\bootstrap.min.js",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/js/bootstrap.min.js",
       "AssetKind": "All",
@@ -901,10 +901,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\bootstrap.min.js"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\bs-init.js",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\bs-init.js",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/js/bs-init.js",
       "AssetKind": "All",
@@ -918,10 +918,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\bs-init.js"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\changetheme.js",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\changetheme.js",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/js/changetheme.js",
       "AssetKind": "All",
@@ -935,10 +935,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\changetheme.js"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\control\\TablesUtilities.js",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\control\\TablesUtilities.js",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/js/control/TablesUtilities.js",
       "AssetKind": "All",
@@ -952,10 +952,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\control\\TablesUtilities.js"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\forgotpassword.js",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\forgotpassword.js",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/js/forgotpassword.js",
       "AssetKind": "All",
@@ -969,10 +969,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\forgotpassword.js"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\jquery.min.js",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\jquery.min.js",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/js/jquery.min.js",
       "AssetKind": "All",
@@ -986,10 +986,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\jquery.min.js"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\Login.js",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\Login.js",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/js/Login.js",
       "AssetKind": "All",
@@ -1003,10 +1003,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\Login.js"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\popper.js",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\popper.js",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/js/popper.js",
       "AssetKind": "All",
@@ -1020,10 +1020,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\popper.js"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\profile\\ProfileUtilities.js",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\profile\\ProfileUtilities.js",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/js/profile/ProfileUtilities.js",
       "AssetKind": "All",
@@ -1037,10 +1037,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\profile\\ProfileUtilities.js"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\Register.js",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\Register.js",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/js/Register.js",
       "AssetKind": "All",
@@ -1054,10 +1054,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\Register.js"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\theme.js",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\theme.js",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/js/theme.js",
       "AssetKind": "All",
@@ -1071,10 +1071,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\theme.js"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\UserSessionControl.js",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\UserSessionControl.js",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/js/UserSessionControl.js",
       "AssetKind": "All",
@@ -1088,10 +1088,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\UserSessionControl.js"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\Utilities.js",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\js\\Utilities.js",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "assets/js/Utilities.js",
       "AssetKind": "All",
@@ -1105,10 +1105,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\Utilities.js"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\favicon.ico",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\favicon.ico",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "favicon.ico",
       "AssetKind": "All",
@@ -1122,10 +1122,10 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\favicon.ico.bak",
+      "Identity": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\favicon.ico.bak",
       "SourceId": "WebSmileSoft",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Alejandro Vasquez\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Source\\Repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
       "BasePath": "_content/WebSmileSoft",
       "RelativePath": "favicon.ico.bak",
       "AssetKind": "All",

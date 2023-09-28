@@ -12,6 +12,7 @@
         public string? uEmailAddress {  get; set; }
         public string? uPassword {  get; set; }
         public int dtID {  get; set; }
+        public int? oID {  get; set; }
         public string? uDocument {  get; set; }
         public string? uToken {  get; set; }
         public int uStatus {  get; set; }

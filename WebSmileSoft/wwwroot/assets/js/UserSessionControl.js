@@ -1,9 +1,12 @@
 var inactivityTimeout;
-
+var logoutUrl = document.getElementById("logout-link").getAttribute("data-logout-url");
+console.log(logoutUrl);
+// Luego, puedes redirigir al usuario utilizando esta URL
+//window.location.href = logoutUrl;
 // Función para restablecer el tiempo de inactividad
 function resetInactivityTimer() {
     clearTimeout(inactivityTimeout);
-    inactivityTimeout = setTimeout(logoutUser, 900000); // 15 minutos (900,000 milisegundos)
+    inactivityTimeout = setTimeout(logoutUser, 10000); // 15 minutos (900,000 milisegundos)
 }
 
 function logoutUser() {
@@ -14,7 +17,7 @@ function logoutUser() {
     console.log("logoutUser" + inactivityTimeout);
 
     // Redirecciona a la página de inicio de sesión
-    window.location.href = '/Account/Login'; // Reemplaza con la URL correcta
+   window.location.href = logoutUrl; // Reemplaza con la URL correcta
 }
 
 // Evento para restablecer el temporizador en respuesta a la actividad del usuario
