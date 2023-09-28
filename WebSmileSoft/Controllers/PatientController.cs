@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata;
 using WebSmileSoft.Interfaces;
 using WebSmileSoft.Models; // Asegúrate de importar el espacio de nombres de tus modelos de pacientes
+using static WebSmileSoft.Models.MostrarElementoModel;
 
 namespace WebSmileSoft.Controllers
 {
@@ -24,7 +26,7 @@ namespace WebSmileSoft.Controllers
         public IActionResult GestiondeCitas()
         {
             ViewBag.urlEndPoint = _settings.urlEndPoint;
-
+            
             return View();
         }
 

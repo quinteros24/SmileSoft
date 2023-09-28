@@ -12,4 +12,5 @@ namespace Domain.Interfaces.Repository
         Task<GenericResponseModel> SetUserStatus(int uID, int uStatus);
         Task<GenericResponseModel> GetUserDetails(int uID);
     }
+
 }

@@ -38,7 +38,7 @@ namespace WebSmileSoft.Controllers
                 new EspecialidadOdontologia { Id = 6, Nombre = "Implantología Dental", Descripcion = "Colocación de implantes dentales" },
                 new EspecialidadOdontologia { Id = 7, Nombre = "Odontopediatría", Descripcion = "Odontología para niños" },
             };
-            return View("~/Views/Profile/Profile.cshtml", especialidadesOdontologia);
+            return View(especialidadesOdontologia);
         }
         
 
@@ -61,9 +61,35 @@ namespace WebSmileSoft.Controllers
             // Pasa la lista de roles a la vista
             //ViewBag.EspecialidadList = new SelectList(especialidadesOdontologia, "Id", "Nombre");
 
-            return PartialView("_Especialidades", especialidadesOdontologia);
+            return PartialView(especialidadesOdontologia);
         }
-       
+
+
+        public IActionResult Security()
+        {
+         
+            return PartialView();
+        }
+
+        public IActionResult DatosBasicos()
+        {
+
+            return PartialView();
+        }
+
+        public IActionResult DatosMedicos()
+        {
+
+            return PartialView();
+        }
+
+        public IActionResult Anuncios()
+        {
+
+            return PartialView();
+        }
+
+
         [HttpPost]
         public async Task<ChangePasswordViewModelResponse> ChangePassword([FromBody] ChangePasswordViewModelRequest Item)
         {

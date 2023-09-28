@@ -167,42 +167,7 @@ namespace Repository.Repos
         }
 
 
-        //public async Task<GenericResponseModel> GetUserDetails(int uID)
-        //{
-        //    string query = UsersQueries.GetUserDetails(uID);
-        //    Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
-        //    ResponseDB ItemResponseDB = await dl.Consultds(query);
-
-        //    GenericResponseModel genericResponseModel = new GenericResponseModel();
-
-        //    if (ItemResponseDB != null && ItemResponseDB.DsObject != null)
-        //    {
-        //        foreach (DataTable dt in ItemResponseDB.DsObject.Tables)
-        //        {
-        //            if (dt.Rows.Count > 0 && dt.Rows[0]["TableName"].ToString() == "OBJECT")
-        //            {
-        //                List<ViewUsersModelRequest> ListUsers = Mapper.GetListFromDataTable<ViewUsersModelRequest>(dt);
-        //                if (ListUsers.Count > 0)
-        //                {
-        //                    genericResponseModel.RecordsQuantity = ListUsers.Count;
-        //                    genericResponseModel.ItemJson = ListUsers[0]; // Tomar el primer usuario si existe
-        //                    genericResponseModel.Status = true;
-        //                }
-        //                else
-        //                {
-        //                    genericResponseModel.Status = false;
-        //                }
-        //                break; // Salir del bucle una vez que se ha encontrado un usuario
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        genericResponseModel.Status = false;
-        //    }
-
-        //    return genericResponseModel;
-        //}
+       
 
 
 
