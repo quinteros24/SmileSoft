@@ -168,7 +168,7 @@ function verusers(utID) {
                     $("#tipoDocumentoe").val(userData.dtID);
                     $("#editDocumentoe").val(userData.uDocument);
                     $("#tipoGeneroe").val(userData.gID)
-                    $("#fechaNacimientoe").val(userData.uBirthDate) 
+                    $("#fechaNacimientoe").val(userData.uBirthDate)
                     //Datos de Contacto
                     $("#editCorreo").val(userData.uEmailAddress);
                     $("#direccione").val(userData.uAddress);
@@ -190,43 +190,50 @@ function verusers(utID) {
                 $("#editModal").modal("show");
 
 
-                console.log("Usuario a Editar" + userId);
+                //console.log("Usuario a Editar" + userId);
                 // Realiza una solicitud AJAX para obtener los detalles del usuario
 
                 $("#saveChangesBtn").click(function () {
                     let status = $("#editStatus").val() == "Activo" ? true : false;
-
-                    // Obtén los datos actualizados del formulario de edición
-                    let updatedUserData = {
-                        // Recoge los datos actualizados desde los campos del formulario
-
-                        //Datos Personales
-                        uName: $("#editNombre").val(),
-                        uLastName: $("#editApellido").val(),
-                        dtID: parseInt($("#tipoDocumentoe").val()),
-                        uDocument: $("#editDocumento").val(),
-                        gID: parseInt($("#genderSelect").val()),
-                        uBirthDate: $("#birthDate").val(),
-
-                        //Datos de Contacto
-                        uEmailAddress: $("#editCorreo").val(),
-                        uCellphone: $("#editCelular").val(),
-                        uAddress: $("#address").val(),
-
+                    let DoctorModel = {
                         //Datos de Estudios
                         dAcademicLevel: $("#AcademicLevel").val(),
                         dDegree: $("#TituloAcademico").val(),
                         dSpeciality: $("#Speciality").val(),
                         dProfessionalCard: $("#ProfessionalLicense").val(),
                         dUniversityName: $("#Universityname").val(),
-                        
+                    };
+
+                    console.log("DoctorModel" + DoctorModel.dAcademicLevel);
+                    // Obtén los datos actualizados del formulario de edición
+                    let updatedUserData = {
+                        // Recoge los datos actualizados desde los campos del formulario
+                        //Datos Personales
+                        uName: $("#editNombre").val(),
+                        uLastName: $("#editApellido").val(),
+                        dtID: parseInt($("#tipoDocumentoe").val()),
+                        uDocument: $("#editDocumento").val(),
+                        //gID: 1,
+                        //uBirthDate: $("#birthDate").val(),
+                        //Datos de Contacto
+                        uEmailAddress: $("#editCorreo").val(),
+                        uCellphone: $("#editCelular").val(),
+                        uAddress: $("#address").val(),
+
                         //Datos de Cuenta
                         uLoginName: $("#username").val(),
                         uID: userId,
-                        utID: $("#tipoUsuarioe").val(), 
-                        uStatus: status
-                    };
-                    console.log("Usuario a Editar" + userId)
+                        utID: $("#tipoUsuarioe").val(),
+                        uStatus: status,
+                        DoctorModel: null
+                    }
+                    if (updatedUserData.utID == 2) {
+                        updatedUserData.DoctorModel = DoctorModel;
+                    }
+                    console.log("Datos del Usuario " + updatedUserData);
+
+
+                    console.log("Usuario a Editar" + updatedUserData.gID)
                     // Realiza una solicitud AJAX para guardar los cambios en el servidor
                     $.ajax({
                         url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Reemplaza con la URL correcta
@@ -237,7 +244,7 @@ function verusers(utID) {
                         success: function (response) {
                             // Cierra el modal de edición
                             $("#editModal").modal("hide");
-                            verusers(updatedUserData.utID);
+                            //verusers(updatedUserData.utID);
                             // Puedes realizar otras acciones después de guardar los cambios si es necesario
                             // Por ejemplo, actualizar la tabla con los datos modificados
                             // o mostrar un mensaje de éxito
