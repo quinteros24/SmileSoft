@@ -45,21 +45,8 @@
 // Variable para rastrear si el loader ya se mostró
 //let loaderShown = false;
 
-//// Función para mostrar el loader
-//function showLoader() {
-//    if (!loaderShown) {
-//        document.getElementById('loader').style.display = 'block';
-//        loaderShown = true;
-//    }
-//}
-
-//// Función para ocultar el loader
-//function hideLoader() {
-//    document.getElementById('loader').style.display = 'none';
-//}
-
-//// Simula una tarea que lleva tiempo (puedes reemplazar esto con tu propia lógica)
-//setTimeout(function () {
-//    // Cuando la tarea está completa, oculta el loader
-//    hideLoader();
-//}, 300);
+// Función para mostrar el loader
+window.addEventListener("load", function () {
+    var load_screen = document.getElementById("load_screen");
+    document.body.removeChild(load_screen);
+});
