@@ -129,6 +129,46 @@
         });
 
     </script>
+    <script>
+        (function (global) {
+
+            if (typeof (global) === "undefined") {
+                throw new Error("window is undefined");
+            }
+
+            var _hash = "!";
+            var noBackPlease = function () {
+                global.location.href += "#";
+
+                // making sure we have the fruit available for juice (^__^)
+                global.setTimeout(function () {
+                    global.location.href += "!";
+                }, 50);
+            };
+
+            global.onhashchange = function () {
+                if (global.location.hash !== _hash) {
+                    global.location.hash = _hash;
+                }
+            };
+
+            global.onload = function () {
+                noBackPlease();
+
+                // disables backspace on page except on input fields and textarea..
+                document.body.onkeydown = function (e) {
+                    var elm = e.target.nodeName.toLowerCase();
+                    if (e.which === 8 && (elm !== 'input' && elm !== 'textarea')) {
+                        e.preventDefault();
+                    }
+                    // stopping event bubbling up the DOM tree..
+                    e.stopPropagation();
+                };
+            }
+
+        })(window);
+    </script>
+
     <!-- END Calendar Script -->
     <script src="~/assets/js/utilities.js"></script>
     @await Component.InvokeAsync("CommonData") <!-- Aquí "CommonData" se refiere al nombre de tu ViewComponent -->
@@ -136,11 +176,16 @@
 
 
 <body id="page-top contenido">
-    
 
-    @* <div id="loadingOverlay">
-    <div id="loadingSpinner"></div>
-    </div> *@
+    <div id="load_screen">
+    <section class="dots-container">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </section>
+    </div>
     <div id="wrapper">
         <!-- Sidebar -->
         @await Component.InvokeAsync("Sidebar")
@@ -266,7 +311,8 @@
             }
         });
     </script>
-    
+
+   
 
     <!-- BEGIN PAGE LEVEL CUSTOM SCRIPTS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
