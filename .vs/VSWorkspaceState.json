@@ -3,7 +3,7 @@
     "",
     "\\WebSmileSoft",
     "\\WebSmileSoft\\Views",
-    "\\WebSmileSoft\\Views\\Profile",
+    "\\WebSmileSoft\\Views\\Shared",
     "\\WebSmileSoft\\wwwroot",
     "\\WebSmileSoft\\wwwroot\\assets",
     "\\WebSmileSoft\\wwwroot\\assets\\bootstrap",
@@ -11,6 +11,5 @@
     "\\WebSmileSoft\\wwwroot\\assets\\css",
     "\\WebSmileSoft\\wwwroot\\assets\\js"
   ],
-  "SelectedNode": "\\SolutionSmileSoft.sln",
   "PreviewInSolutionExplorer": false
 }
