@@ -98,9 +98,9 @@ namespace Repository.Queries
             if (Item.uID == 0)
             {
                 // Crear un nuevo usuario
-                query = $"INSERT INTO dbo.Users (utID, uName, uLastName, uCellphone, uAddress, uLoginName, uEmailAddress, uPassword, dtID, uDocument, uStatus)\n" +
+                query = $"INSERT INTO dbo.Users (utID, uName, uLastName, uCellphone, uAddress, uLoginName, uEmailAddress, uPassword, dtID, uDocument, uStatus, oID, gID, uBirthDate)\n" +
                         $"VALUES ({Item.utID}, '{Item.uName}', '{Item.uLastName}', '{Item.uCellphone}', '{Item.uAddress}', '{Item.uLoginName}', " +
-                        $"'{Item.uEmailAddress}', HASHBYTES('SHA2_256', CAST('{Item.uPassword}' AS VARCHAR(8000))), {Item.dtID}, '{Item.uDocument}', {Item.uStatus});\n" +
+                        $"'{Item.uEmailAddress}', HASHBYTES('SHA2_256', CAST('{Item.uPassword}' AS VARCHAR(8000))), {Item.dtID}, '{Item.uDocument}', {Item.uStatus},{Item.oID},{Item.gID},{Item.uBirthDate});\n" +
                         $"SELECT '0' AS OutputCodeError, 'Usuario registrado con éxito.' AS OutputMessageError\n";
             }
             else
@@ -138,6 +138,15 @@ namespace Repository.Queries
 
                 if (Item.uStatus != 0)
                     query += $"uStatus = {Item.uStatus}, ";
+
+                if (Item.oID != 0)
+                    query += $"oID = {Item.oID}, ";
+
+                if (Item.gID != 0)
+                    query += $"gID = {Item.gID}, ";
+
+                if (Item.uBirthDate != null)
+                    query += $"uBirthDate = {Item.uBirthDate}, ";
 
                 // Eliminar la última coma y agregar la condición WHERE
                 query = query.TrimEnd(',', ' ') + $" WHERE [uID] = {Item.uID};\n" +
