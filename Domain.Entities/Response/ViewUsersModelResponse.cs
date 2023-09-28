@@ -20,5 +20,8 @@ namespace Domain.Entities
         public string? uDocument { get; set; }
         public int uStatus { get; set; }
         public int uIsBlocked { get; set; }
+
+        public ViewDoctorsModelResponse Doctor { get; set; }
     }
+
 }
