@@ -44,8 +44,8 @@ function verusers(utID) {
             }
             $.each(data.itemJson, function (index, usuario) {
                 let rol = rolesMapping[usuario.utID];
-                let Block = BlockMapping[usuario.uIsBlocked];
-                let Status = StatusMapping[usuario.uStatus];
+                //let Block = BlockMapping[usuario.uIsBlocked];
+                //let Status = StatusMapping[usuario.uStatus];
                 let DocumentT = DocumentType[usuario.dtID];
                 let rowData = [
                     usuario.uID,
@@ -57,8 +57,10 @@ function verusers(utID) {
                     usuario.uCellphone,
                     DocumentT,
                     usuario.uDocument,
-                    Block,
-                    Status
+                    usuario.uIsBlocked,
+                    usuario.uStatus
+                    //Block,
+                    //Status
                 ];
                 dataSet.push(rowData);
             });

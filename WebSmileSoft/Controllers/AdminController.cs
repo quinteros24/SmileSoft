@@ -45,7 +45,23 @@ namespace WebSmileSoft.Controllers
             return View();
         }
 
-       
+        public IActionResult AddUsers()
+        {
+
+            return PartialView();
+        }
+        public IActionResult ChangePass()
+        {
+
+            return PartialView();
+        }
+        public IActionResult EditUser()
+        {
+
+            return PartialView();
+        }
+
+
 
 
     }
