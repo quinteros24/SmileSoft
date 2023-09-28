@@ -35,7 +35,7 @@ namespace Repository.Queries
         public static string GetUserDetails(int uID)
         {
             return $"BEGIN TRY\n " +
-                $"  SELECT *, 'OBJECT' AS TableName FROM dbo.Users WHERE [uID] = {uID}\n" +
+                $"  SELECT *, 'OBJECT' AS TableName FROM dbo.Users AS U LEFT JOIN dbo.Doctors AS D ON U.uID = D.uID WHERE U.[uID] = {uID}\n" +
                 $"    SELECT '0' AS OutputCodeError, 'Consulta correcta' AS OutputMessageError, 'Parameters' AS TableName\n" +
                 $"END TRY\n" +
                 $"BEGIN CATCH\n" +
