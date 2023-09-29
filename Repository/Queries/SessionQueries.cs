@@ -19,38 +19,45 @@ namespace Repository.Queries
                     $"        END\n" +
                     $"        ELSE\n" +
                     $"        BEGIN\n" +
-                    $"            --Existe un usuario, ahora revisamos si la contraseña es correcta\n" +
-                    $"            IF NOT EXISTS (SELECT uID FROM dbo.Users WHERE uID = @ExistantUser AND uPassword = @Password)\n" +
+                    $"            IF EXISTS (SELECT TOP(1)uID FROM dbo.Users WHERE uID = @ExistantUser AND uStatus = 0)\n" +
                     $"            BEGIN\n" +
-                    $"                --Contraseña incorrecta\n" +
-                    $"                UPDATE dbo.Users SET uFailedAttempts += 1, uLastAttemptDate = GETUTCDATE() \n" +
-                    $"                WHERE uID = @ExistantUser\n" +
-                    $"                SELECT '-1' AS OutputCodeError, 'Contraseña incorrecta' AS OutputMessageError, 'Parameters' AS TableName\n" +
+                    $"                SELECT '-1' AS OutputCodeError, 'Usuario inactivo' AS OutputMessageError, 'Parameters' AS TableName\n" +
                     $"            END\n" +
                     $"            ELSE\n" +
-                    $"            BEGIN\n" +
-                    $"                SELECT\n" +
-                    $"                    U.uID,\n" +
-                    $"                    U.utID,\n" +
-                    $"                    uName,\n" +
-                    $"                    uLastName,\n" +
-                    $"                    uCellphone,\n" +
-                    $"                    uAddress,\n" +
-                    $"                    uLoginName,\n" +
-                    $"                    uEmailAddress,\n" +
-                    $"                    dtID,\n" +
-                    $"                    oID,\n" +
-                    $"                    uDocument,\n" +
-                    $"                    uToken,\n" +
-                    $"                    IIF(uStatus = 1, 1, 0) AS uStatus,\n" +
-                    $"                    IIF(uIsBlocked = 1, 1, 0) AS uIsBlocked,\n" +
-                    $"                    'OBJECT' AS TableName\n" +
-                    $"                FROM\n" +
-                    $"                    dbo.Users AS U\n" +
-                    $"                WHERE\n" +
-                    $"                    U.uID = @ExistantUser AND U.uPassword = @Password\n" +
-                    $"                SELECT '0' AS OutputCodeError, 'Inicio de sesión con éxito' AS OutputMessageError, 'Parameters' AS TableName\n" +
-                    $"                UPDATE dbo.Users SET uIsBlocked = 0, uFailedAttempts = 0 WHERE uID = @ExistantUser\n" +
+                    $"            BEGIN" +
+                    $"                --Existe un usuario, ahora revisamos si la contraseña es correcta\n" +
+                    $"                IF NOT EXISTS (SELECT uID FROM dbo.Users WHERE uID = @ExistantUser AND uPassword = @Password)\n" +
+                    $"                BEGIN\n" +
+                    $"                    --Contraseña incorrecta\n" +
+                    $"                    UPDATE dbo.Users SET uFailedAttempts += 1, uLastAttemptDate = GETUTCDATE() \n" +
+                    $"                    WHERE uID = @ExistantUser\n" +
+                    $"                    SELECT '-1' AS OutputCodeError, 'Contraseña incorrecta' AS OutputMessageError, 'Parameters' AS TableName\n" +
+                    $"                END\n" +
+                    $"                ELSE\n" +
+                    $"                BEGIN\n" +
+                    $"                    SELECT\n" +
+                    $"                        U.uID,\n" +
+                    $"                        U.utID,\n" +
+                    $"                        uName,\n" +
+                    $"                        uLastName,\n" +
+                    $"                        uCellphone,\n" +
+                    $"                        uAddress,\n" +
+                    $"                        uLoginName,\n" +
+                    $"                        uEmailAddress,\n" +
+                    $"                        dtID,\n" +
+                    $"                        oID,\n" +
+                    $"                        uDocument,\n" +
+                    $"                        uToken,\n" +
+                    $"                        IIF(uStatus = 1, 1, 0) AS uStatus,\n" +
+                    $"                        IIF(uIsBlocked = 1, 1, 0) AS uIsBlocked,\n" +
+                    $"                        'OBJECT' AS TableName\n" +
+                    $"                    FROM\n" +
+                    $"                        dbo.Users AS U\n" +
+                    $"                    WHERE\n" +
+                    $"                        U.uID = @ExistantUser AND U.uPassword = @Password\n" +
+                    $"                    SELECT '0' AS OutputCodeError, 'Inicio de sesión con éxito' AS OutputMessageError, 'Parameters' AS TableName\n" +
+                    $"                    UPDATE dbo.Users SET uIsBlocked = 0, uFailedAttempts = 0 WHERE uID = @ExistantUser\n" +
+                    $"                END\n" +
                     $"            END\n" +
                     $"        END\n" +
                     $"    END\n" +

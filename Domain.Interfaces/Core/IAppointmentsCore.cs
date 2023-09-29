@@ -4,6 +4,6 @@ namespace Domain.Interfaces
 {
     public interface IAppointmentsCore
     {
-        Task<GenericResponseModel> GenerateJWToken(int uID, string userNameLogin, string token);
+        Task<GenericResponseModel> GetAppointmentsList(string? filter = "");
     }
 }

@@ -14,9 +14,9 @@ namespace Repository
             _configuration = configuration;
         }
 
-        public async Task<GenericResponseModel> UpdateTokenSession(int uID, string token, string newToken)
+        public async Task<GenericResponseModel> GetAppointmentsList(string? filter = "")
         {
-            string Query = GenericsQueries.UpdateTokenSession(uID, token, newToken);
+            string Query = AppointmentsQueries.GetAppointmentsList(filter);
             Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
             ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(Query);
             GenericResponseModel? genericResponseModel = new();

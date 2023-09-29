@@ -4,6 +4,6 @@ namespace Domain.Interfaces
 {
     public interface IAppointmentsRepository
     {
-        Task<GenericResponseModel> UpdateTokenSession(int uID, string token, string newToken);
+        Task<GenericResponseModel> GetAppointmentsList(string? filter = "");
     }
 }

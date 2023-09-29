@@ -7,23 +7,20 @@ namespace EpSmileSoft.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Tags("Controlador encargado de gestionar los procesos genéricos")]
+    [Tags("Controlador encargado de gestionar los procesos de las citas")]
     public class AppointmentsController : ControllerBase
     {
-        private readonly IGenericsCore _genericsCore;
-        public AppointmentsController(IGenericsCore genericsCore)
+        private readonly IAppointmentsCore _appointmentsCore;
+        public AppointmentsController(IAppointmentsCore appointmentsCore)
         {
-            _genericsCore = genericsCore;
+            _appointmentsCore = appointmentsCore;   
         }
 
-        [HttpPost]
-        [Route("v1/GenerateJWToken")]
-        public async Task<GenericResponseModel> GenerateJWToken([FromHeader] int uID, [FromBody] TokenRequestModel item)
+        [HttpGet]
+        [Route("v1/GetAppointmentsList")]
+        public async Task<GenericResponseModel> GetAppointmentsList(string? filter = "")
         {
-            string userNameLogin = item.UserNameLogin;
-            string token = item.Token;
-
-            return await _genericsCore.GenerateJWToken(uID, userNameLogin, token);
+            return await _appointmentsCore.GetAppointmentsList(filter);
         }
     }
 }
