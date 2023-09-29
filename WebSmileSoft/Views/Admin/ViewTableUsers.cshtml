@@ -38,18 +38,27 @@
 </div>
 
 <!-- Modal de Edición -->
-<partial name="_EditUser" />
+<partial name="EditUser" />
 
 <!-- Modal Cambio Contraseña -->
-<partial name="_ChangePass" />
+<partial name="ChangePass" />
 
 <!-- Modal Agregar Usuarios -->
-<partial name="_AddUsers" />
+<partial name="AddUsers" />
 
 
 
 @section Scripts {
+    <script>
+        document.getElementById("tipoUsuarioe").addEventListener("change", function () {
+            var campoOpcional = document.getElementById("campoOpcional");
+            if (this.value === "2") {
+                campoOpcional.style.display = "block";
+            } else {
+                campoOpcional.style.display = "none";
+            }
+        });
+    </script>
+    <script src="~/assets/js/control/tablesutilities.js" charset="utf-8"></script>
 
-    <script src="~/assets/js/control/tablesutilities.js"></script>
-
-        }
+}

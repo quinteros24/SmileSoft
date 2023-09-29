@@ -125,15 +125,15 @@ namespace WebSmileSoft.Controllers
         // Acción para el cierre de sesión
 
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Logout()
-        {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Logout()
+        //{
+        //    await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
-            // Redirige a la página de inicio o a la página deseada después del cierre de sesión
-            return RedirectToAction("Login", "Account");
-        }
+        //    // Redirige a la página de inicio o a la página deseada después del cierre de sesión
+        //    return RedirectToAction("Login", "Account");
+        //}
         
 
         // Otras acciones y métodos relacionados con la autenticación

@@ -100,9 +100,14 @@
                             //sessionStorage.setItem('userGender', response.itemJson.uGender);
                             sessionStorage.setItem('userBlock', response.itemJson.uIsBlocked);
                             sessionStorage.setItem('userStatus', response.itemJson.uStatus);
-                            
+                            if (response.itemJson.uStatus == false) { 
+                            Swal.fire({
+                                text: 'Su cuenta se encuentra bloqueada',
+                                confirmButtonColor: '#008dc9'
+                            });
+                            } 
                             // window.location.href = '@Url.Action("Index", "Home")';
-                            if (response.itemJson.utID === 1) {
+                            else if (response.itemJson.utID === 1) {
                                 // Redirige al administrador a la vista de administrador
                                 window.location.href = '@Url.Action("Index", "Admin")';
                             } else if (response.itemJson.utID === 2) {
