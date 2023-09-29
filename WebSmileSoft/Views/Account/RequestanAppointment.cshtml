@@ -158,6 +158,31 @@
                 submitBtn.setAttribute("disabled", "disabled");
             }
         }
+        const fechaNacimientoInput = document.getElementById('fechaNacimientoe');
+
+        // Agrega un oyente de eventos al cambio de valor en el campo
+        fechaNacimientoInput.addEventListener('change', function () {
+            // Obtén la fecha de nacimiento ingresada por el usuario
+            const fechaNacimiento = new Date(this.value);
+
+            // Calcula la fecha actual
+            const fechaActual = new Date();
+
+            // Calcula la edad en años
+            const edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
+
+            // Verifica si la edad es menor de 18 años
+            if (edad < 18) {
+                //alert('Debes ser mayor de 18 años para registrarte.');
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Debes ser mayor de 18 años para registrarte.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+                // Puedes agregar aquí más acciones si la validación falla, como borrar la fecha o mostrar un mensaje de error.
+            }
+        });
 
 
         // Escucha eventos de cambio en los campos del formulario
