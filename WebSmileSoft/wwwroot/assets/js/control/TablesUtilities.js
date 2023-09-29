@@ -4,7 +4,11 @@
 $(document).ready(function () {
     verusers(3);
     $("#loadingScreen").show();
+    
+   
 });
+
+
 //Funcion para visualizar la lista de usuarios en la tabla pasando como parametro el tipo de usuario
 function verusers(utID) {
     // Realizar solicitud AJAX para obtener la lista de usuarios
@@ -68,17 +72,36 @@ function verusers(utID) {
             // Inicializa o actualiza el DataTable con los datos procesados
             table = $('#example').DataTable({
                 // new DataTable('#example', {
+                columnDefs: [
+                    {
+                        target: 0,
+                        visible: false,
+                        searchable: false
+                    },
+                    {
+                        target: 1,
+                        visible: false
+                    },
+                    {
+                        target: 9,
+                        visible: false
+                    },
+                    {
+                        target: 7,
+                        visible: false
+                    }
+                ],
                 columns: [
-                    { title: 'ID' },
-                    { title: 'Rol' },
+                    { title: 'ID', visible: false },
+                    { title: 'Rol', visible: false },
                     { title: 'Usuario' },
                     { title: 'Nombre' },
                     { title: 'Apellidos' },
                     { title: 'Correo Electronico' },
                     { title: 'Celular' },
-                    { title: 'Tipo Documento' },
+                    { title: 'Tipo Documento', visible: false },
                     { title: 'Documento' },
-                    { title: 'Bloqueado' },
+                    { title: 'Bloqueado', visible: false },
                     { title: 'Estado' },
                     {
                         title: 'Acciones',
@@ -90,6 +113,7 @@ function verusers(utID) {
 
                     }
                 ],
+                    
                 data: dataSet,
                 dom: 'Bfrtip',
                 "dom": "<'dt--top-section'<'row'<'col-sm-12 col-md-6 d-flex justify-content-md-start justify-content-center'B><'col-sm-12 col-md-6 d-flex justify-content-md-end justify-content-center mt-md-0 mt-3'f>>>" +
@@ -118,7 +142,8 @@ function verusers(utID) {
                 },
 
             });
-
+            
+            
             Swal.close();
             table.column(11).nodes().to$().find('#btnEditar').click(function () {
                 // Maneja la acción del botón aqui

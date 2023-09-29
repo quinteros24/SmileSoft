@@ -7,13 +7,13 @@ namespace WebSmileSoft.Controllers
         // Acción para la página de inicio
         public IActionResult Index()
         {
-            return View("~/Views/Home/Index.cshtml");
+            return View();
         }
 
         // Acción para la página "Acerca de"
         public IActionResult About()
         {
-            return View("~/Views/Home/About.cshtml");
+            return View();
         }
 
         // Otras acciones relacionadas con la página de inicio

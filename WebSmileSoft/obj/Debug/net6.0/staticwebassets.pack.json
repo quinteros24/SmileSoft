@@ -29,6 +29,10 @@
       "PackagePath": "staticwebassets\\assets\\css\\Responsive-UI-Card.css"
     },
     {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\datepicker.css",
+      "PackagePath": "staticwebassets\\assets\\css\\datepicker.css"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\loader.css",
       "PackagePath": "staticwebassets\\assets\\css\\loader.css"
     },

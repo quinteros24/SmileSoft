@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "590Cg60H2hT1mfDlfM8JmqKm1xXazoFAgv4m+5eZzbc=",
+  "Hash": "CxeVxTa8trqg2tbDD3B+wE7ycDZmsWc9a5TBXVUs5bg=",
   "Source": "WebSmileSoft",
   "BasePath": "_content/WebSmileSoft",
   "Mode": "Default",
@@ -66,6 +66,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\bootstrap\\css\\bootstrap.min.css"
+    },
+    {
+      "Identity": "C:\\Users\\Usuario\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\datepicker.css",
+      "SourceId": "WebSmileSoft",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\",
+      "BasePath": "_content/WebSmileSoft",
+      "RelativePath": "assets/css/datepicker.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\css\\datepicker.css"
     },
     {
       "Identity": "C:\\Users\\Usuario\\source\\repos\\SmileSoft\\WebSmileSoft\\wwwroot\\assets\\css\\Footer-Clean-icons.css",

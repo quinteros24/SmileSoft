@@ -1,53 +1,136 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Solicitar una Cita";
 }
 
 <section class="container flex-grow-1">
     <div class="d-flex justify-content-center align-items-center vh-100">
-        <div class="shadow p-5 ">
-            <div class="d-flex flex-column align-items-center mb-4">
-                <img src="~/assets/img/logo-2.png" class="img-fluid w-25" alt="SmileSoftLogo">
-            </div>
-            <div class="container mt-5">
-    <h1 class="mb-4">Solicitud de Cita Odontológica</h1>
+        <div class="shadow " style="width:90rem">
+            @*  <div class="d-flex flex-column align-items-center mb-2 mt-2">
+            <img src="~/assets/img/logo-2.png" class="img-fluid" width="200" alt="SmileSoftLogo">
+            </div> *@
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="col-md-9 py-4">
+                        <h1 class="mb-2">Solicitud de Cita Odontológica</h1>
+                    </div>
+                    <div class="col-md-3 d-flex justify-content-end align-content-lg-end">
+                        <img src="~/assets/img/logo-2.png" class="img-fluid img-hover" width="200" alt="SmileSoftLogo">
+                    </div>
+                </div>
+                @* <h1 class="mb-2">Solicitud de Cita Odontológica</h1> *@
                 <form id="cita-form">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre Completo:</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" required>
-                </div>
-                <div class="mb-3">
-                    <label for="correo" class="form-label">Correo Electrónico:</label>
-                    <input type="email" class="form-control" id="correo" name="correo" required>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="mb-3">
-                    <label for="telefono" class="form-label">Número de Teléfono:</label>
-                    <input type="tel" class="form-control" id="telefono" name="telefono">
-                </div>
-                <div class="mb-3">
-                    <label for="fecha" class="form-label">Fecha de la Cita:</label>
-                    <input type="date" class="form-control" id="fecha" name="fecha" required>
-                </div>
-            </div>
-        </div>
-        <div class="mb-3">
-            <label for="mensaje" class="form-label">Mensaje:</label>
-            <textarea class="form-control" id="mensaje" name="mensaje" rows="4" required></textarea>
-        </div>
+                    <div class="card-header py-1">
+                        <p class="text-primary m-0 fw-bold">Datos Personales</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-1">
+                                <label for="fname" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="fname" name="nombre" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-1">
+                                <label for="lname" class="form-label">Apellido</label>
+                                <input type="text" class="form-control" id="lname" name="Apellido" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-1">
+                                <div class="form-group">
+                                    <label for="ctipoDocumento">* Tipo de Documento:</label>
+                                    <select class="form-control" id="ctipoDocumento" name="tipoDocumento" required>
+                                        <option value="1">Cedula de Ciudadania (CC)</option>
+                                        <option value="2">Cedula de Extranjeria (CE)</option>
+                                        @*  <option value="3">Tarjeta de Identidad (TI)</option> *@
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-1">
+                                <div class="form-group">
+                                    <label for="ceditDocumento">* Número de Documento:</label>
+                                    <input type="text" class="form-control" id="ceditDocumento" name="numeroDocumento" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="tipoGeneroe">* Genero:</label>
+                                <select class="form-control" id="tipoGeneroe" name="tipoGenero" required>
+                                    <option value="0">Masculino</option>
+                                    <option value="1">Femenino</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="fechaNacimientoe">Fecha de Nacimiento:</label>
+                                <input type="date" class="form-control" id="fechaNacimientoe" name="fechaNacimiento" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-header py-1">
+                        <p class="text-primary m-0 fw-bold">Datos de Contacto</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-1">
+                                <label for="correo" class="form-label">Correo Electrónico:</label>
+                                <input type="email" class="form-control" id="correo" name="correo" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-1">
+                                <label for="telefono" class="form-label">Número de Teléfono:</label>
+                                <input type="tel" class="form-control" id="telefono" name="telefono">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-header py-1">
+                        <p class="text-primary m-0 fw-bold">Datos de la Cita</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="mb-1">
+                                <label for="fecha" class="form-label">Fecha de la Cita:</label>
+                                <input type="date" data-date-start-date="-1w" class="form-control" id="fecha" name="fecha" required>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-1">
+                                <label for="cHora" class="form-label">Hora:</label>
+                                <input type="time" class="form-control" id="cHora" name="Hora">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-1">
+                                <label for="cDoctor" class="form-label">Doctor</label>
+                                <input type="text" class="form-control" id="cDoctor" name="Doctor">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <label for="mensaje" class="form-label">Mensaje:</label>
+                        <textarea class="form-control" id="mensaje" name="mensaje" rows="2"></textarea>
+                    </div>
+                    <div class="d-flex justify-content-end ">
                     <button type="button" class="btn btn-primary mb-2" id="submit-btn">Solicitar Cita</button>
-    </form>
-                
-                <div class="progress mb-4">
+                    </div>
+                </form>
+
+                <div class="progress mb-2">
                     <div id="progress-bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-              
-</div>
+
+            </div>
             <hr>
-            <div class="text-center"><a class="small" href="@Url.Action("Login","Account")">Ya tienes Cuenta? Inicia Sesión!</a></div>
+            <div class="text-center mb-4"><a class="small fs-5" href="@Url.Action("Login","Account")">Ya tienes Cuenta? Inicia Sesión!</a></div>
             <div class="form-check" style="display:none"><input class="form-check-input custom-control-input" type="checkbox" id="remember_me"><label class="form-check-label custom-control-label" for="remember_me">Recordarme</label></div>
 
         </div>
@@ -76,11 +159,13 @@
             }
         }
 
-        
+
         // Escucha eventos de cambio en los campos del formulario
         const campos = document.querySelectorAll("input, textarea");
         campos.forEach((campo) => {
             campo.addEventListener("input", calcularProgreso);
         });
+
     </script>
+
 }
