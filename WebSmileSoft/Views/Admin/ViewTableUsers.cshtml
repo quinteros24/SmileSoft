@@ -21,44 +21,51 @@
     </ol>
 </nav>
 <!-- Selectores de los tipos de Usuario a Listar -->
-<div class="mt-2 text-end my-2">
-   <button onclick="verusers(1);" class="btn btn-primary">Administradores</button>
-    <button onclick="verusers(2);" class="btn btn-danger">Doctores</button>
-    <button onclick="verusers(3);" class="btn btn-secondary">Pacientes</button>
-
-    <a class="btn btn-success add-user-btn " data-toggle="modal" data-target="#addUserModal"><i class="fas fa-user-plus"> </i> Agregar Usuario</a>
-
-</div>
-
-<div class="card-body" id="content-container">
-    <!-- Aquí va la tabla -->
-    <div class="table-responsive card shadow d-flex">
-        <table id="example" class="table table-hover non-hover mt-2 mb-2 table-striped" width="100%"></table>
+<div class=" my-2">
+    <div class="row ">
+        <div class="col-12 col-sm-3">
+            <button onclick="verusers(1);" class="btn btn-primary btn-block">Administradores</button>
+            <button onclick="verusers(2);" class="btn btn-danger btn-block">Doctores</button>
+            <button onclick="verusers(3);" class="btn btn-secondary btn-block">Pacientes</button>
+        </div>
+       
     </div>
 </div>
 
-<!-- Modal de Edición -->
-<partial name="EditUser" />
+    <div class="card-body" id="content-container">
+        <!-- Aquí va la tabla -->
+        <div class="table-responsive shadow-lg">
+            <table id="example" class="table table-hover non-hover mt-2 mb-2 table-striped display" width="100%"></table>
+        </div>
+    <div class="row justify-content-end mt-2">
+        <div class="col-12 col-sm-3 text-end ">
+            <a class="btn btn-success btn-block add-user-btn" data-toggle="modal" data-target="#addUserModal"><i class="fas fa-user-plus"></i> Agregar Usuario</a>
+        </div>
+    </div>
+    </div>
 
-<!-- Modal Cambio Contraseña -->
-<partial name="ChangePass" />
+    <!-- Modal de Edición -->
+    <partial name="EditUser" />
 
-<!-- Modal Agregar Usuarios -->
-<partial name="AddUsers" />
+    <!-- Modal Cambio Contraseña -->
+    <partial name="ChangePass" />
+
+    <!-- Modal Agregar Usuarios -->
+    <partial name="AddUsers" />
 
 
 
-@section Scripts {
-    <script>
-        document.getElementById("tipoUsuarioe").addEventListener("change", function () {
-            var campoOpcional = document.getElementById("campoOpcional");
-            if (this.value === "2") {
-                campoOpcional.style.display = "block";
-            } else {
-                campoOpcional.style.display = "none";
-            }
-        });
-    </script>
-    <script src="~/assets/js/control/tablesutilities.js" charset="utf-8"></script>
+    @section Scripts {
+        <script>
+            document.getElementById("tipoUsuarioe").addEventListener("change", function () {
+                var campoOpcional = document.getElementById("campoOpcional");
+                if (this.value === "2") {
+                    campoOpcional.style.display = "block";
+                } else {
+                    campoOpcional.style.display = "none";
+                }
+            });
+        </script>
+        <script src="~/assets/js/control/tablesutilities.js" charset="utf-8"></script>
 
-}
+    }

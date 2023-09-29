@@ -146,3 +146,4 @@ TestResults/
 /.vs/slnx.sqlite
 /.vs/SolutionSmileSoft/v17/.suo
 /WebSmileSoft/obj/Release/net6.0/WebSmileSoft.GeneratedMSBuildEditorConfig.editorconfig
+/.editorconfig

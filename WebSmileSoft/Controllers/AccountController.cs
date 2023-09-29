@@ -15,8 +15,8 @@ namespace WebSmileSoft.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        //private readonly UserManager<ApplicationUser> _userManager;
+        //private readonly SignInManager<ApplicationUser> _signInManager;
+      
         private readonly ISettings _settings;
 
         public AccountController(ISettings settings)
@@ -92,36 +92,16 @@ namespace WebSmileSoft.Controllers
         }
         public IActionResult ForgotPassword()
         {
+            ViewBag.urlEndPoint = _settings.urlEndPoint;
             return View();
         }
 
-        ////// POST: Acción para el registro (manejar el formulario de registro)
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Register(RegisterViewModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var user = new ApplicationUser
-        //        {
-        //            UserName = model.GetUserName(),
-        //            // Configura otras propiedades de usuario aquí
-        //        };
-        //        var result = await _userManager.CreateAsync(user, model.Password);
 
-        //        if (result.Succeeded)
-        //        {
-        //            // Inicia sesión automáticamente al usuario después del registro
-        //            await _signInManager.SignInAsync(user, isPersistent: false);
-        //            // Redirige a la página de inicio o a la página deseada después del registro
-        //            return RedirectToAction("Index", "Home");
-        //        }
-        //        // Agrega aquí el manejo de errores en el registro si es necesario
-        //    }
-        //    return View(model);
-        //}
-
-
+        public IActionResult RequestanAppointment()
+        {
+            ViewBag.urlEndPoint = _settings.urlEndPoint;
+            return View();
+        }
         // Acción para el cierre de sesión
 
 
@@ -134,7 +114,7 @@ namespace WebSmileSoft.Controllers
         //    // Redirige a la página de inicio o a la página deseada después del cierre de sesión
         //    return RedirectToAction("Login", "Account");
         //}
-        
+
 
         // Otras acciones y métodos relacionados con la autenticación
     }

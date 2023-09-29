@@ -55,8 +55,44 @@
             </table>
         </div>
     </div>
+    <div class="mb-3">
+        <button id="generate-pdf" class="btn btn-secondary">Generar PDF</button>
+        <button id="print-page" class="btn btn-secondary">Imprimir</button>
+    </div>
 </div>
 
 @section Scripts{
-   
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Tu código de generación de PDF aquí
+            function generatePDF() {
+                const pdf = new jsPDF();
+
+                // Agregar contenido al PDF
+                pdf.text("Historia Clínica de [Nombre del Paciente]", 10, 10);
+                pdf.text("Información Personal", 10, 20);
+                pdf.text("Nombre: [Nombre del Paciente]", 20, 30);
+                pdf.text("Edad: [Edad del Paciente]", 20, 40);
+                pdf.text("Fecha de Nacimiento: [Fecha de Nacimiento]", 20, 50);
+
+                pdf.text("Historial Médico", 10, 70);
+                pdf.text("Diagnóstico: [Diagnóstico]", 20, 80);
+                pdf.text("Tratamiento: [Tratamiento]", 20, 90);
+                // Puedes agregar más contenido según sea necesario
+
+                // Guardar o descargar el PDF
+                pdf.save("HistoriaClinica.pdf");
+            }
+
+            // Manejar clic en el botón "Generar PDF"
+            $("#generate-pdf").click(function () {
+                generatePDF();
+            });
+
+            // Manejar clic en el botón "Imprimir"
+            $("#print-page").click(function () {
+                window.print();
+            });
+        });
+    </script>
 }

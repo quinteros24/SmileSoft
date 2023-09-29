@@ -54,7 +54,8 @@
                     </a>
                 </li>
                 <li class="nav-item nav-item2">
-                    <a class="nav-link" asp-controller="Admin" asp-action="SiteManagement">
+                    <a class="nav-link" asp-controller="Admin" asp-action="SiteManagement" style="display: none">
+                        
                         <i class="fas fa-tools "></i><span class="ms-2">Administrar Sitio</span>
                     </a>
                 </li>
@@ -68,18 +69,18 @@
                 <li class="nav-item nav-item2" >
 
                 <a class="nav-link" asp-controller="Doctor" asp-action="GestiondeCitas">
-                        <i class="fa-solid fa-calendar-days"></i><span class="ms-2">Gestión de Citas</span>
+                        <i class="fa-solid fa-calendar-days"></i><span class="ms-2">Gestión de Citas Doctores</span>
                 </a>
 
             </li>
-                <li class="nav-item nav-item2" >
+                <li class="nav-item nav-item2" style="display: none">
 
                 <a class="nav-link" asp-controller="Doctor" asp-action="GestionPacientes">
                         <i class="fa-solid fa-users-between-lines"></i><span class="ms-2">Gestión de Pacientes</span>
                 </a>
 
             </li>
-                <li class="nav-item nav-item2 ">
+                <li class="nav-item nav-item2 " style="display: none">
 
                 <a class="nav-link" asp-controller="Doctor" asp-action="HistoriasClinicas">
                         <i class="fa-solid fa-hospital-user"></i><span class="ms-2">Historias Clinicas</span>
@@ -97,11 +98,12 @@
                 <li class="nav-item nav-item2 ">
 
                     <a class="nav-link" asp-controller="Patient" asp-action="GestiondeCitas">
-                        <i class="fa-solid fa-calendar-days"></i><span class="ms-2">Gestión de Citas</span>
+                        <i class="fa-solid fa-calendar-days"></i><span class="ms-2">Gestión de Citas Usuarios</span>
                     </a>
 
                 </li>
-                <li class="nav-item nav-item2 ">
+                <li class="nav-item nav-item2 " style="display: none">
+                    
 
                     <a class="nav-link" asp-controller="Patient" asp-action="HistoriaClinicaPacientes">
                         <i class="fa-solid fa-hospital-user"></i><span class="ms-2">Historias Clinicas</span>
