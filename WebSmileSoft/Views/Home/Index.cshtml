@@ -1,11 +1,23 @@
 ﻿@{
     ViewData["Title"] = "Inicio";
 }
-
-<div class="welcome-container shadow">
-    <h1>Bienvenido a SmileSoft</h1>
-    <span class="d-none d-lg-inline me-2 small text-primary fs-4" style="font-weight: bold;" id="SaludoUsuario">
-    </span>
+<div class="row">
+   
+        <div class="col-md-3">
+            <div class="card shadow mb-4 my-2">
+                <div class="mx-3 py-3">
+                    <h6 class="text-primary fw-bold m-0">Anuncios</h6>
+                </div>
+                <partial name="Anuncios" />
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="welcome-container shadow">
+                <h1>Bienvenido a SmileSoft</h1>
+                <span class="d-none d-lg-inline me-2 small text-primary fs-4" style="font-weight: bold;" id="SaludoUsuario">
+                </span>
+            </div>
+        </div>
 </div>
 
 @* <div class="card border-start-primary my-4 bg-video d-flex justify-content-center align-items-center">

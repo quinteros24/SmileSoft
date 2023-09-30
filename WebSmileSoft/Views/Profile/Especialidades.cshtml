@@ -14,21 +14,21 @@
             </div>
             <div class="row">
                 <div class="mb-3"><label class="form-label" for="TituloAcademico"><strong>Titulo Académico </strong></label><input class="form-control" type="text" id="TituloAcademico" placeholder="Odontologo" name="TituloAcademico"></div>
-                <div class="mb-3"><label class="form-label" for="Speciality"><strong>Especialidad </strong></label><input class="form-control" type="text" id="Speciality" placeholder="Speciality" name="Speciality"></div>
+               @*  <div class="mb-3"><label class="form-label" for="Speciality"><strong>Especialidad </strong></label><input class="form-control" type="text" id="Speciality" placeholder="Speciality" name="Speciality"></div> *@
 
             </div> <div class="row">
                 <div class="mb-3"><label class="form-label" for="Universityname"><strong>Universidad </strong></label><input class="form-control" type="text" id="Universityname" placeholder="Universidad Tecnologica de Pereira" name="University"></div>
             </div>
-            @* <div class="mb-3">
-                <label for="Especialidad">Selecciona una Especialidad:</label>
-                <select id="Especialidad" name="Especialidad" class="form-control">
+            <div class="mb-3">
+                <label for="Speciality">Selecciona una Especialidad:</label>
+                <select id="Speciality" name="Especialidad" class="form-control">
                     @foreach (var especialidad in Model)
                     {
                         var Value = especialidad.Id;
                         <option value="@Value">@especialidad.Nombre</option>
                     }
                 </select>
-            </div> *@
+            </div> 
             <div class="row">
                 <div class="mb-3">
                     <label class="form-label" for="Tarjeta_Profesional">
