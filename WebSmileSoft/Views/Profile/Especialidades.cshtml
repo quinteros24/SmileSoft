@@ -1,0 +1,43 @@
+﻿@using System.Collections.Specialized
+@using WebSmileSoft.Models;
+@model List<EspecialidadOdontologia>
+
+
+<div class="card shadow">
+    <div class="card-header py-3">
+        <p class="text-primary m-0 fw-bold">Datos de Estudios</p>
+    </div>
+    <div class="card-body">
+        <form>
+            <div class="row">
+                <div class="mb-3"><label class="form-label" for="AcademicLevel"><strong>Nivel Académico </strong></label><input class="form-control" type="text" id="AcademicLevel" placeholder="Nivel Academico" name="TituloAcademico"></div>
+            </div>
+            <div class="row">
+                <div class="mb-3"><label class="form-label" for="TituloAcademico"><strong>Titulo Académico </strong></label><input class="form-control" type="text" id="TituloAcademico" placeholder="Odontologo" name="TituloAcademico"></div>
+                <div class="mb-3"><label class="form-label" for="Speciality"><strong>Especialidad </strong></label><input class="form-control" type="text" id="Speciality" placeholder="Speciality" name="Speciality"></div>
+
+            </div> <div class="row">
+                <div class="mb-3"><label class="form-label" for="Universityname"><strong>Universidad </strong></label><input class="form-control" type="text" id="Universityname" placeholder="Universidad Tecnologica de Pereira" name="University"></div>
+            </div>
+            @* <div class="mb-3">
+                <label for="Especialidad">Selecciona una Especialidad:</label>
+                <select id="Especialidad" name="Especialidad" class="form-control">
+                    @foreach (var especialidad in Model)
+                    {
+                        var Value = especialidad.Id;
+                        <option value="@Value">@especialidad.Nombre</option>
+                    }
+                </select>
+            </div> *@
+            <div class="row">
+                <div class="mb-3">
+                    <label class="form-label" for="Tarjeta_Profesional">
+                        <strong>Tarjeta Profesional </strong>
+                    </label>
+                    <input class="form-control" type="text" id="Tarjeta_Profesional" placeholder="1526322954" name="Tarjeta_Profesional">
+                </div>
+            </div>
+            <div class="mb-3"><button class="btn btn-primary btn-sm btn-en-desarrollo" type="submit">Actualizar Datos</button></div>
+        </form>
+    </div>
+</div>

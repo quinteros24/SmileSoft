@@ -4,7 +4,11 @@
 $(document).ready(function () {
     verusers(3);
     $("#loadingScreen").show();
+    
+   
 });
+
+
 //Funcion para visualizar la lista de usuarios en la tabla pasando como parametro el tipo de usuario
 function verusers(utID) {
     // Realizar solicitud AJAX para obtener la lista de usuarios
@@ -34,8 +38,8 @@ function verusers(utID) {
                 1: 'Bloqueado'
             };
             let StatusMapping = {
-                1: 'Activo',
-                0: 'Inactivo'
+                true: 'Activo',
+                false: 'Inactivo'
             };
             let DocumentType = {
                 1: 'CC',
@@ -57,6 +61,8 @@ function verusers(utID) {
                     usuario.uCellphone,
                     DocumentT,
                     usuario.uDocument,
+                    //usuario.uIsBlocked,
+                    //usuario.uStatus
                     Block,
                     Status
                 ];
@@ -66,17 +72,36 @@ function verusers(utID) {
             // Inicializa o actualiza el DataTable con los datos procesados
             table = $('#example').DataTable({
                 // new DataTable('#example', {
+                columnDefs: [
+                    {
+                        target: 0,
+                        visible: false,
+                        searchable: false
+                    },
+                    {
+                        target: 1,
+                        visible: false
+                    },
+                    {
+                        target: 9,
+                        visible: false
+                    },
+                    {
+                        target: 7,
+                        visible: false
+                    }
+                ],
                 columns: [
-                    { title: 'ID' },
-                    { title: 'Rol' },
+                    { title: 'ID', visible: false },
+                    { title: 'Rol', visible: false },
                     { title: 'Usuario' },
                     { title: 'Nombre' },
                     { title: 'Apellidos' },
                     { title: 'Correo Electronico' },
                     { title: 'Celular' },
-                    { title: 'Tipo Documento' },
+                    { title: 'Tipo Documento', visible: false },
                     { title: 'Documento' },
-                    { title: 'Bloqueado' },
+                    { title: 'Bloqueado', visible: false },
                     { title: 'Estado' },
                     {
                         title: 'Acciones',
@@ -84,10 +109,11 @@ function verusers(utID) {
                         data: null, // Usaremos la columna "Acciones" solo para botones
                         defaultContent: '<button class="btn btn-primary btn-sm" id="btnEditar" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" title="Editar Usuario"><i class="fas fa-edit"></i></button>' +
                             '<button class="btn btn-success btn-sm deactivate-button" id="btnDesactivar" data-toggle="modal" data-target="#deactivateModal" data-toggle="tooltip" title="Desactivar Usuario" > <i class="fas fa-ban"> </i></button > ' +
-                            '<button class="btn btn-danger btn-sm password-button" id="btnPassword" data-toggle="modal" data-target="#passwordModal" data-toggle="tooltip" title="Cambiar Contraseña" > <i class="fa-solid fa-lock"></i></button > '
+                            '<button class="btn btn-danger btn-sm password-button" id="btnPassword" data-toggle="modal" data-target="#passwordModal" data-toggle="tooltip" title="Cambiar Contrasena" > <i class="fa-solid fa-lock"></i></button > '
 
                     }
                 ],
+                    
                 data: dataSet,
                 dom: 'Bfrtip',
                 "dom": "<'dt--top-section'<'row'<'col-sm-12 col-md-6 d-flex justify-content-md-start justify-content-center'B><'col-sm-12 col-md-6 d-flex justify-content-md-end justify-content-center mt-md-0 mt-3'f>>>" +
@@ -116,93 +142,123 @@ function verusers(utID) {
                 },
 
             });
-           
+            
+            
             Swal.close();
             table.column(11).nodes().to$().find('#btnEditar').click(function () {
-                // Maneja la acción del botón aquí
+                // Maneja la acción del botón aqui
                 let data = table.row($(this).parents('tr')).data();
 
                 let userId = data[0]; // la primera columna contiene el ID del usuario
-                let rolesMappingI = {
-                    Administrador: 1,
-                    Doctores: 2,
-                    Pacientes: 3
-                };
-                let BlockMappingI = {
-                    Desbloqueado: 0,
-                    Bloqueado: 1
-                };
-                let StatusMappingI = {
-                    Activo: 1,
-                    Inactivo: 0
-                };
-                let DocumentTypeI = {
-                    CC: 1,
-                    CE: 2
-                    // 3: 'Tarjeta de Identidad (TI)'
-                }
-                let rolI = rolesMappingI[data[1]];
-                let BlockI = BlockMappingI[data[9]];
-                let StatusI = StatusMappingI[data[10]];
-                let DocumentTI = DocumentTypeI[data[7]];
-                let userData = {
-                    uID: userId,
-                    utID: rolI,
-                    uLoginName: data[2],
-                    uName: data[3],
-                    uLastName: data[4],
-                    uEmailAddress: data[5],
-                    uCellphone: data[6],
-                    dtID: DocumentTI,
-                    uDocument: data[8],
-                    uIsBlocked: BlockI,
-                    uStatus: StatusI
-                };
 
-                console.log("Usuario a Editar" + userData);
-                //$("#editModal #userName").val(userData.uLoginName);
-                // Llena otros campos del modal con datos del usuario
-                // Llena los campos del formulario de edición con los datos del usuario
-                $("#username").val(userData.uLoginName);
-                $("#tipoUsuarioe").val(userData.utID);
-                $("#editNombre").val(userData.uName);
-                $("#editApellido").val(userData.uLastName);
-                $("#editCelular").val(userData.uCellphone);
-                $("#editCorreo").val(userData.uEmailAddress);
-                $("#editDireccion").val(userData.uAddress);
-                $("#tipoDocumentoe").val(userData.dtID);
-                $("#editDocumento").val(userData.uDocument);
-                //$("#editIsBlocked").val(userData.uIsBlocked);
-                $("#editStatus").val(userData.uStatus);
+                // Realiza una solicitud AJAX para obtener los detalles del usuario
+
+                $.ajax({
+                    url: sessionStorage.urlEP + '/api/Users/v1/GetUserDetails',
+                    type: 'GET',
+                    data: { 'uID': userId },
+                    contentType: "application/json",
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log("Cargando Respuesta")
+                        console.log(data);
+
+                        if (data.itemJson === null) {
+                            console.log("No se cargo correctamente");
+                        } else {
+                            // Mostrar los datos en la consola o realizar otras acciones
+                            let userData = data.itemJson[0]; // Accede al primer elemento del arreglo
+
+                            // Llama a una funcion para actualizar el formulario con los datos recibidos
+                            console.log("Actualizando Formulario")
+                            actualizarFormulario(userData);
+                        }
+                    },
+                    error: function (error) {
+                        console.log('Error al obtener los detalles del usuario.');
+                    }
+                });
+
+                // Funcion para actualizar el formulario con los datos del usuario
+                function actualizarFormulario(userData) {
+                    let StatusMapping = {
+                        0: 'Activo',
+                        1: 'Inactivo'
+                    };
+
+                    // Rellena los campos del formulario con los datos del usuario
+                    //Datos Personales
+                    $("#editNombre").val(userData.uName);
+                    $("#editApellido").val(userData.uLastName);
+                    $("#tipoDocumentoe").val(userData.dtID);
+                    $("#editDocumentoe").val(userData.uDocument);
+                    $("#tipoGeneroe").val(userData.gID)
+                    $("#fechaNacimientoe").val(userData.uBirthDate)
+                    //Datos de Contacto
+                    $("#editCorreo").val(userData.uEmailAddress);
+                    $("#direccione").val(userData.uAddress);
+                    $("#editCelular").val(userData.uCellphone);
+                    //Datos de Cuenta
+                    $("#tipoUsuarioe").val(userData.utID);
+                    $("#username").val(userData.uLoginName);
+
+                    //Datos de Estudios
+                    $("#TituloAcademico").val(userData.dDegree);
+                    $("#AcademicLevel").val(userData.dAcademicLevel);
+                    $("#Speciality").val(userData.dSpeciality);
+                    $("#ProfessionalLicense").val(userData.dProfessionalCard);
+                    $("#Universityname").val(userData.dUniversityName);
+
+                }
 
                 // Abre el modal de edición
                 $("#editModal").modal("show");
 
 
-                console.log("Usuario a Editar" + userId);
+                //console.log("Usuario a Editar" + userId);
                 // Realiza una solicitud AJAX para obtener los detalles del usuario
 
                 $("#saveChangesBtn").click(function () {
-                    let status = $("#editStatus").val() == "Activo" ? 1 : 0;
-                    let utID2 = $("#tipoUsuarioe").val();
-                    console.log("Dato enviado " + utID2);
-                    console.log("Tipo Documento " + parseInt($("#tipoDocumentoe").val()));
+                    let status = $("#editStatus").val() == "Activo" ? true : false;
+                    let DoctorModel = {
+                        //Datos de Estudios
+                        dAcademicLevel: $("#AcademicLevel").val(),
+                        dDegree: $("#TituloAcademico").val(),
+                        dSpeciality: $("#Speciality").val(),
+                        dProfessionalCard: $("#ProfessionalLicense").val(),
+                        dUniversityName: $("#Universityname").val(),
+                    };
+
+                    console.log("DoctorModel" + DoctorModel.dAcademicLevel);
                     // Obtén los datos actualizados del formulario de edición
                     let updatedUserData = {
                         // Recoge los datos actualizados desde los campos del formulario
-                        uID: userId,
-                        utID: parseInt($("#tipoUsuarioe").val()), // Supongamos que el campo de edición del rol tiene el id "editRol"
-                        uLoginName: $("#username").val(),
+                        //Datos Personales
                         uName: $("#editNombre").val(),
                         uLastName: $("#editApellido").val(),
-                        uEmailAddress: $("#editCorreo").val(),
-                        uCellphone: $("#editCelular").val(),
                         dtID: parseInt($("#tipoDocumentoe").val()),
                         uDocument: $("#editDocumento").val(),
-                        //uIsBlocked: $("#editIsBlocked").val(),
-                        uStatus: status
-                    };
-                    console.log("Usuario a Editar" + userId)
+                        //gID: 1,
+                        //uBirthDate: $("#birthDate").val(),
+                        //Datos de Contacto
+                        uEmailAddress: $("#editCorreo").val(),
+                        uCellphone: $("#editCelular").val(),
+                        uAddress: $("#address").val(),
+
+                        //Datos de Cuenta
+                        uLoginName: $("#username").val(),
+                        uID: userId,
+                        utID: $("#tipoUsuarioe").val(),
+                        uStatus: status,
+                        DoctorModel: null
+                    }
+                    if (updatedUserData.utID == 2) {
+                        updatedUserData.DoctorModel = DoctorModel;
+                    }
+                    console.log("Datos del Usuario " + updatedUserData);
+
+
+                    console.log("Usuario a Editar" + updatedUserData.gID)
                     // Realiza una solicitud AJAX para guardar los cambios en el servidor
                     $.ajax({
                         url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Reemplaza con la URL correcta
@@ -213,7 +269,7 @@ function verusers(utID) {
                         success: function (response) {
                             // Cierra el modal de edición
                             $("#editModal").modal("hide");
-
+                            //verusers(updatedUserData.utID);
                             // Puedes realizar otras acciones después de guardar los cambios si es necesario
                             // Por ejemplo, actualizar la tabla con los datos modificados
                             // o mostrar un mensaje de éxito
@@ -230,57 +286,68 @@ function verusers(utID) {
                     });
                 });
             });
+
+            //Desactivar Estado --> Funcionando Bien
             table.column(11).nodes().to$().find('#btnDesactivar').click(function () {
-                // Maneja la acción de desactivación aquí
+                let StatusMappingI = {
+                    Activo: 1,
+                    Inactivo: 0
+                };
+
+
+                let rolesMappingI = {
+                    Administrador: 1,
+                    Doctores: 2,
+                    Pacientes: 3
+                };
                 let data = table.row($(this).parents('tr')).data();
                 let userId = data[0];
+                let utID = data[1];
                 let loginName = data[2];
                 let userName = data[3] + ' ' + data[4];
-
+                let StatusI = StatusMappingI[data[10]]; // Supongo que obtienes el estado del usuario de alguna parte
+                let estadoActual = data[10];
                 console.log("Documento" + loginName + " User ID: " + userId);
-                //var userId = data[0]; // Obtén el ID del usuario desde el botón
-                let dataUser = {
-                    uID: userId,
-                    uStatus: 0
-                }; //Ajustar para enviar si esta inactivo activar si esta activo desactivar
-                // Muestra un mensaje de confirmación antes de desactivar el usuario
-
+                console.log("Estado" + estadoActual);
+                console.log("Estado Mapeado " + StatusI)
+                let action = StatusI === 1 ? 'desactivar' : 'activar';
+                let uRol = rolesMappingI[utID];
+                // Muestra un mensaje de confirmación antes de realizar la acción
                 Swal.fire({
-                    title: '¿Estás seguro de Desactivar? a:',
-                    text: '¡ ' + userName + ' !',
+                    title: 'Estas seguro de ' + action + ' a:',
+                    text: ' ' + userName + ' !',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Sí, desactivar',
+                    confirmButtonText: 'Si, ' + action,
                     cancelButtonText: 'Cancelar'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        //console.log("Desactivar 2" + userId);
-                        // Realiza la solicitud AJAX para desactivar el usuario
+                        let newStatus = StatusI === 1 ? 0 : 1;
+
+                        // Realiza la solicitud AJAX para cambiar el estado del usuario
                         $.ajax({
-                            url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers/',
-                            type: 'POST',
-                            data: JSON.stringify(dataUser),
+                            url: sessionStorage.urlEP + '/api/Users/v1/SetUserStatus/',
+                            type: 'GET',
+                            data: { 'uID': userId, 'uStatus': newStatus },
                             contentType: "application/json",
-                            //async: false,
-                            dataType: "json",
+                            dataType: 'json',
                             success: function (response) {
                                 console.log("Respuesta del Servidor " + response);
-
+                                console.log("Rol del Usuario desactivado " + uRol);
                                 Swal.fire({
-                                    title: 'Usuario Desactivado',
-                                    text: 'El usuario' + data[0] + 'se desactivó correctamente',
+                                    title: 'Usuario ' + action.charAt(0).toUpperCase() + action.slice(1), // Capitalizar la acción
+                                    text: 'El usuario ' + loginName + ' se ' + action + 'ó correctamente',
                                     icon: 'success',
                                     confirmButtonText: 'Aceptar'
                                 });
-
-
+                                verusers(uRol);
                             },
                             error: function () {
                                 Swal.fire({
                                     title: 'Error',
-                                    text: 'Error al deshabilitar el usuario',
+                                    text: 'Error al ' + action + ' el usuario',
                                     icon: 'error',
                                     confirmButtonText: 'Aceptar'
                                 });
@@ -289,15 +356,82 @@ function verusers(utID) {
                     }
                 });
 
+
+
+                //// Maneja la acción de desactivación aqui
+                //let data = table.row($(this).parents('tr')).data();
+                //let userId = data[0];
+                //let loginName = data[2];
+                //let userName = data[3] + ' ' + data[4];
+
+                //console.log("Documento" + loginName + " User ID: " + userId);
+                ////var userId = data[0]; // Obtén el ID del usuario desde el botón
+                //let dataUser = {
+                //    uID: userId,
+                //    uStatus: 0
+                //}; //Ajustar para enviar si esta inactivo activar si esta activo desactivar
+                //// Muestra un mensaje de confirmación antes de desactivar el usuario
+
+                //Swal.fire({
+                //    title: 'Estas seguro de Desactivar? a:',
+                //    text: ' ' + userName + ' !',
+                //    icon: 'warning',
+                //    showCancelButton: true,
+                //    confirmButtonColor: '#3085d6',
+                //    cancelButtonColor: '#d33',
+                //    confirmButtonText: 'Si, desactivar',
+                //    cancelButtonText: 'Cancelar'
+                //}).then((result) => {
+                //    if (result.isConfirmed) {
+                //        //console.log("Desactivar 2" + userId);
+                //        // Realiza la solicitud AJAX para desactivar el usuario
+                //        $.ajax({
+                //            url: sessionStorage.urlEP + '/api/Users/v1/SetUserStatus/',
+                //            type: 'POST',
+                //            data: JSON.stringify(dataUser),
+                //            contentType: "application/json",
+                //            //async: false,
+                //            dataType: "json",
+                //            success: function (response) {
+                //                console.log("Respuesta del Servidor " + response);
+
+                //                Swal.fire({
+                //                    title: 'Usuario Desactivado',
+                //                    text: 'El usuario' + data[0] + 'se desactivó correctamente',
+                //                    icon: 'success',
+                //                    confirmButtonText: 'Aceptar'
+                //                });
+
+
+                //            },
+                //            error: function () {
+                //                Swal.fire({
+                //                    title: 'Error',
+                //                    text: 'Error al deshabilitar el usuario',
+                //                    icon: 'error',
+                //                    confirmButtonText: 'Aceptar'
+                //                });
+                //            }
+                //        });
+                //    }
+                //});
+
             });
+            //Cambiar Contrasena Estado --> Funcionando Bien
             table.column(11).nodes().to$().find('#btnPassword').click(function () {
-                // Maneja la acción del botón aquí
+                // Maneja la acción del botón aqui
                 let data = table.row($(this).parents('tr')).data();
 
                 let userId = data[0]; // Supongamos que la primera columna contiene el ID del usuario
-                console.log("Contraseña " + userId)
+                console.log("Contrasena " + userId)
                 let userNameEdit = data[3] + ' ' + data[4];
-
+                let userRol = data[1];
+                let rolesMappingI = {
+                    Administrador: 1,
+                    Doctores: 2,
+                    Pacientes: 3
+                };
+                let uRol = rolesMappingI[userRol];
                 //$("#usernamepass").val(userNameEdit);
                 var userNamePassSpan = document.getElementById("userNamePass");
 
@@ -315,7 +449,7 @@ function verusers(utID) {
                     let password = $("#newPassword").val();
                     if (!CheckPass(password)) {
                         Swal.fire({
-                            text: 'La contraseña no cumple con los requisitos.',
+                            text: 'La contrasena no cumple con los requisitos.',
                             confirmButtonColor: '#008dc9'
                         });
                     } else {
@@ -325,8 +459,6 @@ function verusers(utID) {
                             uID: userId,
                             Password: password
                         };
-
-
                         // Realiza una solicitud AJAX para guardar los cambios en el servidor
                         $.ajax({
                             url: sessionStorage.urlEP + '/api/Users/v1/ChangePassword', // Reemplaza con la URL correcta
@@ -340,9 +472,10 @@ function verusers(utID) {
                                     $("#editPassword").modal("hide");
                                     //window.location.href = '@Url.Action("Index", "")';
                                     Swal.fire({
-                                        text: 'Contraseña actualizada con exito',
+                                        text: 'Contrasena actualizada con exito',
                                         confirmButtonColor: '#008dc9'
                                     });
+                                    verusers(uRol);
                                 } else {
 
                                     Swal.fire({
@@ -379,19 +512,19 @@ function CheckPass(password) {
     if (password.length < 8) {
         return false;
     }
-    // Requiere al menos una letra minúscula
+    // Requiere al menos una letra minuscula
     if (!/[a-z]/.test(password)) {
         return false;
     }
-    // Requiere al menos una letra mayúscula
+    // Requiere al menos una letra mayuscula
     if (!/[A-Z]/.test(password)) {
         return false;
     }
-    // Requiere al menos un dígito
+    // Requiere al menos un digito
     if (!/\d/.test(password)) {
         return false;
     }
-    // agregar requisitos adicionales aquí, como caracteres especiales
+    // agregar requisitos adicionales aqui, como caracteres especiales
     // if (!/[!#$%^&*()_+{ }\[\]:;<>,.?~\\-]/.test(password)) {
     //     return false;
     // }
@@ -404,12 +537,12 @@ $(".add-user-btn").click(function () {
     $("#addUserModal").modal("show");
 });
 
-// Función para permitir solo números en un campo de entrada
+// Función para permitir solo numeros en un campo de entrada
 function allowNumbersOnly(inputField) {
     inputField.value = inputField.value.replace(/[^0-9]/g, '');
 }
 
-// Aplica la función a los campos de celular y número de documento
+// Aplica la función a los campos de celular y numero de documento
 $("#celular").on("input", function () {
     allowNumbersOnly(this);
 });
@@ -447,7 +580,7 @@ $("#add-user").click(function () {
 
 
 
-    // Validación de la contraseña
+    // Validación de la contrasena
     let password = userData.uPassword;
     let passwordError = CheckPass(password);
 
@@ -457,22 +590,22 @@ $("#add-user").click(function () {
     }
     function CheckPass(password) {
         if (password.length < 8) {
-            return "La contraseña debe tener al menos 8 caracteres.";
+            return "La contrasena debe tener al menos 8 caracteres.";
         }
 
         if (!/[A-Z]/.test(password)) {
-            return "La contraseña debe contener al menos una letra mayúscula.";
+            return "La contrasena debe contener al menos una letra mayuscula.";
         }
 
         if (!/[a-z]/.test(password)) {
-            return "La contraseña debe contener al menos una letra minúscula.";
+            return "La contrasena debe contener al menos una letra minuscula.";
         }
 
         if (!/\d/.test(password)) {
-            return "La contraseña debe contener al menos un número.";
+            return "La contrasena debe contener al menos un numero.";
         }
 
-        return null; // Si la contraseña cumple con los requisitos, retorna null
+        return null; // Si la contrasena cumple con los requisitos, retorna null
     }
 
     function mostrarMensajeError(mensaje) {
@@ -529,7 +662,7 @@ $("#add-user").click(function () {
 //             Swal.showLoading();
 //         },
 //         willClose: () => {
-//             // Aquí puedes realizar acciones adicionales después de que se cierre la ventana de carga, si es necesario.
+//             // Aqui puedes realizar acciones adicionales después de que se cierre la ventana de carga, si es necesario.
 //             // Por ejemplo, mostrar el contenido nuevamente.
 //             $('#content-container').removeClass('hide-content');
 //         }

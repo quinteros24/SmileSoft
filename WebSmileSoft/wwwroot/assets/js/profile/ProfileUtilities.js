@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Esta Función esta en Desarrollo!',
+                text: 'Esta Funcion esta en Desarrollo!',
                 confirmButtonColor: '#008dc9'
             })
         });
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Obtén el userID del Session Storage
 
 $(document).ready(function () {
-    // Adjunta un controlador de eventos de clic al botón
+    // Adjunta un controlador de eventos de clic al boton
     let uID = sessionStorage.getItem('userID');
 
     console.log("Buscando al Usuario " + uID);
@@ -35,13 +35,13 @@ $(document).ready(function () {
             console.log(data);
 
             if (data.itemJson === null) {
-                console.log("No se cargó correctamente");
+                console.log("No se cargo correctamente");
             } else {
                 // Mostrar los datos en la consola o realizar otras acciones
                 let userData = data.itemJson[0]; // Accede al primer elemento del arreglo
 
-                // Llama a una función para actualizar el formulario con los datos recibidos
-                console.log("Acutalizando Formulario")
+                // Llama a una funcion para actualizar el formulario con los datos recibidos
+                console.log("Actualizando Formulario")
                 actualizarFormulario(userData);
             }
         },
@@ -50,7 +50,7 @@ $(document).ready(function () {
         }
     });
 
-    // Función para actualizar el formulario con los datos del usuario
+    // Funcion para actualizar el formulario con los datos del usuario
     function actualizarFormulario(userData) {
         let StatusMapping = {
             0: 'Activo',
@@ -67,6 +67,13 @@ $(document).ready(function () {
         $("#id_type").val(userData.dtID);
         $("#id_number").val(userData.uDocument);
         $("#user_status").val(StatusMapping[userData.uStatus]);
+        $("#TituloAcademico").val(userData.dDegree);
+        $("#birthDate").val(userData.uBirthDate);
+        $("#genderSelect").val(userData.gID);
+        $("#AcademicLevel").val(userData.dAcademicLevel);
+        $("#Speciality").val(userData.dSpeciality);
+        $("#ProfessionalLicense").val(userData.dProfessionalCard);
+        $("#Universityname").val(userData.dUniversityName);
     }
 });
 
@@ -90,6 +97,14 @@ $(".update-profile-button").click(function () {
         uDocument: $("#id_number").val(),
         //uIsBlocked: parseInt(sessionStorage.getItem('userBlock')),
         //uStatus: parseInt(sessionStorage.getItem('userStatus'))
+        dAcademicLevel: $("#AcademicLevel").val(),
+        dDegree: $("#TituloAcademico").val(),
+        dSpeciality: $("#Speciality").val(),
+        dProfessionalCard: $("#ProfessionalLicense").val(),
+        dUniversityName: $("#Universityname").val(),
+        gID: parseInt($("#genderSelect").val()),
+        uBirthDate: $("#birthDate").val()
+
     };
 
 
@@ -134,22 +149,22 @@ function ChangeUserPass() {
     console.log("ID del Usuario" + uID);
     if (password === "") {
         Swal.fire({
-            text: 'Por favor, ingrese su nueva contraseña',
+            text: 'Por favor, ingrese su nueva contrasena',
             confirmButtonColor: '#008dc9'
         });
     } else if (repeat_password === "") {
         Swal.fire({
-            text: 'Por favor, ingrese la confirmación de la contraseña nueva',
+            text: 'Por favor, ingrese la confirmacion de la contrasena nueva',
             confirmButtonColor: '#008dc9'
         });
     } else if (password != repeat_password) {
         Swal.fire({
-            text: 'Las contraseñas deben ser iguales',
+            text: 'Las contrasenas deben ser iguales',
             confirmButtonColor: '#008dc9'
         });
     } else if (!CheckUserPass(password)) {
         Swal.fire({
-            text: 'La contraseña no cumple con los requisitos.',
+            text: 'La contrasena no cumple con los requisitos.',
             confirmButtonColor: '#008dc9'
         });
     } else {
@@ -176,7 +191,7 @@ function ChangeUserPass() {
 
                     //window.location.href = '@Url.Action("Index", "")';
                     Swal.fire({
-                        text: 'Contraseña actualizada con exito',
+                        text: 'Contrasena actualizada con exito',
                         confirmButtonColor: '#008dc9'
                     });
                 } else {
@@ -185,7 +200,7 @@ function ChangeUserPass() {
                         text: "Hubo un fallo" + response.messageStatus,
                         confirmButtonColor: '#008dc9'
                     });
-                    //alert('Inicio de sesión fallido, ' + response.messageStatus);
+                    //alert('Inicio de sesion fallido, ' + response.messageStatus);
                 }
             },
             error: function (xhr, status, error) {
@@ -195,27 +210,27 @@ function ChangeUserPass() {
     }
 }
 function CheckUserPass(password) {
-    // Verificar la longitud de la contraseña (debe tener al menos 8 caracteres)
+    // Verificar la longitud de la contrasena (debe tener al menos 8 caracteres)
     if (password.length < 8) {
         return false;
     }
 
-    // Verificar si la contraseña contiene al menos una letra minúscula y una mayúscula
+    // Verificar si la contrasena contiene al menos una letra minúscula y una mayúscula
     if (!/[a-z]/.test(password) || !/[A-Z]/.test(password)) {
         return false;
     }
 
-    // Verificar si la contraseña contiene al menos un número
+    // Verificar si la contrasena contiene al menos un número
     if (!/\d/.test(password)) {
         return false;
     }
 
-    // Verificar si la contraseña contiene espacios en blanco o caracteres especiales
+    // Verificar si la contrasena contiene espacios en blanco o caracteres especiales
     if (/\s/.test(password) || /[\uD800-\uDFFF]/.test(password)) {
         return false;
     }
 
-    // Si la contraseña pasa todas las validaciones, es válida
+    // Si la contrasena pasa todas las validaciones, es valida
     return true;
 }
 
@@ -235,22 +250,21 @@ $("#desactivarCuentabtn").click(function () {
     // Obtén el userID del Session Storage
     let userIdd = sessionStorage.getItem('userID');
     let userNamed = sessionStorage.getItem('userFName') + " " + sessionStorage.getItem('userLName');
-    // Comprueba si se tiene un userID válido
+    // Comprueba si se tiene un userID valido
 
-    let dataUser = {
-        uID: parseInt(userIdd),
-        uStatus: 0
-    }; //Ajustar para enviar si esta inactivo activar si esta activo desactivar
-    // Muestra un mensaje de confirmación antes de desactivar el usuario
+    let uID = userIdd;
+    let uStatus = 0;
+     //Ajustar para enviar si esta inactivo activar si esta activo desactivar
+    // Muestra un mensaje de confirmacion antes de desactivar el usuario
 
     Swal.fire({
-        title: '¿Estás seguro de Desactivar? a:',
+        title: '¿Estas seguro de Desactivar? a:',
         text: '¡ ' + userNamed + ' !',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Sí, desactivar',
+        confirmButtonText: 'Si, desactivar',
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {
@@ -258,17 +272,16 @@ $("#desactivarCuentabtn").click(function () {
             // Realiza la solicitud AJAX para desactivar el usuario
             $.ajax({
                 url: sessionStorage.urlEP + '/api/Users/v1/SetUserStatus/',
-                type: 'POST',
-                data: JSON.stringify(dataUser),
+                type: 'GET',
+                data: { 'uID': uID, 'uStatus' : uStatus },
                 contentType: "application/json",
-                //async: false,
-                dataType: "json",
+                dataType: 'json',
                 success: function (response) {
                     console.log("Respuesta del Servidor " + response);
 
                     Swal.fire({
                         title: 'Usuario Desactivado',
-                        text: 'El usuario' + sessionStorage.getItem("userFName") + " " + sessionStorage.getItem("userLName") + 'se desactivó correctamente',
+                        text: 'El usuario' + sessionStorage.getItem("userFName") + " " + sessionStorage.getItem("userLName") + 'se desactivo correctamente',
                         icon: 'success',
                         confirmButtonText: 'Aceptar'
                     });
