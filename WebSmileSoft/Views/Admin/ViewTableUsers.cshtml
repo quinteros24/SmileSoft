@@ -81,7 +81,13 @@
 
         });
 
-
+        function formatToDatetime(dateString) {
+            const date = new Date(dateString);
+            const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Sumar 1 ya que los meses comienzan en 0
+            const day = date.getDate().toString().padStart(2, '0');
+            const year = date.getFullYear();
+            return `${year}-${month}-${day}`;
+        }
         //Funcion para visualizar la lista de usuarios en la tabla pasando como parametro el tipo de usuario
         function verusers(utID) {
             // Realizar solicitud AJAX para obtener la lista de usuarios
@@ -216,7 +222,6 @@
 
                     });
 
-
                     Swal.close();
                     table.column(11).nodes().to$().find('#btnEditar').click(function () {
                         // Maneja la acción del botón aqui
@@ -234,14 +239,15 @@
                             dataType: 'json',
                             success: function (data) {
                                 console.log("Cargando Respuesta")
-                                console.log(data);
+                                console.log("Data:" + data.itemJson.uName);
+                                //console.log(data.itemJson[0].uName);
 
                                 if (data.itemJson === null) {
                                     console.log("No se cargo correctamente");
                                 } else {
                                     // Mostrar los datos en la consola o realizar otras acciones
-                                    let userData = data.itemJson[0]; // Accede al primer elemento del arreglo
-
+                                    let userData = data.itemJson; // Accede al primer elemento del arreglo
+                                    console.log("Usuario a Editar" + userData)
                                     // Llama a una funcion para actualizar el formulario con los datos recibidos
                                     console.log("Actualizando Formulario")
                                     actualizarFormulario(userData);
@@ -255,11 +261,12 @@
                         // Funcion para actualizar el formulario con los datos del usuario
                         function actualizarFormulario(userData) {
                             let StatusMapping = {
-                                0: 'Activo',
-                                1: 'Inactivo'
+                                1: 'Activo',
+                                0: 'Inactivo'
                             };
 
                             // Rellena los campos del formulario con los datos del usuario
+
                             //Datos Personales
                             $("#editNombre").val(userData.uName);
                             $("#editApellido").val(userData.uLastName);
@@ -304,15 +311,20 @@
 
                             console.log("DoctorModel" + DoctorModel.dAcademicLevel);
                             // Obtén los datos actualizados del formulario de edición
+                            let birthDate = document.getElementById("fechaNacimientoe").value.trim();
+                            let formattedBirthDate = formatToDatetime(birthDate);
+
                             let updatedUserData = {
                                 // Recoge los datos actualizados desde los campos del formulario
+
                                 //Datos Personales
                                 uName: $("#editNombre").val(),
                                 uLastName: $("#editApellido").val(),
                                 dtID: parseInt($("#tipoDocumentoe").val()),
                                 uDocument: $("#editDocumento").val(),
                                 gID: $("tipoGeneroe").val(),
-                                uBirthDate: $("#fechaNacimientoe").val(),
+                                uBirthDate: formattedBirthDate,
+
                                 //Datos de Contacto
                                 uEmailAddress: $("#editCorreo").val(),
                                 uCellphone: $("#editCelular").val(),
@@ -323,6 +335,7 @@
                                 uID: userId,
                                 utID: parseInt($("#tipoUsuarioe").val()),
                                 uStatus: true,
+                                oID: 1,
                                 DoctorModel: null
                             }
                             if (updatedUserData.utID == 2) {
@@ -635,7 +648,9 @@
                 dProfessionalCard: $("#ProfessionalLicense").val(),
                 dUniversityName: $("#Universityname").val(),
             };
-            var userData = {
+            let birthDate = document.getElementById("fechaNacimiento").value.trim();
+            let formattedBirthDate = formatToDatetime(birthDate);
+            let userData = {
                 utID: parseInt($("#tipoUsuario").val()),
                 uName: $("#nombres").val(),
                 uLastName: $("#apellidos").val(),
@@ -647,8 +662,8 @@
                 dtID: parseInt($("#tipoDocumento").val()),
                 uDocument: $("#numeroDocumento").val(),
                 oID: 0,
-                gID: parseInt($("#tipoGenero").val()),
-                uBirthDate: $("#fechaNacimiento").val(),
+                gID: $("#tipoGenero").val(),
+                uBirthDate: formattedBirthDate,
                 uStatus: true,
                 DoctorModel: null
 

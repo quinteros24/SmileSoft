@@ -32,10 +32,11 @@ $(document).ready(function () {
         dataType: 'json',
         success: function (data) {
             console.log("Cargando Respuesta")
-            console.log(data);
+            console.log(data.itemJson);
 
             if (data.itemJson === null) {
                 console.log("No se cargo correctamente");
+                
             } else {
                 // Mostrar los datos en la consola o realizar otras acciones
                 let userData = data.itemJson[0]; // Accede al primer elemento del arreglo
@@ -59,6 +60,7 @@ $(document).ready(function () {
 
         // Rellena los campos del formulario con los datos del usuario
         $("#username").val(userData.uLoginName);
+        //console.log("Nombre de Usuario" + userData.uLoginName);
         $("#user_names").val(userData.uName);
         $("#user_lastnames").val(userData.uLastName);
         $("#editCorreo").val(userData.uEmailAddress);

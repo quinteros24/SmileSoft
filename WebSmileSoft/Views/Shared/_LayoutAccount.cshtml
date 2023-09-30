@@ -142,7 +142,7 @@
     @* <a class="border rounded d-inline scroll-to-top" href="#page-top" style="display:none"><i class="fas fa-angle-up" style="display:none"></i></a> *@
     <!-- Footer -->
     @*await Component.InvokeAsync("Footer") *@
-    
+    <div id="logout-link" data-logout-url="@Url.Action("Login", "Account")"></div>
     
     <!-- Scripts -->
     <script src="~/assets/js/UserSessionControl.js" asp-append-version="true"></script>
