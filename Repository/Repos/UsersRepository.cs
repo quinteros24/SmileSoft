@@ -122,7 +122,7 @@ namespace Repository.Repos
             string query = UsersQueries.GetUserDetails(uID);
             Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
             ResponseDB ItemResponseDB = await dl.Consultds(query);
-            List<ViewUsersModelRequest> ListUsers = new();
+            ViewUsersModelRequest? User = new();
             GenericResponseModel genericResponseModel = new();
             if (ItemResponseDB != null && ItemResponseDB.DsObject != null)
             {
@@ -133,7 +133,7 @@ namespace Repository.Repos
                         switch (dt.Rows[0]["TableName"])
                         {
                             case "OBJECT":
-                                ListUsers = Mapper.GetListFromDataTable<ViewUsersModelRequest>(dt);
+                                User = Mapper.GetObjectFromDataTable<ViewUsersModelRequest>(dt);
                                 genericResponseModel.RecordsQuantity = dt.Rows.Count;
                                 break;
                             case "Parameters":
@@ -159,7 +159,7 @@ namespace Repository.Repos
             }
             else
             {
-                genericResponseModel.ItemJson = ListUsers;
+                genericResponseModel.ItemJson = User;
                 genericResponseModel.Status = true;
             }
             return genericResponseModel;

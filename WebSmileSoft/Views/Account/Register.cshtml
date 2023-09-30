@@ -13,7 +13,7 @@
                         <label class="visually-hidden" for="userFirstNameRegister">Nombres</label>
                         <div class="input-group">
                             <div class="input-group-text">Nombres</div>
-                            <input type="text" class="form-control" id="userFirstNameRegister" placeholder="">
+                            <input type="text" class="form-control" id="userFirstNameRegister" placeholder="Ingresar Nombre">
                         </div>
                     </div>
 
@@ -22,7 +22,7 @@
                         <div class="input-group">
                             <div class="input-group-text">Apellidos</div>
                             <input type="text" class="form-control" id="userLastNameRegister"
-                                   placeholder="">
+                                   placeholder="Apellidos">
                         </div>
                     </div>
 
@@ -31,9 +31,9 @@
                         <div class="input-group">
                             <div class="input-group-text">Tipo de Documento</div>
                             <select id="tipo_documento" class="form-select" size="1">
-                                <option value="TI">Tarjeta de Identidad</option>
-                                <option value="CC">Cedula de Ciudadania</option>
-                                <option value="CE">Cedula de Extranjeria</option>
+                       
+                                <option value="1">Cedula de Ciudadania</option>
+                                <option value="2">Cedula de Extranjeria</option>
                             </select>
                         </div>
                     </div>
@@ -46,24 +46,24 @@
                         </div>
                     </div>
 
-                    @*<div class="col-md-6 mb-3">
-                <div class="input-group">
-                <span class="input-group-text">Fecha de nacimiento</span>
-                <input type="date" id="birthDate" class="form-control " />
-                </div>
-                </div>*@
+                    <div class="col-md-6 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text">Fecha de nacimiento</span>
+                            <input type="date" id="birthDate" class="form-control " />
+                        </div>
+                    </div>
 
-                    @*<div class="col-md-6 mb-3">
-                <div class="input-group" id="genderOptions">
-                <label class="input-group-text" for="genderSelect">Género</label>
-                <select class="form-select" id="genderSelect">
-                <option selected disabled>Seleccionar</option>
-                <option value="masculino">Masculino</option>
-                <option value="femenino">Femenino</option>
-                <option value="otro">Otro</option>
-                </select>
-                </div>
-                </div>*@
+                    <div class="col-md-6 mb-3">
+                        <div class="input-group" id="genderOptions">
+                            <label class="input-group-text" for="genderSelect">Género</label>
+                            <select class="form-select" id="genderSelect">
+                                <option selected disabled>Seleccionar</option>
+                                <option value="1">Masculino</option>
+                                <option value="2">Femenino</option>
+                                <option value="0">Otro</option>
+                            </select>
+                        </div>
+                    </div>
 
                     <div class="col-md-6 mb-3">
                         <div class=" input-group">
@@ -82,20 +82,20 @@
                     <div class="col-md-6 mb-3">
                         <div class="input-group ">
                             <span class="input-group-text">Correo electrónico</span>
-                            <input type="email" id="email" class="form-control " placeholder="" />
+                            <input type="email" id="email" class="form-control " placeholder="usuario@example.com" />
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <div class="input-group ">
                             <span class="input-group-text">Nombre de Usuario</span>
-                            <input type="text" id="userNameRegister" class="form-control " placeholder="" />
+                            <input type="text" id="userNameRegister" class="form-control " placeholder="nombre.apellido" />
                         </div>
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <div class="input-group ">
                             <span class="input-group-text">Contraseña</span>
-                            <input type="password" id="password" class="form-control g" placeholder="" />
+                            <input type="password" id="password" class="form-control g" placeholder="Password123#" />
                         </div>
                     </div>
 
@@ -103,7 +103,7 @@
                         <div class="input-group">
                             <span class="input-group-text">Confirmar contraseña</span>
                             <input type="password" id="confirmPassword" class="form-control"
-                                   placeholder="" />
+                                   placeholder="Password123#" />
                         </div>
                     </div>
 
@@ -152,6 +152,36 @@
 
                 return true;
             }
+
+            function formatToDatetime(dateString) {
+                const date = new Date(dateString);
+                const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Sumar 1 ya que los meses comienzan en 0
+                const day = date.getDate().toString().padStart(2, '0');
+                const year = date.getFullYear();
+                return `${year}-${month}-${day}`;
+            }
+
+            function ageValidation(birthDate) {
+                // Obtener la fecha actual
+                let fechaActual = new Date();
+
+                // Calcular la fecha de nacimiento a partir de la cadena de fecha
+                let fechaNac = new Date(birthDate);
+
+                // Calcular la diferencia en años
+                let edad = fechaActual.getFullYear() - fechaNac.getFullYear();
+
+                // Verificar si el cumpleaños ya ocurrió este año o no
+                if (
+                    (fechaNac.getMonth() > fechaActual.getMonth()) ||
+                    (fechaNac.getMonth() === fechaActual.getMonth() && fechaNac.getDate() > fechaActual.getDate())
+                ) {
+                    edad--;
+                }
+
+                // Comprobar si la edad es mayor o igual a 18
+                return edad >= 18;
+            }
             function registrarUsuario() {
                 let firstName = document.getElementById("userFirstNameRegister").value.trim();
                 let lastName = document.getElementById("userLastNameRegister").value.trim();
@@ -162,6 +192,13 @@
                 let userRegister = document.getElementById("userNameRegister").value.trim();
                 let password = document.getElementById("password").value.trim();
                 let confirmPassword = document.getElementById("confirmPassword").value.trim();
+                let birthDate = document.getElementById("birthDate").value.trim();
+                let documentType = parseInt(document.getElementById("tipo_documento").value.trim(), 10);
+
+                let genderSelect = document.getElementById("genderSelect");
+                let gender = genderSelect.options[genderSelect.selectedIndex].value;
+
+
 
 
                 if (firstName === "" || lastName === "") {
@@ -173,6 +210,18 @@
                 else if (documentID === "") {
                     Swal.fire({
                         text: 'Por favor, ingrese su número de documento.',
+                        confirmButtonColor: '#008dc9'
+                    });
+                }
+                else if (birthDate === "") {
+                    Swal.fire({
+                        text: 'Por favor, ingrese su fecha de nacimiento.',
+                        confirmButtonColor: '#008dc9'
+                    });
+                }
+                else if (gender === "Seleccionar" || gender === "") {
+                    Swal.fire({
+                        text: 'Por favor, seleccione su género.',
                         confirmButtonColor: '#008dc9'
                     });
                 }
@@ -217,7 +266,17 @@
                         text: 'Las contraseñas no coinciden.',
                         confirmButtonColor: '#008dc9'
                     });
-                } else {
+                }
+                else if (!ageValidation(birthDate)) {
+                    Swal.fire({
+                        text: 'No tienes la mayoría de edad, ponte en contacto con soporte.',
+                        confirmButtonColor: '#008dc9'
+                    });
+                }
+
+                //let formattedBirthDate = formatDateToISO8601(birthDate);
+                else {
+                    let formattedBirthDate = formatToDatetime(birthDate);
                     let data = {
                         uID: 0,
                         utID: 3,
@@ -229,9 +288,14 @@
                         uEmailAddress: email,
                         uLoginName: userRegister,
                         uPassword: password,
-                        dtID: 1,
-                        uStatus: 1,
-                        uIsBLocked: 0
+                        dtID: documentType,
+                        uStatus: true,
+                        //uIsBLocked: false,
+                        gID: gender,
+                        
+                        oID: 1,
+                        uBirthDate: formattedBirthDate
+
                     };
                     $.ajax({
                         type: 'POST',
@@ -283,32 +347,6 @@
                 }
 
             }
-            const fechaNacimientoInput = document.getElementById('fechaNacimiento');
-
-            // Agrega un oyente de eventos al cambio de valor en el campo
-            fechaNacimientoInput.addEventListener('change', function () {
-                // Obtén la fecha de nacimiento ingresada por el usuario
-                const fechaNacimiento = new Date(this.value);
-
-                // Calcula la fecha actual
-                const fechaActual = new Date();
-
-                // Calcula la edad en años
-                const edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
-
-                // Verifica si la edad es menor de 18 años
-                if (edad < 18) {
-                    //alert('Debes ser mayor de 18 años para registrarte.');
-                    Swal.fire({
-                        title: 'Error',
-                        text: 'Debes ser mayor de 18 años para registrarte.',
-                        icon: 'error',
-                        confirmButtonText: 'Aceptar'
-                    });
-                    // Puedes agregar aquí más acciones si la validación falla, como borrar la fecha o mostrar un mensaje de error.
-                }
-            });
-
         </script>
     }
 

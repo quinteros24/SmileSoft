@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities.Response
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Domain.Entities.Response
 {
 
 
@@ -18,7 +20,9 @@
         public bool uIsBlocked { get; set; }
         public int? oID { get; set; }
         public int? gID { get; set; }
-        public DateTime? uBirthDate { get; set; }
+
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateOnly? uBirthDate { get; set; }
 
         //public ViewDoctorsModelResponse? Doctors { get; set; }
     }
