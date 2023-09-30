@@ -118,5 +118,10 @@ namespace Repository
             }
             return GenericResponseDomain;
         }
+
+        internal static T GetObjectFromDataRow<T>(DataRow doctorRow)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

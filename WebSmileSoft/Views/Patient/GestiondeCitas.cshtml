@@ -47,22 +47,30 @@
         </div>
         <div class="card-body">
             <form>
-                <div class="form-group">
-                    <label for="fecha">Fecha</label>
-                    <input type="date" class="form-control" id="fecha" required>
-                </div>
-                <div class="form-group">
-                    <label for="hora">Hora</label>
-                    <input type="time" class="form-control" id="hora" required>
-                </div>
-                <div class="form-group">
-                    <label for="medico">Médico</label>
-                    <select class="form-control" id="medico" required>
-                        <option value="">Seleccionar</option>
-                        <option value="Dr. Pérez">Dr. Pérez</option>
-                        <option value="Dr. González">Dr. González</option>
-                        <!-- Agrega más opciones para otros médicos -->
-                    </select>
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="fecha">Fecha</label>
+                            <input type="date" class="form-control" id="fecha" required>
+                        </div>
+                    </div><div class="col-md-3">
+                        <div class="form-group">
+                            <label for="hora">Hora</label>
+                            <input type="time" class="form-control" id="hora" required>
+                        </div>
+                    </div>
+                
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="medico">Médico</label>
+                            <select class="form-control" id="medico" required>
+                                <option value="">Seleccionar</option>
+                                <option value="Dr. Pérez">Dr. Pérez</option>
+                                <option value="Dr. González">Dr. González</option>
+                                <!-- Agrega más opciones para otros médicos -->
+                            </select>
+                        </div>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Agendar Cita</button>
             </form>
@@ -71,5 +79,5 @@
 </div>
 
 @section Scripts{
-    
+
 }
