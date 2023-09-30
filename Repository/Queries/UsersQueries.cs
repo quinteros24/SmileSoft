@@ -45,18 +45,16 @@ namespace Repository.Queries
        
         public static string CreateUpdateUsers(ViewUsersModelRequest Item)
         {
-            string query = string.Empty;
-            
             string fecha = Item.uBirthDate.Value.Year.ToString() + "-" + Item.uBirthDate.Value.Month.ToString("00") + "-" + Item.uBirthDate.Value.Day.ToString("00");
 
-            string DECLARE = $"DECLARE @aux AS TABLE([uID] INT)\n" +
+            string query = $"DECLARE @aux AS TABLE([uID] INT)\n" +
                              $"DECLARE @Response AS VARCHAR(MAX) = 'Usuario '\n" +
                              $"BEGIN TRY\n";
 
             if (Item.uID == 0)
             {
                 // Crear un nuevo usuario
-                query = $"    INSERT INTO dbo.Users (utID, uName, uLastName, uCellphone, uAddress, uLoginName, uEmailAddress, uPassword, dtID, uDocument, uStatus, oID, gID, uBirthDate)\n" +
+                query += $"    INSERT INTO dbo.Users (utID, uName, uLastName, uCellphone, uAddress, uLoginName, uEmailAddress, uPassword, dtID, uDocument, uStatus, oID, gID, uBirthDate)\n" +
                         $"    OUTPUT inserted.uID INTO @aux\n" +
                         $"    VALUES ({Item.utID}, '{Item.uName}', '{Item.uLastName}', '{Item.uCellphone}', '{Item.uAddress}', '{Item.uLoginName}', \n" +
                         $"    '{Item.uEmailAddress}', HASHBYTES('SHA2_256', CAST('{Item.uPassword}' AS VARCHAR(8000))), {Item.dtID}, '{Item.uDocument}', {(Item.uStatus? 1:0)},{Item.oID},{Item.gID},'{fecha}');\n" +
@@ -65,7 +63,7 @@ namespace Repository.Queries
             else
             {
                 // Actualizar un usuario existente
-                query = $"    UPDATE dbo.Users SET ";
+                query += $"    UPDATE dbo.Users SET ";
 
                 // Verificar si se ha proporcionado un valor para cada campo y actualizar solo los que han cambiado
                 if (!string.IsNullOrEmpty(Item.uName))
@@ -108,7 +106,7 @@ namespace Repository.Queries
                     query += $"uBirthDate = {Item.uBirthDate}, ";
 
                 // Eliminar la última coma y agregar la condición WHERE
-                query = query.TrimEnd(',', ' ') + $" WHERE [uID] = {Item.uID};\n" +
+                query = query.TrimEnd(',', ' ') + $"\n    WHERE [uID] = {Item.uID};\n" +
                         $"    INSERT INTO @aux([uID])VALUES({Item.uID})\n" + 
                         $"    SET @Response = CONCAT(@Response,'actualizado con éxito.')\n";
             }
