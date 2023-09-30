@@ -1,16 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\Domain.Entities",
-    "\\Domain.Entities\\Response",
-    "\\WebSmileSoft",
-    "\\WebSmileSoft\\wwwroot",
-    "\\WebSmileSoft\\wwwroot\\assets",
-    "\\WebSmileSoft\\wwwroot\\assets\\bootstrap",
-    "\\WebSmileSoft\\wwwroot\\assets\\bootstrap\\css",
-    "\\WebSmileSoft\\wwwroot\\assets\\css",
-    "\\WebSmileSoft\\wwwroot\\assets\\js",
-    "\\WebSmileSoft\\wwwroot\\assets\\js\\control"
+    ""
   ],
+  "SelectedNode": "\\SolutionSmileSoft.sln (SolutionSmileSoft.sln)",
   "PreviewInSolutionExplorer": false
 }

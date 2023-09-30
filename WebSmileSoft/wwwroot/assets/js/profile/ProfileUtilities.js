@@ -251,15 +251,15 @@ $("#desactivarCuentabtn").click(function () {
     let userIdd = sessionStorage.getItem('userID');
     let userNamed = sessionStorage.getItem('userFName') + " " + sessionStorage.getItem('userLName');
     // Comprueba si se tiene un userID valido
-
+    let logoutUrl = document.getElementById("logout-link").getAttribute("data-logout-url");
     let uID = userIdd;
     let uStatus = 0;
      //Ajustar para enviar si esta inactivo activar si esta activo desactivar
     // Muestra un mensaje de confirmacion antes de desactivar el usuario
 
     Swal.fire({
-        title: '¿Estas seguro de Desactivar? a:',
-        text: '¡ ' + userNamed + ' !',
+        title: '¿Estas seguro de Desactivar tu Cuenta?',
+        text: '¡ Deberas contactar un Administrador para reactivar tu cuenta !',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -285,6 +285,8 @@ $("#desactivarCuentabtn").click(function () {
                         icon: 'success',
                         confirmButtonText: 'Aceptar'
                     });
+                    sessionStorage.clear();
+                    window.location.href = logoutUrl;
 
 
                 },
