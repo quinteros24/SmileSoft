@@ -37,22 +37,30 @@ namespace Repository.Queries
             if (Item.aID is null || Item.aID == 0)
             {
                 //CREAR
-                QUERY += $"IF NOT EXISTS(SELECT TOP(1)* FROM Users WHERE [uDocument] = @uDocument)\n" +
-                         $"    BEGIN\n" +
-                         $"        --NO EXISTE LO CREAMOS\n" +
-                         $"        INSERT INTO Users(utID,uName,uLastName,uCellphone,uLoginName,uPassword,dtID,uDocument,[oID],gID,uBirthDate)\n" +
-                         $"        VALUES(3,@uName,@uLastName,@uCellphone,@uDocument,@uPassword,@dtID,@uDocument,@oID,@gID,@uBirthDate)\n" +
-                         $"        SET @ResponseCreation = CONCAT(\n" +
-                         $"            'Se ha registrado correctamente, para ver el detalle de las citas puede iniciar sesión con el usuario '\n" +
-                         $"            ,@uDocument\n" +
-                         $"            ,'\". Su contraseña es el documento de identidad')\n" +
-                         $"        SET @uID = (SELECT TOP(1)[uID] FROM Users WHERE [uDocument] = @uDocument)\n" +
+                QUERY += $"    DECLARE @id AS INT = (SELECT [uID] FROM Users WHERE uDocument = @uDocument)\n" +
+                         $"    IF EXISTS(SELECT TOP(1)* FROM Appointments AS A INNER JOIN Users AS U ON U.uID = A.uID WHERE A.uID = @id AND aDate = @aDate)\n" +
+                         $"    BEGIN \n" +
+                         $"        SELECT '0' AS OutputCodeError, 'La cita ya se encuentra en nuestro sistema. Para gestionar sus citas puede iniciar sesión o cumuníquese con el administrador' AS OutputMessageError\n" +
                          $"    END\n" +
-                         $"    SET @uID = ISNULL(@uID,(SELECT TOP(1)[uID] FROM Users WHERE [uDocument] = @uDocument))\n" +
-                         $"    --SE CREA LA CITA\n" +
-                         $"    INSERT INTO Appointments([oID],[uID],[dID],aDate,aTime,aDescription)\n" +
-                         $"    VALUES(@oID,@uID,@dID,@aDate,@aTime,@aDescription)\n" +
-                         $"    SELECT '0' AS OutputCodeError, CONCAT('La cita se ha crado. ',@ResponseCreation) AS OutputMessageError\n";
+                         $"    ELSE\n" +
+                         $"    BEGIN\n" +
+                         $"        IF NOT EXISTS(SELECT TOP(1)* FROM Users WHERE [uDocument] = @uDocument)\n" +
+                         $"        BEGIN\n" +
+                         $"            --NO EXISTE LO CREAMOS\n" +
+                         $"            INSERT INTO Users(utID,uName,uLastName,uCellphone,uLoginName,uPassword,dtID,uDocument,[oID],gID,uBirthDate)\n" +
+                         $"            VALUES(3,@uName,@uLastName,@uCellphone,@uDocument,@uPassword,@dtID,@uDocument,@oID,@gID,@uBirthDate)\n" +
+                         $"            SET @ResponseCreation = CONCAT(\n" +
+                         $"                'Se ha registrado correctamente, para ver el detalle de las citas puede iniciar sesión con el usuario '\n" +
+                         $"                ,@uDocument\n" +
+                         $"                ,'\". Su contraseña es el documento de identidad')\n" +
+                         $"            SET @uID = (SELECT TOP(1)[uID] FROM Users WHERE [uDocument] = @uDocument)\n" +
+                         $"        END\n" +
+                         $"        SET @uID = ISNULL(@uID,(SELECT TOP(1)[uID] FROM Users WHERE [uDocument] = @uDocument))\n" +
+                         $"        --SE CREA LA CITA\n" +
+                         $"        INSERT INTO Appointments([oID],[uID],[dID],aDate,aTime,aDescription)\n" +
+                         $"        VALUES(@oID,@uID,@dID,@aDate,@aTime,@aDescription)\n" +
+                         $"        SELECT '0' AS OutputCodeError, CONCAT('La cita se ha crado. ',@ResponseCreation) AS OutputMessageError\n" +
+                         $"    END\n";
             }
             else
             {
