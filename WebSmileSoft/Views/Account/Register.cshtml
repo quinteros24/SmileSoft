@@ -31,9 +31,9 @@
                         <div class="input-group">
                             <div class="input-group-text">Tipo de Documento</div>
                             <select id="tipo_documento" class="form-select" size="1">
-                                <option value="TI">Tarjeta de Identidad</option>
-                                <option value="CC">Cedula de Ciudadania</option>
-                                <option value="CE">Cedula de Extranjeria</option>
+                       
+                                <option value="1">Cedula de Ciudadania</option>
+                                <option value="2">Cedula de Extranjeria</option>
                             </select>
                         </div>
                     </div>
@@ -193,6 +193,7 @@
                 let password = document.getElementById("password").value.trim();
                 let confirmPassword = document.getElementById("confirmPassword").value.trim();
                 let birthDate = document.getElementById("birthDate").value.trim();
+                let documentType = parseInt(document.getElementById("tipo_documento").value.trim(), 10);
 
                 let genderSelect = document.getElementById("genderSelect");
                 let gender = genderSelect.options[genderSelect.selectedIndex].value;
@@ -287,12 +288,13 @@
                         uEmailAddress: email,
                         uLoginName: userRegister,
                         uPassword: password,
-                        dtID: 1,
+                        dtID: documentType,
                         uStatus: true,
-                        uIsBLocked: true,
+                        //uIsBLocked: false,
                         gID: gender,
-                        uBirthDate: formattedBirthDate,
-                        oID: 1
+                        
+                        oID: 1,
+                        uBirthDate: formattedBirthDate
 
                     };
                     $.ajax({
