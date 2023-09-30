@@ -83,3 +83,10 @@ C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Release\net6.0\refint\EpSm
 C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Release\net6.0\EpSmileSoft.pdb
 C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Release\net6.0\EpSmileSoft.genruntimeconfig.cache
 C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Release\net6.0\ref\EpSmileSoft.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Release\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Release\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Release\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Release\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Release\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Release\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Release\net6.0\System.IdentityModel.Tokens.Jwt.dll
