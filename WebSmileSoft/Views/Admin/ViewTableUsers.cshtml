@@ -107,8 +107,8 @@
                         3: 'Pacientes'
                     };
                     let BlockMapping = {
-                        0: 'Desbloqueado',
-                        1: 'Bloqueado'
+                        true: 'Desbloqueado',
+                        false: 'Bloqueado'
                     };
                     let StatusMapping = {
                         true: 'Activo',
@@ -292,7 +292,7 @@
                         // Realiza una solicitud AJAX para obtener los detalles del usuario
 
                         $("#saveChangesBtn").click(function () {
-                            let status = $("#editStatus").val() == "Activo" ? true : false;
+                            //let status = $("#editStatus").val() == "Activo" ? true : false;
                             let DoctorModel = {
                                 //Datos de Estudios
                                 dAcademicLevel: $("#AcademicLevel").val(),
@@ -311,8 +311,8 @@
                                 uLastName: $("#editApellido").val(),
                                 dtID: parseInt($("#tipoDocumentoe").val()),
                                 uDocument: $("#editDocumento").val(),
-                                //gID: 1,
-                                //uBirthDate: $("#birthDate").val(),
+                                gID: $("tipoGeneroe").val(),
+                                uBirthDate: $("#fechaNacimientoe").val(),
                                 //Datos de Contacto
                                 uEmailAddress: $("#editCorreo").val(),
                                 uCellphone: $("#editCelular").val(),
@@ -322,7 +322,7 @@
                                 uLoginName: $("#username").val(),
                                 uID: userId,
                                 utID: parseInt($("#tipoUsuarioe").val()),
-                                uStatus: status,
+                                uStatus: true,
                                 DoctorModel: null
                             }
                             if (updatedUserData.utID == 2) {
