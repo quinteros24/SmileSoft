@@ -16,6 +16,7 @@ namespace EpSmileSoft.Extensions
             services.AddScoped<IGenericsRepository, GenericsRepository>();
             services.AddTransient<ISessionRepository, SessionRepository>();
             services.AddScoped<IUsersRepository, UsersRepository>();
+            services.AddScoped<IAppointmentsRepository, AppointmentsRepository>();
 
 
 
@@ -23,6 +24,7 @@ namespace EpSmileSoft.Extensions
             services.AddScoped<IGenericsCore, GenericsCore>();
             services.AddTransient<ISessionCore, SessionCore>();
             services.AddScoped<IUsersCore, UsersCore>();
+            services.AddScoped<IAppointmentsCore, AppointmentsCore>();
 
 
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();

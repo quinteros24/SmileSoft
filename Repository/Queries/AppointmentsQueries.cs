@@ -10,6 +10,9 @@ namespace Repository.Queries
         }
         public static string SetAppointment(AppintmentesModel Item)
         {
+            string fechaB = Item.uBirthDate.Value.Year.ToString() + "-" + Item.uBirthDate.Value.Month.ToString("00") + "-" + Item.uBirthDate.Value.Day.ToString("00");
+            string fechaC = Item.aDate.Value.Year.ToString() + "-" + Item.aDate.Value.Month.ToString("00") + "-" + Item.aDate.Value.Day.ToString("00");
+            string time = Item.aTime.Value.Hour.ToString() + ":" + Item.aTime.Value.Minute.ToString() + ":" + Item.aTime.Value.Second.ToString();
             string DECLARE = $"DECLARE\n" +
                              $"    @aID AS INT = {Item.aID}\n" +
                              $"    ,@oID AS INT = {Item.oID}\n" +
@@ -23,9 +26,9 @@ namespace Repository.Queries
                              $"    ,@dID AS INT = {Item.dID}\n" +
                              $"    ,@aDescription AS VARCHAR(MAX) = '{Item.aDescription}'\n" +
                              $"    ,@asID AS INT = {Item.asID?? 1}\n" +
-                             $"    ,@aDate AS DATETIME = {Item.aDate}\n" +
-                             $"    ,@uBirthDate AS DATETIME = {Item.uBirthDate}\n" +
-                             $"    ,@aTime AS TIME = '00:00:00'\n" +
+                             $"    ,@aDate AS DATETIME = '{fechaC}'\n" +
+                             $"    ,@uBirthDate AS DATETIME = '{fechaB}'\n" +
+                             $"    ,@aTime AS TIME = '{time}'\n" +
                              $"    ,@ResponseCreation AS VARCHAR(MAX) = 'Puede iniciar sesión con su nombre de usuario o correo electrónico para gestionar los detalles de la cita.'\n" +
                              $"DECLARE @uPassword AS VARBINARY(64) = (SELECT HASHBYTES('SHA2_256',Cast(@uDocument AS VARCHAR(8000))))";
 
