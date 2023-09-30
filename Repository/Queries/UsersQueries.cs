@@ -46,13 +46,21 @@ namespace Repository.Queries
         public static string CreateUpdateUsers(ViewUsersModelRequest Item)
         {
             string query = string.Empty;
+ 
+            string fecha = Item.uBirthDate.Value.Year.ToString() + "-" + Item.uBirthDate.Value.Month.ToString("00") + "-" + Item.uBirthDate.Value.Day.ToString("00");
+
+            string doctorCreate = $"";
+
+
+
+
 
             if (Item.uID == 0)
             {
                 // Crear un nuevo usuario
                 query = $"INSERT INTO dbo.Users (utID, uName, uLastName, uCellphone, uAddress, uLoginName, uEmailAddress, uPassword, dtID, uDocument, uStatus, oID, gID, uBirthDate)\n" +
-                        $"VALUES ({Item.utID}, '{Item.uName}', '{Item.uLastName}', '{Item.uCellphone}', '{Item.uAddress}', '{Item.uLoginName}', " +
-                        $"'{Item.uEmailAddress}', HASHBYTES('SHA2_256', CAST('{Item.uPassword}' AS VARCHAR(8000))), {Item.dtID}, '{Item.uDocument}', {Item.uStatus},{Item.oID},{Item.gID},{Item.uBirthDate});\n" +
+                        $"VALUES ({Item.utID}, '{Item.uName}', '{Item.uLastName}', '{Item.uCellphone}', '{Item.uAddress}', '{Item.uLoginName}', \n" +
+                        $"'{Item.uEmailAddress}', HASHBYTES('SHA2_256', CAST('{Item.uPassword}' AS VARCHAR(8000))), {Item.dtID}, '{Item.uDocument}', {(Item.uStatus? 1:0)},{Item.oID},{Item.gID},'{fecha}');\n" +
                         $"SELECT '0' AS OutputCodeError, 'Usuario registrado con éxito.' AS OutputMessageError\n";
             }
             else
