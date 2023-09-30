@@ -15,8 +15,8 @@
         public int? dID { get; set; }
         public int? asID { get; set; } = 1;
         public string? aDescription { get; set; }
-        public DateTime? aDate { get; set; }
-        public DateTime? uBirthDate { get; set; }
+        public DateOnly? aDate { get; set; }
+        public DateOnly? uBirthDate { get; set; }
         public TimeOnly? aTime { get; set; }
     }
 }
