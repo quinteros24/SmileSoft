@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class ViewUsersModelResponse: ViewDoctorsModelResponse
+    public class ViewUsersModelResponse
     {
         public int uID { get; set; }
         public int utID { get; set; }
@@ -19,12 +19,12 @@ namespace Domain.Entities
         public int dtID { get; set; }
         public string? uDocument { get; set; }
         public bool uStatus { get; set; }
-        public int uIsBlocked { get; set; }
+        public bool uIsBlocked { get; set; }
         public int? oID { get; set; }
         public int? gID { get; set; }
         public DateTime? uBirthDate { get; set; }
 
-       // public ViewDoctorsModelResponse Doctor { get; set; }
+        public ViewDoctorsModelResponse? DoctorModel { get; set; } = null;
     }
 
 }

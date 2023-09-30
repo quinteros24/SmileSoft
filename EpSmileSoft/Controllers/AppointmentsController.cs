@@ -22,5 +22,12 @@ namespace EpSmileSoft.Controllers
         {
             return await _appointmentsCore.GetAppointmentsList(filter);
         }
+
+        [HttpPost]
+        [Route("v1/SetAppointment")]
+        public async Task<GenericResponseModel> SetAppointment([FromBody] AppintmentesModel Item)
+        {
+            return await _appointmentsCore.SetAppointment(Item);
+        }
     }
 }
