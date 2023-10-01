@@ -49,7 +49,7 @@ namespace EpSmileSoft.Controllers
 
         [HttpPost]
         [Route("v1/CreateUpdateUsers")]
-        public async Task<GenericResponseModel> CreateUpdateUsers([FromBody] ViewUsersModelRequest Item)
+        public async Task<GenericResponseModel> CreateUpdateUsers([FromBody] UsersModelRequest Item)
         {
             
             try

@@ -1,11 +1,5 @@
 ﻿using Domain.Interfaces;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using Domain.Entities;
-using Repository;
 
 namespace Domain.Core
 {
@@ -23,7 +17,7 @@ namespace Domain.Core
             return responseModel;
         }
 
-        public async Task<GenericResponseModel> SetAppointment(AppintmentesModel Item)
+        public async Task<GenericResponseModel> SetAppointment(AppointmentesModel Item)
         {
             GenericResponseModel responseModel = await _appointmentsRepository.SetAppointment(Item);
             return responseModel;

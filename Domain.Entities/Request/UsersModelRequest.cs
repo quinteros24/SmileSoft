@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class ViewUsersModelRequest: ViewUsersModelResponse
+    public class UsersModelRequest: UsersModelResponse
     {
         public string? uPassword { get; set; }
     }

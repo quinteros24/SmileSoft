@@ -25,7 +25,7 @@ namespace EpSmileSoft.Controllers
 
         [HttpPost]
         [Route("v1/SetAppointment")]
-        public async Task<GenericResponseModel> SetAppointment([FromBody] AppintmentesModel Item)
+        public async Task<GenericResponseModel> SetAppointment([FromBody] AppointmentesModel Item)
         {
             return await _appointmentsCore.SetAppointment(Item);
         }

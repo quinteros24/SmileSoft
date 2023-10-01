@@ -24,7 +24,7 @@ namespace Domain.Core
             return ItemGenericResponseModel;
         }
 
-        public async Task<GenericResponseModel> CreateUpdateUsers(ViewUsersModelRequest Item)
+        public async Task<GenericResponseModel> CreateUpdateUsers(UsersModelRequest Item)
         {
             GenericResponseModel ItemGenericResponseModel = await _usersRepository.CreateUpdateUsers(Item);
             return ItemGenericResponseModel;

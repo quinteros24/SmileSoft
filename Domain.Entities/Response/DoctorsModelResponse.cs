@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class ViewDoctorsModelResponse
+    public class DoctorsModelResponse
     {
         public int dID { get; set; } 
         public string? dAcademicLevel { get; set; }
