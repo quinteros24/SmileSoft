@@ -120,13 +120,13 @@
     <script>
 
         document.addEventListener('DOMContentLoaded', function () {
-            if (document.getElementById('calendar') != null) { 
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth'
-            });
-            calendar.getOption('locale');
-            calendar.render();
+            if (document.getElementById('calendar') != null) {
+                var calendarEl = document.getElementById('calendar');
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'dayGridMonth'
+                });
+                calendar.getOption('locale');
+                calendar.render();
             }
         });
 
@@ -234,7 +234,7 @@
             if (!token) {
                 // No se encontró un token, redirige al usuario a la página de inicio de sesión
                 window.location.href = '@Url.Action("Login", "Account")'; // Reemplaza con la URL correcta
-            } else if (sessionStorage.getItem('userStatus') == false){
+            } else if (sessionStorage.getItem('userStatus') == false) {
                 console.log("Cuenta Inactiva")
                 sessionStorage.clear();
                 window.location.href = '@Url.Action("Login", "Account")';
@@ -299,16 +299,12 @@
     </script>
     <script>
         //<!-- Función para mostrar el menú de acuerdo al rol del usuario -->
-        $(document).ready(function () {
-            let userRole = sessionStorage.getItem('userRole');
+        function mostrarElementosPorRol(userRole) {
             let divAdmin = $("#divAdmin");
             let divDoctor = $("#divDoctor");
-            let liDoctor = $(".divDoctor");
             let divUser = $("#divUser");
             let contenido = $("#page-top");
 
-            console.log("Script Layout: " + " " + userRole);
-            // Oculta todos los elementos por defecto
             divAdmin.hide();
             divDoctor.hide();
             divUser.hide();
@@ -327,8 +323,11 @@
             if (userRole == 1 || userRole == 2 || userRole == 3) {
                 contenido.show();
             }
+        }
+        $(document).ready(function () {
+            let userRole = sessionStorage.getItem('userRole');
+            mostrarElementosPorRol(userRole);
         });
-
     </script>
 
 

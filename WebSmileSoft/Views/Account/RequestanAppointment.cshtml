@@ -72,7 +72,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="fechaNacimientoe">Fecha de Nacimiento:</label>
-                                <input type="date" class="form-control" id="fechaNacimientoe" name="fechaNacimiento" required>
+                                <input type="date" class="form-control" id="fechaNacimientoe" name="fechaNacimiento" value="YYYY-MM-DD" placeholder="YYYY-MM-DD"  required>
                             </div>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                         <div class="col-md-6">
                             <div class="mb-1">
                                 <label for="correo" class="form-label">Correo Electrónico:</label>
-                                <input type="email" class="form-control" id="correo" name="correo" required>
+                                <input type="email" class="form-control" id="correo" name="correo" required pattern="[a-zA-Z0-9._%+-]+[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -102,10 +102,10 @@
                     </div>
                     <div class="row">
                         <div class="col-md-3">
-                            <div class="mb-1">
-                                <label for="fecha" class="form-label">Fecha de la Cita:</label>
-                                <input type="date" data-date-start-date="-1w" class="form-control" id="fecha" name="fecha" required>
-                            </div>
+                                <div class="mb-1">
+                                    <label for="fecha" class="form-label">Fecha de la Cita:</label>
+                                <input type="date" class="form-control" id="fecha" name="fecha" value="YYYY-MM-DD" placeholder="YYYY-MM-DD"  required min="<%= DateTime.Now.AddDays(-7).ToString(" yyyy-MM-dd") %>" max="<%= DateTime.Now.ToString("yyyy-MM-dd") %>">
+                                </div>
                         </div>
                         <div class="col-md-3">
                             <div class="mb-1">
@@ -229,9 +229,10 @@
                 edad--;
             }
 
-            // Comprobar si la edad es mayor o igual a 18
-            return edad >= 18;
+            // Comprobar si la edad es mayor o igual a 18 y menor o igual a 100
+            return edad >= 18 && edad <= 100;
         }
+
         function SolicitarCita() {
 
             //Datos Personales
@@ -263,7 +264,7 @@
 
             if (!ageValidation(birthDate)) {
                 Swal.fire({
-                    text: 'No tienes la mayoría de edad, ponte en contacto con soporte.',
+                    text: 'Edad Incorrecta, Recuerda que debes ser mayor de Edad.',
                     confirmButtonColor: '#008dc9'
                 });
             }

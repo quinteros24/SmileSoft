@@ -48,8 +48,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="tipoGeneroe">* Genero:</label>
-                                <select class="form-control" id="tipoGeneroe" name="tipoGenero" required>
+                                <label for="tGeneroe">* Genero:</label>
+                                <select class="form-control" id="tGeneroe" name="tipoGenero" required>
                                     <option value="1">Masculino</option>
                                     <option value="2">Femenino</option>
                                     <option value="0">No se Identifica</option>
@@ -59,7 +59,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="fechaNacimientoe">Fecha de Nacimiento:</label>
-                                <input type="date" class="form-control" id="fechaNacimientoe" name="fechaNacimiento" required>
+                                <input type="date" class="form-control" id="fechaNacimientoe" name="fechaNacimiento" value="YYYY-MM-DD" placeholder="YYYY-MM-DD"  required>
                             </div>
                         </div>
                     </div>
@@ -128,17 +128,35 @@
                         <div class="card-body">
 
                             <div class="row">
-                                <div class="mb-3"><label class="form-label" for="AcademicLevel"><strong>Nivel Académico </strong></label><input class="form-control" type="text" id="AcademicLevel" placeholder="" name="TituloAcademico"></div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="AcademicLevel">
+                                        <strong>Nivel Académico </strong>
+                                    </label>
+                                    <input class="form-control" type="text" id="AcademicLevel" placeholder="" name="TituloAcademico">
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="mb-3"><label class="form-label" for="TituloAcademico"><strong>Titulo Académico </strong></label><input class="form-control" type="text" id="TituloAcademico" placeholder="" name="TituloAcademico"></div>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="TituloAcademico">
+                                            <strong>Titulo Académico </strong>
+                                        </label><input class="form-control" type="text" id="TituloAcademico" placeholder="" name="TituloAcademico">
+                                    </div>
                                 </div> <div class="col-md-6">
-                                    <div class="mb-3"><label class="form-label" for="Speciality"><strong>Especialidad </strong></label><input class="form-control" type="text" id="Speciality" placeholder="" name="Speciality"></div>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="Speciality">
+                                            <strong>Especialidad </strong>
+                                        </label>
+                                        <input class="form-control" type="text" id="Speciality" placeholder="" name="Speciality">
+                                    </div>
                                 </div>
                             </div> <div class="row">
                                 <div class="col-md-6">
-                                    <div class="mb-3"><label class="form-label" for="Universityname"><strong>Universidad </strong></label><input class="form-control" type="text" id="Universityname" placeholder="" name="University"></div>
+                                    <div class="mb-3"><label class="form-label" for="Universityname">
+                                        <strong>Universidad </strong>
+                                        </label>
+                                        <input class="form-control" type="text" id="Universityname" placeholder="" name="University">
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
@@ -153,13 +171,14 @@
 
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" id="saveChangesBtn">Guardar Cambios</button>
+                    </div>
                 </form>
             </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" id="saveChangesBtn">Guardar Cambios</button>
-            </div>
+
         </div>
     </div>
 </div>
