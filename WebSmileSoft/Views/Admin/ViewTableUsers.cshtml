@@ -81,13 +81,6 @@
 
         });
 
-        function formatToDatetime(dateString) {
-            const date = new Date(dateString);
-            const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Sumar 1 ya que los meses comienzan en 0
-            const day = date.getDate().toString().padStart(2, '0');
-            const year = date.getFullYear();
-            return `${year}-${month}-${day}`;
-        }
         //Funcion para visualizar la lista de usuarios en la tabla pasando como parametro el tipo de usuario
         function verusers(utID) {
             // Realizar solicitud AJAX para obtener la lista de usuarios
@@ -248,6 +241,7 @@
                                     // Mostrar los datos en la consola o realizar otras acciones
                                     let userData = data.itemJson; // Accede al primer elemento del arreglo
                                     console.log("Usuario a Editar" + userData)
+                                    console.log("Genero del Usuario a Editar" + userData.gID);
                                     // Llama a una funcion para actualizar el formulario con los datos recibidos
                                     console.log("Actualizando Formulario")
                                     actualizarFormulario(userData);
@@ -272,7 +266,8 @@
                             $("#editApellido").val(userData.uLastName);
                             $("#tipoDocumentoe").val(userData.dtID);
                             $("#editDocumentoe").val(userData.uDocument);
-                            $("#tipoGeneroe").val(userData.gID)
+                            $("#tGeneroe").val(userData.gID)
+                            
                             $("#fechaNacimientoe").val(userData.uBirthDate)
                             //Datos de Contacto
                             $("#editCorreo").val(userData.uEmailAddress);
@@ -311,8 +306,8 @@
 
                             console.log("DoctorModel" + DoctorModel.dAcademicLevel);
                             // Obtén los datos actualizados del formulario de edición
-                            let birthDate = document.getElementById("fechaNacimientoe").value.trim();
-                            let formattedBirthDate = formatToDatetime(birthDate);
+                            // let birthDate = document.getElementById("fechaNacimientoe").value.trim();
+                            // let formattedBirthDate = formatToDatetime(birthDate);
 
                             let updatedUserData = {
                                 // Recoge los datos actualizados desde los campos del formulario
@@ -322,8 +317,8 @@
                                 uLastName: $("#editApellido").val(),
                                 dtID: parseInt($("#tipoDocumentoe").val()),
                                 uDocument: $("#editDocumento").val(),
-                                gID: $("tipoGeneroe").val(),
-                                uBirthDate: formattedBirthDate,
+                                gID: 0,//parseInt($("tGeneroe").val()),
+                                uBirthDate: $("#fechaNacimientoe").val(),
 
                                 //Datos de Contacto
                                 uEmailAddress: $("#editCorreo").val(),
@@ -344,7 +339,7 @@
                             console.log("Datos del Usuario " + updatedUserData);
 
 
-                            console.log("Usuario a Editar" + updatedUserData.gID)
+                            console.log("Usuario a Editar Genero:" + updatedUserData.gID)
                             // Realiza una solicitud AJAX para guardar los cambios en el servidor
                             $.ajax({
                                 url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Reemplaza con la URL correcta
@@ -642,33 +637,37 @@
             // Obtiene los datos del formulario
             let DoctorModel = {
                 //Datos de Estudios
-                dAcademicLevel: $("#AcademicLevel").val(),
-                dDegree: $("#TituloAcademico").val(),
-                dSpeciality: $("#Speciality").val(),
-                dProfessionalCard: $("#ProfessionalLicense").val(),
-                dUniversityName: $("#Universityname").val(),
+                dAcademicLevel: $("#AcademicLevela").val(),
+                dDegree: $("#TituloAcademicoa").val(),
+                dSpeciality: $("#Specialitya").val(),
+                dProfessionalCard: $("#ProfessionalLicensea").val(),
+                dUniversityName: $("#Universitynamea").val(),
             };
-            let birthDate = document.getElementById("fechaNacimiento").value.trim();
-            let formattedBirthDate = formatToDatetime(birthDate);
+            // let birthDate = document.getElementById("fechaNacimiento").value.trim();
+            // let formattedBirthDate = formatToDatetime(birthDate);
             let userData = {
-                utID: parseInt($("#tipoUsuario").val()),
+                //Datos Personales
                 uName: $("#nombres").val(),
                 uLastName: $("#apellidos").val(),
-                uCellphone: $("#celular").val(),
-                uEmailAddress: $("#correo").val(),
-                uAddress: $("#direccion").val(),
-                uLoginName: $("#usuario").val(),
-                uPassword: $("#password").val(),
                 dtID: parseInt($("#tipoDocumento").val()),
                 uDocument: $("#numeroDocumento").val(),
-                oID: 0,
+                //gID: 0,//parseInt($("tGeneroe").val()),
                 gID: $("#tipoGenero").val(),
-                uBirthDate: formattedBirthDate,
-                uStatus: true,
-                DoctorModel: null
+                uBirthDate: $("#fechaNacimiento").val(),
 
-                //genero: $("input[name='genero']:checked").val(), // Obtiene el valor del radio button seleccionado
-                //fechaNacimiento: $("#fechaNacimiento").val(),
+                //Datos de Contacto
+                uEmailAddress: $("#correo").val(),
+                uCellphone: $("#celular").val(),
+                uAddress: $("#direccion").val(),
+
+                //Datos de Cuenta
+                uLoginName: $("#usuario").val(),
+                uPassword: $("#password").val(),
+                uID: 0,
+                utID: parseInt($("#tipoUsuario").val()),
+                uStatus: true,
+                oID: 1,
+                DoctorModel: null
             };
             if (userData.utID == 2) {
                 userData.DoctorModel = DoctorModel;

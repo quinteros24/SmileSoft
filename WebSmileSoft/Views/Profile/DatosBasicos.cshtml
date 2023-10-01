@@ -72,7 +72,8 @@
                     <div class="col-md-6 mb-3">
                         <div class="input-group">
                             <span class="input-group-text">Fecha de nacimiento</span>
-                            <input type="date" id="birthDate" class="form-control"/>
+                            <input type="date" id="birthDate" class="form-control" value="YYYY-MM-DD" placeholder="YYYY-MM-DD" />
+
                         </div>
                     </div>
 
@@ -119,7 +120,7 @@
     <!-- Datos de Estudios Solo PERFIL DE DOCTOR -->
     @*  if (Session.Storage.getItem("rol") == "Doctor")
     { *@
-<div id="divDoctor">
+    <div id="DatosEstudios">
     <partial name="Especialidades" />
     </div>
 

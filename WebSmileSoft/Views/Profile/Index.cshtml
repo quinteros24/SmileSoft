@@ -360,13 +360,6 @@
             }
         });
 
-        function formatToDatetime(dateString) {
-            const date = new Date(dateString);
-            const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Sumar 1 ya que los meses comienzan en 0
-            const day = date.getDate().toString().padStart(2, '0');
-            const year = date.getFullYear();
-            return `${year}-${month}-${day}`;
-        }
 
         $(document).ready(function () {
             // Adjunta un controlador de eventos de clic al boton
@@ -463,7 +456,8 @@
                 dtID: parseInt($("#id_type").val()),
                 uDocument: $("#id_number").val(),
                 gID: parseInt($("#genderSelect").val()),
-                uBirthDate: formattedBirthDate,
+                uBirthDate: $("#birthDate").val(),
+                //uBirthDate: formattedBirthDate,
 
                 //Datos de Contacto
                 uEmailAddress: $("#editCorreo").val(),
@@ -663,6 +657,21 @@
                     });
                 }
             });
+        });
+    </script>
+    <script>
+        //<!-- Función para mostrar el menú de acuerdo al rol del usuario -->
+        $(document).ready(function () {
+            let userRole = sessionStorage.getItem('userRole');
+            mostrarElementosPorRol(userRole);
+        });
+        $(document).ready(function () {
+            let userRole = sessionStorage.getItem('userRole');
+            if (userRole == 2) {
+               $("#DatosEstudios").show();
+            }else {
+                $("#DatosEstudios").hide();
+            }
         });
     </script>
 
