@@ -23,43 +23,43 @@
             <button onclick="verusers(2);" class="btn btn-danger btn-block">Doctores</button>
             <button onclick="verusers(3);" class="btn btn-secondary btn-block">Pacientes</button>
         </div>
-       
+
     </div>
 </div>
 
-    <div class="card-body" id="content-container">
-        <!-- Aquí va la tabla -->
-        <div class="table-responsive shadow-lg">
-            <table id="example" class="table table-hover non-hover mt-2 mb-2 table-striped display" width="100%"></table>
-        </div>
+<div class="card-body" id="content-container">
+    <!-- Aquí va la tabla -->
+    <div class="table-responsive shadow-lg">
+        <table id="example" class="table table-hover non-hover mt-2 mb-2 table-striped display" width="100%"></table>
+    </div>
     <div class="row justify-content-end mt-2">
         <div class="col-12 col-sm-3 text-end ">
             <a class="btn btn-success btn-block add-user-btn" data-toggle="modal" data-target="#addUserModal"><i class="fas fa-user-plus"></i> Agregar Usuario</a>
         </div>
     </div>
-    </div>
+</div>
 
-    <!-- Modal de Edición -->
-    <partial name="EditUser" />
+<!-- Modal de Edición -->
+<partial name="EditUser" />
 
-    <!-- Modal Cambio Contraseña -->
-    <partial name="ChangePass" />
+<!-- Modal Cambio Contraseña -->
+<partial name="ChangePass" />
 
-    <!-- Modal Agregar Usuarios -->
-    <partial name="AddUsers" />
+<!-- Modal Agregar Usuarios -->
+<partial name="AddUsers" />
 
 
 
-    @section Scripts {
-        <script>
-            document.getElementById("tipoUsuarioe").addEventListener("change", function () {
-                var campoOpcional = document.getElementById("campoOpcional");
-                if (this.value === "2") {
-                    campoOpcional.style.display = "block";
-                } else {
-                    campoOpcional.style.display = "none";
-                }
-            });
+@section Scripts {
+    <script>
+        document.getElementById("tipoUsuarioe").addEventListener("change", function () {
+            var campoOpcional = document.getElementById("campoOpcional");
+            if (this.value === "2") {
+                campoOpcional.style.display = "block";
+            } else {
+                campoOpcional.style.display = "none";
+            }
+        });
 
         document.getElementById("tipoUsuario").addEventListener("change", function () {
             var campoOpcional = document.getElementById("campoOpcionala");
@@ -69,8 +69,8 @@
                 campoOpcional.style.display = "none";
             }
         });
-        </script>
-        <script>
+    </script>
+    <script>
 
         //<!-- Script para Visualizar Lista De Usuarios en la Tabla -->
         //Recibir el parametro de la funcion verusers(1) para filtrar por tipo de usuario
@@ -267,7 +267,7 @@
                             $("#tipoDocumentoe").val(userData.dtID);
                             $("#editDocumentoe").val(userData.uDocument);
                             $("#tGeneroe").val(userData.gID)
-                            
+
                             $("#fechaNacimientoe").val(userData.uBirthDate)
                             //Datos de Contacto
                             $("#editCorreo").val(userData.uEmailAddress);
@@ -331,10 +331,19 @@
                                 utID: parseInt($("#tipoUsuarioe").val()),
                                 uStatus: true,
                                 oID: 1,
-                                DoctorModel: null
+                                dAcademicLevel: null,
+                                dDegree: null,
+                                dSpeciality: null,
+                                dProfessionalCard: null,
+                                dUniversityName: null
+
                             }
                             if (updatedUserData.utID == 2) {
-                                updatedUserData.DoctorModel = DoctorModel;
+                                updatedUserData.dAcademicLevel = $("#AcademicLevel").val();
+                                updatedUserData.dDegree = $("#TituloAcademico").val();
+                                updatedUserData.dSpeciality = $("#Speciality").val();
+                                updatedUserData.dProfessionalCard = $("#Tarjeta_Profesional").val();
+                                updatedUserData.dUniversityName = $("#Universityname").val();
                             }
                             console.log("Datos del Usuario " + updatedUserData);
 
@@ -818,7 +827,7 @@
 
         });
 
-            </script>
-       @*  <script src="~/assets/js/control/tablesutilities.js" charset="utf-8"></script> *@
+    </script>
+    @*  <script src="~/assets/js/control/tablesutilities.js" charset="utf-8"></script> *@
 
     }

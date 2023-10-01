@@ -59,8 +59,9 @@ namespace Repository.Queries
                         $"    VALUES ({Item.utID}, '{Item.uName}', '{Item.uLastName}', '{Item.uCellphone}', '{Item.uAddress}', '{Item.uLoginName}', \n" +
                         $"    '{Item.uEmailAddress}', HASHBYTES('SHA2_256', CAST('{Item.uPassword}' AS VARCHAR(8000))), {Item.dtID}, '{Item.uDocument}', {(Item.uStatus? 1:0)},{Item.oID},{Item.gID},'{fecha}');\n" +
                         $"    SET @Response = CONCAT(@Response,'registrado con éxito.')\n";
+
             }
-            else
+            else if (Item.uID != 0)
             {
                 // Actualizar un usuario existente
                 query += $"    UPDATE dbo.Users SET ";
@@ -109,6 +110,7 @@ namespace Repository.Queries
                 query = query.TrimEnd(',', ' ') + $"\n    WHERE [uID] = {Item.uID};\n" +
                         $"    INSERT INTO @aux([uID])VALUES({Item.uID})\n" + 
                         $"    SET @Response = CONCAT(@Response,'actualizado con éxito.')\n";
+
             }
 
             if(Item.utID == 2)
