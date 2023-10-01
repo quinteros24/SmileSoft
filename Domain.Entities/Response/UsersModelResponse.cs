@@ -4,7 +4,7 @@ namespace Domain.Entities.Response
 {
 
 
-    public class ViewUsersModelResponse : ViewDoctorsModelResponse
+    public class UsersModelResponse : DoctorsModelResponse
     {
         public int uID { get; set; }
         public int utID { get; set; }

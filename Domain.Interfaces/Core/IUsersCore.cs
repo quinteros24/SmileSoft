@@ -7,7 +7,7 @@ namespace Domain.Interfaces.Core
     {
         Task<GenericResponseModel> ChangePassword(ChangePasswordModelRequest Item);
         Task<GenericResponseModel> ViewUsers(int utID);
-        Task<GenericResponseModel> CreateUpdateUsers(ViewUsersModelRequest Item);
+        Task<GenericResponseModel> CreateUpdateUsers(UsersModelRequest Item);
         Task<GenericResponseModel> SetUserStatus(int uID, int uStatus);
         Task<GenericResponseModel> GetUserDetails(int uID);
 

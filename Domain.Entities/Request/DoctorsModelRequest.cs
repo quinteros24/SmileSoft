@@ -8,7 +8,7 @@ using Domain.Entities.Response;
 
 namespace Domain.Entities
 {
-    public class ViewDoctorsModelRequest: ViewUsersModelResponse
+    public class DoctorsModelRequest: UsersModelResponse
     {
         public string? uPassword { get; set; }
     }

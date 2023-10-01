@@ -6,9 +6,32 @@ namespace Repository.Queries
     {
         public static string GetAppointmentsList(string? filter = "")
         {
-            return $"";
+            return $"DECLARE @filter AS VARCHAR(60) = '{filter}'" +
+                   $"BEGIN TRY\n" +
+                   $"    SELECT\n" +
+                   $"        A.aID\n" +
+                   $"        ,CONCAT(U.uName,' ',U.uLastName) AS uName\n" +
+                   $"        ,U.uCellphone\n" +
+                   $"        ,U.uEmailAddress\n" +
+                   $"        ,A.aDate\n" +
+                   $"        ,A.aTime\n" +
+                   $"        ,CONCAT((SELECT uName FROM Users WHERE [uID] = D.uID),' ',(SELECT uLastName FROM Users WHERE [uID] = D.uID)) AS uDoctorName\n" +
+                   $"        ,'OBJECT' AS TableName\n" +
+                   $"    FROM\n" +
+                   $"        Appointments AS A \n" +
+                   $"        INNER JOIN Users AS U ON A.uID = U.uID\n" +
+                   $"        INNER JOIN Doctors AS D ON A.dID = D.dID\n" +
+                   $"    WHERE\n" +
+                   $"        uName LIKE @filter OR uName <> ''\n" +
+                   $"    ORDER BY\n" +
+                   $"        uName, aDate\n" +
+                   $"    SELECT 0 AS OutputCodeError, 'Datos cargados correctamente' AS OutputMessageError, 'Parameters' AS TableName\n" +
+                   $"END TRY\n" +
+                   $"BEGIN CATCH\n" +
+                   $"    SELECT ERROR_NUMBER() AS OutputCodeError, ERROR_MESSAGE() AS OutputMessageError, 'Parameters' AS TableName\n" +
+                   $"END CATCH";
         }
-        public static string SetAppointment(AppintmentesModel Item)
+        public static string SetAppointment(AppointmentesModel Item)
         {
             string fechaB = Item.uBirthDate.Value.Year.ToString() + "-" + Item.uBirthDate.Value.Month.ToString("00") + "-" + Item.uBirthDate.Value.Day.ToString("00");
             string fechaC = Item.aDate.Value.Year.ToString() + "-" + Item.aDate.Value.Month.ToString("00") + "-" + Item.aDate.Value.Day.ToString("00");
