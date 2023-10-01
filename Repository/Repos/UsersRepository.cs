@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using Domain.Entities;
+using Domain.Entities.Response;
 using Domain.Interfaces;
 using Domain.Interfaces.Repository;
 using Repository.Queries;
@@ -115,7 +116,7 @@ namespace Repository.Repos
             string query = UsersQueries.GetUserDetails(uID);
             Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
             ResponseDB ItemResponseDB = await dl.Consultds(query);
-            UsersModelRequest? User = new();
+            UsersModelResponse? User = new();
             GenericResponseModel genericResponseModel = new();
             if (ItemResponseDB != null && ItemResponseDB.DsObject != null)
             {
@@ -126,7 +127,7 @@ namespace Repository.Repos
                         switch (dt.Rows[0]["TableName"])
                         {
                             case "OBJECT":
-                                User = Mapper.GetObjectFromDataTable<UsersModelRequest>(dt);
+                                User = Mapper.GetObjectFromDataTable<UsersModelResponse>(dt);
                                 genericResponseModel.RecordsQuantity = dt.Rows.Count;
                                 break;
                             case "Parameters":

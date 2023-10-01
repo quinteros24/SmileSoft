@@ -1,7 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EpSmileSoft.Controllers
 {
@@ -25,5 +25,13 @@ namespace EpSmileSoft.Controllers
 
             return await _genericsCore.GenerateJWToken(uID, userNameLogin, token);
         }
+
+        [HttpGet]
+        [Route("v1/GetSpecialities")]
+        public async Task<List<SelectListItem>> GetSpecialities()
+        {
+            return await _genericsCore.GetSpecialities();
+        }
+
     }
 }

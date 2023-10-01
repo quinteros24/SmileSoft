@@ -8,7 +8,7 @@ namespace Domain.Entities
 {
     public class DoctorsModelResponse
     {
-        public int dID { get; set; } 
+        public int? dID { get; set; } 
         public string? dAcademicLevel { get; set; }
         public string? dDegree { get; set; }
         public string? dUniversityName { get; set; }

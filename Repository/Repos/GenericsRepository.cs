@@ -1,6 +1,7 @@
 ﻿using DataAccess;
 using Domain.Entities;
 using Domain.Interfaces;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Repository.Queries;
 using System.Data;
 
@@ -28,6 +29,20 @@ namespace Repository
                 genericResponseModel.Status = genericResponseModel.CodeStatus == "0";
             }
             return genericResponseModel;
+        }
+
+        public async Task<List<SelectListItem>> GetSpecialities()
+        {
+            string query = "SELECT [sID],sName FROM Specialities";
+            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
+            ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
+            List<SelectListItem> Items = new();
+            if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
+            {
+                DataTable dt = ItemResponseDB.DtObject;
+                Items = Mapper.ToSelectList(dt,"sID","sName");
+            }
+            return Items;
         }
     }
 }

@@ -31,6 +31,7 @@ namespace Repository.Queries
                    $"    SELECT ERROR_NUMBER() AS OutputCodeError, ERROR_MESSAGE() AS OutputMessageError, 'Parameters' AS TableName\n" +
                    $"END CATCH";
         }
+
         public static string SetAppointment(AppointmentesModel Item)
         {
             string fechaB = Item.uBirthDate.Value.Year.ToString() + "-" + Item.uBirthDate.Value.Month.ToString("00") + "-" + Item.uBirthDate.Value.Day.ToString("00");
@@ -61,9 +62,9 @@ namespace Repository.Queries
             {
                 //CREAR
                 QUERY += $"    DECLARE @id AS INT = (SELECT [uID] FROM Users WHERE uDocument = @uDocument)\n" +
-                         $"    IF EXISTS(SELECT TOP(1)* FROM Appointments AS A INNER JOIN Users AS U ON U.uID = A.uID WHERE A.uID = @id AND aDate = @aDate)\n" +
+                         $"    IF EXISTS(SELECT TOP(1)* FROM Appointments AS A INNER JOIN Users AS U ON U.uID = A.uID WHERE A.uID = @id AND A.aDate = @aDate AND A.aTime = @aTime AND A.dID = @dID  )\n" +
                          $"    BEGIN \n" +
-                         $"        SELECT '0' AS OutputCodeError, 'La cita ya se encuentra en nuestro sistema. Para gestionar sus citas puede iniciar sesión o cumuníquese con el administrador' AS OutputMessageError\n" +
+                         $"        SELECT '-1' AS OutputCodeError, 'La cita ya se encuentra en nuestro sistema. Para gestionar sus citas puede iniciar sesión o cumuníquese con el administrador' AS OutputMessageError\n" +
                          $"    END\n" +
                          $"    ELSE\n" +
                          $"    BEGIN\n" +
@@ -78,7 +79,7 @@ namespace Repository.Queries
                          $"                ,'\". Su contraseña es el documento de identidad')\n" +
                          $"            SET @uID = (SELECT TOP(1)[uID] FROM Users WHERE [uDocument] = @uDocument)\n" +
                          $"        END\n" +
-                         $"        SET @uID = ISNULL(@uID,(SELECT TOP(1)[uID] FROM Users WHERE [uDocument] = @uDocument))\n" +
+                         $"        SET @uID = (SELECT TOP(1)[uID] FROM Users WHERE [uDocument] = @uDocument)\n" +
                          $"        --SE CREA LA CITA\n" +
                          $"        INSERT INTO Appointments([oID],[uID],[dID],aDate,aTime,aDescription)\n" +
                          $"        VALUES(@oID,@uID,@dID,@aDate,@aTime,@aDescription)\n" +
