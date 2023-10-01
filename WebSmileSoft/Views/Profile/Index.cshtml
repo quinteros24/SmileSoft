@@ -432,15 +432,15 @@
 
             //let uID = sessionStorage.getItem('userID');
             //Datos de Estudios
-            let DoctorModel = {
-                dAcademicLevel: $("#AcademicLevel").val(),
-                dDegree: $("#TituloAcademico").val(),
-                dSpeciality: $("#Speciality").val(),
-                dProfessionalCard: $("#Tarjeta_Profesional").val(),
-                dUniversityName: $("#Universityname").val()
-            }
-            let birthDate = document.getElementById("birthDate").value.trim();
-            let formattedBirthDate = formatToDatetime(birthDate);
+            // let DoctorModel = {
+            //     dAcademicLevel: $("#AcademicLevel").val(),
+            //     dDegree: $("#TituloAcademico").val(),
+            //     dSpeciality: $("#Speciality").val(),
+            //     dProfessionalCard: $("#Tarjeta_Profesional").val(),
+            //     dUniversityName: $("#Universityname").val()
+            // }
+            // let birthDate = document.getElementById("birthDate").value.trim();
+            // let formattedBirthDate = formatToDatetime(birthDate);
             // Obtener los datos actualizados del formulario
             let updatedUserData = {
                 //Datos de la Cuenta
@@ -463,13 +463,23 @@
                 uEmailAddress: $("#editCorreo").val(),
                 uAddress: $("#address").val(),
                 uCellphone: $("#phone_number").val(),
-                DoctorModel: null
+
+                //Datos Estudios
+                dAcademicLevel: null,
+                dDegree: null,
+                dSpeciality: null,
+                dProfessionalCard: null,
+                dUniversityName: null
 
             }
             if (updatedUserData.utID == 2) {
-                updatedUserData.DoctorModel = DoctorModel;
+                updatedUserData.dAcademicLevel = $("#AcademicLevel").val();
+                updatedUserData.dDegree = $("#TituloAcademico").val();
+                updatedUserData.dSpeciality = $("#Speciality").val();
+                updatedUserData.dProfessionalCard = $("#Tarjeta_Profesional").val();
+                updatedUserData.dUniversityName = $("#Universityname").val();
             }
-            
+
 
             $.ajax({
                 url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Reemplaza con la URL correcta
@@ -668,8 +678,8 @@
         $(document).ready(function () {
             let userRole = sessionStorage.getItem('userRole');
             if (userRole == 2) {
-               $("#DatosEstudios").show();
-            }else {
+                $("#DatosEstudios").show();
+            } else {
                 $("#DatosEstudios").hide();
             }
         });
