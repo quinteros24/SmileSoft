@@ -72,7 +72,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="fechaNacimientoe">Fecha de Nacimiento:</label>
-                                <input type="date" class="form-control" id="fechaNacimientoe" name="fechaNacimiento" value="YYYY-MM-DD" placeholder="YYYY-MM-DD"  required>
+                                <input type="date" class="form-control" id="fechaNacimientoe" name="fechaNacimiento" value="YYYY-MM-DD" placeholder="YYYY-MM-DD" required>
                             </div>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                         <div class="col-md-6">
                             <div class="mb-1">
                                 <label for="correo" class="form-label">Correo Electrónico:</label>
-                                <input type="email" class="form-control" id="correo" name="correo" required pattern="[a-zA-Z0-9._%+-]+[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+                                <input type="email" class="form-control" id="correo" name="correo" required>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -102,10 +102,10 @@
                     </div>
                     <div class="row">
                         <div class="col-md-3">
-                                <div class="mb-1">
-                                    <label for="fecha" class="form-label">Fecha de la Cita:</label>
-                                <input type="date" class="form-control" id="fecha" name="fecha" value="YYYY-MM-DD" placeholder="YYYY-MM-DD"  required min="<%= DateTime.Now.AddDays(-7).ToString(" yyyy-MM-dd") %>" max="<%= DateTime.Now.ToString("yyyy-MM-dd") %>">
-                                </div>
+                            <div class="mb-1">
+                                <label for="fecha" class="form-label">Fecha de la Cita:</label>
+                                <input type="date" class="form-control" id="fecha" name="fecha" value="YYYY-MM-DD" placeholder="YYYY-MM-DD">
+                            </div>
                         </div>
                         <div class="col-md-3">
                             <div class="mb-1">
@@ -116,16 +116,25 @@
                         <div class="col-md-6">
                             <div class="mb-1">
                                 <!-- Selector Doctores Disponibles -->
-                                <label for="cDoctor" class="form-label">Doctor</label>
-                                <input type="text" class="form-control" id="cDoctor" name="Doctor">
+                                <div class="form-group">
+                                    <label for="selEspecialidad" class="mb-2">Especialidad</label>
+                                    <select class="form-control" id="selEspecialidad" name="tipoGenero" required>
+                                        <option value="0">Consulta General</option>
+                                        <option value="1">Especialidad 1</option>
+                                        <option value="2">Especialidad 2</option>
+
+                                    </select>
+                                </div>
+                                <label for="cDoctor" class="form-label" style="display: none">Especialidad</label>
+                                <input type="text" class="form-control" style="display: none" id="cDoctor" name="Doctor">
                             </div>
                         </div>
                     </div>
                     <div class="mb-1">
-                        <label for="mensaje" class="form-label">Mensaje:</label>
+                        <label for="mensaje" class="form-label">Motivo:</label>
                         <textarea class="form-control" id="mensaje" name="mensaje" rows="2"></textarea>
                     </div>
-                    <div class="d-flex justify-content-end ">
+                    <div class="d-flex justify-content-end mb-2">
                         <button type="button" class="btn btn-primary mb-2" id="submit-btn" onclick="SolicitarCita();">Solicitar Cita</button>
                     </div>
                 </form>
@@ -203,13 +212,13 @@
     <script>
 
 
-        function formatToDatetime(dateString) {
-            const date = new Date(dateString);
-            const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Sumar 1 ya que los meses comienzan en 0
-            const day = date.getDate().toString().padStart(2, '0');
-            const year = date.getFullYear();
-            return `${year}-${month}-${day}`;
-        }
+        // function formatToDatetime(dateString) {
+        //     const date = new Date(dateString);
+        //     const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Sumar 1 ya que los meses comienzan en 0
+        //     const day = date.getDate().toString().padStart(2, '0');
+        //     const year = date.getFullYear();
+        //     return `${year}-${month}-${day}`;
+        // }
 
         function ageValidation(birthDate) {
             // Obtener la fecha actual
@@ -251,7 +260,7 @@
 
             //Datos de la Cita
             let date = document.getElementById("fecha").value.trim();
-            let time = document.getElementById("cHora").value.trim();
+            let time = document.getElementById("cHora").value.trim() + ':00';
             let doctor = document.getElementById("cDoctor").value.trim();
             let message = document.getElementById("mensaje").value.trim();
 
@@ -289,7 +298,7 @@
 
             //let formattedBirthDate = formatDateToISO8601(birthDate);
             else {
-                let formattedBirthDate = formatToDatetime(birthDate);
+                // let formattedBirthDate = formatToDatetime(birthDate);
                 let data = {
                     //Datos de la cuenta
                     uID: 0,
@@ -298,23 +307,25 @@
                     //uLoginName: documentID,
                     //uPassword: documentID,
                     //uStatus: true,
+
                     //Datos Personales
                     uName: firstName,
                     ulastName: lastName,
                     uDocument: documentID,
                     dtID: documentType,
-                    uBirthDate: formattedBirthDate,
+                    uBirthDate: birthDate,
                     gID: gender,
                     //Datos de Contacto
                     uEmailAddress: email,
                     uCellphone: mobileNumber,
+
                     //Datos de la Cita
                     asID: 0,
                     aID: 0,
                     aDate: date,
                     aTime: time,
-                    dID: 0,
-                    uDescription: message
+                    dID: 11,
+                    aDescription: message
 
                 };
                 $.ajax({
@@ -330,7 +341,7 @@
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Cita Solicitada con éxito',
-                                text: 'Para ingresar a nuestro sitio debes usar tu correo y como contraseña el numero de identificacion que registraste.',
+                                text: response.messageStatus,
                                 confirmButtonColor: '#008dc9',
                                 allowOutsideClick: false,
                                 allowEscapeKey: false,
@@ -339,29 +350,35 @@
                                     window.location.href = '@Url.Action("Login", "Account")';
                                 }
                             });
-                        } else if (response.codeStatus === '-1') {
-                            // El usuario ya existe en la base de datos
-                            //alert('Este usuario ya existe en la base de datos.');
+                        } if (response.codeStatus === '-1') {
                             Swal.fire({
-                                icon: 'error',
+                                icon: 'info',
                                 title: 'Oops...',
-                                text: 'Este usuario ya existe en la base de datos.',
+                                text: response.messageStatus,
                                 confirmButtonColor: '#008dc9'
-                            })
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = '@Url.Action("Login", "Account")';
+                                }
+                            });
                         } else {
                             // Manejar otros códigos de error si es necesario
-                            alert('Error: ' + response.OutputMessageError);
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Oops...',
-                                text: 'Error: ' + response.OutputMessageError,
+                                text: 'Se presento un error al guardar la información',
                                 confirmButtonColor: '#008dc9'
                             })
                         }
                     },
                     error: function (error) {
                         // Manejar errores de la solicitud AJAX
-                        console.error('Error al registrar usuario:', error);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Se presento un error al guardar la información',
+                            confirmButtonColor: '#008dc9'
+                        })
                     }
                 });
             }

@@ -43,7 +43,7 @@ namespace Repository.Queries
                 $"END CATCH";
         }
        
-        public static string CreateUpdateUsers(ViewUsersModelRequest Item)
+        public static string CreateUpdateUsers(UsersModelRequest Item)
         {
             string fecha = Item.uBirthDate.Value.Year.ToString() + "-" + Item.uBirthDate.Value.Month.ToString("00") + "-" + Item.uBirthDate.Value.Day.ToString("00");
 
