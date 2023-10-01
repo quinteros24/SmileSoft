@@ -11,3 +11,10 @@
 </div>
 
 
+@section Scripts {
+     $(document).ready(function () {
+            let userRole = sessionStorage.getItem('userRole');
+            mostrarElementosPorRol(userRole);
+        });
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

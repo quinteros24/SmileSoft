@@ -102,8 +102,8 @@ namespace Repository.Queries
                 if (Item.gID != 0)
                     query += $"gID = {Item.gID}, ";
 
-                if (Item.uBirthDate != null)
-                    query += $"uBirthDate = {Item.uBirthDate}, ";
+                if (!string.IsNullOrEmpty(fecha))
+                    query += $"uBirthDate = '{fecha}', ";
 
                 // Eliminar la última coma y agregar la condición WHERE
                 query = query.TrimEnd(',', ' ') + $"\n    WHERE [uID] = {Item.uID};\n" +
