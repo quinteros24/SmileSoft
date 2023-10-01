@@ -12,7 +12,7 @@ namespace Domain.Entities
         public string? dAcademicLevel { get; set; }
         public string? dDegree { get; set; }
         public string? dUniversityName { get; set; }
-        public string? dSpeciality { get; set; }
+        public int? spID { get; set; } //Especialidad
         public string? dProfessionalCard { get; set; }
         
     }
