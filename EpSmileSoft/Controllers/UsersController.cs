@@ -7,7 +7,7 @@ namespace EpSmileSoft.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Tags("Controlador encargado de gestionar el cambio de contraseña")]
+    [Tags("Controlador encargado de gestionar usuarios")]
 
     public class UsersController : ControllerBase
     {

@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using Domain.Entities;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Data;
 using System.Reflection;
 
@@ -119,9 +120,26 @@ namespace Repository
             return GenericResponseDomain;
         }
 
-        internal static T GetObjectFromDataRow<T>(DataRow doctorRow)
+        public static List<SelectListItem> ToSelectList(DataTable table, string value, string text)
         {
-            throw new NotImplementedException();
+            List<SelectListItem> list = new List<SelectListItem>();
+
+            if (table != null)
+            {
+                if (table.Rows.Count > 0)
+                {
+                    foreach (DataRow row in table.Rows)
+                    {
+                        list.Add(new SelectListItem()
+                        {
+                            Text = row[text].ToString(),
+                            Value = row[value].ToString()
+                        });
+                    }
+                }
+            }
+            return list;
         }
+
     }
 }

@@ -191,11 +191,6 @@
                             </p>
                         </div>
 
-                        @* <label class="form-label" for="tipo_documento">
-                        <strong>Tipo Documento</strong></label>
-                        <input class="form-control" type="text" id="id_type" placeholder="C.C." name="tipo_documento" disabled>
-                        *@
-
                         <div class="mb-3">
                             <label class="form-label" for="user_status">
                                 <strong>Estado de la Cuenta</strong>
@@ -212,93 +207,6 @@
                     <partial name="Security" />
                 </div>
 
-
-                <!-- Opciones de Notificaciones / a Futuro -->
-                @*<div class="tab-pane" id="notification">
-                <h6>Opciones de Notificaciones</h6>
-                <hr/>
-                <form>
-                <div class="form-group">
-                <label class="d-block mb-0">Security Alerts</label>
-                <div class="small text-muted mb-3">
-                Receive security alert notifications via email
-                </div>
-                <div class="custom-control custom-checkbox">
-                <input type="checkbox"
-                class="custom-control-input"
-                id="customCheck1"
-                checked/>
-                <label class="custom-control-label" for="customCheck1">Email each time a vulnerability is found</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                <input type="checkbox"
-                class="custom-control-input"
-                id="customCheck2"
-                checked/>
-                <label class="custom-control-label" for="customCheck2">Email a digest summary of vulnerability</label>
-                </div>
-                </div>
-                <div class="form-group mb-0">
-                <label class="d-block">SMS Notifications</label>
-                <ul class="list-group list-group-sm">
-                <li class="list-group-item has-icon">
-                Comments
-                <div class="custom-control custom-control-nolabel custom-switch ml-auto">
-                <input type="checkbox"
-                class="custom-control-input"
-                id="customSwitch1"
-                checked/>
-                <label class="custom-control-label"
-                for="customSwitch1"></label>
-                </div>
-                </li>
-                <li class="list-group-item has-icon">
-                Updates From People
-                <div class="custom-control custom-control-nolabel custom-switch ml-auto">
-                <input type="checkbox"
-                class="custom-control-input"
-                id="customSwitch2"/>
-                <label class="custom-control-label"
-                for="customSwitch2"></label>
-                </div>
-                </li>
-                <li class="list-group-item has-icon">
-                Reminders
-                <div class="custom-control custom-control-nolabel custom-switch ml-auto">
-                <input type="checkbox"
-                class="custom-control-input"
-                id="customSwitch3"
-                checked/>
-                <label class="custom-control-label"
-                for="customSwitch3"></label>
-                </div>
-                </li>
-                <li class="list-group-item has-icon">
-                Events
-                <div class="custom-control custom-control-nolabel custom-switch ml-auto">
-                <input type="checkbox"
-                class="custom-control-input"
-                id="customSwitch4"
-                checked/>
-                <label class="custom-control-label"
-                for="customSwitch4"></label>
-                </div>
-                </li>
-                <li class="list-group-item has-icon">
-                Pages You Follow
-                <div class="custom-control custom-control-nolabel custom-switch ml-auto">
-                <input type="checkbox"
-                class="custom-control-input"
-                id="customSwitch5"/>
-                <label class="custom-control-label"
-                for="customSwitch5"></label>
-                </div>
-                </li>
-                </ul>
-                </div>
-                </form>
-                </div>
-                *@
                 <!-- Mostrar Campo Datos Medicos de los doctores -->
                 @* <div class="tab-pane" id="medicaldata">
                 <partial name="DatosMedicos" />
@@ -314,6 +222,38 @@
 
 
 @section Scripts{
+
+    <script>
+
+
+        $(document).ready(function () {
+            console.log("Cargando Especialidades");
+            $.ajax({
+                type: 'GET',
+                url: '@ViewBag.urlEndPoint' + '/api/Generics/v1/GetSpecialities', // Ruta para crear o actualizar usuarios
+                // contentType: 'application/json',
+                success: function (response) {
+                    console.log(JSON.stringify(response));
+                    //console.log(JSON.parse(response));
+                    redirectView(JSON.stringify(response), "#DatosEstudios");
+                }
+            });
+        });
+
+        function redirectView(item, element) {
+            $.ajax({
+                type: 'POST',
+                url: '/Profile/Especialidades',
+                data: item,
+                contentType: 'application/json',
+                success: function (response) {
+                    $(element).html(response);
+                }
+            });
+        }
+
+
+    </script>
     <script>
         // Agrega un manejador de eventos para la clase "btn-en-desarrollo"
         document.addEventListener("DOMContentLoaded", function () {
@@ -421,7 +361,7 @@
                 //Datos Estudios
                 $("#TituloAcademico").val(userData.dDegree);
                 $("#AcademicLevel").val(userData.dAcademicLevel);
-                $("#Speciality").val(userData.dSpeciality);
+                $("#Speciality").val(userData.spID);
                 $("#Tarjeta_Profesional").val(userData.dProfessionalCard);
                 $("#Universityname").val(userData.dUniversityName);
             }
@@ -435,7 +375,7 @@
             // let DoctorModel = {
             //     dAcademicLevel: $("#AcademicLevel").val(),
             //     dDegree: $("#TituloAcademico").val(),
-            //     dSpeciality: $("#Speciality").val(),
+            //     spID: $("#Speciality").val(),
             //     dProfessionalCard: $("#Tarjeta_Profesional").val(),
             //     dUniversityName: $("#Universityname").val()
             // }
@@ -467,7 +407,7 @@
                 //Datos Estudios
                 dAcademicLevel: null,
                 dDegree: null,
-                dSpeciality: null,
+                spID: null,
                 dProfessionalCard: null,
                 dUniversityName: null
 
@@ -475,7 +415,7 @@
             if (updatedUserData.utID == 2) {
                 updatedUserData.dAcademicLevel = $("#AcademicLevel").val();
                 updatedUserData.dDegree = $("#TituloAcademico").val();
-                updatedUserData.dSpeciality = $("#Speciality").val();
+                updatedUserData.spID = $("#Speciality").val();
                 updatedUserData.dProfessionalCard = $("#Tarjeta_Profesional").val();
                 updatedUserData.dUniversityName = $("#Universityname").val();
             }
@@ -680,7 +620,7 @@
             if (userRole == 2) {
                 $("#DatosEstudios").show();
             } else {
-                $("#DatosEstudios").hide();
+                $("#DatosEstudios").show();
             }
         });
     </script>

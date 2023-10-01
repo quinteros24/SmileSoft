@@ -59,7 +59,7 @@
                             <input type="time" class="form-control" id="hora" required>
                         </div>
                     </div>
-                
+
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="medico">Médico</label>
@@ -79,5 +79,305 @@
 </div>
 
 @section Scripts{
+    <script>
+        $(document).ready(function () {
+            let uID = sessionStorage.getItem("userID");
+            getUserCitas(uID);
+            $("#loadingScreen").show();
 
+
+        });
+        function getUserCitas(uID) {
+            // Realizar solicitud AJAX para obtener la lista de usuarios
+            // var utID = 1;
+            mostrarCargando();
+
+            $.ajax({
+                url: sessionStorage.urlEP + '/Appointments/v1/GetAppointmentsList',
+                type: 'GET',
+                data: { 'uID': uID },
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (data) {
+                    $("#loadingScreen").hide();
+                    //console.log("Respuesta del Servidor " + data);
+                    // Procesar los datos recibidos y agregar filas a la tabla
+                    let dataSet = [];
+                    let users = data.itemJson;
+                    console.table(users);
+
+                    $.each(data.itemJson, function (index, cita) {
+                        // "aID": 28,
+                        //"oID": null,
+                        //"dtID": null,
+                        //"gID": null,
+                        // "uDocument": null,
+                        // "uEmailAddress": null,
+                        //        "uName": "Andrea Ramirez",
+                        //          "uDoctorName": "Andrea Ramirez",
+                        //           "uLastName": null,
+                        //       "uCellphone": "30242111110",
+                        //       "uID": null,
+                        //     "dID": null,
+                        //       "asID": 1,
+                        //      "aDescription": null,
+                        //         "aDate": "2023-10-02T00:00:00",
+                        //     "uBirthDate": null,
+                        //               "aTime": null
+                        let rowData = [
+                            cita.aID,
+                            cita.uName,
+                            cita.uLastName,
+                            cita.dID,
+                            cita.aDescription,
+                            cita.aDate,
+                            cita.aTime
+                        ];
+                        dataSet.push(rowData);
+                    });
+
+                    // Inicializa o actualiza el DataTable con los datos procesados
+                    table = $('#example').DataTable({
+                        // new DataTable('#example', {
+                        // columnDefs: [
+                        //     {
+                        //         target: 0,
+                        //         visible: false,
+                        //         searchable: false
+                        //     },
+                        //     {
+                        //         target: 1,
+                        //         visible: false
+                        //     },
+                        //     {
+                        //         target: 9,
+                        //         visible: false
+                        //     },
+                        //     {
+                        //         target: 7,
+                        //         visible: false
+                        //     }
+                        // ],
+                        columns: [
+                            { title: 'ID' },
+                            { title: 'Nombre' },
+                            { title: 'Apellidos' },
+                            { title: 'Doctor' },
+                            { title: 'Descripción' },
+                            { title: 'Fecha' },
+                            { title: 'Hora' },
+                            {
+                                title: 'Acciones',
+                                orderable: false, // Para desactivar la ordenación en esta columna
+                                data: null, // Usaremos la columna "Acciones" solo para botones
+                                defaultContent: '<button class="btn btn-primary btn-sm" id="btnEditar" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" title="Editar Usuario"><i class="fas fa-edit"></i></button>' +
+                                    '<button class="btn btn-success btn-sm deactivate-button" id="btnDesactivar" data-toggle="modal" data-target="#deactivateModal" data-toggle="tooltip" title="Desactivar Usuario"> <i class="fas fa-ban"> </i></button> ' +
+                                    '<button class="btn btn-danger btn-sm password-button" id="btnPassword" data-toggle="modal" data-target="#passwordModal" data-toggle="tooltip" title="Cancelar Cita"> <i class="fa-solid fa-lock"></i></button> '
+
+                            }
+                        ],
+
+                        data: dataSet,
+                        buttons: {
+                            buttons: [
+                                { extend: 'copy', className: 'btn btn-sm' },
+                                {
+                                    extend: 'print', className: 'btn btn-sm',
+                                    messageTop: 'Tabla de Usuarios SmileSoft',
+                                }
+                            ]
+                        },
+                        select: true,
+                        destroy: true,
+                        language: {
+                            url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json',
+                        },
+
+                    });
+
+                    Swal.close();
+                    table.column(11).nodes().to$().find('#btnDesactivar').click(function () {
+                        // Maneja la acción del botón aqui
+                        let data = table.row($(this).parents('tr')).data();
+
+                        let userId = data[0]; // la primera columna contiene el ID del usuario
+
+                        // Realiza una solicitud AJAX para obtener los detalles del usuario
+
+                        $.ajax({
+                            url: sessionStorage.urlEP + '/api/Users/v1/GetUserDetails',
+                            type: 'GET',
+                            data: { 'uID': userId },
+                            contentType: "application/json",
+                            dataType: 'json',
+                            success: function (data) {
+                                console.log("Cargando Respuesta")
+                                console.log("Data:" + data.itemJson.uName);
+                                //console.log(data.itemJson[0].uName);
+
+                                if (data.itemJson === null) {
+                                    console.log("No se cargo correctamente");
+                                } else {
+                                    // Mostrar los datos en la consola o realizar otras acciones
+                                    let userData = data.itemJson; // Accede al primer elemento del arreglo
+                                    console.log("Usuario a Editar" + userData)
+                                    console.log("Genero del Usuario a Editar" + userData.gID);
+                                    // Llama a una funcion para actualizar el formulario con los datos recibidos
+                                    console.log("Actualizando Formulario")
+                                    actualizarFormulario(userData);
+                                }
+                            },
+                            error: function (error) {
+                                console.log('Error al obtener los detalles del usuario.');
+                            }
+                        });
+
+                        // Funcion para actualizar el formulario con los datos del usuario
+                        function actualizarFormulario(userData) {
+                            let StatusMapping = {
+                                1: 'Activo',
+                                0: 'Inactivo'
+                            };
+
+                            // Rellena los campos del formulario con los datos del usuario
+
+                            //Datos Personales
+                            $("#editNombree").val(userData.uName);
+                            $("#editApellidoe").val(userData.uLastName);
+                            $("#tipoDocumentoed").val(userData.dtID);
+                            $("#editDocumentoed").val(userData.uDocument);
+                            $("#tGeneroed").val(userData.gID)
+                            $("#fechaNacimientoed").val(userData.uBirthDate)
+
+
+                            //Datos de Contacto
+                            $("#editCorreoed").val(userData.uEmailAddress);
+                            $("#direccioned").val(userData.uAddress);
+                            $("#editCelulared").val(userData.uCellphone);
+                            //Datos de Cuenta
+                            $("#tipoUsuarioed").val(userData.utID);
+                            $("#usernameed").val(userData.uLoginName);
+
+                            //Datos de Estudios
+                            $("#TituloAcademicoed").val(userData.dDegree);
+                            $("#AcademicLeveled").val(userData.dAcademicLevel);
+                            $("#Specialityed").val(userData.spID);
+                            $("#ProfessionalLicenseed").val(userData.dProfessionalCard);
+                            $("#Universitynameed").val(userData.dUniversityName);
+                        }
+                        // Abre el modal de edición
+                        $("#editModal").modal("show");
+
+                        $("#saveChangesBtn").click(function () {
+                            //let status = $("#editStatus").val() == "Activo" ? true : false;
+                            // let DoctorModel = {
+                            //     //Datos de Estudios
+                            //     dAcademicLevel: $("#AcademicLevel").val(),
+                            //     dDegree: $("#TituloAcademico").val(),
+                            //     spID: $("#Speciality").val(),
+                            //     dProfessionalCard: $("#ProfessionalLicense").val(),
+                            //     dUniversityName: $("#Universityname").val(),
+                            // };
+
+                            //console.log("DoctorModel" + DoctorModel.dAcademicLevel);
+                            // Obtén los datos actualizados del formulario de edición
+                            // let birthDate = document.getElementById("fechaNacimientoe").value.trim();
+                            // let formattedBirthDate = formatToDatetime(birthDate);
+
+                            let updatedUserData = {
+                                // Recoge los datos actualizados desde los campos del formulario
+
+                                //Datos Personales
+                                uName: $("#editNombree").val(),
+                                uLastName: $("#editApellidoe").val(),
+                                dtID: parseInt($("#tipoDocumentoed").val()),
+                                uDocument: $("#editDocumentoed").val(),
+                                gID: parseInt($("#tGeneroed").val()),
+                                uBirthDate: $("#fechaNacimientoed").val(),
+
+                                //Datos de Contacto
+                                uEmailAddress: $("#editCorreoed").val(),
+                                uCellphone: $("#editCelulared").val(),
+                                uAddress: $("#direccioned").val(),
+
+                                //Datos de Cuenta
+                                uLoginName: $("#usernameed").val(),
+                                uID: userId,
+                                utID: parseInt($("#tipoUsuarioed").val()),
+                                uStatus: true,
+                                oID: 1,
+                                dAcademicLevel: null,
+                                dDegree: null,
+                                spID: null,
+                                dProfessionalCard: null,
+                                dUniversityName: null
+
+                            }
+                            console.log("Datos del Usuario ");
+                            if (updatedUserData.utID == 2) {
+                                updatedUserData.dAcademicLevel = $("#AcademicLeveled").val();
+                                updatedUserData.dDegree = $("#TituloAcademicoed").val();
+                                updatedUserData.spID = $("#Specialityed").val();
+                                updatedUserData.dProfessionalCard = $("#ProfessionalLicenseed").val();
+                                updatedUserData.dUniversityName = $("#Universitynameed").val();
+                            }
+                            console.log(updatedUserData);
+
+
+                            console.log("Usuario a Editar Genero:" + updatedUserData.gID)
+                            // Realiza una solicitud AJAX para guardar los cambios en el servidor
+                            $.ajax({
+                                url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Reemplaza con la URL correcta
+                                type: 'POST',
+                                data: JSON.stringify(updatedUserData), // Convierte updatedUserData a JSON
+                                contentType: "application/json", // Especifica el tipo de contenido
+                                dataType: "json",
+                                success: function (response) {
+                                    // Cierra el modal de edición
+                                    $("#editModal").modal("hide");
+                                    verusers(updatedUserData.utID);
+                                    Swal.fire({
+                                        title: 'Usuario Actualizado',
+                                        text: 'El usuario ' + updatedUserData.uLoginName + ' se actualizó correctamente',
+                                        icon: 'success',
+                                        confirmButtonText: 'Aceptar'
+                                    });
+                                    // Puedes realizar otras acciones después de guardar los cambios si es necesario
+                                    // Por ejemplo, actualizar la tabla con los datos modificados
+                                    // o mostrar un mensaje de éxito
+                                },
+                                error: function () {
+                                    $("#editModal").modal("hide");
+                                    Swal.fire({
+                                        title: 'Error',
+                                        text: 'Error al guardar los cambios',
+                                        icon: 'error',
+                                        confirmButtonText: 'Aceptar'
+                                    });
+                                }
+                            });
+                        });
+                    });
+
+
+                }
+            });
+        };
+        function mostrarCargando() {
+            Swal.fire({
+                title: 'Cargando',
+                text: 'Por favor, espere un momento...',
+                showCancelButton: false,
+                showConfirmButton: false,
+                allowOutsideClick: false,
+                onBeforeOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+        }
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+
+        });
+    </script>
 }

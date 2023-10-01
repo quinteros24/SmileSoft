@@ -117,8 +117,8 @@ namespace Repository.Queries
             {
                 query += $"    IF NOT EXISTS(SELECT TOP(1)* FROM Doctors WHERE [uID] = (SELECT [uID] FROM @aux))\n" +
                          $"    BEGIN\n" +
-                         $"        INSERT INTO Doctors([uID],utID,dAcademicLevel,dDegree,dUniversityName,dSpeciality,dProfessionalCard)\n" +
-                         $"        VALUES((SELECT [uID] FROM @aux),2,'{Item.dAcademicLevel}','{Item.dDegree}','{Item.dUniversityName}','{Item.dSpeciality}','{Item.dProfessionalCard}')\n" +
+                         $"        INSERT INTO Doctors([uID],utID,dAcademicLevel,dDegree,dUniversityName,spID,dProfessionalCard)\n" +
+                         $"        VALUES((SELECT [uID] FROM @aux),2,'{Item.dAcademicLevel}','{Item.dDegree}','{Item.dUniversityName}',{Item.spID},'{Item.dProfessionalCard}')\n" +
                          $"    END\n" +
                          $"    ELSE\n" +
                          $"    BEGIN\n" +
@@ -127,7 +127,7 @@ namespace Repository.Queries
                          $"            dAcademicLevel = '{Item.dAcademicLevel}'\n" +
                          $"            ,dDegree = '{Item.dDegree}'\n" +
                          $"            ,dUniversityName = '{Item.dUniversityName}'\n" +
-                         $"            ,dSpeciality = '{Item.dSpeciality}'\n" +
+                         $"            ,spID = {Item.spID}\n" +
                          $"            ,dProfessionalCard = '{Item.dProfessionalCard}'\n" +
                          $"        WHERE [uID] = (SELECT [uID] FROM @aux)\n" +
                          $"    END\n";

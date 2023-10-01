@@ -107,22 +107,24 @@
                                 <input type="date" class="form-control" id="fecha" name="fecha" value="YYYY-MM-DD" placeholder="YYYY-MM-DD">
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="mb-1">
-                                <label for="cHora" class="form-label">Hora:</label>
-                                <input type="time" class="form-control" id="cHora" name="Hora" placeholder="HH:mm:ss" pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$">
-                            </div>
+                        <div class="col-md-3 mb-1">
+
+                            <label for="cHora" class="form-label">Hora:</label>
+                            <input type="time" class="form-control" id="cHora" name="Hora"
+                                   min="08:00" max="20:00" step="3600" required>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-1">
                                 <!-- Selector Doctores Disponibles -->
                                 <div class="form-group">
                                     <label for="selEspecialidad" class="mb-2">Especialidad</label>
-                                    <select class="form-control" id="selEspecialidad" name="tipoGenero" required>
-                                        <option value="0">Consulta General</option>
-                                        <option value="1">Especialidad 1</option>
-                                        <option value="2">Especialidad 2</option>
-
+                                    <select class="form-control" id="selEspecialidad" name="RequesanAppointment" @* asp-items="@ViewBag.Specialities" *@ required>
+                                        <option value="1">Odontología general</option>
+                                        <option value="2">Endodoncia</option>
+                                        <option value="3">Cirugía oral</option>
+                                        <option value="4">Ortodoncia</option>
+                                        <option value="5">Odontopediatría</option>
+                                        <option value="6">Periodoncia</option>
                                     </select>
                                 </div>
                                 <label for="cDoctor" class="form-label" style="display: none">Especialidad</label>
@@ -154,6 +156,19 @@
 
 @section Scripts{
     <script>
+
+        function showTimePicker() {
+            document.getElementById('timePicker').style.display = 'block';
+        }
+
+        function setSelectedTime() {
+            const selectedHour = document.getElementById('hour').value;
+            document.getElementById('cHora').value = selectedHour + ':00';
+            document.getElementById('timePicker').style.display = 'none';
+        }
+    </script>
+
+    <script>
         // Función para calcular el progreso y actualizar la barra de progreso
         function calcularProgreso() {
             const form = document.getElementById("cita-form");
@@ -173,10 +188,10 @@
                 submitBtn.setAttribute("disabled", "disabled");
             }
         }
-        const fechaNacimientoInput = document.getElementById('fechaNacimientoe');
+        const fechaNacimientoInputA = document.getElementById('fechaNacimientoe');
 
         // Agrega un oyente de eventos al cambio de valor en el campo
-        fechaNacimientoInput.addEventListener('change', function () {
+        fechaNacimientoInputA.addEventListener('change', function () {
             // Obtén la fecha de nacimiento ingresada por el usuario
             const fechaNacimiento = new Date(this.value);
 
@@ -210,16 +225,6 @@
 
 
     <script>
-
-
-        // function formatToDatetime(dateString) {
-        //     const date = new Date(dateString);
-        //     const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Sumar 1 ya que los meses comienzan en 0
-        //     const day = date.getDate().toString().padStart(2, '0');
-        //     const year = date.getFullYear();
-        //     return `${year}-${month}-${day}`;
-        // }
-
         function ageValidation(birthDate) {
             // Obtener la fecha actual
             let fechaActual = new Date();
@@ -324,7 +329,7 @@
                     aID: 0,
                     aDate: date,
                     aTime: time,
-                    dID: 11,
+                    dID: 20,
                     aDescription: message
 
                 };
@@ -361,15 +366,7 @@
                                     window.location.href = '@Url.Action("Login", "Account")';
                                 }
                             });
-                        } else {
-                            // Manejar otros códigos de error si es necesario
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Se presento un error al guardar la información',
-                                confirmButtonColor: '#008dc9'
-                            })
-                        }
+                        } 
                     },
                     error: function (error) {
                         // Manejar errores de la solicitud AJAX
@@ -386,5 +383,5 @@
         }
     </script>
 
-
+\
 }

@@ -59,7 +59,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="fechaNacimientoed">Fecha de Nacimiento:</label>
-                                <input type="date" class="form-control" id="fechaNacimientoed" name="fechaNacimiento" value="YYYY-MM-DD" placeholder="YYYY-MM-DD"  required>
+                                <input type="date" class="form-control" id="fechaNacimientoed" name="fechaNacimiento" value="YYYY-MM-DD" placeholder="YYYY-MM-DD" required>
                             </div>
                         </div>
                     </div>
@@ -131,8 +131,8 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="AcademicLeveled">
                                         <strong>Nivel Académico </strong>
-                                        </label>
-                                        <input class="form-control" type="text" id="AcademicLeveled" placeholder="" name="TituloAcademico">
+                                    </label>
+                                    <input class="form-control" type="text" id="AcademicLeveled" placeholder="" name="TituloAcademico">
                                 </div>
                             </div>
                             <div class="row">
@@ -147,13 +147,23 @@
                                         <label class="form-label" for="Specialityed">
                                             <strong>Especialidad </strong>
                                         </label>
-                                        <input class="form-control" type="text" id="Specialityed" placeholder="" name="Speciality">
+                                        <select class="form-control" id="Specialityed" placeholder="" name="EditSpecialities">
+                                            <option value="1">Odontología general</option>
+                                            <option value="2">Endodoncia</option>
+                                            <option value="3">Cirugía oral</option>
+                                            <option value="4">Ortodoncia</option>
+                                            <option value="5">Odontopediatría</option>
+                                            <option value="6">Periodoncia</option>
+                                        </select>
+                                        @* <select class="form-control" type="text" id="Specialityed" placeholder="" name="EditUser" asp-items="@ViewBag.Specialities">
+                                        </select> *@
                                     </div>
                                 </div>
                             </div> <div class="row">
                                 <div class="col-md-6">
-                                    <div class="mb-3"><label class="form-label" for="Universitynameed">
-                                        <strong>Universidad </strong>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="Universitynameed">
+                                            <strong>Universidad </strong>
                                         </label>
                                         <input class="form-control" type="text" id="Universitynameed" placeholder="" name="University">
                                     </div>
@@ -171,7 +181,7 @@
 
                         </div>
                     </div>
-                    
+
                 </form>
             </div>
             <div class="modal-footer">
