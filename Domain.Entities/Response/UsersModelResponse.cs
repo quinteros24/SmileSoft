@@ -22,7 +22,7 @@ namespace Domain.Entities.Response
         public int? gID { get; set; }
 
         //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateOnly? uBirthDate { get; set; }
+        public DateTime? uBirthDate { get; set; }
 
         //public ViewDoctorsModelResponse? Doctors { get; set; }
     }
