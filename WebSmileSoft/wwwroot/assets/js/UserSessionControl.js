@@ -1,6 +1,6 @@
 var inactivityTimeout;
 var logoutUrl = document.getElementById("logout-link").getAttribute("data-logout-url");
-console.log(logoutUrl);
+//console.log(logoutUrl);
 // Luego, puedes redirigir al usuario utilizando esta URL
 //window.location.href = logoutUrl;
 // Función para restablecer el tiempo de inactividad

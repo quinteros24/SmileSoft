@@ -4,8 +4,8 @@
 $(document).ready(function () {
     verusers(3);
     $("#loadingScreen").show();
-    
-   
+
+
 });
 
 
@@ -109,11 +109,11 @@ function verusers(utID) {
                         data: null, // Usaremos la columna "Acciones" solo para botones
                         defaultContent: '<button class="btn btn-primary btn-sm" id="btnEditar" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" title="Editar Usuario"><i class="fas fa-edit"></i></button>' +
                             '<button class="btn btn-success btn-sm deactivate-button" id="btnDesactivar" data-toggle="modal" data-target="#deactivateModal" data-toggle="tooltip" title="Desactivar Usuario" > <i class="fas fa-ban"> </i></button > ' +
-                            '<button class="btn btn-danger btn-sm password-button" id="btnPassword" data-toggle="modal" data-target="#passwordModal" data-toggle="tooltip" title="Cambiar Contrasena" > <i class="fa-solid fa-lock"></i></button > '
+                            '<button class="btn btn-danger btn-sm password-button" id="btnPassword" data-toggle="modal" data-target="#passwordModal" data-toggle="tooltip" title="Cambiar contraseña" > <i class="fa-solid fa-lock"></i></button > '
 
                     }
                 ],
-                    
+
                 data: dataSet,
                 dom: 'Bfrtip',
                 "dom": "<'dt--top-section'<'row'<'col-sm-12 col-md-6 d-flex justify-content-md-start justify-content-center'B><'col-sm-12 col-md-6 d-flex justify-content-md-end justify-content-center mt-md-0 mt-3'f>>>" +
@@ -142,8 +142,8 @@ function verusers(utID) {
                 },
 
             });
-            
-            
+
+
             Swal.close();
             table.column(11).nodes().to$().find('#btnEditar').click(function () {
                 // Maneja la acción del botón aqui
@@ -248,7 +248,7 @@ function verusers(utID) {
                         //Datos de Cuenta
                         uLoginName: $("#username").val(),
                         uID: userId,
-                        utID: $("#tipoUsuarioe").val(),
+                        utID: parseInt($("#tipoUsuarioe").val()),
                         uStatus: status,
                         DoctorModel: null
                     }
@@ -417,13 +417,13 @@ function verusers(utID) {
                 //});
 
             });
-            //Cambiar Contrasena Estado --> Funcionando Bien
+            //Cambiar contraseña Estado --> Funcionando Bien
             table.column(11).nodes().to$().find('#btnPassword').click(function () {
                 // Maneja la acción del botón aqui
                 let data = table.row($(this).parents('tr')).data();
 
                 let userId = data[0]; // Supongamos que la primera columna contiene el ID del usuario
-                console.log("Contrasena " + userId)
+                console.log("contraseña " + userId)
                 let userNameEdit = data[3] + ' ' + data[4];
                 let userRol = data[1];
                 let rolesMappingI = {
@@ -449,7 +449,7 @@ function verusers(utID) {
                     let password = $("#newPassword").val();
                     if (!CheckPass(password)) {
                         Swal.fire({
-                            text: 'La contrasena no cumple con los requisitos.',
+                            text: 'La contraseña no cumple con los requisitos.',
                             confirmButtonColor: '#008dc9'
                         });
                     } else {
@@ -472,7 +472,7 @@ function verusers(utID) {
                                     $("#editPassword").modal("hide");
                                     //window.location.href = '@Url.Action("Index", "")';
                                     Swal.fire({
-                                        text: 'Contrasena actualizada con exito',
+                                        text: 'contraseña actualizada con exito',
                                         confirmButtonColor: '#008dc9'
                                     });
                                     verusers(uRol);
@@ -554,7 +554,14 @@ $("#numeroDocumento").on("input", function () {
 // Controlador de clic para el botón "Agregar"
 $("#add-user").click(function () {
     // Obtiene los datos del formulario
-
+    let DoctorModel = {
+        //Datos de Estudios
+        dAcademicLevel: $("#AcademicLevel").val(),
+        dDegree: $("#TituloAcademico").val(),
+        dSpeciality: $("#Speciality").val(),
+        dProfessionalCard: $("#ProfessionalLicense").val(),
+        dUniversityName: $("#Universityname").val(),
+    };
     var userData = {
         utID: parseInt($("#tipoUsuario").val()),
         uName: $("#nombres").val(),
@@ -565,22 +572,30 @@ $("#add-user").click(function () {
         uLoginName: $("#usuario").val(),
         uPassword: $("#password").val(),
         dtID: parseInt($("#tipoDocumento").val()),
-        uDocument: $("#numeroDocumento").val()
+        uDocument: $("#numeroDocumento").val(),
+        oID: 0,
+        gID: parseInt($("#tipoGenero").val()),
+        uBirthDate: $("#fechaNacimiento").val(),
+        uStatus: true,
+        DoctorModel: null
+
         //genero: $("input[name='genero']:checked").val(), // Obtiene el valor del radio button seleccionado
         //fechaNacimiento: $("#fechaNacimiento").val(),
-
     };
-    console.log("Datos del Usuario " + userData);
-    //Validar campos obligatorios
-
-    if (!userData.nombres || !userData.apellidos || !userData.tipoDocumento || !userData.numeroDocumento || !userData.usuario || !userData.password || !userData.tipoUsuario) {
-        mostrarMensajeError('Por favor, complete todos los campos obligatorios.');
-        return;
+    if (userData.utID == 2) {
+        userData.DoctorModel = DoctorModel;
     }
 
+    //Validar campos obligatorios
+
+    //if (!userData.nombres || !userData.apellidos || !userData.tipoDocumento || !userData.numeroDocumento || !userData.usuario || !userData.password || !userData.tipoUsuario) {
+    //    mostrarMensajeError('Por favor, complete todos los campos obligatorios.');
+    //    return;
+    //}
 
 
-    // Validación de la contrasena
+
+    // Validación de la contraseña
     let password = userData.uPassword;
     let passwordError = CheckPass(password);
 
@@ -590,22 +605,22 @@ $("#add-user").click(function () {
     }
     function CheckPass(password) {
         if (password.length < 8) {
-            return "La contrasena debe tener al menos 8 caracteres.";
+            return "La contraseña debe tener al menos 8 caracteres.";
         }
 
         if (!/[A-Z]/.test(password)) {
-            return "La contrasena debe contener al menos una letra mayuscula.";
+            return "La contraseña debe contener al menos una letra mayuscula.";
         }
 
         if (!/[a-z]/.test(password)) {
-            return "La contrasena debe contener al menos una letra minuscula.";
+            return "La contraseña debe contener al menos una letra minuscula.";
         }
 
         if (!/\d/.test(password)) {
-            return "La contrasena debe contener al menos un numero.";
+            return "La contraseña debe contener al menos un numero.";
         }
 
-        return null; // Si la contrasena cumple con los requisitos, retorna null
+        return null; // Si la contraseña cumple con los requisitos, retorna null
     }
 
     function mostrarMensajeError(mensaje) {
@@ -648,6 +663,35 @@ $("#add-user").click(function () {
         }
     });
 });
+
+
+// Obtén una referencia al campo de fecha de nacimiento
+const fechaNacimientoInput = document.getElementById('fechaNacimiento');
+
+// Agrega un oyente de eventos al cambio de valor en el campo
+fechaNacimientoInput.addEventListener('change', function () {
+    // Obtén la fecha de nacimiento ingresada por el usuario
+    const fechaNacimiento = new Date(this.value);
+
+    // Calcula la fecha actual
+    const fechaActual = new Date();
+
+    // Calcula la edad en años
+    const edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
+
+    // Verifica si la edad es menor de 18 años
+    if (edad < 18) {
+        //alert('Debes ser mayor de 18 años para registrarte.');
+        Swal.fire({
+            title: 'Error',
+            text: 'Debes ser mayor de 18 años para registrarte.',
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+        });
+        // Puedes agregar aquí más acciones si la validación falla, como borrar la fecha o mostrar un mensaje de error.
+    }
+});
+
 
 // function mostrarCarga() {
 //     // Ocultar el contenido suavemente

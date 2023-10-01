@@ -32,10 +32,11 @@ $(document).ready(function () {
         dataType: 'json',
         success: function (data) {
             console.log("Cargando Respuesta")
-            console.log(data);
+            console.log(data.itemJson);
 
             if (data.itemJson === null) {
                 console.log("No se cargo correctamente");
+                
             } else {
                 // Mostrar los datos en la consola o realizar otras acciones
                 let userData = data.itemJson[0]; // Accede al primer elemento del arreglo
@@ -59,6 +60,7 @@ $(document).ready(function () {
 
         // Rellena los campos del formulario con los datos del usuario
         $("#username").val(userData.uLoginName);
+        //console.log("Nombre de Usuario" + userData.uLoginName);
         $("#user_names").val(userData.uName);
         $("#user_lastnames").val(userData.uLastName);
         $("#editCorreo").val(userData.uEmailAddress);
@@ -251,15 +253,15 @@ $("#desactivarCuentabtn").click(function () {
     let userIdd = sessionStorage.getItem('userID');
     let userNamed = sessionStorage.getItem('userFName') + " " + sessionStorage.getItem('userLName');
     // Comprueba si se tiene un userID valido
-
+    let logoutUrl = document.getElementById("logout-link").getAttribute("data-logout-url");
     let uID = userIdd;
     let uStatus = 0;
      //Ajustar para enviar si esta inactivo activar si esta activo desactivar
     // Muestra un mensaje de confirmacion antes de desactivar el usuario
 
     Swal.fire({
-        title: '¿Estas seguro de Desactivar? a:',
-        text: '¡ ' + userNamed + ' !',
+        title: '¿Estas seguro de Desactivar tu Cuenta?',
+        text: '¡ Deberas contactar un Administrador para reactivar tu cuenta !',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -285,6 +287,8 @@ $("#desactivarCuentabtn").click(function () {
                         icon: 'success',
                         confirmButtonText: 'Aceptar'
                     });
+                    sessionStorage.clear();
+                    window.location.href = logoutUrl;
 
 
                 },

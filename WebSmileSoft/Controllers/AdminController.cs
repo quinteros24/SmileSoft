@@ -1,10 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Mvc;
 using WebSmileSoft.Interfaces;
 using WebSmileSoft.Models; // Asegúrate de importar el espacio de nombres de tus modelos de usuario y roles
 
@@ -55,10 +49,10 @@ namespace WebSmileSoft.Controllers
 
             return PartialView();
         }
-        public IActionResult EditUser()
+        public IActionResult EditUser(UsuariosModel Modelo)
         {
 
-            return PartialView();
+            return PartialView(Modelo);
         }
 
 

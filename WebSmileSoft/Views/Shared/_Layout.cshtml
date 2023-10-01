@@ -120,13 +120,14 @@
     <script>
 
         document.addEventListener('DOMContentLoaded', function () {
+            if (document.getElementById('calendar') != null) { 
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth'
             });
             calendar.getOption('locale');
             calendar.render();
-
+            }
         });
 
     </script>
