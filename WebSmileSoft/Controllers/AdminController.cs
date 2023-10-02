@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using WebSmileSoft.Interfaces;
 using WebSmileSoft.Models; // Asegúrate de importar el espacio de nombres de tus modelos de usuario y roles
 
@@ -24,6 +25,13 @@ namespace WebSmileSoft.Controllers
             ViewBag.urlEndPoint = _settings.urlEndPoint;
 
             // Pasa los datos a la vista
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ViewTableUsers([FromBody] List<SelectListItem> specialities)
+        {
+            ViewBag.Specialities = specialities;
             return View();
         }
 

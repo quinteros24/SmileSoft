@@ -53,14 +53,16 @@
                             <select class="form-control" id="id_type" name="tipoDocumento" disabled>
                                 <option value="1">Cedula de Ciudadania (CC)</option>
                                 <option value="2">Cedula de Extranjeria (CE)</option>
-                               @*  <option value="3">Tarjeta de Identidad (TI)</option> *@
+                                @*  <option value="3">Tarjeta de Identidad (TI)</option> *@
                             </select>
 
                         </div>
                     </div>
                     <div class="col">
-                        <div class="mb-3"><label class="form-label" for="id_number">
-                            <strong>Identificación</strong></label>
+                        <div class="mb-3">
+                            <label class="form-label" for="id_number">
+                                <strong>Identificación</strong>
+                            </label>
                             <input class="form-control" type="text" id="id_number" placeholder="" name="id_number" disabled>
                         </div>
                     </div>
@@ -81,7 +83,7 @@
                         <div class="input-group" id="genderOptions">
                             <label class="input-group-text" for="genderSelect">Género</label>
                             <select class="form-select" id="genderSelect">
-                                <option selected >Seleccionar</option>
+                                <option selected>Seleccionar</option>
                                 <option value="1">Masculino</option>
                                 <option value="2">Femenino</option>
                                 <option value="0">Prefiero no decir</option>
@@ -121,12 +123,44 @@
     @*  if (Session.Storage.getItem("rol") == "Doctor")
     { *@
     <div id="DatosEstudios">
-   @*  <partial name="Especialidades" /> *@
-    
+        @*  <partial name="Especialidades" /> *@
+
     </div>
 
     @*  } *@
 </div>
+
+@section Scripts {
+    @* <script>
+        $(document).ready(function () {
+
+            $.ajax({
+                type: 'GET',
+                url: '@ViewBag.urlEndPoint' + '/api/Generics/v1/GetSpecialities', // Ruta para crear o actualizar usuarios
+                contentType: 'application/json',
+                success: function (response) {
+                    redirectView(response, "#DatosEstudios");
+                });
+        });
+
+        function redirectView(item, element) {
+            $.ajax({
+                type: 'POST',
+                url: '/Profile/Especialidades',
+                data: item,
+                success: function (response) {
+                    $(element).html(response);
+                }
+            });
+        }
+
+
+    </script> *@
+
+    @* @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    } *@
+}
 
 
 

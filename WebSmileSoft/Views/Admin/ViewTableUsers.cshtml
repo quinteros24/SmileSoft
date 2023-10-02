@@ -281,7 +281,7 @@
                             //Datos de Estudios
                             $("#TituloAcademicoed").val(userData.dDegree);
                             $("#AcademicLeveled").val(userData.dAcademicLevel);
-                            $("#Specialityed").val(userData.dSpeciality);
+                            $("#Specialityed").val(userData.spID);
                             $("#ProfessionalLicenseed").val(userData.dProfessionalCard);
                             $("#Universitynameed").val(userData.dUniversityName);
                         }
@@ -294,7 +294,7 @@
                             //     //Datos de Estudios
                             //     dAcademicLevel: $("#AcademicLevel").val(),
                             //     dDegree: $("#TituloAcademico").val(),
-                            //     dSpeciality: $("#Speciality").val(),
+                            //     spID: $("#Speciality").val(),
                             //     dProfessionalCard: $("#ProfessionalLicense").val(),
                             //     dUniversityName: $("#Universityname").val(),
                             // };
@@ -328,16 +328,16 @@
                                 oID: 1,
                                 dAcademicLevel: null,
                                 dDegree: null,
-                                dSpeciality: null,
+                                spID: null,
                                 dProfessionalCard: null,
                                 dUniversityName: null
 
                             }
-                            console.log("Datos del Usuario ");
+                           
                             if (updatedUserData.utID == 2) {
                                 updatedUserData.dAcademicLevel = $("#AcademicLeveled").val();
                                 updatedUserData.dDegree = $("#TituloAcademicoed").val();
-                                updatedUserData.dSpeciality = $("#Specialityed").val();
+                                updatedUserData.spID = $("#Specialityed").val();
                                 updatedUserData.dProfessionalCard = $("#ProfessionalLicenseed").val();
                                 updatedUserData.dUniversityName = $("#Universitynameed").val();
                             }
@@ -650,7 +650,7 @@
             //     //Datos de Estudios
             //     dAcademicLevel: $("#AcademicLevela").val(),
             //     dDegree: $("#TituloAcademicoa").val(),
-            //     dSpeciality: $("#Specialitya").val(),
+            //     spID: $("#Specialitya").val(),
             //     dProfessionalCard: $("#ProfessionalLicensea").val(),
             //     dUniversityName: $("#Universitynamea").val(),
             // };
@@ -680,14 +680,14 @@
                 oID: 1,
                 dAcademicLevel: null,
                 dDegree: null,
-                dSpeciality: null,
+                spID: null,
                 dProfessionalCard: null,
                 dUniversityName: null
             };
             if (userData.utID == 2) {
                 userData.dAcademicLevel = $("#AcademicLevela").val();
                 userData.dDegree = $("#TituloAcademicoa").val();
-                userData.dSpeciality = $("#Specialitya").val();
+                userData.spID = $("#Specialitya").val();
                 userData.dProfessionalCard = $("#ProfessionalLicensea").val();
                 userData.dUniversityName = $("#Universitynamea").val();
             }
@@ -838,6 +838,36 @@
         });
 
     </script>
+
+    <script>
+    //     $(document).ready(function () {
+    //         console.log("Cargando Especialidades");
+    //         $.ajax({
+    //             type: 'GET',
+    //             url: '@ViewBag.urlEndPoint' + '/api/Generics/v1/GetSpecialities', // Ruta para crear o actualizar usuarios
+    //             // contentType: 'application/json',
+    //             success: function (response) {
+    //                 console.log(JSON.stringify(response));
+    //                 //console.log(JSON.parse(response));
+    //                 redirectView(JSON.stringify(response), "#Specialityed");
+    //             }
+    //         });
+    //     });
+    //     console.log('Enviando a la Vista');
+    //     function redirectView(item, element) {
+    //         $.ajax({
+    //             type: 'POST',
+    //             url: '/Admin/ViewTableUsers',
+    //             data: item,
+    //             contentType: 'application/json',
+    //             success: function (response) {
+    //                 $(element).html(response);
+    //             }
+    //         });
+    //     }
+    // </script>
+
+
     @*  <script src="~/assets/js/control/tablesutilities.js" charset="utf-8"></script> *@
 
     }

@@ -197,3 +197,6 @@ TestResults/
 /WebSmileSoft/obj/Release/net6.0/WebSmileSoft.dll
 /WebSmileSoft/obj/Release/net6.0/WebSmileSoft.pdb
 /EpSmileSoft/obj/Release/net6.0/EpSmileSoft.csproj.AssemblyReference.cache
+/Repository/obj/Debug/net6.0/ref/Repository.dll
+/Repository/obj/Debug/net6.0/refint/Repository.dll
+/EpSmileSoft/obj/Debug/net6.0/refint/EpSmileSoft.dll
