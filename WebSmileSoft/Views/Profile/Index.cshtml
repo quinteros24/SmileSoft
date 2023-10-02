@@ -227,17 +227,20 @@
 
 
         $(document).ready(function () {
-            console.log("Cargando Especialidades");
-            $.ajax({
-                type: 'GET',
-                url: '@ViewBag.urlEndPoint' + '/api/Generics/v1/GetSpecialities', // Ruta para crear o actualizar usuarios
-                // contentType: 'application/json',
-                success: function (response) {
-                    console.log(JSON.stringify(response));
-                    //console.log(JSON.parse(response));
-                    redirectView(JSON.stringify(response), "#DatosEstudios");
-                }
-            });
+            let uRol = sessionStorage.getItem('userRole');
+            if (uRol == 2) {
+                console.log("Cargando Especialidades");
+                $.ajax({
+                    type: 'GET',
+                    url: '@ViewBag.urlEndPoint' + '/api/Generics/v1/GetSpecialities', // Ruta para crear o actualizar usuarios
+                    // contentType: 'application/json',
+                    success: function (response) {
+                        console.log(JSON.stringify(response));
+                        //console.log(JSON.parse(response));
+                        redirectView(JSON.stringify(response), "#DatosEstudios");
+                    }
+                });
+            }
         });
 
         function redirectView(item, element) {

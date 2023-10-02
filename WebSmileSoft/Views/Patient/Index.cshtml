@@ -1,20 +1,88 @@
-﻿
-@{
-    ViewData["Title"] = "View";
+﻿@{
+    ViewData["Title"] = "Inicio";
 }
+<div class="container">
+    <div class="welcome-container shadow mb-4">
+        <h1>Bienvenido a SmileSoft</h1>
+        <span class="d-none d-lg-inline me-2 small text-primary" style="font-weight: bold;" id="SaludoUsuario">
+        </span>
 
-<div class="welcome-container shadow">
-    <h1>Bienvenido a SmileSoft ¡Paciente!</h1>
-    <span class="d-none d-lg-inline me-2 small text-primary" style="font-weight: bold;" id="SaludoUsuario">
-        Usuario!
-    </span>
+    </div>
+    @* <div class="card">
+    <div class="card-header">
+    Próximas Citas
+    </div>
+    <div class="card-body">
+    <table class="table" id="citasUsuario">
+    </table>
+    </div>
+    </div> *@
+    <!-- Sección de selección de servicios -->
+    <div class="card">
+        <div class="card-header">
+            <div class="card-header">
+                <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                    <h3 class="mb-0 text-primary">Servicios</h3>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-6 col-xl-3 mb-4">
+                    <a class="nav-link" asp-controller="Patient" asp-action="GestiondeCitas" class="text-decoration-none">
+                        <div class="card shadow border-start-primary py-2 card-hover bg-primary">
+                            <div class="card-body">
+                                <div class="row align-items-center no-gutters">
+                                    <div class="col me-2">
+                                        <div class="text-uppercase text-white fw-bold mb-1"><span>Gestionar Citas</span></div>
+                                        <div class="fw-bold h5 mb-0"><span class="align-items-center"></span></div><!-- Cargar datos de la base de datos -->
+                                    </div>
+                                    <div class="col-auto"><i class="far fa-calendar-check fa-2x text-white"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6 col-xl-3 mb-4" style="display:none;">
+                    <a class="nav-link" asp-controller="Patient" asp-action="HistoriaClinicaPacientes" class="text-decoration-none">
+                        <div class="card shadow border-start-success py-2 card-hover bg-primary">
+                            <div class="card-body">
+                                <div class="row align-items-center no-gutters">
+                                    <div class="col me-2">
+                                        <div class="text-uppercase text-white fw-bold text mb-1"><span>Historias Clinicas</span></div>
+                                        <div class="fw-bold h5 mb-0"><span></span></div><!-- Cargar datos de la base de datos -->
+                                    </div>
+                                    <div class="col-auto"><i class="fas fa-file-medical fa-2x text-white"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
-
 @section Scripts {
-     $(document).ready(function () {
-            let userRole = sessionStorage.getItem('userRole');
-            mostrarElementosPorRol(userRole);
+    <script>
+        $(document).ready(function () {
+            let valDireccion = sessionStorage.getItem("userAddress");
+            console.log("Funcion de bienvenida");
+            console.log(valDireccion);
+            if (valDireccion !== null && valDireccion.trim() !== "") {
+                console.log("El Usuario tiene actualizados los datos");
+            } else {
+                Swal.fire({
+                    title: '¡Bienvenido!',
+                    text: 'Por favor, Actualice sus Datos',
+                    icon: 'info',
+                    confirmButtonText: 'Aceptar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '@Url.Action("Index", "Profile")';
+                    }
+                })
+            }
         });
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    </script>
 }
