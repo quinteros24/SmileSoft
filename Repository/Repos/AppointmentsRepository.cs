@@ -14,9 +14,9 @@ namespace Repository
             _configuration = configuration;
         }
 
-        public async Task<GenericResponseModel> GetAppointmentsList(string? filter = "")
+        public async Task<GenericResponseModel> GetAppointmentsList(int? uID = 0, int? dID = 0, string? filter = "")
         {
-            string query = AppointmentsQueries.GetAppointmentsList(filter);
+            string query = AppointmentsQueries.GetAppointmentsList(uID, dID, filter);
             Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
             ResponseDB ItemResponseDB = await dl.Consultds(query);
             List<AppointmentesModel> ListAppointments = new();
@@ -65,6 +65,22 @@ namespace Repository
         public async Task<GenericResponseModel> SetAppointment(AppointmentesModel Item)
         {
             string Query = AppointmentsQueries.SetAppointment(Item);
+            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
+            ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(Query);
+            GenericResponseModel? genericResponseModel = new();
+            if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
+            {
+                DataTable dt = ItemResponseDB.DtObject;
+                genericResponseModel.CodeStatus = dt.Rows[0]["outputCodeError"].ToString();
+                genericResponseModel.MessageStatus = dt.Rows[0]["outputMessageError"].ToString();
+                genericResponseModel.Status = genericResponseModel.CodeStatus == "0";
+            }
+            return genericResponseModel;
+        }
+
+        public async Task<GenericResponseModel> UpdateAppointmentStatus(int aID, int asID)
+        {
+            string Query = AppointmentsQueries.UpdateAppointmentStatus(aID, asID);
             Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
             ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(Query);
             GenericResponseModel? genericResponseModel = new();
