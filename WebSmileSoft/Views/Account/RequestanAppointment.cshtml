@@ -4,21 +4,22 @@
 
 <section class="container flex-grow-1">
     <div class="d-flex justify-content-center align-items-center vh-100">
-        <div class="shadow " style="width:90rem">
+        <div class="shadow " style="width:70rem">
             @*  <div class="d-flex flex-column align-items-center mb-2 mt-2">
             <img src="~/assets/img/logo-2.png" class="img-fluid" width="200" alt="SmileSoftLogo">
             </div> *@
             <div class="container mt-4">
                 <div class="row">
-                    <div class="col-md-9 py-4">
+                    <div class="col-md-9 py-10">
                         <h1 class="mb-2">Solicitud de Cita Odontológica</h1>
                     </div>
                     <div class="col-md-3 d-flex justify-content-end align-content-lg-end">
-                        <img src="~/assets/img/logo-2.png" class="img-fluid img-hover" width="200" alt="SmileSoftLogo">
+                        <img src="~/assets/img/logo-2.png" class="img-fluid img-hover w-auto" alt="SmileSoftLogo">
                     </div>
                 </div>
                 @* <h1 class="mb-2">Solicitud de Cita Odontológica</h1> *@
                 <form id="cita-form">
+                    <!-- Datos Personales -->
                     <div class="card-header py-1">
                         <p class="text-primary m-0 fw-bold">Datos Personales</p>
                     </div>
@@ -44,7 +45,6 @@
                                     <select class="form-control" id="ctipoDocumento" name="tipoDocumento" required>
                                         <option value="1">Cedula de Ciudadania (CC)</option>
                                         <option value="2">Cedula de Extranjeria (CE)</option>
-                                        @*  <option value="3">Tarjeta de Identidad (TI)</option> *@
                                     </select>
                                 </div>
                             </div>
@@ -63,18 +63,20 @@
                             <div class="form-group">
                                 <label for="tipoGeneroe">* Genero:</label>
                                 <select class="form-control" id="tipoGeneroe" name="tipoGenero" required>
-                                    <option value="0">Masculino</option>
-                                    <option value="1">Femenino</option>
+                                    <option value="1">Masculino</option>
+                                    <option value="2">Femenino</option>
+                                    <option value="0">Prefiero no decir</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="fechaNacimientoe">Fecha de Nacimiento:</label>
-                                <input type="date" class="form-control" id="fechaNacimientoe" name="fechaNacimiento" required>
+                                <input type="date" class="form-control" id="fechaNacimientoe" name="fechaNacimiento" value="YYYY-MM-DD" placeholder="YYYY-MM-DD" required>
                             </div>
                         </div>
                     </div>
+                    <!-- Datos de Contacto -->
                     <div class="card-header py-1">
                         <p class="text-primary m-0 fw-bold">Datos de Contacto</p>
                     </div>
@@ -92,6 +94,9 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Datos de la Cita -->
+
                     <div class="card-header py-1">
                         <p class="text-primary m-0 fw-bold">Datos de la Cita</p>
                     </div>
@@ -99,28 +104,40 @@
                         <div class="col-md-3">
                             <div class="mb-1">
                                 <label for="fecha" class="form-label">Fecha de la Cita:</label>
-                                <input type="date" data-date-start-date="-1w" class="form-control" id="fecha" name="fecha" required>
+                                <input type="date" class="form-control" id="fecha" name="fecha" value="YYYY-MM-DD" placeholder="YYYY-MM-DD">
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="mb-1">
-                                <label for="cHora" class="form-label">Hora:</label>
-                                <input type="time" class="form-control" id="cHora" name="Hora">
-                            </div>
+                        <div class="col-md-3 mb-1">
+
+                            <label for="cHora" class="form-label">Hora:</label>
+                            <input type="time" class="form-control" id="cHora" name="Hora"
+                                   min="08:00" max="20:00" step="3600" required>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-1">
-                                <label for="cDoctor" class="form-label">Doctor</label>
-                                <input type="text" class="form-control" id="cDoctor" name="Doctor">
+                                <!-- Selector Doctores Disponibles -->
+                                <div class="form-group">
+                                    <label for="selEspecialidad" class="mb-2">Especialidad</label>
+                                    <select class="form-control" id="selEspecialidad" name="RequesanAppointment" @* asp-items="@ViewBag.Specialities" *@ required>
+                                        <option value="1">Odontología general</option>
+                                        <option value="2">Endodoncia</option>
+                                        <option value="3">Cirugía oral</option>
+                                        <option value="4">Ortodoncia</option>
+                                        <option value="5">Odontopediatría</option>
+                                        <option value="6">Periodoncia</option>
+                                    </select>
+                                </div>
+                                <label for="cDoctor" class="form-label" style="display: none">Especialidad</label>
+                                <input type="text" class="form-control" style="display: none" id="cDoctor" name="Doctor">
                             </div>
                         </div>
                     </div>
                     <div class="mb-1">
-                        <label for="mensaje" class="form-label">Mensaje:</label>
+                        <label for="mensaje" class="form-label">Motivo:</label>
                         <textarea class="form-control" id="mensaje" name="mensaje" rows="2"></textarea>
                     </div>
-                    <div class="d-flex justify-content-end ">
-                    <button type="button" class="btn btn-primary mb-2" id="submit-btn">Solicitar Cita</button>
+                    <div class="d-flex justify-content-end mb-2">
+                        <button type="button" class="btn btn-primary mb-2" id="submit-btn" onclick="SolicitarCita();">Solicitar Cita</button>
                     </div>
                 </form>
 
@@ -138,6 +155,19 @@
 </section>
 
 @section Scripts{
+    <script>
+
+        function showTimePicker() {
+            document.getElementById('timePicker').style.display = 'block';
+        }
+
+        function setSelectedTime() {
+            const selectedHour = document.getElementById('hour').value;
+            document.getElementById('cHora').value = selectedHour + ':00';
+            document.getElementById('timePicker').style.display = 'none';
+        }
+    </script>
+
     <script>
         // Función para calcular el progreso y actualizar la barra de progreso
         function calcularProgreso() {
@@ -158,6 +188,31 @@
                 submitBtn.setAttribute("disabled", "disabled");
             }
         }
+        const fechaNacimientoInputA = document.getElementById('fechaNacimientoe');
+
+        // Agrega un oyente de eventos al cambio de valor en el campo
+        fechaNacimientoInputA.addEventListener('change', function () {
+            // Obtén la fecha de nacimiento ingresada por el usuario
+            const fechaNacimiento = new Date(this.value);
+
+            // Calcula la fecha actual
+            const fechaActual = new Date();
+
+            // Calcula la edad en años
+            const edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
+
+            // Verifica si la edad es menor de 18 años
+            if (edad < 18) {
+                //alert('Debes ser mayor de 18 años para registrarte.');
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Debes ser mayor de 18 años para Solicitar una Cita.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+                // Puedes agregar aquí más acciones si la validación falla, como borrar la fecha o mostrar un mensaje de error.
+            }
+        });
 
 
         // Escucha eventos de cambio en los campos del formulario
@@ -168,4 +223,165 @@
 
     </script>
 
+
+    <script>
+        function ageValidation(birthDate) {
+            // Obtener la fecha actual
+            let fechaActual = new Date();
+
+            // Calcular la fecha de nacimiento a partir de la cadena de fecha
+            let fechaNac = new Date(birthDate);
+
+            // Calcular la diferencia en años
+            let edad = fechaActual.getFullYear() - fechaNac.getFullYear();
+
+            // Verificar si el cumpleaños ya ocurrió este año o no
+            if (
+                (fechaNac.getMonth() > fechaActual.getMonth()) ||
+                (fechaNac.getMonth() === fechaActual.getMonth() && fechaNac.getDate() > fechaActual.getDate())
+            ) {
+                edad--;
+            }
+
+            // Comprobar si la edad es mayor o igual a 18 y menor o igual a 100
+            return edad >= 18 && edad <= 100;
+        }
+
+        function SolicitarCita() {
+
+            //Datos Personales
+            let firstName = document.getElementById("fname").value.trim();
+            let lastName = document.getElementById("lname").value.trim();
+
+            let documentType = parseInt(document.getElementById("ctipoDocumento").value.trim(), 10);
+            let documentID = document.getElementById("ceditDocumento").value.trim();
+
+            let gender = document.getElementById("tipoGeneroe").value.trim();
+            let birthDate = document.getElementById("fechaNacimientoe").value.trim();
+
+            //Datos de Contacto
+            let email = document.getElementById("correo").value.trim();
+            let mobileNumber = document.getElementById("telefono").value.trim();
+
+            //Datos de la Cita
+            let date = document.getElementById("fecha").value.trim();
+            let time = document.getElementById("cHora").value.trim() + ':00';
+            let doctor = document.getElementById("cDoctor").value.trim();
+            let message = document.getElementById("mensaje").value.trim();
+
+            console.log("Tiempo que envia " + time);
+            //Datos de la Cuenta
+            //let userRegister = document.getElementById("userNameRegister").value.trim();
+            //let password = document.getElementById("password").value.trim();
+
+
+
+            if (!ageValidation(birthDate)) {
+                Swal.fire({
+                    text: 'Edad Incorrecta, Recuerda que debes ser mayor de Edad.',
+                    confirmButtonColor: '#008dc9'
+                });
+            }
+            // {
+            //     "aID": 0,
+            //         "oID": 0,
+            //             "dtID": 0,
+            //                 "gID": 0,
+            //                     "uDocument": "string",
+            //                         "uEmailAddress": "string",
+            //                             "uName": "string",
+            //                                 "uLastName": "string",
+            //                                     "uCellphone": "string",
+            //                                         "uID": 0,
+            //                                             "dID": 0,
+            //                                                 "asID": 0,
+            //                                                     "aDescription": "string",
+            //                                                         "aDate": "2023-09-30",
+            //                                                             "uBirthDate": "2023-09-30",
+            //                                                                 "aTime": "string"
+            // }
+
+            //let formattedBirthDate = formatDateToISO8601(birthDate);
+            else {
+                // let formattedBirthDate = formatToDatetime(birthDate);
+                let data = {
+                    //Datos de la cuenta
+                    uID: 0,
+                    utID: 3,
+                    oID: 1,
+                    //uLoginName: documentID,
+                    //uPassword: documentID,
+                    //uStatus: true,
+
+                    //Datos Personales
+                    uName: firstName,
+                    ulastName: lastName,
+                    uDocument: documentID,
+                    dtID: documentType,
+                    uBirthDate: birthDate,
+                    gID: gender,
+                    //Datos de Contacto
+                    uEmailAddress: email,
+                    uCellphone: mobileNumber,
+
+                    //Datos de la Cita
+                    asID: 0,
+                    aID: 0,
+                    aDate: date,
+                    aTime: time,
+                    dID: 20,
+                    aDescription: message
+
+                };
+                $.ajax({
+                    type: 'POST',
+                    url: '@ViewBag.urlEndPoint' + '/api/Appointments/v1/SetAppointment', // Ruta para crear o actualizar usuarios
+                    data: JSON.stringify(data),
+                    contentType: 'application/json',
+                    success: function (response) {
+                        console.log(response.OutputCodeError);
+                        if (response.codeStatus === '0') {
+                            // Registro exitoso, puedes redirigir al usuario o mostrar un mensaje de éxito
+                            //alert('Usuario registrado con éxito.');
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Cita Solicitada con éxito',
+                                text: response.messageStatus,
+                                confirmButtonColor: '#008dc9',
+                                allowOutsideClick: false,
+                                allowEscapeKey: false,
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = '@Url.Action("Login", "Account")';
+                                }
+                            });
+                        } if (response.codeStatus === '-1') {
+                            Swal.fire({
+                                icon: 'info',
+                                title: 'Oops...',
+                                text: response.messageStatus,
+                                confirmButtonColor: '#008dc9'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = '@Url.Action("Login", "Account")';
+                                }
+                            });
+                        } 
+                    },
+                    error: function (error) {
+                        // Manejar errores de la solicitud AJAX
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Se presento un error al guardar la información',
+                            confirmButtonColor: '#008dc9'
+                        })
+                    }
+                });
+            }
+
+        }
+    </script>
+
+\
 }

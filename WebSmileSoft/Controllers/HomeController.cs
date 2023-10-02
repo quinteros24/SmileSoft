@@ -16,6 +16,11 @@ namespace WebSmileSoft.Controllers
             return View();
         }
 
+        public IActionResult Anuncios()
+        {
+            return View();
+        }
+
         // Otras acciones relacionadas con la página de inicio
     }
 }

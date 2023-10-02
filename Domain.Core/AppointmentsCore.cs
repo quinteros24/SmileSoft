@@ -1,11 +1,5 @@
 ﻿using Domain.Interfaces;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using Domain.Entities;
-using Repository;
 
 namespace Domain.Core
 {
@@ -17,15 +11,21 @@ namespace Domain.Core
             _appointmentsRepository = appointmentsRepository;
         }
 
-        public async Task<GenericResponseModel> GetAppointmentsList(string? filter = "")
+        public async Task<GenericResponseModel> GetAppointmentsList(int? uID = 0, int? dID = 0, string? filter = "")
         {
-            GenericResponseModel responseModel = await _appointmentsRepository.GetAppointmentsList(filter);
+            GenericResponseModel responseModel = await _appointmentsRepository.GetAppointmentsList(uID, dID, filter);
             return responseModel;
         }
 
-        public async Task<GenericResponseModel> SetAppointment(AppintmentesModel Item)
+        public async Task<GenericResponseModel> SetAppointment(AppointmentesModel Item)
         {
             GenericResponseModel responseModel = await _appointmentsRepository.SetAppointment(Item);
+            return responseModel;
+        }
+
+        public async Task<GenericResponseModel> UpdateAppointmentStatus(int aID, int asID)
+        {
+            GenericResponseModel responseModel = await _appointmentsRepository.UpdateAppointmentStatus(aID, asID);
             return responseModel;
         }
     }

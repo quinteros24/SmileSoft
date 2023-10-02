@@ -18,16 +18,23 @@ namespace EpSmileSoft.Controllers
 
         [HttpGet]
         [Route("v1/GetAppointmentsList")]
-        public async Task<GenericResponseModel> GetAppointmentsList(string? filter = "")
+        public async Task<GenericResponseModel> GetAppointmentsList(int? uID = 0, int? dID = 0,  string? filter = "")
         {
-            return await _appointmentsCore.GetAppointmentsList(filter);
+            return await _appointmentsCore.GetAppointmentsList(uID, dID, filter);
         }
 
         [HttpPost]
         [Route("v1/SetAppointment")]
-        public async Task<GenericResponseModel> SetAppointment([FromBody] AppintmentesModel Item)
+        public async Task<GenericResponseModel> SetAppointment([FromBody] AppointmentesModel Item)
         {
             return await _appointmentsCore.SetAppointment(Item);
+        }
+
+        [HttpPut]
+        [Route("v1/UpdateAppointmentStatus")]
+        public async Task<GenericResponseModel> UpdateAppointmentStatus(int aID, int asID)
+        {
+            return await _appointmentsCore.UpdateAppointmentStatus(aID, asID);
         }
     }
 }

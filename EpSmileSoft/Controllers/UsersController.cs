@@ -7,7 +7,7 @@ namespace EpSmileSoft.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Tags("Controlador encargado de gestionar el cambio de contraseña")]
+    [Tags("Controlador encargado de gestionar usuarios")]
 
     public class UsersController : ControllerBase
     {
@@ -49,7 +49,7 @@ namespace EpSmileSoft.Controllers
 
         [HttpPost]
         [Route("v1/CreateUpdateUsers")]
-        public async Task<GenericResponseModel> CreateUpdateUsers([FromBody] ViewUsersModelRequest Item)
+        public async Task<GenericResponseModel> CreateUpdateUsers([FromBody] UsersModelRequest Item)
         {
             
             try

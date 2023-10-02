@@ -4,7 +4,8 @@ namespace Domain.Interfaces
 {
     public interface IAppointmentsCore
     {
-        Task<GenericResponseModel> GetAppointmentsList(string? filter = "");
-        Task<GenericResponseModel> SetAppointment(AppintmentesModel Item);
+        Task<GenericResponseModel> GetAppointmentsList(int? uID = 0, int? dID = 0, string? filter = "");
+        Task<GenericResponseModel> SetAppointment(AppointmentesModel Item);
+        Task<GenericResponseModel> UpdateAppointmentStatus(int aID, int asID);
     }
 }

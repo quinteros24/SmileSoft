@@ -10,6 +10,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using System.Net.Http.Headers;
 using NuGet.Protocol.Plugins;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace WebSmileSoft.Controllers
 {
@@ -96,10 +97,16 @@ namespace WebSmileSoft.Controllers
             return View();
         }
 
-
         public IActionResult RequestanAppointment()
         {
             ViewBag.urlEndPoint = _settings.urlEndPoint;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult RequestanAppointment([FromBody] List<SelectListItem> specialities)
+        {
+            ViewBag.Specialities = specialities;
             return View();
         }
         // Acción para el cierre de sesión

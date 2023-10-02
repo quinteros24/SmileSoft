@@ -43,7 +43,7 @@ namespace Repository.Queries
                 $"END CATCH";
         }
        
-        public static string CreateUpdateUsers(ViewUsersModelRequest Item)
+        public static string CreateUpdateUsers(UsersModelRequest Item)
         {
             string fecha = Item.uBirthDate.Value.Year.ToString() + "-" + Item.uBirthDate.Value.Month.ToString("00") + "-" + Item.uBirthDate.Value.Day.ToString("00");
 
@@ -59,8 +59,9 @@ namespace Repository.Queries
                         $"    VALUES ({Item.utID}, '{Item.uName}', '{Item.uLastName}', '{Item.uCellphone}', '{Item.uAddress}', '{Item.uLoginName}', \n" +
                         $"    '{Item.uEmailAddress}', HASHBYTES('SHA2_256', CAST('{Item.uPassword}' AS VARCHAR(8000))), {Item.dtID}, '{Item.uDocument}', {(Item.uStatus? 1:0)},{Item.oID},{Item.gID},'{fecha}');\n" +
                         $"    SET @Response = CONCAT(@Response,'registrado con éxito.')\n";
+
             }
-            else
+            else if (Item.uID != 0)
             {
                 // Actualizar un usuario existente
                 query += $"    UPDATE dbo.Users SET ";
@@ -102,21 +103,22 @@ namespace Repository.Queries
                 if (Item.gID != 0)
                     query += $"gID = {Item.gID}, ";
 
-                if (Item.uBirthDate != null)
-                    query += $"uBirthDate = {Item.uBirthDate}, ";
+                if (!string.IsNullOrEmpty(fecha))
+                    query += $"uBirthDate = '{fecha}', ";
 
                 // Eliminar la última coma y agregar la condición WHERE
                 query = query.TrimEnd(',', ' ') + $"\n    WHERE [uID] = {Item.uID};\n" +
                         $"    INSERT INTO @aux([uID])VALUES({Item.uID})\n" + 
                         $"    SET @Response = CONCAT(@Response,'actualizado con éxito.')\n";
+
             }
 
             if(Item.utID == 2)
             {
                 query += $"    IF NOT EXISTS(SELECT TOP(1)* FROM Doctors WHERE [uID] = (SELECT [uID] FROM @aux))\n" +
                          $"    BEGIN\n" +
-                         $"        INSERT INTO Doctors([uID],utID,dAcademicLevel,dDegree,dUniversityName,dSpeciality,dProfessionalCard)\n" +
-                         $"        VALUES((SELECT [uID] FROM @aux),2,'{Item.dAcademicLevel}','{Item.dDegree}','{Item.dUniversityName}','{Item.dSpeciality}','{Item.dProfessionalCard}')\n" +
+                         $"        INSERT INTO Doctors([uID],utID,dAcademicLevel,dDegree,dUniversityName,spID,dProfessionalCard)\n" +
+                         $"        VALUES((SELECT [uID] FROM @aux),2,'{Item.dAcademicLevel}','{Item.dDegree}','{Item.dUniversityName}',{Item.spID},'{Item.dProfessionalCard}')\n" +
                          $"    END\n" +
                          $"    ELSE\n" +
                          $"    BEGIN\n" +
@@ -125,7 +127,7 @@ namespace Repository.Queries
                          $"            dAcademicLevel = '{Item.dAcademicLevel}'\n" +
                          $"            ,dDegree = '{Item.dDegree}'\n" +
                          $"            ,dUniversityName = '{Item.dUniversityName}'\n" +
-                         $"            ,dSpeciality = '{Item.dSpeciality}'\n" +
+                         $"            ,spID = {Item.spID}\n" +
                          $"            ,dProfessionalCard = '{Item.dProfessionalCard}'\n" +
                          $"        WHERE [uID] = (SELECT [uID] FROM @aux)\n" +
                          $"    END\n";

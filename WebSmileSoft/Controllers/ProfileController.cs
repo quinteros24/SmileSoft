@@ -40,28 +40,12 @@ namespace WebSmileSoft.Controllers
             };
             return View(especialidadesOdontologia);
         }
-        
 
-        public IActionResult Especialidades()
+        [HttpPost]
+        public IActionResult Especialidades([FromBody] List<SelectListItem> specialities)
         {
-            // Recupera la lista de roles desde la base de datos
-            // var roles = dbContext.Roles.ToList();
-            var especialidadesOdontologia = new List<EspecialidadOdontologia>
-            {
-                new EspecialidadOdontologia { Id = 1, Nombre = "Odontología General", Descripcion = "Atención dental general" },
-                new EspecialidadOdontologia { Id = 2, Nombre = "Ortodoncia", Descripcion = "Corrección de la alineación de los dientes" },
-                new EspecialidadOdontologia { Id = 3, Nombre = "Endodoncia", Descripcion = "Tratamiento de conductos radiculares" },
-                new EspecialidadOdontologia { Id = 4, Nombre = "Periodoncia", Descripcion = "Tratamiento de las encías y tejidos de soporte dental" },
-                new EspecialidadOdontologia { Id = 5, Nombre = "Cirugía Oral", Descripcion = "Cirugía dental y maxilofacial" },
-                new EspecialidadOdontologia { Id = 6, Nombre = "Implantología Dental", Descripcion = "Colocación de implantes dentales" },
-                new EspecialidadOdontologia { Id = 7, Nombre = "Odontopediatría", Descripcion = "Odontología para niños" },
-                // Puedes agregar más especialidades según sea necesario
-            };
-
-            // Pasa la lista de roles a la vista
-            //ViewBag.EspecialidadList = new SelectList(especialidadesOdontologia, "Id", "Nombre");
-
-            return PartialView(especialidadesOdontologia);
+            ViewBag.Specialities = specialities;
+            return PartialView();
         }
 
 

@@ -5,6 +5,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Domain.Entities;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Domain.Core
 {
@@ -39,6 +40,11 @@ namespace Domain.Core
             GenericResponseModel responseModel = await _genericsRepository.UpdateTokenSession(uID, token, newTokenString);
             responseModel.ItemJson = responseModel.Status? newTokenString : null;
             return responseModel;
+        }
+
+        public async Task<List<SelectListItem>> GetSpecialities()
+        {
+            return await _genericsRepository.GetSpecialities();
         }
     }
 }
