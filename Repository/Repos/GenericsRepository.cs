@@ -33,14 +33,14 @@ namespace Repository
 
         public async Task<List<SelectListItem>> GetSpecialities()
         {
-            string query = "SELECT [sID],sName FROM Specialities";
+            string query = "SELECT [spID],spName FROM Specialities";
             Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
             ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
             List<SelectListItem> Items = new();
             if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
             {
                 DataTable dt = ItemResponseDB.DtObject;
-                Items = Mapper.ToSelectList(dt,"sID","sName");
+                Items = Mapper.ToSelectList(dt,"spID","spName");
             }
             return Items;
         }
