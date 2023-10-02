@@ -4,8 +4,20 @@ namespace Repository.Queries
 {
     public class AppointmentsQueries
     {
-        public static string GetAppointmentsList(string? filter = "")
+        public static string GetAppointmentsList(int? uID = 0, int? dID = 0, string? filter = "")
         {
+            string WHERE_USER_DOCTOR = String.Empty;
+
+            if(uID != null && uID != 0)
+            {
+                WHERE_USER_DOCTOR = $" AND uID = {uID}";
+            }
+
+            if(dID != null && dID != 0)
+            {
+                WHERE_USER_DOCTOR = $" AND dID = {dID}";
+            }
+
             return $"DECLARE @filter AS VARCHAR(60) = '{filter}'" +
                    $"BEGIN TRY\n" +
                    $"    SELECT\n" +
@@ -22,7 +34,7 @@ namespace Repository.Queries
                    $"        INNER JOIN Users AS U ON A.uID = U.uID\n" +
                    $"        INNER JOIN Doctors AS D ON A.dID = D.dID\n" +
                    $"    WHERE\n" +
-                   $"        uName LIKE @filter OR uName <> ''\n" +
+                   $"        (uName LIKE @filter OR uName <> ''){WHERE_USER_DOCTOR}\n" +
                    $"    ORDER BY\n" +
                    $"        uName, aDate\n" +
                    $"    SELECT 0 AS OutputCodeError, 'Datos cargados correctamente' AS OutputMessageError, 'Parameters' AS TableName\n" +
@@ -64,26 +76,33 @@ namespace Repository.Queries
                 QUERY += $"    DECLARE @id AS INT = (SELECT [uID] FROM Users WHERE uDocument = @uDocument)\n" +
                          $"    IF EXISTS(SELECT TOP(1)* FROM Appointments AS A INNER JOIN Users AS U ON U.uID = A.uID WHERE A.uID = @id AND A.aDate = @aDate AND A.aTime = @aTime AND A.dID = @dID  )\n" +
                          $"    BEGIN \n" +
-                         $"        SELECT '-1' AS OutputCodeError, 'La cita ya se encuentra en nuestro sistema. Para gestionar sus citas puede iniciar sesión o cumuníquese con el administrador' AS OutputMessageError\n" +
+                         $"        SELECT '-1' AS OutputCodeError, 'Ya tiene una cita en este horario. Para gestionar sus citas puede iniciar sesión o comuníquese con el administrador' AS OutputMessageError\n" +
                          $"    END\n" +
                          $"    ELSE\n" +
                          $"    BEGIN\n" +
-                         $"        IF NOT EXISTS(SELECT TOP(1)* FROM Users WHERE [uDocument] = @uDocument)\n" +
+                         $"        IF EXISTS(SELECT TOP(1)* FROM Appointments WHERE dID = @dID AND aDate = @aDate AND aTime = @aTime)\n" +
                          $"        BEGIN\n" +
-                         $"            --NO EXISTE LO CREAMOS\n" +
-                         $"            INSERT INTO Users(utID,uName,uLastName,uCellphone,uLoginName,uPassword,dtID,uDocument,[oID],gID,uBirthDate)\n" +
-                         $"            VALUES(3,@uName,@uLastName,@uCellphone,@uDocument,@uPassword,@dtID,@uDocument,@oID,@gID,@uBirthDate)\n" +
-                         $"            SET @ResponseCreation = CONCAT(\n" +
-                         $"                'Se ha registrado correctamente, para ver el detalle de las citas puede iniciar sesión con el usuario '\n" +
-                         $"                ,@uDocument\n" +
-                         $"                ,'\". Su contraseña es el documento de identidad')\n" +
-                         $"            SET @uID = (SELECT TOP(1)[uID] FROM Users WHERE [uDocument] = @uDocument)\n" +
+                         $"            SELECT '-1' AS OutputCodeError, 'Este horario no se encuentra disponible, por favor intente nuevamente' AS OutputMessageError\n" +
                          $"        END\n" +
-                         $"        SET @uID = (SELECT TOP(1)[uID] FROM Users WHERE [uDocument] = @uDocument)\n" +
-                         $"        --SE CREA LA CITA\n" +
-                         $"        INSERT INTO Appointments([oID],[uID],[dID],aDate,aTime,aDescription)\n" +
-                         $"        VALUES(@oID,@uID,@dID,@aDate,@aTime,@aDescription)\n" +
-                         $"        SELECT '0' AS OutputCodeError, CONCAT('La cita se ha crado. ',@ResponseCreation) AS OutputMessageError\n" +
+                         $"        ELSE\n" +
+                         $"        BEGIN\n" +
+                         $"            IF NOT EXISTS(SELECT TOP(1)* FROM Users WHERE [uDocument] = @uDocument)\n" +
+                         $"            BEGIN\n" +
+                         $"                --NO EXISTE LO CREAMOS\n" +
+                         $"                INSERT INTO Users(utID,uName,uLastName,uCellphone,uLoginName,uPassword,dtID,uDocument,[oID],gID,uBirthDate)\n" +
+                         $"                VALUES(3,@uName,@uLastName,@uCellphone,@uDocument,@uPassword,@dtID,@uDocument,@oID,@gID,@uBirthDate)\n" +
+                         $"                SET @ResponseCreation = CONCAT(\n" +
+                         $"                    'Se ha registrado correctamente, para ver el detalle de las citas puede iniciar sesión con el usuario '\n" +
+                         $"                    ,@uDocument\n" +
+                         $"                    ,'\". Su contraseña es el documento de identidad')\n" +
+                         $"                SET @uID = (SELECT TOP(1)[uID] FROM Users WHERE [uDocument] = @uDocument)\n" +
+                         $"            END\n" +
+                         $"            SET @uID = (SELECT TOP(1)[uID] FROM Users WHERE [uDocument] = @uDocument)\n" +
+                         $"            --SE CREA LA CITA\n" +
+                         $"            INSERT INTO Appointments([oID],[uID],[dID],aDate,aTime,aDescription)\n" +
+                         $"            VALUES(@oID,@uID,@dID,@aDate,@aTime,@aDescription)\n" +
+                         $"            SELECT '0' AS OutputCodeError, CONCAT('La cita se ha crado. ',@ResponseCreation) AS OutputMessageError\n" +
+                         $"        END\n" +
                          $"    END\n";
             }
             else
@@ -112,6 +131,46 @@ namespace Repository.Queries
                      "END CATCH";
 
             return QUERY;
+        }
+
+        public static string UpdateAppointmentStatus(int aID, int asID)
+        {
+            return $"DECLARE \n" +
+                   $"    @asID AS INT = {asID},\n" +
+                   $"    @aID AS INT = {aID},\n" +
+                   $"    @aDate AS DATE,\n" +
+                   $"    @response AS VARCHAR(100),\n" +
+                   $"    @responseCode AS VARCHAR(5)\n\n" +
+                   $"BEGIN TRY\n" +
+                   $"    IF NOT EXISTS(SELECT TOP(1)* FROM Appointments WHERE aID = @aID)\n" +
+                   $"    BEGIN\n" +
+                   $"        SET @responseCode = '-1'\n" +
+                   $"        SET @response = 'No se han encontrado los datos de la cita seleccionada, intente nuevamente'\n" +
+                   $"    END\n" +
+                   $"    ELSE\n" +
+                   $"    BEGIN\n" +
+                   $"        SET @aDate = (SELECT aDate FROM Appointments WHERE aID = @aID)\n" +
+                   $"        IF (@asID = 2 AND GETUTCDATE() > @aDate)\n" +
+                   $"        BEGIN\n" +
+                   $"            SET @responseCode = '-1'\n" +
+                   $"            SET @response = 'La fecha de confirmación no es correcta, por favor verifíquela'\n" +
+                   $"        END\n" +
+                   $"        ELSE\n" +
+                   $"        BEGIN\n" +
+                   $"            UPDATE Appointments \n" +
+                   $"            SET\n" +
+                   $"                asID = @asID\n" +
+                   $"            WHERE\n" +
+                   $"                aID = @aID\n" +
+                   $"            SET @responseCode = '0'\n" +
+                   $"            SET @response = CONCAT('La cita número ',@aID,' ha pasado a estado ',(SELECT asDescription FROM AppointmentStates WHERE asID = @asID))\n" +
+                   $"        END\n" +
+                   $"    END\n" +
+                   $"    SELECT @responseCode AS OutputCodeError, @response AS OutputMessageError\n" +
+                   $"END TRY\n" +
+                   $"BEGIN CATCH\n" +
+                   $"    SELECT ERROR_NUMBER() AS OutputCodeError, ERROR_MESSAGE() AS OutputMessageError\n" +
+                   $"END CATCH";
         }
     }
 }
