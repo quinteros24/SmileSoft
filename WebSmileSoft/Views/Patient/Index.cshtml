@@ -69,7 +69,9 @@
             let valDireccion = sessionStorage.getItem("userAddress");
             console.log("Funcion de bienvenida");
             console.log(valDireccion);
-            if (valDireccion != null) {
+            if (valDireccion !== null && valDireccion.trim() !== "") {
+                console.log("El Usuario tiene actualizados los datos");
+            } else {
                 Swal.fire({
                     title: '¡Bienvenido!',
                     text: 'Por favor, Actualice sus Datos',
@@ -80,8 +82,6 @@
                         window.location.href = '@Url.Action("Index", "Profile")';
                     }
                 })
-            } else {
-                console.log("No hay datos de usuario");
             }
         });
     </script>
