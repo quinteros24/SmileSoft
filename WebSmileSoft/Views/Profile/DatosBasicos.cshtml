@@ -74,7 +74,7 @@
                     <div class="col-md-6 mb-3">
                         <div class="input-group">
                             <span class="input-group-text">Fecha de nacimiento</span>
-                            <input type="date" id="birthDate" class="form-control" value="YYYY-MM-DD" placeholder="YYYY-MM-DD" />
+                            <input type="date" id="birthDatep" class="form-control" value="YYYY-MM-DD" placeholder="YYYY-MM-DD" />
 
                         </div>
                     </div>
@@ -92,8 +92,8 @@
                     </div>
                 </div>
                 <hr />
-                <div class="mb-3"><button class="btn btn-primary btn-sm update-profile-button" type="button">Actualizar Datos</button></div>
-            </form>
+@*                 <div class="mb-3"><button class="btn btn-primary btn-sm update-profile-button" type="button">Actualizar Datos</button></div>
+ *@            </form>
         </div>
     </div>
     <div class="card shadow my-3">
@@ -115,17 +115,18 @@
 
                 </div>
 
-                <div class="mb-3"><button class="btn btn-primary btn-sm update-profile-button" type="button">Actualizar Datos</button></div>
-            </form>
+@*                 <div class="mb-3"><button class="btn btn-primary btn-sm update-profile-button" type="button">Actualizar Datos</button></div>
+ *@            </form>
         </div>
     </div>
     <!-- Datos de Estudios Solo PERFIL DE DOCTOR -->
     @*  if (Session.Storage.getItem("rol") == "Doctor")
     { *@
-    <div id="DatosEstudios">
+    <div id="DatosEstudios" class="mb-3">
         @*  <partial name="Especialidades" /> *@
 
     </div>
+    <div class="mb-3"><button class="btn btn-primary btn-sm update-profile-button" type="button">Actualizar Datos</button></div>
 
     @*  } *@
 </div>

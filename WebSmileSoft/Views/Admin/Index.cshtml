@@ -31,6 +31,19 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-6 col-xl-3 mb-4">
+            <div class="card shadow border-start-success py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col me-2">
+                            <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Administradores Registrados</span></div>
+                            <div class="fw-bold h5 mb-0"><span id="userAdmin"></span></div><!-- Cargar datos de la base de datos -->
+                        </div>
+                        <div class="col-auto"><i class="fa-solid fa-user fa-2x text-gray-300"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="d-flex row col-md-12 justify-content-center align-content-center text-primary">
             <!-- Vista de Citas -->
             <div class="col-md-5" style="display: none;">
@@ -256,7 +269,7 @@
                     // Inicializa o actualiza el DataTable con los datos procesados
                     tableCitas = $('#citasDoctores').DataTable({
                         columns: [
-                            { title: 'aID' },
+                            { title: '#' },
                             { title: 'Nombre' },
                             { title: 'Doctor' },
                             { title: 'Motivo' },
