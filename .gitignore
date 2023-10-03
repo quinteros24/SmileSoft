@@ -200,3 +200,5 @@ TestResults/
 /Repository/obj/Debug/net6.0/ref/Repository.dll
 /Repository/obj/Debug/net6.0/refint/Repository.dll
 /EpSmileSoft/obj/Debug/net6.0/refint/EpSmileSoft.dll
+/EpSmileSoft/bin/Debug/net6.0/Azure.Core.dll
+/EpSmileSoft/bin/Debug/net6.0/EpSmileSoft.exe
