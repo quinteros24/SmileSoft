@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\WebSmileSoft",
+    "\\WebSmileSoft\\Views",
+    "\\WebSmileSoft\\Views\\Account",
+    "\\WebSmileSoft\\Views\\Admin",
+    "\\WebSmileSoft\\Views\\Patient"
   ],
-  "SelectedNode": "\\SolutionSmileSoft.sln (SolutionSmileSoft.sln)",
+  "SelectedNode": "\\WebSmileSoft\\Views\\Patient\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }
