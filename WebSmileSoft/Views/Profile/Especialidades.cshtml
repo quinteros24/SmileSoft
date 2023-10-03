@@ -22,6 +22,7 @@
             <div class="mb-3">
                 <label for="Speciality">Selecciona una Especialidad:</label>
                 <select id="Speciality" name="Especialidad" class="form-control" asp-items="@ViewBag.Specialities">
+                    <option value="0">Seleccionar Especialidad</option>
                     @*  @foreach (var especialidad in Model)
                     {
                     var Value = especialidad.Id;
