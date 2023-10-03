@@ -104,7 +104,7 @@ Modifica tu H
     flex-direction: column;
     justify-content: center; /* Centrar el contenido verticalmente */
     align-items: center; /* Centrar el contenido horizontalmente */
-    height: 50vh; /* Altura del 100% de la ventana visible */
+    height: 20vh; /* Altura del 100% de la ventana visible */
 }
 
     /* Estilo para el título */
