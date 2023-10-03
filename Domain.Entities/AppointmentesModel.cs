@@ -15,6 +15,7 @@
         public int? uID { get; set; }
         public int? dID { get; set; }
         public int? asID { get; set; } = 1;
+        public string? asName { get; set; }
         public string? aDescription { get; set; }
         public DateTime? aDate { get; set; }
         public DateTime? uBirthDate { get; set; }
