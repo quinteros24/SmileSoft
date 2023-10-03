@@ -11,7 +11,7 @@
         <div class="card-header">
             Próximas Citas
         </div>
-        <div class="card-body">
+        <div class="card-body table-responsive shadow-lg">
             <table class="table" id="citasUsuario">
             </table>
         </div>
@@ -82,7 +82,9 @@
                     let dataSet = [];
                     let users = data.itemJson;
                     console.table(users);
-
+                    if (data == null) {
+                        $("#loadingScreen").hide();
+                    }
                     $.each(data.itemJson, function (index, cita) {
                         // "aID": 28,
                         //"oID": null,
@@ -106,7 +108,8 @@
                         let rowData = [
                             cita.aID,
                             cita.uName,
-                            cita.dID,
+                            cita.uCellphone,
+                            cita.uDoctorName,
                             cita.aDescription,
                             fechaFormateada,
                             cita.aTime
@@ -117,8 +120,9 @@
                     // Inicializa o actualiza el DataTable con los datos procesados
                     tableCitas = $('#citasUsuario').DataTable({
                         columns: [
-                            { title: 'aID' },
+                            { title: '#' },
                             { title: 'Nombre' },
+                            { title: 'Celular' },
                             { title: 'Doctor' },
                             { title: 'Motivo' },
                             { title: 'Fecha' },
@@ -128,7 +132,7 @@
                                 orderable: false, // Para desactivar la ordenación en esta columna
                                 data: null, // Usaremos la columna "Acciones" solo para botones
                                 defaultContent: '<button class="btn btn-primary btn-sm btnDesactivarC" data-toggle="tooltip" title="Cancelar Cita" type="button"> <i class="fas fa-ban"> </i></button> ' +
-                                    '<button class="btn btn-danger btn-sm btnEditarC" data-toggle="modal" data-target="#editarCitaModal" data-toggle="tooltip" title="Reprogramar Cita"> <i class="fa-regular fa-pen-to-square"></i></button> '
+                                    '<button class="btn btn-danger btn-sm btnEditarC" data-toggle="modal" data-target="#editarCitaModal" data-toggle="tooltip" title="Reprogramar Cita" style="display: none"> <i class="fa-regular fa-pen-to-square"></i></button> '
                             }
                         ],
 

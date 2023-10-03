@@ -343,11 +343,13 @@
                     0: 'Activo',
                     1: 'Inactivo'
                 };
-                // Supongamos que tienes la fecha en el formato "yyyy-MM-dd'T'HH:mm:ss"
                 let fechaCompleta = userData.uBirthDate;
-
-                // Convierte la fecha completa al formato "yyyy-MM-dd" (solo fecha)
-                let fechaSolo = fechaCompleta.split('T')[0];
+                let fechaSolo = null;
+                if (fechaCompleta !== null) {
+                    fechaSolo = fechaCompleta.split('T')[0];
+                } else {
+                    fechaSolo = userData.uBirthDate;
+                }
 
                 //Datos de la Cuenta
                 $("#username").val(userData.uLoginName);
