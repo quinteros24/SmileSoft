@@ -17,7 +17,7 @@ function logoutUser() {
     console.log("logoutUser" + inactivityTimeout);
 
     // Redirecciona a la página de inicio de sesión
-   window.location.href = logoutUrl; // Reemplaza con la URL correcta
+    window.location.href = logoutUrl; // Reemplaza con la URL correcta
 }
 
 // Evento para restablecer el temporizador en respuesta a la actividad del usuario
@@ -43,15 +43,20 @@ function verifyToken() {
         contentType: "application/json",
         dataType: "json",
         headers: {
-            'userID': parseInt(sessionStorage.getItem("userID")),
+            'uID': parseInt(sessionStorage.getItem("userID")),
             //'Authorization': 'Bearer ' + token // Agrega el token actual
         }
     }).done(function (response) {
-        console.log(response)
         if (response.itemJson != null && response.itemJson != undefined && response.itemJson != "") {
-            return sessionStorage.setItem('acessToken', response.itemJson)
+            return sessionStorage.setItem('accessToken', response.itemJson)
         }
-        logoutUser();
+        Swal.fire({
+            title: 'Ups...',
+            html: 'Se ha iniciado sesi&oacuten en otro dispositivo',
+            icon: 'warning'
+        }).then(function () {
+            logoutUser();
+        });
     });
         //.then(response => {
         //    if (response.status === 200) {
