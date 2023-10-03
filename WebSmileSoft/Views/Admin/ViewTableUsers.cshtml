@@ -240,10 +240,10 @@
                                 } else {
                                     // Mostrar los datos en la consola o realizar otras acciones
                                     let userData = data.itemJson; // Accede al primer elemento del arreglo
-                                    console.log("Usuario a Editar" + userData)
-                                    console.log("Genero del Usuario a Editar" + userData.gID);
-                                    // Llama a una funcion para actualizar el formulario con los datos recibidos
-                                    console.log("Actualizando Formulario")
+                                    // console.log("Usuario a Editar" + userData)
+                                    // console.log("Genero del Usuario a Editar" + userData.gID);
+                                    // // Llama a una funcion para actualizar el formulario con los datos recibidos
+                                    // console.log("Actualizando Formulario")
                                     actualizarFormulario(userData);
                                 }
                             },
@@ -260,9 +260,14 @@
                             };
                             // Supongamos que tienes la fecha en el formato "yyyy-MM-dd'T'HH:mm:ss"
                             let fechaCompleta = userData.uBirthDate;
-
+                            let fechaSolo = null;
+                            if (fechaCompleta !== null) {
+                                fechaSolo = fechaCompleta.split('T')[0];
+                            } else {
+                                fechaSolo = userData.uBirthDate;
+                            }
                             // Convierte la fecha completa al formato "yyyy-MM-dd" (solo fecha)
-                            let fechaSolo = fechaCompleta.split('T')[0];
+                            
                             // Rellena los campos del formulario con los datos del usuario
 
                             //Datos Personales
@@ -293,21 +298,6 @@
                         $("#editModal").modal("show");
 
                         $("#saveChangesBtn").click(function () {
-                            //let status = $("#editStatus").val() == "Activo" ? true : false;
-                            // let DoctorModel = {
-                            //     //Datos de Estudios
-                            //     dAcademicLevel: $("#AcademicLevel").val(),
-                            //     dDegree: $("#TituloAcademico").val(),
-                            //     spID: $("#Speciality").val(),
-                            //     dProfessionalCard: $("#ProfessionalLicense").val(),
-                            //     dUniversityName: $("#Universityname").val(),
-                            // };
-
-                            //console.log("DoctorModel" + DoctorModel.dAcademicLevel);
-                            // Obtén los datos actualizados del formulario de edición
-                            // let birthDate = document.getElementById("fechaNacimientoe").value.trim();
-                            // let formattedBirthDate = formatToDatetime(birthDate);
-
                             let updatedUserData = {
                                 // Recoge los datos actualizados desde los campos del formulario
 
@@ -345,10 +335,10 @@
                                 updatedUserData.dProfessionalCard = $("#ProfessionalLicenseed").val();
                                 updatedUserData.dUniversityName = $("#Universitynameed").val();
                             }
-                            console.log(updatedUserData);
+                            //console.log(updatedUserData);
 
 
-                            console.log("Usuario a Editar Genero:" + updatedUserData.gID)
+                            //console.log("Usuario a Editar Genero:" + updatedUserData.gID)
                             // Realiza una solicitud AJAX para guardar los cambios en el servidor
                             $.ajax({
                                 url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Reemplaza con la URL correcta
@@ -359,16 +349,16 @@
                                 success: function (response) {
                                     // Cierra el modal de edición
                                     $("#editModal").modal("hide");
-                                    verusers(updatedUserData.utID);
                                     Swal.fire({
                                         title: 'Usuario Actualizado',
                                         text: 'El usuario ' + updatedUserData.uLoginName + ' se actualizó correctamente',
                                         icon: 'success',
                                         confirmButtonText: 'Aceptar'
-                                    });
-                                    // Puedes realizar otras acciones después de guardar los cambios si es necesario
-                                    // Por ejemplo, actualizar la tabla con los datos modificados
-                                    // o mostrar un mensaje de éxito
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            verusers(updatedUserData.utID);
+                                        }
+                                    })
                                 },
                                 error: function () {
                                     $("#editModal").modal("hide");
@@ -703,8 +693,6 @@
             //    return;
             //}
 
-
-
             // Validación de la contraseña
             let password = userData.uPassword;
             let passwordError = CheckPass(password);
@@ -760,7 +748,11 @@
                         text: 'El usuario se agregó correctamente',
                         icon: 'success',
                         confirmButtonText: 'Aceptar'
-                    });
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            verusers(3);
+                        }
+                    })
                 },
                 error: function () {
                     //alert("Error al agregar el usuario");

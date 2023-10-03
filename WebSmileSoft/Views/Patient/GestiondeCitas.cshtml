@@ -11,7 +11,7 @@
         <div class="card-header">
             Próximas Citas
         </div>
-        <div class="card-body">
+        <div class="card-body table-responsive shadow-lg">
             <table class="table" id="citasUsuario">
             </table>
         </div>
@@ -82,7 +82,9 @@
                     let dataSet = [];
                     let users = data.itemJson;
                     console.table(users);
-
+                    if (data == null) {
+                        $("#loadingScreen").hide();
+                    }
                     $.each(data.itemJson, function (index, cita) {
                         // "aID": 28,
                         //"oID": null,
@@ -106,7 +108,8 @@
                         let rowData = [
                             cita.aID,
                             cita.uName,
-                            cita.dID,
+                            cita.uCellphone,
+                            cita.uDoctorName,
                             cita.aDescription,
                             fechaFormateada,
                             cita.aTime
@@ -117,8 +120,9 @@
                     // Inicializa o actualiza el DataTable con los datos procesados
                     tableCitas = $('#citasUsuario').DataTable({
                         columns: [
-                            { title: 'aID' },
+                            { title: '#' },
                             { title: 'Nombre' },
+                            { title: 'Celular' },
                             { title: 'Doctor' },
                             { title: 'Motivo' },
                             { title: 'Fecha' },
