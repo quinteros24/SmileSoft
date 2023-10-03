@@ -31,21 +31,34 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-6 col-xl-3 mb-4">
+            <div class="card shadow border-start-success py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col me-2">
+                            <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Administradores Registrados</span></div>
+                            <div class="fw-bold h5 mb-0"><span id="userAdmin"></span></div><!-- Cargar datos de la base de datos -->
+                        </div>
+                        <div class="col-auto"><i class="fa-solid fa-user fa-2x text-gray-300"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="d-flex row col-md-12 justify-content-center align-content-center text-primary">
             <!-- Vista de Citas -->
             <div class="col-md-5" style="display: none;">
-                <section id="citas" >
+                <section id="citas">
                     <h2>Citas Programadas</h2>
                     <!-- Calendario de citas -->
-                  <div id="calendario"></div>
+                    <div id="calendario"></div>
                 </section>
-            </div> 
+            </div>
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
                         Lista Citas
                     </div>
-                    <div class="card-body">
+                    <div class="card-body table-responsive shadow-lg">
                         <table class="table" id="citasDoctores">
                         </table>
                     </div>
@@ -219,7 +232,8 @@
                         let rowData = [
                             cita.aID,
                             cita.uName,
-                            cita.dID,
+                            cita.uCellphone,
+                            cita.uDoctorName,
                             cita.aDescription,
                             fechaFormateada,
                             cita.aTime
@@ -256,8 +270,9 @@
                     // Inicializa o actualiza el DataTable con los datos procesados
                     tableCitas = $('#citasDoctores').DataTable({
                         columns: [
-                            { title: 'aID' },
+                            { title: '#' },
                             { title: 'Nombre' },
+                            { title: 'Celular' },
                             { title: 'Doctor' },
                             { title: 'Motivo' },
                             { title: 'Fecha' },
@@ -426,56 +441,56 @@
             $('[data-toggle="tooltip"]').tooltip();
 
         });
-       
 
-        // document.addEventListener('DOMContentLoaded', function () {
-        //     if (document.getElementById('calendario') != null) {
-        //         let calendarEl = document.getElementById('calendario');
-        //         let listaEventos = eventos;
-        //         let count = listaEventos.length;
-        //         console.log("Lista de Eventos: ");
-        //         console.log(listaEventos);
-        //         let calendar = new FullCalendar.Calendar(calendarEl, {
-        //             initialView: 'dayGridMonth',
-        //             editable: true,
-        //             events: listaEventos,
-        //             eventRender: function (event, element) {
-        //                 if (!event.title) {
-        //                     console.error('Evento sin título:', event);
-        //                 }
-        //             },
-        //             eventClick: function (info) {
-        //                 info.jsEvent.preventDefault(); // don't let the browser navigate
 
-        //                 if (info.event.url) {
-        //                     window.open(info.event.url);
-        //                 }
-        //             },
-        //             loading: function (isLoading) {
-        //                 if (isLoading) {
-        //                     Swal.fire({
-        //                         title: 'Cargando',
-        //                         text: 'Por favor, espere un momento...',
-        //                         showCancelButton: false,
-        //                         showConfirmButton: false,
-        //                         allowOutsideClick: false,
-        //                         onBeforeOpen: () => {
-        //                             Swal.showLoading();
-        //                         }
-        //                     });
-        //                 } else {
-        //                     Swal.close();
-        //                 }
-        //             },
-                    
+                // document.addEventListener('DOMContentLoaded', function () {
+                //     if (document.getElementById('calendario') != null) {
+                //         let calendarEl = document.getElementById('calendario');
+                //         let listaEventos = eventos;
+                //         let count = listaEventos.length;
+                //         console.log("Lista de Eventos: ");
+                //         console.log(listaEventos);
+                //         let calendar = new FullCalendar.Calendar(calendarEl, {
+                //             initialView: 'dayGridMonth',
+                //             editable: true,
+                //             events: listaEventos,
+                //             eventRender: function (event, element) {
+                //                 if (!event.title) {
+                //                     console.error('Evento sin título:', event);
+                //                 }
+                //             },
+                //             eventClick: function (info) {
+                //                 info.jsEvent.preventDefault(); // don't let the browser navigate
 
-        //         });
-        //         calendar.setOption('locale', 'es');
-        //         calendar.render();
-        //     }
-        // });
-        // console.log("Eventos: ");
-        // console.log(eventos);
+                //                 if (info.event.url) {
+                //                     window.open(info.event.url);
+                //                 }
+                //             },
+                //             loading: function (isLoading) {
+                //                 if (isLoading) {
+                //                     Swal.fire({
+                //                         title: 'Cargando',
+                //                         text: 'Por favor, espere un momento...',
+                //                         showCancelButton: false,
+                //                         showConfirmButton: false,
+                //                         allowOutsideClick: false,
+                //                         onBeforeOpen: () => {
+                //                             Swal.showLoading();
+                //                         }
+                //                     });
+                //                 } else {
+                //                     Swal.close();
+                //                 }
+                //             },
+
+
+                //         });
+                //         calendar.setOption('locale', 'es');
+                //         calendar.render();
+                //     }
+                // });
+                // console.log("Eventos: ");
+                // console.log(eventos);
 
     </script>
 }

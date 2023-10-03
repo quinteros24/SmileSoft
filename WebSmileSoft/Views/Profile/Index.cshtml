@@ -5,7 +5,7 @@
 
 <nav aria-label="breadcrumb" class="main-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Inicio</a></li>
+        <li class="breadcrumb-item">@* <a asp-controller="Home" asp-action="Index">Inicio</a> *@Inicio</li>
         <li class="breadcrumb-item">Usuario</li>
         <li class="breadcrumb-item active" aria-current="page">
             Ajustes de Usuario
@@ -277,7 +277,7 @@
 
 
         // Obtén una referencia al campo de fecha de nacimiento
-        const fechaNacimientoInput = document.getElementById('birthDate');
+        const fechaNacimientoInput = document.getElementById('birthDatep');
 
         // Agrega un oyente de eventos al cambio de valor en el campo
         fechaNacimientoInput.addEventListener('change', function () {
@@ -343,6 +343,14 @@
                     0: 'Activo',
                     1: 'Inactivo'
                 };
+                let fechaCompleta = userData.uBirthDate;
+                let fechaSolo = null;
+                if (fechaCompleta !== null) {
+                    fechaSolo = fechaCompleta.split('T')[0];
+                } else {
+                    fechaSolo = userData.uBirthDate;
+                }
+
                 //Datos de la Cuenta
                 $("#username").val(userData.uLoginName);
                 $("#user_status").val(StatusMapping[userData.uStatus]);
@@ -352,7 +360,7 @@
                 $("#user_lastnames").val(userData.uLastName);
                 $("#id_type").val(userData.dtID);
                 $("#id_number").val(userData.uDocument);
-                $("#birthDate").val(userData.uBirthDate);
+                $("#birthDatep").val(fechaSolo);
                 $("#genderSelect").val(userData.gID);
 
                 //Datos de Contacto
@@ -399,7 +407,7 @@
                 dtID: parseInt($("#id_type").val()),
                 uDocument: $("#id_number").val(),
                 gID: parseInt($("#genderSelect").val()),
-                uBirthDate: $("#birthDate").val(),
+                uBirthDate: $("#birthDatep").val(),
                 //uBirthDate: formattedBirthDate,
 
                 //Datos de Contacto
