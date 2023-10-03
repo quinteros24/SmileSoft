@@ -49,7 +49,7 @@ function verifyToken() {
     }).done(function (response) {
         console.log(response)
         if (response.itemJson != null && response.itemJson != undefined && response.itemJson != "") {
-            return sessionStorage.setItem('acessToken', response.itemJson)
+            return sessionStorage.setItem('accessToken', response.itemJson)
         }
         logoutUser();
     });

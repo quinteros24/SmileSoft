@@ -1,7 +1,9 @@
 ﻿using Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -53,12 +55,36 @@ namespace Repository.Queries
 
             if (Item.uID == 0)
             {
+
+
                 // Crear un nuevo usuario
-                query += $"    INSERT INTO dbo.Users (utID, uName, uLastName, uCellphone, uAddress, uLoginName, uEmailAddress, uPassword, dtID, uDocument, uStatus, oID, gID, uBirthDate)\n" +
+                query +=
+                    $"    IF EXISTS (SELECT TOP(1)* FROM dbo.Users WHERE uDocument = '{Item.uDocument}')\n" +
+                    $"    BEGIN\n" +
+                    $"        SET @Response ='Ya existe un usuario con este número de documento registrado.'\n" +
+                    $"    END\n" +
+                    $"    ELSE IF EXISTS (SELECT TOP(1)* FROM dbo.Users WHERE uEmailAddress = '{Item.uEmailAddress}')\n" +
+                    $"    BEGIN\n" +
+                    $"        SET @Response = 'Ya existe un usuario con esta dirección de correo electrónico registrada.'\n" +
+                    $"    END\n" +
+                    $"    ELSE IF EXISTS (SELECT TOP(1)* FROM dbo.Users WHERE uLoginName = '{Item.uLoginName}')\n" +
+                    $"    BEGIN\n" +
+                    $"        SET @Response = 'Ya existe un usuario con este nombre de usuario registrado.'\n" +
+                    $"    END\n" +
+                    $"    ELSE\n" +
+                    $"    BEGIN\n" +
+                    $"        INSERT INTO dbo.Users (utID, uName, uLastName, uCellphone, uAddress, uLoginName, uEmailAddress, uPassword, dtID, uDocument, uStatus, oID, gID, uBirthDate)\n" +
+                    $"        OUTPUT inserted.uID INTO @aux\n" +
+                    $"        VALUES ({Item.utID}, '{Item.uName}', '{Item.uLastName}', '{Item.uCellphone}', '{Item.uAddress}', '{Item.uLoginName}', \n" +
+                    $"        '{Item.uEmailAddress}', HASHBYTES('SHA2_256', CAST('{Item.uPassword}' AS VARCHAR(8000))), {Item.dtID}, '{Item.uDocument}', {(Item.uStatus ? 1 : 0)},{Item.oID},{Item.gID},'{fecha}');\n" +
+                    $"        SET @Response = CONCAT(@Response,'Registrado con éxito.')\n" +
+                    $"    END\n";
+
+                /*query += $"    INSERT INTO dbo.Users (utID, uName, uLastName, uCellphone, uAddress, uLoginName, uEmailAddress, uPassword, dtID, uDocument, uStatus, oID, gID, uBirthDate)\n" +
                         $"    OUTPUT inserted.uID INTO @aux\n" +
                         $"    VALUES ({Item.utID}, '{Item.uName}', '{Item.uLastName}', '{Item.uCellphone}', '{Item.uAddress}', '{Item.uLoginName}', \n" +
                         $"    '{Item.uEmailAddress}', HASHBYTES('SHA2_256', CAST('{Item.uPassword}' AS VARCHAR(8000))), {Item.dtID}, '{Item.uDocument}', {(Item.uStatus? 1:0)},{Item.oID},{Item.gID},'{fecha}');\n" +
-                        $"    SET @Response = CONCAT(@Response,'registrado con éxito.')\n";
+                        $"    SET @Response = CONCAT(@Response,'registrado con éxito.')\n";*/
 
             }
             else if (Item.uID != 0)
