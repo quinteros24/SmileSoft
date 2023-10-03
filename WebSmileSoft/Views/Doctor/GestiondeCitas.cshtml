@@ -75,14 +75,14 @@
                     ];
                     dataSet.push(rowData);
                 });
-
+                console.log(dataSet);
                 // Inicializa o actualiza el DataTable con los datos procesados
                 let tablecitasd = $('#citasDoctor').DataTable({
                     columnDefs: [
                         {
                             target: 0,
-                            visible: false,
-                            searchable: false
+                            visible: true,
+                            searchable: true
                         }
                     ],
                     columns: [
