@@ -10,7 +10,7 @@ namespace Repository.Queries
 
             if(uID != null && uID != 0)
             {
-                WHERE_USER_DOCTOR = $" AND uID = {uID}";
+                WHERE_USER_DOCTOR = $" AND U.uID = {uID}";
             }
 
             if(dID != null && dID != 0)
@@ -34,7 +34,7 @@ namespace Repository.Queries
                    $"        INNER JOIN Users AS U ON A.uID = U.uID\n" +
                    $"        INNER JOIN Doctors AS D ON A.dID = D.dID\n" +
                    $"    WHERE\n" +
-                   $"        (uName LIKE @filter OR uName <> ''){WHERE_USER_DOCTOR}\n" +
+                   $"        (uName LIKE @filter OR uName <> '') {WHERE_USER_DOCTOR}\n" +
                    $"    ORDER BY\n" +
                    $"        uName, aDate\n" +
                    $"    SELECT 0 AS OutputCodeError, 'Datos cargados correctamente' AS OutputMessageError, 'Parameters' AS TableName\n" +

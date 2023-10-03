@@ -1,6 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿
 
 <section>
     @* <div class="d-sm-flex justify-content-between align-items-center mb-4">
@@ -38,59 +36,42 @@
                 <div class="card-body">
                     <div class="row align-items-center no-gutters">
                         <div class="col me-2">
-                            <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Administradores</span></div>
-                            <div class=" fw-bold h5 mb-0"><span id="userAdmin"></span></div><!-- Cargar datos de la base de datos -->
+                            <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Administradores Registrados</span></div>
+                            <div class="fw-bold h5 mb-0"><span id="userAdmin"></span></div><!-- Cargar datos de la base de datos -->
                         </div>
-                        <div class="col-auto"><i class="fa-solid fa-user-shield fa-2x text-gray-300"></i></div>
+                        <div class="col-auto"><i class="fa-solid fa-user fa-2x text-gray-300"></i></div>
                     </div>
                 </div>
             </div>
         </div>
-        @* <div class="col-md-6 col-xl-3 mb-4">
-        <div class="card shadow border-start-info py-2">
-        <div class="card-body">
-        <div class="row align-items-center no-gutters">
-        <div class="col me-2">
-        <div class="text-uppercase text-info fw-bold text-xs mb-1"><span>Citas Programadas Hoy</span></div>
-        <div class="row g-0 align-items-center">
-        <div class="col-auto">
-        <div class=" fw-bold h5 mb-0 me-3"><span>50</span></div><!-- Cargar datos de la base de datos -->
-        </div>
-        <div class="col">
-        <div class="progress progress-sm">
-        <div class="progress-bar bg-info" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;"><span class="visually-hidden">50%</span></div>
-        </div>
-        </div>
-        </div>
-        </div>
-        <div class="col-auto"><i class="fas fa-clipboard-list fa-2x text-gray-300"></i></div>
-        </div>
-        </div>
-        </div>
-        </div> *@
-        @* <div class="col-md-6 col-xl-3 mb-4">
-            <div class="card shadow border-start-warning py-2">
-                <div class="card-body">
-                    <div class="row align-items-center no-gutters">
-                        <div class="col me-2">
-                            <div class="text-uppercase text-warning fw-bold text-xs mb-1"><span>PQRs</span></div>
-                            <div class=" fw-bold h5 mb-0"><span>18</span></div>
-                        </div>
-                        <div class="col-auto"><i class="fas fa-comments fa-2x text-gray-300"></i></div>
+        <div class="d-flex row col-md-12 justify-content-center align-content-center text-primary">
+            <!-- Vista de Citas -->
+            <div class="col-md-5" style="display: none;">
+                <section id="citas" >
+                    <h2>Citas Programadas</h2>
+                    <!-- Calendario de citas -->
+                  <div id="calendario"></div>
+                </section>
+            </div> 
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        Lista Citas
+                    </div>
+                    <div class="card-body">
+                        <table class="table" id="citasDoctores">
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-    </div> *@
-    @* <button id="buscarUsuarioBtn" class="btn btn-primary">Buscar Usuario</button> *@
     </div>
 
 </section>
 
 @section Scripts {
-
-    <script charset="utf-8">
-
+    <script>
+        let eventos = [];
         $(document).ready(function () {
             // Realizar solicitud AJAX para obtener la lista de usuarios y contarlos
             var utID = 3;
@@ -106,11 +87,11 @@
                     if (data.itemJson === null) {
                         $("#userCount").text("0");
                     } else {
-                       
+
                         // Mostrar el número de usuarios en el elemento HTML con id "userCount"
                         var userCount = data.itemJson.length;
                         $("#userCount").text(userCount);
-                        
+
                     }
 
                 },
@@ -135,11 +116,8 @@
                         // Mostrar el número de usuarios en el elemento HTML con id "userCount"
                         var userCount = data.itemJson.length;
                         $("#userDoctor").text(userCount);
-                       
+
                     }
-
-
-
                 },
                 error: function (error) {
                     console.log('Error al obtener la lista de usuarios.');
@@ -158,11 +136,11 @@
                     if (data.itemJson === null) {
                         $("#userAdmin").text("0");
                     } else {
-                       
+
                         // Mostrar el número de usuarios en el elemento HTML con id "userCount"
                         var userCount = data.itemJson.length;
                         $("#userAdmin").text(userCount);
-                       
+
                     }
 
                 },
@@ -173,11 +151,6 @@
 
             // Resto de tu código...
         });
-
-    </script>
-
-    <script>
-
         // Espera a que se cargue el documento
         $(document).ready(function () {
             // Adjunta un controlador de eventos de clic al botón
@@ -202,7 +175,7 @@
                             // Mostrar los datos en la consola o realizar otras acciones
                             console.log("Datos Cargados Correctamente");
                             console.log(data.itemJson);
-                           
+
                         }
                     },
                     error: function (error) {
@@ -211,7 +184,311 @@
                 });
             });
         });
+        $(document).ready(function () {
+            let uID = sessionStorage.getItem("userID");
+            getUserCitas(uID);
+            $("#loadingScreen").show();
 
-           
+
+        });
+        function getUserCitas(uID) {
+            // Realizar solicitud AJAX para obtener la lista de usuarios
+            // var utID = 1;
+            mostrarCargando();
+
+            $.ajax({
+                url: sessionStorage.urlEP + '/api/Appointments/v1/GetAppointmentsList',
+                type: 'GET',
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (data) {
+                    $("#loadingScreen").hide();
+                    //console.log("Respuesta del Servidor " + data);
+                    // Procesar los datos recibidos y agregar filas a la tabla
+                    let dataSet = [];
+                    let users = data.itemJson;
+                    console.table(users);
+
+                    $.each(data.itemJson, function (index, cita) {
+                        // "aID": 28,
+                        //"oID": null,
+                        //"dtID": null,
+                        //"gID": null,
+                        // "uDocument": null,
+                        // "uEmailAddress": null,
+                        // "uName": "Andrea Ramirez",
+                        //  "uDoctorName": "Andrea Ramirez",
+                        //   "uLastName": null,
+                        //   "uCellphone": "30242111110",
+                        // "uID": null,
+                        //  "dID": null,
+                        //  "asID": 1,
+                        //   "aDescription": null,
+                        //   "aDate": "2023-10-02T00:00:00",
+                        //  "uBirthDate": null,
+                        //  "aTime": null
+                        let fechaCita = cita.aDate;
+                        let fechaFormateada = fechaCita.substring(0, 10);
+                        let rowData = [
+                            cita.aID,
+                            cita.uName,
+                            cita.dID,
+                            cita.aDescription,
+                            fechaFormateada,
+                            cita.aTime
+                        ];
+                        dataSet.push(rowData);
+                    });
+
+                    users.forEach(function (cita) {
+
+                        let fecha = cita.aDate;
+                        let nombre = cita.uName;
+                        //let hora = cita.aTime;
+                        let hora = "10:00:00";
+                        let horaf = "11:00:00";
+                        // Formatear la fecha y hora
+                        let fechaInicio = fecha.split('T')[0] + 'T' + hora;
+
+                        // Sumar 1 hora a la fecha de inicio para la fecha de finalización
+                        let fechaFin = fecha.split('T')[0] + 'T' + horaf;
+
+                        console.log("Fecha Inicio");
+                        console.log(fechaInicio);
+                        console.log("Fecha Fin");
+                        console.log(fechaFin);
+                        // Agrega un nuevo evento al arreglo de eventos
+                        eventos.push({
+                            title: nombre, // Título del evento
+                            start: fechaInicio, // Fecha de inicio del evento
+                            end: fechaFin,
+
+                            // Otras propiedades del evento...
+                        });
+                    });
+                    // Inicializa o actualiza el DataTable con los datos procesados
+                    tableCitas = $('#citasDoctores').DataTable({
+                        columns: [
+                            { title: '#' },
+                            { title: 'Nombre' },
+                            { title: 'Doctor' },
+                            { title: 'Motivo' },
+                            { title: 'Fecha' },
+                            { title: 'Hora' },
+                            {
+                                title: 'Acciones',
+                                orderable: false, // Para desactivar la ordenación en esta columna
+                                data: null, // Usaremos la columna "Acciones" solo para botones
+                                defaultContent: '<button class="btn btn-primary btn-sm btnDesactivarC" data-toggle="tooltip" title="Cancelar Cita" type="button"> <i class="fas fa-ban"> </i></button> ' +
+                                    '<button class="btn btn-danger btn-sm btnEditarC" data-toggle="modal" data-target="#editarCitaModal" data-toggle="tooltip" title="Reprogramar Cita"> <i class="fa-regular fa-pen-to-square"></i></button> '
+                            }
+                        ],
+
+                        data: dataSet,
+                        dom: 'Bfrtip',
+                        buttons: {
+                            buttons: [
+                                {
+                                    extend: 'print', className: 'btn btn-sm',
+                                    messageTop: 'Citas SmileSoft',
+                                }
+                            ]
+                        },
+                        "paging": false,
+                        select: true,
+                        destroy: true,
+                        language: {
+                            url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json',
+                        },
+
+                    });
+
+                    Swal.close();
+                    tableCitas.column(6).nodes().to$().find('.btnDesactivarC').click(function () {
+                        // Maneja la acción del botón aqui
+                        let data = tableCitas.row($(this).parents('tr')).data();
+                        let CitaID = data[0]; // la primera columna contiene el ID del usuario
+                        Swal.fire({
+                            title: 'Cancelar Cita',
+                            text: '¿Está seguro que desea cancelar la cita?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonText: 'Si, Cancelar Cita',
+                            cancelButtonText: 'Cancelar'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    url: sessionStorage.urlEP + '/api/Appointments/v1/UpdateAppointmentStatus',
+                                    type: 'PUT',
+                                    data: { 'aID': CitaID },
+                                    contentType: "application/json",
+                                    dataType: 'json',
+                                    success: function (response) {
+                                        if (response.codeStatus == 0) {
+                                            Swal.fire({
+                                                title: 'Cita Cancelada',
+                                                text: 'La cita ha sido Cancelada exitosamente.',
+                                                icon: 'success',
+                                                confirmButtonText: 'Aceptar'
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    location.reload();
+                                                }
+                                            })
+                                        }
+                                        else if (response.codeStatus == -1) {
+                                            Swal.fire({
+                                                title: 'Error',
+                                                text: response.messageStatus,
+                                                icon: 'error',
+                                                confirmButtonText: 'Aceptar'
+                                            })
+                                        }
+
+                                    },
+                                    error: function (error) {
+                                        console.log('Error al obtener los detalles del usuario.');
+                                    }
+
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        location.reload();
+                                    }
+                                })
+                            }
+                        })
+
+
+                    });
+                    tableCitas.column(6).nodes().to$().find('.btnEditarC').click(function () {
+                        // Maneja la acción del botón aqui
+                        let data = tableCitas.row($(this).parents('tr')).data();
+                        let CitaID = data[0]; // la primera columna contiene el ID del usuario
+                        Swal.fire({
+                            title: 'Reprogramar Cita',
+                            text: '¿Está seguro que desea reprogramar la cita?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonText: 'Si, reprogramar',
+                            cancelButtonText: 'Cancelar'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+
+
+
+                                $.ajax({
+                                    url: sessionStorage.urlEP + '/api/Appointments/v1/UpdateAppointmentStatus',
+                                    type: 'POST',
+                                    data: { 'aID': CitaID },
+                                    contentType: "application/json",
+                                    dataType: 'json',
+                                    success: function (response) {
+                                        if (response.codeStatus == 0) {
+                                            Swal.fire({
+                                                title: 'Cita Cancelada',
+                                                text: 'La cita ha sido Cancelada exitosamente.',
+                                                icon: 'success',
+                                                confirmButtonText: 'Aceptar'
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    location.reload();
+                                                }
+                                            })
+                                        }
+                                        else if (response.codeStatus == -1) {
+                                            Swal.fire({
+                                                title: 'Error',
+                                                text: response.messageStatus,
+                                                icon: 'error',
+                                                confirmButtonText: 'Aceptar'
+                                            })
+                                        }
+
+                                    },
+                                    error: function (error) {
+                                        console.log('Error al obtener los detalles del usuario.');
+                                    }
+
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        location.reload();
+                                    }
+                                })
+                            }
+                        })
+
+
+                    });
+
+                }
+            });
+        };
+        function mostrarCargando() {
+            Swal.fire({
+                title: 'Cargando',
+                text: 'Por favor, espere un momento...',
+                showCancelButton: false,
+                showConfirmButton: false,
+                allowOutsideClick: false,
+                onBeforeOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+        }
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+
+        });
+       
+
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     if (document.getElementById('calendario') != null) {
+        //         let calendarEl = document.getElementById('calendario');
+        //         let listaEventos = eventos;
+        //         let count = listaEventos.length;
+        //         console.log("Lista de Eventos: ");
+        //         console.log(listaEventos);
+        //         let calendar = new FullCalendar.Calendar(calendarEl, {
+        //             initialView: 'dayGridMonth',
+        //             editable: true,
+        //             events: listaEventos,
+        //             eventRender: function (event, element) {
+        //                 if (!event.title) {
+        //                     console.error('Evento sin título:', event);
+        //                 }
+        //             },
+        //             eventClick: function (info) {
+        //                 info.jsEvent.preventDefault(); // don't let the browser navigate
+
+        //                 if (info.event.url) {
+        //                     window.open(info.event.url);
+        //                 }
+        //             },
+        //             loading: function (isLoading) {
+        //                 if (isLoading) {
+        //                     Swal.fire({
+        //                         title: 'Cargando',
+        //                         text: 'Por favor, espere un momento...',
+        //                         showCancelButton: false,
+        //                         showConfirmButton: false,
+        //                         allowOutsideClick: false,
+        //                         onBeforeOpen: () => {
+        //                             Swal.showLoading();
+        //                         }
+        //                     });
+        //                 } else {
+        //                     Swal.close();
+        //                 }
+        //             },
+                    
+
+        //         });
+        //         calendar.setOption('locale', 'es');
+        //         calendar.render();
+        //     }
+        // });
+        // console.log("Eventos: ");
+        // console.log(eventos);
+
     </script>
 }
