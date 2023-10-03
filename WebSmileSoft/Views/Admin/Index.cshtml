@@ -107,6 +107,7 @@
     <script>
         let eventos = [];
         $(document).ready(function () {
+            //verifyToken();
             // Realizar solicitud AJAX para obtener la lista de usuarios y contarlos
             var utID = 3;
             $.ajax({
@@ -191,7 +192,7 @@
             $("#buscarUsuarioBtn").click(function () {
                 var uID = 3;
 
-                console.log("Buscando al Usuario " + uID);
+                //console.log("Buscando al Usuario " + uID);
 
                 $.ajax({
                     url: '@ViewBag.urlEndPoint' + '/api/Users/v1/GetUserDetails',
@@ -241,7 +242,7 @@
                     // Procesar los datos recibidos y agregar filas a la tabla
                     let dataSet = [];
                     let users = data.itemJson;
-                    console.table(users);
+                    //console.table(users);
 
                     $.each(data.itemJson, function (index, cita) {
                        
@@ -273,10 +274,10 @@
                         // Sumar 1 hora a la fecha de inicio para la fecha de finalización
                         let fechaFin = fecha.split('T')[0] + 'T' + horaf;
 
-                        console.log("Fecha Inicio");
-                        console.log(fechaInicio);
-                        console.log("Fecha Fin");
-                        console.log(fechaFin);
+                        // console.log("Fecha Inicio");
+                        // console.log(fechaInicio);
+                        // console.log("Fecha Fin");
+                        // console.log(fechaFin);
                         // Agrega un nuevo evento al arreglo de eventos
                         eventos.push({
                             title: nombre, // Título del evento

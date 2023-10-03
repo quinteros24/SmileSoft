@@ -184,8 +184,7 @@
             let uID = sessionStorage.getItem("userID");
             getUserCitas(uID);
             $("#loadingScreen").show();
-
-
+            
         });
         function getUserCitas(uID) {
             // Realizar solicitud AJAX para obtener la lista de usuarios
@@ -204,7 +203,7 @@
                     // Procesar los datos recibidos y agregar filas a la tabla
                     let dataSet = [];
                     let users = data.itemJson;
-                    console.table(users);
+                    //console.table(users);
                     if (data == null) {
                         $("#loadingScreen").hide();
                     }

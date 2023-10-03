@@ -227,6 +227,7 @@
 
 
         $(document).ready(function () {
+            //verifyToken();
             let uRol = sessionStorage.getItem('userRole');
             if (uRol == 2) {
                 console.log("Cargando Especialidades");
@@ -308,7 +309,7 @@
             // Adjunta un controlador de eventos de clic al boton
             let uID = sessionStorage.getItem('userID');
 
-            console.log("Buscando al Usuario " + uID);
+            //console.log("Buscando al Usuario " + uID);
 
             $.ajax({
                 url: sessionStorage.urlEP + '/api/Users/v1/GetUserDetails',
@@ -321,19 +322,19 @@
                     console.log(data.itemJson);
 
                     if (data.itemJson === null) {
-                        console.log("No se cargo correctamente");
+                        console.log("No se cargo correctamente el Formulario en View Profile");
 
                     } else {
                         // Mostrar los datos en la consola o realizar otras acciones
                         let userData = data.itemJson; // Accede al primer elemento del arreglo
 
                         // Llama a una funcion para actualizar el formulario con los datos recibidos
-                        console.log("Actualizando Formulario")
+                        //console.log("Actualizando Formulario")
                         actualizarFormulario(userData);
                     }
                 },
                 error: function (error) {
-                    console.log('Error al obtener los detalles del usuario.');
+                    console.log('Error al obtener los detalles del usuario en View Profile.');
                 }
             });
 
@@ -381,18 +382,7 @@
 
         $(".update-profile-button").click(function () {
 
-            //let uID = sessionStorage.getItem('userID');
-            //Datos de Estudios
-            // let DoctorModel = {
-            //     dAcademicLevel: $("#AcademicLevel").val(),
-            //     dDegree: $("#TituloAcademico").val(),
-            //     spID: $("#Speciality").val(),
-            //     dProfessionalCard: $("#Tarjeta_Profesional").val(),
-            //     dUniversityName: $("#Universityname").val()
-            // }
-            // let birthDate = document.getElementById("birthDate").value.trim();
-            // let formattedBirthDate = formatToDatetime(birthDate);
-            // Obtener los datos actualizados del formulario
+           
             let updatedUserData = {
                 //Datos de la Cuenta
                 uID: parseInt(sessionStorage.getItem('userID')),
