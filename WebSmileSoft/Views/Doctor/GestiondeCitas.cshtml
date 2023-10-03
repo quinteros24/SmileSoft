@@ -8,44 +8,13 @@
             </div>
             <div class="card-body">
                 <!-- Aquí va la tabla -->
-                    <table id="citasDoctor" class="table"></table>
+                <table id="citasDoctor" class="table"></table>
             </div>
         </div>
     </div>
 </div>
 
-@*
-    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">Editar de Cita</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="username" class="form-label">Usuario</label>
-                            <input type="text" class="form-control" id="username" name="username" disabled>
-                        </div>
-                        <div class="form-group">
-                            <label for="estadodeCita">Estado de la Cita</label>
-                            <select class="form-control" id="tipoUsuarioe" name="estadodeCita" required>
-                                <option value="1">Pendiente</option>
-                                <option value="2">Programada</option>
-                                <option value="3">Cancelada</option>
-                            </select>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" id="saveChangesBtn">Guardar Cambios</button>
-                </div>
-            </div>
-        </div>
-    </div>
-*@
+
 @section Scripts{
     <script>
 
@@ -65,19 +34,20 @@
                     let fechaCita = cita.aDate;
                     let fechaFormateada = fechaCita.substring(0, 10);
                     let rowData = [
-                        cita.aID,           // Agrega aID
+                        cita.aID,
                         fechaFormateada,
-                        cita.uDoctorName,   // Agrega uDoctorName
-                        //cita.aDescription,  // Agrega aDescription
                         cita.uName,
-                        cita.asID == 1 ? 'Programada' : 'Cancelada',
-                        '<button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#editModal">Editar</button>'
+                        cita.uCellphone,
+                        cita.uDoctorName,
+                        cita.aDescription,
+                        cita.aTime,
+                        cita.asName
                     ];
                     dataSet.push(rowData);
                 });
                 console.log(dataSet);
                 // Inicializa o actualiza el DataTable con los datos procesados
-                let tablecitasd = $('#citasDoctor').DataTable({
+                tablecitasd = $('#citasDoctor').DataTable({
                     columnDefs: [
                         {
                             target: 0,
@@ -86,19 +56,20 @@
                         }
                     ],
                     columns: [
-                        { title: 'ID' },
+                        { title: '#' },
                         { title: 'Fecha' },
-                        //{ title: 'Hora' },
-                        { title: 'Doctor' },    // Cambia el título de la columna
-                        //{ title: 'Descripción' }, // Agrega el título de la columna
-                        { title: 'Paciente' },
+                        { title: 'Nombre' },
+                        { title: 'Celular' },
+                        { title: 'Doctor' },
+                        { title: 'Motivo' },
+                        { title: 'Hora' },
                         { title: 'Estado' },
                         {
                             title: 'Acciones',
                             orderable: false, // Para desactivar la ordenación en esta columna
                             data: null, // Usaremos la columna "Acciones" solo para botones
-                            defaultContent: '<button class="btn btn-primary btn-sm btnDesactivarD" data-toggle="tooltip" title="Cancelar Cita" type="button"> <i class="fas fa-ban"> </i></button> ' +
-                                '<button class="btn btn-danger btn-sm btnEditarD" data-toggle="modal" data-target="#editarCitaModal" data-toggle="tooltip" title="Reprogramar Cita"> <i class="fa-regular fa-pen-to-square"></i></button> '
+                            defaultContent: '<button class="btn btn-primary btn-sm btnDesactivarC" data-toggle="tooltip" title="Cancelar Cita" type="button"> <i class="fas fa-ban"> </i></button> ' +
+                                '<button class="btn btn-warning btn-sm btnEditarC" data-toggle="modal" data-toggle="tooltip" title="Cambiar Estado de la Cita"> <i class="fa-regular fa-pen-to-square"></i></button> '
                         }
                     ],
                     data: dataSet,
@@ -120,121 +91,178 @@
 
                 Swal.close();
 
-                tablecitasd.column(6).nodes().to$().find('.btnDesactivarD').click(function () {
+                tablecitasd.column(8).nodes().to$().find('.btnDesactivarC').click(function () {
                     // Maneja la acción del botón aqui
                     let data = tablecitasd.row($(this).parents('tr')).data();
                     let CitaID = data[0]; // la primera columna contiene el ID del usuario
-                    Swal.fire({
-                        title: 'Cancelar Cita',
-                        text: '¿Está seguro que desea cancelar la cita?',
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonText: 'Si, Cancelar Cita',
-                        cancelButtonText: 'Cancelar'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            $.ajax({
-                                url: sessionStorage.urlEP + '/api/Appointments/v1/UpdateAppointmentStatus',
-                                type: 'PUT',
-                                data: { 'aID': CitaID },
-                                contentType: "application/json",
-                                dataType: 'json',
-                                success: function (response) {
-                                    if (response.codeStatus == 0) {
-                                        Swal.fire({
-                                            title: 'Cita Cancelada',
-                                            text: 'La cita ha sido Cancelada exitosamente.',
-                                            icon: 'success',
-                                            confirmButtonText: 'Aceptar'
-                                        }).then((result) => {
-                                            if (result.isConfirmed) {
-                                                location.reload();
-                                            }
-                                        })
+                    let CitaEstado = data[7];
+                    if (CitaEstado == "Realizado") {
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'Oops...',
+                            text: 'La cita ya fue realizada, no se puede cancelar.',
+                            confirmButtonColor: '#008dc9'
+                        })
+                    } else if (CitaEstado == "Cancelado") {
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'Oops...',
+                            text: 'La cita ya fue cancelada.',
+                            confirmButtonColor: '#008dc9'
+                        })
+                    } else if (CitaEstado == "Confirmado") {
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'Oops...',
+                            text: 'La cita ya fue confirmada, no se puede cancelar.',
+                            confirmButtonColor: '#008dc9'
+                        })
+                    } else if (CitaEstado == "Pendiente") {
+                        Swal.fire({
+                            title: 'Cancelar Cita',
+                            text: '¿Está seguro que desea cancelar la cita?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonText: 'Si, Cancelar Cita',
+                            cancelButtonText: 'Atrás'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    url: sessionStorage.urlEP + '/api/Appointments/v1/UpdateAppointmentStatus',
+                                    type: 'GET',
+                                    data: { 'aID': CitaID, 'asID': 4 },
+                                    contentType: "application/json",
+                                    dataType: 'json',
+                                    success: function (response) {
+                                        if (response.codeStatus == 0) {
+                                            Swal.fire({
+                                                title: 'Cita Cancelada',
+                                                text: 'La cita ha sido Cancelada exitosamente.',
+                                                icon: 'success',
+                                                confirmButtonText: 'Aceptar'
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    location.reload();
+                                                }
+                                            })
+                                        }
+                                        else if (response.codeStatus == -1) {
+                                            Swal.fire({
+                                                title: 'Error',
+                                                text: response.messageStatus,
+                                                icon: 'error',
+                                                confirmButtonText: 'Aceptar'
+                                            })
+                                        }
+
+                                    },
+                                    error: function (error) {
+                                        console.log('Error al obtener los detalles del usuario.');
                                     }
-                                    else if (response.codeStatus == -1) {
-                                        Swal.fire({
-                                            title: 'Error',
-                                            text: response.messageStatus,
-                                            icon: 'error',
-                                            confirmButtonText: 'Aceptar'
-                                        })
+
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        location.reload();
                                     }
-
-                                },
-                                error: function (error) {
-                                    console.log('Error al obtener los detalles del usuario.');
-                                }
-
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    location.reload();
-                                }
-                            })
-                        }
-                    })
-
+                                })
+                            }
+                        })
+                    }
 
                 });
-                tablecitasd.column(6).nodes().to$().find('.btnEditarD').click(function () {
+                tablecitasd.column(8).nodes().to$().find('.btnEditarC').click(async function () {
                     // Maneja la acción del botón aqui
                     let data = tablecitasd.row($(this).parents('tr')).data();
                     let CitaID = data[0]; // la primera columna contiene el ID del usuario
-                    Swal.fire({
-                        title: 'Reprogramar Cita',
-                        text: '¿Está seguro que desea reprogramar la cita?',
-                        icon: 'warning',
+
+                    const { value: citaState } = await Swal.fire({
+                        title: 'Seleccionar estado de la cita',
+                        input: 'select',
+                        inputOptions: {
+                            '1': 'Pendiente',
+                            '2': 'Confirmada',
+                            '3': 'Completada'
+                        },
+                        inputPlaceholder: 'Selecciona el estado de la cita',
                         showCancelButton: true,
-                        confirmButtonText: 'Si, reprogramar',
-                        cancelButtonText: 'Cancelar'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            $.ajax({
-                                url: sessionStorage.urlEP + '/api/Appointments/v1/UpdateAppointmentStatus',
-                                type: 'POST',
-                                data: { 'aID': CitaID },
-                                contentType: "application/json",
-                                dataType: 'json',
-                                success: function (response) {
-                                    if (response.codeStatus == 0) {
-                                        Swal.fire({
-                                            title: 'Cita Cancelada',
-                                            text: 'La cita ha sido Cancelada exitosamente.',
-                                            icon: 'success',
-                                            confirmButtonText: 'Aceptar'
-                                        }).then((result) => {
-                                            if (result.isConfirmed) {
-                                                location.reload();
-                                            }
-                                        })
-                                    }
-                                    else if (response.codeStatus == -1) {
-                                        Swal.fire({
-                                            title: 'Error',
-                                            text: response.messageStatus,
-                                            icon: 'error',
-                                            confirmButtonText: 'Aceptar'
-                                        })
-                                    }
-
-                                },
-                                error: function (error) {
-                                    console.log('Error al obtener los detalles del usuario.');
+                        inputValidator: (value) => {
+                            return new Promise((resolve) => {
+                                if (value > 0) {
+                                    // alert(value);
+                                    //resolve(value); // Si se selecciona un estado, resolvemos con ese valor
+                                    changeDateStatus(value, CitaID);
+                                } else {
+                                    resolve('Debes seleccionar un estado de cita.');
                                 }
-
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    location.reload();
-                                }
-                            })
+                            });
                         }
-                    })
-
+                    });
 
                 });
-                
-                
+            },
+            error: function (error) {
+                console.log('Error al obtener los detalles del usuario.');
             }
+        });
+        function changeDateStatus(citaState, CitaID) {
+            // Aquí puedes realizar la solicitud AJAX con el valor de citaState
+            //console.log(`Estado de cita seleccionado: ${citaState}`);
+
+            $.ajax({
+                url: sessionStorage.urlEP + '/api/Appointments/v1/UpdateAppointmentStatus',
+                type: 'GET',
+                data: { 'aID': CitaID, 'asID': citaState },
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (response) {
+                    if (response.codeStatus == 0) {
+                        Swal.fire({
+                            title: response.messageStatus,
+                            icon: 'info',
+                            confirmButtonText: 'Aceptar'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                swal.close();
+                                location.reload();
+                            }
+                        })
+                    }
+                    else if (response.codeStatus == -1) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: response.messageStatus,
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar'
+                        })
+                    }
+
+                },
+                error: function (error) {
+                    console.log('Error al obtener los detalles del usuario.');
+                }
+
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.reload();
+                }
+            })
+        }
+
+        function mostrarCargando() {
+            Swal.fire({
+                title: 'Cargando',
+                text: 'Por favor, espere un momento...',
+                showCancelButton: false,
+                showConfirmButton: false,
+                allowOutsideClick: false,
+                onBeforeOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+        }
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+
         });
 
     </script>

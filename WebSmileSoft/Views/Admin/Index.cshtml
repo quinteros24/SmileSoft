@@ -346,56 +346,79 @@
                         // Maneja la acción del botón aqui
                         let data = tableCitas.row($(this).parents('tr')).data();
                         let CitaID = data[0]; // la primera columna contiene el ID del usuario
-                        Swal.fire({
-                            title: 'Cancelar Cita',
-                            text: '¿Está seguro que desea cancelar la cita?',
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonText: 'Si, Cancelar Cita',
-                            cancelButtonText: 'Atrás'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                $.ajax({
-                                    url: sessionStorage.urlEP + '/api/Appointments/v1/UpdateAppointmentStatus',
-                                    type: 'GET',
-                                    data: { 'aID': CitaID, 'asID': 4 },
-                                    contentType: "application/json",
-                                    dataType: 'json',
-                                    success: function (response) {
-                                        if (response.codeStatus == 0) {
-                                            Swal.fire({
-                                                title: 'Cita Cancelada',
-                                                text: 'La cita ha sido Cancelada exitosamente.',
-                                                icon: 'success',
-                                                confirmButtonText: 'Aceptar'
-                                            }).then((result) => {
-                                                if (result.isConfirmed) {
-                                                    location.reload();
-                                                }
-                                            })
+                        let CitaEstado = data[7];
+                        if (CitaEstado == "Realizado") {
+                            Swal.fire({
+                                icon: 'info',
+                                title: 'Oops...',
+                                text: 'La cita ya fue realizada, no se puede cancelar.',
+                                confirmButtonColor: '#008dc9'
+                            })
+                        } else if (CitaEstado == "Cancelado") {
+                            Swal.fire({
+                                icon: 'info',
+                                title: 'Oops...',
+                                text: 'La cita ya fue cancelada.',
+                                confirmButtonColor: '#008dc9'
+                            })
+                        } else if (CitaEstado == "Confirmado") {
+                            Swal.fire({
+                                icon: 'info',
+                                title: 'Oops...',
+                                text: 'La cita ya fue confirmada, no se puede cancelar.',
+                                confirmButtonColor: '#008dc9'
+                            })
+                        } else {
+                            Swal.fire({
+                                title: 'Cancelar Cita',
+                                text: '¿Está seguro que desea cancelar la cita?',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonText: 'Si, Cancelar Cita',
+                                cancelButtonText: 'Atrás'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    $.ajax({
+                                        url: sessionStorage.urlEP + '/api/Appointments/v1/UpdateAppointmentStatus',
+                                        type: 'GET',
+                                        data: { 'aID': CitaID, 'asID': 4 },
+                                        contentType: "application/json",
+                                        dataType: 'json',
+                                        success: function (response) {
+                                            if (response.codeStatus == 0) {
+                                                Swal.fire({
+                                                    title: 'Cita Cancelada',
+                                                    text: 'La cita ha sido Cancelada exitosamente.',
+                                                    icon: 'success',
+                                                    confirmButtonText: 'Aceptar'
+                                                }).then((result) => {
+                                                    if (result.isConfirmed) {
+                                                        location.reload();
+                                                    }
+                                                })
+                                            }
+                                            else if (response.codeStatus == -1) {
+                                                Swal.fire({
+                                                    title: 'Error',
+                                                    text: response.messageStatus,
+                                                    icon: 'error',
+                                                    confirmButtonText: 'Aceptar'
+                                                })
+                                            }
+
+                                        },
+                                        error: function (error) {
+                                            console.log('Error al obtener los detalles del usuario.');
                                         }
-                                        else if (response.codeStatus == -1) {
-                                            Swal.fire({
-                                                title: 'Error',
-                                                text: response.messageStatus,
-                                                icon: 'error',
-                                                confirmButtonText: 'Aceptar'
-                                            })
+
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            location.reload();
                                         }
-
-                                    },
-                                    error: function (error) {
-                                        console.log('Error al obtener los detalles del usuario.');
-                                    }
-
-                                }).then((result) => {
-                                    if (result.isConfirmed) {
-                                        location.reload();
-                                    }
-                                })
-                            }
-                        })
-
+                                    })
+                                }
+                            })
+                        }
 
                     });
                     tableCitas.column(8).nodes().to$().find('.btnEditarC').click(async function () {
@@ -409,8 +432,7 @@
                             inputOptions: {
                                 '1': 'Pendiente',
                                 '2': 'Confirmada',
-                                '3': 'Completada',
-                                '4': 'Cancelada'
+                                '3': 'Completada'
                             },
                             inputPlaceholder: 'Selecciona el estado de la cita',
                             showCancelButton: true,

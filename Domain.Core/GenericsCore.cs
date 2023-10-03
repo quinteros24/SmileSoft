@@ -46,5 +46,10 @@ namespace Domain.Core
         {
             return await _genericsRepository.GetSpecialities();
         }
+
+        public async Task<List<SelectListItem>> GetDoctors(int? spID = 0)
+        {
+            return await _genericsRepository.GetDoctors(spID);
+        }
     }
 }
