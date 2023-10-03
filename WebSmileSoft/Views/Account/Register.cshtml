@@ -299,7 +299,6 @@
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Usuario Registrado',
-                                text: 'Usuario registrado con éxito.',
                                 confirmButtonColor: '#008dc9',
                                 allowOutsideClick: false,
                                 allowEscapeKey: false,
@@ -312,18 +311,19 @@
                             // El usuario ya existe en la base de datos
                             //alert('Este usuario ya existe en la base de datos.');
                             Swal.fire({
-                                icon: 'error',
+                                icon: 'warning',
                                 title: 'Oops...',
-                                text: 'Este usuario ya existe en la base de datos.',
+                                text: response.messageStatus,
                                 confirmButtonColor: '#008dc9'
                             })
-                        } else {
+                        } 
+                           else {
                             // Manejar otros códigos de error si es necesario
-                            alert('Error: ' + response.OutputMessageError);
+                          
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Oops...',
-                                text: 'Error: ' + response.OutputMessageError,
+                                text: 'Error: ' + response.messageStatus,
                                 confirmButtonColor: '#008dc9'
                             })
                         }
