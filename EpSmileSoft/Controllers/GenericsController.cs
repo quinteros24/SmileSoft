@@ -33,5 +33,12 @@ namespace EpSmileSoft.Controllers
             return await _genericsCore.GetSpecialities();
         }
 
+        [HttpGet]
+        [Route("v1/GetDoctors")]
+        public async Task<List<SelectListItem>> GetDoctors(int? spID = 0)
+        {
+            return await _genericsCore.GetDoctors(spID);
+        }
+
     }
 }
