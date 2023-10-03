@@ -21,7 +21,7 @@
         <div class="col-12">
             <button onclick="verusers(1);" class="btn btn-primary btn-block">Administradores</button>
             <button onclick="verusers(2);" class="btn btn-danger btn-block">Doctores</button>
-            <button onclick="verusers(3);" class="btn btn-secondary btn-block">Pacientes</button>
+            <button onclick="verusers(3);" class="btn btn-warning btn-block">Pacientes</button>
         </div>
 
     </div>
@@ -52,6 +52,8 @@
 
 @section Scripts {
     <script>
+
+
         document.getElementById("tipoUsuarioed").addEventListener("change", function () {
             var campoOpcional = document.getElementById("campoOpcional");
             if (this.value === "2") {
@@ -278,7 +280,6 @@
                             $("#tGeneroed").val(userData.gID);
                             $("#fechaNacimientoed").val(fechaSolo);
 
-
                             //Datos de Contacto
                             $("#editCorreoed").val(userData.uEmailAddress);
                             $("#direccioned").val(userData.uAddress);
@@ -380,7 +381,6 @@
                             Inactivo: 0
                         };
 
-
                         let rolesMappingI = {
                             Administrador: 1,
                             Doctores: 2,
@@ -441,66 +441,6 @@
                                 });
                             }
                         });
-
-
-
-                        //// Maneja la acción de desactivación aqui
-                        //let data = table.row($(this).parents('tr')).data();
-                        //let userId = data[0];
-                        //let loginName = data[2];
-                        //let userName = data[3] + ' ' + data[4];
-
-                        //console.log("Documento" + loginName + " User ID: " + userId);
-                        ////var userId = data[0]; // Obtén el ID del usuario desde el botón
-                        //let dataUser = {
-                        //    uID: userId,
-                        //    uStatus: 0
-                        //}; //Ajustar para enviar si esta inactivo activar si esta activo desactivar
-                        //// Muestra un mensaje de confirmación antes de desactivar el usuario
-
-                        //Swal.fire({
-                        //    title: 'Estas seguro de Desactivar? a:',
-                        //    text: ' ' + userName + ' !',
-                        //    icon: 'warning',
-                        //    showCancelButton: true,
-                        //    confirmButtonColor: '#3085d6',
-                        //    cancelButtonColor: '#d33',
-                        //    confirmButtonText: 'Si, desactivar',
-                        //    cancelButtonText: 'Cancelar'
-                        //}).then((result) => {
-                        //    if (result.isConfirmed) {
-                        //        //console.log("Desactivar 2" + userId);
-                        //        // Realiza la solicitud AJAX para desactivar el usuario
-                        //        $.ajax({
-                        //            url: sessionStorage.urlEP + '/api/Users/v1/SetUserStatus/',
-                        //            type: 'POST',
-                        //            data: JSON.stringify(dataUser),
-                        //            contentType: "application/json",
-                        //            //async: false,
-                        //            dataType: "json",
-                        //            success: function (response) {
-                        //                console.log("Respuesta del Servidor " + response);
-
-                        //                Swal.fire({
-                        //                    title: 'Usuario Desactivado',
-                        //                    text: 'El usuario' + data[0] + 'se desactivó correctamente',
-                        //                    icon: 'success',
-                        //                    confirmButtonText: 'Aceptar'
-                        //                });
-
-
-                        //            },
-                        //            error: function () {
-                        //                Swal.fire({
-                        //                    title: 'Error',
-                        //                    text: 'Error al deshabilitar el usuario',
-                        //                    icon: 'error',
-                        //                    confirmButtonText: 'Aceptar'
-                        //                });
-                        //            }
-                        //        });
-                        //    }
-                        //});
 
                     });
                     //Cambiar contraseña Estado --> Funcionando Bien
@@ -610,10 +550,6 @@
             if (!/\d/.test(password)) {
                 return false;
             }
-            // agregar requisitos adicionales aqui, como caracteres especiales
-            // if (!/[!#$%^&*()_+{ }\[\]:;<>,.?~\\-]/.test(password)) {
-            //     return false;
-            // }
 
             return true;
         }
@@ -688,10 +624,31 @@
 
             //Validar campos obligatorios
 
-            //if (!userData.nombres || !userData.apellidos || !userData.tipoDocumento || !userData.numeroDocumento || !userData.usuario || !userData.password || !userData.tipoUsuario) {
-            //    mostrarMensajeError('Por favor, complete todos los campos obligatorios.');
-            //    return;
-            //}
+            // Validar campos obligatorios
+            if (!userData.uName ||
+                !userData.uLastName ||
+                !userData.dtID ||
+                !userData.uDocument ||
+                !userData.uLoginName ||
+                !userData.uPassword ||
+                !userData.utID
+            ) {
+                mostrarMensajeError('Por favor, complete todos los campos obligatorios.');
+                return;
+            }
+
+            if (userData.utID == 2) {
+                // Si el tipo de usuario es igual a 2, validar campos adicionales
+                if (!userData.dAcademicLevel ||
+                    !userData.dDegree ||
+                    !userData.spID ||
+                    !userData.dProfessionalCard ||
+                    !userData.dUniversityName
+                ) {
+                    mostrarMensajeError('Por favor, complete todos los campos obligatorios.');
+                    return;
+                }
+            }
 
             // Validación de la contraseña
             let password = userData.uPassword;
@@ -795,25 +752,6 @@
         });
 
 
-        // function mostrarCarga() {
-        //     // Ocultar el contenido suavemente
-        //     $('#content-container').addClass('hide-content');
-
-        //     Swal.fire({
-        //         title: 'Cargando',
-        //         html: 'Por favor, espere un momento',
-        //         timer: 1000,
-        //         timerProgressBar: true,
-        //         didOpen: () => {
-        //             Swal.showLoading();
-        //         },
-        //         willClose: () => {
-        //             // Aqui puedes realizar acciones adicionales después de que se cierre la ventana de carga, si es necesario.
-        //             // Por ejemplo, mostrar el contenido nuevamente.
-        //             $('#content-container').removeClass('hide-content');
-        //         }
-        //     });
-        // }
         function mostrarCargando() {
             Swal.fire({
                 title: 'Cargando',

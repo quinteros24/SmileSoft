@@ -28,6 +28,8 @@ namespace Repository.Queries
                    $"        ,A.aDate\n" +
                    $"        ,A.aTime\n" +
                    $"        ,CONCAT((SELECT uName FROM Users WHERE [uID] = D.uID),' ',(SELECT uLastName FROM Users WHERE [uID] = D.uID)) AS uDoctorName\n" +
+                   $"        ,A.asID\n" +
+                   $"        ,(SELECT asDescription FROM AppointmentStates WHERE asID = A.asId) AS asName\n" +
                    $"        ,'OBJECT' AS TableName\n" +
                    $"    FROM\n" +
                    $"        Appointments AS A \n" +
@@ -140,7 +142,8 @@ namespace Repository.Queries
                    $"    @aID AS INT = {aID},\n" +
                    $"    @aDate AS DATE,\n" +
                    $"    @response AS VARCHAR(100),\n" +
-                   $"    @responseCode AS VARCHAR(5)\n\n" +
+                   $"    @responseCode AS VARCHAR(5),\n" +
+                   $"    @dateNow AS DATE = DATEADD(dd, 0, DATEDIFF(dd, 0, GETUTCDATE()))\n\n" +
                    $"BEGIN TRY\n" +
                    $"    IF NOT EXISTS(SELECT TOP(1)* FROM Appointments WHERE aID = @aID)\n" +
                    $"    BEGIN\n" +
@@ -150,7 +153,7 @@ namespace Repository.Queries
                    $"    ELSE\n" +
                    $"    BEGIN\n" +
                    $"        SET @aDate = (SELECT aDate FROM Appointments WHERE aID = @aID)\n" +
-                   $"        IF (@asID = 2 AND GETUTCDATE() > @aDate)\n" +
+                   $"        IF (@asID = 2 AND @dateNow > (SELECT DATEADD(day, 1, @aDate)))\n" +
                    $"        BEGIN\n" +
                    $"            SET @responseCode = '-1'\n" +
                    $"            SET @response = 'La fecha de confirmación no es correcta, por favor verifíquela'\n" +
@@ -171,6 +174,11 @@ namespace Repository.Queries
                    $"BEGIN CATCH\n" +
                    $"    SELECT ERROR_NUMBER() AS OutputCodeError, ERROR_MESSAGE() AS OutputMessageError\n" +
                    $"END CATCH";
+        }
+
+        public static string UpdateAppointmentDate(int uID, int aID, DateTime newDate, TimeOnly newTime)
+        {
+            return $"";
         }
     }
 }

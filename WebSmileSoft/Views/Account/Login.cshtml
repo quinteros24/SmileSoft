@@ -109,6 +109,7 @@
                             //sessionStorage.setItem('userGender', response.itemJson.uGender);
                             sessionStorage.setItem('userBlock', response.itemJson.uIsBlocked);
                             sessionStorage.setItem('userStatus', response.itemJson.uStatus);
+                            sessionStorage.setItem('doctorID', response.itemJson.dID);
                             if (response.itemJson.uStatus == false) {
                                 Swal.fire({
                                     text: 'Su cuenta se encuentra bloqueada',

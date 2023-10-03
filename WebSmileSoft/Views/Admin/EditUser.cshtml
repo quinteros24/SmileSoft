@@ -147,13 +147,15 @@
                                         <label class="form-label" for="Specialityed">
                                             <strong>Especialidad </strong>
                                         </label>
-                                        <select class="form-control" id="Specialityed" placeholder="" name="EditSpecialities">
+                                        <select id="Speciality" name="Especialidad" class="form-control" asp-items="@ViewBag.Specialities">
+                                            <option value="0">Seleccionar Especialidad</option>
+                                       @*  <select class="form-control" id="Specialityed" placeholder="" name="EditSpecialities">
                                             <option value="1">Odontología general</option>
                                             <option value="2">Endodoncia</option>
                                             <option value="3">Cirugía oral</option>
                                             <option value="4">Ortodoncia</option>
                                             <option value="5">Odontopediatría</option>
-                                            <option value="6">Periodoncia</option>
+                                            <option value="6">Periodoncia</option> *@
                                         </select>
                                         @* <select class="form-control" type="text" id="Specialityed" placeholder="" name="EditUser" asp-items="@ViewBag.Specialities">
                                         </select> *@
