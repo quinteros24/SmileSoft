@@ -7,5 +7,6 @@ namespace Domain.Interfaces
     {
         Task<GenericResponseModel> GenerateJWToken(int uID, string userNameLogin, string token);
         Task<List<SelectListItem>> GetSpecialities();
+        Task<List<SelectListItem>> GetDoctors(int? spID = 0);
     }
 }

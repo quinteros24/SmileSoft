@@ -27,6 +27,7 @@ namespace Repository.Queries
                    $"        ,U.uEmailAddress\n" +
                    $"        ,A.aDate\n" +
                    $"        ,A.aTime\n" +
+                   $"        ,A.aDescription\n" +
                    $"        ,CONCAT((SELECT uName FROM Users WHERE [uID] = D.uID),' ',(SELECT uLastName FROM Users WHERE [uID] = D.uID)) AS uDoctorName\n" +
                    $"        ,A.asID\n" +
                    $"        ,(SELECT asDescription FROM AppointmentStates WHERE asID = A.asId) AS asName\n" +
@@ -48,9 +49,20 @@ namespace Repository.Queries
 
         public static string SetAppointment(AppointmentesModel Item)
         {
-            string fechaB = Item.uBirthDate.Value.Year.ToString() + "-" + Item.uBirthDate.Value.Month.ToString("00") + "-" + Item.uBirthDate.Value.Day.ToString("00");
-            string fechaC = Item.aDate.Value.Year.ToString() + "-" + Item.aDate.Value.Month.ToString("00") + "-" + Item.aDate.Value.Day.ToString("00");
-            string time = Item.aTime.Value.Hour.ToString() + ":" + Item.aTime.Value.Minute.ToString() + ":" + Item.aTime.Value.Second.ToString();
+            string fechaB = String.Empty, fechaC = String.Empty, time = String.Empty;
+            if(Item.uBirthDate != null)
+            {
+                fechaB = Item.uBirthDate.Value.Year.ToString() + "-" + Item.uBirthDate.Value.Month.ToString("00") + "-" + Item.uBirthDate.Value.Day.ToString("00");
+            }
+            if(Item.aDate != null)
+            {
+                fechaC = Item.aDate.Value.Year.ToString() + "-" + Item.aDate.Value.Month.ToString("00") + "-" + Item.aDate.Value.Day.ToString("00");
+            }
+            if(Item.aTime != null)
+            {
+                time = Item.aTime.Value.Hours.ToString() + ":" + Item.aTime.Value.Minutes.ToString() + ":" + Item.aTime.Value.Seconds.ToString();
+            }
+
             string DECLARE = $"DECLARE\n" +
                              $"    @aID AS INT = {Item.aID}\n" +
                              $"    ,@oID AS INT = {Item.oID}\n" +

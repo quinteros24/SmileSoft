@@ -19,6 +19,6 @@
         public string? aDescription { get; set; }
         public DateTime? aDate { get; set; }
         public DateTime? uBirthDate { get; set; }
-        public TimeOnly? aTime { get; set; }
+        public TimeSpan? aTime { get; set; }
     }
 }
