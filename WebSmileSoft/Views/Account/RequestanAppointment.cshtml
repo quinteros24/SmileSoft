@@ -428,10 +428,11 @@
                     aID: 0,
                     aDate: date,
                     aTime: time,
-                    dID: 24,
+                    dID: parseInt(doctor),
                     aDescription: message
 
                 };
+                console.log("Doctor enviado " + doctor)
                 $.ajax({
                     type: 'POST',
                     url: '@ViewBag.urlEndPoint' + '/api/Appointments/v1/SetAppointment', // Ruta para crear o actualizar usuarios

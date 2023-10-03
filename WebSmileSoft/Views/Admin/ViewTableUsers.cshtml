@@ -17,8 +17,8 @@
 </nav>
 <!-- Selectores de los tipos de Usuario a Listar -->
 <div class=" my-2">
-    <div class="row ">
-        <div class="col-12">
+    <div class="row justify-content-end">
+        <div class="col-12 text-end">
             <button onclick="verusers(1);" class="btn btn-primary btn-block">Administradores</button>
             <button onclick="verusers(2);" class="btn btn-danger btn-block">Doctores</button>
             <button onclick="verusers(3);" class="btn btn-warning btn-block">Pacientes</button>
@@ -29,12 +29,19 @@
 
 <div class="card-body" id="content-container">
     <!-- Aquí va la tabla -->
-    <div class="table-responsive shadow-lg">
-        <table id="example" class="table table-hover non-hover mt-2 mb-2 table-striped display" width="100%"></table>
-    </div>
-    <div class="row justify-content-end mt-2">
-        <div class="col-12 col-sm-3 text-end ">
-            <a class="btn btn-success btn-block add-user-btn" data-toggle="modal" data-target="#addUserModal"><i class="fas fa-user-plus"></i> Agregar Usuario</a>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header text-bg-primary mb-2">
+                <span id="tableUsersRol"></span> de SmileSoft <i class="fas fa-users"> </i>
+            </div>
+            <div class="table-responsive shadow-lg">
+                <table id="example" class="table table-hover non-hover mt-2 mb-2 table-striped display" width="100%"></table>
+            </div>
+            <div class="row justify-content-end mt-2">
+                <div class="col-12 col-sm-3 text-end ">
+                    <a class="btn btn-success btn-block add-user-btn" data-toggle="modal" data-target="#addUserModal"><i class="fas fa-user-plus"></i> Agregar Usuario</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -88,7 +95,16 @@
             // Realizar solicitud AJAX para obtener la lista de usuarios
             // var utID = 1;
             mostrarCargando();
+            let tableUsersRol = document.getElementById("tableUsersRol");
 
+            // Cambia el contenido del span según el rol seleccionado
+            if (utID === 1) {
+                tableUsersRol.textContent = " Administradores ";
+            } else if (utID === 2) {
+                tableUsersRol.textContent = " Doctores ";
+            } else if (utID === 3) {
+                tableUsersRol.textContent = " Pacientes ";
+            }
             $.ajax({
                 url: sessionStorage.urlEP + '/api/Users/v1/ViewUsers',
                 type: 'GET',
@@ -269,7 +285,7 @@
                                 fechaSolo = userData.uBirthDate;
                             }
                             // Convierte la fecha completa al formato "yyyy-MM-dd" (solo fecha)
-                            
+
                             // Rellena los campos del formulario con los datos del usuario
 
                             //Datos Personales
@@ -328,7 +344,7 @@
                                 dUniversityName: null
 
                             }
-                           
+
                             if (updatedUserData.utID == 2) {
                                 updatedUserData.dAcademicLevel = $("#AcademicLeveled").val();
                                 updatedUserData.dDegree = $("#TituloAcademicoed").val();
@@ -774,32 +790,32 @@
     </script>
 
     <script>
-    //     $(document).ready(function () {
-    //         console.log("Cargando Especialidades");
-    //         $.ajax({
-    //             type: 'GET',
-    //             url: '@ViewBag.urlEndPoint' + '/api/Generics/v1/GetSpecialities', // Ruta para crear o actualizar usuarios
-    //             // contentType: 'application/json',
-    //             success: function (response) {
-    //                 console.log(JSON.stringify(response));
-    //                 //console.log(JSON.parse(response));
-    //                 redirectView(JSON.stringify(response), "#Specialityed");
-    //             }
-    //         });
-    //     });
-    //     console.log('Enviando a la Vista');
-    //     function redirectView(item, element) {
-    //         $.ajax({
-    //             type: 'POST',
-    //             url: '/Admin/ViewTableUsers',
-    //             data: item,
-    //             contentType: 'application/json',
-    //             success: function (response) {
-    //                 $(element).html(response);
-    //             }
-    //         });
-    //     }
-    // </script>
+        //     $(document).ready(function () {
+        //         console.log("Cargando Especialidades");
+        //         $.ajax({
+        //             type: 'GET',
+        //             url: '@ViewBag.urlEndPoint' + '/api/Generics/v1/GetSpecialities', // Ruta para crear o actualizar usuarios
+        //             // contentType: 'application/json',
+        //             success: function (response) {
+        //                 console.log(JSON.stringify(response));
+        //                 //console.log(JSON.parse(response));
+        //                 redirectView(JSON.stringify(response), "#Specialityed");
+        //             }
+        //         });
+        //     });
+        //     console.log('Enviando a la Vista');
+        //     function redirectView(item, element) {
+        //         $.ajax({
+        //             type: 'POST',
+        //             url: '/Admin/ViewTableUsers',
+        //             data: item,
+        //             contentType: 'application/json',
+        //             success: function (response) {
+        //                 $(element).html(response);
+        //             }
+        //         });
+        //     }
+        // </script>
 
 
     @*  <script src="~/assets/js/control/tablesutilities.js" charset="utf-8"></script> *@

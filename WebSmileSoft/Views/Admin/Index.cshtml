@@ -55,7 +55,7 @@
             </div>
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header text-bg-primary">
                         Lista Citas
                     </div>
                     <div class="card-body table-responsive shadow-lg">
@@ -244,23 +244,7 @@
                     console.table(users);
 
                     $.each(data.itemJson, function (index, cita) {
-                        // "aID": 28,
-                        //"oID": null,
-                        //"dtID": null,
-                        //"gID": null,
-                        // "uDocument": null,
-                        // "uEmailAddress": null,
-                        // "uName": "Andrea Ramirez",
-                        //  "uDoctorName": "Andrea Ramirez",
-                        //   "uLastName": null,
-                        //   "uCellphone": "30242111110",
-                        // "uID": null,
-                        //  "dID": null,
-                        //  "asID": 1,
-                        //   "aDescription": null,
-                        //   "aDate": "2023-10-02T00:00:00",
-                        //  "uBirthDate": null,
-                        //  "aTime": null
+                       
                         let fechaCita = cita.aDate;
                         let fechaFormateada = fechaCita.substring(0, 10);
                         let rowData = [
