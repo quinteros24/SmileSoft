@@ -8,7 +8,7 @@
 </div> *@
 <nav aria-label="breadcrumb" class="main-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Inicio</a></li>
+        <li class="breadcrumb-item">@* <a asp-controller="Home" asp-action="Index">Inicio</a> *@Inicio</li>
         <li class="breadcrumb-item">Administracion de Usuarios</li>
         <li class="breadcrumb-item active" aria-current="page">
             CRUD Usuarios
@@ -258,7 +258,11 @@
                                 1: 'Activo',
                                 0: 'Inactivo'
                             };
+                            // Supongamos que tienes la fecha en el formato "yyyy-MM-dd'T'HH:mm:ss"
+                            let fechaCompleta = userData.uBirthDate;
 
+                            // Convierte la fecha completa al formato "yyyy-MM-dd" (solo fecha)
+                            let fechaSolo = fechaCompleta.split('T')[0];
                             // Rellena los campos del formulario con los datos del usuario
 
                             //Datos Personales
@@ -266,8 +270,8 @@
                             $("#editApellidoe").val(userData.uLastName);
                             $("#tipoDocumentoed").val(userData.dtID);
                             $("#editDocumentoed").val(userData.uDocument);
-                            $("#tGeneroed").val(userData.gID)
-                            $("#fechaNacimientoed").val(userData.uBirthDate)
+                            $("#tGeneroed").val(userData.gID);
+                            $("#fechaNacimientoed").val(fechaSolo);
 
 
                             //Datos de Contacto
@@ -688,7 +692,7 @@
                 userData.dAcademicLevel = $("#AcademicLevela").val();
                 userData.dDegree = $("#TituloAcademicoa").val();
                 userData.spID = $("#Specialitya").val();
-                userData.dProfessionalCard = $("#ProfessionalLicensea").val();
+                userData.dProfessionalCard = $("#Tarjeta_Profesionala").val();
                 userData.dUniversityName = $("#Universitynamea").val();
             }
 
