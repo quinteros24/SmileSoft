@@ -29,13 +29,13 @@
 
 <div class="card-body" id="content-container">
     <!-- Aquí va la tabla -->
-    <div class="col-md-12">
+    <div class="col-md-12 col-sm-10">
         <div class="card">
             <div class="card-header text-bg-primary mb-2">
                 <span id="tableUsersRol"></span> de SmileSoft <i class="fas fa-users"> </i>
             </div>
             <div class="table-responsive shadow-lg">
-                <table id="example" class="table table-hover non-hover m-2 table-striped display" width="100%"></table>
+                <table id="example" class="table table-hover"></table>
             </div>
             <div class="row justify-content-end mt-2">
                 <div class="col-12 col-sm-3 text-end ">
@@ -58,6 +58,10 @@
 
 
 @section Scripts {
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
     <script>
 
 
@@ -79,8 +83,12 @@
             }
         });
     </script>
-    <script>
+    
 
+
+
+    <script>
+       
         //<!-- Script para Visualizar Lista De Usuarios en la Tabla -->
         //Recibir el parametro de la funcion verusers(1) para filtrar por tipo de usuario
         $(document).ready(function () {
@@ -105,7 +113,7 @@
             } else if (utID === 3) {
                 tableUsersRol.textContent = " Pacientes ";
             }
-  
+
             $.ajax({
                 url: sessionStorage.urlEP + '/api/Users/v1/ViewUsers',
                 type: 'GET',
@@ -204,7 +212,9 @@
 
                             }
                         ],
-
+                        // responsive: true,
+                        // stateSave: true,
+                        order: [[1, "desc"]],
                         data: dataSet,
                         dom: 'Bfrtip',
                         "dom": "<'dt--top-section'<'row'<'col-sm-12 col-md-6 d-flex justify-content-md-start justify-content-center'B><'col-sm-12 col-md-6 d-flex justify-content-md-end justify-content-center mt-md-0 mt-3'f>>>" +
@@ -349,45 +359,69 @@
                             if (updatedUserData.utID == 2) {
                                 updatedUserData.dAcademicLevel = $("#AcademicLeveled").val();
                                 updatedUserData.dDegree = $("#TituloAcademicoed").val();
-                                updatedUserData.spID = $("#Specialityed").val();
+                                updatedUserData.spID = parseInt($("#Specialityed").val());
                                 updatedUserData.dProfessionalCard = $("#ProfessionalLicenseed").val();
                                 updatedUserData.dUniversityName = $("#Universitynameed").val();
                             }
-                            //console.log(updatedUserData);
+                            // const fechaNacimientoInput = document.getElementById('fechaNacimientoed');
+                            // const fechaNacimiento = new Date(fechaNacimientoInput.value);
 
+                            // // Calcula la fecha actual
+                            // const fechaActual = new Date();
+                            // console.log(fechaActual);
+                            // console.log("Fecha Nacimiento");
+                            // console.log(fechaNacimiento);
+                            // // Calcula la edad en años
+                            // const edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
 
-                            //console.log("Usuario a Editar Genero:" + updatedUserData.gID)
-                            // Realiza una solicitud AJAX para guardar los cambios en el servidor
-                            $.ajax({
-                                url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Reemplaza con la URL correcta
-                                type: 'POST',
-                                data: JSON.stringify(updatedUserData), // Convierte updatedUserData a JSON
-                                contentType: "application/json", // Especifica el tipo de contenido
-                                dataType: "json",
-                                success: function (response) {
-                                    // Cierra el modal de edición
-                                    $("#editModal").modal("hide");
-                                    Swal.fire({
-                                        title: 'Usuario Actualizado',
-                                        text: 'El usuario ' + updatedUserData.uLoginName + ' se actualizó correctamente',
-                                        icon: 'success',
-                                        confirmButtonText: 'Aceptar'
-                                    }).then((result) => {
-                                        if (result.isConfirmed) {
-                                            verusers(updatedUserData.utID);
-                                        }
-                                    })
-                                },
-                                error: function () {
-                                    $("#editModal").modal("hide");
-                                    Swal.fire({
-                                        title: 'Error',
-                                        text: 'Error al guardar los cambios',
-                                        icon: 'error',
-                                        confirmButtonText: 'Aceptar'
-                                    });
-                                }
-                            });
+                            // // Verifica si la edad es menor de 18 años
+                            // if (edad < 18) {
+                            //     //alert('Debes ser mayor de 18 años para registrarte.');
+                            //     Swal.fire({
+                            //         title: 'Error',
+                            //         text: 'Debes ser mayor de 18 años',
+                            //         icon: 'error',
+                            //         confirmButtonText: 'Aceptar'
+                            //     });
+                            //     return
+                            // Ejemplo de cómo llamar a la función de validación
+                            const esMayorDe18 = validarEdadMayorDe18('fechaNacimientoed');
+
+                            if (esMayorDe18) {
+
+                                // Realiza una solicitud AJAX para guardar los cambios en el servidor
+                                $.ajax({
+                                    url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Reemplaza con la URL correcta
+                                    type: 'POST',
+                                    data: JSON.stringify(updatedUserData), // Convierte updatedUserData a JSON
+                                    contentType: "application/json", // Especifica el tipo de contenido
+                                    dataType: "json",
+                                    success: function (response) {
+                                        // Cierra el modal de edición
+                                        $("#editModal").modal("hide");
+                                        Swal.fire({
+                                            title: 'Usuario Actualizado',
+                                            text: 'El usuario ' + updatedUserData.uLoginName + ' se actualizó correctamente',
+                                            icon: 'success',
+                                            confirmButtonText: 'Aceptar'
+                                        }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                verusers(updatedUserData.utID);
+                                            }
+                                        })
+                                    },
+                                    error: function () {
+
+                                        Swal.fire({
+                                            title: 'Error',
+                                            text: 'Error al guardar los cambios',
+                                            icon: 'error',
+                                            confirmButtonText: 'Aceptar'
+                                        });
+                                        $("#editModal").modal("hide");
+                                    }
+                                });
+                            }
                         });
                     });
 
@@ -703,41 +737,70 @@
                     confirmButtonText: 'Aceptar'
                 });
             }
+            const fechaNacimientoInput = document.getElementById('fechaNacimiento');
+            const fechaNacimiento = new Date(fechaNacimientoInput.value);
 
-            // Realiza una solicitud AJAX para agregar el usuario en el servidor
-            $.ajax({
-                type: "POST",
-                url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Ruta para agregar el usuario
-                data: JSON.stringify(userData), // Convierte userData a JSON
-                contentType: "application/json", // Especifica el tipo de contenido
+            // Calcula la fecha actual
+            const fechaActual = new Date();
+            console.log(fechaActual);
+            console.log("Fecha Nacimiento");
+            console.log(fechaNacimiento);
+            // Calcula la edad en años
+            const edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
 
-                dataType: "json",
-                success: function (result) {
-                    // Actualiza la vista o realiza alguna otra acción
-                    $("#addUserModal").modal("hide");
-                    //alert("Usuario agregado correctamente");
-                    // Cierra el modal de agregar usuario
-                    Swal.fire({
-                        title: 'Usuario Agregado',
-                        text: 'El usuario se agregó correctamente',
-                        icon: 'success',
-                        confirmButtonText: 'Aceptar'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            verusers(3);
-                        }
-                    })
-                },
-                error: function () {
-                    //alert("Error al agregar el usuario");
-                    Swal.fire({
-                        title: 'Error',
-                        text: 'Error al agregar el usuario',
-                        icon: 'error',
-                        confirmButtonText: 'Aceptar'
-                    });
-                }
-            });
+            // Verifica si la edad es menor de 18 años
+            if (edad < 18) {
+                //alert('Debes ser mayor de 18 años para registrarte.');
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Debes ser mayor de 18 años',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+                return
+            } else if (edad > 18) {
+                // Realiza una solicitud AJAX para agregar el usuario en el servidor
+                $.ajax({
+                    type: "POST",
+                    url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Ruta para agregar el usuario
+                    data: JSON.stringify(userData), // Convierte userData a JSON
+                    contentType: "application/json", // Especifica el tipo de contenido
+
+                    dataType: "json",
+                    success: function (result) {
+                        // Actualiza la vista o realiza alguna otra acción
+                        $("#addUserModal").modal("hide");
+                        //alert("Usuario agregado correctamente");
+                        // Cierra el modal de agregar usuario
+                        Swal.fire({
+                            title: 'Usuario Agregado',
+                            text: 'El usuario se agregó correctamente',
+                            icon: 'success',
+                            confirmButtonText: 'Aceptar'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                verusers(3);
+                            }
+                        })
+                    },
+                    error: function () {
+                        //alert("Error al agregar el usuario");
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Error al agregar el usuario',
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar'
+                        });
+                    }
+                });
+            } else {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Revisa los datos que Ingresaste',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+            }
         });
 
 

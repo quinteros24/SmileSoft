@@ -382,7 +382,7 @@
 
         $(".update-profile-button").click(function () {
 
-           
+
             let updatedUserData = {
                 //Datos de la Cuenta
                 uID: parseInt(sessionStorage.getItem('userID')),
@@ -394,8 +394,8 @@
                 //Datos de Personales
                 uName: $("#user_names").val(),
                 uLastName: $("#user_lastnames").val(),
-                dtID: parseInt($("#id_type").val()),
-                uDocument: $("#id_number").val(),
+                //dtID: parseInt($("#id_type").val()),
+                //uDocument: $("#id_number").val(),
                 gID: parseInt($("#genderSelect").val()),
                 uBirthDate: $("#birthDatep").val(),
                 //uBirthDate: formattedBirthDate,
@@ -421,32 +421,54 @@
                 updatedUserData.dUniversityName = $("#Universityname").val();
             }
 
+            const fechaNacimientoInput = document.getElementById('birthDatep');
+            const fechaNacimiento = new Date(fechaNacimientoInput.value);
 
-            $.ajax({
-                url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Reemplaza con la URL correcta
-                type: 'POST',
-                data: JSON.stringify(updatedUserData),
-                contentType: "application/json",
-                dataType: "json",
-                success: function (response) {
-                    Swal.fire({
-                        title: 'Datos Actualizados',
-                        text: 'Los datos del usuario se actualizaron correctamente',
-                        icon: 'success',
-                        confirmButtonText: 'Aceptar'
-                    });
+            // Calcula la fecha actual
+            const fechaActual = new Date();
+            console.log(fechaActual);
+            console.log("Fecha Nacimiento");
+            console.log(fechaNacimiento);
+            // Calcula la edad en años
+            const edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
 
-                    // Realiza otras acciones después de guardar los cambios si es necesario
-                },
-                error: function () {
-                    Swal.fire({
-                        title: 'Error',
-                        text: 'Error al guardar los cambios',
-                        icon: 'error',
-                        confirmButtonText: 'Aceptar'
-                    });
-                }
-            });
+            // Verifica si la edad es menor de 18 años
+            if (edad < 18) {
+                //alert('Debes ser mayor de 18 años para registrarte.');
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Debes ser mayor de 18 años',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+                return
+            } else {
+                $.ajax({
+                    url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Reemplaza con la URL correcta
+                    type: 'POST',
+                    data: JSON.stringify(updatedUserData),
+                    contentType: "application/json",
+                    dataType: "json",
+                    success: function (response) {
+                        Swal.fire({
+                            title: 'Datos Actualizados',
+                            text: 'Los datos del usuario se actualizaron correctamente',
+                            icon: 'success',
+                            confirmButtonText: 'Aceptar'
+                        });
+
+                        // Realiza otras acciones después de guardar los cambios si es necesario
+                    },
+                    error: function () {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Error al guardar los cambios',
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar'
+                        });
+                    }
+                });
+            }
         });
 
         function ChangeUserPass() {
