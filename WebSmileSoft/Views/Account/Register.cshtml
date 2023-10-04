@@ -12,7 +12,7 @@
                     <label class="visually-hidden" for="userFirstNameRegister">Nombres</label>
                     <div class="input-group">
                         <div class="input-group-text">Nombres</div>
-                        <input type="text" class="form-control" id="userFirstNameRegister" placeholder="" required>
+                        <input type="text" class="form-control" id="userFirstNameRegister" oninput="generateUsername()" required>
                     </div>
                 </div>
 
@@ -20,7 +20,7 @@
                     <label class="visually-hidden" for="userLastNameRegister">Apellidos</label>
                     <div class="input-group">
                         <div class="input-group-text">Apellidos</div>
-                        <input type="text" class="form-control" id="userLastNameRegister" placeholder="Apellidos" required>
+                        <input type="text" class="form-control" id="userLastNameRegister" oninput="generateUsername()" required>
                     </div>
                 </div>
 
@@ -85,7 +85,7 @@
                 <div class="col-md-6 mb-3">
                     <div class="input-group ">
                         <span class="input-group-text">Nombre de Usuario</span>
-                        <input type="text" id="userNameRegister" class="form-control " placeholder="nombre.apellido" required />
+                        <input type="text" id="userNameRegister" class="form-control" autocomplete="username" required />
                     </div>
                 </div>
 
@@ -127,12 +127,14 @@
 
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js" asp-append-version="true"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.min.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.min.js" asp-append-version="true"></script>
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
     <script>
-        $("#registerForm").validate();
+
+
+        // $("#registerForm").validate();
         function ageValidation(birthDate) {
             // Obtener la fecha actual
             let fechaActual = new Date();
@@ -153,6 +155,22 @@
 
             // Comprobar si la edad es mayor o igual a 18
             return edad >= 18;
+        }
+        function generateUsername() {
+            const firstName = document.getElementById("userFirstNameRegister").value + '.';
+            const lastName = document.getElementById("userLastNameRegister").value;
+
+            // Combine the first name and last name to create the base username
+            const baseUsername = (firstName + lastName).toLowerCase().replace(/\s/g, "");
+
+            // Generate a random number between 1 and 999 (adjust the range as needed)
+            const randomSuffix = Math.floor(Math.random() * 999) + 1;
+
+            // Combine the base username with the random number
+            const suggestedUsername = baseUsername + randomSuffix;
+
+            // Update the username field with the suggested username
+            document.getElementById("userNameRegister").value = suggestedUsername;
         }
         function registrarUsuario() {
             let firstName = document.getElementById("userFirstNameRegister").value.trim();

@@ -264,8 +264,7 @@
                             } else {
                                 fechaSolo = userData.uBirthDate;
                             }
-                            // Convierte la fecha completa al formato "yyyy-MM-dd" (solo fecha)
-
+ 
                             // Rellena los campos del formulario con los datos del usuario
 
                             //Datos Personales
@@ -295,6 +294,7 @@
                         $("#editModal").modal("show");
 
                         $("#saveChangesBtn").click(function () {
+                            console.log("Save Changes");
                             let updatedUserData = {
                                 // Recoge los datos actualizados desde los campos del formulario
 
@@ -590,7 +590,6 @@
                 userData.dUniversityName = $("#Universitynamea").val();
             }
 
-            //Validar campos obligatorios
 
             // Validar campos obligatorios
             if (!userData.uName ||
@@ -611,12 +610,13 @@
                     !userData.dUniversityName
                 ) {
                     mostrarMensajeError('Por favor, complete todos los campos obligatorios.');
+                    console.log("Error en los campos adicionales");
                 } else {
                     // Validación de la contraseña
                     let password = userData.uPassword;
                     let passwordError = CheckPass(password);
-
                     if (passwordError) {
+                        console.log("Error Contraseña");
                         mostrarMensajeError(passwordError);
                     } else {
                         const fechaNacimientoInput = document.getElementById('fechaNacimiento');
@@ -674,7 +674,22 @@
             $('[data-toggle="tooltip"]').tooltip();
 
         });
+        function generateUsername() {
+            const firstName = document.getElementById("nombres").value + '.';
+            const lastName = document.getElementById("apellidos").value;
 
+            // Combine the first name and last name to create the base username
+            const baseUsername = (firstName + lastName).toLowerCase().replace(/\s/g, "");
+
+            // Generate a random number between 1 and 999 (adjust the range as needed)
+            const randomSuffix = Math.floor(Math.random() * 999) + 1;
+
+            // Combine the base username with the random number
+            const suggestedUsername = baseUsername + randomSuffix;
+
+            // Update the username field with the suggested username
+            document.getElementById("usuario").value = suggestedUsername;
+        }
     </script>
 
     <script>

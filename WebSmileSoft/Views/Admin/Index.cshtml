@@ -258,52 +258,59 @@
                     let dataSet = [];
                     let users = data.itemJson;
                     //console.table(users);
-                    let citasRegistradas = data.itemJson.length;
-                    $.each(data.itemJson, function (index, cita) {
-                        
-                        let fechaCita = cita.aDate;
-                        let fechaFormateada = fechaCita.substring(0, 10);
-                        let rowData = [
-                            index+1,
-                            cita.aID,
-                            cita.uName,
-                            cita.uCellphone,
-                            cita.uDoctorName,
-                            cita.aDescription,
-                            fechaFormateada,
-                            cita.aTime,
-                            cita.asName
-                        ];
-                        dataSet.push(rowData);
-                       
-                    });
+                    let citasRegistradas = 0;
                     $("#dateRequest").text(citasRegistradas);
-                    users.forEach(function (cita) {
+                    if (data.itemJson !== null) {
+                        citasRegistradas = data.itemJson.length;
 
-                        let fecha = cita.aDate;
-                        let nombre = cita.uName;
-                        //let hora = cita.aTime;
-                        let hora = "10:00:00";
-                        let horaf = "11:00:00";
-                        // Formatear la fecha y hora
-                        let fechaInicio = fecha.split('T')[0] + 'T' + hora;
 
-                        // Sumar 1 hora a la fecha de inicio para la fecha de finalización
-                        let fechaFin = fecha.split('T')[0] + 'T' + horaf;
 
-                        // console.log("Fecha Inicio");
-                        // console.log(fechaInicio);
-                        // console.log("Fecha Fin");
-                        // console.log(fechaFin);
-                        // Agrega un nuevo evento al arreglo de eventos
-                        eventos.push({
-                            title: nombre, // Título del evento
-                            start: fechaInicio, // Fecha de inicio del evento
-                            end: fechaFin,
+                        $.each(data.itemJson, function (index, cita) {
 
-                            // Otras propiedades del evento...
+                            let fechaCita = cita.aDate;
+                            let fechaFormateada = fechaCita.substring(0, 10);
+                            let rowData = [
+                                index + 1,
+                                cita.aID,
+                                cita.uName,
+                                cita.uCellphone,
+                                cita.uDoctorName,
+                                cita.aDescription,
+                                fechaFormateada,
+                                cita.aTime,
+                                cita.asName
+                            ];
+                            dataSet.push(rowData);
+
                         });
-                    });
+                        $("#dateRequest").text(citasRegistradas);
+                        users.forEach(function (cita) {
+
+                            let fecha = cita.aDate;
+                            let nombre = cita.uName;
+                            //let hora = cita.aTime;
+                            let hora = "10:00:00";
+                            let horaf = "11:00:00";
+                            // Formatear la fecha y hora
+                            let fechaInicio = fecha.split('T')[0] + 'T' + hora;
+
+                            // Sumar 1 hora a la fecha de inicio para la fecha de finalización
+                            let fechaFin = fecha.split('T')[0] + 'T' + horaf;
+
+                            // console.log("Fecha Inicio");
+                            // console.log(fechaInicio);
+                            // console.log("Fecha Fin");
+                            // console.log(fechaFin);
+                            // Agrega un nuevo evento al arreglo de eventos
+                            eventos.push({
+                                title: nombre, // Título del evento
+                                start: fechaInicio, // Fecha de inicio del evento
+                                end: fechaFin,
+
+                                // Otras propiedades del evento...
+                            });
+                        });
+                    }
                     // Inicializa o actualiza el DataTable con los datos procesados
                     tableCitas = $('#citasDoctores').DataTable({
                         columns: [
