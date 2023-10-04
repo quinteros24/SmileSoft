@@ -1,39 +1,102 @@
 ﻿@* Validar campos en todos los Formularios
  *@
 
-    <script>
-        function validarEdadMayorDe18(idCampoFechaNacimiento) {
-            const fechaNacimientoInput = document.getElementById(idCampoFechaNacimiento);
-            const fechaNacimiento = new Date(fechaNacimientoInput.value);
+<script>
+    function validarEdadMayorDe18(idCampoFechaNacimiento) {
+        const fechaNacimientoInput = document.getElementById(idCampoFechaNacimiento);
+        const fechaNacimiento = new Date(fechaNacimientoInput.value);
 
-            // Calcula la fecha actual
-            const fechaActual = new Date();
+        // Calcula la fecha actual
+        const fechaActual = new Date();
 
-            // Calcula la edad en años
-            const edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
+        // Calcula la edad en años
+        const edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
 
-            // Verifica si la edad es menor de 18 años
-            if (edad < 18) {
-                // Muestra un mensaje de error utilizando SweetAlert2
-                Swal.fire({
-                    title: 'Error',
-                    text: 'Debes ser mayor de 18 años',
-                    icon: 'error',
-                    confirmButtonText: 'Aceptar'
-                });
+        // Verifica si la edad es menor de 18 años
+        if (edad < 18) {
+            // Muestra un mensaje de error utilizando SweetAlert2
+            Swal.fire({
+                title: 'Error',
+                text: 'Debes ser mayor de 18 años',
+                icon: 'error',
+                confirmButtonText: 'Aceptar'
+            });
 
-                // Retorna false para indicar que la validación falló
-                return false;
-            }
-
-            // Retorna true si la validación pasó exitosamente
-            return true;
+            // Retorna false para indicar que la validación falló
+            return false;
         }
 
-        // Ejemplo de cómo llamar a la función de validación
-        // const esMayorDe18 = validarEdadMayorDe18('fechaNacimientoed');
+        // Retorna true si la validación pasó exitosamente
+        return true;
+    }
+    // Ejemplo de cómo llamar a la función de validación
+    // const esMayorDe18 = validarEdadMayorDe18('fechaNacimientoed');
 
-        // if (esMayorDe18) {
-        //     // Continuar con el proceso si la validación es
+    // if (esMayorDe18) {
+    //     // Continuar con el proceso si la validación es True
 
-    </script>
+    function CheckPass(password) {
+        if (password.length < 8) {
+            return "La contraseña debe tener al menos 8 caracteres.";
+        }
+
+        if (!/[A-Z]/.test(password)) {
+            return "La contraseña debe contener al menos una letra mayuscula.";
+        }
+
+        if (!/[a-z]/.test(password)) {
+            return "La contraseña debe contener al menos una letra minuscula.";
+        }
+
+        if (/\s/.test(password) || /[\uD800-\uDFFF]/.test(password)) {
+            return "La contraseña debe contener al menos un numero.";
+        }
+
+        return true; // Si la contraseña cumple con los requisitos, retorna null
+    }
+    // Función para permitir solo numeros en un campo de entrada
+    function allowNumbersOnly(inputField) {
+        inputField.value = inputField.value.replace(/[^0-9]/g, '');
+    }
+
+   
+    function mostrarCargando() {
+        Swal.fire({
+            title: 'Cargando',
+            text: 'Por favor, espere un momento...',
+            showCancelButton: false,
+            showConfirmButton: false,
+            allowOutsideClick: false,
+            onBeforeOpen: () => {
+                Swal.showLoading();
+            }
+        });
+    }
+
+   
+
+    function mostrarMensajeError(mensaje) {
+        Swal.fire({
+            title: 'Error',
+            text: mensaje,
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+        });
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+        const buttons = document.querySelectorAll(".btn-en-desarrollo");
+
+        buttons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                event.preventDefault();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Este Modulo esta en Desarrollo!',
+                    confirmButtonColor: '#008dc9'
+                })
+            });
+        });
+    });
+
+</script>

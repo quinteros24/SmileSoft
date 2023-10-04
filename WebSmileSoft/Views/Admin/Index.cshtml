@@ -5,6 +5,7 @@
     <h3 class="mb-0 text-primary">Dashboard</h3>@*<a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Generate Report</a>
     </div> *@
     <div class="row justify-content-center">
+        <div class="row">
         <div class="col-md-6 col-xl-3 mb-4">
             <div class="card shadow border-start-primary py-2">
                 <div class="card-body">
@@ -42,6 +43,20 @@
                         <div class="col-auto"><i class="fa-solid fa-user fa-2x text-gray-300"></i></div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3 mb-4">
+            <div class="card shadow border-start-success py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col me-2">
+                            <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Citas Registradas</span></div>
+                                <div class="fw-bold h5 mb-0"><span id="dateRequest"></span></div><!-- Cargar datos de la base de datos -->
+                        </div>
+                            <div class="col-auto"><i class="fa-solid fa-user fa-2x text-gray-300"></i></div>
+                    </div>
+                </div>
+            </div>
             </div>
         </div>
         <div class="d-flex row col-md-12 justify-content-center align-content-center text-primary">
@@ -243,12 +258,13 @@
                     let dataSet = [];
                     let users = data.itemJson;
                     //console.table(users);
-
+                    let citasRegistradas = data.itemJson.length;
                     $.each(data.itemJson, function (index, cita) {
-                       
+                        
                         let fechaCita = cita.aDate;
                         let fechaFormateada = fechaCita.substring(0, 10);
                         let rowData = [
+                            index+1,
                             cita.aID,
                             cita.uName,
                             cita.uCellphone,
@@ -259,8 +275,9 @@
                             cita.asName
                         ];
                         dataSet.push(rowData);
+                       
                     });
-
+                    $("#dateRequest").text(citasRegistradas);
                     users.forEach(function (cita) {
 
                         let fecha = cita.aDate;
@@ -290,7 +307,8 @@
                     // Inicializa o actualiza el DataTable con los datos procesados
                     tableCitas = $('#citasDoctores').DataTable({
                         columns: [
-                            { title: '#' },
+                            { title: '#'},
+                            { title: 'IdCita', visible : false },
                             { title: 'Nombre' },
                             { title: 'Celular' },
                             { title: 'Doctor' },
@@ -327,7 +345,7 @@
                     });
 
                     Swal.close();
-                    tableCitas.column(8).nodes().to$().find('.btnDesactivarC').click(function () {
+                    tableCitas.column(9).nodes().to$().find('.btnDesactivarC').click(function () {
                         // Maneja la acción del botón aqui
                         let data = tableCitas.row($(this).parents('tr')).data();
                         let CitaID = data[0]; // la primera columna contiene el ID del usuario
@@ -406,7 +424,7 @@
                         }
 
                     });
-                    tableCitas.column(8).nodes().to$().find('.btnEditarC').click(async function () {
+                    tableCitas.column(9).nodes().to$().find('.btnEditarC').click(async function () {
                         // Maneja la acción del botón aqui
                         let data = tableCitas.row($(this).parents('tr')).data();
                         let CitaID = data[0]; // la primera columna contiene el ID del usuario

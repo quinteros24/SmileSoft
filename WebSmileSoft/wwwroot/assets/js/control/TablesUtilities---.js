@@ -623,14 +623,7 @@ $("#add-user").click(function () {
         return null; // Si la contraseña cumple con los requisitos, retorna null
     }
 
-    function mostrarMensajeError(mensaje) {
-        Swal.fire({
-            title: 'Error',
-            text: mensaje,
-            icon: 'error',
-            confirmButtonText: 'Aceptar'
-        });
-    }
+    
 
     // Realiza una solicitud AJAX para agregar el usuario en el servidor
     $.ajax({

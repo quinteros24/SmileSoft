@@ -83,12 +83,12 @@
             }
         });
     </script>
-    
+
 
 
 
     <script>
-       
+
         //<!-- Script para Visualizar Lista De Usuarios en la Tabla -->
         //Recibir el parametro de la funcion verusers(1) para filtrar por tipo de usuario
         $(document).ready(function () {
@@ -151,6 +151,7 @@
                         let Status = StatusMapping[usuario.uStatus];
                         let DocumentT = DocumentType[usuario.dtID];
                         let rowData = [
+                            index+1,
                             usuario.uID,
                             rol,
                             usuario.uLoginName,
@@ -170,27 +171,8 @@
 
                     // Inicializa o actualiza el DataTable con los datos procesados
                     table = $('#example').DataTable({
-                        // new DataTable('#example', {
-                        columnDefs: [
-                            {
-                                target: 0,
-                                visible: false,
-                                searchable: false
-                            },
-                            {
-                                target: 1,
-                                visible: false
-                            },
-                            {
-                                target: 9,
-                                visible: false
-                            },
-                            {
-                                target: 7,
-                                visible: false
-                            }
-                        ],
                         columns: [
+                            { title: '#', visible: false },
                             { title: 'ID', visible: false },
                             { title: 'Rol', visible: false },
                             { title: 'Usuario' },
@@ -245,13 +227,11 @@
                     });
 
                     Swal.close();
-                    table.column(11).nodes().to$().find('#btnEditar').click(function () {
+                    //Editar Usuario --> Funcionando a Medias, No cambia Usuarios a Doctores
+                    table.column(12).nodes().to$().find('#btnEditar').click(function () {
                         // Maneja la acción del botón aqui
                         let data = table.row($(this).parents('tr')).data();
-
-                        let userId = data[0]; // la primera columna contiene el ID del usuario
-
-                        // Realiza una solicitud AJAX para obtener los detalles del usuario
+                        let userId = data[1]; // la primera columna contiene el ID del usuario
 
                         $.ajax({
                             url: sessionStorage.urlEP + '/api/Users/v1/GetUserDetails',
@@ -265,19 +245,14 @@
                                 //console.log(data.itemJson[0].uName);
 
                                 if (data.itemJson === null) {
-                                    console.log("No se cargo correctamente");
+                                   mostrarMensajeError("No se cargo correctamente");
                                 } else {
-                                    // Mostrar los datos en la consola o realizar otras acciones
                                     let userData = data.itemJson; // Accede al primer elemento del arreglo
-                                    // console.log("Usuario a Editar" + userData)
-                                    // console.log("Genero del Usuario a Editar" + userData.gID);
-                                    // // Llama a una funcion para actualizar el formulario con los datos recibidos
-                                    // console.log("Actualizando Formulario")
                                     actualizarFormulario(userData);
                                 }
                             },
                             error: function (error) {
-                                console.log('Error al obtener los detalles del usuario.');
+                                mostrarMensajeError('Error al obtener los detalles del usuario.');
                             }
                         });
 
@@ -424,26 +399,24 @@
                             }
                         });
                     });
-
                     //Desactivar Estado --> Funcionando Bien
-                    table.column(11).nodes().to$().find('#btnDesactivar').click(function () {
+                    table.column(12).nodes().to$().find('#btnDesactivar').click(function () {
                         let StatusMappingI = {
                             Activo: 1,
                             Inactivo: 0
                         };
-
                         let rolesMappingI = {
                             Administrador: 1,
                             Doctores: 2,
                             Pacientes: 3
                         };
                         let data = table.row($(this).parents('tr')).data();
-                        let userId = data[0];
-                        let utID = data[1];
-                        let loginName = data[2];
-                        let userName = data[3] + ' ' + data[4];
-                        let StatusI = StatusMappingI[data[10]]; // Supongo que obtienes el estado del usuario de alguna parte
-                        let estadoActual = data[10];
+                        let userId = data[1];
+                        let utID = data[2];
+                        let loginName = data[3];
+                        let userName = data[4] + ' ' + data[5];
+                        let StatusI = StatusMappingI[data[11]]; 
+                        let estadoActual = data[11];
                         console.log("Documento" + loginName + " User ID: " + userId);
                         console.log("Estado" + estadoActual);
                         console.log("Estado Mapeado " + StatusI)
@@ -495,14 +468,14 @@
 
                     });
                     //Cambiar contraseña Estado --> Funcionando Bien
-                    table.column(11).nodes().to$().find('#btnPassword').click(function () {
+                    table.column(12).nodes().to$().find('#btnPassword').click(function () {
                         // Maneja la acción del botón aqui
                         let data = table.row($(this).parents('tr')).data();
 
-                        let userId = data[0]; // Supongamos que la primera columna contiene el ID del usuario
+                        let userId = data[1]; // Supongamos que la primera columna contiene el ID del usuario
                         console.log("contraseña " + userId)
-                        let userNameEdit = data[3] + ' ' + data[4];
-                        let userRol = data[1];
+                        let userNameEdit = data[4] + ' ' + data[5];
+                        let userRol = data[2];
                         let rolesMappingI = {
                             Administrador: 1,
                             Doctores: 2,
@@ -554,27 +527,11 @@
                                             });
                                             verusers(uRol);
                                         } else {
-
-                                            Swal.fire({
-                                                text: "Hubo un fallo" + response.messageStatus,
-                                                confirmButtonColor: '#008dc9'
-                                            });
-                                            //alert('Inicio de sesión fallido, ' + response.messageStatus);
+                                            mostrarMensajeError(result.messageStatus);
                                         }
-
-
-                                        // Puedes realizar otras acciones después de guardar los cambios si es necesario
-                                        // Por ejemplo, actualizar la tabla con los datos modificados
-                                        // o mostrar un mensaje de éxito
                                     },
                                     error: function () {
                                         // $("#editModal").modal("hide");
-                                        // Swal.fire({
-                                        //     title: 'Error',
-                                        //     text: 'Error al guardar los cambios',
-                                        //     icon: 'error',
-                                        //     confirmButtonText: 'Aceptar'
-                                        // });
                                     }
                                 });
                             }
@@ -584,36 +541,12 @@
                 }
             });
         };
-        function CheckPass(password) {
-            // Requiere al menos 8 caracteres
-            if (password.length < 8) {
-                return false;
-            }
-            // Requiere al menos una letra minuscula
-            if (!/[a-z]/.test(password)) {
-                return false;
-            }
-            // Requiere al menos una letra mayuscula
-            if (!/[A-Z]/.test(password)) {
-                return false;
-            }
-            // Requiere al menos un digito
-            if (!/\d/.test(password)) {
-                return false;
-            }
-
-            return true;
-        }
+        
 
         $(".add-user-btn").click(function () {
             // Abre el modal de agregar usuario
             $("#addUserModal").modal("show");
         });
-
-        // Función para permitir solo numeros en un campo de entrada
-        function allowNumbersOnly(inputField) {
-            inputField.value = inputField.value.replace(/[^0-9]/g, '');
-        }
 
         // Aplica la función a los campos de celular y numero de documento
         $("#celular").on("input", function () {
@@ -626,17 +559,7 @@
 
         // Controlador de clic para el botón "Agregar"
         $("#add-user").click(function () {
-            // Obtiene los datos del formulario
-            // let DoctorModel = {
-            //     //Datos de Estudios
-            //     dAcademicLevel: $("#AcademicLevela").val(),
-            //     dDegree: $("#TituloAcademicoa").val(),
-            //     spID: $("#Specialitya").val(),
-            //     dProfessionalCard: $("#ProfessionalLicensea").val(),
-            //     dUniversityName: $("#Universitynamea").val(),
-            // };
-            // let birthDate = document.getElementById("fechaNacimiento").value.trim();
-            // let formattedBirthDate = formatToDatetime(birthDate);
+            
             let userData = {
                 //Datos Personales
                 uName: $("#nombres").val(),
@@ -685,10 +608,7 @@
                 !userData.utID
             ) {
                 mostrarMensajeError('Por favor, complete todos los campos obligatorios.');
-                return;
-            }
-
-            if (userData.utID == 2) {
+            } else if (userData.utID == 2) {
                 // Si el tipo de usuario es igual a 2, validar campos adicionales
                 if (!userData.dAcademicLevel ||
                     !userData.dDegree ||
@@ -697,154 +617,64 @@
                     !userData.dUniversityName
                 ) {
                     mostrarMensajeError('Por favor, complete todos los campos obligatorios.');
-                    return;
-                }
-            }
+                } else {
+                    // Validación de la contraseña
+                    let password = userData.uPassword;
+                    let passwordError = CheckPass(password);
 
-            // Validación de la contraseña
-            let password = userData.uPassword;
-            let passwordError = CheckPass(password);
+                    if (passwordError) {
+                        mostrarMensajeError(passwordError);
+                    } else {
+                        const fechaNacimientoInput = document.getElementById('fechaNacimiento');
+                        const fechaNacimiento = new Date(fechaNacimientoInput.value);
 
-            if (passwordError) {
-                mostrarMensajeError(passwordError);
-                return;
-            }
-            function CheckPass(password) {
-                if (password.length < 8) {
-                    return "La contraseña debe tener al menos 8 caracteres.";
-                }
+                        // Calcula la fecha actual
+                        const fechaActual = new Date();
+                        // Calcula la edad en años
+                        const edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
 
-                if (!/[A-Z]/.test(password)) {
-                    return "La contraseña debe contener al menos una letra mayuscula.";
-                }
+                        // Verifica si la edad es menor de 18 años
+                        if (edad < 18) {
+                            mostrarMensajeError('Debes ser mayor de 18 años para registrarte.');
+                        } else {
+                            // Realiza una solicitud AJAX para agregar el usuario en el servidor
+                            $.ajax({
+                                type: "POST",
+                                url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Ruta para agregar el usuario
+                                data: JSON.stringify(userData), // Convierte userData a JSON
+                                contentType: "application/json", // Especifica el tipo de contenido
 
-                if (!/[a-z]/.test(password)) {
-                    return "La contraseña debe contener al menos una letra minuscula.";
-                }
-
-                if (!/\d/.test(password)) {
-                    return "La contraseña debe contener al menos un numero.";
-                }
-
-                return null; // Si la contraseña cumple con los requisitos, retorna null
-            }
-
-            function mostrarMensajeError(mensaje) {
-                Swal.fire({
-                    title: 'Error',
-                    text: mensaje,
-                    icon: 'error',
-                    confirmButtonText: 'Aceptar'
-                });
-            }
-            const fechaNacimientoInput = document.getElementById('fechaNacimiento');
-            const fechaNacimiento = new Date(fechaNacimientoInput.value);
-
-            // Calcula la fecha actual
-            const fechaActual = new Date();
-            console.log(fechaActual);
-            console.log("Fecha Nacimiento");
-            console.log(fechaNacimiento);
-            // Calcula la edad en años
-            const edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
-
-            // Verifica si la edad es menor de 18 años
-            if (edad < 18) {
-                //alert('Debes ser mayor de 18 años para registrarte.');
-                Swal.fire({
-                    title: 'Error',
-                    text: 'Debes ser mayor de 18 años',
-                    icon: 'error',
-                    confirmButtonText: 'Aceptar'
-                });
-                return
-            } else if (edad > 18) {
-                // Realiza una solicitud AJAX para agregar el usuario en el servidor
-                $.ajax({
-                    type: "POST",
-                    url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Ruta para agregar el usuario
-                    data: JSON.stringify(userData), // Convierte userData a JSON
-                    contentType: "application/json", // Especifica el tipo de contenido
-
-                    dataType: "json",
-                    success: function (result) {
-                        // Actualiza la vista o realiza alguna otra acción
-                        $("#addUserModal").modal("hide");
-                        //alert("Usuario agregado correctamente");
-                        // Cierra el modal de agregar usuario
-                        Swal.fire({
-                            title: 'Usuario Agregado',
-                            text: 'El usuario se agregó correctamente',
-                            icon: 'success',
-                            confirmButtonText: 'Aceptar'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                verusers(3);
-                            }
-                        })
-                    },
-                    error: function () {
-                        //alert("Error al agregar el usuario");
-                        Swal.fire({
-                            title: 'Error',
-                            text: 'Error al agregar el usuario',
-                            icon: 'error',
-                            confirmButtonText: 'Aceptar'
-                        });
+                                dataType: "json",
+                                success: function (result) {
+                                    // Actualiza la vista o realiza alguna otra acción
+                                    $("#addUserModal").modal("hide");
+                                    //alert("Usuario agregado correctamente");
+                                    // Cierra el modal de agregar usuario
+                                    if (result.messageStatus == 'Ya existe un usuario con este número de documento registrado.' || result.messageStatus == 'Ya existe un usuario con esta dirección de correo electrónico registrada.' || 'Ya existe un usuario con este nombre de usuario registrado.') {
+                                        mostrarMensajeError(result.messageStatus);
+                                    } else {
+                                        Swal.fire({
+                                            title: 'Usuario Agregado',
+                                            text: result.messageStatus,
+                                            icon: 'success',
+                                            confirmButtonText: 'Aceptar'
+                                        }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                verusers(3);
+                                            }
+                                        })
+                                    }
+                                },
+                                error: function () {
+                                    //alert("Error al agregar el usuario");
+                                    mostrarMensajeError('Error al agregar el usuario');
+                                }
+                            });
+                        }
                     }
-                });
-            } else {
-                Swal.fire({
-                    title: 'Error',
-                    text: 'Revisa los datos que Ingresaste',
-                    icon: 'error',
-                    confirmButtonText: 'Aceptar'
-                });
-            }
-        });
-
-
-        // Obtén una referencia al campo de fecha de nacimiento
-        const fechaNacimientoInput = document.getElementById('fechaNacimiento');
-
-        // Agrega un oyente de eventos al cambio de valor en el campo
-        fechaNacimientoInput.addEventListener('change', function () {
-            // Obtén la fecha de nacimiento ingresada por el usuario
-            const fechaNacimiento = new Date(this.value);
-
-            // Calcula la fecha actual
-            const fechaActual = new Date();
-
-            // Calcula la edad en años
-            const edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
-
-            // Verifica si la edad es menor de 18 años
-            if (edad < 18) {
-                //alert('Debes ser mayor de 18 años para registrarte.');
-                Swal.fire({
-                    title: 'Error',
-                    text: 'Debes ser mayor de 18 años para registrarte.',
-                    icon: 'error',
-                    confirmButtonText: 'Aceptar'
-                });
-                // Puedes agregar aquí más acciones si la validación falla, como borrar la fecha o mostrar un mensaje de error.
-            }
-        });
-
-
-        function mostrarCargando() {
-            Swal.fire({
-                title: 'Cargando',
-                text: 'Por favor, espere un momento...',
-                showCancelButton: false,
-                showConfirmButton: false,
-                allowOutsideClick: false,
-                onBeforeOpen: () => {
-                    Swal.showLoading();
                 }
-            });
-        }
-
+            }
+        });
 
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
@@ -854,34 +684,34 @@
     </script>
 
     <script>
-        //     $(document).ready(function () {
-        //         console.log("Cargando Especialidades");
-        //         $.ajax({
-        //             type: 'GET',
-        //             url: '@ViewBag.urlEndPoint' + '/api/Generics/v1/GetSpecialities', // Ruta para crear o actualizar usuarios
-        //             // contentType: 'application/json',
-        //             success: function (response) {
-        //                 console.log(JSON.stringify(response));
-        //                 //console.log(JSON.parse(response));
-        //                 redirectView(JSON.stringify(response), "#Specialityed");
-        //             }
-        //         });
+        // $(document).ready(function () {
+        //     console.log("Cargando Especialidades");
+        //     $.ajax({
+        //         type: 'GET',
+        //         url: '@ViewBag.urlEndPoint' + '/api/Generics/v1/GetSpecialities', // Ruta para crear o actualizar usuarios
+        //         // contentType: 'application/json',
+        //         success: function (response) {
+        //             console.log(JSON.stringify(response));
+        //             //console.log(JSON.parse(response));
+        //             redirectView(JSON.stringify(response), "#Specialityed");
+        //         }
         //     });
-        //     console.log('Enviando a la Vista');
-        //     function redirectView(item, element) {
-        //         $.ajax({
-        //             type: 'POST',
-        //             url: '/Admin/ViewTableUsers',
-        //             data: item,
-        //             contentType: 'application/json',
-        //             success: function (response) {
-        //                 $(element).html(response);
-        //             }
-        //         });
-        //     }
-        // </script>
+        // });
+        // console.log('Enviando a la Vista');
+        // function redirectView(item, element) {
+        //     $.ajax({
+        //         type: 'POST',
+        //         url: '/Admin/ViewTableUsers',
+        //         data: item,
+        //         contentType: 'application/json',
+        //         success: function (response) {
+        //             $(element).html(response);
+        //         }
+        //     });
+        // }
+    </script>
 
 
-    @*  <script src="~/assets/js/control/tablesutilities.js" charset="utf-8"></script> *@
+
 
     }

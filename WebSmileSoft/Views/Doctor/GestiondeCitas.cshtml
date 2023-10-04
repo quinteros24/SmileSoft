@@ -35,6 +35,7 @@
                     let fechaCita = cita.aDate;
                     let fechaFormateada = fechaCita.substring(0, 10);
                     let rowData = [
+                        index+1,
                         cita.aID,
                         fechaFormateada,
                         cita.uName,
@@ -58,6 +59,7 @@
                     ],
                     columns: [
                         { title: '#' },
+                        { title: 'IdCita', visible: false },
                         { title: 'Fecha' },
                         { title: 'Nombre' },
                         { title: 'Celular' },
@@ -92,7 +94,7 @@
 
                 Swal.close();
 
-                tablecitasd.column(8).nodes().to$().find('.btnDesactivarC').click(function () {
+                tablecitasd.column(9).nodes().to$().find('.btnDesactivarC').click(function () {
                     // Maneja la acción del botón aqui
                     let data = tablecitasd.row($(this).parents('tr')).data();
                     let CitaID = data[0]; // la primera columna contiene el ID del usuario
@@ -171,7 +173,7 @@
                     }
 
                 });
-                tablecitasd.column(8).nodes().to$().find('.btnEditarC').click(async function () {
+                tablecitasd.column(9).nodes().to$().find('.btnEditarC').click(async function () {
                     // Maneja la acción del botón aqui
                     let data = tablecitasd.row($(this).parents('tr')).data();
                     let CitaID = data[0]; // la primera columna contiene el ID del usuario

@@ -138,6 +138,7 @@
                         let fechaCita = cita.aDate;
                         let fechaFormateada = fechaCita.substring(0, 10);
                         let rowData = [
+                            index+1,
                             cita.aID,
                             cita.uName,
                             cita.uCellphone,
@@ -161,6 +162,7 @@
                     tableCitas = $('#citasDoctores').DataTable({
                         columns: [
                             { title: '#' },
+                            { title: 'IdCita', visible: false },
                             { title: 'Nombre' },
                             { title: 'Celular' },
                             { title: 'Doctor' },
