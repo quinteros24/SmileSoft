@@ -17,6 +17,7 @@
 
 
 @section Scripts{
+
     <script>
 
         function abrirCita() {
@@ -97,8 +98,8 @@
                 tablecitasd.column(9).nodes().to$().find('.btnDesactivarC').click(function () {
                     // Maneja la acción del botón aqui
                     let data = tablecitasd.row($(this).parents('tr')).data();
-                    let CitaID = data[0]; // la primera columna contiene el ID del usuario
-                    let CitaEstado = data[7];
+                    let CitaID = data[1]; // la primera columna contiene el ID del usuario
+                    let CitaEstado = data[8];
                     if (CitaEstado == "Realizado") {
                         Swal.fire({
                             icon: 'info',
@@ -176,7 +177,7 @@
                 tablecitasd.column(9).nodes().to$().find('.btnEditarC').click(async function () {
                     // Maneja la acción del botón aqui
                     let data = tablecitasd.row($(this).parents('tr')).data();
-                    let CitaID = data[0]; // la primera columna contiene el ID del usuario
+                    let CitaID = data[1]; // la primera columna contiene el ID del usuario
 
                     const { value: citaState } = await Swal.fire({
                         title: 'Seleccionar estado de la cita',

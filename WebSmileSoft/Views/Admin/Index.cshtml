@@ -37,7 +37,7 @@
                 <div class="card-body">
                     <div class="row align-items-center no-gutters">
                         <div class="col me-2">
-                            <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Administradores Registrados</span></div>
+                            <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Admin... Registrados</span></div>
                             <div class="fw-bold h5 mb-0"><span id="userAdmin"></span></div><!-- Cargar datos de la base de datos -->
                         </div>
                         <div class="col-auto"><i class="fa-solid fa-user fa-2x text-gray-300"></i></div>
@@ -348,8 +348,8 @@
                     tableCitas.column(9).nodes().to$().find('.btnDesactivarC').click(function () {
                         // Maneja la acción del botón aqui
                         let data = tableCitas.row($(this).parents('tr')).data();
-                        let CitaID = data[0]; // la primera columna contiene el ID del usuario
-                        let CitaEstado = data[7];
+                        let CitaID = data[1]; // la primera columna contiene el ID del usuario
+                        let CitaEstado = data[8];
                         if (CitaEstado == "Realizado") {
                             Swal.fire({
                                 icon: 'info',
@@ -427,7 +427,7 @@
                     tableCitas.column(9).nodes().to$().find('.btnEditarC').click(async function () {
                         // Maneja la acción del botón aqui
                         let data = tableCitas.row($(this).parents('tr')).data();
-                        let CitaID = data[0]; // la primera columna contiene el ID del usuario
+                        let CitaID = data[1]; // la primera columna contiene el ID del usuario
 
                         const { value: citaState } = await Swal.fire({
                             title: 'Seleccionar estado de la cita',
@@ -521,55 +521,6 @@
 
         });
 
-
-                                        // document.addEventListener('DOMContentLoaded', function () {
-                                        //     if (document.getElementById('calendario') != null) {
-                                        //         let calendarEl = document.getElementById('calendario');
-                                        //         let listaEventos = eventos;
-                                        //         let count = listaEventos.length;
-                                        //         console.log("Lista de Eventos: ");
-                                        //         console.log(listaEventos);
-                                        //         let calendar = new FullCalendar.Calendar(calendarEl, {
-                                        //             initialView: 'dayGridMonth',
-                                        //             editable: true,
-                                        //             events: listaEventos,
-                                        //             eventRender: function (event, element) {
-                                        //                 if (!event.title) {
-                                        //                     console.error('Evento sin título:', event);
-                                        //                 }
-                                        //             },
-                                        //             eventClick: function (info) {
-                                        //                 info.jsEvent.preventDefault(); // don't let the browser navigate
-
-                                        //                 if (info.event.url) {
-                                        //                     window.open(info.event.url);
-                                        //                 }
-                                        //             },
-                                        //             loading: function (isLoading) {
-                                        //                 if (isLoading) {
-                                        //                     Swal.fire({
-                                        //                         title: 'Cargando',
-                                        //                         text: 'Por favor, espere un momento...',
-                                        //                         showCancelButton: false,
-                                        //                         showConfirmButton: false,
-                                        //                         allowOutsideClick: false,
-                                        //                         onBeforeOpen: () => {
-                                        //                             Swal.showLoading();
-                                        //                         }
-                                        //                     });
-                                        //                 } else {
-                                        //                     Swal.close();
-                                        //                 }
-                                        //             },
-
-
-                                        //         });
-                                        //         calendar.setOption('locale', 'es');
-                                        //         calendar.render();
-                                        //     }
-                                        // });
-                                        // console.log("Eventos: ");
-                                        // console.log(eventos);
 
     </script>
 }

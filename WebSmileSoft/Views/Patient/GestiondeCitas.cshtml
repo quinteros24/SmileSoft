@@ -184,7 +184,7 @@
             let uID = sessionStorage.getItem("userID");
             getUserCitas(uID);
             $("#loadingScreen").show();
-            
+
         });
         function getUserCitas(uID) {
             // Realizar solicitud AJAX para obtener la lista de usuarios
@@ -211,6 +211,7 @@
                         let fechaCita = cita.aDate;
                         let fechaFormateada = fechaCita.substring(0, 10);
                         let rowData = [
+                            index + 1,
                             cita.aID,
                             cita.uName,
                             cita.uCellphone,
@@ -227,6 +228,7 @@
                     tableCitas = $('#citasUsuario').DataTable({
                         columns: [
                             { title: '#' },
+                            { title: 'ID', visible: false },
                             { title: 'Nombre' },
                             { title: 'Celular' },
                             { title: 'Doctor' },
@@ -264,11 +266,11 @@
 
 
                     Swal.close();
-                    tableCitas.column(8).nodes().to$().find('.btnDesactivarC').click(function () {
+                    tableCitas.column(9).nodes().to$().find('.btnDesactivarC').click(function () {
                         // Maneja la acción del botón aqui
                         let data = tableCitas.row($(this).parents('tr')).data();
-                        let CitaID = data[0]; // la primera columna contiene el ID del usuario
-                        let CitaEstado = data[7];
+                        let CitaID = data[1]; // la primera columna contiene el ID del usuario
+                        let CitaEstado = data[8];
                         if (CitaEstado == "Realizado") {
                             Swal.fire({
                                 icon: 'info',
@@ -343,10 +345,10 @@
                         }
 
                     });
-                    tableCitas.column(8).nodes().to$().find('.btnEditarC').click(function () {
+                    tableCitas.column(9).nodes().to$().find('.btnEditarC').click(function () {
                         // Maneja la acción del botón aqui
                         let data = tableCitas.row($(this).parents('tr')).data();
-                        let CitaID = data[0]; // la primera columna contiene el ID del usuario
+                        let CitaID = data[1]; // la primera columna contiene el ID del usuario
                         Swal.fire({
                             title: 'Reprogramar Cita',
                             text: '¿Está seguro que desea reprogramar la cita?',
@@ -403,18 +405,6 @@
                 }
             });
         };
-        function mostrarCargando() {
-            Swal.fire({
-                title: 'Cargando',
-                text: 'Por favor, espere un momento...',
-                showCancelButton: false,
-                showConfirmButton: false,
-                allowOutsideClick: false,
-                onBeforeOpen: () => {
-                    Swal.showLoading();
-                }
-            });
-        }
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
 
