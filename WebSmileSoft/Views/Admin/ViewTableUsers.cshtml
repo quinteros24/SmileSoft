@@ -145,7 +145,7 @@
                         let Status = StatusMapping[usuario.uStatus];
                         let DocumentT = DocumentType[usuario.dtID];
                         let rowData = [
-                            index+1,
+                            index + 1,
                             usuario.uID,
                             rol,
                             usuario.uLoginName,
@@ -239,7 +239,7 @@
                                 //console.log(data.itemJson[0].uName);
 
                                 if (data.itemJson === null) {
-                                   mostrarMensajeError("No se cargo correctamente");
+                                    mostrarMensajeError("No se cargo correctamente");
                                 } else {
                                     let userData = data.itemJson; // Accede al primer elemento del arreglo
                                     actualizarFormulario(userData);
@@ -264,7 +264,7 @@
                             } else {
                                 fechaSolo = userData.uBirthDate;
                             }
- 
+
                             // Rellena los campos del formulario con los datos del usuario
 
                             //Datos Personales
@@ -292,6 +292,9 @@
                         }
                         // Abre el modal de edición
                         $("#editModal").modal("show");
+
+                        const fechaNacimientoInput = document.getElementById('fechaNacimientoed');
+                        onChangeAgeNotification(fechaNacimientoInput);
 
                         $("#saveChangesBtn").click(function () {
                             console.log("Save Changes");
@@ -324,7 +327,6 @@
                                 dUniversityName: null
 
                             }
-
                             if (updatedUserData.utID == 2) {
                                 updatedUserData.dAcademicLevel = $("#AcademicLeveled").val();
                                 updatedUserData.dDegree = $("#TituloAcademicoed").val();
@@ -332,32 +334,63 @@
                                 updatedUserData.dProfessionalCard = $("#ProfessionalLicenseed").val();
                                 updatedUserData.dUniversityName = $("#Universitynameed").val();
                             }
-                            // const fechaNacimientoInput = document.getElementById('fechaNacimientoed');
-                            // const fechaNacimiento = new Date(fechaNacimientoInput.value);
 
-                            // // Calcula la fecha actual
-                            // const fechaActual = new Date();
-                            // console.log(fechaActual);
-                            // console.log("Fecha Nacimiento");
-                            // console.log(fechaNacimiento);
-                            // // Calcula la edad en años
-                            // const edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
-
-                            // // Verifica si la edad es menor de 18 años
-                            // if (edad < 18) {
-                            //     //alert('Debes ser mayor de 18 años para registrarte.');
-                            //     Swal.fire({
-                            //         title: 'Error',
-                            //         text: 'Debes ser mayor de 18 años',
-                            //         icon: 'error',
-                            //         confirmButtonText: 'Aceptar'
-                            //     });
-                            //     return
-                            // Ejemplo de cómo llamar a la función de validación
                             const esMayorDe18 = validarEdadMayorDe18('fechaNacimientoed');
 
-                            if (esMayorDe18) {
+                            if (updatedUserData.firstName === "" || updatedUserData.lastName === "") {
+                                Swal.fire({
+                                    text: 'Por favor, ingrese su nombre completo.',
+                                    confirmButtonColor: '#008dc9'
+                                });
+                            }
+                            else if (updatedUserData.dtID === "") {
+                                Swal.fire({
+                                    text: 'Por favor, ingrese su número de documento.',
+                                    confirmButtonColor: '#008dc9'
+                                });
+                            }
+                            else if (updatedUserData.uBirthDate === "") {
+                                Swal.fire({
+                                    text: 'Por favor, ingrese su fecha de nacimiento.',
+                                    confirmButtonColor: '#008dc9'
+                                });
+                            }
+                            else if (updatedUserData.gID === "Seleccionar" || updatedUserData.gID === "") {
+                                Swal.fire({
+                                    text: 'Por favor, seleccione su género.',
+                                    confirmButtonColor: '#008dc9'
+                                });
+                            }
+                            else if (updatedUserData.uAddress === "") {
+                                Swal.fire({
+                                    text: 'Por favor, ingrese su dirección.',
+                                    confirmButtonColor: '#008dc9'
+                                });
+                            }
+                            else if (updatedUserData.uCellphone === "") {
+                                Swal.fire({
+                                    text: 'Por favor, ingrese su número de celular o telefono.',
+                                    confirmButtonColor: '#008dc9'
+                                });
+                            } else if (updatedUserData.uEmailAddress === "") {
+                                Swal.fire({
+                                    text: 'Por favor, ingrese su correo electrónico.',
+                                    confirmButtonColor: '#008dc9'
+                                });
+                            } else if (updatedUserData.uLoginName === "") {
+                                Swal.fire({
+                                    text: 'Por favor, ingrese su usuario.',
+                                    confirmButtonColor: '#008dc9'
+                                });
+                            } else if (!esMayorDe18) {
+                                Swal.fire({
+                                    text: 'No tienes la mayoría de edad, ponte en contacto con soporte.',
+                                    confirmButtonColor: '#008dc9'
+                                });
+                            }
 
+                            //let formattedBirthDate = formatDateToISO8601(birthDate);
+                            else {
                                 // Realiza una solicitud AJAX para guardar los cambios en el servidor
                                 $.ajax({
                                     url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Reemplaza con la URL correcta
@@ -409,7 +442,7 @@
                         let utID = data[2];
                         let loginName = data[3];
                         let userName = data[4] + ' ' + data[5];
-                        let StatusI = StatusMappingI[data[11]]; 
+                        let StatusI = StatusMappingI[data[11]];
                         let estadoActual = data[11];
                         console.log("Documento" + loginName + " User ID: " + userId);
                         console.log("Estado" + estadoActual);
@@ -535,7 +568,7 @@
                 }
             });
         };
-        
+
 
         $(".add-user-btn").click(function () {
             // Abre el modal de agregar usuario
@@ -551,9 +584,11 @@
             allowNumbersOnly(this);
         });
 
+        const fechaNacimientoInput = document.getElementById('fechaNacimiento');
+        onChangeAgeNotification(fechaNacimientoInput);
         // Controlador de clic para el botón "Agregar"
         $("#add-user").click(function () {
-            
+
             let userData = {
                 //Datos Personales
                 uName: $("#nombres").val(),
@@ -590,83 +625,91 @@
                 userData.dUniversityName = $("#Universitynamea").val();
             }
 
+            const esMayorDe18 = validarEdadMayorDe18('fechaNacimiento');
 
-            // Validar campos obligatorios
-            if (!userData.uName ||
-                !userData.uLastName ||
-                !userData.dtID ||
-                !userData.uDocument ||
-                !userData.uLoginName ||
-                !userData.uPassword ||
-                !userData.utID
-            ) {
-                mostrarMensajeError('Por favor, complete todos los campos obligatorios.');
-            } else if (userData.utID == 2) {
-                // Si el tipo de usuario es igual a 2, validar campos adicionales
-                if (!userData.dAcademicLevel ||
-                    !userData.dDegree ||
-                    !userData.spID ||
-                    !userData.dProfessionalCard ||
-                    !userData.dUniversityName
-                ) {
-                    mostrarMensajeError('Por favor, complete todos los campos obligatorios.');
-                    console.log("Error en los campos adicionales");
-                } else {
-                    // Validación de la contraseña
-                    let password = userData.uPassword;
-                    let passwordError = CheckPass(password);
-                    if (passwordError) {
-                        console.log("Error Contraseña");
-                        mostrarMensajeError(passwordError);
-                    } else {
-                        const fechaNacimientoInput = document.getElementById('fechaNacimiento');
-                        const fechaNacimiento = new Date(fechaNacimientoInput.value);
+            if (userData.firstName === "" || userData.lastName === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su nombre completo.',
+                    confirmButtonColor: '#008dc9'
+                });
+            }
+            else if (userData.dtID === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su número de documento.',
+                    confirmButtonColor: '#008dc9'
+                });
+            }
+            else if (userData.uBirthDate === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su fecha de nacimiento.',
+                    confirmButtonColor: '#008dc9'
+                });
+            }
+            else if (userData.gID === "Seleccionar" || userData.gID === "") {
+                Swal.fire({
+                    text: 'Por favor, seleccione su género.',
+                    confirmButtonColor: '#008dc9'
+                });
+            }
+            else if (userData.uAddress === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su dirección.',
+                    confirmButtonColor: '#008dc9'
+                });
+            }
+            else if (userData.uCellphone === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su número de celular o telefono.',
+                    confirmButtonColor: '#008dc9'
+                });
+            } else if (userData.uEmailAddress === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su correo electrónico.',
+                    confirmButtonColor: '#008dc9'
+                });
+            } else if (userData.uLoginName === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su usuario.',
+                    confirmButtonColor: '#008dc9'
+                });
+            } else if (!esMayorDe18) {
+                Swal.fire({
+                    text: 'No tienes la mayoría de edad, ponte en contacto con soporte.',
+                    confirmButtonColor: '#008dc9'
+                });
+            }
 
-                        // Calcula la fecha actual
-                        const fechaActual = new Date();
-                        // Calcula la edad en años
-                        const edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
+            //let formattedBirthDate = formatDateToISO8601(birthDate);
+            else {
+                $.ajax({
+                    type: "POST",
+                    url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Ruta para agregar el usuario
+                    data: JSON.stringify(userData), // Convierte userData a JSON
+                    contentType: "application/json", // Especifica el tipo de contenido
 
-                        // Verifica si la edad es menor de 18 años
-                        if (edad < 18) {
-                            mostrarMensajeError('Debes ser mayor de 18 años para registrarte.');
-                        } else {
-                            // Realiza una solicitud AJAX para agregar el usuario en el servidor
-                            $.ajax({
-                                type: "POST",
-                                url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Ruta para agregar el usuario
-                                data: JSON.stringify(userData), // Convierte userData a JSON
-                                contentType: "application/json", // Especifica el tipo de contenido
-
-                                dataType: "json",
-                                success: function (result) {
-                                    // Actualiza la vista o realiza alguna otra acción
-                                    $("#addUserModal").modal("hide");
-                                    //alert("Usuario agregado correctamente");
-                                    // Cierra el modal de agregar usuario
-                                    if (result.messageStatus == 'Ya existe un usuario con este número de documento registrado.' || result.messageStatus == 'Ya existe un usuario con esta dirección de correo electrónico registrada.' || 'Ya existe un usuario con este nombre de usuario registrado.') {
-                                        mostrarMensajeError(result.messageStatus);
-                                    } else {
-                                        Swal.fire({
-                                            title: 'Usuario Agregado',
-                                            text: result.messageStatus,
-                                            icon: 'success',
-                                            confirmButtonText: 'Aceptar'
-                                        }).then((result) => {
-                                            if (result.isConfirmed) {
-                                                verusers(3);
-                                            }
-                                        })
-                                    }
-                                },
-                                error: function () {
-                                    //alert("Error al agregar el usuario");
-                                    mostrarMensajeError('Error al agregar el usuario');
-                                }
-                            });
-                        }
+                    dataType: "json",
+                    success: function (result) {
+                        // Actualiza la vista o realiza alguna otra acción
+                        $("#addUserModal").modal("hide");
+                        //alert("Usuario agregado correctamente");
+                        // Cierra el modal de agregar usuario
+                        Swal.fire({
+                            title: 'Usuario Agregado',
+                            text: 'El usuario se agregó correctamente',
+                            icon: 'success',
+                            confirmButtonText: 'Aceptar'
+                        });
+                    },
+                    error: function () {
+                        //alert("Error al agregar el usuario");
+                        Swal.fire({
+                            title: 'Error',
+                            text: result.messageCode,
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar'
+                        });
                     }
-                }
+                });
             }
         });
 

@@ -35,6 +35,32 @@
 
     // if (esMayorDe18) {
     //     // Continuar con el proceso si la validación es True
+    function onChangeAgeNotification(idCampoFecha) {
+        idCampoFecha.addEventListener('change', function () {
+            // Obtén la fecha de nacimiento ingresada por el usuario
+            const fechaNacimiento = new Date(this.value);
+
+            // Calcula la fecha actual
+            const fechaActual = new Date();
+
+            // Calcula la edad en años
+            const edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
+
+            // Verifica si la edad es menor de 18 años
+            if (edad < 18) {
+                //alert('Debes ser mayor de 18 años para registrarte.');
+                Swal.fire({
+                    title: 'Error',
+                    text: 'El usuario debe ser mayor de 18 años',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+                // Puedes agregar aquí más acciones si la validación falla, como borrar la fecha o mostrar un mensaje de error.
+            }
+        });
+    }
+
+
 
     function CheckPass(password) {
         if (password.length < 8) {
@@ -60,7 +86,7 @@
         inputField.value = inputField.value.replace(/[^0-9]/g, '');
     }
 
-   
+
     function mostrarCargando() {
         Swal.fire({
             title: 'Cargando',
@@ -175,7 +201,7 @@
             contenido.show();
         }
     }
-  
+
 
     // Obtener el enlace por su identificador
     function CambiarVinculoLogo(uRol) {

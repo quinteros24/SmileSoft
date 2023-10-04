@@ -172,6 +172,10 @@
             // Update the username field with the suggested username
             document.getElementById("userNameRegister").value = suggestedUsername;
         }
+        // Obtén una referencia al campo de fecha de nacimiento
+        const fechaNacimientoInput = document.getElementById('birthDate');
+        onChangeAgeNotification(fechaNacimientoInput);
+
         function registrarUsuario() {
             let firstName = document.getElementById("userFirstNameRegister").value.trim();
             let lastName = document.getElementById("userLastNameRegister").value.trim();
