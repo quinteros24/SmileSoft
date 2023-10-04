@@ -399,27 +399,55 @@
             }
 
             const fechaNacimientoInput = document.getElementById('birthDatep');
-            const fechaNacimiento = new Date(fechaNacimientoInput.value);
+            const esMayorDe18 = validarEdadMayorDe18('fechaNacimientoed');
 
-            // Calcula la fecha actual
-            const fechaActual = new Date();
-            console.log(fechaActual);
-            console.log("Fecha Nacimiento");
-            console.log(fechaNacimiento);
-            // Calcula la edad en años
-            const edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
-
-            // Verifica si la edad es menor de 18 años
-            if (edad < 18) {
-                //alert('Debes ser mayor de 18 años para registrarte.');
+            if (updatedUserData.uName === "" || updatedUserData.uLastName === "") {
                 Swal.fire({
-                    title: 'Error',
-                    text: 'Debes ser mayor de 18 años',
-                    icon: 'error',
-                    confirmButtonText: 'Aceptar'
+                    text: 'Por favor, ingrese su nombre completo.',
+                    confirmButtonColor: '#008dc9'
                 });
-                return
-            } else {
+            }
+            
+            else if (updatedUserData.uBirthDate === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su fecha de nacimiento.',
+                    confirmButtonColor: '#008dc9'
+                });
+            }
+            else if (updatedUserData.gID === "Seleccionar" || updatedUserData.gID === "") {
+                Swal.fire({
+                    text: 'Por favor, seleccione su género.',
+                    confirmButtonColor: '#008dc9'
+                });
+            }
+            else if (updatedUserData.uAddress === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su dirección.',
+                    confirmButtonColor: '#008dc9'
+                });
+            }
+            else if (updatedUserData.uCellphone === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su número de celular o telefono.',
+                    confirmButtonColor: '#008dc9'
+                });
+            } else if (updatedUserData.uEmailAddress === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su correo electrónico.',
+                    confirmButtonColor: '#008dc9'
+                });
+            } else if (updatedUserData.uLoginName === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su usuario.',
+                    confirmButtonColor: '#008dc9'
+                });
+            } else if (!esMayorDe18) {
+                Swal.fire({
+                    text: 'No tienes la mayoría de edad, ponte en contacto con soporte.',
+                    confirmButtonColor: '#008dc9'
+                });
+            }
+            else {
                 $.ajax({
                     url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Reemplaza con la URL correcta
                     type: 'POST',
