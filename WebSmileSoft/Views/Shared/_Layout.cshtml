@@ -213,7 +213,38 @@
 
     <!-- Custom scripts for all pages -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.31/dist/sweetalert2.all.min.js"></script>
+    <script>
 
+        function checkTokenAndRedirect() {
+            // Verifica si existe un token en sessionStorage u otras condiciones de autenticación
+            const token = sessionStorage.getItem('accessToken'); // Reemplaza 'token' con el nombre real de tu token en sessionStorage
+            //console.log("Validando Token: " + token);
+            if (!token) {
+                // No se encontró un token, redirige al usuario a la página de inicio de sesión
+                window.location.href = '@Url.Action("Login", "Account")'; // Reemplaza con la URL correcta
+            } else if (sessionStorage.getItem('userStatus') == false) {
+                console.log("Cuenta Inactiva")
+                sessionStorage.clear();
+                window.location.href = '@Url.Action("Login", "Account")';
+                //window.location.href = '@Url.Action("Login", "Account")'; // Reemplaza con la URL correcta
+            }
+        }
+
+        // Llama a la función para verificar el token cuando carga la página
+        checkTokenAndRedirect();
+
+        // Llama a la función para verificar el token cada minuto
+        setInterval(checkTokenAndRedirect, 60000); // 60000 milisegundos = 1 minuto
+
+            // Resto del contenido de tu página aquí
+
+        $(document).ready(function () {
+            let userRole = sessionStorage.getItem('userRole');
+            mostrarElementosPorRol(userRole);
+            CambiarVinculoLogo(userRole);
+            verifyToken();
+        });
+    </script>
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }

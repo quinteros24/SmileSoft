@@ -1,11 +1,7 @@
 ﻿@* Validar campos en todos los Formularios
  *@
-
-
-
-
-
-
+@* <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js" asp-append-version="true"></script>
+ *@
 <script>
     function validarEdadMayorDe18(idCampoFechaNacimiento) {
         const fechaNacimientoInput = document.getElementById(idCampoFechaNacimiento);
@@ -105,33 +101,10 @@
 
 </script>
 
-<script>
 
-    function checkTokenAndRedirect() {
-        // Verifica si existe un token en sessionStorage u otras condiciones de autenticación
-        const token = sessionStorage.getItem('accessToken'); // Reemplaza 'token' con el nombre real de tu token en sessionStorage
-        //console.log("Validando Token: " + token);
-        if (!token) {
-            // No se encontró un token, redirige al usuario a la página de inicio de sesión
-            window.location.href = '@Url.Action("Login", "Account")'; // Reemplaza con la URL correcta
-        } else if (sessionStorage.getItem('userStatus') == false) {
-            console.log("Cuenta Inactiva")
-            sessionStorage.clear();
-            window.location.href = '@Url.Action("Login", "Account")';
-            //window.location.href = '@Url.Action("Login", "Account")'; // Reemplaza con la URL correcta
-        }
-    }
-
-    // Llama a la función para verificar el token cuando carga la página
-    checkTokenAndRedirect();
-
-    // Llama a la función para verificar el token cada minuto
-    setInterval(checkTokenAndRedirect, 60000); // 60000 milisegundos = 1 minuto
-
-    // Resto del contenido de tu página aquí
-</script>
 <script>
     function updateNavbarBackground(selectedColor) {
+
         // Obtén una referencia a la barra de navegación por su ID
         const navbar = document.getElementById("nav_bar");
 
@@ -202,12 +175,7 @@
             contenido.show();
         }
     }
-    $(document).ready(function () {
-        let userRole = sessionStorage.getItem('userRole');
-        mostrarElementosPorRol(userRole);
-        CambiarVinculoLogo(userRole);
-        verifyToken();
-    });
+    
 
     // Obtener el enlace por su identificador
     function CambiarVinculoLogo(uRol) {
@@ -233,7 +201,6 @@
         } else {
             route = homeRoute;
         }
-
         // Asignar la ruta al enlace
         sidebarLink.href = route;
     }

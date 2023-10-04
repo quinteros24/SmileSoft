@@ -7,7 +7,7 @@
             <div class="d-flex flex-column align-items-center mb-4">
                 <img src="~/assets/img/logo-2.png" class="img-fluid w-25" alt="SmileSoftLogo">
             </div>
-            <form class="row">
+            <form class="row" id="registerForm">
                 <div class="col-md-6 mb-3">
                     <label class="visually-hidden" for="userFirstNameRegister">Nombres</label>
                     <div class="input-group">
@@ -92,7 +92,7 @@
                 <div class="col-md-6 mb-3">
                     <div class="input-group ">
                         <span class="input-group-text">Contraseña</span>
-                        <input type="password" id="password" class="form-control g" placeholder="" required />
+                        <input type="password" id="password" class="form-control g" placeholder="" autocomplete="new-password" required />
                     </div>
                 </div>
 
@@ -100,7 +100,7 @@
                     <div class="input-group">
                         <span class="input-group-text">Confirmar contraseña</span>
                         <input type="password" id="confirmPassword" class="form-control"
-                               placeholder="" required />
+                               placeholder="" autocomplete="new-passwor" required />
                     </div>
                 </div>
 
@@ -108,7 +108,7 @@
                     Tu contraseña debe ser minimo de 8 caracteres, debe contener letras, números o caracteres
                     especiales, y no debe contener espacios o emojis.
                 </div>
-            
+
             </form>
             <div class="text-end mt-4">
                 <button type="button" class="btn btn-primary d-block btn-user w-100" onclick="registrarUsuario();">
@@ -126,11 +126,13 @@
 
 
 @section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js" asp-append-version="true"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.min.js" asp-append-version="true"></script>
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
     <script>
-
+        $("#registerForm").validate();
         function ageValidation(birthDate) {
             // Obtener la fecha actual
             let fechaActual = new Date();
@@ -285,14 +287,14 @@
                                     window.location.href = '@Url.Action("Login", "Account")';
                                 }
                             });
-                        } else{
+                        } else {
                             Swal.fire({
                                 title: 'Error',
                                 text: response.messageStatus,
                                 icon: 'error',
                                 confirmButtonText: 'Aceptar'
                             });
-                            
+
                         }
                     },
 
@@ -310,6 +312,8 @@
 
         }
     </script>
+
+
     }
 
 
