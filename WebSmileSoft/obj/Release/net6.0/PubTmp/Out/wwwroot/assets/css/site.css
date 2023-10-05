@@ -1,23 +1,24 @@
 /* Option 2: Import via CSS */
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+
 html {
-  font-size: 14px;
-  font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
 .video-fluid {
@@ -45,13 +46,13 @@ body {
 }
 
 /*.nav-item:hover {*/
-    /*background-color: #f8f9fa;*/
-        /*background-color: #f8f9fa;*/
-    /*font-size: 1.1rem;
+/*background-color: #f8f9fa;*/
+/*background-color: #f8f9fa;*/
+/*font-size: 1.1rem;
     transform: scale(1.01);
     border-radius: 5px;*/
-    /*color: #0094ff;*/
-    /*transition: transform 0.4s ease;*/ /* Agrega una transición suave */
+/*color: #0094ff;*/
+/*transition: transform 0.4s ease;*/ /* Agrega una transición suave */
 /*}*/
 .nav-item2:hover {
     background-color: #E0E0E0; /* Cambia al color primario de Bootstrap */
@@ -60,6 +61,7 @@ body {
     border-radius: 5px;
     transition: background-color 0.4s ease, transform 0.4s ease; /* Agrega una transición suave tanto al color de fondo como al tamaño */
 }
+
 .hide-on-load {
     display: none;
 }
@@ -74,8 +76,7 @@ Modifica tu H
     position: absolute;
     bottom: 0;
     width: 100%;
-     /* Cambia el color de fondo según tus preferencias */
-  
+    /* Cambia el color de fondo según tus preferencias */
 }
 
 #fondoContenido #content-wrapp {
@@ -84,14 +85,15 @@ Modifica tu H
     overflow-x: hidden;
 }
 
-#example::-webkit-scrollbar{
+#example::-webkit-scrollbar {
     height: 12px;
 }
+
 #example::-webkit-scrollbar-track {
-    background: var(
-        --bs-gray-100);
+    background: var( --bs-gray-100);
     border-radius: 6px;
 }
+
 #example::-webkit-scrollbar-thumb {
     background: var(--bs-gray-600);
     border-radius: 5px;
@@ -185,3 +187,205 @@ Modifica tu H
         box-shadow: 0 0 0 0 rgba(178, 212, 252, 0.7);
     }
 }
+
+
+.cardClock {
+    width: 200px;
+    height: 100px;
+    background: rgb(17, 4, 134);
+    border-radius: 15px;
+    box-shadow: rgb(0,0,0,0.7) 5px 10px 50px,rgb(0,0,0,0.7) -5px 0px 250px;
+    display: flex;
+    color: white;
+    justify-content: center;
+    position: relative;
+    flex-direction: column;
+    background: linear-gradient(to right, rgb(0 142 197), rgb(211 217 223));
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+    .cardClock:hover {
+        box-shadow: rgb(0,0,0) 5px 10px 50px,rgb(0,0,0) -5px 0px 250px;
+    }
+
+.time-text {
+    font-size: 45px;
+    margin-top: 10px;
+    margin-left: 15px;
+    font-weight: 600;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.time-sub-text {
+    font-size: 15px;
+    margin-left: 5px;
+}
+
+.day-text {
+    font-size: 18px;
+    margin-top: 0px;
+    margin-left: 10px;
+    font-weight: 500;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.moon {
+    font-size: 20px;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    transition: all 0.3s ease-in-out;
+    opacity: 0; /* Oculta la luna por defecto */
+}
+
+.moon-visible {
+    opacity: 1; /* Muestra la luna cuando sea de noche */
+}
+
+.cardClock:hover > .moon {
+    font-size: 23px;
+}
+
+.loader {
+    width: 16em;
+    height: 16em;
+    background: rgba(255, 255, 255, 0.7);
+    position: absolute;
+    z-index: 99999;
+}
+
+.loader__eye1,
+.loader__eye2,
+.loader__mouth1,
+.loader__mouth2 {
+    animation: eye1 3s ease-in-out infinite;
+}
+
+.loader__eye1,
+.loader__eye2 {
+    transform-origin: 64px 64px;
+}
+
+.loader__eye2 {
+    animation-name: eye2;
+}
+
+.loader__mouth1 {
+    animation-name: mouth1;
+}
+
+.loader__mouth2 {
+    animation-name: mouth2;
+    visibility: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: hsl(var(--hue), 90%, 10%);
+        --fg: hsl(var(--hue), 90%, 90%);
+    }
+}
+
+@keyframes eye1 {
+    from {
+        transform: rotate(-260deg) translate(0, -56px);
+    }
+
+    50%, 60% {
+        animation-timing-function: cubic-bezier(0.17, 0, 0.58, 1);
+        transform: rotate(-40deg) translate(0, -56px) scale(1);
+    }
+
+    to {
+        transform: rotate(225deg) translate(0, -56px) scale(0.35);
+    }
+}
+
+@keyframes eye2 {
+    from {
+        transform: rotate(-260deg) translate(0, -56px);
+    }
+
+    50% {
+        transform: rotate(40deg) translate(0, -56px) rotate(-40deg) scale(1);
+    }
+
+    52.5% {
+        transform: rotate(40deg) translate(0, -56px) rotate(-40deg) scale(1, 0);
+    }
+
+    55%, 70% {
+        animation-timing-function: cubic-bezier(0, 0, 0.28, 1);
+        transform: rotate(40deg) translate(0, -56px) rotate(-40deg) scale(1);
+    }
+
+    to {
+        transform: rotate(150deg) translate(0, -56px) scale(0.4);
+    }
+}
+
+@keyframes eyeBlink {
+    from, 25%, 75%, to {
+        transform: scaleY(1);
+    }
+
+    50% {
+        transform: scaleY(0);
+    }
+}
+
+@keyframes mouth1 {
+    from {
+        animation-timing-function: ease-in;
+        stroke-dasharray: 0 351.86;
+        stroke-dashoffset: 0;
+    }
+
+    25% {
+        animation-timing-function: ease-out;
+        stroke-dasharray: 175.93 351.86;
+        stroke-dashoffset: 0;
+    }
+
+    50% {
+        animation-timing-function: steps(1, start);
+        stroke-dasharray: 175.93 351.86;
+        stroke-dashoffset: -175.93;
+        visibility: visible;
+    }
+
+    75%, to {
+        visibility: hidden;
+    }
+}
+
+@keyframes mouth2 {
+    from {
+        animation-timing-function: steps(1, end);
+        visibility: hidden;
+    }
+
+    50% {
+        animation-timing-function: ease-in-out;
+        visibility: visible;
+        stroke-dashoffset: 0;
+    }
+
+    to {
+        stroke-dashoffset: -351.86;
+    }
+}
+
+.card-admin{
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+    .card-admin:hover {
+        transform: scale(1.01);
+        transition: all 0.3s ease-in-out;
+        box-shadow: rgb(0,0,0) 5px 10px 50px,rgb(0,0,0) -5px 0px 250px;
+    }

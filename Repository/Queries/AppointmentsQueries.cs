@@ -27,6 +27,7 @@ namespace Repository.Queries
                    $"        ,U.uEmailAddress\n" +
                    $"        ,A.aDate\n" +
                    $"        ,A.aTime\n" +
+                   $"        ,A.aDescription\n" +
                    $"        ,CONCAT((SELECT uName FROM Users WHERE [uID] = D.uID),' ',(SELECT uLastName FROM Users WHERE [uID] = D.uID)) AS uDoctorName\n" +
                    $"        ,A.asID\n" +
                    $"        ,(SELECT asDescription FROM AppointmentStates WHERE asID = A.asId) AS asName\n" +
@@ -48,15 +49,26 @@ namespace Repository.Queries
 
         public static string SetAppointment(AppointmentesModel Item)
         {
-            string fechaB = Item.uBirthDate.Value.Year.ToString() + "-" + Item.uBirthDate.Value.Month.ToString("00") + "-" + Item.uBirthDate.Value.Day.ToString("00");
-            string fechaC = Item.aDate.Value.Year.ToString() + "-" + Item.aDate.Value.Month.ToString("00") + "-" + Item.aDate.Value.Day.ToString("00");
-            string time = Item.aTime.Value.Hour.ToString() + ":" + Item.aTime.Value.Minute.ToString() + ":" + Item.aTime.Value.Second.ToString();
+            string fechaB = String.Empty, fechaC = String.Empty, time = String.Empty;
+            if(Item.uBirthDate != null)
+            {
+                fechaB = Item.uBirthDate.Value.Year.ToString() + "-" + Item.uBirthDate.Value.Month.ToString("00") + "-" + Item.uBirthDate.Value.Day.ToString("00");
+            }
+            if(Item.aDate != null)
+            {
+                fechaC = Item.aDate.Value.Year.ToString() + "-" + Item.aDate.Value.Month.ToString("00") + "-" + Item.aDate.Value.Day.ToString("00");
+            }
+            if(Item.aTime != null)
+            {
+                time = Item.aTime.Value.Hours.ToString() + ":" + Item.aTime.Value.Minutes.ToString() + ":" + Item.aTime.Value.Seconds.ToString();
+            }
+
             string DECLARE = $"DECLARE\n" +
-                             $"    @aID AS INT = {Item.aID}\n" +
-                             $"    ,@oID AS INT = {Item.oID}\n" +
-                             $"    ,@uID AS INT = {Item.uID}\n" +
-                             $"    ,@dtID AS INT = {Item.dtID}\n" +
-                             $"    ,@gID AS INT = {Item.gID}\n" +
+                             $"    @aID AS INT = {Item.aID?? 0}\n" +
+                             $"    ,@oID AS INT = {Item.oID?? 0}\n" +
+                             $"    ,@uID AS INT = {(Item.uID?? 0)}\n" +
+                             $"    ,@dtID AS INT = {Item.dtID?? 1}\n" +
+                             $"    ,@gID AS INT = {Item.gID?? 0}\n" +
                              $"    ,@uDocument AS VARCHAR(20) = '{Item.uDocument}'\n" +
                              $"    ,@uName AS VARCHAR(200) = '{Item.uName}'\n" +
                              $"    ,@uLastName AS VARCHAR(200) = '{Item.uLastName}'\n" +
@@ -87,23 +99,34 @@ namespace Repository.Queries
                          $"            SELECT '-1' AS OutputCodeError, 'Este horario no se encuentra disponible, por favor intente nuevamente' AS OutputMessageError\n" +
                          $"        END\n" +
                          $"        ELSE\n" +
-                         $"        BEGIN\n" +
-                         $"            IF NOT EXISTS(SELECT TOP(1)* FROM Users WHERE [uDocument] = @uDocument)\n" +
+                         $"        BEGIN" +
+                         $"            IF(@uID = 0)\n" +
                          $"            BEGIN\n" +
-                         $"                --NO EXISTE LO CREAMOS\n" +
-                         $"                INSERT INTO Users(utID,uName,uLastName,uCellphone,uLoginName,uPassword,dtID,uDocument,[oID],gID,uBirthDate)\n" +
-                         $"                VALUES(3,@uName,@uLastName,@uCellphone,@uDocument,@uPassword,@dtID,@uDocument,@oID,@gID,@uBirthDate)\n" +
-                         $"                SET @ResponseCreation = CONCAT(\n" +
-                         $"                    'Se ha registrado correctamente, para ver el detalle de las citas puede iniciar sesión con el usuario '\n" +
-                         $"                    ,@uDocument\n" +
-                         $"                    ,'\". Su contraseña es el documento de identidad')\n" +
+                         $"                IF NOT EXISTS(SELECT TOP(1)* FROM Users WHERE [uDocument] = @uDocument)\n" +
+                         $"                BEGIN\n" +
+                         $"                    --NO EXISTE LO CREAMOS\n" +
+                         $"                    INSERT INTO Users(utID,uName,uLastName,uCellphone,uLoginName,uPassword,dtID,uDocument,[oID],gID,uBirthDate)\n" +
+                         $"                    VALUES(3,@uName,@uLastName,@uCellphone,@uDocument,@uPassword,@dtID,@uDocument,@oID,@gID,@uBirthDate)\n" +
+                         $"                    SET @ResponseCreation = CONCAT(\n" +
+                         $"                        'Se ha registrado correctamente, para ver el detalle de las citas puede iniciar sesión con el usuario '\n" +
+                         $"                        ,@uDocument\n" +
+                         $"                        ,'\". Su contraseña es el documento de identidad')\n" +
+                         $"                    SET @uID = (SELECT TOP(1)[uID] FROM Users WHERE [uDocument] = @uDocument)\n" +
+                         $"                END\n" +
                          $"                SET @uID = (SELECT TOP(1)[uID] FROM Users WHERE [uDocument] = @uDocument)\n" +
                          $"            END\n" +
-                         $"            SET @uID = (SELECT TOP(1)[uID] FROM Users WHERE [uDocument] = @uDocument)\n" +
-                         $"            --SE CREA LA CITA\n" +
-                         $"            INSERT INTO Appointments([oID],[uID],[dID],aDate,aTime,aDescription)\n" +
-                         $"            VALUES(@oID,@uID,@dID,@aDate,@aTime,@aDescription)\n" +
-                         $"            SELECT '0' AS OutputCodeError, CONCAT('La cita se ha crado. ',@ResponseCreation) AS OutputMessageError\n" +
+                         $"            BEGIN\n" +
+                         $"                IF EXISTS(SELECT TOP(1)* FROM Users WHERE [uID] = @uID)\n" +
+                         $"                BEGIN\n" +
+                         $"                    --SE CREA LA CITA\n" +
+                         $"                    INSERT INTO Appointments([oID],[uID],[dID],aDate,aTime,aDescription)\n" +
+                         $"                    VALUES(@oID,@uID,@dID,@aDate,@aTime,@aDescription)\n" +
+                         $"                    SET @ResponseCreation = CONCAT('La cita se ha crado. ',@ResponseCreation)\n" +
+                         $"                END\n" +
+                         $"                ELSE\n" +
+                         $"                    SET @ResponseCreation = 'El usuario no se ha podidio encontrar, por favor intente de nuevo'\n" +
+                         $"            END\n" +
+                         $"            SELECT '0' AS OutputCodeError, @ResponseCreation AS OutputMessageError\n" +
                          $"        END\n" +
                          $"    END\n";
             }

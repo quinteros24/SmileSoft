@@ -46,6 +46,7 @@ namespace Repository.Queries
                     $"                        uEmailAddress,\n" +
                     $"                        dtID,\n" +
                     $"                        oID,\n" +
+                    $"                        IIF(U.utID = 2,(SELECT dID FROM Doctors WHERE uID = @ExistantUser),0) AS dID,\n" +
                     $"                        uDocument,\n" +
                     $"                        uToken,\n" +
                     $"                        IIF(uStatus = 1, 1, 0) AS uStatus,\n" +

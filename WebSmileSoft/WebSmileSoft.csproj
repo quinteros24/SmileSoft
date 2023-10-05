@@ -24,11 +24,8 @@
     <None Include="wwwroot\assets\js\bootstrap.min.js" />
     <None Include="wwwroot\assets\js\bs-init.js" />
     <None Include="wwwroot\assets\js\changetheme.js" />
-    <None Include="wwwroot\assets\js\forgotpassword.js" />
     <None Include="wwwroot\assets\js\jquery.min.js" />
-    <None Include="wwwroot\assets\js\Login.js" />
     <None Include="wwwroot\assets\js\popper.js" />
-    <None Include="wwwroot\assets\js\Register.js" />
     <None Include="wwwroot\assets\js\theme.js" />
     <None Include="wwwroot\assets\js\Utilities.js" />
   </ItemGroup>

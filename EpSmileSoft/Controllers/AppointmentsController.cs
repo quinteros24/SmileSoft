@@ -30,7 +30,7 @@ namespace EpSmileSoft.Controllers
             return await _appointmentsCore.SetAppointment(Item);
         }
 
-        [HttpPut]
+        [HttpGet]
         [Route("v1/UpdateAppointmentStatus")]
         public async Task<GenericResponseModel> UpdateAppointmentStatus(int aID, int asID)
         {
