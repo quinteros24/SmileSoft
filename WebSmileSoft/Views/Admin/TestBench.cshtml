@@ -1,0 +1,144 @@
+﻿<h1>TestBench</h1>
+<div class="container shadow">
+    <h3>Formulario</h3>
+    <form id="formulario">
+        <!-- Aquí se generará el formulario dinámicamente -->
+        <button type="submit">Enviar respuestas</button>
+    </form>
+</div>
+
+@section Scripts{
+    <script>
+        let structure = [
+            {
+                type: 'open',
+                name: 'Ha tenido dolor?',
+            },
+            {
+                type: 'close',
+                name: '¿Tiene Mamá?',
+            },
+            {
+                type: 'close',
+                name: 'Vive con sus Padres',
+            },
+            {
+                type: 'close',
+                name: '¿Es un dolor intenso?',
+            },
+            {
+                type: 'multiple',
+                name: '¿Cuál es su color favorito?',
+                options: ['Rojo', 'Azul', 'Verde'],
+            },
+            {
+                type: 'multiple',
+                name: '¿Cuál es su medio de transporte?',
+                options: ['Bus', 'Moto', 'Carro'],
+            },
+        ];
+        // Obtén el elemento donde deseas agregar el formulario
+        const formContainer = document.getElementById('formulario');
+
+        // Recorre la estructura JSON y crea los elementos del formulario
+        let rowCounter = 0;
+        structure.forEach((question, index) => {
+            if (index % 2 === 0) {
+                // Comienza una nueva fila cada dos preguntas
+                rowCounter++;
+                const row = document.createElement('div');
+                row.classList.add('row');
+                formContainer.appendChild(row);
+            }
+
+            const questionContainer = document.createElement('div');
+            questionContainer.classList.add('col-md-6', 'mb-3');
+
+            const inputGroup = document.createElement('div');
+            inputGroup.classList.add('input-group' , 'mx-1');
+
+            const questionLabel = document.createElement('label');
+            questionLabel.textContent = question.name;
+
+            inputGroup.appendChild(questionLabel);
+
+            if (question.type === 'open') {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.name = question.name;
+                input.classList.add('form-control');
+                inputGroup.appendChild(input);
+            } else if (question.type === 'close') {
+                const radioYes = document.createElement('input');
+                radioYes.type = 'radio';
+                radioYes.name = question.name;
+                radioYes.value = 'Si';
+                const labelYes = document.createElement('label');
+                labelYes.textContent = 'Si';
+
+                const radioNo = document.createElement('input');
+                radioNo.type = 'radio';
+                radioNo.name = question.name;
+                radioNo.value = 'No';
+                const labelNo = document.createElement('label');
+                labelNo.textContent = 'No';
+
+                inputGroup.appendChild(radioYes);
+                inputGroup.appendChild(labelYes);
+                inputGroup.appendChild(radioNo);
+                inputGroup.appendChild(labelNo);
+            } else if (question.type === 'multiple') {
+                question.options.forEach((option) => {
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.name = question.name;
+                    checkbox.value = option;
+                    const label = document.createElement('label');
+                    label.textContent = option;
+
+                    inputGroup.appendChild(checkbox);
+                    inputGroup.appendChild(label);
+                });
+            }
+
+            questionContainer.appendChild(inputGroup);
+            formContainer.lastChild.appendChild(questionContainer);
+        });
+
+// Agregar un evento de carga al documento
+        document.addEventListener('DOMContentLoaded', function () {
+            // Agregar un evento de envío al formulario
+            const form = document.getElementById('formulario');
+            form.addEventListener('submit', function (event) {
+                event.preventDefault(); // Evitar que se recargue la página
+
+                // Recopilar los datos del formulario
+                const formData = new FormData(form);
+
+                // Convertir FormData a un objeto JSON
+                const formDataObject = {};
+                formData.forEach((value, key) => {
+                    formDataObject[key] = value;
+                });
+
+                // Enviar los datos al servidor utilizando AJAX (ejemplo con jQuery)
+                $.ajax({
+                    type: 'POST', // o 'GET', dependiendo de tu backend
+                    url: 'URL_DEL_BACKEND', // Reemplaza con la URL de tu backend
+                    data: JSON.stringify(formDataObject), // Convertir el objeto a JSON
+                    contentType: 'application/json', // Especificar el tipo de contenido
+                    success: function (response) {
+                        // Manejar la respuesta del servidor aquí
+                        console.log('Respuesta del servidor:', response);
+                    },
+                    error: function (error) {
+                        // Manejar errores aquí
+                        console.error('Error en la solicitud AJAX:', error);
+                    },
+                });
+            });
+        });
+
+    </script>
+
+}
