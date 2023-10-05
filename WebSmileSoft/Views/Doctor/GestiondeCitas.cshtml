@@ -91,6 +91,15 @@
                     language: {
                         url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json',
                     },
+                    createdRow: function (row, data, dataIndex) {
+                        // Obtén el valor del estado en la columna "Estado"
+                        var estado = data[8]; // Asegúrate de que 8 sea el índice correcto para la columna "Estado"
+
+                        // Si el estado es "cancelado", oculta los botones en esta fila
+                        if (estado === 'Cancelado') {
+                            $(row).find('.btnDesactivarC, .btnEditarC').hide();
+                        }
+                    }
                 });
 
                 Swal.close();

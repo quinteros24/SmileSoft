@@ -30,11 +30,11 @@
 <div class="card-body" id="content-container">
     <!-- Aquí va la tabla -->
     <div class="col-md-12 col-sm-10">
-        <div class="card">
+        <div class="card shadow-lg">
             <div class="card-header text-bg-primary mb-2">
                 <span id="tableUsersRol"></span> de SmileSoft <i class="fas fa-users"> </i>
             </div>
-            <div class="table-responsive shadow-lg">
+            <div class="table-responsive">
                 <table id="example" class="table table-hover"></table>
             </div>
             <div class="row justify-content-end mt-2">
@@ -217,6 +217,26 @@
                         language: {
                             url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json',
                         },
+                        columnDefs: [
+                            {
+                                targets: [3], // Indica la columna que deseas controlar (0 para la primera columna)
+                                width: '5px', // Establece el ancho fijo que desees para la columna
+                            },
+                            {
+                                targets: [6], // Indica la columna que deseas controlar (0 para la primera columna)
+                                width: '10px', // Establece el ancho fijo que desees para la columna
+                            }
+                            // Puedes agregar más columnDefs para otras columnas si es necesario
+                        ],
+                        createdRow: function (row, data, dataIndex) {
+                            // Obtén el valor del estado en la columna "Estado"
+                            var estado = data[11]; // Asegúrate de que 8 sea el índice correcto para la columna "Estado"
+
+                            // Si el estado es "cancelado", oculta los botones en esta fila
+                            if (estado === 'Inactivo') {
+                                $(row).find('#btnPassword, #btnEditar').hide();
+                            }
+                        }
 
                     });
 
