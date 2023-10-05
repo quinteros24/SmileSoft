@@ -25,7 +25,7 @@
           "EpSmileSoft.dll": {}
         }
       },
-      "Azure.Core/1.34.0": {
+      "Azure.Core/1.35.0": {
         "dependencies": {
           "Microsoft.Bcl.AsyncInterfaces": "1.1.1",
           "System.Diagnostics.DiagnosticSource": "6.0.1",
@@ -37,14 +37,14 @@
         },
         "runtime": {
           "lib/net6.0/Azure.Core.dll": {
-            "assemblyVersion": "1.34.0.0",
-            "fileVersion": "1.3400.23.36203"
+            "assemblyVersion": "1.35.0.0",
+            "fileVersion": "1.3500.23.45706"
           }
         }
       },
       "Azure.Identity/1.9.0": {
         "dependencies": {
-          "Azure.Core": "1.34.0",
+          "Azure.Core": "1.35.0",
           "Microsoft.Identity.Client": "4.49.1",
           "Microsoft.Identity.Client.Extensions.Msal": "2.25.3",
           "System.Memory": "4.5.4",
@@ -56,6 +56,30 @@
           "lib/netstandard2.0/Azure.Identity.dll": {
             "assemblyVersion": "1.9.0.0",
             "fileVersion": "1.900.23.26104"
+          }
+        }
+      },
+      "Azure.Storage.Blobs/12.18.0": {
+        "dependencies": {
+          "Azure.Storage.Common": "12.17.0",
+          "System.Text.Json": "7.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Azure.Storage.Blobs.dll": {
+            "assemblyVersion": "12.18.0.0",
+            "fileVersion": "12.1800.23.46203"
+          }
+        }
+      },
+      "Azure.Storage.Common/12.17.0": {
+        "dependencies": {
+          "Azure.Core": "1.35.0",
+          "System.IO.Hashing": "6.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Azure.Storage.Common.dll": {
+            "assemblyVersion": "12.17.0.0",
+            "fileVersion": "12.1700.23.46203"
           }
         }
       },
@@ -284,7 +308,7 @@
       "Microsoft.Extensions.ApiDescription.Server/3.0.0": {},
       "Microsoft.Extensions.Azure/1.7.0": {
         "dependencies": {
-          "Azure.Core": "1.34.0",
+          "Azure.Core": "1.35.0",
           "Azure.Identity": "1.9.0",
           "Microsoft.Extensions.Configuration.Abstractions": "7.0.0",
           "Microsoft.Extensions.Configuration.Binder": "2.1.0",
@@ -1035,6 +1059,14 @@
           "System.Runtime": "4.3.0"
         }
       },
+      "System.IO.Hashing/6.0.0": {
+        "runtime": {
+          "lib/net6.0/System.IO.Hashing.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        }
+      },
       "System.Linq/4.3.0": {
         "dependencies": {
           "System.Collections": "4.3.0",
@@ -1542,6 +1574,7 @@
       },
       "Domain.Core/1.0.0": {
         "dependencies": {
+          "Azure.Storage.Blobs": "12.18.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.22",
           "Microsoft.AspNetCore.Mvc.ViewFeatures": "2.2.0",
           "Repository": "1.0.0"
@@ -1586,12 +1619,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Azure.Core/1.34.0": {
+    "Azure.Core/1.35.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-6dNpM8OlGO+5gvt97tHXBp9qWRFkimRFulupDSGRgyT3sje1kQNza1/EMYaDcolmNARPmVJo8+wgD6ReV9wG5Q==",
-      "path": "azure.core/1.34.0",
-      "hashPath": "azure.core.1.34.0.nupkg.sha512"
+      "sha512": "sha512-hENcx03Jyuqv05F4RBEPbxz29UrM3Nbhnr6Wl6NQpoU9BCIbL3XLentrxDCTrH54NLS11Exxi/o8MYgT/cnKFA==",
+      "path": "azure.core/1.35.0",
+      "hashPath": "azure.core.1.35.0.nupkg.sha512"
     },
     "Azure.Identity/1.9.0": {
       "type": "package",
@@ -1599,6 +1632,20 @@
       "sha512": "sha512-VGcyxE66Za9mO0MtTYG1+ABZGF84QS+KZW8RTbcpYXLomHHvGT+aAL/Yg/ayfN+Usk2Z+DKB0+hymBaOAokj/w==",
       "path": "azure.identity/1.9.0",
       "hashPath": "azure.identity.1.9.0.nupkg.sha512"
+    },
+    "Azure.Storage.Blobs/12.18.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-IUqHRXnabXCzmmvkzqPK4FuGzLxmKSugDEt5Hm5B/JlJFR+aHDsPW4nCLbG0txThqBSKPqcBBU/oA6c5TaFJgA==",
+      "path": "azure.storage.blobs/12.18.0",
+      "hashPath": "azure.storage.blobs.12.18.0.nupkg.sha512"
+    },
+    "Azure.Storage.Common/12.17.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/h8SpUkxMuQy/MbNFeJQGmhYt3JnYfEiGeDojtNgLNzzhyDnRYgjF3ZKYgjORYQpn0Spr+4+v2MZy+0GNJBLrg==",
+      "path": "azure.storage.common/12.17.0",
+      "hashPath": "azure.storage.common.12.17.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Antiforgery/2.2.0": {
       "type": "package",
@@ -2418,6 +2465,13 @@
       "sha512": "sha512-6QOb2XFLch7bEc4lIcJH49nJN2HV+OC3fHDgsLVsBVBk3Y4hFAnOBGzJ2lUu7CyDDFo9IBWkSsnbkT6IBwwiMw==",
       "path": "system.io.filesystem.primitives/4.3.0",
       "hashPath": "system.io.filesystem.primitives.4.3.0.nupkg.sha512"
+    },
+    "System.IO.Hashing/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Rfm2jYCaUeGysFEZjDe7j1R4x6Z6BzumS/vUT5a1AA/AWJuGX71PoGB0RmpyX3VmrGqVnAwtfMn39OHR8Y/5+g==",
+      "path": "system.io.hashing/6.0.0",
+      "hashPath": "system.io.hashing.6.0.0.nupkg.sha512"
     },
     "System.Linq/4.3.0": {
       "type": "package",

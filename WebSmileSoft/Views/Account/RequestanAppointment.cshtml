@@ -72,7 +72,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="fechaNacimientoe">Fecha de Nacimiento:</label>
-                                <input type="date" class="form-control" id="fechaNacimientoe" name="fechaNacimiento" value="YYYY-MM-DD" placeholder="YYYY-MM-DD" required>
+                                <input type="date" class="form-control" id="fechaNacimientoe" name="fechaNacimiento" placeholder="YYYY-MM-DD" required>
                             </div>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                         <div class="col-md-3">
                             <div class="mb-1">
                                 <label for="fecha" class="form-label">Fecha de la Cita:</label>
-                                <input type="date" class="form-control" id="fecha" name="fecha" value="YYYY-MM-DD" placeholder="YYYY-MM-DD">
+                                <input type="date" class="form-control" id="fecha" name="fecha" placeholder="yyyy-MM-dd">
                             </div>
                         </div>
                         <div class="col-md-3 mb-1">
@@ -130,7 +130,7 @@
                         </div>
                         <div class="col-md-3">
                             <label for="cDoctor" class="form-label">Doctor</label>
-                            <select class="form-control" id="cDoctor" name="RequesanAppointment" @* asp-items="@ViewBag.Specialities" *@ disabled>
+                            <select class="form-control" id="cDoctor" name="RequesanAppointment" disabled>
                                 <option value="0">Seleccionar Doctor</option>
 
                             </select>
@@ -152,7 +152,6 @@
             </div>
             <hr>
             <div class="text-center mb-4"><a class="small fs-5" href="@Url.Action("Login","Account")">Ya tienes Cuenta? Inicia Sesión!</a></div>
-            <div class="form-check" style="display:none"><input class="form-check-input custom-control-input" type="checkbox" id="remember_me"><label class="form-check-label custom-control-label" for="remember_me">Recordarme</label></div>
 
         </div>
     </div>
@@ -181,14 +180,14 @@
             return fechaSinUTC.toISOString().split("T")[0]; // Obtiene la fecha en formato "YYYY-MM-DD"
         }
 
-      
-       // const fechaActualSinUTC = obtenerFechaActualSinUTC();
+
+        // const fechaActualSinUTC = obtenerFechaActualSinUTC();
         //console.log(fechaActualSinUTC);
 
         function validarFecha() {
             const fechaActual = obtenerFechaActualSinUTC(new Date());
             console.log(fechaActual);
-            const fechaIngresada = obtenerFechaActualSinUTC( new Date(document.getElementById("fecha").value + "T05:00:00Z"));
+            const fechaIngresada = obtenerFechaActualSinUTC(new Date(document.getElementById("fecha").value + "T05:00:00Z"));
             console.log(fechaIngresada);
             if (fechaIngresada < fechaActual) {
                 //alert("La fecha no puede ser menor que hoy.");
@@ -382,26 +381,6 @@
                     confirmButtonColor: '#008dc9'
                 });
             }
-            // {
-            //     "aID": 0,
-            //         "oID": 0,
-            //             "dtID": 0,
-            //                 "gID": 0,
-            //                     "uDocument": "string",
-            //                         "uEmailAddress": "string",
-            //                             "uName": "string",
-            //                                 "uLastName": "string",
-            //                                     "uCellphone": "string",
-            //                                         "uID": 0,
-            //                                             "dID": 0,
-            //                                                 "asID": 0,
-            //                                                     "aDescription": "string",
-            //                                                         "aDate": "2023-09-30",
-            //                                                             "uBirthDate": "2023-09-30",
-            //                                                                 "aTime": "string"
-            // }
-
-            //let formattedBirthDate = formatDateToISO8601(birthDate);
             else {
                 // let formattedBirthDate = formatToDatetime(birthDate);
                 let data = {
@@ -419,7 +398,7 @@
                     uDocument: documentID,
                     dtID: documentType,
                     uBirthDate: birthDate,
-                    gID: gender,
+                    gID: parseInt(gender),
                     //Datos de Contacto
                     uEmailAddress: email,
                     uCellphone: mobileNumber,
@@ -429,10 +408,11 @@
                     aID: 0,
                     aDate: date,
                     aTime: time,
-                    dID: 24,
+                    dID: parseInt(doctor),
                     aDescription: message
 
                 };
+
                 $.ajax({
                     type: 'POST',
                     url: '@ViewBag.urlEndPoint' + '/api/Appointments/v1/SetAppointment', // Ruta para crear o actualizar usuarios
@@ -455,17 +435,13 @@
                                     window.location.href = '@Url.Action("Login", "Account")';
                                 }
                             });
-                        } if (response.codeStatus === '-1') {
+                        } else if (response.codeStatus === '-1') {
                             Swal.fire({
                                 icon: 'info',
                                 title: 'Oops...',
                                 text: response.messageStatus,
                                 confirmButtonColor: '#008dc9'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    window.location.href = '@Url.Action("Login", "Account")';
-                                }
-                            });
+                            })
                         }
                     },
                     error: function (error) {
@@ -483,5 +459,4 @@
         }
     </script>
 
-\
 }

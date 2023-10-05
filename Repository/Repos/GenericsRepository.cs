@@ -44,5 +44,19 @@ namespace Repository
             }
             return Items;
         }
+
+        public async Task<List<SelectListItem>> GetDoctors(int? spID = 0)
+        {
+            string query = $"SELECT D.dID, CONCAT(U.uName,' ',U.uLastName) AS dName FROM Doctors AS D INNER JOIN Users AS U ON D.uID = U.uID {(spID != 0? $"WHERE D.spID = {spID}" : "")}";
+            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
+            ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
+            List<SelectListItem> Items = new();
+            if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
+            {
+                DataTable dt = ItemResponseDB.DtObject;
+                Items = Mapper.ToSelectList(dt, "dID", "dName");
+            }
+            return Items;
+        }
     }
 }

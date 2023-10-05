@@ -34,7 +34,7 @@ function verifyToken() {
 
     };
     // Realiza una solicitud al servidor para verificar el token
-    
+    console.log("Validando el token");
     $.ajax({
 
         type: "POST",
