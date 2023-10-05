@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="row">
             <div class="col-md-6 col-xl-3 mb-4">
-                <div class="card shadow border-start-primary py-2">
+                <div class="card shadow border-start-primary py-2 card-admin">
                     <div class="card-body">
                         <div class="row align-items-center no-gutters">
                             <div class="col me-2">
@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="col-md-6 col-xl-3 mb-4">
-                <div class="card shadow border-start-success py-2">
+                <div class="card shadow border-start-success py-2 card-admin">
                     <div class="card-body">
                         <div class="row align-items-center no-gutters">
                             <div class="col me-2">
@@ -33,11 +33,11 @@
                 </div>
             </div>
             <div class="col-md-6 col-xl-3 mb-4">
-                <div class="card shadow border-start-success py-2">
+                <div class="card shadow border-start-success py-2 card-admin">
                     <div class="card-body">
                         <div class="row align-items-center no-gutters">
                             <div class="col me-2">
-                                <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Admin... Registrados</span></div>
+                                <div class="text-uppercase text-info fw-bold text-xs mb-1"><span>Admin... Registrados</span></div>
                                 <div class="fw-bold h5 mb-0"><span id="userAdmin"></span></div><!-- Cargar datos de la base de datos -->
                             </div>
                             <div class="col-auto"><i class="fa-solid fa-user fa-2x text-gray-300"></i></div>
@@ -52,11 +52,11 @@
                     <p class="day-text" id="date">Wednesday, June 15th</p>
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" stroke-width="0" fill="currentColor" stroke="currentColor" class="moon"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path><path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path></svg>
                 </div> *@
-               <div class="card shadow border-start-success py-2">
+                <div class="card shadow border-start-success py-2 card-admin">
                     <div class="card-body">
                         <div class="row align-items-center no-gutters">
                             <div class="col me-2">
-                                <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Citas Registradas</span></div>
+                                <div class="text-uppercase text-warning fw-bold text-xs mb-1"><span>Citas Registradas</span></div>
                                 <div class="fw-bold h5 mb-0"><span id="dateRequest"></span></div><!-- Cargar datos de la base de datos -->
                             </div>
                             <div class="col-auto"><i class="fa-solid fa-user fa-2x text-gray-300"></i></div>
@@ -251,7 +251,7 @@
             // Realizar solicitud AJAX para obtener la lista de usuarios
             // var utID = 1;
             mostrarCargando();
-
+            let dateStatus = null;
             $.ajax({
                 url: sessionStorage.urlEP + '/api/Appointments/v1/GetAppointmentsList',
                 type: 'GET',
@@ -290,32 +290,7 @@
 
                         });
                         $("#dateRequest").text(citasRegistradas);
-                        users.forEach(function (cita) {
 
-                            let fecha = cita.aDate;
-                            let nombre = cita.uName;
-                            //let hora = cita.aTime;
-                            let hora = "10:00:00";
-                            let horaf = "11:00:00";
-                            // Formatear la fecha y hora
-                            let fechaInicio = fecha.split('T')[0] + 'T' + hora;
-
-                            // Sumar 1 hora a la fecha de inicio para la fecha de finalización
-                            let fechaFin = fecha.split('T')[0] + 'T' + horaf;
-
-                            // console.log("Fecha Inicio");
-                            // console.log(fechaInicio);
-                            // console.log("Fecha Fin");
-                            // console.log(fechaFin);
-                            // Agrega un nuevo evento al arreglo de eventos
-                            eventos.push({
-                                title: nombre, // Título del evento
-                                start: fechaInicio, // Fecha de inicio del evento
-                                end: fechaFin,
-
-                                // Otras propiedades del evento...
-                            });
-                        });
                     }
                     // Inicializa o actualiza el DataTable con los datos procesados
                     tableCitas = $('#citasDoctores').DataTable({
@@ -354,9 +329,20 @@
                         language: {
                             url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json',
                         },
+                        createdRow: function (row, data, dataIndex) {
+                            // Obtén el valor del estado en la columna "Estado"
+                            var estado = data[8]; // Asegúrate de que 8 sea el índice correcto para la columna "Estado"
+
+                            // Si el estado es "cancelado", oculta los botones en esta fila
+                            if (estado === 'Cancelado') {
+                                $(row).find('.btnDesactivarC, .btnEditarC').hide();
+                            }
+                        }
 
                     });
-
+                    if(dateStatus == "Cancelado"){
+                        $('btnDesactivarC').hide();
+                    }
                     Swal.close();
                     tableCitas.column(9).nodes().to$().find('.btnDesactivarC').click(function () {
                         // Maneja la acción del botón aqui
@@ -371,6 +357,7 @@
                                 confirmButtonColor: '#008dc9'
                             })
                         } else if (CitaEstado == "Cancelado") {
+                            $('btnDesactivarC').prop('disabled', true);
                             Swal.fire({
                                 icon: 'info',
                                 title: 'Oops...',
@@ -533,54 +520,55 @@
             $('[data-toggle="tooltip"]').tooltip();
 
         });
+        
+       
+        // function updateClock() {
+        //     const timeElement = document.getElementById('time');
+        //     const dateElement = document.getElementById('date');
+        //     const moonElement = document.getElementById('moon');
 
-        function updateClock() {
-            const timeElement = document.getElementById('time');
-            const dateElement = document.getElementById('date');
-            const moonElement = document.getElementById('moon');
+        //     const now = new Date();
+        //     const hours = now.getHours();
+        //     const minutes = now.getMinutes();
+        //     const day = now.toLocaleDateString(undefined, { weekday: 'long' });
+        //     const month = now.toLocaleDateString(undefined, { month: 'long' });
+        //     const dayOfMonth = now.getDate();
 
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = now.getMinutes();
-            const day = now.toLocaleDateString(undefined, { weekday: 'long' });
-            const month = now.toLocaleDateString(undefined, { month: 'long' });
-            const dayOfMonth = now.getDate();
+        //     // Update the time text
+        //     const formattedTime = `${hours}:${(minutes < 10 ? '0' : '') + minutes}`;
+        //     timeElement.textContent = formattedTime;
 
-            // Update the time text
-            const formattedTime = `${hours}:${(minutes < 10 ? '0' : '') + minutes}`;
-            timeElement.textContent = formattedTime;
+        //     // Update the date text
+        //     const formattedDate = `${day}, ${month} ${dayOfMonth}${getDaySuffix(dayOfMonth)}`;
+        //     dateElement.textContent = formattedDate;
 
-            // Update the date text
-            const formattedDate = `${day}, ${month} ${dayOfMonth}${getDaySuffix(dayOfMonth)}`;
-            dateElement.textContent = formattedDate;
+        //     // Update the moon icon based on the time of day (e.g., show moon icon at night)
+        //     if (hours < 6 || hours >= 18) {
+        //         moonElement.classList.add('moon-visible');
+        //     } else {
+        //         moonElement.classList.remove('moon-visible');
+        //     }
+        // }
 
-            // Update the moon icon based on the time of day (e.g., show moon icon at night)
-            if (hours < 6 || hours >= 18) {
-                moonElement.classList.add('moon-visible');
-            } else {
-                moonElement.classList.remove('moon-visible');
-            }
-        }
+        // // Function to add appropriate suffix to day (e.g., 1st, 2nd, 3rd, 4th)
+        // function getDaySuffix(day) {
+        //     if (day >= 11 && day <= 13) {
+        //         return 'th';
+        //     }
+        //     switch (day % 10) {
+        //         case 1:
+        //             return 'st';
+        //         case 2:
+        //             return 'nd';
+        //         case 3:
+        //             return 'rd';
+        //         default:
+        //             return 'th';
+        //     }
+        // }
 
-        // Function to add appropriate suffix to day (e.g., 1st, 2nd, 3rd, 4th)
-        function getDaySuffix(day) {
-            if (day >= 11 && day <= 13) {
-                return 'th';
-            }
-            switch (day % 10) {
-                case 1:
-                    return 'st';
-                case 2:
-                    return 'nd';
-                case 3:
-                    return 'rd';
-                default:
-                    return 'th';
-            }
-        }
-
-        // Update the clock immediately and every second
-        updateClock();
-        setInterval(updateClock, 1000);
+        // // Update the clock immediately and every second
+        // updateClock();
+        // setInterval(updateClock, 1000);
     </script>
 }

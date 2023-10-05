@@ -7,9 +7,12 @@
         <div class="card-header text-bg-primary">
             Próximas Citas
         </div>
-        <div class="card-body table-responsive shadow-lg">
-            <table class="table" id="citasUsuario">
-            </table>
+        <div class="card-body shadow">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped" id="citasUsuario">
+                    <!-- Aquí van tus filas y columnas -->
+                </table>
+            </div>
         </div>
     </div>
 
@@ -261,6 +264,15 @@
                         language: {
                             url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json',
                         },
+                        createdRow: function (row, data, dataIndex) {
+                            // Obtén el valor del estado en la columna "Estado"
+                            var estado = data[8]; // Asegúrate de que 8 sea el índice correcto para la columna "Estado"
+
+                            // Si el estado es "cancelado", oculta los botones en esta fila
+                            if (estado === 'Cancelado') {
+                                $(row).find('.btnDesactivarC, .btnEditarC').hide();
+                            }
+                        }
 
                     });
 
@@ -413,27 +425,27 @@
 
     <script>
 
-        function ageValidation(birthDate) {
-            // Obtener la fecha actual
-            let fechaActual = new Date();
+        // function ageValidation(birthDate) {
+        //     // Obtener la fecha actual
+        //     let fechaActual = new Date();
 
-            // Calcular la fecha de nacimiento a partir de la cadena de fecha
-            let fechaNac = new Date(birthDate);
+        //     // Calcular la fecha de nacimiento a partir de la cadena de fecha
+        //     let fechaNac = new Date(birthDate);
 
-            // Calcular la diferencia en años
-            let edad = fechaActual.getFullYear() - fechaNac.getFullYear();
+        //     // Calcular la diferencia en años
+        //     let edad = fechaActual.getFullYear() - fechaNac.getFullYear();
 
-            // Verificar si el cumpleaños ya ocurrió este año o no
-            if (
-                (fechaNac.getMonth() > fechaActual.getMonth()) ||
-                (fechaNac.getMonth() === fechaActual.getMonth() && fechaNac.getDate() > fechaActual.getDate())
-            ) {
-                edad--;
-            }
+        //     // Verificar si el cumpleaños ya ocurrió este año o no
+        //     if (
+        //         (fechaNac.getMonth() > fechaActual.getMonth()) ||
+        //         (fechaNac.getMonth() === fechaActual.getMonth() && fechaNac.getDate() > fechaActual.getDate())
+        //     ) {
+        //         edad--;
+        //     }
 
-            // Comprobar si la edad es mayor o igual a 18 y menor o igual a 100
-            return edad >= 18 && edad <= 100;
-        }
+        //     // Comprobar si la edad es mayor o igual a 18 y menor o igual a 100
+        //     return edad >= 18 && edad <= 100;
+        // }
 
         function SolicitarCitaPaciente() {
 
@@ -472,50 +484,69 @@
                 aDescription: message
 
             };
-            $.ajax({
-                type: 'POST',
-                url: '@ViewBag.urlEndPoint' + '/api/Appointments/v1/SetAppointment', // Ruta para crear o actualizar usuarios
-                data: JSON.stringify(data),
-                contentType: 'application/json',
-                success: function (response) {
-                    console.log(response.OutputCodeError);
-                    if (response.codeStatus === '0') {
-                        // Registro exitoso, puedes redirigir al usuario o mostrar un mensaje de éxito
-                        //alert('Usuario registrado con éxito.');
+            if (data.aDate == "" || data.aTime == "" || data.dID == 0 || data.aDescription == "") {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Oops...',
+                    text: 'Por favor ingrese todos los datos.',
+                    confirmButtonColor: '#008dc9'
+                })
+                return;
+            } if (data.dID == 0) {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Oops...',
+                    text: 'Por favor seleccione una Especialidad y un doctor.',
+                    confirmButtonColor: '#008dc9'
+                })
+                return;
+            } else {
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@ViewBag.urlEndPoint' + '/api/Appointments/v1/SetAppointment', // Ruta para crear o actualizar usuarios
+                    data: JSON.stringify(data),
+                    contentType: 'application/json',
+                    success: function (response) {
+                        console.log(response.OutputCodeError);
+                        if (response.codeStatus === '0') {
+                            // Registro exitoso, puedes redirigir al usuario o mostrar un mensaje de éxito
+                            //alert('Usuario registrado con éxito.');
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Cita Solicitada con éxito',
+                                confirmButtonColor: '#008dc9',
+                                allowOutsideClick: false,
+                                allowEscapeKey: false,
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload();
+                                }
+                            });
+                        } else if (response.codeStatus === '-1') {
+                            Swal.fire({
+                                icon: 'info',
+                                title: 'Oops...',
+                                text: response.messageStatus,
+                                confirmButtonColor: '#008dc9'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload();
+                                }
+                            });
+                        }
+                    },
+                    error: function (error) {
+                        // Manejar errores de la solicitud AJAX
                         Swal.fire({
-                            icon: 'success',
-                            title: 'Cita Solicitada con éxito',
-                            confirmButtonColor: '#008dc9',
-                            allowOutsideClick: false,
-                            allowEscapeKey: false,
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                location.reload();
-                            }
-                        });
-                    } if (response.codeStatus === '-1') {
-                        Swal.fire({
-                            icon: 'info',
+                            icon: 'error',
                             title: 'Oops...',
-                            text: response.messageStatus,
+                            text: 'Se presento un error al guardar la información',
                             confirmButtonColor: '#008dc9'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                location.reload();
-                            }
-                        });
+                        })
                     }
-                },
-                error: function (error) {
-                    // Manejar errores de la solicitud AJAX
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Se presento un error al guardar la información',
-                        confirmButtonColor: '#008dc9'
-                    })
-                }
-            });
+                });
+            }
         }
 
     </script>

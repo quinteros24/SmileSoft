@@ -377,3 +377,15 @@ Modifica tu H
         stroke-dashoffset: -351.86;
     }
 }
+
+.card-admin{
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+    .card-admin:hover {
+        transform: scale(1.01);
+        transition: all 0.3s ease-in-out;
+        box-shadow: rgb(0,0,0) 5px 10px 50px,rgb(0,0,0) -5px 0px 250px;
+    }
