@@ -3,20 +3,11 @@
 }
 <div class="container">
     <div class="welcome-container shadow mb-4">
-        <h1>Bienvenido a SmileSoft</h1>
+        <h1 class="text-primary">Bienvenido a SmileSoft</h1>
         <span class="d-none d-lg-inline me-2 small text-primary" style="font-weight: bold;" id="SaludoUsuario">
         </span>
 
     </div>
-    @* <div class="card">
-    <div class="card-header">
-    Próximas Citas
-    </div>
-    <div class="card-body">
-    <table class="table" id="citasUsuario">
-    </table>
-    </div>
-    </div> *@
     <!-- Sección de selección de servicios -->
     <div class="card">
         <div class="card-header">
@@ -66,11 +57,14 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
+            //verifyToken();
+            //console.log("Validar si tiene Datos de Direccion");
             let valDireccion = sessionStorage.getItem("userAddress");
-            console.log("Funcion de bienvenida");
             console.log(valDireccion);
-            if (valDireccion !== null && valDireccion.trim() !== "") {
-                
+            if (valDireccion == null) {
+                console.log("Mostrar Swal");
+
+                // Si valDireccion es nulo, muestra una alerta al usuario
                 Swal.fire({
                     title: '¡Bienvenido!',
                     text: 'Por favor, Actualice sus Datos',
@@ -78,12 +72,10 @@
                     confirmButtonText: 'Aceptar'
                 }).then((result) => {
                     if (result.isConfirmed) {
+                        // Redirige al usuario a la página de actualización de dirección
                         window.location.href = '@Url.Action("Index", "Profile")';
                     }
-                })
-            } else {
-                console.log("El Usuario tiene actualizados los datos");
-                
+                });
             }
         });
     </script>

@@ -22,7 +22,7 @@ $(document).ready(function () {
     // Adjunta un controlador de eventos de clic al boton
     let uID = sessionStorage.getItem('userID');
 
-    console.log("Buscando al Usuario " + uID);
+    //console.log("Buscando al Usuario " + uID);
 
     $.ajax({
         url: sessionStorage.urlEP + '/api/Users/v1/GetUserDetails',

@@ -5,41 +5,62 @@
     <h3 class="mb-0 text-primary">Dashboard</h3>@*<a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Generate Report</a>
     </div> *@
     <div class="row justify-content-center">
-        <div class="col-md-6 col-xl-3 mb-4">
-            <div class="card shadow border-start-primary py-2">
-                <div class="card-body">
-                    <div class="row align-items-center no-gutters">
-                        <div class="col me-2">
-                            <div class="text-uppercase text-primary fw-bold text-xs mb-1"><span>Pacientes Registrados</span></div>
-                            <div class=" fw-bold h5 mb-0"><span class="align-items-center" id="userCount"></span></div><!-- Cargar datos de la base de datos -->
+        <div class="row">
+            <div class="col-md-6 col-xl-3 mb-4">
+                <div class="card shadow border-start-primary py-2 card-admin">
+                    <div class="card-body">
+                        <div class="row align-items-center no-gutters">
+                            <div class="col me-2">
+                                <div class="text-uppercase text-primary fw-bold text-xs mb-1"><span>Pacientes Registrados</span></div>
+                                <div class=" fw-bold h5 mb-0"><span class="align-items-center" id="userCount"></span></div><!-- Cargar datos de la base de datos -->
+                            </div>
+                            <div class="col-auto"><i class="fa-solid fa-user fa-2x text-gray-300"></i></div>
                         </div>
-                        <div class="col-auto"><i class="fa-solid fa-user fa-2x text-gray-300"></i></div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-6 col-xl-3 mb-4">
-            <div class="card shadow border-start-success py-2">
-                <div class="card-body">
-                    <div class="row align-items-center no-gutters">
-                        <div class="col me-2">
-                            <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Doctores Registrados</span></div>
-                            <div class="fw-bold h5 mb-0"><span id="userDoctor"></span></div><!-- Cargar datos de la base de datos -->
+            <div class="col-md-6 col-xl-3 mb-4">
+                <div class="card shadow border-start-success py-2 card-admin">
+                    <div class="card-body">
+                        <div class="row align-items-center no-gutters">
+                            <div class="col me-2">
+                                <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Doctores Registrados</span></div>
+                                <div class="fw-bold h5 mb-0"><span id="userDoctor"></span></div><!-- Cargar datos de la base de datos -->
+                            </div>
+                            <div class="col-auto"><i class="fa-solid fa-user-doctor fa-2x text-gray-300"></i></div>
                         </div>
-                        <div class="col-auto"><i class="fa-solid fa-user-doctor fa-2x text-gray-300"></i></div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-6 col-xl-3 mb-4">
-            <div class="card shadow border-start-success py-2">
-                <div class="card-body">
-                    <div class="row align-items-center no-gutters">
-                        <div class="col me-2">
-                            <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Administradores Registrados</span></div>
-                            <div class="fw-bold h5 mb-0"><span id="userAdmin"></span></div><!-- Cargar datos de la base de datos -->
+            <div class="col-md-6 col-xl-3 mb-4">
+                <div class="card shadow border-start-success py-2 card-admin">
+                    <div class="card-body">
+                        <div class="row align-items-center no-gutters">
+                            <div class="col me-2">
+                                <div class="text-uppercase text-info fw-bold text-xs mb-1"><span>Admin... Registrados</span></div>
+                                <div class="fw-bold h5 mb-0"><span id="userAdmin"></span></div><!-- Cargar datos de la base de datos -->
+                            </div>
+                            <div class="col-auto"><i class="fa-solid fa-user fa-2x text-gray-300"></i></div>
                         </div>
-                        <div class="col-auto"><i class="fa-solid fa-user fa-2x text-gray-300"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3 mb-4">
+
+               @*  <div class="cardClock">
+                    <p class="time-text" id="time"><span>11:11</span></p>
+                    <p class="day-text" id="date">Wednesday, June 15th</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" stroke-width="0" fill="currentColor" stroke="currentColor" class="moon"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path><path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path></svg>
+                </div> *@
+                <div class="card shadow border-start-success py-2 card-admin">
+                    <div class="card-body">
+                        <div class="row align-items-center no-gutters">
+                            <div class="col me-2">
+                                <div class="text-uppercase text-warning fw-bold text-xs mb-1"><span>Citas Registradas</span></div>
+                                <div class="fw-bold h5 mb-0"><span id="dateRequest"></span></div><!-- Cargar datos de la base de datos -->
+                            </div>
+                            <div class="col-auto"><i class="fa-solid fa-user fa-2x text-gray-300"></i></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -55,7 +76,7 @@
             </div>
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header text-bg-primary">
                         Lista Citas
                     </div>
                     <div class="card-body table-responsive shadow-lg">
@@ -107,6 +128,7 @@
     <script>
         let eventos = [];
         $(document).ready(function () {
+            //verifyToken();
             // Realizar solicitud AJAX para obtener la lista de usuarios y contarlos
             var utID = 3;
             $.ajax({
@@ -191,7 +213,7 @@
             $("#buscarUsuarioBtn").click(function () {
                 var uID = 3;
 
-                console.log("Buscando al Usuario " + uID);
+                //console.log("Buscando al Usuario " + uID);
 
                 $.ajax({
                     url: '@ViewBag.urlEndPoint' + '/api/Users/v1/GetUserDetails',
@@ -229,7 +251,7 @@
             // Realizar solicitud AJAX para obtener la lista de usuarios
             // var utID = 1;
             mostrarCargando();
-
+            let dateStatus = null;
             $.ajax({
                 url: sessionStorage.urlEP + '/api/Appointments/v1/GetAppointmentsList',
                 type: 'GET',
@@ -241,71 +263,40 @@
                     // Procesar los datos recibidos y agregar filas a la tabla
                     let dataSet = [];
                     let users = data.itemJson;
-                    console.table(users);
+                    //console.table(users);
+                    let citasRegistradas = 0;
+                    $("#dateRequest").text(citasRegistradas);
+                    if (data.itemJson !== null) {
+                        citasRegistradas = data.itemJson.length;
 
-                    $.each(data.itemJson, function (index, cita) {
-                        // "aID": 28,
-                        //"oID": null,
-                        //"dtID": null,
-                        //"gID": null,
-                        // "uDocument": null,
-                        // "uEmailAddress": null,
-                        // "uName": "Andrea Ramirez",
-                        //  "uDoctorName": "Andrea Ramirez",
-                        //   "uLastName": null,
-                        //   "uCellphone": "30242111110",
-                        // "uID": null,
-                        //  "dID": null,
-                        //  "asID": 1,
-                        //   "aDescription": null,
-                        //   "aDate": "2023-10-02T00:00:00",
-                        //  "uBirthDate": null,
-                        //  "aTime": null
-                        let fechaCita = cita.aDate;
-                        let fechaFormateada = fechaCita.substring(0, 10);
-                        let rowData = [
-                            cita.aID,
-                            cita.uName,
-                            cita.uCellphone,
-                            cita.uDoctorName,
-                            cita.aDescription,
-                            fechaFormateada,
-                            cita.aTime,
-                            cita.asName
-                        ];
-                        dataSet.push(rowData);
-                    });
 
-                    users.forEach(function (cita) {
 
-                        let fecha = cita.aDate;
-                        let nombre = cita.uName;
-                        //let hora = cita.aTime;
-                        let hora = "10:00:00";
-                        let horaf = "11:00:00";
-                        // Formatear la fecha y hora
-                        let fechaInicio = fecha.split('T')[0] + 'T' + hora;
+                        $.each(data.itemJson, function (index, cita) {
 
-                        // Sumar 1 hora a la fecha de inicio para la fecha de finalización
-                        let fechaFin = fecha.split('T')[0] + 'T' + horaf;
+                            let fechaCita = cita.aDate;
+                            let fechaFormateada = fechaCita.substring(0, 10);
+                            let rowData = [
+                                index + 1,
+                                cita.aID,
+                                cita.uName,
+                                cita.uCellphone,
+                                cita.uDoctorName,
+                                cita.aDescription,
+                                fechaFormateada,
+                                cita.aTime,
+                                cita.asName
+                            ];
+                            dataSet.push(rowData);
 
-                        console.log("Fecha Inicio");
-                        console.log(fechaInicio);
-                        console.log("Fecha Fin");
-                        console.log(fechaFin);
-                        // Agrega un nuevo evento al arreglo de eventos
-                        eventos.push({
-                            title: nombre, // Título del evento
-                            start: fechaInicio, // Fecha de inicio del evento
-                            end: fechaFin,
-
-                            // Otras propiedades del evento...
                         });
-                    });
+                        $("#dateRequest").text(citasRegistradas);
+
+                    }
                     // Inicializa o actualiza el DataTable con los datos procesados
                     tableCitas = $('#citasDoctores').DataTable({
                         columns: [
                             { title: '#' },
+                            { title: 'IdCita', visible: false },
                             { title: 'Nombre' },
                             { title: 'Celular' },
                             { title: 'Doctor' },
@@ -318,7 +309,7 @@
                                 orderable: false, // Para desactivar la ordenación en esta columna
                                 data: null, // Usaremos la columna "Acciones" solo para botones
                                 defaultContent: '<button class="btn btn-primary btn-sm btnDesactivarC" data-toggle="tooltip" title="Cancelar Cita" type="button"> <i class="fas fa-ban"> </i></button> ' +
-                                    '<button class="btn btn-danger btn-sm btnEditarC" data-toggle="modal" data-target="#editarCitaModal" data-toggle="tooltip" title="Reprogramar Cita"> <i class="fa-regular fa-pen-to-square"></i></button> '
+                                    '<button class="btn btn-warning btn-sm btnEditarC" data-toggle="modal" data-target="#editarCitaModal" data-toggle="tooltip" title="Reprogramar Cita"> <i class="fa-regular fa-pen-to-square"></i></button> '
                             }
                         ],
 
@@ -338,70 +329,105 @@
                         language: {
                             url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json',
                         },
+                        createdRow: function (row, data, dataIndex) {
+                            // Obtén el valor del estado en la columna "Estado"
+                            var estado = data[8]; // Asegúrate de que 8 sea el índice correcto para la columna "Estado"
 
-                    });
-
-                    Swal.close();
-                    tableCitas.column(8).nodes().to$().find('.btnDesactivarC').click(function () {
-                        // Maneja la acción del botón aqui
-                        let data = tableCitas.row($(this).parents('tr')).data();
-                        let CitaID = data[0]; // la primera columna contiene el ID del usuario
-                        Swal.fire({
-                            title: 'Cancelar Cita',
-                            text: '¿Está seguro que desea cancelar la cita?',
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonText: 'Si, Cancelar Cita',
-                            cancelButtonText: 'Atrás'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                $.ajax({
-                                    url: sessionStorage.urlEP + '/api/Appointments/v1/UpdateAppointmentStatus',
-                                    type: 'GET',
-                                    data: { 'aID': CitaID, 'asID': 4 },
-                                    contentType: "application/json",
-                                    dataType: 'json',
-                                    success: function (response) {
-                                        if (response.codeStatus == 0) {
-                                            Swal.fire({
-                                                title: 'Cita Cancelada',
-                                                text: 'La cita ha sido Cancelada exitosamente.',
-                                                icon: 'success',
-                                                confirmButtonText: 'Aceptar'
-                                            }).then((result) => {
-                                                if (result.isConfirmed) {
-                                                    location.reload();
-                                                }
-                                            })
-                                        }
-                                        else if (response.codeStatus == -1) {
-                                            Swal.fire({
-                                                title: 'Error',
-                                                text: response.messageStatus,
-                                                icon: 'error',
-                                                confirmButtonText: 'Aceptar'
-                                            })
-                                        }
-
-                                    },
-                                    error: function (error) {
-                                        console.log('Error al obtener los detalles del usuario.');
-                                    }
-
-                                }).then((result) => {
-                                    if (result.isConfirmed) {
-                                        location.reload();
-                                    }
-                                })
+                            // Si el estado es "cancelado", oculta los botones en esta fila
+                            if (estado === 'Cancelado') {
+                                $(row).find('.btnDesactivarC, .btnEditarC').hide();
                             }
-                        })
-
+                        }
 
                     });
-                    tableCitas.column(8).nodes().to$().find('.btnEditarC').click(async function () {
+                    if(dateStatus == "Cancelado"){
+                        $('btnDesactivarC').hide();
+                    }
+                    Swal.close();
+                    tableCitas.column(9).nodes().to$().find('.btnDesactivarC').click(function () {
                         // Maneja la acción del botón aqui
                         let data = tableCitas.row($(this).parents('tr')).data();
-                        let CitaID = data[0]; // la primera columna contiene el ID del usuario
+                        let CitaID = data[1]; // la primera columna contiene el ID del usuario
+                        let CitaEstado = data[8];
+                        if (CitaEstado == "Realizado") {
+                            Swal.fire({
+                                icon: 'info',
+                                title: 'Oops...',
+                                text: 'La cita ya fue realizada, no se puede cancelar.',
+                                confirmButtonColor: '#008dc9'
+                            })
+                        } else if (CitaEstado == "Cancelado") {
+                            $('btnDesactivarC').prop('disabled', true);
+                            Swal.fire({
+                                icon: 'info',
+                                title: 'Oops...',
+                                text: 'La cita ya fue cancelada.',
+                                confirmButtonColor: '#008dc9'
+                            })
+                        } else if (CitaEstado == "Confirmado") {
+                            Swal.fire({
+                                icon: 'info',
+                                title: 'Oops...',
+                                text: 'La cita ya fue confirmada, no se puede cancelar.',
+                                confirmButtonColor: '#008dc9'
+                            })
+                        } else {
+                            Swal.fire({
+                                title: 'Cancelar Cita',
+                                text: '¿Está seguro que desea cancelar la cita?',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonText: 'Si, Cancelar Cita',
+                                cancelButtonText: 'Atrás'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    $.ajax({
+                                        url: sessionStorage.urlEP + '/api/Appointments/v1/UpdateAppointmentStatus',
+                                        type: 'GET',
+                                        data: { 'aID': CitaID, 'asID': 4 },
+                                        contentType: "application/json",
+                                        dataType: 'json',
+                                        success: function (response) {
+                                            if (response.codeStatus == 0) {
+                                                Swal.fire({
+                                                    title: 'Cita Cancelada',
+                                                    text: 'La cita ha sido Cancelada exitosamente.',
+                                                    icon: 'success',
+                                                    confirmButtonText: 'Aceptar'
+                                                }).then((result) => {
+                                                    if (result.isConfirmed) {
+                                                        location.reload();
+                                                    }
+                                                })
+                                            }
+                                            else if (response.codeStatus == -1) {
+                                                Swal.fire({
+                                                    title: 'Error',
+                                                    text: response.messageStatus,
+                                                    icon: 'error',
+                                                    confirmButtonText: 'Aceptar'
+                                                })
+                                            }
+
+                                        },
+                                        error: function (error) {
+                                            console.log('Error al obtener los detalles del usuario.');
+                                        }
+
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            location.reload();
+                                        }
+                                    })
+                                }
+                            })
+                        }
+
+                    });
+                    tableCitas.column(9).nodes().to$().find('.btnEditarC').click(async function () {
+                        // Maneja la acción del botón aqui
+                        let data = tableCitas.row($(this).parents('tr')).data();
+                        let CitaID = data[1]; // la primera columna contiene el ID del usuario
 
                         const { value: citaState } = await Swal.fire({
                             title: 'Seleccionar estado de la cita',
@@ -409,8 +435,7 @@
                             inputOptions: {
                                 '1': 'Pendiente',
                                 '2': 'Confirmada',
-                                '3': 'Completada',
-                                '4': 'Cancelada'
+                                '3': 'Completada'
                             },
                             inputPlaceholder: 'Selecciona el estado de la cita',
                             showCancelButton: true,
@@ -495,56 +520,55 @@
             $('[data-toggle="tooltip"]').tooltip();
 
         });
+        
+       
+        // function updateClock() {
+        //     const timeElement = document.getElementById('time');
+        //     const dateElement = document.getElementById('date');
+        //     const moonElement = document.getElementById('moon');
 
+        //     const now = new Date();
+        //     const hours = now.getHours();
+        //     const minutes = now.getMinutes();
+        //     const day = now.toLocaleDateString(undefined, { weekday: 'long' });
+        //     const month = now.toLocaleDateString(undefined, { month: 'long' });
+        //     const dayOfMonth = now.getDate();
 
-                                        // document.addEventListener('DOMContentLoaded', function () {
-                                        //     if (document.getElementById('calendario') != null) {
-                                        //         let calendarEl = document.getElementById('calendario');
-                                        //         let listaEventos = eventos;
-                                        //         let count = listaEventos.length;
-                                        //         console.log("Lista de Eventos: ");
-                                        //         console.log(listaEventos);
-                                        //         let calendar = new FullCalendar.Calendar(calendarEl, {
-                                        //             initialView: 'dayGridMonth',
-                                        //             editable: true,
-                                        //             events: listaEventos,
-                                        //             eventRender: function (event, element) {
-                                        //                 if (!event.title) {
-                                        //                     console.error('Evento sin título:', event);
-                                        //                 }
-                                        //             },
-                                        //             eventClick: function (info) {
-                                        //                 info.jsEvent.preventDefault(); // don't let the browser navigate
+        //     // Update the time text
+        //     const formattedTime = `${hours}:${(minutes < 10 ? '0' : '') + minutes}`;
+        //     timeElement.textContent = formattedTime;
 
-                                        //                 if (info.event.url) {
-                                        //                     window.open(info.event.url);
-                                        //                 }
-                                        //             },
-                                        //             loading: function (isLoading) {
-                                        //                 if (isLoading) {
-                                        //                     Swal.fire({
-                                        //                         title: 'Cargando',
-                                        //                         text: 'Por favor, espere un momento...',
-                                        //                         showCancelButton: false,
-                                        //                         showConfirmButton: false,
-                                        //                         allowOutsideClick: false,
-                                        //                         onBeforeOpen: () => {
-                                        //                             Swal.showLoading();
-                                        //                         }
-                                        //                     });
-                                        //                 } else {
-                                        //                     Swal.close();
-                                        //                 }
-                                        //             },
+        //     // Update the date text
+        //     const formattedDate = `${day}, ${month} ${dayOfMonth}${getDaySuffix(dayOfMonth)}`;
+        //     dateElement.textContent = formattedDate;
 
+        //     // Update the moon icon based on the time of day (e.g., show moon icon at night)
+        //     if (hours < 6 || hours >= 18) {
+        //         moonElement.classList.add('moon-visible');
+        //     } else {
+        //         moonElement.classList.remove('moon-visible');
+        //     }
+        // }
 
-                                        //         });
-                                        //         calendar.setOption('locale', 'es');
-                                        //         calendar.render();
-                                        //     }
-                                        // });
-                                        // console.log("Eventos: ");
-                                        // console.log(eventos);
+        // // Function to add appropriate suffix to day (e.g., 1st, 2nd, 3rd, 4th)
+        // function getDaySuffix(day) {
+        //     if (day >= 11 && day <= 13) {
+        //         return 'th';
+        //     }
+        //     switch (day % 10) {
+        //         case 1:
+        //             return 'st';
+        //         case 2:
+        //             return 'nd';
+        //         case 3:
+        //             return 'rd';
+        //         default:
+        //             return 'th';
+        //     }
+        // }
 
+        // // Update the clock immediately and every second
+        // updateClock();
+        // setInterval(updateClock, 1000);
     </script>
 }

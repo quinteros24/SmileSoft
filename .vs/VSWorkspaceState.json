@@ -5,8 +5,9 @@
     "\\WebSmileSoft\\Views",
     "\\WebSmileSoft\\Views\\Account",
     "\\WebSmileSoft\\Views\\Admin",
-    "\\WebSmileSoft\\Views\\Patient"
+    "\\WebSmileSoft\\Views\\Patient",
+    "\\WebSmileSoft\\Views\\Shared"
   ],
-  "SelectedNode": "\\WebSmileSoft\\Views\\Patient\\Index.cshtml",
+  "SelectedNode": "\\WebSmileSoft\\Views\\Shared\\_LayoutAccount.cshtml",
   "PreviewInSolutionExplorer": false
 }

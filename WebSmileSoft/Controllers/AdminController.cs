@@ -28,12 +28,7 @@ namespace WebSmileSoft.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult ViewTableUsers([FromBody] List<SelectListItem> specialities)
-        {
-            ViewBag.Specialities = specialities;
-            return View();
-        }
+       
 
         public IActionResult UserManagement()
         {
@@ -57,12 +52,17 @@ namespace WebSmileSoft.Controllers
 
             return PartialView();
         }
-        public IActionResult EditUser(UsuariosModel Modelo)
+        public IActionResult EditUser()
         {
 
-            return PartialView(Modelo);
+            return PartialView();
         }
-
+        [HttpPost]
+        public IActionResult EditUsers([FromBody] List<SelectListItem> specialities)
+        {
+            ViewBag.Specialities = specialities;
+            return View();
+        }
 
 
 

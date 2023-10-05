@@ -227,6 +227,7 @@
 
 
         $(document).ready(function () {
+            //verifyToken();
             let uRol = sessionStorage.getItem('userRole');
             if (uRol == 2) {
                 console.log("Cargando Especialidades");
@@ -278,37 +279,14 @@
 
         // Obtén una referencia al campo de fecha de nacimiento
         const fechaNacimientoInput = document.getElementById('birthDatep');
-
-        // Agrega un oyente de eventos al cambio de valor en el campo
-        fechaNacimientoInput.addEventListener('change', function () {
-            // Obtén la fecha de nacimiento ingresada por el usuario
-            const fechaNacimiento = new Date(this.value);
-
-            // Calcula la fecha actual
-            const fechaActual = new Date();
-
-            // Calcula la edad en años
-            const edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
-
-            // Verifica si la edad es menor de 18 años
-            if (edad < 18) {
-                //alert('Debes ser mayor de 18 años para registrarte.');
-                Swal.fire({
-                    title: 'Error',
-                    text: 'Debes ser mayor de 18 años',
-                    icon: 'error',
-                    confirmButtonText: 'Aceptar'
-                });
-                // Puedes agregar aquí más acciones si la validación falla, como borrar la fecha o mostrar un mensaje de error.
-            }
-        });
+        onChangeAgeNotification(fechaNacimientoInput);
 
 
         $(document).ready(function () {
             // Adjunta un controlador de eventos de clic al boton
             let uID = sessionStorage.getItem('userID');
 
-            console.log("Buscando al Usuario " + uID);
+            //console.log("Buscando al Usuario " + uID);
 
             $.ajax({
                 url: sessionStorage.urlEP + '/api/Users/v1/GetUserDetails',
@@ -321,19 +299,19 @@
                     console.log(data.itemJson);
 
                     if (data.itemJson === null) {
-                        console.log("No se cargo correctamente");
+                        console.log("No se cargo correctamente el Formulario en View Profile");
 
                     } else {
                         // Mostrar los datos en la consola o realizar otras acciones
                         let userData = data.itemJson; // Accede al primer elemento del arreglo
 
                         // Llama a una funcion para actualizar el formulario con los datos recibidos
-                        console.log("Actualizando Formulario")
+                        //console.log("Actualizando Formulario")
                         actualizarFormulario(userData);
                     }
                 },
                 error: function (error) {
-                    console.log('Error al obtener los detalles del usuario.');
+                    console.log('Error al obtener los detalles del usuario en View Profile.');
                 }
             });
 
@@ -381,18 +359,7 @@
 
         $(".update-profile-button").click(function () {
 
-            //let uID = sessionStorage.getItem('userID');
-            //Datos de Estudios
-            // let DoctorModel = {
-            //     dAcademicLevel: $("#AcademicLevel").val(),
-            //     dDegree: $("#TituloAcademico").val(),
-            //     spID: $("#Speciality").val(),
-            //     dProfessionalCard: $("#Tarjeta_Profesional").val(),
-            //     dUniversityName: $("#Universityname").val()
-            // }
-            // let birthDate = document.getElementById("birthDate").value.trim();
-            // let formattedBirthDate = formatToDatetime(birthDate);
-            // Obtener los datos actualizados del formulario
+
             let updatedUserData = {
                 //Datos de la Cuenta
                 uID: parseInt(sessionStorage.getItem('userID')),
@@ -404,8 +371,8 @@
                 //Datos de Personales
                 uName: $("#user_names").val(),
                 uLastName: $("#user_lastnames").val(),
-                dtID: parseInt($("#id_type").val()),
-                uDocument: $("#id_number").val(),
+                //dtID: parseInt($("#id_type").val()),
+                //uDocument: $("#id_number").val(),
                 gID: parseInt($("#genderSelect").val()),
                 uBirthDate: $("#birthDatep").val(),
                 //uBirthDate: formattedBirthDate,
@@ -431,32 +398,82 @@
                 updatedUserData.dUniversityName = $("#Universityname").val();
             }
 
+            const fechaNacimientoInput = document.getElementById('birthDatep');
+            const esMayorDe18 = validarEdadMayorDe18('fechaNacimientoed');
 
-            $.ajax({
-                url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Reemplaza con la URL correcta
-                type: 'POST',
-                data: JSON.stringify(updatedUserData),
-                contentType: "application/json",
-                dataType: "json",
-                success: function (response) {
-                    Swal.fire({
-                        title: 'Datos Actualizados',
-                        text: 'Los datos del usuario se actualizaron correctamente',
-                        icon: 'success',
-                        confirmButtonText: 'Aceptar'
-                    });
+            if (updatedUserData.uName === "" || updatedUserData.uLastName === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su nombre completo.',
+                    confirmButtonColor: '#008dc9'
+                });
+            }
+            
+            else if (updatedUserData.uBirthDate === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su fecha de nacimiento.',
+                    confirmButtonColor: '#008dc9'
+                });
+            }
+            else if (updatedUserData.gID === "Seleccionar" || updatedUserData.gID === "") {
+                Swal.fire({
+                    text: 'Por favor, seleccione su género.',
+                    confirmButtonColor: '#008dc9'
+                });
+            }
+            else if (updatedUserData.uAddress === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su dirección.',
+                    confirmButtonColor: '#008dc9'
+                });
+            }
+            else if (updatedUserData.uCellphone === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su número de celular o telefono.',
+                    confirmButtonColor: '#008dc9'
+                });
+            } else if (updatedUserData.uEmailAddress === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su correo electrónico.',
+                    confirmButtonColor: '#008dc9'
+                });
+            } else if (updatedUserData.uLoginName === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su usuario.',
+                    confirmButtonColor: '#008dc9'
+                });
+            } else if (!esMayorDe18) {
+                Swal.fire({
+                    text: 'No tienes la mayoría de edad, ponte en contacto con soporte.',
+                    confirmButtonColor: '#008dc9'
+                });
+            }
+            else {
+                $.ajax({
+                    url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Reemplaza con la URL correcta
+                    type: 'POST',
+                    data: JSON.stringify(updatedUserData),
+                    contentType: "application/json",
+                    dataType: "json",
+                    success: function (response) {
+                        Swal.fire({
+                            title: 'Datos Actualizados',
+                            text: 'Los datos del usuario se actualizaron correctamente',
+                            icon: 'success',
+                            confirmButtonText: 'Aceptar'
+                        });
 
-                    // Realiza otras acciones después de guardar los cambios si es necesario
-                },
-                error: function () {
-                    Swal.fire({
-                        title: 'Error',
-                        text: 'Error al guardar los cambios',
-                        icon: 'error',
-                        confirmButtonText: 'Aceptar'
-                    });
-                }
-            });
+                        // Realiza otras acciones después de guardar los cambios si es necesario
+                    },
+                    error: function () {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Error al guardar los cambios',
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar'
+                        });
+                    }
+                });
+            }
         });
 
         function ChangeUserPass() {

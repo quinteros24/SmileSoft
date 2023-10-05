@@ -102,7 +102,7 @@ namespace Repository.Queries
                          $"        BEGIN" +
                          $"            IF(@uID = 0)\n" +
                          $"            BEGIN\n" +
-                         $"            IF NOT EXISTS(SELECT TOP(1)* FROM Users WHERE [uDocument] = @uDocument)\n" +
+                         $"                IF NOT EXISTS(SELECT TOP(1)* FROM Users WHERE [uDocument] = @uDocument)\n" +
                          $"                BEGIN\n" +
                          $"                    --NO EXISTE LO CREAMOS\n" +
                          $"                    INSERT INTO Users(utID,uName,uLastName,uCellphone,uLoginName,uPassword,dtID,uDocument,[oID],gID,uBirthDate)\n" +
@@ -115,7 +115,6 @@ namespace Repository.Queries
                          $"                END\n" +
                          $"                SET @uID = (SELECT TOP(1)[uID] FROM Users WHERE [uDocument] = @uDocument)\n" +
                          $"            END\n" +
-                         $"            ELSE\n" +
                          $"            BEGIN\n" +
                          $"                IF EXISTS(SELECT TOP(1)* FROM Users WHERE [uID] = @uID)\n" +
                          $"                BEGIN\n" +

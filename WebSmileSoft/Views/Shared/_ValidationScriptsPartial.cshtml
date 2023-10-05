@@ -1,1 +1,235 @@
-﻿
+﻿@* Validar campos en todos los Formularios
+ *@
+@* <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js" asp-append-version="true"></script>
+ *@
+<script>
+    function validarEdadMayorDe18(idCampoFechaNacimiento) {
+        const fechaNacimientoInput = document.getElementById(idCampoFechaNacimiento);
+        const fechaNacimiento = new Date(fechaNacimientoInput.value);
+
+        // Calcula la fecha actual
+        const fechaActual = new Date();
+
+        // Calcula la edad en años
+        const edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
+
+        // Verifica si la edad es menor de 18 años
+        if (edad < 18) {
+            // Muestra un mensaje de error utilizando SweetAlert2
+            Swal.fire({
+                title: 'Error',
+                text: 'Debes ser mayor de 18 años',
+                icon: 'error',
+                confirmButtonText: 'Aceptar'
+            });
+
+            // Retorna false para indicar que la validación falló
+            return false;
+        }
+
+        // Retorna true si la validación pasó exitosamente
+        return true;
+    }
+    // Ejemplo de cómo llamar a la función de validación
+    // const esMayorDe18 = validarEdadMayorDe18('fechaNacimientoed');
+
+    // if (esMayorDe18) {
+    //     // Continuar con el proceso si la validación es True
+    function onChangeAgeNotification(idCampoFecha) {
+        idCampoFecha.addEventListener('change', function () {
+            // Obtén la fecha de nacimiento ingresada por el usuario
+            const fechaNacimiento = new Date(this.value);
+
+            // Calcula la fecha actual
+            const fechaActual = new Date();
+
+            // Calcula la edad en años
+            const edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
+
+            // Verifica si la edad es menor de 18 años
+            if (edad < 18) {
+                //alert('Debes ser mayor de 18 años para registrarte.');
+                Swal.fire({
+                    title: 'Error',
+                    text: 'El usuario debe ser mayor de 18 años',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+                // Puedes agregar aquí más acciones si la validación falla, como borrar la fecha o mostrar un mensaje de error.
+            }
+        });
+    }
+
+
+
+    function CheckPass(password) {
+        if (password.length < 8) {
+            return "La contraseña debe tener al menos 8 caracteres.";
+        }
+
+        if (!/[A-Z]/.test(password)) {
+            return "La contraseña debe contener al menos una letra mayuscula.";
+        }
+
+        if (!/[a-z]/.test(password)) {
+            return "La contraseña debe contener al menos una letra minuscula.";
+        }
+
+        if (/\s/.test(password) || /[\uD800-\uDFFF]/.test(password)) {
+            return "La contraseña debe contener al menos un numero.";
+        }
+
+        return true; // Si la contraseña cumple con los requisitos, retorna null
+    }
+    // Función para permitir solo numeros en un campo de entrada
+    function allowNumbersOnly(inputField) {
+        inputField.value = inputField.value.replace(/[^0-9]/g, '');
+    }
+
+
+    function mostrarCargando() {
+        Swal.fire({
+            title: 'Cargando',
+            text: 'Por favor, espere un momento...',
+            showCancelButton: false,
+            showConfirmButton: false,
+            allowOutsideClick: false,
+            onBeforeOpen: () => {
+                Swal.showLoading();
+            }
+        });
+    }
+
+    function mostrarMensajeError(mensaje) {
+        Swal.fire({
+            title: 'Error',
+            text: mensaje,
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+        });
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+        const buttons = document.querySelectorAll(".btn-en-desarrollo");
+
+        buttons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                event.preventDefault();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Este Modulo esta en Desarrollo!',
+                    confirmButtonColor: '#008dc9'
+                })
+            });
+        });
+    });
+
+
+</script>
+
+
+<script>
+    function updateNavbarBackground(selectedColor) {
+
+        // Obtén una referencia a la barra de navegación por su ID
+        const navbar = document.getElementById("nav_bar");
+
+        // Elimina todas las clases de fondo de la barra de navegación
+        navbar.classList.remove("bg-primary", "bg-danger", "bg-success");
+
+        // Agrega la clase de color seleccionada a la barra de navegación
+        navbar.classList.add(selectedColor);
+    }
+</script>
+<script>
+    function CerrarSesion() {
+        //console.log("Cerrando Sesión");
+        // Borra el Session Storage
+        sessionStorage.clear();
+        window.location.href = '@Url.Action("Login", "Account")';
+    }
+</script>
+<script>
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // Recupera el nombre y apellido del usuario desde sessionStorage
+        let userFName = sessionStorage.getItem('userFName');
+        let userLName = sessionStorage.getItem('userLName');
+
+        // Verifica si las variables tienen valores y si los elementos HTML existen
+        let spanNombre = document.getElementById('nombreUsuario');
+        let spanSaludo = document.getElementById('SaludoUsuario');
+
+        if (userFName !== null && userLName !== null && spanNombre) {
+            // Construye el nombre completo y muestra en las etiquetas <span>
+            let nombreCompleto = userFName + ' ' + userLName;
+            spanNombre.textContent = nombreCompleto;
+
+        } else if (userFName !== null && userLName !== null && spanSaludo) {
+            // Construye el nombre completo y muestra en las etiquetas <span>
+            let nombreCompleto = userFName + ' ' + userLName;
+
+            spanSaludo.textContent = nombreCompleto;
+        }
+        else {
+            console.log('No se encontraron datos en sessionStorage o algunos elementos HTML no existen.');
+        }
+    });
+    function mostrarElementosPorRol(userRole) {
+        let divAdmin = $("#divAdmin");
+        let divDoctor = $("#divDoctor");
+        let divUser = $("#divUser");
+        let contenido = $("#page-top");
+
+        divAdmin.hide();
+        divDoctor.hide();
+        divUser.hide();
+        contenido.hide();
+
+        if (userRole == 1) {
+            divAdmin.show();
+            divDoctor.hide();
+            divUser.hide();
+        } else if (userRole == 2) {
+            divDoctor.show();
+        } else if (userRole == 3) {
+            divUser.show();
+        }
+
+        if (userRole == 1 || userRole == 2 || userRole == 3) {
+            contenido.show();
+        }
+    }
+
+
+    // Obtener el enlace por su identificador
+    function CambiarVinculoLogo(uRol) {
+        var sidebarLink = document.getElementById("sidebar-link");
+        let userRole = uRol;
+        // Obtener el rol del usuario (puedes obtenerlo de donde sea necesario)
+        //var userRole = sessionStorage.getItem('userRole') // Por ejemplo, si el usuario es un administrador
+
+        // Definir las rutas para los diferentes roles
+        var adminRoute = "/Admin/Index";
+        var doctorRoute = "/Doctor/Index";
+        var userRoute = "/Patient/Index";
+        var homeRoute = "/Home/Index";
+
+        // Determinar la ruta según el rol del usuario
+        var route;
+        if (userRole == 1) {
+            route = adminRoute;
+        } else if (userRole == 2) {
+            route = doctorRoute;
+        } else if (userRole == 3) {
+            route = userRoute;
+        } else {
+            route = homeRoute;
+        }
+        // Asignar la ruta al enlace
+        sidebarLink.href = route;
+    }
+</script>
+
+

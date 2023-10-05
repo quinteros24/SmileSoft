@@ -7,16 +7,15 @@
 
 <div class="tab-pane active" id="profile">
 
-    <h6>Información de tu Perfil</h6>
+    <h5 class="text-primary">Información de tu Perfil</h5>
     <hr />
     <div class="card shadow mb-3">
-        <div class="card-header py-3">
-            <p class="text-primary m-0 fw-bold">Datos Personales</p>
+        <div class="card-header py-3 text-bg-primary">
+            <p class="m-0 fw-bold">Datos Personales</p>
         </div>
         <div class="card-body">
             <form>
                 <div class="row">
-
 
                     <div class="mb-3">
                         <label class="form-label" for="username">
@@ -64,6 +63,7 @@
                                 <strong>Identificación</strong>
                             </label>
                             <input class="form-control" type="text" id="id_number" placeholder="" name="id_number" disabled>
+                            <label style="display: none"> Profe si quiere quita el disable :D</label>
                         </div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                     <div class="col-md-6 mb-3">
                         <div class="input-group">
                             <span class="input-group-text">Fecha de nacimiento</span>
-                            <input type="date" id="birthDatep" class="form-control" value="YYYY-MM-DD" placeholder="YYYY-MM-DD" />
+                            <input type="date" id="birthDatep" class="form-control" placeholder="YYYY-MM-DD" />
 
                         </div>
                     </div>
@@ -97,8 +97,8 @@
         </div>
     </div>
     <div class="card shadow my-3">
-        <div class="card-header py-3">
-            <p class="text-primary m-0 fw-bold">Datos de contacto</p>
+        <div class="card-header py-3 text-bg-primary">
+            <p class="m-0 fw-bold">Datos de contacto</p>
         </div>
         <div class="card-body">
             <form>
