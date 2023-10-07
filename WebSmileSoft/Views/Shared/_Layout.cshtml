@@ -14,19 +14,19 @@
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="~/assets/css/Nunito.css" asp-append-version="true">
     <link rel="stylesheet" href="~/assets/css/site.css" asp-append-version="true" />
-  
-    
-@*     <link href="~/assets/css/sweetdark.css" rel="stylesheet" asp-append-version="true" />
- *@    <!-- Custom fonts for this template -->
+
+
+    @*     <link href="~/assets/css/sweetdark.css" rel="stylesheet" asp-append-version="true" />
+    *@    <!-- Custom fonts for this template -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" asp-append-version="true" />
-   
+
     <!-- Custom Icons for this template -->
     <link href="~/assets/css/footer-clean-icons.css" rel="stylesheet" />
 
     <!-- Custom Animations for this template -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" asp-append-version="true">
 
-  
+
     <!-- BEGIN PAGE LEVEL CUSTOM STYLES -->
     <link href="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.6/af-2.6.0/b-2.4.2/b-html5-2.4.2/b-print-2.4.2/kt-2.10.0/r-2.5.0/sr-1.3.0/datatables.min.css" rel="stylesheet">
 
@@ -74,11 +74,11 @@
             </svg>
         </div>
         @* <section class="dots-container">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
         </section> *@
     </div>
     <div id="wrapper">
@@ -119,38 +119,42 @@
 
     <!-- Custom scripts for all pages -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.31/dist/sweetalert2.all.min.js"></script>
+
     <script>
-
-        function checkTokenAndRedirect() {
-            // Verifica si existe un token en sessionStorage u otras condiciones de autenticación
-            const token = sessionStorage.getItem('accessToken'); // Reemplaza 'token' con el nombre real de tu token en sessionStorage
-            //console.log("Validando Token: " + token);
-            if (!token) {
-                // No se encontró un token, redirige al usuario a la página de inicio de sesión
-                window.location.href = '@Url.Action("Login", "Account")'; // Reemplaza con la URL correcta
-            } else if (sessionStorage.getItem('userStatus') == false) {
-                console.log("Cuenta Inactiva")
-                sessionStorage.clear();
-                window.location.href = '@Url.Action("Login", "Account")';
-                //window.location.href = '@Url.Action("Login", "Account")'; // Reemplaza con la URL correcta
-            }
-        }
-
-        // Llama a la función para verificar el token cuando carga la página
-        checkTokenAndRedirect();
-
-        // Llama a la función para verificar el token cada minuto
-        setInterval(checkTokenAndRedirect, 60000); // 60000 milisegundos = 1 minuto
-
-            // Resto del contenido de tu página aquí
-
-        $(document).ready(function () {
-            let userRole = sessionStorage.getItem('userRole');
-            mostrarElementosPorRol(userRole);
-            CambiarVinculoLogo(userRole);
-            verifyToken();
-        });
+        function checkTokenAndRedirect() { sessionStorage.getItem("accessToken") ? 0 == sessionStorage.getItem("userStatus") && (console.log("Cuenta Inactiva"), sessionStorage.clear(), window.location.href = '@Url.Action("Login", "Account")') : window.location.href = '@Url.Action("Login", "Account")' } checkTokenAndRedirect(), setInterval(checkTokenAndRedirect, 6e4), $(document).ready(function () { var e = sessionStorage.getItem("userRole"); mostrarElementosPorRol(e), CambiarVinculoLogo(e), verifyToken() });
     </script>
+    @* <script>
+
+    function checkTokenAndRedirect() {
+    // Verifica si existe un token en sessionStorage u otras condiciones de autenticación
+    const token = sessionStorage.getItem('accessToken'); // Reemplaza 'token' con el nombre real de tu token en sessionStorage
+    //console.log("Validando Token: " + token);
+    if (!token) {
+    // No se encontró un token, redirige al usuario a la página de inicio de sesión
+    window.location.href = '@Url.Action("Login", "Account")'; // Reemplaza con la URL correcta
+    } else if (sessionStorage.getItem('userStatus') == false) {
+    console.log("Cuenta Inactiva")
+    sessionStorage.clear();
+    window.location.href = '@Url.Action("Login", "Account")';
+    //window.location.href = '@Url.Action("Login", "Account")'; // Reemplaza con la URL correcta
+    }
+    }
+
+    // Llama a la función para verificar el token cuando carga la página
+    checkTokenAndRedirect();
+
+    // Llama a la función para verificar el token cada minuto
+    setInterval(checkTokenAndRedirect, 60000); // 60000 milisegundos = 1 minuto
+
+    // Resto del contenido de tu página aquí
+
+    $(document).ready(function () {
+    let userRole = sessionStorage.getItem('userRole');
+    mostrarElementosPorRol(userRole);
+    CambiarVinculoLogo(userRole);
+    verifyToken();
+    });
+    </script> *@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }

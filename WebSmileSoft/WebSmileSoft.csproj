@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <Content Remove="Views\Home\About.cshtml" />
+    <Content Remove="wwwroot\assets\js\Appoinments\appointdoctor.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,6 +49,10 @@
   <ItemGroup>
     <Folder Include="wwwroot\assets\js\doctor\" />
     <Folder Include="wwwroot\assets\plugins\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="wwwroot\assets\js\Appoinments\appointdoctor.js" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,256 @@
+﻿<div class="container mt-5">
+    <h2>Gestión de Cita Médica</h2>
+    <form>
+        <div class="form-group">
+            <label for="patientName">Nombre del Paciente:</label>
+            <input type="text" class="form-control" id="patientName" placeholder="Ingrese el nombre del paciente">
+        </div>
+        <div class="form-group">
+            <label for="doctorName">Nombre del Doctor:</label>
+            <input type="text" class="form-control" id="doctorName" placeholder="Ingrese el nombre del doctor">
+        </div>
+        <div class="form-group">
+            <label for="appointmentDate">Fecha de la Cita:</label>
+            <input type="date" class="form-control" id="appointmentDate">
+        </div>
+        <div class="form-group">
+            <label for="appointmentDetails">Detalles de la Cita:</label>
+            <textarea class="form-control" id="appointmentDetails" rows="4" placeholder="Ingrese los detalles de la cita"></textarea>
+        </div>
+        <button type="button" class="btn btn-primary btn-en-desarrollo">Guardar Cita</button>
+    </form>
+</div>
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            let uID = sessionStorage.getItem("userID");
+            getUserCitas(uID);
+            $("#loadingScreen").show();
+
+
+        });
+        function getUserCitas(uID) {
+            // Realizar solicitud AJAX para obtener la lista de usuarios
+            // var utID = 1;
+            mostrarCargando();
+
+            $.ajax({
+                url: sessionStorage.urlEP + '/api/Appointments/v1/GetAppointmentsList',
+                type: 'GET',
+                data: { 'uID': uID },
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (data) {
+                    $("#loadingScreen").hide();
+                    //console.log("Respuesta del Servidor " + data);
+                    // Procesar los datos recibidos y agregar filas a la tabla
+                    let dataSet = [];
+                    let users = data.itemJson;
+                    console.table(users);
+
+                    $.each(data.itemJson, function (index, cita) {
+                        // "aID": 28,
+                        //"oID": null,
+                        //"dtID": null,
+                        //"gID": null,
+                        // "uDocument": null,
+                        // "uEmailAddress": null,
+                        // "uName": "Andrea Ramirez",
+                        //  "uDoctorName": "Andrea Ramirez",
+                        //   "uLastName": null,
+                        //   "uCellphone": "30242111110",
+                        // "uID": null,
+                        //  "dID": null,
+                        //  "asID": 1,
+                        //   "aDescription": null,
+                        //   "aDate": "2023-10-02T00:00:00",
+                        //  "uBirthDate": null,
+                        //  "aTime": null
+                        let fechaCita = cita.aDate;
+                        let fechaFormateada = fechaCita.substring(0, 10);
+                        let rowData = [
+                            cita.aID,
+                            cita.uName,
+                            cita.dID,
+                            cita.aDescription,
+                            fechaFormateada,
+                            cita.aTime
+                        ];
+                        dataSet.push(rowData);
+                    });
+
+                    // Inicializa o actualiza el DataTable con los datos procesados
+                    tableCitas = $('#citasUsuario').DataTable({
+                        columns: [
+                            { title: 'aID' },
+                            { title: 'Nombre' },
+                            { title: 'Doctor' },
+                            { title: 'Motivo' },
+                            { title: 'Fecha' },
+                            { title: 'Hora' },
+                            {
+                                title: 'Acciones',
+                                orderable: false, // Para desactivar la ordenación en esta columna
+                                data: null, // Usaremos la columna "Acciones" solo para botones
+                                defaultContent: '<button class="btn btn-primary btn-sm btnDesactivarC" data-toggle="tooltip" title="Cancelar Cita" type="button"> <i class="fas fa-ban"> </i></button> ' +
+                                    '<button class="btn btn-danger btn-sm btnEditarC" data-toggle="modal" data-target="#editarCitaModal" data-toggle="tooltip" title="Reprogramar Cita"> <i class="fa-regular fa-pen-to-square"></i></button> '
+                            }
+                        ],
+
+                        data: dataSet,
+                        dom: 'Bfrtip',
+                        buttons: {
+                            buttons: [
+                                {
+                                    extend: 'print', className: 'btn btn-sm',
+                                    messageTop: 'Citas SmileSoft',
+                                }
+                            ]
+                        },
+                        "paging": false,
+                        select: true,
+                        destroy: true,
+                        language: {
+                            url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json',
+                        },
+
+                    });
+
+
+                    Swal.close();
+                    tableCitas.column(6).nodes().to$().find('.btnDesactivarC').click(function () {
+                        // Maneja la acción del botón aqui
+                        let data = tableCitas.row($(this).parents('tr')).data();
+                        let CitaID = data[0]; // la primera columna contiene el ID del usuario
+                        Swal.fire({
+                            title: 'Cancelar Cita',
+                            text: '¿Está seguro que desea cancelar la cita?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonText: 'Si, Cancelar Cita',
+                            cancelButtonText: 'Cancelar'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    url: sessionStorage.urlEP + '/api/Appointments/v1/UpdateAppointmentStatus',
+                                    type: 'PUT',
+                                    data: { 'aID': CitaID },
+                                    contentType: "application/json",
+                                    dataType: 'json',
+                                    success: function (response) {
+                                        if (response.codeStatus == 0) {
+                                            Swal.fire({
+                                                title: 'Cita Cancelada',
+                                                text: 'La cita ha sido Cancelada exitosamente.',
+                                                icon: 'success',
+                                                confirmButtonText: 'Aceptar'
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    location.reload();
+                                                }
+                                            })
+                                        }
+                                        else if (response.codeStatus == -1) {
+                                            Swal.fire({
+                                                title: 'Error',
+                                                text: response.messageStatus,
+                                                icon: 'error',
+                                                confirmButtonText: 'Aceptar'
+                                            })
+                                        }
+
+                                    },
+                                    error: function (error) {
+                                        console.log('Error al obtener los detalles del usuario.');
+                                    }
+
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        location.reload();
+                                    }
+                                })
+                            }
+                        })
+
+
+                    });
+                    tableCitas.column(6).nodes().to$().find('.btnEditarC').click(function () {
+                        // Maneja la acción del botón aqui
+                        let data = tableCitas.row($(this).parents('tr')).data();
+                        let CitaID = data[0]; // la primera columna contiene el ID del usuario
+                        Swal.fire({
+                            title: 'Reprogramar Cita',
+                            text: '¿Está seguro que desea reprogramar la cita?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonText: 'Si, reprogramar',
+                            cancelButtonText: 'Cancelar'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    url: sessionStorage.urlEP + '/api/Appointments/v1/UpdateAppointmentStatus',
+                                    type: 'POST',
+                                    data: { 'aID': CitaID },
+                                    contentType: "application/json",
+                                    dataType: 'json',
+                                    success: function (response) {
+                                        if (response.codeStatus == 0) {
+                                            Swal.fire({
+                                                title: 'Cita Cancelada',
+                                                text: 'La cita ha sido Cancelada exitosamente.',
+                                                icon: 'success',
+                                                confirmButtonText: 'Aceptar'
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    location.reload();
+                                                }
+                                            })
+                                        }
+                                        else if (response.codeStatus == -1) {
+                                            Swal.fire({
+                                                title: 'Error',
+                                                text: response.messageStatus,
+                                                icon: 'error',
+                                                confirmButtonText: 'Aceptar'
+                                            })
+                                        }
+
+                                    },
+                                    error: function (error) {
+                                        console.log('Error al obtener los detalles del usuario.');
+                                    }
+
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        location.reload();
+                                    }
+                                })
+                            }
+                        })
+
+
+                    });
+
+                }
+            });
+        };
+        function mostrarCargando() {
+            Swal.fire({
+                title: 'Cargando',
+                text: 'Por favor, espere un momento...',
+                showCancelButton: false,
+                showConfirmButton: false,
+                allowOutsideClick: false,
+                onBeforeOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+        }
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+
+        });
+    </script>
+            }
