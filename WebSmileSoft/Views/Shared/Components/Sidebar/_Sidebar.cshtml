@@ -4,12 +4,13 @@
 
 <nav class="navbar align-items-start sidebar accordion" id="sidebar">
     <div class="container-fluid d-flex flex-column p-0 ">
-        <a id="sidebar-link" class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0"
-           href="#">
+        <div class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand mt-2">
+        <a id="sidebar-link" href="#">
             <img src="~/assets/img/logo-nav.png" class="img-fluid" id="navLogo" title="logo">
             <div class="sidebar-brand-icon rotate-n-15"></div>
             <div class="sidebar-brand-text mx-3"></div>
         </a>
+        </div>
         <hr class="sidebar-divider my-0">
 
         <!-- navbar-nav -->
@@ -51,13 +52,13 @@
         <div id="divDoctor">
             <ul class="nav text-center flex-column" id="accordionSidebar">
                 <!-- ... Contenido del menú de doctor ... -->
-                <li class="nav-item nav-item2">
+                @* <li class="nav-item nav-item2">
 
                     <a class="nav-link" asp-controller="Appointments" asp-action="Index">
                         <i class="fa-solid fa-calendar-days"></i><span class="ms-2">Gestión de Citas Index</span>
                     </a>
 
-                </li>
+                </li> *@
                 <li class="nav-item nav-item2">
 
                     <a class="nav-link" asp-controller="Doctor" asp-action="GestiondeCitas">
@@ -87,13 +88,13 @@
 
         <div id="divUser">
             <ul class="nav text-center flex-column" id="accordionSidebar">
-                <li class="nav-item nav-item2 ">
+                @* <li class="nav-item nav-item2 ">
 
                     <a class="nav-link" asp-controller="Appointments" asp-action="Index">
                         <i class="fa-solid fa-calendar-days"></i><span class="ms-2">Gestión de Citas Usuarios Index</span>
                     </a>
 
-                </li>
+                </li> *@
                 <li class="nav-item nav-item2 ">
 
                     <a class="nav-link" asp-controller="Patient" asp-action="GestiondeCitas">
@@ -129,6 +130,7 @@
     </div>
 
 </nav>
+
 
 
 

@@ -14,7 +14,7 @@
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="~/assets/css/Nunito.css" asp-append-version="true">
     <link rel="stylesheet" href="~/assets/css/site.css" asp-append-version="true" />
-
+    <link href="~/assets/css/sidebar.css" rel="stylesheet" />
 
     @*     <link href="~/assets/css/sweetdark.css" rel="stylesheet" asp-append-version="true" />
     *@    <!-- Custom fonts for this template -->
@@ -89,7 +89,7 @@
             <!-- navBar -->
             @await Component.InvokeAsync("Navbar")
 
-            <div class="container-fluid">
+            <div class="container-fluid" id="SiteContainerRender">
                 <main role="main">
                     <!-- Page Content -->
                     @RenderBody()
@@ -97,8 +97,8 @@
             </div>
 
             <!-- Footer -->
-            @*  @await Component.InvokeAsync("Footer") *@
-        </div>
+             
+        </div>@* @await Component.InvokeAsync("Footer") *@
     </div> @* <a class="border rounded d-inline scroll-to-top" href="#page-top" style="display:none"><i class="fas fa-angle-up"></i></a> *@
 
 

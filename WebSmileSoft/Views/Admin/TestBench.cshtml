@@ -9,6 +9,10 @@
 
 @section Scripts{
     <script>
+        let userRole = sessionStorage.getItem('userRole');
+        if (userRole !== '1') {
+            logoutUser();
+        }
         let structure = [
             {
                 type: 'open',

@@ -87,7 +87,6 @@
                                 <div class="col">
                                     <form>
 
-
                                         <div class="mb-3">
                                             <label for="ChangeLogo" class="form-label"><span id="ChangeLogoLabel">Cambiar Logo del Login</span></label>
                                             <input class="form-control" type="file" id="ChangeLogo" accept=".jpg, .png" disabled>
@@ -155,16 +154,6 @@
                                         </form>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="card-body shadow align-content-center justify-content-center">
-                                        <select id="colorSelector">
-                                            <option value="bg-primary">Azul</option>
-                                            <option value="bg-danger">Rojo</option>
-                                            <option value="bg-success">Verde</option>
-                                            <!-- Agrega más opciones de colores según tus necesidades -->
-                                        </select>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -180,6 +169,10 @@
 @section Scripts{
 
     <script>
+        let userRole = sessionStorage.getItem('userRole');
+        if (userRole !== '1') {
+            logoutUser();
+        }
         document.getElementById('updateLogo').addEventListener('click', function () {
             // Obtener el archivo seleccionado
             const fileInput = document.getElementById('logoInput');
@@ -204,16 +197,21 @@
         // Cambiar el color de fondo
         $("#BackgroundColor").on("input", function () {
             const color = $(this).val();
-            $("body").css("background-color", color);
+            console.log("Aplicando color a Fondo");
+            // $("#SiteContainerRender").css("background-color", color);
+            $("#content-wrapper").css("background-color", color);
         });
         // Cambiar el color de la barra lateral
-        $("#sidebarColor").on("input", function () {
+        $("#SidebarColor").on("input", function () {
             const color = $(this).val();
+            console.log("Aplicando color a SideBar");
             $("#sidebar").css("background-color", color);
         });
         // Cambiar el color de la barra lateral
-        $("#navbarColor").on("input", function () {
+        $("#NavbarColor").on("input", function () {
             const color = $(this).val();
+            console.log("Aplicando color a Barra Superior");
+            $("#nav_bar").removeClass("bg-primary");
             $("#nav_bar").css("background-color", color);
         });
     </script>

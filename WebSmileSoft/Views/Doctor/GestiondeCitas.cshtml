@@ -7,8 +7,9 @@
                 Citas Programadas
             </div>
             <div class="card-body">
-                <!-- Aquí va la tabla --><div class="table-responsive">
-                <table id="citasDoctor" class="table ui celled table"></table>
+                <!-- Aquí va la tabla -->
+                <div class="table-responsive">
+                <table id="citasDoctor" class="table display" width="100%"></table>
                 </div>
             </div>
         </div>
@@ -19,7 +20,10 @@
 @section Scripts{
 
     <script>
-
+        let userRole = sessionStorage.getItem('userRole');
+        if (userRole !== '2') {
+            logoutUser();
+        }
         function abrirCita() {
             window.location.href = '@Url.Action("AdministrarCitas", "Doctor")';
         } //SetAppointment

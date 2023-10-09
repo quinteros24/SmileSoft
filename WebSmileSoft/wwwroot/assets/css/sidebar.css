@@ -1,0 +1,92 @@
+﻿
+.img-hover:hover {
+    transform: scale(1.02); /* Aumenta el tamaño en un 10% */
+    transition: transform 0.4s ease; /* Agrega una transición suave */
+}
+
+
+/* Estilo para los elementos del menú con efecto de cascada */
+.nav-item2 {
+    margin-bottom: 10px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+    /* Agrega retraso de animación a los elementos del menú */
+    .nav-item2:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+
+    .nav-item2:nth-child(2) {
+        transition-delay: 0.2s;
+    }
+
+    .nav-item2:nth-child(3) {
+        transition-delay: 0.3s;
+    }
+    /* Repite esto para los demás elementos */
+
+    /* Aplica transformación y opacidad en hover */
+    .nav-item2:hover {
+        background-color: #E0E0E0;
+        font-size: 1.1rem;
+        color: #fff !important;
+        border-radius: 5px;
+        transform: translateX(10px); /* Mueve el elemento hacia la derecha en hover */
+        opacity: 0.8; /* Reduce la opacidad en hover */
+        transition: background-color 0.4s ease, transform 0.4s ease;
+    }
+
+/*.nav-item2:hover {
+    background-color: #E0E0E0;  Cambia al color primario de Bootstrap 
+    font-size: 1.1rem;
+    transform: scale(1.01);  Aumenta ligeramente el tamaño al hacer hover 
+    border-radius: 5px;
+    transition: background-color 0.4s ease, transform 0.4s ease;  Agrega una transición suave tanto al color de fondo como al tamaño 
+}*/
+/* Aplica posición fija al sidebar */
+#sidebar {
+    position: fixed;
+    height: 100%; /* Esto asegura que el sidebar ocupe toda la altura de la ventana */
+    width: 250px; /* Ajusta el ancho del sidebar según tus necesidades */
+    /*background-color: #333;*/ /* Cambia el color de fondo según tu diseño */
+    display: flex; /* Utiliza flexbox para controlar el diseño de los elementos internos */
+    flex-direction: column; /* Coloca los elementos en columna */
+}
+
+/* Estilo adicional para el contenido del sidebar */
+#accordionSidebar {
+    flex: 1; /* Permite que este elemento crezca para ocupar el espacio disponible */
+    padding: 20px; /* Ajusta el relleno según tu diseño */
+    color: #fff; /* Cambia el color de texto según tu diseño */
+}
+
+#content-wrapper {
+    margin-left: 250px; /* Ajusta este valor según el ancho del sidebar */
+}
+
+/* Estilos para pantallas grandes (ancho mayor a 768px) */
+@media (min-width: 769px) {
+    #sidebar {
+        position: fixed;
+        height: 100%;
+        width: 250px;
+        /*background-color: #333;*/
+    }
+
+    #content-wrapper {
+        margin-left: 230px;
+    }
+}
+
+/* Estilos para pantallas pequeñas (ancho igual o menor a 768px) */
+@media (max-width: 768px) {
+    #sidebar {
+        position: static; /* Cambia la posición a estática para que se ajuste al flujo del documento */
+        width: 20%; /* Ocupa todo el ancho disponible */
+        /*background-color: #333;*/
+    }
+
+    #content-wrapper {
+        margin-left: 0; /* Elimina el margen izquierdo para el contenido principal */
+    }
+}

@@ -72,7 +72,10 @@
 @section Scripts {
 
     <script>
-
+        let userRole = sessionStorage.getItem('userRole');
+        if (userRole !== '2') {
+            logoutUser();
+        }
         $(document).ready(function () {
             //verifyToken();
             let uID = sessionStorage.getItem("userID");
