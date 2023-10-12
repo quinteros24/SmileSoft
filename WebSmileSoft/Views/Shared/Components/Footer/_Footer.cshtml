@@ -1,14 +1,14 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@* @{
-    <footer class="d-xl-flex align-items-xl-end text-center py-4 ">
+﻿
+ @{
+    <footer class="d-xl-flex align-items-xl-end text-center mt-2 text-primary " id="footerHome">
         <div class="container ">
             <div class="row row-cols-1 row-cols-lg-3">
-                <div class="col">
-                    <p class="text-muted my-2">Copyright&nbsp;© 2023 Smilesoft</p>
+                <div class="col text-primary">
+                    <ul class="list-inline my-2">
+                    <li class="list-inline-item">Copyright© 2023 Smilesoft</li>
+                    </ul>
                 </div>
-                <div class="col">
+                <div class="col text-primary">
                     <ul class="list-inline my-2">
                         <li class="list-inline-item me-4">
                             <div class="bs-icon-circle bs-icon-primary bs-icon">
@@ -33,7 +33,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col">
+                <div class="col text-primary">
                     <ul class="list-inline my-2">
                         <li class="list-inline-item">Politica de Privacidad</li>
                         <li class="list-inline-item">Terminos de uso</li>
@@ -42,18 +42,22 @@
             </div>
         </div>
     </footer>
-} *@
-
-@{
-    <footer class="sticky-footer">
-        <div class="container my-auto">
-            <div class="text-center my-auto copyright"><span>Copyright © Smilesoft 2023</span></div>
-        </div>
-    </footer>
 }
+
+@*{
+    
+        <footer class="sticky-footer footer ">
+            <div class="container">
+                <div class="text-center copyright"><span>Copyright © Smilesoft 2023</span></div>
+
+            </div>
+         </footer>
+   
+    
+}*@
 
 @section scripts {
     <!-- Scripts específicos para esta vista parcial -->
-    <script src="~/assets/js/theme.js" asp-append-version="true"></script>
+   
 
 }

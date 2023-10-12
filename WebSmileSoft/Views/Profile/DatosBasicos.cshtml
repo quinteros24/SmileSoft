@@ -1,0 +1,167 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "BasicData";
+}
+
+<div class="tab-pane active" id="profile">
+
+    <h5 class="text-primary">Información de tu Perfil</h5>
+    <hr />
+    <div class="card shadow mb-3">
+        <div class="card-header py-3 text-bg-primary">
+            <p class="m-0 fw-bold">Datos Personales</p>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="row">
+
+                    <div class="mb-3">
+                        <label class="form-label" for="username">
+                            <strong>Nombre de Usuario</strong>
+                        </label>
+                        <input class="form-control" type="text" id="username" placeholder="" name="username" required>
+                    </div>
+
+
+                </div>
+                <div class="row">
+
+                    <div class="col">
+                        <div class="mb-3">
+                            <label class="form-label" for="user_names">
+                                <strong>Nombres</strong>
+                            </label>
+                            <input class="form-control" type="text" id="user_names" placeholder="" name="user_names">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mb-3">
+                            <label class="form-label" for="user_lastnames">
+                                <strong>Apellidos</strong>
+                            </label>
+                            <input class="form-control" type="text" id="user_lastnames" placeholder="" name="user_lastnames">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="id_type" class="m-1"><strong>Tipo de Documento</strong></label>
+                            <select class="form-control" id="id_type" name="tipoDocumento" disabled>
+                                <option value="1">Cedula de Ciudadania (CC)</option>
+                                <option value="2">Cedula de Extranjeria (CE)</option>
+                                @*  <option value="3">Tarjeta de Identidad (TI)</option> *@
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mb-3">
+                            <label class="form-label" for="id_number">
+                                <strong>Identificación</strong>
+                            </label>
+                            <input class="form-control" type="text" id="id_number" placeholder="" name="id_number" disabled>
+                            <label style="display: none"> Profe si quiere quita el disable :D</label>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text">Fecha de nacimiento</span>
+                            <input type="date" id="birthDatep" class="form-control" placeholder="YYYY-MM-DD" />
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <div class="input-group" id="genderOptions">
+                            <label class="input-group-text" for="genderSelect">Género</label>
+                            <select class="form-select" id="genderSelect">
+                                <option selected>Seleccionar</option>
+                                <option value="1">Masculino</option>
+                                <option value="2">Femenino</option>
+                                <option value="0">Prefiero no decir</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+@*                 <div class="mb-3"><button class="btn btn-primary btn-sm update-profile-button" type="button">Actualizar Datos</button></div>
+ *@            </form>
+        </div>
+    </div>
+    <div class="card shadow my-3">
+        <div class="card-header py-3 text-bg-primary">
+            <p class="m-0 fw-bold">Datos de contacto</p>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="row">
+                    <div class="mb-3"><label class="form-label" for="editCorreo"><strong>Correo Electronico </strong></label><input class="form-control" type="email" id="editCorreo" placeholder="" name="email"></div>
+                </div> <div class="row">
+                    <div class="mb-3"><label class="form-label" for="address"><strong>Dirección </strong></label><input class="form-control" type="text" id="address" placeholder="" name="address"></div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="mb-3"><label class="form-label" for="phone_number"><strong>Numero Celular</strong></label><input class="form-control" type="text" id="phone_number" placeholder="" name="phone_number"></div>
+                    </div>
+
+
+                </div>
+
+@*                 <div class="mb-3"><button class="btn btn-primary btn-sm update-profile-button" type="button">Actualizar Datos</button></div>
+ *@            </form>
+        </div>
+    </div>
+    <!-- Datos de Estudios Solo PERFIL DE DOCTOR -->
+    @*  if (Session.Storage.getItem("rol") == "Doctor")
+    { *@
+    <div id="DatosEstudios" class="mb-3">
+        @*  <partial name="Especialidades" /> *@
+
+    </div>
+    <div class="mb-3"><button class="btn btn-primary btn-sm update-profile-button" type="button">Actualizar Datos</button></div>
+
+    @*  } *@
+</div>
+
+@section Scripts {
+    @* <script>
+        $(document).ready(function () {
+
+            $.ajax({
+                type: 'GET',
+                url: '@ViewBag.urlEndPoint' + '/api/Generics/v1/GetSpecialities', // Ruta para crear o actualizar usuarios
+                contentType: 'application/json',
+                success: function (response) {
+                    redirectView(response, "#DatosEstudios");
+                });
+        });
+
+        function redirectView(item, element) {
+            $.ajax({
+                type: 'POST',
+                url: '/Profile/Especialidades',
+                data: item,
+                success: function (response) {
+                    $(element).html(response);
+                }
+            });
+        }
+
+
+    </script> *@
+
+    @* @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    } *@
+}
+
+
+

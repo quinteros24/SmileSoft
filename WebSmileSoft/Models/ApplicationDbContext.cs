@@ -17,21 +17,8 @@ namespace WebSmileSoft.Models
         {
         }
 
-        public object Doctors { get; internal set; }
-        public object Patients { get; internal set; }
+        //public object Doctors { get; internal set; }
+        //public object Patients { get; internal set; }
     }
-    //public DbSet<Doctor> Doctors { get; set; }
-    //public DbSet<Patient> Patients { get; set; }
-    //public DbSet<Modules> Modules{get; set; }
-    //public DbSet<MedicalHistory> MedicalHistories { get; set; }
-
-    //protected override void OnModelCreating(ModelBuilder modelBuilder)
-    //{
-    //    modelBuilder.Entity<Doctor>().ToTable("Doctor");
-    //    modelBuilder.Entity<Patient>().ToTable("Patient");
-    //    modelBuilder.Entity<Modules>().ToTable("Modules");
-    //    modelBuilder.Entity<MedicalHistory>().ToTable("MedicalHistory");
-
-    //}
-
+   
 }

@@ -1,43 +1,3 @@
-C:\Users\santi\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\CoverletSourceRootsMapping_Repository
-C:\Users\santi\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Repository.deps.json
-C:\Users\santi\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Repository.dll
-C:\Users\santi\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Repository.pdb
-C:\Users\santi\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\DataAccess.dll
-C:\Users\santi\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Domain.Entities.dll
-C:\Users\santi\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Domain.Interfaces.dll
-C:\Users\santi\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\DataAccess.pdb
-C:\Users\santi\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Domain.Interfaces.pdb
-C:\Users\santi\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Domain.Entities.pdb
-C:\Users\santi\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.csproj.AssemblyReference.cache
-C:\Users\santi\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\santi\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.AssemblyInfoInputs.cache
-C:\Users\santi\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.AssemblyInfo.cs
-C:\Users\santi\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.csproj.CoreCompileInputs.cache
-C:\Users\santi\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.csproj.CopyComplete
-C:\Users\santi\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.dll
-C:\Users\santi\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\refint\Repository.dll
-C:\Users\santi\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.pdb
-C:\Users\santi\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\ref\Repository.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\CoverletSourceRootsMapping_Repository
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Repository.deps.json
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Repository.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Repository.pdb
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\DataAccess.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Domain.Entities.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Domain.Interfaces.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\DataAccess.pdb
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Domain.Interfaces.pdb
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Domain.Entities.pdb
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.csproj.AssemblyReference.cache
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.AssemblyInfoInputs.cache
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.AssemblyInfo.cs
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.csproj.CoreCompileInputs.cache
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.csproj.CopyComplete
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\refint\Repository.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.pdb
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\ref\Repository.dll
 C:\Users\Usuario\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\CoverletSourceRootsMapping_Repository
 C:\Users\Usuario\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Repository.deps.json
 C:\Users\Usuario\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Repository.dll
@@ -58,3 +18,63 @@ C:\Users\Usuario\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.d
 C:\Users\Usuario\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\refint\Repository.dll
 C:\Users\Usuario\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.pdb
 C:\Users\Usuario\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\ref\Repository.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\CoverletSourceRootsMapping_Repository
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Repository.deps.json
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Repository.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Repository.pdb
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\DataAccess.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Domain.Entities.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Domain.Interfaces.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\DataAccess.pdb
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Domain.Interfaces.pdb
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Domain.Entities.pdb
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.csproj.AssemblyReference.cache
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.AssemblyInfoInputs.cache
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.AssemblyInfo.cs
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.csproj.CoreCompileInputs.cache
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.csproj.CopyComplete
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\refint\Repository.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.pdb
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\ref\Repository.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Repository\bin\Debug\net6.0\CoverletSourceRootsMapping_Repository
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Repository\bin\Debug\net6.0\Repository.deps.json
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Repository\bin\Debug\net6.0\Repository.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Repository\bin\Debug\net6.0\Repository.pdb
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Repository\bin\Debug\net6.0\DataAccess.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Repository\bin\Debug\net6.0\Domain.Entities.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Repository\bin\Debug\net6.0\Domain.Interfaces.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Repository\bin\Debug\net6.0\DataAccess.pdb
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Repository\bin\Debug\net6.0\Domain.Interfaces.pdb
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Repository\bin\Debug\net6.0\Domain.Entities.pdb
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Repository\obj\Debug\net6.0\Repository.csproj.AssemblyReference.cache
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Repository\obj\Debug\net6.0\Repository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Repository\obj\Debug\net6.0\Repository.AssemblyInfoInputs.cache
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Repository\obj\Debug\net6.0\Repository.AssemblyInfo.cs
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Repository\obj\Debug\net6.0\Repository.csproj.CoreCompileInputs.cache
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Repository\obj\Debug\net6.0\Repository.csproj.CopyComplete
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Repository\obj\Debug\net6.0\Repository.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Repository\obj\Debug\net6.0\refint\Repository.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Repository\obj\Debug\net6.0\Repository.pdb
+C:\Users\cesar.109\Source\Repos\SmileSoft2\Repository\obj\Debug\net6.0\ref\Repository.dll
+C:\Users\santi\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\CoverletSourceRootsMapping_Repository
+C:\Users\santi\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Repository.deps.json
+C:\Users\santi\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Repository.dll
+C:\Users\santi\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Repository.pdb
+C:\Users\santi\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\DataAccess.dll
+C:\Users\santi\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Domain.Entities.dll
+C:\Users\santi\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Domain.Interfaces.dll
+C:\Users\santi\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\DataAccess.pdb
+C:\Users\santi\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Domain.Interfaces.pdb
+C:\Users\santi\Source\Repos\SmileSoft\Repository\bin\Debug\net6.0\Domain.Entities.pdb
+C:\Users\santi\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.csproj.AssemblyReference.cache
+C:\Users\santi\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\santi\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.AssemblyInfoInputs.cache
+C:\Users\santi\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.AssemblyInfo.cs
+C:\Users\santi\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.csproj.CoreCompileInputs.cache
+C:\Users\santi\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.csproj.CopyComplete
+C:\Users\santi\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.dll
+C:\Users\santi\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\refint\Repository.dll
+C:\Users\santi\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\Repository.pdb
+C:\Users\santi\Source\Repos\SmileSoft\Repository\obj\Debug\net6.0\ref\Repository.dll

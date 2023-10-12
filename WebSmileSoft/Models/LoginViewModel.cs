@@ -2,18 +2,27 @@
 
 namespace WebSmileSoft.Models
 {
+    //public class LoginViewModel
+    //{
+
+    //        [Required]
+    //        public string? UserLogin { get; set; }
+
+    //        [Required]
+    //        public string? Password { get; set; }
+
+
+    //    [Display(Name = "Recordar mi inicio de sesión")]
+    //    public bool RememberMe { get; set; }
+    //}
+
     public class LoginViewModel
     {
-        [Required(ErrorMessage = "El campo Nombre de Usuario es obligatorio.")]
-        [Display(Name = "Nombre de Usuario")]
-        public string UserName { get; set; }
+        [Required]
+        public string? Username { get; set; }
 
-        [Required(ErrorMessage = "El campo Contraseña es obligatorio.")]
+        [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Contraseña")]
-        public string Password { get; set; }
-
-        [Display(Name = "Recordar mi inicio de sesión")]
-        public bool RememberMe { get; set; }
+        public string? Password { get; set; }
     }
 }

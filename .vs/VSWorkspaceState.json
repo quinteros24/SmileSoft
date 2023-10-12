@@ -2,14 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\WebSmileSoft",
-    "\\WebSmileSoft\\Controllers",
     "\\WebSmileSoft\\Views",
     "\\WebSmileSoft\\Views\\Account",
     "\\WebSmileSoft\\Views\\Admin",
-    "\\WebSmileSoft\\Views\\Shared",
-    "\\WebSmileSoft\\Views\\Shared\\Components",
-    "\\WebSmileSoft\\Views\\Shared\\Components\\NavbarSup"
+    "\\WebSmileSoft\\Views\\Patient",
+    "\\WebSmileSoft\\Views\\Shared"
   ],
-  "SelectedNode": "\\WebSmileSoft\\Views\\Account\\Login.cshtml",
+  "SelectedNode": "\\WebSmileSoft\\Views\\Shared\\_LayoutAccount.cshtml",
   "PreviewInSolutionExplorer": false
 }

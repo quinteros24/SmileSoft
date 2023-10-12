@@ -1,173 +1,3 @@
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.csproj.AssemblyReference.cache
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.AssemblyInfoInputs.cache
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.AssemblyInfo.cs
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.csproj.CoreCompileInputs.cache
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\appsettings.Development.json
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\appsettings.json
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\EpSmileSoft.exe
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\EpSmileSoft.deps.json
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\EpSmileSoft.runtimeconfig.json
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\EpSmileSoft.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\EpSmileSoft.pdb
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Azure.Core.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Azure.Identity.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.DotNet.PlatformAbstractions.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Azure.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Identity.Client.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Identity.Client.Extensions.Msal.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.OpenApi.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Newtonsoft.Json.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Drawing.Common.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Memory.Data.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Security.Permissions.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Windows.Extensions.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\DataAccess.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Domain.Core.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Domain.Entities.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Domain.Interfaces.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Repository.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Domain.Core.pdb
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\DataAccess.pdb
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Domain.Entities.pdb
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Domain.Interfaces.pdb
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Repository.pdb
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\staticwebassets\msbuild.EpSmileSoft.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\staticwebassets\msbuild.build.EpSmileSoft.props
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.EpSmileSoft.props
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.EpSmileSoft.props
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\staticwebassets.pack.json
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\staticwebassets.build.json
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\staticwebassets.development.json
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\scopedcss\bundle\EpSmileSoft.styles.css
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.csproj.CopyComplete
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\refint\EpSmileSoft.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.pdb
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.genruntimeconfig.cache
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\ref\EpSmileSoft.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Data.SqlClient.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Text.Encodings.Web.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Text.Json.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win-arm64\native\sni.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win-x64\native\sni.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\appsettings.Development.json
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\appsettings.json
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\EpSmileSoft.exe
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\EpSmileSoft.deps.json
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\EpSmileSoft.runtimeconfig.json
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\EpSmileSoft.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\EpSmileSoft.pdb
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Azure.Core.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Azure.Identity.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.DotNet.PlatformAbstractions.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Azure.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Identity.Client.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Identity.Client.Extensions.Msal.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.OpenApi.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Newtonsoft.Json.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Data.SqlClient.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Drawing.Common.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Memory.Data.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Security.Permissions.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Text.Encodings.Web.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Text.Json.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Windows.Extensions.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win-arm64\native\sni.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win-x64\native\sni.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\DataAccess.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Domain.Core.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Domain.Entities.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Domain.Interfaces.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Repository.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Domain.Core.pdb
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\DataAccess.pdb
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Domain.Entities.pdb
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Domain.Interfaces.pdb
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Repository.pdb
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.csproj.AssemblyReference.cache
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.AssemblyInfoInputs.cache
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.AssemblyInfo.cs
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.csproj.CoreCompileInputs.cache
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\staticwebassets\msbuild.EpSmileSoft.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\staticwebassets\msbuild.build.EpSmileSoft.props
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.EpSmileSoft.props
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.EpSmileSoft.props
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\staticwebassets.pack.json
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\staticwebassets.build.json
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\staticwebassets.development.json
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\scopedcss\bundle\EpSmileSoft.styles.css
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.csproj.CopyComplete
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\refint\EpSmileSoft.dll
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.pdb
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.genruntimeconfig.cache
-C:\Users\santiago.quintero\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\ref\EpSmileSoft.dll
 C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\appsettings.json
 C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\EpSmileSoft.exe
@@ -177,6 +7,7 @@ C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\EpSmileSoft
 C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\EpSmileSoft.pdb
 C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Azure.Core.dll
 C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Azure.Identity.dll
+C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.DotNet.PlatformAbstractions.dll
@@ -195,6 +26,11 @@ C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.E
 C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Identity.Client.dll
 C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Identity.Client.Extensions.Msal.dll
 C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.OpenApi.dll
 C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Newtonsoft.Json.dll
@@ -206,6 +42,7 @@ C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Conf
 C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Data.SqlClient.dll
 C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
 C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Memory.Data.dll
 C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Security.Permissions.dll
@@ -253,3 +90,282 @@ C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\refint\EpSm
 C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.pdb
 C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.genruntimeconfig.cache
 C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\ref\EpSmileSoft.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\appsettings.json
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\EpSmileSoft.exe
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\EpSmileSoft.deps.json
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\EpSmileSoft.runtimeconfig.json
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\EpSmileSoft.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\EpSmileSoft.pdb
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Azure.Core.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Azure.Identity.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Azure.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Identity.Client.Extensions.Msal.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Data.SqlClient.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Memory.Data.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Text.Json.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win-arm64\native\sni.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win-x64\native\sni.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\DataAccess.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Domain.Core.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Domain.Entities.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Domain.Interfaces.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Repository.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Domain.Core.pdb
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\DataAccess.pdb
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Domain.Entities.pdb
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Domain.Interfaces.pdb
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Repository.pdb
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.csproj.AssemblyReference.cache
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.AssemblyInfoInputs.cache
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.AssemblyInfo.cs
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.csproj.CoreCompileInputs.cache
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\staticwebassets\msbuild.EpSmileSoft.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\staticwebassets\msbuild.build.EpSmileSoft.props
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.EpSmileSoft.props
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.EpSmileSoft.props
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\scopedcss\bundle\EpSmileSoft.styles.css
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.csproj.CopyComplete
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\refint\EpSmileSoft.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.pdb
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.genruntimeconfig.cache
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\ref\EpSmileSoft.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\appsettings.json
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\EpSmileSoft.exe
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\EpSmileSoft.deps.json
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\EpSmileSoft.runtimeconfig.json
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\EpSmileSoft.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\EpSmileSoft.pdb
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Azure.Core.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Azure.Identity.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Azure.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Microsoft.Identity.Client.Extensions.Msal.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\System.Data.SqlClient.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\System.Memory.Data.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\System.Text.Json.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\runtimes\win-arm64\native\sni.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\runtimes\win-x64\native\sni.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\DataAccess.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Domain.Core.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Domain.Entities.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Domain.Interfaces.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Repository.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Domain.Core.pdb
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\DataAccess.pdb
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Domain.Entities.pdb
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Domain.Interfaces.pdb
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\bin\Debug\net6.0\Repository.pdb
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.csproj.AssemblyReference.cache
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.AssemblyInfoInputs.cache
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.AssemblyInfo.cs
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.csproj.CoreCompileInputs.cache
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\obj\Debug\net6.0\staticwebassets\msbuild.EpSmileSoft.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\obj\Debug\net6.0\staticwebassets\msbuild.build.EpSmileSoft.props
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.EpSmileSoft.props
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.EpSmileSoft.props
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\obj\Debug\net6.0\scopedcss\bundle\EpSmileSoft.styles.css
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.csproj.CopyComplete
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\obj\Debug\net6.0\refint\EpSmileSoft.dll
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.pdb
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.genruntimeconfig.cache
+C:\Users\cesar.109\Source\Repos\SmileSoft2\EpSmileSoft\obj\Debug\net6.0\ref\EpSmileSoft.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\appsettings.json
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\EpSmileSoft.exe
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\EpSmileSoft.deps.json
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\EpSmileSoft.runtimeconfig.json
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\EpSmileSoft.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\EpSmileSoft.pdb
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Azure.Core.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Azure.Identity.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Azure.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Identity.Client.Extensions.Msal.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Data.SqlClient.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Memory.Data.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Text.Json.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win-arm64\native\sni.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win-x64\native\sni.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\DataAccess.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Domain.Core.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Domain.Entities.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Domain.Interfaces.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Repository.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Domain.Core.pdb
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\DataAccess.pdb
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Domain.Entities.pdb
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Domain.Interfaces.pdb
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Repository.pdb
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.csproj.AssemblyReference.cache
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.AssemblyInfoInputs.cache
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.AssemblyInfo.cs
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.csproj.CoreCompileInputs.cache
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\staticwebassets\msbuild.EpSmileSoft.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\staticwebassets\msbuild.build.EpSmileSoft.props
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.EpSmileSoft.props
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.EpSmileSoft.props
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\scopedcss\bundle\EpSmileSoft.styles.css
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.csproj.CopyComplete
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\refint\EpSmileSoft.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.pdb
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\EpSmileSoft.genruntimeconfig.cache
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\ref\EpSmileSoft.dll
+C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Azure.Storage.Blobs.dll
+C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Azure.Storage.Common.dll
+C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.IO.Hashing.dll

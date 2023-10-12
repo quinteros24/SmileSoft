@@ -1,0 +1,86 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<div class="container mt-5">
+    <h1 class="mb-4">Historias Clínicas</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <!-- Panel de búsqueda de pacientes -->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Buscar Paciente</h5>
+                    <form>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Nombre o ID del Paciente">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Buscar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <!-- Historias Clínicas -->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Historia Clínica de [Nombre del Paciente]</h5>
+                    <!-- Contenido de la Historia Clínica -->
+                    <div class="mb-3">
+                        <h6>Información Personal</h6>
+                        <p><strong>Nombre:</strong> [Nombre del Paciente]</p>
+                        <p><strong>Edad:</strong> [Edad del Paciente]</p>
+                        <p><strong>Fecha de Nacimiento:</strong> [Fecha de Nacimiento]</p>
+                    </div>
+                    <div class="mb-3">
+                        <h6>Historial Médico</h6>
+                        <p><strong>Diagnóstico:</strong> [Diagnóstico]</p>
+                        <p><strong>Tratamiento:</strong> [Tratamiento]</p>
+                        <!-- Agregar más detalles según sea necesario -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Tu código de generación de PDF aquí
+            function generatePDF() {
+                const pdf = new jsPDF();
+
+                // Agregar contenido al PDF
+                pdf.text("Historia Clínica de [Nombre del Paciente]", 10, 10);
+                pdf.text("Información Personal", 10, 20);
+                pdf.text("Nombre: [Nombre del Paciente]", 20, 30);
+                pdf.text("Edad: [Edad del Paciente]", 20, 40);
+                pdf.text("Fecha de Nacimiento: [Fecha de Nacimiento]", 20, 50);
+
+                pdf.text("Historial Médico", 10, 70);
+                pdf.text("Diagnóstico: [Diagnóstico]", 20, 80);
+                pdf.text("Tratamiento: [Tratamiento]", 20, 90);
+                // Puedes agregar más contenido según sea necesario
+
+                // Guardar o descargar el PDF
+                pdf.save("HistoriaClinica.pdf");
+            }
+
+            // Manejar clic en el botón "Generar PDF"
+            $("#generate-pdf").click(function () {
+                generatePDF();
+            });
+
+            // Manejar clic en el botón "Imprimir"
+            $("#print-page").click(function () {
+                window.print();
+            });
+        });
+    </script>
+
+}

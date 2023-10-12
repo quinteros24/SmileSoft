@@ -1,0 +1,207 @@
+﻿
+
+<div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Editar Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="card-header py-3">
+                        <p class="text-primary m-0 fw-bold">Datos Personales</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label for="editNombree">* Nombres:</label>
+                                <input type="text" class="form-control" id="editNombree" name="editNombre" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="editApellidoe">* Apellidos:</label>
+                                <input type="text" class="form-control" id="editApellidoe" name="apellidos" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="tipoDocumentoed">* Tipo de Documento:</label>
+                                <select class="form-control" id="tipoDocumentoed" name="tipoDocumento" required>
+                                    <option value="1">Cedula de Ciudadania (CC)</option>
+                                    <option value="2">Cedula de Extranjeria (CE)</option>
+                                    @* <option value="3">Tarjeta de Identidad (TI)</option> *@
+                                </select>
+                            </div>
+                        </div><div class="col-md-6">
+                            <div class="form-group">
+                                <label for="editDocumentoed">* Número de Documento:</label>
+                                <input type="text" class="form-control" id="editDocumentoed" name="numeroDocumento" required>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="tGeneroed">* Genero:</label>
+                                <select class="form-control" id="tGeneroed" name="tipoGenero" required>
+                                    <option value="1">Masculino</option>
+                                    <option value="2">Femenino</option>
+                                    <option value="0">No se Identifica</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="fechaNacimientoed">Fecha de Nacimiento:</label>
+                                <input type="date" class="form-control" id="fechaNacimientoed" name="fechaNacimiento" placeholder="YYYY-MM-DD" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-header py-3">
+                        <p class="text-primary m-0 fw-bold">Datos de Contacto</p>
+                    </div>
+                    <div class="row">
+                        <!-- Segunda Columna -->
+                        <div class="col-md-12">
+
+                            <div class="form-group">
+                                <label for="editCorreoed">* Correo Electrónico:</label>
+                                <input type="email" class="form-control" id="editCorreoed" name="correo" required>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="direccioned">Dirección:</label>
+                                <input type="text" class="form-control" id="direccioned" name="direccion" required>
+                            </div>
+                        </div><div class="col-md-6">
+                            <div class="form-group">
+                                <label for="editCelulared">Número de Celular:</label>
+                                <input type="text" class="form-control" id="editCelulared" name="celular" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-header py-3">
+                        <p class="text-primary m-0 fw-bold">Datos Acceso a Smilesoft</p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="tipoUsuarioed">* Tipo de Usuario:</label>
+                                <select class="form-control" id="tipoUsuarioed" name="tipoUsuario" required>
+                                    <option value="3">Paciente</option>
+                                    <option value="2">Odontólogo</option>
+                                    <option value="1">Administrador</option>
+                                </select>
+                            </div>
+                        </div>
+                        @* </div>
+                        <div class="row"> *@
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="usernameed">* Usuario:</label>
+                                <input type="text" class="form-control" id="usernameed" name="username" required>
+                            </div>
+                        </div><div class="col-md-6" style="display:none">
+                            <div class="form-group">
+                                <label for="passworded">* Contraseña:</label>
+                                <input type="password" class="form-control" id="passworded" name="password" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body" id="campoOpcional" style="display: none;">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold">Datos de Estudios</p>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label class="form-label" for="AcademicLeveled">
+                                        <strong>Nivel Académico </strong>
+                                    </label>
+                                    @* <input class="form-control" type="text" id="AcademicLeveled" placeholder="" name="TituloAcademico"> *@
+                                    <select class="form-control" type="text" id="AcademicLeveled" placeholder="" name="academiclevel">
+                                        <option value="0">Seleccionar Opción</option>
+                                        <option value="1">Educación Preescolar</option>
+                                        <option value="2">Educación Primaria</option>
+                                        <option value="3">Educación Secundaria</option>
+                                        <option value="4">Educación Técnica o Vocacional</option>
+                                        <option value="5">Educación Superior (Universidad o Colegio)</option>
+                                        <option value="6">Postgrado o Posgrado (Maestría o Doctorado)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="TituloAcademicoed">
+                                            <strong>Titulo Académico </strong>
+                                        </label><input class="form-control" type="text" id="TituloAcademicoed" placeholder="" name="TituloAcademico">
+                                    </div>
+                                </div> <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="Specialityed">
+                                            <strong>Especialidad </strong>
+                                        </label>
+                                      @*   <select id="Speciality" name="Especialidad" class="form-control" asp-items="@ViewBag.Specialities">
+                                            <option value="0">Seleccionar Especialidad</option> *@
+                                       <select class="form-control" id="Specialityed" placeholder="" name="EditSpecialities">
+                                            <option value="1">Odontología general</option>
+                                            <option value="2">Endodoncia</option>
+                                            <option value="3">Cirugía oral</option>
+                                            <option value="4">Ortodoncia</option>
+                                            <option value="5">Odontopediatría</option>
+                                            <option value="6">Periodoncia</option>
+                                        </select>
+                                        @* <select class="form-control" type="text" id="Specialityed" placeholder="" name="EditUser" asp-items="@ViewBag.Specialities">
+                                        </select> *@
+                                    </div>
+                                </div>
+                            </div> <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="Universitynameed">
+                                            <strong>Universidad </strong>
+                                        </label>
+                                        <input class="form-control" type="text" id="Universitynameed" placeholder="" name="University">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="ProfessionalLicenseed">
+                                            <strong>Tarjeta Profesional </strong>
+                                        </label>
+                                        <input class="form-control" type="text" id="ProfessionalLicenseed" placeholder="" name="Tarjeta_Profesional">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" id="saveChangesBtn">Guardar Cambios</button>
+                    </div>
+
+                </form>
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+

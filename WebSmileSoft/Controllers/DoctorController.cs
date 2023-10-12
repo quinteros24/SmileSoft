@@ -1,91 +1,58 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using WebSmileSoft.Models; // Asegúrate de importar el espacio de nombres de tus modelos de doctores
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using WebSmileSoft.Interfaces;
+using WebSmileSoft.Models; // Asegúrate de importar el espacio de nombres de tus modelos de usuario y roles
 
 namespace WebSmileSoft.Controllers
 {
-    [Authorize] // Asegura que solo los usuarios autenticados puedan acceder a este controlador
+    
+
     public class DoctorController : Controller
     {
-        private readonly ApplicationDbContext _context;
-
-        public DoctorController(ApplicationDbContext context)
+       
+        private readonly ISettings _settings;
+        public DoctorController(ISettings settings)
         {
-            _context = context;
+            _settings = settings;
         }
 
-        //// Acción para ver la lista de doctores
-        //public IActionResult Index()
-        //{
-        //    List<Doctor> doctors = _context.Doctors.ToList();
-        //    return View(doctors);
-        //}
+        
 
-        //// Acción para ver los detalles de un doctor específico
-        //public IActionResult Details(int? id)
-        //{s
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
+        public IActionResult Index()
+        {
+            ViewBag.urlEndPoint = _settings.urlEndPoint;
+            return View();
+        }
 
-        //    Doctor doctor = _context.Doctors.Find(id);
+        public IActionResult GestiondeCitas()
+        {
+            ViewBag.urlEndPoint = _settings.urlEndPoint;
+            return View();
+        }
 
-        //    if (doctor == null)
-        //    {
-        //        return NotFound();
-        //    }
+        public IActionResult AdministrarCitas()
+        {
+            ViewBag.urlEndPoint = _settings.urlEndPoint;
+            return View();
+        }
 
-        //    return View(doctor);
-        //}
+        public IActionResult HistoriasClinicas()
+        {
+            ViewBag.urlEndPoint = _settings.urlEndPoint;
+            return View();
+        }
 
-        //// Acción para editar un doctor
-        //public IActionResult Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
+        public IActionResult GestionPacientes()
+        {
+            ViewBag.urlEndPoint = _settings.urlEndPoint;
+            return View();
+        }
 
-        //    Doctor doctor = _context.Doctors.Find(id);
 
-        //    if (doctor == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(doctor);
-        //}
-
-        //// POST: Acción para guardar los cambios después de editar un doctor
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult Edit(int id, [Bind("Id,Nombre,Especializacion,")] Doctor doctor)
-        //{
-        //    if (id != doctor.Id)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            _context.Update(doctor);
-        //            _context.SaveChanges();
-        //        }
-        //        catch (Exception)
-        //        {
-        //            // Manejar errores de actualización aquí
-        //            throw;
-        //        }
-
-        //        return RedirectToAction(nameof(Index));
-        //    }
-
-        //    return View(doctor);
-        //}
-
-        // Otras acciones relacionadas con la gestión de doctores
     }
 }

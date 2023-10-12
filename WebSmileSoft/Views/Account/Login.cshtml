@@ -1,114 +1,168 @@
 ﻿@{
-    ViewData["Title"] = "SmileSoft";
+    ViewData["Title"] = "Iniciar Sesión";
 }
-@* <script>
-var rememberMeCheckbox = document.getElementById("rememberMe");
+@model LoginViewModel
 
-    // Verifica si el usuario ya había seleccionado "Recordar usuario" anteriormente
-    if (localStorage.getItem("rememberUser") === "true") {
-        rememberMeCheckbox.checked = true;
-    }
+@*     @Html.AntiForgeryToken() *@
 
-    // Agrega un controlador de eventos para guardar el estado del checkbox cuando cambie
-    rememberMeCheckbox.addEventListener("change", function () {
-        if (rememberMeCheckbox.checked) {
-            // Si el usuario selecciona "Recordar usuario", guarda la elección en el almacenamiento local
-            localStorage.setItem("rememberUser", "true");
-        } else {
-            // Si el usuario desmarca "Recordar usuario", elimina la elección del almacenamiento local
-            localStorage.removeItem("rememberUser");
-        }
-    });
-    </script> *@
-@{
 <section class="container flex-grow-1">
-<div class="row justify-content-center">
-    <div class="col-md-9 col-lg-12 col-xl-10">
-        <div class="card shadow-lg o-hidden border-0 my-5">
-            <div class="card-body p-0 shadow">
-                <div class="row">
-                    <div class="col-lg-6 d-none d-lg-flex">
-                        <div class="flex-grow-1 bounce animated bg-login-image d-flex ms-5"></div>
-                        <img src="~/assets/img/logo-r.png" class="img-fluid">
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="p-5">
-                            <div class="text-center">
-                                <h4 class="text-dark mb-4" data-bss-hover-animate="pulse"><strong>Iniciar Sesión</strong></h4>
-                            </div>
-                            <form class="user" id="formlogin">
-                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="UserLogin" aria-describedby="emailHelp" placeholder="Ingresa tu Correo Electrónico" name="email"></div>
-                                <div class="mb-3"><input class="form-control form-control-user" type="password" id="Password" placeholder="Contraseña" name="password"></div>
-                                <div class="mb-3">
-                                    <div class="custom-control custom-checkbox small">
+    @*  <div id="loader" class="loader"></div> *@
+    <div class="row justify-content-center">
+        <div class="col-md-9 col-lg-12 col-xl-10">
+            <div class="card shadow-lg o-hidden border-0 my-5">
+                <div class="card-body p-0 shadow">
+                    <div class="row">
+                        <div class="col-lg-6 d-none d-lg-flex">
+                            <div class="flex-grow-1 bg-login-image d-flex ms-5"></div>
+                            <img src="~/assets/img/logo-r.png" class="img-fluid">
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h4 class="text-dark mb-4"><strong>Iniciar Sesión</strong></h4>
+                                </div>
+                                <form class="user">
+                                    <div class="mb-3"><input class="form-control form-control-user" type="text" id="UserLogin" aria-describedby="emailHelp" placeholder="Username" name="Username"></div>
+                                    <div class="mb-3"><input class="form-control form-control-user" type="password" id="Password" placeholder="Contraseña" name="password"></div>
+                                    <div class="mb-3">
+                                        <div class="custom-control custom-checkbox small">
                                             <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="remember_me"><label class="form-check-label custom-control-label" for="remember_me">Recordarme</label></div>
-                                    </div>
-                                </div><button class="btn btn-primary d-block btn-user w-100" type="submit" id="loginButton" onclick="validarInicioSesion()"><strong>Ingresar</strong></button>
-                                <hr>
+                                        </div>
+                                    </div><button class="btn btn-primary d-block btn-user w-100 fs-6" type="button" onclick="validarInicioSesion();"><strong>Ingresar</strong></button>
+                                    <hr>
 
-                            </form>
-                            <div class="text-center"><a class="small" asp-controller="Account" asp-action="ForgotPassword">Olvidaste la Contraseña?</a></div>
-                            <div class="text-center"><a class="small" asp-controller="Account" asp-action="Register">Registrarse</a></div>
+                                </form>
+                                @*<div class="text-center"><a class="small" asp-controller="Account" asp-action="ForgotPassword">Olvidaste la Contraseña?</a></div>*@
+                                <div class="row">
+                                    
+                                        <div class="col-md-6 mb-3">
+                                            <a class="btn btn-primary d-block btn-user w-100 border rounded-5" asp-controller="Account" asp-action="Register">Registrarse</a>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                        <a class="btn btn-primary d-block btn-user w-100 border rounded-5" asp-controller="Account" asp-action="RequestanAppointment">Solicitar una Cita</a>
+                                        
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </section>
-}
+
+
 @section Scripts {
-@* <script src="~/assets/js/Login.js" asp-append-version="true"></script> *@
-<script>
-    function validarInicioSesion() {
-        console.log(1);
-        event.preventDefault();
-        let username = document.getElementById("UserLogin").value;
-        let password = document.getElementById("Password").value;
+    @*  <script src="~/assets/js/Login.js" asp-append-version="true"></script> *@
+    <script>
+        function validarInicioSesion() {
+            //console.log("Script Iniciar Sesion");
+            // event.preventDefault();
+            const urlEP = '@ViewBag.urlEndPoint';
+            sessionStorage.setItem("urlEP", urlEP);
 
-        if (username === "") {
-            Swal.fire({
-                text: 'Por favor, ingrese su nombre de usuario',
-                confirmButtonColor: '#008dc9'
-            });
-        } else if (password === "") {
-            Swal.fire({
-                text: 'Por favor, ingrese su contraseña',
-                confirmButtonColor: '#008dc9'
-            });
-        } else {
+            let username = document.getElementById("UserLogin").value;
+            let password = document.getElementById("Password").value;
 
-            let data = {
-                UserLogin: username,
-                password: password
-            };
-            $.ajax({
-                type: "POST",
-                url: '@ViewBag.urlEndPoint' + '/api/Session/v1/Login',
-                data: JSON.stringify(data),
-                contentType: "application/json",
-                async: false,
-                dataType: "json",
-                success: function (response) {
-                    if (response.codeStatus == 0) {
-                        //ir a la vista
-                        Swal.fire(response.messageStatus);
-                        //alert(response.messageStatus);
-                        window.location.href = '@Url.Action("Index", "Home")';
-                } else {
+            if (username === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su nombre de usuario',
+                    confirmButtonColor: '#008dc9'
+                });
+            } else if (password === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese su contraseña',
+                    confirmButtonColor: '#008dc9'
+                });
+            } else {
 
-                    Swal.fire({
-                        text: "Inicio de sesión fallido. " + response.messageStatus,
-                        confirmButtonColor: '#008dc9'
-                    });
-                    //alert('Inicio de sesión fallido, ' + response.messageStatus);
-                }
-            },
-            error: function (error) {
-                console.log("Error.");
+                let data = {
+                    UserLogin: username,
+                    password: password
+                };
+                mostrarCarga();
+                $.ajax({
+
+                    type: "POST",
+                    url: '@ViewBag.urlEndPoint' + '/api/Session/v1/Login',
+                    data: JSON.stringify(data),
+                    contentType: "application/json",
+
+                    dataType: "json",
+                    success: function (response) {
+
+                        if (response.codeStatus == 0) {
+
+                            sessionStorage.setItem('accessToken', response.itemJson.uToken);
+                            sessionStorage.setItem('userRole', response.itemJson.utID);
+                            sessionStorage.setItem('userID', response.itemJson.uID);
+                            sessionStorage.setItem('userFName', response.itemJson.uName);
+                            sessionStorage.setItem('userLName', response.itemJson.uLastName);
+                            sessionStorage.setItem('userLogin', response.itemJson.uLoginName);
+                            sessionStorage.setItem('userEmail', response.itemJson.uEmailAddress);
+                            sessionStorage.setItem('userPhone', response.itemJson.uCellphone);
+                            sessionStorage.setItem('userAddress', response.itemJson.uAddress);
+                            sessionStorage.setItem('usertDocument', response.itemJson.dtID);
+                            sessionStorage.setItem('userDocument', response.itemJson.uDocument);
+                            //sessionStorage.setItem('userBirthDate', response.itemJson.uBirthDate);
+                            //sessionStorage.setItem('userGender', response.itemJson.uGender);
+                            sessionStorage.setItem('userBlock', response.itemJson.uIsBlocked);
+                            sessionStorage.setItem('userStatus', response.itemJson.uStatus);
+                            sessionStorage.setItem('doctorID', response.itemJson.dID);
+                            if (response.itemJson.uStatus == false) {
+                                Swal.fire({
+                                    text: 'Su cuenta se encuentra bloqueada',
+                                    confirmButtonColor: '#008dc9'
+                                });
+                            }
+                            // window.location.href = '@Url.Action("Index", "Home")';
+                            else if (response.itemJson.utID === 1) {
+                                // Redirige al administrador a la vista de administrador
+                                window.location.href = '@Url.Action("Index", "Admin")';
+                            } else if (response.itemJson.utID === 2) {
+                                // Redirige al doctor a la vista de doctor
+                                window.location.href = '@Url.Action("Index", "Doctor")';
+                            } else if (response.itemJson.utID === 3) {
+                                // Redirige al usuario a la vista de usuario
+                                window.location.href = '@Url.Action("Index", "Patient")';
+                            } else {
+                                // Manejar el caso de un rol desconocido o no autorizado
+                                //alert('Rol desconocido o no autorizado');
+                                Swal.fire({
+                                    text: 'Rol desconocido o no autorizado',
+                                    confirmButtonColor: '#008dc9'
+                                });
+                            }
+                        } else {
+
+                            Swal.fire({
+                                text: "Inicio de sesión fallido. " + response.messageStatus,
+                                confirmButtonColor: '#008dc9'
+                            });
+                            //alert('Inicio de sesión fallido, ' + response.messageStatus);
+                        }
+                    },
+                    error: function (error) {
+                        //console.log("Error.");
+                        Swal.fire({
+                            text: "Error. " + error,
+                            confirmButtonColor: '#008dc9'
+                        });
+                    }
+                });
             }
-        });
-    }
         }</script>
+    <script>
+        function mostrarCarga() {
+            Swal.fire({
+                title: 'Cargando',
+                html: 'Por favor, espere un momento',
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading()
+                },
+            });
+        }
+    </script>
 }
