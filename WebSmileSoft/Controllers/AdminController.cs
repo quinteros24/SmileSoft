@@ -63,6 +63,12 @@ namespace WebSmileSoft.Controllers
             ViewBag.Specialities = specialities;
             return View();
         }
+        public IActionResult TestBench()
+        {
+            ViewBag.urlEndPoint = _settings.urlEndPoint;
+           
+            return View();
+        }
 
 
 
