@@ -1,6 +1,4 @@
-﻿
-
-@{
+﻿@{
     ViewData["Title"] = "User Management";
     <link rel="stylesheet" href="~/assets/css/Responsive-UI-Card.css">
 }
@@ -65,5 +63,10 @@
 }
 
 @section Scripts{
-    @*     <script src="assets/js/bs-init.js"></script> *@
-                }
+    <script>
+        let userRole = sessionStorage.getItem('userRole');
+        if (userRole !== 1) {
+            logoutUser();
+        }
+    </script>
+}
