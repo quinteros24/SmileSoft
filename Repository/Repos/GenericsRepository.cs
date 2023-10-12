@@ -58,5 +58,51 @@ namespace Repository
             }
             return Items;
         }
+
+        public async Task<GenericResponseModel> GetUsersClinicStoryFormat(int oID)
+        {
+            string query = $"SELECT MedicalRecordFormat FROM Offices WHERE [oID] = {oID}";
+            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
+            ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
+            GenericResponseModel? genericResponseModel = new();
+            if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
+            {
+                DataTable dt = ItemResponseDB.DtObject;
+                genericResponseModel.CodeStatus = dt.Rows[0]["outputCodeError"].ToString();
+                genericResponseModel.MessageStatus = dt.Rows[0]["outputMessageError"].ToString();
+                genericResponseModel.Status = genericResponseModel.CodeStatus == "0";
+            }
+            return genericResponseModel;
+        }
+
+        public async Task<GenericResponseModel> StoreUsersClinicStoryFormat(string jsonObject)
+        {
+            string query = $"SELECT D.dID, CONCAT(U.uName,' ',U.uLastName) AS dName FROM Doctors AS D INNER JOIN Users AS U ON D.uID = U.uID {(spID != 0? $"WHERE D.spID = {spID}" : "")}";
+            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
+            ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
+            List<SelectListItem> Items = new();
+            if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
+            {
+                DataTable dt = ItemResponseDB.DtObject;
+                Items = Mapper.ToSelectList(dt, "dID", "dName");
+            }
+            return Items;
+        }
+
+
+
+        public async Task<GenericResponseModel> SetUsersClinicStoryFormat(string jsonObject)
+        {
+            string query = $"SELECT D.dID, CONCAT(U.uName,' ',U.uLastName) AS dName FROM Doctors AS D INNER JOIN Users AS U ON D.uID = U.uID {(spID != 0? $"WHERE D.spID = {spID}" : "")}";
+            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
+            ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
+            List<SelectListItem> Items = new();
+            if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
+            {
+                DataTable dt = ItemResponseDB.DtObject;
+                Items = Mapper.ToSelectList(dt, "dID", "dName");
+            }
+            return Items;
+        }
     }
 }
