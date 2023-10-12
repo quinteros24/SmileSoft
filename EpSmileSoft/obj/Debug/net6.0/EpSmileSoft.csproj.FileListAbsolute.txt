@@ -369,3 +369,6 @@ C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\obj\Debug\net6.0\ref\EpSmileSo
 C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Azure.Storage.Blobs.dll
 C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Azure.Storage.Common.dll
 C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.IO.Hashing.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Azure.Storage.Blobs.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Azure.Storage.Common.dll
+C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.IO.Hashing.dll
