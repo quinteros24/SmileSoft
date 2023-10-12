@@ -71,7 +71,7 @@ namespace EpSmileSoft.Controllers
             return await _genericsCore.SetContactNumber(cellphoneNumber, oID);
         }
 
-        //Setea el numero de contacto para las redes sociales
+        //Obtiene el numero de contacto para las redes sociales
         [HttpPut]
         [Route("v1/GetContactNumber")]
         public async Task<GenericResponseModel> GetContactNumber(int oID)
