@@ -8,6 +8,6 @@
     "\\WebSmileSoft\\Views\\Doctor",
     "\\WebSmileSoft\\Views\\Patient"
   ],
-  "SelectedNode": "\\WebSmileSoft\\Views\\Admin\\ViewTableUsers.cshtml",
+  "SelectedNode": "\\WebSmileSoft\\Views\\Patient\\GestiondeCitas.cshtml",
   "PreviewInSolutionExplorer": false
 }
