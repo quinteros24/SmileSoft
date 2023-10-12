@@ -1,0 +1,553 @@
+﻿
+<div class="container mt-2">
+    <h1 class="mb-4 text-primary">Gestión de Citas</h1>
+
+    <!-- Lista de Citas -->
+    <div class="card">
+        <div class="card-header text-bg-primary">
+            Próximas Citas
+        </div>
+        <div class="card-body shadow">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped" id="citasUsuario">
+                    <!-- Aquí van tus filas y columnas -->
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulario para Agendar Cita -->
+    <div class="card mt-4">
+        <div class="card-header text-bg-primary fs-6">
+            Agendar Cita
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="fecha">Fecha</label>
+                            <input type="date" class="form-control" id="fecha" name="fecha" placeholder="YYYY-MM-DD" required>
+                        </div>
+                    </div><div class="col-md-3">
+                        <div class="form-group">
+                            <label for="hora">Hora</label>
+                            <input type="time" class="form-control" id="cHora" name="Hora"
+                                   min="08:00" max="20:00" step="3600" required>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <!-- Selector Doctores Disponibles -->
+                        <div class="form-group">
+                            <label for="selEspecialidad">Especialidad</label>
+                            <select class="form-control" id="selEspecialidad" name="RequesanAppointment" onchange="fncheckDoctor(this)" required>
+                                <option value="0">Seleccionar Especialidad</option>
+                                <option value="1">Odontología general</option>
+                                <option value="2">Endodoncia</option>
+                                <option value="3">Cirugía oral</option>
+                                <option value="4">Ortodoncia</option>
+                                <option value="5">Odontopediatría</option>
+                                <option value="6">Periodoncia</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="cDoctor" class="form-label mb-0">Doctor</label>
+                            <select class="form-control" id="cDoctor" name="RequesanAppointment" disabled>
+                                <option value="0">Seleccionar Doctor</option>
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <label for="mensaje" class="form-label">Motivo:</label>
+                    <textarea class="form-control" id="mensaje" name="mensaje" rows="2"></textarea>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="SolicitarCitaPaciente();">Agendar Cita</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script>
+
+        function fncheckDoctor(selectObject) {
+            var value = selectObject.value;
+            if (value == 0) {
+                document.getElementById('cDoctor').disabled = true;
+            } else {
+                fngetDoctors(value);
+                document.getElementById('cDoctor').disabled = false;
+            }
+        }
+
+        $("#fecha").on("change", function () {
+            validarFecha();
+        });
+
+        function obtenerFechaActualSinUTC(fechaActual) {
+            //const fechaActual = new Date();
+            const fechaSinUTC = new Date(fechaActual.getTime() - fechaActual.getTimezoneOffset() * 60000);
+            return fechaSinUTC.toISOString().split("T")[0]; // Obtiene la fecha en formato "YYYY-MM-DD"
+        }
+
+
+        // const fechaActualSinUTC = obtenerFechaActualSinUTC();
+        //console.log(fechaActualSinUTC);
+
+        function validarFecha() {
+            const fechaActual = obtenerFechaActualSinUTC(new Date());
+            console.log(fechaActual);
+            const fechaIngresada = obtenerFechaActualSinUTC(new Date(document.getElementById("fecha").value + "T05:00:00Z"));
+            console.log(fechaIngresada);
+            if (fechaIngresada < fechaActual) {
+                //alert("La fecha no puede ser menor que hoy.");
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Oops...',
+                    text: 'La fecha no puede ser menor que hoy.',
+                    confirmButtonColor: '#008dc9'
+                })
+                document.getElementById("fecha").value = ""; // Limpia el campo de fecha
+            }
+        }
+
+        function validarHora() {
+            const horaIngresada = document.getElementById("cHora").value;
+            const horaActual = new Date().getUTCHours();
+            const fechaHoraActualMasDosHoras = new Date();
+            fechaHoraActualMasDosHoras.setUTCHours(fechaHoraActualMasDosHoras.getUTCHours() + 2);
+
+            if (horaIngresada < horaActual || horaIngresada < "08:00" || horaIngresada > "17:00" || horaIngresada > fechaHoraActualMasDosHoras.getUTCHours()) {
+                //alert("La hora debe estar entre las 08:00 y las 17:00 y no puede ser menor que 2 horas desde ahora.");
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Oops...',
+                    text: 'La hora debe estar entre las 08:00 AM y las 5:00 PM y puede ser maximo 2 horas antes de la cita.',
+                    confirmButtonColor: '#008dc9'
+                })
+                document.getElementById("cHora").value = ""; // Limpia el campo de hora
+            }
+        }
+
+        $("#cHora").on("change", function () {
+            validarHora();
+        });
+
+
+        function fngetDoctors(spID) {
+            $.ajax({
+                type: 'GET',
+                url: '@ViewBag.urlEndPoint' + '/api/Generics/v1/GetDoctors?spID=' + spID, // Ruta para crear o actualizar usuarios
+                contentType: 'application/json',
+                success: function (response) {
+                    var select = document.getElementById("cDoctor");
+                    select.options.length = 0;
+                    var option = document.createElement("option");
+                    option.value = 0;
+                    option.text = "Seleccionar Doctor";
+                    select.appendChild(option);
+                    for (var i = 0; i < response.length; i++) {
+                        var option = document.createElement("option");
+                        option.value = response[i].value;
+                        option.text = response[i].text;
+                        select.appendChild(option);
+                    }
+
+                },
+                error: function (error) {
+                    // Manejar errores de la solicitud AJAX
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Se presento un error al obtener la información',
+                        confirmButtonColor: '#008dc9'
+                    })
+                }
+            });
+        }
+
+        function showTimePicker() {
+            document.getElementById('timePicker').style.display = 'block';
+        }
+
+        function setSelectedTime() {
+            const selectedHour = document.getElementById('hour').value;
+            document.getElementById('cHora').value = selectedHour + ':00';
+            document.getElementById('timePicker').style.display = 'none';
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            let uID = sessionStorage.getItem("userID");
+            getUserCitas(uID);
+            $("#loadingScreen").show();
+
+        });
+        function getUserCitas(uID) {
+            // Realizar solicitud AJAX para obtener la lista de usuarios
+            // var utID = 1;
+            mostrarCargando();
+
+            $.ajax({
+                url: sessionStorage.urlEP + '/api/Appointments/v1/GetAppointmentsList',
+                type: 'GET',
+                data: { 'uID': uID },
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (data) {
+                    $("#loadingScreen").hide();
+                    //console.log("Respuesta del Servidor " + data);
+                    // Procesar los datos recibidos y agregar filas a la tabla
+                    let dataSet = [];
+                    let users = data.itemJson;
+                    //console.table(users);
+                    if (data == null) {
+                        $("#loadingScreen").hide();
+                    }
+                    $.each(data.itemJson, function (index, cita) {
+                        let fechaCita = cita.aDate;
+                        let fechaFormateada = fechaCita.substring(0, 10);
+                        let rowData = [
+                            index + 1,
+                            cita.aID,
+                            cita.uName,
+                            cita.uCellphone,
+                            cita.uDoctorName,
+                            cita.aDescription,
+                            fechaFormateada,
+                            cita.aTime,
+                            cita.asName
+                        ];
+                        dataSet.push(rowData);
+                    });
+
+                    // Inicializa o actualiza el DataTable con los datos procesados
+                    tableCitas = $('#citasUsuario').DataTable({
+                        columns: [
+                            { title: '#' },
+                            { title: 'ID', visible: false },
+                            { title: 'Nombre' },
+                            { title: 'Celular' },
+                            { title: 'Doctor' },
+                            { title: 'Motivo' },
+                            { title: 'Fecha' },
+                            { title: 'Hora' },
+                            { title: 'Estado' },
+                            {
+                                title: 'Acciones',
+                                orderable: false, // Para desactivar la ordenación en esta columna
+                                data: null, // Usaremos la columna "Acciones" solo para botones
+                                defaultContent: '<button class="btn btn-primary btn-sm btnDesactivarC" data-toggle="tooltip" title="Cancelar Cita" type="button"> <i class="fas fa-ban"> </i></button> ' +
+                                    '<button class="btn btn-danger btn-sm btnEditarC" data-toggle="modal" data-target="#editarCitaModal" data-toggle="tooltip" title="Reprogramar Cita" style="display: none"> <i class="fa-regular fa-pen-to-square"></i></button> '
+                            }
+                        ],
+
+                        data: dataSet,
+                        dom: 'Bfrtip',
+                        buttons: {
+                            buttons: [
+                                {
+                                    extend: 'print', className: 'btn btn-sm',
+                                    messageTop: 'Citas SmileSoft',
+                                }
+                            ]
+                        },
+                        "paging": false,
+                        select: true,
+                        destroy: true,
+                        language: {
+                            url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json',
+                        },
+                        createdRow: function (row, data, dataIndex) {
+                            // Obtén el valor del estado en la columna "Estado"
+                            var estado = data[8]; // Asegúrate de que 8 sea el índice correcto para la columna "Estado"
+
+                            // Si el estado es "cancelado", oculta los botones en esta fila
+                            if (estado === 'Cancelado') {
+                                $(row).find('.btnDesactivarC, .btnEditarC').hide();
+                            }
+                        }
+
+                    });
+
+
+                    Swal.close();
+                    tableCitas.column(9).nodes().to$().find('.btnDesactivarC').click(function () {
+                        // Maneja la acción del botón aqui
+                        let data = tableCitas.row($(this).parents('tr')).data();
+                        let CitaID = data[1]; // la primera columna contiene el ID del usuario
+                        let CitaEstado = data[8];
+                        if (CitaEstado == "Realizado") {
+                            Swal.fire({
+                                icon: 'info',
+                                title: 'Oops...',
+                                text: 'La cita ya fue realizada, no se puede cancelar.',
+                                confirmButtonColor: '#008dc9'
+                            })
+                        } else if (CitaEstado == "Cancelado") {
+                            Swal.fire({
+                                icon: 'info',
+                                title: 'Oops...',
+                                text: 'La cita ya fue cancelada.',
+                                confirmButtonColor: '#008dc9'
+                            })
+                        } else if (CitaEstado == "Confirmado") {
+                            Swal.fire({
+                                icon: 'info',
+                                title: 'Oops...',
+                                text: 'La cita ya fue confirmada, no se puede cancelar.',
+                                confirmButtonColor: '#008dc9'
+                            })
+                        } else if (CitaEstado == "Pendiente") {
+                            Swal.fire({
+                                title: 'Cancelar Cita',
+                                text: '¿Está seguro que desea cancelar la cita?',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonText: 'Si, Cancelar Cita',
+                                cancelButtonText: 'Cancelar'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    $.ajax({
+                                        url: sessionStorage.urlEP + '/api/Appointments/v1/UpdateAppointmentStatus',
+                                        type: 'GET',
+                                        data: { 'aID': CitaID, 'asID': 4 },
+                                        contentType: "application/json",
+                                        dataType: 'json',
+                                        success: function (response) {
+                                            if (response.codeStatus == 0) {
+                                                Swal.fire({
+                                                    title: 'Cita Cancelada',
+                                                    text: 'La cita ha sido Cancelada exitosamente.',
+                                                    icon: 'success',
+                                                    confirmButtonText: 'Aceptar'
+                                                }).then((result) => {
+                                                    if (result.isConfirmed) {
+                                                        location.reload();
+                                                    }
+                                                })
+                                            }
+                                            else if (response.codeStatus == -1) {
+                                                Swal.fire({
+                                                    title: 'Error',
+                                                    text: response.messageStatus,
+                                                    icon: 'error',
+                                                    confirmButtonText: 'Aceptar'
+                                                })
+                                            }
+
+                                        },
+                                        error: function (error) {
+                                            console.log('Error al obtener los detalles del usuario.');
+                                        }
+
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            location.reload();
+                                        }
+                                    })
+                                }
+                            })
+                        }
+
+                    });
+                    tableCitas.column(9).nodes().to$().find('.btnEditarC').click(function () {
+                        // Maneja la acción del botón aqui
+                        let data = tableCitas.row($(this).parents('tr')).data();
+                        let CitaID = data[1]; // la primera columna contiene el ID del usuario
+                        Swal.fire({
+                            title: 'Reprogramar Cita',
+                            text: '¿Está seguro que desea reprogramar la cita?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonText: 'Si, reprogramar',
+                            cancelButtonText: 'Cancelar'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    url: sessionStorage.urlEP + '/api/Appointments/v1/UpdateAppointmentStatus',
+                                    type: 'POST',
+                                    data: { 'aID': CitaID },
+                                    contentType: "application/json",
+                                    dataType: 'json',
+                                    success: function (response) {
+                                        if (response.codeStatus == 0) {
+                                            Swal.fire({
+                                                title: 'Cita Cancelada',
+                                                text: 'La cita ha sido Cancelada exitosamente.',
+                                                icon: 'success',
+                                                confirmButtonText: 'Aceptar'
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    location.reload();
+                                                }
+                                            })
+                                        }
+                                        else if (response.codeStatus == -1) {
+                                            Swal.fire({
+                                                title: 'Error',
+                                                text: response.messageStatus,
+                                                icon: 'error',
+                                                confirmButtonText: 'Aceptar'
+                                            })
+                                        }
+
+                                    },
+                                    error: function (error) {
+                                        console.log('Error al obtener los detalles del usuario.');
+                                    }
+
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        location.reload();
+                                    }
+                                })
+                            }
+                        })
+
+
+                    });
+
+                }
+            });
+        };
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+
+        });
+    </script>
+
+    <script>
+
+        // function ageValidation(birthDate) {
+        //     // Obtener la fecha actual
+        //     let fechaActual = new Date();
+
+        //     // Calcular la fecha de nacimiento a partir de la cadena de fecha
+        //     let fechaNac = new Date(birthDate);
+
+        //     // Calcular la diferencia en años
+        //     let edad = fechaActual.getFullYear() - fechaNac.getFullYear();
+
+        //     // Verificar si el cumpleaños ya ocurrió este año o no
+        //     if (
+        //         (fechaNac.getMonth() > fechaActual.getMonth()) ||
+        //         (fechaNac.getMonth() === fechaActual.getMonth() && fechaNac.getDate() > fechaActual.getDate())
+        //     ) {
+        //         edad--;
+        //     }
+
+        //     // Comprobar si la edad es mayor o igual a 18 y menor o igual a 100
+        //     return edad >= 18 && edad <= 100;
+        // }
+
+        function SolicitarCitaPaciente() {
+
+            //Datos de la Cita
+            let date = document.getElementById("fecha").value.trim();
+            let time = document.getElementById("cHora").value.trim() + ':00';
+            let doctor = document.getElementById("cDoctor").value.trim();
+            let message = document.getElementById("mensaje").value.trim();
+
+            let data = {
+                //Datos de la cuenta
+                uID: parseInt(sessionStorage.getItem("userID")),
+                utID: 3,
+                oID: 1,
+                //uLoginName: documentID,
+                //uPassword: documentID,
+                //uStatus: true,
+
+                //Datos Personales
+                uName: sessionStorage.getItem("userFName"),
+                ulastName: sessionStorage.getItem("userLName"),
+                uDocument: sessionStorage.getItem("userDocument"),
+                dtID: parseInt(sessionStorage.getItem("usertDocument")),
+                uBirthDate: sessionStorage.getItem("userBirthDate"),
+                gID: parseInt(sessionStorage.getItem("userGender")),
+                //Datos de Contacto
+                uEmailAddress: sessionStorage.getItem("userEmail"),
+                uCellphone: sessionStorage.getItem("userPhone"),
+
+                //Datos de la Cita
+                asID: 0,
+                aID: 0,
+                aDate: date,
+                aTime: time,
+                dID: parseInt(doctor),
+                aDescription: message
+
+            };
+            if (data.aDate == "" || data.aTime == "" || data.dID == 0 || data.aDescription == "") {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Oops...',
+                    text: 'Por favor ingrese todos los datos.',
+                    confirmButtonColor: '#008dc9'
+                })
+                return;
+            } if (data.dID == 0) {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Oops...',
+                    text: 'Por favor seleccione una Especialidad y un doctor.',
+                    confirmButtonColor: '#008dc9'
+                })
+                return;
+            } else {
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@ViewBag.urlEndPoint' + '/api/Appointments/v1/SetAppointment', // Ruta para crear o actualizar usuarios
+                    data: JSON.stringify(data),
+                    contentType: 'application/json',
+                    success: function (response) {
+                        console.log(response.OutputCodeError);
+                        if (response.codeStatus === '0') {
+                            // Registro exitoso, puedes redirigir al usuario o mostrar un mensaje de éxito
+                            //alert('Usuario registrado con éxito.');
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Cita Solicitada con éxito',
+                                confirmButtonColor: '#008dc9',
+                                allowOutsideClick: false,
+                                allowEscapeKey: false,
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload();
+                                }
+                            });
+                        } else if (response.codeStatus === '-1') {
+                            Swal.fire({
+                                icon: 'info',
+                                title: 'Oops...',
+                                text: response.messageStatus,
+                                confirmButtonColor: '#008dc9'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload();
+                                }
+                            });
+                        }
+                    },
+                    error: function (error) {
+                        // Manejar errores de la solicitud AJAX
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Se presento un error al guardar la información',
+                            confirmButtonColor: '#008dc9'
+                        })
+                    }
+                });
+            }
+        }
+
+    </script>
+}
