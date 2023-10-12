@@ -1,23 +1,70 @@
 ﻿
-    <nav aria-label="breadcrumb" class="main-breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"> @* <a asp-controller="Home" asp-action="Index">Inicio</a>  *@Inicio</li>
-            <li class="breadcrumb-item">Sitio</li>
-            <li class="breadcrumb-item active" aria-current="page">
-                Ajustes del Sitio
-            </li>
-        </ol>
-    </nav>
+<nav aria-label="breadcrumb" class="main-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"> @* <a asp-controller="Home" asp-action="Index">Inicio</a>  *@Inicio</li>
+        <li class="breadcrumb-item">Sitio</li>
+        <li class="breadcrumb-item active" aria-current="page">
+            Ajustes del Sitio
+        </li>
+    </ol>
+</nav>
 
-    <div class="row gutters-sm">
-        <div class="col-md-4 d-none d-md-block">
-            <div class="card">
-                <div class="card-body">
-                    <nav class="nav flex-column nav-pills nav-gap-y-1">
-                        <!-- Ajustes del Sitio -->
-                        <a href="#sitesettings"
-                           data-toggle="tab"
-                           class="nav-item nav-link has-icon nav-link-faded">
+<div class="row gutters-sm">
+    <div class="col-md-4 d-none d-md-block">
+        <div class="card">
+            <div class="card-body">
+                <nav class="nav flex-column nav-pills nav-gap-y-1">
+                    <!-- Ajustes del Sitio -->
+                    <a href="#sitesettings"
+                       data-toggle="tab"
+                       class="nav-item nav-link has-icon nav-link-faded">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             width="24"
+                             height="24"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="2"
+                             stroke-linecap="round"
+                             stroke-linejoin="round"
+                             class="feather feather-settings mr-2">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg> Ajustes del Sitio
+                    </a>
+                    <a href="#wpsettings"
+                       data-toggle="tab"
+                       class="nav-item nav-link has-icon nav-link-faded">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 384 512" style="fill: #008cce"  class="feather feather-user mr-2" fill="none"
+                             stroke="currentColor"
+                             stroke-width="2"
+                             stroke-linecap="round"
+                             stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M256 48V64c0 17.7-14.3 32-32 32H160c-17.7 0-32-14.3-32-32V48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H256zM0 64C0 28.7 28.7 0 64 0H320c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zM160 320h64c44.2 0 80 35.8 80 80c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16c0-44.2 35.8-80 80-80zm-32-96a64 64 0 1 1 128 0 64 64 0 1 1 -128 0z" />
+                        </svg> Ajustes de Contacto
+                    </a>
+
+
+                </nav>
+            </div>
+        </div>
+        <div class="card shadow mb-4 my-2">
+            <div class="card-header py-3">
+                <h4 class="text-danger align-content-center fw-bold m-0">Importante!!</h4>
+            </div>
+            <div>
+                <img class="w-100 img-fluid rounded" src="~/assets/img/anuncios/SmileSoft.png" alt="Slide Image">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header border-bottom mb-3 d-flex d-md-none">
+                <ul class="nav nav-tabs card-header-tabs nav-gap-x-1"
+                    role="tablist">
+                    <li class="nav-item">
+                        <a href="#sitesettings" data-toggle="tab" class="nav-link has-icon">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                  width="24"
                                  height="24"
@@ -27,128 +74,70 @@
                                  stroke-width="2"
                                  stroke-linecap="round"
                                  stroke-linejoin="round"
-                                 class="feather feather-settings mr-2">
+                                 class="feather feather-settings">
                                 <circle cx="12" cy="12" r="3"></circle>
                                 <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                            </svg>Ajustes del Sitio
+                            </svg>
                         </a>
-                        @*<a href="#contentsettings"
-                    data-toggle="tab"
-                    class="nav-item nav-link has-icon nav-link-faded">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="feather feather-shield mr-2">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                    </svg>Ajustes de Contenido
-                    </a>*@
+                        <a href="#wpsettings" data-toggle="tab" class="nav-link has-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 384 512" style="fill: #008cce" class="feather feather-user mr-2" fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="2"
+                                 stroke-linecap="round"
+                                 stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <path d="M256 48V64c0 17.7-14.3 32-32 32H160c-17.7 0-32-14.3-32-32V48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H256zM0 64C0 28.7 28.7 0 64 0H320c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zM160 320h64c44.2 0 80 35.8 80 80c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16c0-44.2 35.8-80 80-80zm-32-96a64 64 0 1 1 128 0 64 64 0 1 1 -128 0z" />
+                            </svg>
+                        </a>
+                    </li>
 
 
-                    </nav>
-                </div>
+                </ul>
             </div>
-            <div class="card shadow mb-4 my-2">
-                <div class="card-header py-3">
-                    <h4 class="text-danger align-content-center fw-bold m-0">Importante!!</h4>
-                </div>
-                <div>
-                    <img class="w-100 img-fluid rounded" src="~/assets/img/anuncios/SmileSoft.png" alt="Slide Image">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header border-bottom mb-3 d-flex d-md-none">
-                    <ul class="nav nav-tabs card-header-tabs nav-gap-x-1"
-                        role="tablist">
-                        <li class="nav-item">
-                            <a href="#sitesettings" data-toggle="tab" class="nav-link has-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                     width="24"
-                                     height="24"
-                                     viewBox="0 0 24 24"
-                                     fill="none"
-                                     stroke="currentColor"
-                                     stroke-width="2"
-                                     stroke-linecap="round"
-                                     stroke-linejoin="round"
-                                     class="feather feather-settings">
-                                    <circle cx="12" cy="12" r="3"></circle>
-                                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                                </svg>
-                            </a>
-                        </li>
-                        @*<li class="nav-item">
-                    <a href="#contentsettings"
-                    data-toggle="tab"
-                    class="nav-link has-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="feather feather-shield">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                    </svg>
-                    </a>
-                    </li>*@
+            <div class="card-body tab-content">
+                <!-- Ajustes del Sitio -->
+                <div class="tab-pane active" id="sitesettings">
+                    <h6>Opciones del Sitio</h6>
+                    <hr />
+                    <div class="card shadow mb-3">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold">Logos del Sitio</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <form>
 
-                    </ul>
-                </div>
-                <div class="card-body tab-content">
-                    <!-- Ajustes del Sitio -->
-                    <div class="tab-pane active" id="sitesettings">
-                        <h6>Opciones del Sitio</h6>
-                        <hr />
-                        <div class="card shadow mb-3">
-                            <div class="card-header py-3">
-                                <p class="text-primary m-0 fw-bold">Logos del Sitio</p>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                        <form>
+                                        <div class="mb-3">
+                                            <label for="ChangeLogo" class="form-label"><span id="ChangeLogoLabel">Cambiar Logo del Login</span></label>
+                                            <input class="form-control" type="file" id="ChangeLogo" accept=".jpg, .png" disabled>
+                                            <div class="mb-3 my-2 "><button class="btn btn-primary btn-en-desarrollo" type="submit" disabled>Subir</button></div>
 
-
-                                            <div class="mb-3">
-                                                <label for="ChangeLogo" class="form-label"><span id="ChangeLogoLabel">Cambiar Logo del Login</span></label>
-                                                <input class="form-control" type="file" id="ChangeLogo" accept=".jpg, .png" disabled>
-                                                <div class="mb-3 my-2 "><button class="btn btn-primary btn-en-desarrollo" type="submit" disabled>Subir</button></div>
-
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col">
+                                    <form>
+                                        <div class="mb-3">
+                                            <label for="logoInput" class="form-label">Cambiar Logo Menu Principal</label>
+                                            <input class="form-control" type="file" id="logoInput" accept=".jpg, .png">
+                                            <div class="mb-3 my-2">
+                                                <button class="btn btn-primary" type="button" id="updateLogo">Subir</button>
                                             </div>
-                                        </form>
-                                    </div>
-                                    <div class="col">
-                                        <form>
-                                            <div class="mb-3">
-                                                <label for="ChangeMainLogo" class="form-label">Cambiar Logo Menu Principal</label>
-                                                <input class="form-control" type="file" id="ChangeMainLogo" accept=".jpg, .png" disabled>
-                                                <div class="mb-3 my-2">
-                                                    <button class="btn btn-primary btn-en-desarrollo" type="submit" disabled>Subir</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                        <div class="card shadow mb-3">
-                            <div class="card-header py-3">
-                                <p class="text-primary m-0 fw-bold">Colores del Sitio</p>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
+                    </div>
+                    <div class="card shadow mb-3">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold">Colores del Sitio</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row ">
+                                <div class="col-md-6">
+                                    <div class="card-body shadow align-content-center justify-content-center">
                                         <form>
                                             <div class="form-group">
                                                 <label for="BackgroundColor" class="form-label"> Cambiar Color Fondo del Sitio</label>
@@ -158,7 +147,9 @@
                                             </button>
                                         </form>
                                     </div>
-                                    <div class="col">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="card-body shadow align-content-center justify-content-center">
                                         <form>
                                             <div class="form-group">
                                                 <label for="SidebarColor">Cambiar Color de la Barra Lateral</label>
@@ -168,7 +159,11 @@
                                             </button>
                                         </form>
                                     </div>
-                                    <div class="col">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="card-body shadow align-content-center justify-content-center">
                                         <form>
                                             <div class="form-group">
                                                 <label for="NavbarColor">Cambiar Color de la Barra Superior</label>
@@ -179,80 +174,98 @@
                                             </button>
                                         </form>
                                     </div>
-                                    <select id="colorSelector">
-                                        <option value="bg-primary">Azul</option>
-                                        <option value="bg-danger">Rojo</option>
-                                        <option value="bg-success">Verde</option>
-                                        <!-- Agrega más opciones de colores según tus necesidades -->
-                                    </select>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Fin Ajustes del -->
-                    <!-- Ajustes de Contenido -->
-                    <div class="tab-pane" id="contentsettings">
-                        <h6>Ajustes del Contenido</h6>
-                        <hr />
-                        <form>
-                            <div class="form-group">
-                                <label class="d-block">Change Password</label>
-                                <input type="text"
-                                       class="form-control"
-                                       placeholder="Enter your old password" />
-                                <input type="text"
-                                       class="form-control mt-1"
-                                       placeholder="New password" />
-                                <input type="text"
-                                       class="form-control mt-1"
-                                       placeholder="Confirm new password" />
-                            </div>
-                        </form>
-                        <hr />
-                        <form>
-                            <div class="form-group">
-                                <label class="d-block">Two Factor Authentication</label>
-                                <button class="btn btn-info btn-en-desarrollo" type="button">
-                                    Enable two-factor authentication
-                                </button>
-                                <p class="small text-muted mt-2">
-                                    Two-factor authentication adds an additional layer of
-                                    security to your account by requiring more than just a
-                                    password to log in.
-                                </p>
-                            </div>
-                        </form>
-                        <hr />
-                        <form>
-                            <div class="form-group mb-0">
-                                <label class="d-block">Sessions</label>
-                                <p class="font-size-sm text-secondary">
-                                    This is a list of devices that have logged into your
-                                    account. Revoke any sessions that you do not recognize.
-                                </p>
-                                <ul class="list-group list-group-sm">
-                                    <li class="list-group-item has-icon">
-                                        <div>
-                                            <h6 class="mb-0">San Francisco City 190.24.335.55</h6>
-                                            <small class="text-muted">Your current session seen in United States</small>
-                                        </div>
-                                        <button class="btn btn-light btn-sm ml-auto btn-en-desarrollo"
-                                                type="button">
-                                            More info
-                                        </button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- Fin Ajustes de Contenido -->
-
                 </div>
+                <!-- Fin Ajustes del -->
+                <div class="tab-pane active" id="wpsettings">
+                    <h6>Ajustes de Contacto</h6>
+                    <hr />
+                    <div class="card shadow mb-3">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold">Whatsapp</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row ">
+                                <div class="col-md-12">
+                                    <div class="card-body shadow align-content-center justify-content-center">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="wpNumber" class="form-label"> Cambiar Número Contacto Whatsapp</label>
+                                                <input type="number" class="form-control" id="wpNumber">
+                                            </div><button type="button" class="btn btn-primary my-2">
+                                                Actualizar
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
+</div>
 
 @section Scripts{
+
+    <script>
+        let userRole = sessionStorage.getItem('userRole');
+        if (userRole !== '1') {
+            logoutUser();
+        }
+
+
+
+
+        document.getElementById('updateLogo').addEventListener('click', function () {
+            // Obtener el archivo seleccionado
+            const fileInput = document.getElementById('logoInput');
+            const file = fileInput.files[0];
+
+            if (file) {
+                // Crear una URL para la imagen seleccionada
+                const objectURL = URL.createObjectURL(file);
+
+                // Actualizar la fuente de la imagen en la barra de navegación
+                document.getElementById('navLogo').src = objectURL;
+
+                // Aquí puedes enviar la imagen al servidor para guardarla
+                // y asignarle un nombre único en tu directorio de imágenes.
+                // Luego, actualiza la fuente de la imagen en el servidor.
+
+                // También puedes considerar la posibilidad de almacenar la
+                // ruta de la imagen en tu base de datos para recuperarla
+                // cuando sea necesario.
+            }
+        });
+        // Cambiar el color de fondo
+        $("#BackgroundColor").on("input", function () {
+            const color = $(this).val();
+            console.log("Aplicando color a Fondo");
+            // $("#SiteContainerRender").css("background-color", color);
+            $("#content-wrapper").css("background-color", color);
+        });
+        // Cambiar el color de la barra lateral
+        $("#SidebarColor").on("input", function () {
+            const color = $(this).val();
+            console.log("Aplicando color a SideBar");
+            $("#sidebar").css("background-color", color);
+        });
+        // Cambiar el color de la barra lateral
+        $("#NavbarColor").on("input", function () {
+            const color = $(this).val();
+            console.log("Aplicando color a Barra Superior");
+            $("#nav_bar").removeClass("bg-primary");
+            $("#nav_bar").css("background-color", color);
+        });
+    </script>
 
     <script>
         // Agrega un manejador de eventos para la clase "btn-en-desarrollo"
@@ -269,6 +282,21 @@
                     })
                 });
             });
+        });
+    </script>
+
+    <script>
+        // Obtén el enlace de WhatsApp y el campo de entrada por sus IDs
+        const whatsappLink = document.getElementById("whatsappLink");
+        const wpNumberInput = document.getElementById("wpNumber");
+
+        // Agrega un escuchador de eventos al campo de entrada para detectar cambios
+        wpNumberInput.addEventListener("input", function () {
+            // Obten el valor actual del campo de entrada
+            const nuevoNumero = wpNumberInput.value;
+
+            // Actualiza el enlace de WhatsApp con el nuevo número
+            whatsappLink.href = `https://api.whatsapp.com/send?phone=${nuevoNumero}&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20.`;
         });
     </script>
     <script src="~/assets/js/jquery.min.js"></script>

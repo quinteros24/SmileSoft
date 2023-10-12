@@ -399,7 +399,8 @@
             }
 
             const fechaNacimientoInput = document.getElementById('birthDatep');
-            const esMayorDe18 = validarEdadMayorDe18('fechaNacimientoed');
+            console.log(fechaNacimientoInput.value);
+            const esMayorDe18 = validarEdadMayorDe18('birthDatep');
 
             if (updatedUserData.uName === "" || updatedUserData.uLastName === "") {
                 Swal.fire({

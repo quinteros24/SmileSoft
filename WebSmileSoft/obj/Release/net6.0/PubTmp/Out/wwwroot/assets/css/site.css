@@ -40,34 +40,13 @@ body {
     }
 }
 
-.img-hover:hover {
-    transform: scale(1.02); /* Aumenta el tamaño en un 10% */
-    transition: transform 0.4s ease; /* Agrega una transición suave */
-}
-
-/*.nav-item:hover {*/
-/*background-color: #f8f9fa;*/
-/*background-color: #f8f9fa;*/
-/*font-size: 1.1rem;
-    transform: scale(1.01);
-    border-radius: 5px;*/
-/*color: #0094ff;*/
-/*transition: transform 0.4s ease;*/ /* Agrega una transición suave */
-/*}*/
-.nav-item2:hover {
-    background-color: #E0E0E0; /* Cambia al color primario de Bootstrap */
-    font-size: 1.1rem;
-    transform: scale(1.01); /* Aumenta ligeramente el tamaño al hacer hover */
-    border-radius: 5px;
-    transition: background-color 0.4s ease, transform 0.4s ease; /* Agrega una transición suave tanto al color de fondo como al tamaño */
-}
 
 .hide-on-load {
     display: none;
 }
 
-Modifica tu H
-/* Oculta todos los elementos de menú por defecto */
+/*Modifica tu H
+*//* Oculta todos los elementos de menú por defecto */
 #liAdmin, #liDoctor, #liUser, #divAdmin, #divDoctor, #divUser, #contenido {
     display: none;
 }
@@ -189,64 +168,7 @@ Modifica tu H
 }
 
 
-.cardClock {
-    width: 200px;
-    height: 100px;
-    background: rgb(17, 4, 134);
-    border-radius: 15px;
-    box-shadow: rgb(0,0,0,0.7) 5px 10px 50px,rgb(0,0,0,0.7) -5px 0px 250px;
-    display: flex;
-    color: white;
-    justify-content: center;
-    position: relative;
-    flex-direction: column;
-    background: linear-gradient(to right, rgb(0 142 197), rgb(211 217 223));
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    overflow: hidden;
-}
 
-    .cardClock:hover {
-        box-shadow: rgb(0,0,0) 5px 10px 50px,rgb(0,0,0) -5px 0px 250px;
-    }
-
-.time-text {
-    font-size: 45px;
-    margin-top: 10px;
-    margin-left: 15px;
-    font-weight: 600;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-
-.time-sub-text {
-    font-size: 15px;
-    margin-left: 5px;
-}
-
-.day-text {
-    font-size: 18px;
-    margin-top: 0px;
-    margin-left: 10px;
-    font-weight: 500;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-
-.moon {
-    font-size: 20px;
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    transition: all 0.3s ease-in-out;
-    opacity: 0; /* Oculta la luna por defecto */
-}
-
-.moon-visible {
-    opacity: 1; /* Muestra la luna cuando sea de noche */
-}
-
-.cardClock:hover > .moon {
-    font-size: 23px;
-}
 
 .loader {
     width: 16em;
@@ -378,7 +300,7 @@ Modifica tu H
     }
 }
 
-.card-admin{
+.card-admin {
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     overflow: hidden;
@@ -389,3 +311,85 @@ Modifica tu H
         transition: all 0.3s ease-in-out;
         box-shadow: rgb(0,0,0) 5px 10px 50px,rgb(0,0,0) -5px 0px 250px;
     }
+
+/*div.dataTables_wrapper div.dataTables_filter label {
+    display: block;
+}*/
+
+div.dataTables_wrapper div.dataTables_filter input {
+    width: 100%;
+    margin: 0;
+}
+/* Estilo para el contenedor de la tabla */
+/* Ocultar desplazamiento en X de las tablas */
+
+
+:root {
+    --primary: #007FFF;
+    --secondary: #6F7E8C;
+    --box: #F5F5F5;
+    --text: #212121;
+}
+
+.centering {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background: var(--primary);
+}
+
+.box {
+    background-color: var(--box);
+    max-width: 400px;
+    width: 100%;
+    min-height: 200px;
+    display: grid;
+    place-items: center;
+    border-radius: 24px;
+}
+
+.search {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    border-radius: 40px;
+    padding: 10px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    font-size: 24px;
+    color: transparent;
+    border: 3px solid var(--primary);
+    transition: width 300ms, background-position 300ms;
+    overflow: hidden;
+    background: url(search-bold.svg) no-repeat transparent;
+    background-size: 40px;
+    background-position: 45% 50%;
+}
+
+    .search:hover {
+        cursor: pointer;
+        border: 3px solid var(--primary);
+        background: url(search-bold.svg) no-repeat transparent;
+        background-size: 40px;
+        background-position: 45% 50%;
+    }
+
+    .search:focus, .search:not(:placeholder-shown) {
+        max-width: 300px;
+        width: 100%;
+        cursor: text;
+        color: var(--primary);
+        padding-left: 60px;
+        outline: none;
+        transition: width 500ms, background-position 300ms;
+        border: 3px solid var(--primary);
+        background-color: transparent;
+        background: url(search-bold.svg) no-repeat;
+        background-size: 40px;
+        background-position: 10px 50%;
+    }
+
+
+

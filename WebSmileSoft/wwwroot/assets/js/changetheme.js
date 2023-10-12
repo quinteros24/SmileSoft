@@ -1,4 +1,5 @@
-(function() {
+
+(function () {
 
     // JavaScript snippet handling Dark/Light mode switching
 
@@ -77,3 +78,63 @@
             })
     });
 })();
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Tu código aquí
+    if (document.getElementById("remember_me") !== null) {
+        var rememberMeCheckbox = document.getElementById("remember_me");
+        // Verifica si el usuario ya había seleccionado "Recordar usuario" anteriormente
+        if (localStorage.getItem("rememberUser") === "true") {
+            rememberMeCheckbox.checked = true;
+        }
+
+        // Agrega un controlador de eventos para guardar el estado del checkbox cuando cambie
+        rememberMeCheckbox.addEventListener("change", function () {
+            if (rememberMeCheckbox.checked) {
+                // Si el usuario selecciona "Recordar usuario", guarda la elección en el almacenamiento local
+                localStorage.setItem("rememberUser", "true");
+            } else {
+                // Si el usuario desmarca "Recordar usuario", elimina la elección del almacenamiento local
+                localStorage.removeItem("rememberUser");
+            }
+        });
+    }
+});
+
+(function (global) {
+
+    if (typeof (global) === "undefined") {
+        throw new Error("window is undefined");
+    }
+
+    var _hash = "!";
+    var noBackPlease = function () {
+        global.location.href += "#";
+
+        // making sure we have the fruit available for juice (^__^)
+        global.setTimeout(function () {
+            global.location.href += "!";
+        }, 50);
+    };
+
+    global.onhashchange = function () {
+        if (global.location.hash !== _hash) {
+            global.location.hash = _hash;
+        }
+    };
+
+    global.onload = function () {
+        noBackPlease();
+
+        // disables backspace on page except on input fields and textarea..
+        document.body.onkeydown = function (e) {
+            var elm = e.target.nodeName.toLowerCase();
+            if (e.which === 8 && (elm !== 'input' && elm !== 'textarea')) {
+                e.preventDefault();
+            }
+            // stopping event bubbling up the DOM tree..
+            e.stopPropagation();
+        };
+    }
+
+})(window);
