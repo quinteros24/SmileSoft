@@ -6,8 +6,11 @@
     "\\WebSmileSoft\\Views\\Account",
     "\\WebSmileSoft\\Views\\Admin",
     "\\WebSmileSoft\\Views\\Doctor",
-    "\\WebSmileSoft\\Views\\Patient"
+    "\\WebSmileSoft\\Views\\Patient",
+    "\\WebSmileSoft\\Views\\Shared",
+    "\\WebSmileSoft\\Views\\Shared\\Components",
+    "\\WebSmileSoft\\Views\\Shared\\Components\\Sidebar"
   ],
-  "SelectedNode": "\\WebSmileSoft\\Views\\Patient\\GestiondeCitas.cshtml",
+  "SelectedNode": "\\WebSmileSoft\\Views\\Shared\\Components\\Sidebar\\_Sidebar.cshtml",
   "PreviewInSolutionExplorer": false
 }
