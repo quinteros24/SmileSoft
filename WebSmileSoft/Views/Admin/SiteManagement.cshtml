@@ -101,7 +101,7 @@
                     <hr />
                     <div class="card shadow mb-3">
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 fw-bold">Logos del Sitio</p>
+                            <p class="text-primary m-0 fw-bold">Logos</p>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -132,7 +132,7 @@
                     </div>
                     <div class="card shadow mb-3">
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 fw-bold">Colores del Sitio</p>
+                            <p class="text-primary m-0 fw-bold">Colores</p>
                         </div>
                         <div class="card-body">
                             <div class="row ">
@@ -188,15 +188,15 @@
                         <div class="card-header py-3">
                             <p class="text-primary m-0 fw-bold">Whatsapp</p>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body shadow">
                             <div class="row ">
                                 <div class="col-md-12">
-                                    <div class="card-body shadow align-content-center justify-content-center">
+                                    <div class="align-content-center justify-content-center">
                                         <form>
                                             <div class="form-group">
                                                 <label for="wpNumber" class="form-label"> Cambiar Número Contacto Whatsapp</label>
                                                 <input type="number" class="form-control" id="wpNumber">
-                                            </div><button type="button" class="btn btn-primary my-2">
+                                            </div><button type="button" class="btn btn-primary my-2" id="updateWP">
                                                 Actualizar
                                             </button>
                                         </form>
@@ -216,90 +216,74 @@
 
 @section Scripts{
 
-    <script>
-        let userRole = sessionStorage.getItem('userRole');
-        if (userRole !== '1') {
-            logoutUser();
-        }
-
-
-
-
-        document.getElementById('updateLogo').addEventListener('click', function () {
-            // Obtener el archivo seleccionado
-            const fileInput = document.getElementById('logoInput');
-            const file = fileInput.files[0];
-
-            if (file) {
-                // Crear una URL para la imagen seleccionada
-                const objectURL = URL.createObjectURL(file);
-
-                // Actualizar la fuente de la imagen en la barra de navegación
-                document.getElementById('navLogo').src = objectURL;
-
-                // Aquí puedes enviar la imagen al servidor para guardarla
-                // y asignarle un nombre único en tu directorio de imágenes.
-                // Luego, actualiza la fuente de la imagen en el servidor.
-
-                // También puedes considerar la posibilidad de almacenar la
-                // ruta de la imagen en tu base de datos para recuperarla
-                // cuando sea necesario.
-            }
-        });
-        // Cambiar el color de fondo
-        $("#BackgroundColor").on("input", function () {
-            const color = $(this).val();
-            console.log("Aplicando color a Fondo");
-            // $("#SiteContainerRender").css("background-color", color);
-            $("#content-wrapper").css("background-color", color);
-        });
-        // Cambiar el color de la barra lateral
-        $("#SidebarColor").on("input", function () {
-            const color = $(this).val();
-            console.log("Aplicando color a SideBar");
-            $("#sidebar").css("background-color", color);
-        });
-        // Cambiar el color de la barra lateral
-        $("#NavbarColor").on("input", function () {
-            const color = $(this).val();
-            console.log("Aplicando color a Barra Superior");
-            $("#nav_bar").removeClass("bg-primary");
-            $("#nav_bar").css("background-color", color);
-        });
-    </script>
-
-    <script>
-        // Agrega un manejador de eventos para la clase "btn-en-desarrollo"
-        document.addEventListener("DOMContentLoaded", function () {
-            const buttons = document.querySelectorAll(".btn-en-desarrollo");
-            event.preventDefault();
-            buttons.forEach(function (button) {
-                button.addEventListener("click", function () {
+    <script src="~/assets/js/sitemanagement.js"></script>
+    @* <script>
+        // Obtén el enlace de WhatsApp y el campo de entrada por sus IDs
+        const wpNumberInput = document.getElementById("wpNumber");
+        const urlAPIset = `${sessionStorage.urlEP}/api/Generics/v1/SetContactNumber?oID=1&number=`;
+        // Agrega un escuchador de eventos al campo de entrada para detectar cambios
+        updateWP.addEventListener("click", function () {
+            // Obten el valor actual del campo de entrada
+            const nuevoNumero = wpNumberInput.value;
+            //Configurar numero whatsapp nuevo
+            //api/Generics/v1/SetContactNumber?oID=1'  "3024224517"
+            //oID=1&number=3024224517
+            fetch(sessionStorage.urlEP + '/api/Generics/v1/SetContactNumber?oID=1', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(nuevoNumero)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Algo salió mal!');
+                    }
+                })
+                .then(data => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Actualizado!',
+                        text: 'El número de Whatsapp ha sido actualizado',
+                        confirmButtonColor: '#008dc9'
+                    });
+                })
+                .catch(error => {
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
-                        text: 'Esta Función esta en Desarrollo!',
+                        text: error.message,
                         confirmButtonColor: '#008dc9'
-                    })
+                    });
+                });
+
+        });
+
+        fetch(sessionStorage.urlEP + '/api/Generics/v1/GetContactNumber?oID=1', {
+            method: 'PUT'
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Algo salió mal!');
+                }
+            })
+            .then(data => {
+                wpNumberInput.value = data.itemJson;
+            })
+            .catch(error => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: error.message,
+                    confirmButtonColor: '#008dc9'
                 });
             });
-        });
-    </script>
-
-    <script>
-        // Obtén el enlace de WhatsApp y el campo de entrada por sus IDs
-        const whatsappLink = document.getElementById("whatsappLink");
-        const wpNumberInput = document.getElementById("wpNumber");
-
-        // Agrega un escuchador de eventos al campo de entrada para detectar cambios
-        wpNumberInput.addEventListener("input", function () {
-            // Obten el valor actual del campo de entrada
-            const nuevoNumero = wpNumberInput.value;
-
-            // Actualiza el enlace de WhatsApp con el nuevo número
-            whatsappLink.href = `https://api.whatsapp.com/send?phone=${nuevoNumero}&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20.`;
-        });
-    </script>
+ 
+    </script> *@
     <script src="~/assets/js/jquery.min.js"></script>
     <script src="~/assets/js/popper.js"></script>
     <script src="~/assets/js/bootstrap.min.js"></script>
