@@ -320,76 +320,56 @@ div.dataTables_wrapper div.dataTables_filter input {
     width: 100%;
     margin: 0;
 }
-/* Estilo para el contenedor de la tabla */
-/* Ocultar desplazamiento en X de las tablas */
 
-
-:root {
-    --primary: #007FFF;
-    --secondary: #6F7E8C;
-    --box: #F5F5F5;
-    --text: #212121;
+.float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
 }
 
-.centering {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    background: var(--primary);
-}
-
-.box {
-    background-color: var(--box);
-    max-width: 400px;
-    width: 100%;
-    min-height: 200px;
-    display: grid;
-    place-items: center;
-    border-radius: 24px;
-}
-
-.search {
-    position: relative;
-    width: 64px;
-    height: 64px;
-    border-radius: 40px;
-    padding: 10px;
-    cursor: pointer;
-    background-repeat: no-repeat;
-    font-size: 24px;
-    color: transparent;
-    border: 3px solid var(--primary);
-    transition: width 300ms, background-position 300ms;
-    overflow: hidden;
-    background: url(search-bold.svg) no-repeat transparent;
-    background-size: 40px;
-    background-position: 45% 50%;
-}
-
-    .search:hover {
-        cursor: pointer;
-        border: 3px solid var(--primary);
-        background: url(search-bold.svg) no-repeat transparent;
-        background-size: 40px;
-        background-position: 45% 50%;
+    .float:hover {
+        text-decoration: none;
+        color: #25d366;
+        background-color: #fff;
     }
 
-    .search:focus, .search:not(:placeholder-shown) {
-        max-width: 300px;
-        width: 100%;
-        cursor: text;
-        color: var(--primary);
-        padding-left: 60px;
-        outline: none;
-        transition: width 500ms, background-position 300ms;
-        border: 3px solid var(--primary);
-        background-color: transparent;
-        background: url(search-bold.svg) no-repeat;
-        background-size: 40px;
-        background-position: 10px 50%;
+.my-float {
+    margin-top: 16px;
+}
+
+/* Agrega una animación para vibrar el icono */
+@keyframes rotateIcon {
+    0% {
+        transform: rotate(0deg);
     }
 
+    25% {
+        transform: rotate(10deg);
+    }
 
+    50% {
+        transform: rotate(0deg);
+    }
 
+    75% {
+        transform: rotate(-10deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+/* Aplica la animación al icono */
+#whatsappIcon {
+    animation: rotateIcon 5s linear infinite; /* Rota cada 60 segundos */
+}

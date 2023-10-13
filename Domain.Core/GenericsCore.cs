@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 
 namespace Domain.Core
 {
@@ -50,6 +51,51 @@ namespace Domain.Core
         public async Task<List<SelectListItem>> GetDoctors(int? spID = 0)
         {
             return await _genericsRepository.GetDoctors(spID);
+        }
+
+        public async Task<GenericResponseModel> GetUsersClinicStoryFormat(int oID)
+        {
+            return await _genericsRepository.GetUsersClinicStoryFormat(oID);
+        }
+
+        public async Task<GenericResponseModel> StoreUsersClinicStoryFormat(string jsonObject, int oID)
+        {
+            GenericResponseModel genericResponseModel = new();
+            genericResponseModel.MessageStatus = "Ha ocurrido un error con el formato JSON";
+            try
+            {
+                var validator = JsonConvert.DeserializeObject(jsonObject);
+                return await _genericsRepository.StoreUsersClinicStoryFormat(jsonObject, oID);
+            }
+            catch
+            {
+                return genericResponseModel;
+            }
+        }
+
+        public async Task<GenericResponseModel> SetUsersClinicStoryFormat(string jsonObject, int aID)
+        {
+            GenericResponseModel genericResponseModel = new();
+            genericResponseModel.MessageStatus = "Ha ocurrido un error con el formato JSON";
+            try
+            {
+                var validator = JsonConvert.DeserializeObject(jsonObject);
+                return await _genericsRepository.SetUsersClinicStoryFormat(jsonObject, aID);
+            }
+            catch
+            {
+                return genericResponseModel;
+            }
+        }
+
+        public async Task<GenericResponseModel> SetContactNumber(string cellphoneNumber, int oID)
+        {
+            return await _genericsRepository.SetContactNumber(cellphoneNumber, oID);
+        }
+
+        public async Task<GenericResponseModel> GetContactNumber(int oID)
+        {
+            return await _genericsRepository.GetContactNumber(oID);
         }
     }
 }
