@@ -101,9 +101,14 @@
         </div>@* @await Component.InvokeAsync("Footer") *@
     </div> @* <a class="border rounded d-inline scroll-to-top" href="#page-top" style="display:none"><i class="fas fa-angle-up"></i></a> *@
 
-
+    @* <a href="https://api.whatsapp.com/send?phone=3024214750&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20." class="float" target="_blank">
+        <i class="fa-brands fa-whatsapp my-float "></i>
+    </a> *@
+   
     <div id="logout-link" data-logout-url="@Url.Action("Login", "Account")"></div>
 
+
+    
     <!-- Custom Theme Script -->
     <script src="~/assets/js/theme.js" asp-append-version="true"></script>
 
@@ -123,6 +128,7 @@
     <script>
         function checkTokenAndRedirect() { sessionStorage.getItem("accessToken") ? 0 == sessionStorage.getItem("userStatus") && (console.log("Cuenta Inactiva"), sessionStorage.clear(), window.location.href = '@Url.Action("Login", "Account")') : window.location.href = '@Url.Action("Login", "Account")' } checkTokenAndRedirect(), setInterval(checkTokenAndRedirect, 6e4), $(document).ready(function () { var e = sessionStorage.getItem("userRole"); mostrarElementosPorRol(e), CambiarVinculoLogo(e), verifyToken() });
     </script>
+    
     @* <script>
 
     function checkTokenAndRedirect() {

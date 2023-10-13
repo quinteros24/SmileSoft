@@ -40,5 +40,44 @@ namespace EpSmileSoft.Controllers
             return await _genericsCore.GetDoctors(spID);
         }
 
+        [HttpGet]
+        [Route("v1/GetUsersClinicStoryFormat")]
+        public async Task<GenericResponseModel> GetUsersClinicStoryFormat(int oID)
+        {
+            return await _genericsCore.GetUsersClinicStoryFormat(oID);
+        }
+
+        //Setea la configuración del json
+        [HttpPost]
+        [Route("v1/StoreUsersClinicStoryFormat")]
+        public async Task<GenericResponseModel> StoreUsersClinicStoryFormat([FromBody] string jsonObject, int oID)
+        {
+            return await _genericsCore.StoreUsersClinicStoryFormat(jsonObject, oID);
+        }
+
+        //Setea la historia clínica del paciente
+        [HttpPut]
+        [Route("v1/SetUsersClinicStoryFormat")]
+        public async Task<GenericResponseModel> SetUsersClinicStoryFormat([FromBody] string jsonObject, int aID)
+        {
+            return await _genericsCore.SetUsersClinicStoryFormat(jsonObject, aID);
+        }
+
+        //Setea el numero de contacto para las redes sociales
+        [HttpPut]
+        [Route("v1/SetContactNumber")]
+        public async Task<GenericResponseModel> SetContactNumber([FromBody] string cellphoneNumber, int oID)
+        {
+            return await _genericsCore.SetContactNumber(cellphoneNumber, oID);
+        }
+
+        //Obtiene el numero de contacto para las redes sociales
+        [HttpPut]
+        [Route("v1/GetContactNumber")]
+        public async Task<GenericResponseModel> GetContactNumber(int oID)
+        {
+            return await _genericsCore.GetContactNumber(oID);
+        }
+
     }
 }

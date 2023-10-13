@@ -321,3 +321,56 @@ div.dataTables_wrapper div.dataTables_filter input {
     margin: 0;
 }
 
+.float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
+}
+
+    .float:hover {
+        text-decoration: none;
+        color: #25d366;
+        background-color: #fff;
+    }
+
+.my-float {
+    margin-top: 16px;
+}
+
+/* Agrega una animación para vibrar el icono */
+@keyframes rotateIcon {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(10deg);
+    }
+
+    50% {
+        transform: rotate(0deg);
+    }
+
+    75% {
+        transform: rotate(-10deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+/* Aplica la animación al icono */
+#whatsappIcon {
+    animation: rotateIcon 5s linear infinite; /* Rota cada 60 segundos */
+    z-index: 100;
+}
