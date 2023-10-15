@@ -1,8 +1,7 @@
-﻿
-
-<section>
+﻿<section>
     @* <div class="d-sm-flex justify-content-between align-items-center mb-4">
-    <h3 class="mb-0 text-primary">Dashboard</h3>@*<a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Generate Report</a>
+    <h3 class="mb-0 text-primary">Dashboard</h3>@*<a class="btn btn-primary btn-sm d-none d-sm-inline-block"
+    role="button" href="#"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Generate Report</a>
     </div> *@
     <div class="row justify-content-center">
         <div class="row">
@@ -11,8 +10,10 @@
                     <div class="card-body">
                         <div class="row align-items-center no-gutters">
                             <div class="col me-2">
-                                <div class="text-uppercase text-primary fw-bold text-xs mb-1"><span>Pacientes Registrados</span></div>
-                                <div class=" fw-bold h5 mb-0"><span class="align-items-center" id="userCount"></span></div><!-- Cargar datos de la base de datos -->
+                                <div class="text-uppercase text-primary fw-bold text-xs mb-1"><span>Pacientes
+                                        Registrados</span></div>
+                                <div class=" fw-bold h5 mb-0"><span class="align-items-center" id="userCount"></span>
+                                </div><!-- Cargar datos de la base de datos -->
                             </div>
                             <div class="col-auto"><i class="fa-solid fa-user fa-2x text-gray-300"></i></div>
                         </div>
@@ -24,8 +25,10 @@
                     <div class="card-body">
                         <div class="row align-items-center no-gutters">
                             <div class="col me-2">
-                                <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Doctores Registrados</span></div>
-                                <div class="fw-bold h5 mb-0"><span id="userDoctor"></span></div><!-- Cargar datos de la base de datos -->
+                                <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Doctores
+                                        Registrados</span></div>
+                                <div class="fw-bold h5 mb-0"><span id="userDoctor"></span></div>
+                                <!-- Cargar datos de la base de datos -->
                             </div>
                             <div class="col-auto"><i class="fa-solid fa-user-doctor fa-2x text-gray-300"></i></div>
                         </div>
@@ -37,8 +40,10 @@
                     <div class="card-body">
                         <div class="row align-items-center no-gutters">
                             <div class="col me-2">
-                                <div class="text-uppercase text-info fw-bold text-xs mb-1"><span>Admin... Registrados</span></div>
-                                <div class="fw-bold h5 mb-0"><span id="userAdmin"></span></div><!-- Cargar datos de la base de datos -->
+                                <div class="text-uppercase text-info fw-bold text-xs mb-1"><span>Admin...
+                                        Registrados</span></div>
+                                <div class="fw-bold h5 mb-0"><span id="userAdmin"></span></div>
+                                <!-- Cargar datos de la base de datos -->
                             </div>
                             <div class="col-auto"><i class="fa-solid fa-user fa-2x text-gray-300"></i></div>
                         </div>
@@ -47,17 +52,29 @@
             </div>
             <div class="col-md-6 col-xl-3 mb-4">
 
-               @*  <div class="cardClock">
-                    <p class="time-text" id="time"><span>11:11</span></p>
-                    <p class="day-text" id="date">Wednesday, June 15th</p>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" stroke-width="0" fill="currentColor" stroke="currentColor" class="moon"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path><path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path></svg>
+                @* <div class="cardClock">
+                <p class="time-text" id="time"><span>11:11</span></p>
+                <p class="day-text" id="date">Wednesday, June 15th</p>
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" stroke-width="0"
+                fill="currentColor" stroke="currentColor" class="moon"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208
+                7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1
+                .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312
+                5.124.06A.752.752 0 0 1 6 .278z"></path><path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387
+                1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097
+                1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0
+                0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274
+                0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0
+                0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0
+                0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path></svg>
                 </div> *@
                 <div class="card shadow border-start-success py-2 card-admin">
                     <div class="card-body">
                         <div class="row align-items-center no-gutters">
                             <div class="col me-2">
-                                <div class="text-uppercase text-warning fw-bold text-xs mb-1"><span>Citas Registradas</span></div>
-                                <div class="fw-bold h5 mb-0"><span id="dateRequest"></span></div><!-- Cargar datos de la base de datos -->
+                                <div class="text-uppercase text-warning fw-bold text-xs mb-1"><span>Citas
+                                        Registradas</span></div>
+                                <div class="fw-bold h5 mb-0"><span id="dateRequest"></span></div>
+                                <!-- Cargar datos de la base de datos -->
                             </div>
                             <div class="col-auto"><i class="fa-solid fa-user fa-2x text-gray-300"></i></div>
                         </div>
@@ -91,7 +108,8 @@
 </section>
 
 <!-- Modal Editar Cita -->
-<div class="modal fade" id="reprogramarCita" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="reprogramarCita" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -121,6 +139,7 @@
 
         </div>
     </div>
+
 </div>
 
 
@@ -340,7 +359,7 @@
                         }
 
                     });
-                    if(dateStatus == "Cancelado"){
+                    if (dateStatus == "Cancelado") {
                         $('btnDesactivarC').hide();
                     }
                     Swal.close();
@@ -439,12 +458,27 @@
                             },
                             inputPlaceholder: 'Selecciona el estado de la cita',
                             showCancelButton: true,
+                            html: "<div id='form-history-content'></div>",
+                            didOpen: function (ele) {
+                                $(ele).find('.swal2-select').insertBefore($(ele).find('.swal2-content div'));
+                                Swal.getInput().addEventListener('change', (event) => {
+                                    if (event.target.value == 3) {
+                                        $("#form-history-content").append('<button type="button" class="btn btn-primary" id="createFormHistory">Agregar historia clínica</button>');
+
+                                        $("#createFormHistory").click(() => createFormHistory(CitaID));
+                                    } else {
+                                        $("#form-history-content").empty();
+                                    }
+                                })
+                            },
                             inputValidator: (value) => {
                                 return new Promise((resolve) => {
                                     if (value > 0) {
+                                        console.log(value)
+
                                         // alert(value);
                                         //resolve(value); // Si se selecciona un estado, resolvemos con ese valor
-                                        changeDateStatus(value, CitaID);
+                                        //changeDateStatus(value, CitaID);
                                     } else {
                                         resolve('Debes seleccionar un estado de cita.');
                                     }
@@ -460,9 +494,123 @@
             });
         }
 
+        function createFormHistory(citaID) {
+            Swal.close();
+            // TODO hacer petición para obtener la estructura del formulario
+
+            let structure = [
+                {
+                    id: 1,
+                    type: 'multiple',
+                    name: 'Ha tenido dolor?',
+                    options: [
+                        'intenso',
+                        'suave',
+                        'moderado'
+                    ]
+                },
+                {
+                    id: 2,
+                    type: 'open',
+                    name: 'Cómo se ha sentido el dolor?',
+                    options: null
+                },
+                {
+                    id: 3,
+                    type: 'close',
+                    name: 'Le gustaría volver a sentirlo?',
+                    options: null
+                }
+            ];
+
+            let questionTypes = {
+                'open': function (question) {
+                    let inputField = $(`<input type="text" id="${question.id}" class="form-control"></input>`);
+                    let container = $('<div class="form-group"></div>').append(
+                        `<label for="${question.id}">` + question.name + '</label><br>', inputField);
+
+                    return container
+                },
+                'close': function (question) {
+
+
+                    let checkBox1 = $(`<input class="form-check-input" id="${question.id}" type="checkbox" >`).attr('value', "SI");
+
+                    let label1 = $(`<label class="form-check-label" for="${question.id}">`).text("SI");
+
+                    let checkBox2 = $(`<input class="form-check-input" id="${question.id}0" type="checkbox" >`).attr('value', "NO");
+
+
+                    let label2 = $(`<label class="form-check-label" for="${question.id}"0>`).text("NO");
+
+                    let container1 = $('<div class="form-check form-check-inline"></div>').append(checkBox1, label1);
+
+                    let container2 = $('<div class="form-check form-check-inline"></div>').append(checkBox2, label2);
+
+                    let container = $('<div class="card-header"></div>').append(`<p class="text-primary m-0 fw-bold">${question.name}</p>`, container1, container2)
+
+                    return container
+                },
+                'multiple': function (question) {
+                    let options = $(`<select class="form-select" id="${question.id}" multiple></select>`);
+
+                    question.options.forEach(function (option) {
+                        options.append('<option value="' + option + '">' + option + '</option>');
+                    });
+
+                    let container = $('<div class="card-header py-3"></div>').append(`<p class="text-primary m-0 fw-bold">${question.name}</p>`, options)
+
+                    return container
+                }
+            };
+
+            let form = $('<form class="form-group" id="create-form-history"></form>');
+
+            let finalStructure = [];
+            structure.forEach(function (question, index) {
+                let questionContainer = $('<div class="question"></div>');
+
+                if (question.type in questionTypes) {
+                    let inputElement = questionTypes[question.type](question);
+                    question.id = index + 1;
+                    finalStructure.push(question);
+                    questionContainer.append(inputElement);
+                    form.append(questionContainer);
+                } else {
+                    console.error('Tipo de pregunta no válido: ' + question.type);
+                }
+            });
+
+            Swal.fire({
+                title: 'Agregar historia clínica',
+                confirmButtonText: 'Confirmar',
+                html: form,
+                focusConfirm: false,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    finalStructure = finalStructure.map((question) => {
+                        let value = $(`#${question.id}`).val()
+
+                        if (question.value == 'multiple') {
+                            $.each($(`#${question.id} option:selected`), function () {
+                                value = $(this).val().join(',')
+                            });
+                        }
+
+                        return {
+                            ...question, value
+                        }
+                    });
+                    // TODO enviar estructura al servidor
+                    console.log(finalStructure);
+                }
+            })
+        }
+
         function changeDateStatus(citaState, CitaID) {
             // Aquí puedes realizar la solicitud AJAX con el valor de citaState
             //console.log(`Estado de cita seleccionado: ${citaState}`);
+
 
             $.ajax({
                 url: sessionStorage.urlEP + '/api/Appointments/v1/UpdateAppointmentStatus',
@@ -520,8 +668,8 @@
             $('[data-toggle="tooltip"]').tooltip();
 
         });
-        
-       
+
+
         // function updateClock() {
         //     const timeElement = document.getElementById('time');
         //     const dateElement = document.getElementById('date');
