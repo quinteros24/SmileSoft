@@ -495,6 +495,7 @@
         }
 
         function createFormHistory(citaID) {
+            console.log(citaID);
             Swal.close();
             // TODO hacer petición para obtener la estructura del formulario
 
@@ -520,36 +521,45 @@
                     type: 'close',
                     name: 'Le gustaría volver a sentirlo?',
                     options: null
-                }
+                },
+                {
+                    id: 4,
+                    type: 'multiple',
+                    name: 'Ha tenido dolor?',
+                    options: [
+                        'intenso',
+                        'suave',
+                        'moderado'
+                    ]
+                },
             ];
 
             let questionTypes = {
                 'open': function (question) {
-                    let inputField = $(`<input type="text" id="${question.id}" class="form-control"></input>`);
+                    let inputField = $(`<input type="text" id="${question.id}" class="form-control"></input><br>`);
+
                     let container = $('<div class="form-group"></div>').append(
-                        `<label for="${question.id}">` + question.name + '</label><br>', inputField);
+                        `<label class="text-primary m-0 fw-bold" for="${question.id}">` + question.name + '</label><br>', inputField);
 
                     return container
                 },
                 'close': function (question) {
 
-
-                    let checkBox1 = $(`<input class="form-check-input" id="${question.id}" type="checkbox" >`).attr('value', "SI");
+                    let checkBox1 = $(`<input class="form-check-input" id="${question.id}" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
 
                     let label1 = $(`<label class="form-check-label" for="${question.id}">`).text("SI");
 
-                    let checkBox2 = $(`<input class="form-check-input" id="${question.id}0" type="checkbox" >`).attr('value', "NO");
+                    let checkBox2 = $(`<input class="form-check-input" id="${question.id}0" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
 
-
-                    let label2 = $(`<label class="form-check-label" for="${question.id}"0>`).text("NO");
+                    let label2 = $(`<label class="form-check-label" for="${question.id}0">`).text("NO");
 
                     let container1 = $('<div class="form-check form-check-inline"></div>').append(checkBox1, label1);
 
                     let container2 = $('<div class="form-check form-check-inline"></div>').append(checkBox2, label2);
 
-                    let container = $('<div class="card-header"></div>').append(`<p class="text-primary m-0 fw-bold">${question.name}</p>`, container1, container2)
+                    let container = $('<div class="card-header"></div>').append(`<p class="text-primary m-0 fw-bold">${question.name}</p>`, container1, container2);
 
-                    return container
+                    return container;
                 },
                 'multiple': function (question) {
                     let options = $(`<select class="form-select" id="${question.id}" multiple></select>`);
@@ -590,19 +600,55 @@
                 if (result.isConfirmed) {
                     finalStructure = finalStructure.map((question) => {
                         let value = $(`#${question.id}`).val()
-
-                        if (question.value == 'multiple') {
-                            $.each($(`#${question.id} option:selected`), function () {
-                                value = $(this).val().join(',')
-                            });
+                        if (question.type == 'close') {
+                            value = $(`#${question.id}:checked`).val() == 'on' ? 'SI' : 'NO';
                         }
-
                         return {
                             ...question, value
                         }
                     });
-                    // TODO enviar estructura al servidor
-                    console.log(finalStructure);
+                    saveHistoryForm(finalStructure, citaID);
+                }
+            })
+        }
+
+        function saveHistoryForm(form, citaID) {
+            $.ajax({
+                url: sessionStorage.urlEP + '/api/Generics/v1/SetUsersClinicStoryFormat',
+                type: 'PUT',
+                data: { 'aID': citaID, 'jsonObject': form },
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (response) {
+                    console.log(response)
+                    if (response.codeStatus == 0) {
+                        Swal.fire({
+                            title: response.messageStatus,
+                            icon: 'info',
+                            confirmButtonText: 'Aceptar'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                swal.close();
+                                location.reload();
+                            }
+                        })
+                    }
+                    else if (response.codeStatus == -1) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: response.messageStatus,
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar'
+                        })
+                    }
+                },
+                error: function (error) {
+                    console.log('Error al obtener los detalles del usuario.');
+                }
+
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.reload();
                 }
             })
         }
@@ -610,7 +656,6 @@
         function changeDateStatus(citaState, CitaID) {
             // Aquí puedes realizar la solicitud AJAX con el valor de citaState
             //console.log(`Estado de cita seleccionado: ${citaState}`);
-
 
             $.ajax({
                 url: sessionStorage.urlEP + '/api/Appointments/v1/UpdateAppointmentStatus',
@@ -664,9 +709,14 @@
                 }
             });
         }
+
+        function toggleCheckboxes(checkbox) {
+            $("input[name='checkbox-close-question']").prop('checked', false);
+            $(checkbox).prop('checked', true);
+        }
+
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
-
         });
 
 
