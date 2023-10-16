@@ -490,8 +490,8 @@
                 console.log({ finalStructure })
 
                 const data = {
+                    'jsonObject': JSON.stringify(finalStructure),
                     'oID': 1,
-                    'jsonObject': JSON.stringify(finalStructure)
                 }
 
                 console.log({ data })
@@ -526,7 +526,7 @@
                         }
                     },
                     error: function (error) {
-                        console.log('Error al obtener los detalles del usuario.');
+                        console.log(error);
                     }
 
                 }).then((result) => {
