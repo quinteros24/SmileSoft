@@ -1,6 +1,7 @@
-﻿<nav aria-label="breadcrumb" class="main-breadcrumb">
+﻿
+<nav aria-label="breadcrumb" class="main-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"> @* <a asp-controller="Home" asp-action="Index">Inicio</a> *@Inicio</li>
+        <li class="breadcrumb-item"> @* <a asp-controller="Home" asp-action="Index">Inicio</a>  *@Inicio</li>
         <li class="breadcrumb-item">Sitio</li>
         <li class="breadcrumb-item active" aria-current="page">
             Ajustes del Sitio
@@ -107,39 +108,36 @@
                                 <div class="col">
                                     <form>
 
-
                                         <div class="mb-3">
-                                            <label for="ChangeLogo" class="form-label"><span
-                                                    id="ChangeLogoLabel">Cambiar Logo del Login</span></label>
-                                            <input class="form-control" type="file" id="ChangeLogo" accept=".jpg, .png"
-                                                disabled>
-                                            <div class="mb-3 my-2 "><button class="btn btn-primary btn-en-desarrollo"
-                                                    type="submit" disabled>Subir</button></div>
+                                            <label for="ChangeLogo" class="form-label"><span id="ChangeLogoLabel">Cambiar Logo del Login</span></label>
+                                            <input class="form-control" type="file" id="ChangeLogo" accept=".jpg, .png" disabled>
+                                            <div class="mb-3 my-2 "><button class="btn btn-primary btn-en-desarrollo" type="submit" disabled>Subir</button></div>
 
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col">
+                                    <form>
+                                        <div class="mb-3">
+                                            <label for="logoInput" class="form-label">Cambiar Logo Menu Principal</label>
+                                            <input class="form-control" type="file" id="logoInput" accept=".jpg, .png">
+                                            <div class="mb-3 my-2">
+                                                <button class="btn btn-primary" type="button" id="updateLogo">Subir</button>
                                             </div>
-                                        </form>
-                                    </div>
-                                    <div class="col">
-                                        <form>
-                                            <div class="mb-3">
-                                                <label for="ChangeMainLogo" class="form-label">Cambiar Logo Menu Principal</label>
-                                                <input class="form-control" type="file" id="ChangeMainLogo" accept=".jpg, .png" disabled>
-                                                <div class="mb-3 my-2">
-                                                    <button class="btn btn-primary btn-en-desarrollo" type="submit" disabled>Subir</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                        <div class="card shadow mb-3">
-                            <div class="card-header py-3">
-                                <p class="text-primary m-0 fw-bold">Colores del Sitio</p>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
+                    </div>
+                    <div class="card shadow mb-3">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold">Colores del Sitio</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row ">
+                                <div class="col-md-6">
+                                    <div class="card-body shadow align-content-center justify-content-center">
                                         <form>
                                             <div class="form-group">
                                                 <label for="BackgroundColor" class="form-label"> Cambiar Color Fondo del Sitio</label>
@@ -149,7 +147,9 @@
                                             </button>
                                         </form>
                                     </div>
-                                    <div class="col">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="card-body shadow align-content-center justify-content-center">
                                         <form>
                                             <div class="form-group">
                                                 <label for="SidebarColor">Cambiar Color de la Barra Lateral</label>
@@ -159,7 +159,11 @@
                                             </button>
                                         </form>
                                     </div>
-                                    <div class="col">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="card-body shadow align-content-center justify-content-center">
                                         <form>
                                             <div class="form-group">
                                                 <label for="NavbarColor">Cambiar Color de la Barra Superior</label>
@@ -170,81 +174,99 @@
                                             </button>
                                         </form>
                                     </div>
-                                    <select id="colorSelector">
-                                        <option value="bg-primary">Azul</option>
-                                        <option value="bg-danger">Rojo</option>
-                                        <option value="bg-success">Verde</option>
-                                        <!-- Agrega más opciones de colores según tus necesidades -->
-                                    </select>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Fin Ajustes del -->
-                    <!-- Ajustes de Contenido -->
-                    <div class="tab-pane" id="contentsettings">
-                        <h6>Ajustes del Contenido</h6>
-                        <hr />
-                        <form>
-                            <div class="form-group">
-                                <label class="d-block">Change Password</label>
-                                <input type="text"
-                                       class="form-control"
-                                       placeholder="Enter your old password" />
-                                <input type="text"
-                                       class="form-control mt-1"
-                                       placeholder="New password" />
-                                <input type="text"
-                                       class="form-control mt-1"
-                                       placeholder="Confirm new password" />
+                </div>
+                <!-- Fin Ajustes del -->
+
+                <div class="tab-pane" id="wpsettings">
+                    <h6>Ajustes de Contacto</h6>
+                    <hr />
+                    <div class="card shadow mb-3">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold">Whatsapp</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row ">
+                                <div class="col-md-12">
+                                    <div class="card-body shadow align-content-center justify-content-center">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="wpNumber" class="form-label"> Cambiar Número Contacto Whatsapp</label>
+                                                <input type="number" class="form-control" id="wpNumber">
+                                            </div><button type="button" class="btn btn-primary my-2">
+                                                Actualizar
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+
                             </div>
-                        </form>
-                        <hr />
-                        <form>
-                            <div class="form-group">
-                                <label class="d-block">Two Factor Authentication</label>
-                                <button class="btn btn-info btn-en-desarrollo" type="button">
-                                    Enable two-factor authentication
-                                </button>
-                                <p class="small text-muted mt-2">
-                                    Two-factor authentication adds an additional layer of
-                                    security to your account by requiring more than just a
-                                    password to log in.
-                                </p>
-                            </div>
-                        </form>
-                        <hr />
-                        <form>
-                            <div class="form-group mb-0">
-                                <label class="d-block">Sessions</label>
-                                <p class="font-size-sm text-secondary">
-                                    This is a list of devices that have logged into your
-                                    account. Revoke any sessions that you do not recognize.
-                                </p>
-                                <ul class="list-group list-group-sm">
-                                    <li class="list-group-item has-icon">
-                                        <div>
-                                            <h6 class="mb-0">San Francisco City 190.24.335.55</h6>
-                                            <small class="text-muted">Your current session seen in United States</small>
-                                        </div>
-                                        <button class="btn btn-light btn-sm ml-auto btn-en-desarrollo"
-                                                type="button">
-                                            More info
-                                        </button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </form>
+
+                        </div>
                     </div>
-                    <!-- Fin Ajustes de Contenido -->
+                </div>
 
             </div>
         </div>
     </div>
 </div>
 
-@section Scripts {
+@section Scripts{
 
+    <script>
+        let userRole = sessionStorage.getItem('userRole');
+        if (userRole !== '1') {
+            logoutUser();
+        }
+
+
+
+
+        document.getElementById('updateLogo').addEventListener('click', function () {
+            // Obtener el archivo seleccionado
+            const fileInput = document.getElementById('logoInput');
+            const file = fileInput.files[0];
+
+            if (file) {
+                // Crear una URL para la imagen seleccionada
+                const objectURL = URL.createObjectURL(file);
+
+                // Actualizar la fuente de la imagen en la barra de navegación
+                document.getElementById('navLogo').src = objectURL;
+
+                // Aquí puedes enviar la imagen al servidor para guardarla
+                // y asignarle un nombre único en tu directorio de imágenes.
+                // Luego, actualiza la fuente de la imagen en el servidor.
+
+                // También puedes considerar la posibilidad de almacenar la
+                // ruta de la imagen en tu base de datos para recuperarla
+                // cuando sea necesario.
+            }
+        });
+        // Cambiar el color de fondo
+        $("#BackgroundColor").on("input", function () {
+            const color = $(this).val();
+            console.log("Aplicando color a Fondo");
+            // $("#SiteContainerRender").css("background-color", color);
+            $("#content-wrapper").css("background-color", color);
+        });
+        // Cambiar el color de la barra lateral
+        $("#SidebarColor").on("input", function () {
+            const color = $(this).val();
+            console.log("Aplicando color a SideBar");
+            $("#sidebar").css("background-color", color);
+        });
+        // Cambiar el color de la barra lateral
+        $("#NavbarColor").on("input", function () {
+            const color = $(this).val();
+            console.log("Aplicando color a Barra Superior");
+            $("#nav_bar").removeClass("bg-primary");
+            $("#nav_bar").css("background-color", color);
+        });
+    </script>
 
     <script>
         // Agrega un manejador de eventos para la clase "btn-en-desarrollo"
@@ -262,186 +284,26 @@
                 });
             });
         });
-
-        $(document).on("click", ".remove-option", function () {
-            $(this).closest(".input-group").remove();
-        });
-
-        $("#add-question").click(() => drawQuestions());
-
-        function drawQuestions(firstLoad = false) {
-            const type = $("#question-type").val();
-            const name = $("#question").val();
-            let options = null;
-
-            if (type === "multiple") {
-                options = [];
-                $(".option-input").each(function () {
-                    const optionValue = $(this).val();
-                    if (optionValue.trim() !== "") {
-                        options.push(optionValue);
-                    }
-                });
-            }
-
-            if (!name && !firstLoad) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Debes agregar una pregunta!',
-                    confirmButtonColor: '#008dc9'
-                })
-                return;
-            }
-
-            const question = {
-                id: structure.length + 1,
-                type: type,
-                name: name,
-                options: options,
-            };
-
-            structure.push(question);
-
-            console.log({ structure })
-
-            if (structure.length) {
-                $("#save-all-questions").removeClass("d-none");
-                $("#save-all-questions").addClass("d-block");
-            }
-
-            if (!firstLoad) {
-                $("#question-type").val('')
-                $("#question").val('');
-            }
-
-            type === "multiple" && $(".input-group").remove();
-            updateStructuredForm(structure);
-        }
-
-        // Grafico dinamicamente las preguntas dependiendo de su tipo
-        function updateStructuredForm(struct) {
-            console.log({ struct })
-            let questionTypes = {
-                'open': function (question) {
-                    let inputField = $(`<input disabled placeholder="Pregunta abierta" type="text" id="${question.id}" class="form-control"></input><br>`);
-
-                    let container = $('<div class="form-group"></div>').append(
-                        `<label class="text-primary m-0 fw-bold" for="${question.id}">`
-                        + `Pregunta abierta # ${question.id}: ` + question.name +
-                        '</label><br>', inputField);
-
-                    return container
-                },
-                'close': function (question) {
-
-                    let checkBox1 = $(`<input disabled class="form-check-input" id="${question.id}" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
-
-                    let label1 = $(`<label class="form-check-label" for="${question.id}">`).text("SI");
-
-                    let checkBox2 = $(`<input disabled class="form-check-input" id="${question.id}0" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
-
-                    let label2 = $(`<label class="form-check-label" for="${question.id}0">`).text("NO");
-
-                    let container1 = $('<div class="form-check form-check-inline"></div>').append(checkBox1, label1);
-
-                    let container2 = $('<div class="form-check form-check-inline"></div>').append(checkBox2, label2);
-
-                    let container = $('<div class="mb-4 mt-2"></div>').append(`<p class="text-primary m-0 fw-bold">Pregunta cerrada # ${question.id}: ${question.name}</p>`, container1, container2);
-
-                    return container;
-                },
-                'multiple': function (question) {
-                    let options = $(`<select class="form-select" id="${question.id}" multiple></select>`);
-
-                    question.options.forEach(function (option) {
-                        options.append('<option disabled value="' + option + '">' + option + '</option>');
-                    });
-
-                    let container = $('<div class="mb-4"></div>').append(`<p class="text-primary m-0 fw-bold">Pregunta de opción múltiple # ${question.id}: ${question.name}</p>`, options)
-
-                    return container
-                }
-            };
-
-            let form = $('#create-clinic-form-history');
-            form.empty();
-
-            finalStructure = [];
-            struct.forEach(function (question, index) {
-                question.id = index + 1;
-                let questionContainer = $(`<div class="question-${question.id}"></div>`);
-                // inserta un boton para eliminar cada pregunta
-                questionContainer.append(`<button type="button" class="btn btn-danger btn-sm mb-2" onclick="deleteQuestion(${question.id})">Eliminar</button>`);
-
-                if (question.type in questionTypes) {
-                    let inputElement = questionTypes[question.type](question);
-                    finalStructure.push(question);
-                    questionContainer.append(inputElement);
-                    form.append(questionContainer);
-                } else {
-                    console.error('Tipo de pregunta no válido: ' + question.type);
-                }
-            });
-        }
-
-        // Función para eliminar una pregunta
-        function deleteQuestion(id) {
-            $(`.question-${id}`).remove();
-            structure = structure.filter((question) => question.id !== id);
-            updateStructuredForm(structure);
-        }
-
-        $(document).ready(function () {
-            // Envío la petición con la estructura final
-            $("#save-all-questions").click(() => {
-                $.ajax({
-                    url: sessionStorage.urlEP + '/api/Generics/v1/StoreUsersClinicStoryFormat?oID=1&jsonObject=' + JSON.stringify(finalStructure),
-                    type: 'GET',
-                    contentType: "application/json",
-                    dataType: 'json',
-                    success: function (response) {
-                        console.log(response)
-                        if (response.codeStatus == 0) {
-                            Swal.fire({
-                                title: response.messageStatus,
-                                icon: 'info',
-                                confirmButtonText: 'Aceptar'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    swal.close();
-                                    location.reload();
-                                }
-                            })
-                        }
-                        else if (response.codeStatus == -1) {
-                            Swal.fire({
-                                title: 'Error',
-                                text: response.messageStatus,
-                                icon: 'error',
-                                confirmButtonText: 'Aceptar'
-                            })
-                        }
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        location.reload();
-                    }
-                })
-            });
-
-        });
-
-
     </script>
 
-    @* <script src="~/assets/js/jquery.min.js"></script> *@
-    @* <script src="~/assets/js/popper.js"></script> *@
+    <script>
+        // Obtén el enlace de WhatsApp y el campo de entrada por sus IDs
+        const whatsappLink = document.getElementById("whatsappLink");
+        const wpNumberInput = document.getElementById("wpNumber");
+
+        // Agrega un escuchador de eventos al campo de entrada para detectar cambios
+        wpNumberInput.addEventListener("input", function () {
+            // Obten el valor actual del campo de entrada
+            const nuevoNumero = wpNumberInput.value;
+
+            // Actualiza el enlace de WhatsApp con el nuevo número
+            whatsappLink.href = `https://api.whatsapp.com/send?phone=${nuevoNumero}&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20.`;
+        });
+    </script>
+    <script src="~/assets/js/jquery.min.js"></script>
+    <script src="~/assets/js/popper.js"></script>
     <script src="~/assets/js/bootstrap.min.js"></script>
-    @* <script src="~/assets/js/theme.js"></script> *@
+    <script src="~/assets/js/theme.js"></script>
     <script type="text/javascript"></script>
 }
+
