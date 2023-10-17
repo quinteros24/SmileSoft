@@ -48,17 +48,17 @@ namespace EpSmileSoft.Controllers
         }
 
         //Setea la configuración del json
-        [HttpPost]
+        [HttpGet]
         [Route("v1/StoreUsersClinicStoryFormat")]
-        public async Task<GenericResponseModel> StoreUsersClinicStoryFormat([FromBody] string jsonObject, int oID)
+        public async Task<GenericResponseModel> StoreUsersClinicStoryFormat(int oID, string jsonObject)
         {
             return await _genericsCore.StoreUsersClinicStoryFormat(jsonObject, oID);
         }
 
         //Setea la historia clínica del paciente
-        [HttpPut]
+        [HttpGet]
         [Route("v1/SetUsersClinicStoryFormat")]
-        public async Task<GenericResponseModel> SetUsersClinicStoryFormat([FromBody] string jsonObject, int aID)
+        public async Task<GenericResponseModel> SetUsersClinicStoryFormat(string jsonObject, int aID)
         {
             return await _genericsCore.SetUsersClinicStoryFormat(jsonObject, aID);
         }
