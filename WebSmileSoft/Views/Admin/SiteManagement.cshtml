@@ -292,35 +292,33 @@
 
 
     <script>
-        //let structure = [];
-        let structure = [
-            {
-                id: 1,
-                type: 'multiple',
-                name: 'Ha tenido dolor?',
-                options: [
-                    'intenso',
-                    'suave',
-                    'moderado'
-                ]
-            },
-            {
-                id: 2,
-                type: 'open',
-                name: 'Cómo se ha sentido el dolor?',
-                options: null
-            },
-            {
-                id: 3,
-                type: 'close',
-                name: 'Le gustaría volver a sentirlo?',
-                options: null
-            },
-        ];
+
+        let structure = [];
+
+        $.ajax({
+            url: sessionStorage.urlEP + '/api/Generics/v1/GetUsersClinicStoryFormat?oID=1',
+            type: 'GET',
+            contentType: "application/json",
+            dataType: 'json',
+            async: false,
+            success: function ({ itemJson, codeStatus }) {
+                if (codeStatus == 0) {
+                    structure = JSON.parse(itemJson);
+                }
+                else if (response.codeStatus == -1) {
+                    Swal.fire({
+                        title: 'Error',
+                        text: response.messageStatus,
+                        icon: 'error',
+                        confirmButtonText: 'Aceptar'
+                    })
+                }
+            }
+        })
+
 
         let finalStructure = [];
-        // TODO obtener la estructura desde el backend
-
+        structure.length && drawQuestions(true)
         // Agrega un manejador de eventos para la clase "btn-en-desarrollo"
         document.addEventListener("DOMContentLoaded", function () {
             const buttons = document.querySelectorAll(".btn-en-desarrollo");
@@ -348,13 +346,13 @@
 
         $("#add-option").click(function () {
             $("#options-container").append(`
-                            <div class="input-group mb-2">
-                            <input type="text" class="form-control option-input" placeholder="Nombre de la opción">
-                            <div class="input-group-append">
-                                <button class="btn btn-danger remove-option" type="button">-</button>
-                            </div>
-                            </div>
-                        `);
+                                                <div class="input-group mb-2">
+                                                <input type="text" class="form-control option-input" placeholder="Nombre de la opción">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-danger remove-option" type="button">-</button>
+                                                </div>
+                                                </div>
+                                            `);
         });
 
         $(document).on("click", ".remove-option", function () {
@@ -397,19 +395,25 @@
 
             structure.push(question);
 
+            console.log({ structure })
+
             if (structure.length) {
                 $("#save-all-questions").removeClass("d-none");
                 $("#save-all-questions").addClass("d-block");
             }
 
-            $("#question-type").val('')
-            $("#question").val('');
+            if (!firstLoad) {
+                $("#question-type").val('')
+                $("#question").val('');
+            }
+
             type === "multiple" && $(".input-group").remove();
             updateStructuredForm(structure);
         }
 
         // Grafico dinamicamente las preguntas dependiendo de su tipo
         function updateStructuredForm(struct) {
+            console.log({ struct })
             let questionTypes = {
                 'open': function (question) {
                     let inputField = $(`<input disabled placeholder="Pregunta abierta" type="text" id="${question.id}" class="form-control"></input><br>`);
@@ -461,7 +465,7 @@
                 let questionContainer = $(`<div class="question-${question.id}"></div>`);
                 // inserta un boton para eliminar cada pregunta
                 questionContainer.append(`<button type="button" class="btn btn-danger btn-sm mb-2" onclick="deleteQuestion(${question.id})">Eliminar</button>`);
-                
+
                 if (question.type in questionTypes) {
                     let inputElement = questionTypes[question.type](question);
                     finalStructure.push(question);
@@ -481,25 +485,11 @@
         }
 
         $(document).ready(function () {
-
-            // Dibujo las perguntas en caso de que hayan
-            structure.length && drawQuestions(true)
-
             // Envío la petición con la estructura final
             $("#save-all-questions").click(() => {
-                console.log({ finalStructure })
-
-                const data = {
-                    'jsonObject': JSON.stringify(finalStructure),
-                    'oID': 1,
-                }
-
-                console.log({ data })
-
                 $.ajax({
-                    url: sessionStorage.urlEP + '/api/Generics/v1/StoreUsersClinicStoryFormat',
-                    type: 'POST',
-                    data,
+                    url: sessionStorage.urlEP + '/api/Generics/v1/StoreUsersClinicStoryFormat?oID=1&jsonObject=' + JSON.stringify(finalStructure),
+                    type: 'GET',
                     contentType: "application/json",
                     dataType: 'json',
                     success: function (response) {

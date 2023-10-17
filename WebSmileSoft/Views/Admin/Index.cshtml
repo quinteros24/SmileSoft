@@ -499,6 +499,30 @@
             Swal.close();
             // TODO hacer petición para obtener la estructura del formulario
 
+            let structure = [];
+
+            $.ajax({
+                url: sessionStorage.urlEP + '/api/Generics/v1/GetUsersClinicStoryFormat?oID=1',
+                type: 'GET',
+                contentType: "application/json",
+                dataType: 'json',
+                async: false,
+                success: function ({ itemJson, codeStatus }) {
+                    if (codeStatus == 0) {
+                        structure = JSON.parse(itemJson);
+                    }
+                    else if (response.codeStatus == -1) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: response.messageStatus,
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar'
+                        })
+                    }
+                }
+            })
+
+/*
             let structure = [
                 {
                     id: 1,
@@ -533,6 +557,7 @@
                     ]
                 },
             ];
+            */
 
             let questionTypes = {
                 'open': function (question) {
@@ -615,8 +640,8 @@
         function saveHistoryForm(form, citaID) {
             $.ajax({
                 url: sessionStorage.urlEP + '/api/Generics/v1/SetUsersClinicStoryFormat',
-                type: 'PUT',
-                data: { 'aID': citaID, 'jsonObject': form },
+                type: 'GET',
+                data: { 'aID': citaID, 'jsonObject': JSON.stringify(form) },
                 contentType: "application/json",
                 dataType: 'json',
                 success: function (response) {

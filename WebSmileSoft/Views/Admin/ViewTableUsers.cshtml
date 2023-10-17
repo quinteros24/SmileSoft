@@ -596,34 +596,38 @@
                         let userId = data[1];
                         $('#clinical-history-username').text(' ' + data[4] + ' ' + data[5]);
 
-                        let userClinicalHistory = [
-                            {
-                                id: 1,
-                                type: 'multiple',
-                                name: 'Ha tenido dolor?',
-                                value: ["intenso"],
-                                options: [
-                                    'intenso',
-                                    'suave',
-                                    'moderado'
-                                ]
-                            },
-                            {
-                                id: 2,
-                                type: 'open',
-                                name: 'Cómo se ha sentido el dolor?',
-                                options: null,
-                                value: "Muy bien"
-                            },
-                            {
-                                id: 3,
-                                type: 'close',
-                                name: 'Le gustaría volver a sentirlo?',
-                                options: null,
-                                value: "NO"
-                            },
-                        ];
 
+                        let userClinicalHistory = []
+                        let allClinicalHistory = []
+
+
+                        $.ajax({
+                            url: sessionStorage.urlEP + `/api/Generics/v1/GetUserClinicStory?uID=${userId}`,
+                            type: 'GET',
+                            contentType: "application/json",
+                            dataType: 'json',
+                            async: false,
+                            success: function (response) {
+                                if (response.codeStatus == 0) {
+                                    let citas = response.itemJson
+                                    citas.map(item => {
+                                        if (item) {
+                                            item = JSON.parse(item)
+                                            allClinicalHistory = [...item]
+                                        }
+                                    })
+                                    console.log(allClinicalHistory)
+                                }
+                                else if (response.codeStatus == -1) {
+                                    Swal.fire({
+                                        title: 'Error',
+                                        text: response.messageStatus,
+                                        icon: 'error',
+                                        confirmButtonText: 'Aceptar'
+                                    })
+                                }
+                            }
+                        })
 
                         let questionTypes = {
                             'open': function (question) {
@@ -674,7 +678,8 @@
                         form.empty();
 
                         finalStructure = [];
-                        userClinicalHistory.forEach(function (question, index) {
+                        console.log(allClinicalHistory)
+                        allClinicalHistory.forEach(function (question, index) {
                             question.id = index + 1;
                             let questionContainer = $(`<div class="question-${question.id}"></div>`);
 
