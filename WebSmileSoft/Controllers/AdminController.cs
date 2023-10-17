@@ -57,10 +57,23 @@ namespace WebSmileSoft.Controllers
 
             return PartialView();
         }
+
+        public IActionResult ViewClinicalHistory()
+        {
+            return PartialView();
+        }
+
+        
         [HttpPost]
         public IActionResult EditUsers([FromBody] List<SelectListItem> specialities)
         {
             ViewBag.Specialities = specialities;
+            return View();
+        }
+        public IActionResult TestBench()
+        {
+            ViewBag.urlEndPoint = _settings.urlEndPoint;
+           
             return View();
         }
 

@@ -2,46 +2,26 @@
 
 
 
-<nav class="navbar align-items-start sidebar accordion">
+<nav class="navbar align-items-start sidebar accordion" id="sidebar">
     <div class="container-fluid d-flex flex-column p-0 ">
-        <a id="sidebar-link" class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0"
-           href="#">
-            <img src="~/assets/img/logo-nav.png" class="img-fluid" title="logo">
+        <div class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand mt-2">
+        <a id="sidebar-link" href="#">
+            <img src="~/assets/img/logo-nav.png" class="img-fluid" id="navLogo" title="logo">
             <div class="sidebar-brand-icon rotate-n-15"></div>
             <div class="sidebar-brand-text mx-3"></div>
         </a>
+        </div>
         <hr class="sidebar-divider my-0">
-        
-            <!-- navbar-nav -->
-            <!-- Elementos de menú -->
-            <div id="divAdmin">
+
+        <!-- navbar-nav -->
+        <!-- Elementos de menú -->
+        <div id="divAdmin">
             <ul class="nav text-center flex-column" id="accordionSidebar">
                 <li class="nav-item nav-item2">
                     <a class="nav-link" asp-controller="Admin" asp-action="Index">
                         <i class="fas fa-tachometer-alt "></i><span class="ms-2">Dashboard</span>
                     </a>
                 </li>
-                @* <li class="nav-item nav-item2 no-arrow dropend z-3">
-                <a class="dropdown-toggle nav-link is-active"
-                aria-expanded="false" data-bs-toggle="dropdown" asp-controller="Admin" asp-action="UserManagement">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-gear" viewBox="0 0 16 16">
-                <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm.256 7a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Zm3.63-4.54c.18-.613 1.048-.613 1.229 0l.043.148a.64.64 0 0 0 .921.382l.136-.074c.561-.306 1.175.308.87.869l-.075.136a.64.64 0 0 0 .382.92l.149.045c.612.18.612 1.048 0 1.229l-.15.043a.64.64 0 0 0-.38.921l.074.136c.305.561-.309 1.175-.87.87l-.136-.075a.64.64 0 0 0-.92.382l-.045.149c-.18.612-1.048.612-1.229 0l-.043-.15a.64.64 0 0 0-.921-.38l-.136.074c-.561.305-1.175-.309-.87-.87l.075-.136a.64.64 0 0 0-.382-.92l-.148-.045c-.613-.18-.613-1.048 0-1.229l.148-.043a.64.64 0 0 0 .382-.921l-.074-.136c-.306-.561.308-1.175.869-.87l.136.075a.64.64 0 0 0 .92-.382l.045-.148ZM14 12.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z" />
-                </svg><span class="ms-2">Administrar </span><span class="ms-2">Usuarios</span>
-                </a>
-                <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in z-3">
-                <a class="dropdown-item" asp-action="TableUsers" asp-controller="Admin" active-color="orange">
-                <i class="fas fa-user"></i>
-                Usuarios
-                </a> <a class="dropdown-item" asp-action="TableDoctor" asp-controller="Admin">
-                <i class="fas fa-plus-square"></i>
-                Doctores
-                </a><a class="dropdown-item" asp-action="TableAdmin" asp-controller="Admin">
-                <i class="far fa-user-circle"></i>
-                Administradores
-                </a>
-
-                </div>
-                </li> *@
 
                 <li class="nav-item nav-item2">
                     <!-- ... Contenido del menú de administrador ... -->
@@ -55,46 +35,66 @@
                 </li>
                 <li class="nav-item nav-item2">
                     <a class="nav-link" asp-controller="Admin" asp-action="SiteManagement">
-                        
+
                         <i class="fas fa-tools "></i><span class="ms-2">Administrar Sitio</span>
                     </a>
                 </li>
-                </ul>
-            </div>
-            
-            
-            <div id="divDoctor">
+                <li class="nav-item nav-item2">
+                    <a class="nav-link" asp-controller="Admin" asp-action="TestBench">
+
+                        <i class="fas fa-tools "></i><span class="ms-2">Pruebas</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+
+        <div id="divDoctor">
             <ul class="nav text-center flex-column" id="accordionSidebar">
-            <!-- ... Contenido del menú de doctor ... -->
-                <li class="nav-item nav-item2" >
+                <!-- ... Contenido del menú de doctor ... -->
+                @* <li class="nav-item nav-item2">
 
-                <a class="nav-link" asp-controller="Doctor" asp-action="GestiondeCitas">
-                        <i class="fa-solid fa-calendar-days"></i><span class="ms-2">Gestión de Citas Doctores</span>
-                </a>
+                    <a class="nav-link" asp-controller="Appointments" asp-action="Index">
+                        <i class="fa-solid fa-calendar-days"></i><span class="ms-2">Gestión de Citas Index</span>
+                    </a>
 
-            </li>
+                </li> *@
                 <li class="nav-item nav-item2">
 
-                <a class="nav-link" asp-controller="Doctor" asp-action="GestionPacientes">
-                        <i class="fa-solid fa-users-between-lines"></i><span class="ms-2">Gestión de Pacientes</span>
-                </a>
+                    <a class="nav-link" asp-controller="Doctor" asp-action="GestiondeCitas">
+                        <i class="fa-solid fa-calendar-days"></i><span class="ms-2">Gestión de Citas Doctores</span>
+                    </a>
 
-            </li>
+                </li>
+                <li class="nav-item nav-item2">
+
+                    <a class="nav-link" asp-controller="Doctor" asp-action="GestionPacientes">
+                        <i class="fa-solid fa-users-between-lines"></i><span class="ms-2">Gestión de Pacientes</span>
+                    </a>
+
+                </li>
                 <li class="nav-item nav-item2 ">
 
-                <a class="nav-link" asp-controller="Doctor" asp-action="HistoriasClinicas">
+                    <a class="nav-link" asp-controller="Doctor" asp-action="HistoriasClinicas">
                         <i class="fa-solid fa-hospital-user"></i><span class="ms-2">Historias Clinicas</span>
-                </a>
+                    </a>
 
-            </li>
+                </li>
             </ul>
             <!-- Fin Contenido Doctores -->
 
-            </div>
-            
-           
-            <div id="divUser">
+        </div>
+
+
+        <div id="divUser">
             <ul class="nav text-center flex-column" id="accordionSidebar">
+                @* <li class="nav-item nav-item2 ">
+
+                    <a class="nav-link" asp-controller="Appointments" asp-action="Index">
+                        <i class="fa-solid fa-calendar-days"></i><span class="ms-2">Gestión de Citas Usuarios Index</span>
+                    </a>
+
+                </li> *@
                 <li class="nav-item nav-item2 ">
 
                     <a class="nav-link" asp-controller="Patient" asp-action="GestiondeCitas">
@@ -103,7 +103,7 @@
 
                 </li>
                 <li class="nav-item nav-item2 ">
-                    
+
 
                     <a class="nav-link" asp-controller="Patient" asp-action="HistoriaClinicaPacientes">
                         <i class="fa-solid fa-hospital-user"></i><span class="ms-2">Historias Clinicas</span>
@@ -111,25 +111,29 @@
 
                 </li>
             </ul>
-            </div>
-            
-            <div>
-            <ul class="nav text-center flex-column" id="accordionSidebar">
-            <li class="nav-item nav-item2 ">
-                <a class="nav-link" onclick="CerrarSesion()" style="user-select: none;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z" />
-                        <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
-                    </svg><span class="ms-2">Cerrar Sesión</span>
-                </a>
-            </li>
-            </ul>
-            </div>
+            <a id="whatsappLink" href="https://api.whatsapp.com/send" class="float" target="_blank" data-toggle="tooltip" data-placement="top" title="Estamos aquí para ayudarte">
+                <i id="whatsappIcon" class="fa-brands fa-whatsapp my-float"></i>
+            </a>
+        </div>
 
-            
+        <div>
+            <ul class="nav text-center flex-column" id="accordionSidebar">
+                <li class="nav-item nav-item2 ">
+                    <a class="nav-link" onclick="CerrarSesion()" style="user-select: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z" />
+                            <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                        </svg><span class="ms-2">Cerrar Sesión</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+
     </div>
 
 </nav>
+
 
 
 

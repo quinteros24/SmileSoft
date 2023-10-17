@@ -1,15 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
-using System.Text;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using WebSmileSoft.Models;
 using WebSmileSoft.Interfaces;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Identity;
-using System.Net.Http.Headers;
-using NuGet.Protocol.Plugins;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace WebSmileSoft.Controllers
@@ -17,7 +12,7 @@ namespace WebSmileSoft.Controllers
     public class AccountController : Controller
     {
         //private readonly SignInManager<ApplicationUser> _signInManager;
-      
+
         private readonly ISettings _settings;
 
         public AccountController(ISettings settings)
@@ -33,55 +28,57 @@ namespace WebSmileSoft.Controllers
             return View();
         }
 
+        [HttpPost]
+        public async Task<ActionResult> Login(LoginViewModel usuario)
+        {
+            try
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    // Establece la URL del backend.
+                    string urlBackend = "https://ep-smilesoft.azurewebsites.net/api/Session/v1/Login";
+
+                    // Establece el encabezado de contenido para JSON.
+                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    // Serializa el modelo Usuario como JSON.
+                    string jsonUsuario = Newtonsoft.Json.JsonConvert.SerializeObject(usuario);
+
+                    // Crea el contenido de la solicitud POST.
+                    HttpContent content = new StringContent(jsonUsuario, System.Text.Encoding.UTF8, "application/json");
+
+                    // Realiza la solicitud POST al backend.
+                    HttpResponseMessage response = await httpClient.PostAsync(urlBackend, content);
+                    ViewBag.urlEndPoint = urlBackend;
+                    ViewBag.jsonUsuario = jsonUsuario;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // El inicio de sesión fue exitoso.
+                        // Puedes procesar la respuesta JSON del backend si es necesario.
+                        string jsonResponse = await response.Content.ReadAsStringAsync();
+                        // Redirige al usuario según su rol o realiza cualquier otra acción necesaria.
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        // El inicio de sesión falló.
+                        // Puedes mostrar un mensaje de error o realizar cualquier otra acción necesaria.
+                        ViewBag.ErrorMessage = "#" + response;
+                        return View(usuario);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de errores si ocurre algún problema al realizar la solicitud.
+                ViewBag.ErrorMessage = "Error al iniciar sesión: " + ex.Message;
+                return View(usuario);
+            }
+        }
 
 
 
-        //[HttpPost]
-        //public async Task<LoginViewModelResponse> Login([FromBody] LoginViewModelRequest ItemLogin)
-        //{
-        //    var HttpClient = new HttpClient();
-        //    //var content = new StringContent(JsonConvert.SerializeObject(ItemLogin), Encoding.UTF8, "application/json");
-        //    HttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-        //    LoginViewModelResponse? LoginViewModelItem = new();
-        //    var response = await HttpClient.PostAsJsonAsync(_settings.urlEndPoint + "/api/Session/v1/Login", ItemLogin);
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        var json = await response.Content.ReadAsStringAsync();
-        //        JObject jsonObject = JObject.Parse(json);
-        //        var data = jsonObject["itemJson"];
-        //        //mostrar el json por consola
-        //        Console.WriteLine(data);
-
-        //        //Prueba de Cookies
-        //        var claims = new List<Claim>
-        //        {
-        //            new Claim(ClaimTypes.Name, ItemLogin.UserLogin),
-        //            // Agregar otros claims según sea necesario
-        //        };
-
-        //        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-        //        var authProperties = new AuthenticationProperties
-        //        {
-        //            IsPersistent = true, // Mantener la sesión activa después del cierre del navegador
-        //        };
-
-        //        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
-
-        //        string? jsonData = data != null ? data.ToString() : String.Empty;
-
-        //        if (!String.IsNullOrEmpty(jsonData))
-        //        {
-        //            LoginViewModelItem = JsonConvert.DeserializeObject<LoginViewModelResponse>(jsonData);
-        //        }
-        //        return LoginViewModelItem!;
-        //    }
-        //    else
-        //    {
-        //        ModelState.AddModelError(string.Empty, "Credenciales no válidas");
-        //        return LoginViewModelItem;
-        //    }
-        //}
 
 
 
@@ -109,20 +106,7 @@ namespace WebSmileSoft.Controllers
             ViewBag.Specialities = specialities;
             return View();
         }
-        // Acción para el cierre de sesión
 
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Logout()
-        //{
-        //    await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-
-        //    // Redirige a la página de inicio o a la página deseada después del cierre de sesión
-        //    return RedirectToAction("Login", "Account");
-        //}
-
-
-        // Otras acciones y métodos relacionados con la autenticación
     }
 }

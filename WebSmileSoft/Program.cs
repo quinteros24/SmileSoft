@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+//builder.Services.AddRazorPages();
 
 builder.Services.AddSingleton<ISettings>((serviceProvider) =>
 {
@@ -50,7 +50,7 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 app.UseRouting();
-
+//app.MapRazorPages();
 
 
 app.MapControllerRoute(

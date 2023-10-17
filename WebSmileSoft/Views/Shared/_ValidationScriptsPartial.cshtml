@@ -2,6 +2,13 @@
  *@
 @* <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js" asp-append-version="true"></script>
  *@
+
+
+
+ <script>
+    function validarEdadMayorDe18(e) { e = document.getElementById(e), e = new Date(e.value); return !((new Date).getFullYear() - e.getFullYear() < 18 && (Swal.fire({ title: "Error", text: "Debes ser mayor de 18 años", icon: "error", confirmButtonText: "Aceptar" }), 1)) } function onChangeAgeNotification(e) { e.addEventListener("change", function () { var e = new Date(this.value); (new Date).getFullYear() - e.getFullYear() < 18 && Swal.fire({ title: "Error", text: "El usuario debe ser mayor de 18 años", icon: "error", confirmButtonText: "Aceptar" }) }) } function CheckPass(e) { return e.length < 8 ? "La contraseña debe tener al menos 8 caracteres." : /[A-Z]/.test(e) ? /[a-z]/.test(e) ? !/\s/.test(e) && !/[\uD800-\uDFFF]/.test(e) || "La contraseña debe contener al menos un numero." : "La contraseña debe contener al menos una letra minuscula." : "La contraseña debe contener al menos una letra mayuscula." } function allowNumbersOnly(e) { e.value = e.value.replace(/[^0-9]/g, "") } function mostrarCargando() { Swal.fire({ title: "Cargando", text: "Por favor, espere un momento...", showCancelButton: !1, showConfirmButton: !1, allowOutsideClick: !1, onBeforeOpen: () => { Swal.showLoading() } }) } function mostrarMensajeError(e) { Swal.fire({ title: "Error", text: e, icon: "error", confirmButtonText: "Aceptar" }) } function updateNavbarBackground(e) { var t = document.getElementById("nav_bar"); t.classList.remove("bg-primary", "bg-danger", "bg-success"), t.classList.add(e) } function CerrarSesion() { sessionStorage.clear(), window.location.href = '@Url.Action("Login", "Account")' } function mostrarElementosPorRol(e) { var t = $("#divAdmin"), n = $("#divDoctor"), o = $("#divUser"), r = $("#page-top"); t.hide(), n.hide(), o.hide(), r.hide(), 1 == e ? (t.show(), n.hide(), o.hide()) : 2 == e ? n.show() : 3 == e && o.show(), 1 != e && 2 != e && 3 != e || r.show() } function CambiarVinculoLogo(e) { e = 1 == e ? "/Admin/Index" : 2 == e ? "/Doctor/Index" : 3 == e ? "/Patient/Index" : "/Home/Index"; document.getElementById("sidebar-link").href = e } document.addEventListener("DOMContentLoaded", function () { document.querySelectorAll(".btn-en-desarrollo").forEach(function (e) { e.addEventListener("click", function () { event.preventDefault(), Swal.fire({ icon: "error", title: "Oops...", text: "Este Modulo esta en Desarrollo!", confirmButtonColor: "#008dc9" }) }) }) }), document.addEventListener("DOMContentLoaded", function () { var e = sessionStorage.getItem("userFName"), t = sessionStorage.getItem("userLName"), n = document.getElementById("nombreUsuario"), o = document.getElementById("SaludoUsuario"); null !== e && null !== t && n ? n.textContent = e + " " + t : null !== e && null !== t && o ? o.textContent = e + " " + t : console.log("No se encontraron datos en sessionStorage o algunos elementos HTML no existen.") });
+ </script>
+@* 
 <script>
     function validarEdadMayorDe18(idCampoFechaNacimiento) {
         const fechaNacimientoInput = document.getElementById(idCampoFechaNacimiento);
@@ -125,10 +132,6 @@
     });
 
 
-</script>
-
-
-<script>
     function updateNavbarBackground(selectedColor) {
 
         // Obtén una referencia a la barra de navegación por su ID
@@ -140,17 +143,13 @@
         // Agrega la clase de color seleccionada a la barra de navegación
         navbar.classList.add(selectedColor);
     }
-</script>
-<script>
+
     function CerrarSesion() {
         //console.log("Cerrando Sesión");
         // Borra el Session Storage
         sessionStorage.clear();
         window.location.href = '@Url.Action("Login", "Account")';
     }
-</script>
-<script>
-
 
     document.addEventListener("DOMContentLoaded", function () {
         // Recupera el nombre y apellido del usuario desde sessionStorage
@@ -231,5 +230,21 @@
         sidebarLink.href = route;
     }
 </script>
+ *@
+
+<environment exclude="Development">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"
+            asp-fallback-src="~/Identity/lib/jquery-validation/dist/jquery.validate.min.js"
+            asp-fallback-test="window.jQuery && window.jQuery.validator"
+            crossorigin="anonymous"
+            integrity="sha384-rZfj/ogBloos6wzLGpPkkOr/gpkBNLZ6b6yLy4o+ok+t/SAKlL5mvXLr0OXNi1Hp">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"
+            asp-fallback-src="~/Identity/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
+            asp-fallback-test="window.jQuery && window.jQuery.validator && window.jQuery.validator.unobtrusive"
+            crossorigin="anonymous"
+            integrity="sha384-R3vNCHsZ+A2Lo3d5A6XNP7fdQkeswQWTIPfiYwSpEP3YV079R+93YzTeZRah7f/F">
+    </script>
+</environment>
 
 

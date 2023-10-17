@@ -50,6 +50,10 @@
 
 @section Scripts{
     <script>
+        let userRole = sessionStorage.getItem('userRole');
+        if (userRole !== '2') {
+            logoutUser();
+        }
         document.addEventListener("DOMContentLoaded", function () {
             // Tu código de generación de PDF aquí
             function generatePDF() {
