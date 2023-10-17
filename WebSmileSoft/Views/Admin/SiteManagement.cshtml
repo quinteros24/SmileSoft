@@ -227,6 +227,7 @@
                             </div>
                         </div>
                     </div>
+                   
                 </div>
 
                 <div class="tab-pane" id="questionsettings">
@@ -280,6 +281,242 @@
 </div>
 
 @section Scripts{
+
+    <script src="~/assets/js/sitemanagement.js"></script>
+    <script>
+
+        let structure = [];
+
+        $.ajax({
+            url: sessionStorage.urlEP + '/api/Generics/v1/GetUsersClinicStoryFormat?oID=1',
+            type: 'GET',
+            contentType: "application/json",
+            dataType: 'json',
+            async: false,
+            success: function ({ itemJson, codeStatus }) {
+                if (codeStatus == 0) {
+                    structure = JSON.parse(itemJson);
+                }
+                else if (response.codeStatus == -1) {
+                    Swal.fire({
+                        title: 'Error',
+                        text: response.messageStatus,
+                        icon: 'error',
+                        confirmButtonText: 'Aceptar'
+                    })
+                }
+            }
+        })
+
+
+        let finalStructure = [];
+        structure.length && drawQuestions(true)
+        // Agrega un manejador de eventos para la clase "btn-en-desarrollo"
+        document.addEventListener("DOMContentLoaded", function () {
+            const buttons = document.querySelectorAll(".btn-en-desarrollo");
+            event.preventDefault();
+            buttons.forEach(function (button) {
+                button.addEventListener("click", function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Esta Función esta en Desarrollo!',
+                        confirmButtonColor: '#008dc9'
+                    })
+                });
+            });
+        });
+        $("#question-type").change(function () {
+            if ($(this).val() === "multiple") {
+                $(".option-container").addClass("d-block");
+                $(".option-container").removeClass("d-none");
+            } else {
+                $(".option-container").addClass("d-none");
+                $(".option-container").removeClass("d-block");
+            }
+        });
+
+        $("#add-option").click(function () {
+            $("#options-container").append(`
+                                                                                <div class="input-group mb-2">
+                                                                                <input type="text" class="form-control option-input" placeholder="Nombre de la opción">
+                                                                                <div class="input-group-append">
+                                                                                    <button class="btn btn-danger remove-option" type="button">-</button>
+                                                                                </div>
+                                                                                </div>
+                                                                            `);
+        });
+
+        $(document).on("click", ".remove-option", function () {
+            $(this).closest(".input-group").remove();
+        });
+
+        $("#add-question").click(() => drawQuestions());
+
+        function drawQuestions(firstLoad = false) {
+            console.log("Cargar Preguntas");
+            const type = $("#question-type").val();
+            const name = $("#question").val();
+            let options = null;
+
+            if (type === "multiple") {
+                options = [];
+                $(".option-input").each(function () {
+                    const optionValue = $(this).val();
+                    if (optionValue.trim() !== "") {
+                        options.push(optionValue);
+                    }
+                });
+            }
+
+            if (!name && !firstLoad) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Debes agregar una pregunta!',
+                    confirmButtonColor: '#008dc9'
+                })
+                return;
+            }
+
+            const question = {
+                id: structure.length + 1,
+                type: type,
+                name: name,
+                options: options,
+            };
+
+            structure.push(question);
+
+            console.log({ structure })
+
+            if (structure.length) {
+                $("#save-all-questions").removeClass("d-none");
+                $("#save-all-questions").addClass("d-block");
+            }
+
+            if (!firstLoad) {
+                $("#question-type").val('')
+                $("#question").val('');
+            }
+
+            type === "multiple" && $(".input-group").remove();
+            updateStructuredForm(structure);
+        }
+
+        // Grafico dinamicamente las preguntas dependiendo de su tipo
+        function updateStructuredForm(struct) {
+            console.log({ struct })
+            let questionTypes = {
+                'open': function (question) {
+                    let inputField = $(`<input disabled placeholder="Pregunta abierta" type="text" id="${question.id}" class="form-control"></input><br>`);
+
+                    let container = $('<div class="form-group"></div>').append(
+                        `<label class="text-primary m-0 fw-bold" for="${question.id}">`
+                        + `Pregunta abierta # ${question.id}: ` + question.name +
+                        '</label><br>', inputField);
+
+                    return container
+                },
+                'close': function (question) {
+
+                    let checkBox1 = $(`<input disabled class="form-check-input" id="${question.id}" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
+
+                    let label1 = $(`<label class="form-check-label" for="${question.id}">`).text("SI");
+
+                    let checkBox2 = $(`<input disabled class="form-check-input" id="${question.id}0" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
+
+                    let label2 = $(`<label class="form-check-label" for="${question.id}0">`).text("NO");
+
+                    let container1 = $('<div class="form-check form-check-inline"></div>').append(checkBox1, label1);
+
+                    let container2 = $('<div class="form-check form-check-inline"></div>').append(checkBox2, label2);
+
+                    let container = $('<div class="mb-4 mt-2"></div>').append(`<p class="text-primary m-0 fw-bold">Pregunta cerrada # ${question.id}: ${question.name}</p>`, container1, container2);
+
+                    return container;
+                },
+                'multiple': function (question) {
+                    let options = $(`<select class="form-select" id="${question.id}" multiple></select>`);
+
+                    question.options.forEach(function (option) {
+                        options.append('<option disabled value="' + option + '">' + option + '</option>');
+                    });
+
+                    let container = $('<div class="mb-4"></div>').append(`<p class="text-primary m-0 fw-bold">Pregunta de opción múltiple # ${question.id}: ${question.name}</p>`, options)
+
+                    return container
+                }
+            };
+
+            let form = $('#create-clinic-form-history');
+            form.empty();
+
+            finalStructure = [];
+            struct.forEach(function (question, index) {
+                question.id = index + 1;
+                let questionContainer = $(`<div class="question-${question.id}"></div>`);
+                // inserta un boton para eliminar cada pregunta
+                questionContainer.append(`<button type="button" class="btn btn-danger btn-sm mb-2" onclick="deleteQuestion(${question.id})">Eliminar</button>`);
+
+                if (question.type in questionTypes) {
+                    let inputElement = questionTypes[question.type](question);
+                    finalStructure.push(question);
+                    questionContainer.append(inputElement);
+                    form.append(questionContainer);
+                } else {
+                    console.error('Tipo de pregunta no válido: ' + question.type);
+                }
+            });
+        }
+
+        // Función para eliminar una pregunta
+        function deleteQuestion(id) {
+            $(`.question-${id}`).remove();
+            structure = structure.filter((question) => question.id !== id);
+            updateStructuredForm(structure);
+        }
+
+            // Envío la petición con la estructura final
+            $("#save-all-questions").click(() => {
+                $.ajax({
+                    url: sessionStorage.urlEP + '/api/Generics/v1/StoreUsersClinicStoryFormat?oID=1&jsonObject=' + JSON.stringify(finalStructure),
+                    type: 'GET',
+                    contentType: "application/json",
+                    dataType: 'json',
+                    success: function (response) {
+                        console.log(response)
+                        if (response.codeStatus == 0) {
+                            Swal.fire({
+                                title: response.messageStatus,
+                                icon: 'info',
+                                confirmButtonText: 'Aceptar'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    swal.close();
+                                    location.reload();
+                                }
+                            })
+                        }
+                        else if (response.codeStatus == -1) {
+                            Swal.fire({
+                                title: 'Error',
+                                text: response.messageStatus,
+                                icon: 'error',
+                                confirmButtonText: 'Aceptar'
+                            })
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        location.reload();
+                    }
+                })
+            });
+    </script>
 
     @* <script>
         // Agrega un manejador de eventos para la clase "btn-en-desarrollo"
@@ -474,249 +711,6 @@
 
     </script> *@
 
-    <script>
-
-        let structure = [];
-
-        $.ajax({
-            url: sessionStorage.urlEP + '/api/Generics/v1/GetUsersClinicStoryFormat?oID=1',
-            type: 'GET',
-            contentType: "application/json",
-            dataType: 'json',
-            async: false,
-            success: function ({ itemJson, codeStatus }) {
-                if (codeStatus == 0) {
-                    structure = JSON.parse(itemJson);
-                }
-                else if (response.codeStatus == -1) {
-                    Swal.fire({
-                        title: 'Error',
-                        text: response.messageStatus,
-                        icon: 'error',
-                        confirmButtonText: 'Aceptar'
-                    })
-                }
-            }
-        })
-
-
-        let finalStructure = [];
-        structure.length && drawQuestions(true)
-        // Agrega un manejador de eventos para la clase "btn-en-desarrollo"
-        document.addEventListener("DOMContentLoaded", function () {
-            const buttons = document.querySelectorAll(".btn-en-desarrollo");
-            event.preventDefault();
-            buttons.forEach(function (button) {
-                button.addEventListener("click", function () {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Esta Función esta en Desarrollo!',
-                        confirmButtonColor: '#008dc9'
-                    })
-                });
-            });
-        });
-        $("#question-type").change(function () {
-            if ($(this).val() === "multiple") {
-                $(".option-container").addClass("d-block");
-                $(".option-container").removeClass("d-none");
-            } else {
-                $(".option-container").addClass("d-none");
-                $(".option-container").removeClass("d-block");
-            }
-        });
-
-        $("#add-option").click(function () {
-            $("#options-container").append(`
-                                                                        <div class="input-group mb-2">
-                                                                        <input type="text" class="form-control option-input" placeholder="Nombre de la opción">
-                                                                        <div class="input-group-append">
-                                                                            <button class="btn btn-danger remove-option" type="button">-</button>
-                                                                        </div>
-                                                                        </div>
-                                                                    `);
-        });
-
-        $(document).on("click", ".remove-option", function () {
-            $(this).closest(".input-group").remove();
-        });
-
-        $("#add-question").click(() => drawQuestions());
-
-        function drawQuestions(firstLoad = false) {
-            const type = $("#question-type").val();
-            const name = $("#question").val();
-            let options = null;
-
-            if (type === "multiple") {
-                options = [];
-                $(".option-input").each(function () {
-                    const optionValue = $(this).val();
-                    if (optionValue.trim() !== "") {
-                        options.push(optionValue);
-                    }
-                });
-            }
-
-            if (!name && !firstLoad) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Debes agregar una pregunta!',
-                    confirmButtonColor: '#008dc9'
-                })
-                return;
-            }
-
-            const question = {
-                id: structure.length + 1,
-                type: type,
-                name: name,
-                options: options,
-            };
-
-            structure.push(question);
-
-            console.log({ structure })
-
-            if (structure.length) {
-                $("#save-all-questions").removeClass("d-none");
-                $("#save-all-questions").addClass("d-block");
-            }
-
-            if (!firstLoad) {
-                $("#question-type").val('')
-                $("#question").val('');
-            }
-
-            type === "multiple" && $(".input-group").remove();
-            updateStructuredForm(structure);
-        }
-
-        // Grafico dinamicamente las preguntas dependiendo de su tipo
-        function updateStructuredForm(struct) {
-            console.log({ struct })
-            let questionTypes = {
-                'open': function (question) {
-                    let inputField = $(`<input disabled placeholder="Pregunta abierta" type="text" id="${question.id}" class="form-control"></input><br>`);
-
-                    let container = $('<div class="form-group"></div>').append(
-                        `<label class="text-primary m-0 fw-bold" for="${question.id}">`
-                        + `Pregunta abierta # ${question.id}: ` + question.name +
-                        '</label><br>', inputField);
-
-                    return container
-                },
-                'close': function (question) {
-
-                    let checkBox1 = $(`<input disabled class="form-check-input" id="${question.id}" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
-
-                    let label1 = $(`<label class="form-check-label" for="${question.id}">`).text("SI");
-
-                    let checkBox2 = $(`<input disabled class="form-check-input" id="${question.id}0" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
-
-                    let label2 = $(`<label class="form-check-label" for="${question.id}0">`).text("NO");
-
-                    let container1 = $('<div class="form-check form-check-inline"></div>').append(checkBox1, label1);
-
-                    let container2 = $('<div class="form-check form-check-inline"></div>').append(checkBox2, label2);
-
-                    let container = $('<div class="mb-4 mt-2"></div>').append(`<p class="text-primary m-0 fw-bold">Pregunta cerrada # ${question.id}: ${question.name}</p>`, container1, container2);
-
-                    return container;
-                },
-                'multiple': function (question) {
-                    let options = $(`<select class="form-select" id="${question.id}" multiple></select>`);
-
-                    question.options.forEach(function (option) {
-                        options.append('<option disabled value="' + option + '">' + option + '</option>');
-                    });
-
-                    let container = $('<div class="mb-4"></div>').append(`<p class="text-primary m-0 fw-bold">Pregunta de opción múltiple # ${question.id}: ${question.name}</p>`, options)
-
-                    return container
-                }
-            };
-
-            let form = $('#create-clinic-form-history');
-            form.empty();
-
-            finalStructure = [];
-            struct.forEach(function (question, index) {
-                question.id = index + 1;
-                let questionContainer = $(`<div class="question-${question.id}"></div>`);
-                // inserta un boton para eliminar cada pregunta
-                questionContainer.append(`<button type="button" class="btn btn-danger btn-sm mb-2" onclick="deleteQuestion(${question.id})">Eliminar</button>`);
-
-                if (question.type in questionTypes) {
-                    let inputElement = questionTypes[question.type](question);
-                    finalStructure.push(question);
-                    questionContainer.append(inputElement);
-                    form.append(questionContainer);
-                } else {
-                    console.error('Tipo de pregunta no válido: ' + question.type);
-                }
-            });
-        }
-
-        // Función para eliminar una pregunta
-        function deleteQuestion(id) {
-            $(`.question-${id}`).remove();
-            structure = structure.filter((question) => question.id !== id);
-            updateStructuredForm(structure);
-        }
-
-        $(document).ready(function () {
-            // Envío la petición con la estructura final
-            $("#save-all-questions").click(() => {
-                $.ajax({
-                    url: sessionStorage.urlEP + '/api/Generics/v1/StoreUsersClinicStoryFormat?oID=1&jsonObject=' + JSON.stringify(finalStructure),
-                    type: 'GET',
-                    contentType: "application/json",
-                    dataType: 'json',
-                    success: function (response) {
-                        console.log(response)
-                        if (response.codeStatus == 0) {
-                            Swal.fire({
-                                title: response.messageStatus,
-                                icon: 'info',
-                                confirmButtonText: 'Aceptar'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    swal.close();
-                                    location.reload();
-                                }
-                            })
-                        }
-                        else if (response.codeStatus == -1) {
-                            Swal.fire({
-                                title: 'Error',
-                                text: response.messageStatus,
-                                icon: 'error',
-                                confirmButtonText: 'Aceptar'
-                            })
-                        }
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-
-
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        location.reload();
-                    }
-                })
-            });
-
-        });
-
-    </script>
-
-
-
-    <script src="~/assets/js/sitemanagement.js"></script>
     @* <script>
         // Obtén el enlace de WhatsApp y el campo de entrada por sus IDs
         const wpNumberInput = document.getElementById("wpNumber");
@@ -784,9 +778,9 @@
             });
 
     </script> *@
-    <script src="~/assets/js/popper.js"></script>
+    @* <script src="~/assets/js/popper.js"></script> *@
     <script src="~/assets/js/bootstrap.min.js"></script>
     <script src="~/assets/js/theme.js"></script>
-    <script type="text/javascript"></script>
+   @*  <script type="text/javascript"></script> *@
 }
 

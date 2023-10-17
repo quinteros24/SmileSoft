@@ -503,43 +503,7 @@
                 }
             })
 
-            /*
-                        let structure = [
-                            {
-                                id: 1,
-                                type: 'multiple',
-                                name: 'Ha tenido dolor?',
-                                options: [
-                                    'intenso',
-                                    'suave',
-                                    'moderado'
-                                ]
-                            },
-                            {
-                                id: 2,
-                                type: 'open',
-                                name: 'Cómo se ha sentido el dolor?',
-                                options: null
-                            },
-                            {
-                                id: 3,
-                                type: 'close',
-                                name: 'Le gustaría volver a sentirlo?',
-                                options: null
-                            },
-                            {
-                                id: 4,
-                                type: 'multiple',
-                                name: 'Ha tenido dolor?',
-                                options: [
-                                    'intenso',
-                                    'suave',
-                                    'moderado'
-                                ]
-                            },
-                        ];
-                        */
-
+    
             let questionTypes = {
                 'open': function (question) {
                     let inputField = $(`<input type="text" id="${question.id}" class="form-control"></input><br>`);
