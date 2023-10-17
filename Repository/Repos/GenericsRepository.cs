@@ -135,5 +135,26 @@ namespace Repository
             }
             return genericResponseModel;
         }
+
+        public async Task<GenericResponseModel> GetUserClinicStory (int uID)
+        {
+            string query = $"SELECT MedicalRecordObject FROM Appointments WHERE [uID] = {uID} AND [oID] = 1 AND MedicalRecordObject IS NOT NULL ORDER BY aDate DESC";
+            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
+            ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
+            GenericResponseModel? genericResponseModel = new() { MessageStatus = "No hay historias clínicas para este usuario" };
+            List<string> Medical = new();
+            if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
+            {
+                for(int i = 0; i < ItemResponseDB.DtObject.Rows.Count; i++)
+                {
+                    Medical.Add(ItemResponseDB.DtObject.Rows[i]["MedicalRecordObject"].ToString());
+                }
+                genericResponseModel.ItemJson = Medical;
+                genericResponseModel.CodeStatus = "0";
+                genericResponseModel.MessageStatus = "Consulta correcta";
+                genericResponseModel.Status = true;
+            }
+            return genericResponseModel;
+        }
     }
 }
