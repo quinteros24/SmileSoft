@@ -203,3 +203,5 @@ TestResults/
 /EpSmileSoft/bin/Debug/net6.0/Azure.Core.dll
 /EpSmileSoft/bin/Debug/net6.0/EpSmileSoft.exe
 /Domain.Core/bin/Debug/net6.0/Domain.Core.deps.json
+/Domain.Core/bin/Release/net6.0/Domain.Core.dll
+/Domain.Core/bin/Release/net6.0/Domain.Core.pdb

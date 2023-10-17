@@ -78,13 +78,13 @@
         }
         $(document).ready(function () {
             //verifyToken();
-            let uID = sessionStorage.getItem("userID");
-            getUserCitas(uID);
+            let dID = sessionStorage.getItem("doctorID");
+            getUserCitas(dID);
             $("#loadingScreen").show();
 
 
         });
-        function getUserCitas(uID) {
+        function getUserCitas(dID) {
             // Realizar solicitud AJAX para obtener la lista de usuarios
             // var utID = 1;
             mostrarCargando();
@@ -92,6 +92,7 @@
             $.ajax({
                 url: sessionStorage.urlEP + '/api/Appointments/v1/GetAppointmentsList',
                 type: 'GET',
+                data: { 'dID': dID },
                 contentType: "application/json",
                 dataType: 'json',
                 success: function (data) {
