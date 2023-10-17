@@ -138,7 +138,7 @@ namespace Repository
 
         public async Task<GenericResponseModel> GetUserClinicStory (int uID)
         {
-            string query = $"SELECT MedicalRecordObject FROM Appointments WHERE [uID] = {uID} AND [oID] = 1 ORDER BY aDate";
+            string query = $"SELECT MedicalRecordObject FROM Appointments WHERE [uID] = {uID} AND [oID] = 1 AND MedicalRecordObject IS NOT NULL ORDER BY aDate DESC";
             Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
             ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
             GenericResponseModel? genericResponseModel = new() { MessageStatus = "No hay historias clínicas para este usuario" };
