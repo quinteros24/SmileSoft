@@ -13,6 +13,15 @@
                 </div>
             </div>
         </div>
+
+        <div class="card mt-4">
+            <div class="card-body">
+                <input type="file" id="fileInput" accept=".jpg, .jpeg, .png" />
+                <button id="uploadButton" class="btn btn-primary mt-2">Subir Archivo</button>
+                <p id="message" class="mt-2"></p>
+            </div>
+        </div>
+
     </div>
 </div>
 
@@ -40,7 +49,7 @@
                     let fechaCita = cita.aDate;
                     let fechaFormateada = fechaCita.substring(0, 10);
                     let rowData = [
-                        index+1,
+                        index + 1,
                         cita.aID,
                         fechaFormateada,
                         cita.uName,
@@ -277,6 +286,61 @@
                 }
             });
         }
+
+        function uploadFile() {
+            const fileInput = document.getElementById("fileInput");
+            const message = document.getElementById("message");
+
+            if (fileInput.files.length === 0) {
+                showMessage("Seleccione un archivo para cargar.", "red");
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append("file", file);
+
+            // Generar un nombre único para el archivo
+            const uniqueName = generateUniqueFileName(file.name);
+
+            // Agregar el nombre único al formData
+            formData.append("uniqueName", uniqueName);
+
+            // URL del servicio de carga de blobs (reemplaza con tu URL)
+            const uploadUrl = sessionStorage.urlEP + '/api/Blobs/upload';
+
+            fetch(uploadUrl, {
+                method: "POST",
+                body: formData,
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        showMessage("Archivo cargado exitosamente.", "green");
+                    } else {
+                        showMessage("Error al cargar el archivo.", "red");
+                    }
+                })
+                .catch((error) => {
+                    showMessage("Error de red al cargar el archivo.", "red");
+                });
+        }
+
+        function generateUniqueFileName(originalName) {
+            const timestamp = new Date().getTime(); // Puedes utilizar una marca de tiempo
+            const randomString = Math.random().toString(36).substring(2); // Agregar una cadena aleatoria
+            const fileExtension = originalName.split('.').pop(); // Obtener la extensión del archivo
+            const uniqueName = `${timestamp}_${randomString}.${fileExtension}`;
+            return uniqueName;
+        }
+
+        function showMessage(text, color) {
+            message.textContent = text;
+            message.style.color = color;
+        }
+
+        document.getElementById("uploadButton").addEventListener("click", uploadFile);
+
+
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
 
