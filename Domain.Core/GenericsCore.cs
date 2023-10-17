@@ -75,17 +75,7 @@ namespace Domain.Core
 
         public async Task<GenericResponseModel> SetUsersClinicStoryFormat(string jsonObject, int aID)
         {
-            GenericResponseModel genericResponseModel = new();
-            genericResponseModel.MessageStatus = "Ha ocurrido un error con el formato JSON";
-            try
-            {
-                var validator = JsonConvert.DeserializeObject(jsonObject);
-                return await _genericsRepository.SetUsersClinicStoryFormat(jsonObject, aID);
-            }
-            catch
-            {
-                return genericResponseModel;
-            }
+            return await _genericsRepository.SetUsersClinicStoryFormat(jsonObject, aID);
         }
 
         public async Task<GenericResponseModel> SetContactNumber(string cellphoneNumber, int oID)
@@ -96,6 +86,11 @@ namespace Domain.Core
         public async Task<GenericResponseModel> GetContactNumber(int oID)
         {
             return await _genericsRepository.GetContactNumber(oID);
+        }
+
+        public async Task<GenericResponseModel> GetUserClinicStory(int uID)
+        {
+            return await _genericsRepository.GetUserClinicStory(uID);
         }
     }
 }
