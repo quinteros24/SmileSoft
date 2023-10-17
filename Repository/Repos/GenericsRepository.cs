@@ -3,7 +3,9 @@ using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Repository.Queries;
+using System;
 using System.Data;
+using System.Security.Cryptography;
 
 namespace Repository
 {
@@ -57,6 +59,102 @@ namespace Repository
                 Items = Mapper.ToSelectList(dt, "dID", "dName");
             }
             return Items;
+        }
+
+        public async Task<GenericResponseModel> GetUsersClinicStoryFormat(int oID)
+        {
+            string query = $"SELECT MedicalRecordFormat FROM Offices WHERE [oID] = {oID}";
+            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
+            ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
+            GenericResponseModel? genericResponseModel = new();
+            if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
+            {
+                genericResponseModel.ItemJson = ItemResponseDB.DtObject.Rows[0]["MedicalRecordFormat"].ToString();
+                genericResponseModel.CodeStatus = "0";
+                genericResponseModel.MessageStatus = "Consulta correcta";
+                genericResponseModel.Status = true;
+            }
+            return genericResponseModel;
+        }
+
+        public async Task<GenericResponseModel> StoreUsersClinicStoryFormat(string jsonObject, int oID)
+        {
+            string query = $"UPDATE Offices SET MedicalRecordFormat = '{jsonObject}' WHERE [oID] = {oID}";
+            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
+            ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
+            GenericResponseModel? genericResponseModel = new()
+            {
+                CodeStatus = "0",
+                MessageStatus = "Consulta correcta",
+                Status = true
+            };
+            return genericResponseModel;
+        }
+
+        public async Task<GenericResponseModel> SetUsersClinicStoryFormat(string jsonObject, int aID)
+        {
+            string query = $"UPDATE Appointments SET MedicalRecordObject = '{jsonObject}' WHERE [aID] = {aID}";
+            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
+            ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
+            GenericResponseModel? genericResponseModel = new()
+            {
+                CodeStatus = "0",
+                MessageStatus = "Consulta correcta",
+                Status = true
+            };
+            return genericResponseModel;
+        }
+
+        public async Task<GenericResponseModel> SetContactNumber(string cellphoneNumber, int oID)
+        {
+            string query = $"UPDATE Offices SET ContactNumber = '{cellphoneNumber}' WHERE [oID] = {oID}";
+            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
+            ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
+            GenericResponseModel? genericResponseModel = new() { MessageStatus = "No se ha podido guardar el número de contacto, intente nuevamente por favor" };
+            if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
+            {
+                genericResponseModel.CodeStatus = "0";
+                genericResponseModel.MessageStatus = "Se ha guardado el número de contacto correctamente";
+                genericResponseModel.Status = true;
+            }
+            return genericResponseModel;
+        }
+
+        public async Task<GenericResponseModel> GetContactNumber(int oID)
+        {
+            string query = $"SELECT ContactNumber FROM Offices WHERE [oID] = {oID}";
+            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
+            ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
+            GenericResponseModel? genericResponseModel = new() { MessageStatus = "No se ha podido obtener el número de contacto, intente nuevamente por favor" };
+            if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
+            {
+                genericResponseModel.ItemJson = ItemResponseDB.DtObject.Rows[0]["ContactNumber"].ToString();
+                genericResponseModel.CodeStatus = "0";
+                genericResponseModel.MessageStatus = "Consulta correcta";
+                genericResponseModel.Status = true;
+            }
+            return genericResponseModel;
+        }
+
+        public async Task<GenericResponseModel> GetUserClinicStory (int uID)
+        {
+            string query = $"SELECT MedicalRecordObject FROM Appointments WHERE [uID] = {uID} AND [oID] = 1 ORDER BY aDate";
+            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
+            ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
+            GenericResponseModel? genericResponseModel = new() { MessageStatus = "No hay historias clínicas para este usuario" };
+            List<string> Medical = new();
+            if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
+            {
+                for(int i = 0; i < ItemResponseDB.DtObject.Rows.Count; i++)
+                {
+                    Medical.Add(ItemResponseDB.DtObject.Rows[i]["MedicalRecordObject"].ToString());
+                }
+                genericResponseModel.ItemJson = Medical;
+                genericResponseModel.CodeStatus = "0";
+                genericResponseModel.MessageStatus = "Consulta correcta";
+                genericResponseModel.Status = true;
+            }
+            return genericResponseModel;
         }
     }
 }

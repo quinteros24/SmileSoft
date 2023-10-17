@@ -123,57 +123,57 @@
     --bs-form-invalid-border-color: #e74a3b;
 }
 [data-bs-theme="dark"] {
-  color-scheme: dark;
-  --bs-body-color: #dddfeb;
-  --bs-body-color-rgb: 221, 223, 235;
-  --bs-body-bg: #3a3b45;
-  --bs-body-bg-rgb: 58, 59, 69;
-  --bs-emphasis-color: #fff;
-  --bs-emphasis-color-rgb: 255, 255, 255;
-  --bs-secondary-color: rgba(221, 223, 235, 0.75);
-  --bs-secondary-color-rgb: 221, 223, 235;
-  --bs-secondary-bg: #5a5c69;
-  --bs-secondary-bg-rgb: 90, 92, 105;
-  --bs-tertiary-color: rgba(221, 223, 235, 0.5);
-  --bs-tertiary-color-rgb: 221, 223, 235;
-  --bs-tertiary-bg: #4a4c57;
-  --bs-tertiary-bg-rgb: 74, 76, 87;
-  --bs-primary-text-emphasis: #95abec;
-  --bs-secondary-text-emphasis: #b6b7c0;
-  --bs-success-text-emphasis: #77deb9;
-  --bs-info-text-emphasis: #86d5e0;
-  --bs-warning-text-emphasis: #fada8b;
-  --bs-danger-text-emphasis: #f19289;
-  --bs-light-text-emphasis: #f8f9fc;
-  --bs-dark-text-emphasis: #dddfeb;
-  --bs-primary-bg-subtle: #10172d;
-  --bs-secondary-bg-subtle: #1b1b1e;
-  --bs-success-bg-subtle: #06281c;
-  --bs-info-bg-subtle: #0b2529;
-  --bs-warning-bg-subtle: #31270c;
-  --bs-danger-bg-subtle: #2e0f0c;
-  --bs-light-bg-subtle: #5a5c69;
-  --bs-dark-bg-subtle: #2d2e35;
-  --bs-primary-border-subtle: #2f4586;
-  --bs-secondary-border-subtle: #50515a;
-  --bs-success-border-subtle: #117853;
-  --bs-info-border-subtle: #206f7a;
-  --bs-warning-border-subtle: #947425;
-  --bs-danger-border-subtle: #8b2c23;
-  --bs-light-border-subtle: #6e707e;
-  --bs-dark-border-subtle: #5a5c69;
-  --bs-heading-color: inherit;
-  --bs-link-color: #95abec;
-  --bs-link-hover-color: #aabcf0;
-  --bs-link-color-rgb: 149, 171, 236;
-  --bs-link-hover-color-rgb: 170, 188, 240;
-  --bs-code-color: #f18bba;
-  --bs-border-color: #6e707e;
-  --bs-border-color-translucent: rgba(255, 255, 255, 0.15);
-  --bs-form-valid-color: #77deb9;
-  --bs-form-valid-border-color: #77deb9;
-  --bs-form-invalid-color: #f19289;
-  --bs-form-invalid-border-color: #f19289;
+    color-scheme: dark;
+    --bs-body-color: #dddfeb;
+    --bs-body-color-rgb: 221, 223, 235;
+    --bs-body-bg: #3a3b45;
+    --bs-body-bg-rgb: 58, 59, 69;
+    --bs-emphasis-color: #fff;
+    --bs-emphasis-color-rgb: 255, 255, 255;
+    --bs-secondary-color: rgba(221, 223, 235, 0.75);
+    --bs-secondary-color-rgb: 221, 223, 235;
+    --bs-secondary-bg: #5a5c69;
+    --bs-secondary-bg-rgb: 90, 92, 105;
+    --bs-tertiary-color: rgba(221, 223, 235, 0.5);
+    --bs-tertiary-color-rgb: 221, 223, 235;
+    --bs-tertiary-bg: #4a4c57;
+    --bs-tertiary-bg-rgb: 74, 76, 87;
+    --bs-primary-text-emphasis: #95abec;
+    --bs-secondary-text-emphasis: #b6b7c0;
+    --bs-success-text-emphasis: #77deb9;
+    --bs-info-text-emphasis: #86d5e0;
+    --bs-warning-text-emphasis: #fada8b;
+    --bs-danger-text-emphasis: #f19289;
+    --bs-light-text-emphasis: #f8f9fc;
+    --bs-dark-text-emphasis: #dddfeb;
+    --bs-primary-bg-subtle: #10172d;
+    --bs-secondary-bg-subtle: #1b1b1e;
+    --bs-success-bg-subtle: #06281c;
+    --bs-info-bg-subtle: #0b2529;
+    --bs-warning-bg-subtle: #31270c;
+    --bs-danger-bg-subtle: #2e0f0c;
+    --bs-light-bg-subtle: #5a5c69;
+    --bs-dark-bg-subtle: #2d2e35;
+    --bs-primary-border-subtle: #2f4586;
+    --bs-secondary-border-subtle: #50515a;
+    --bs-success-border-subtle: #117853;
+    --bs-info-border-subtle: #206f7a;
+    --bs-warning-border-subtle: #947425;
+    --bs-danger-border-subtle: #8b2c23;
+    --bs-light-border-subtle: #6e707e;
+    --bs-dark-border-subtle: #5a5c69;
+    --bs-heading-color: inherit;
+    --bs-link-color: #95abec;
+    --bs-link-hover-color: #fff;
+    --bs-link-color-rgb: 149, 171, 236;
+    --bs-link-hover-color-rgb: 170, 188, 240;
+    --bs-code-color: #f18bba;
+    --bs-border-color: #6e707e;
+    --bs-border-color-translucent: rgba(255, 255, 255, 0.15);
+    --bs-form-valid-color: #77deb9;
+    --bs-form-valid-border-color: #77deb9;
+    --bs-form-invalid-color: #f19289;
+    --bs-form-invalid-border-color: #f19289;
 }
 *,
 *::before,
@@ -3242,7 +3242,7 @@ fieldset:disabled .btn {
 }
 .btn-link {
   --bs-btn-font-weight: 400;
-  --bs-btn-color: var(--bs-link-color);
+  --bs-btn-color: #fff;
   --bs-btn-bg: transparent;
   --bs-btn-border-color: transparent;
   --bs-btn-hover-color: var(--bs-link-hover-color);
@@ -12454,7 +12454,7 @@ a:focus {
     width: 100%;
     text-align: left;
     padding: 1rem;
-    width: 14rem;
+    width: 12rem;
     font-size: 0.85rem;
   }
   .sidebar .nav-item .nav-link i {

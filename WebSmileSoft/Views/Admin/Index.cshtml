@@ -96,15 +96,18 @@
                     <div class="card-header text-bg-primary">
                         Lista Citas
                     </div>
-                    <div class="card-body table-responsive shadow-lg">
-                        <table class="table" id="citasDoctores">
-                        </table>
+                    <div class="card-body shadow-lg">
+                        <div class="table-responsive">
+                            <table class="table table-hover display" width="100%" id="citasDoctores">
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+   
+    
 </section>
 
 <!-- Modal Editar Cita -->
@@ -145,6 +148,10 @@
 
 @section Scripts {
     <script>
+        let userRole = sessionStorage.getItem('userRole');
+        if (userRole !== '1') {
+            logoutUser();
+        }
         let eventos = [];
         $(document).ready(function () {
             //verifyToken();
@@ -278,7 +285,6 @@
                 dataType: 'json',
                 success: function (data) {
                     $("#loadingScreen").hide();
-                    //console.log("Respuesta del Servidor " + data);
                     // Procesar los datos recibidos y agregar filas a la tabla
                     let dataSet = [];
                     let users = data.itemJson;
@@ -287,11 +293,7 @@
                     $("#dateRequest").text(citasRegistradas);
                     if (data.itemJson !== null) {
                         citasRegistradas = data.itemJson.length;
-
-
-
                         $.each(data.itemJson, function (index, cita) {
-
                             let fechaCita = cita.aDate;
                             let fechaFormateada = fechaCita.substring(0, 10);
                             let rowData = [
@@ -306,10 +308,8 @@
                                 cita.asName
                             ];
                             dataSet.push(rowData);
-
                         });
                         $("#dateRequest").text(citasRegistradas);
-
                     }
                     // Inicializa o actualiza el DataTable con los datos procesados
                     tableCitas = $('#citasDoctores').DataTable({

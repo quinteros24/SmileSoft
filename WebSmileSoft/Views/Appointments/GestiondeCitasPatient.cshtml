@@ -66,7 +66,7 @@
                     <label for="mensaje" class="form-label">Motivo:</label>
                     <textarea class="form-control" id="mensaje" name="mensaje" rows="2"></textarea>
                 </div>
-                <button type="button" class="btn btn-primary" onclick="SolicitarCitaPaciente();" id="generateICS">Agendar Cita</button>
+                <button type="button" class="btn btn-primary" onclick="SolicitarCitaPaciente();">Agendar Cita</button>
             </form>
         </div>
     </div>
@@ -74,118 +74,6 @@
 
 @section Scripts{
 
-
-
-    <script>
-
-        function formatDateForICS(date, time) {
-            // Convierte la fecha en el formato requerido por ICS (AAAAMMDD)
-            const formattedDate = date.replace(/-/g, '');
-
-            // Convierte la hora en el formato requerido por ICS (HHMMSS)
-            const formattedTime = time.replace(/:/g, '');
-
-            // Combina la fecha y la hora en un formato completo (AAAAMMDDTHHMMSSZ)
-            const dateTime = formattedDate + 'T' + formattedTime + 'Z';
-
-            return dateTime;
-        }
-        function addOneHourToTime(time) {
-            // Divide la hora en horas, minutos y segundos
-            const parts = time.split(':');
-            const hours = parseInt(parts[0], 10);
-            const minutes = parseInt(parts[1], 10);
-            const seconds = parseInt(parts[2], 10);
-
-            // Suma una hora
-            const newHours = hours + 1;
-
-            // Asegúrate de que la hora no supere las 23
-            const adjustedHours = newHours > 23 ? 0 : newHours;
-
-            // Formatea la nueva hora
-            const newTime = `${adjustedHours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
-            return newTime;
-        }
-        document.getElementById('generateICS').addEventListener('click', function () {
-            // Datos del evento
-            let date = document.getElementById("fecha").value.trim();
-            let time = document.getElementById("cHora").value.trim() + ':00';
-            let doctor = document.getElementById("cDoctor").value.trim();
-            let message = document.getElementById("mensaje").value.trim();
-
-            // Ejemplo de uso
-            const fecha = date;
-            const hora = time;
-
-            const dateTimeICS = formatDateForICS(fecha, hora);
-            console.log(dateTimeICS); // Debe imprimir '20231018T080000Z'
-
-            const newTime = addOneHourToTime(time);
-            const dateTimeICSend = formatDateForICS(fecha, newTime);
-            console.log(dateTimeICSend);
-
-            console.log('Datos Consulta para Calendario');
-            console.log(date, time, doctor, message);
-            var event = {
-                summary: 'Cita Odontologica con el Doctor:' + ' ' + doctor,
-                description: 'Motivo:' + ' ' + message,
-                location: 'SmileSoft',
-                start: dateTimeICS, // Fecha y hora de inicio en formato UTC (AñoMesDíaTHoraMinutoSegundoZ)
-                end: dateTimeICSend   // Fecha y hora de fin en formato UTC
-            };
-
-            // Generar el contenido del archivo ICS
-            var icsData =
-                'BEGIN:VCALENDAR\r\n' +
-                'VERSION:2.0\r\n' +
-                'BEGIN:VEVENT\r\n' +
-                'DTSTAMP:' + (new Date()).toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z\r\n' +
-                'UID:' + generateUID() + '\r\n' +
-                'DTSTART:' + event.start + '\r\n' +
-                'DTEND:' + event.end + '\r\n' +
-                'SUMMARY:' + event.summary + '\r\n' +
-                'DESCRIPTION:' + event.description + '\r\n' +
-                'LOCATION:' + event.location + '\r\n' +
-                'END:VEVENT\r\n' +
-                'END:VCALENDAR\r\n';
-
-            // Descargar el archivo ICS
-            var blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
-            var link = document.createElement('a');
-            link.href = window.URL.createObjectURL(blob);
-            link.setAttribute('download', 'evento.ics');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        });
-
-        function generateUID() {
-            // Generar un identificador único
-            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-                var r = Math.random() * 16 | 0,
-                    v = c == 'x' ? r : (r & 0x3 | 0x8);
-                return v.toString(16);
-            });
-        }
-    </script>
-    @* <script>
-        var buildICSEntry = function (javascriptExampleDateObject) {
-
-            var calEntry = icsFormatter();
-
-            var title = 'sometitlestring';
-            var place = 'our secret meeting place';
-            var begin = new Date(javascriptExampleDateObject);
-            var end = new Date(Beginn.getTime() + 30 * 60000);
-
-            var description = 'A very long and boring description of what is the agenda of this super exclusiv pow-wow';
-
-            calEntry.addEvent(title, description, place, begin.toUTCString(), begin.toUTCString());
-            calEntry.download('ourSecretMeeting');
-        }
-    </script> *@
     <script>
 
         function fncheckDoctor(selectObject) {
