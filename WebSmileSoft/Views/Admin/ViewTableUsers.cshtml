@@ -642,11 +642,13 @@
                                 },
                                 'close': function (question) {
 
-                                    let checkBox1 = $(`<input disabled class="form-check-input" id="${question.id}" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
+                                    let checkBox1 = $(`<input disabled class="form-check-input" id="${question.id}" type="radio" >`).attr('name', "checkbox-close-question");
+                                    // let checkBox1 = $(`<input disabled class="form-check-input" id="${question.id}" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
 
                                     let label1 = $(`<label class="form-check-label" for="${question.id}">`).text("SI");
 
-                                    let checkBox2 = $(`<input disabled class="form-check-input" id="${question.id}0" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
+                                    // let checkBox2 = $(`<input disabled class="form-check-input" id="${question.id}0" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
+                                    let checkBox2 = $(`<input disabled class="form-check-input" id="${question.id}0" type="radio" >`).attr('name', "checkbox-close-question");
 
                                     let label2 = $(`<label class="form-check-label" for="${question.id}0">`).text("NO");
 

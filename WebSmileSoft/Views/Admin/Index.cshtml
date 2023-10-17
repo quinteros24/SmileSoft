@@ -89,8 +89,8 @@
             </div>
         </div>
     </div>
-   
-    
+
+
 </section>
 
 <!-- Modal Editar Cita -->
@@ -445,10 +445,11 @@
                                 Swal.getInput().addEventListener('change', (event) => {
                                     if (event.target.value == 3) {
                                         $("#form-history-content").append('<button type="button" class="btn btn-primary" id="createFormHistory">Agregar historia clínica</button>');
-
                                         $("#createFormHistory").click(() => createFormHistory(CitaID));
                                     } else {
                                         $("#form-history-content").empty();
+                                        console.log('Guardar cambios', event.target.value);
+                                        changeDateStatus(event.target.value, CitaID);
                                     }
                                 })
                             },
@@ -503,7 +504,7 @@
                 }
             })
 
-    
+
             let questionTypes = {
                 'open': function (question) {
                     let inputField = $(`<input type="text" id="${question.id}" class="form-control"></input><br>`);
@@ -593,13 +594,14 @@
                     console.log(response)
                     if (response.codeStatus == 0) {
                         Swal.fire({
-                            title: response.messageStatus,
+                            title: 'Historia Clinica Creada',
                             icon: 'info',
                             confirmButtonText: 'Aceptar'
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                swal.close();
-                                location.reload();
+                                changeDateStatus(3, citaID);
+                                // swal.close();
+                                // location.reload();
                             }
                         })
                     }
