@@ -28,7 +28,7 @@
             window.location.href = '@Url.Action("AdministrarCitas", "Doctor")';
         } //SetAppointment
         let dID = sessionStorage.getItem("doctorID");
-
+        console.log('ID Doctor: ', dID);
         $.ajax({
             url: sessionStorage.urlEP + '/api/Appointments/v1/GetAppointmentsList',
             type: 'GET',
