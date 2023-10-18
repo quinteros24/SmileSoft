@@ -160,7 +160,15 @@
 @section Scripts{
     <script>
 
-         
+        function fncheckDoctor(selectObject) {
+            var value = selectObject.value;
+            if (value == 0) {
+                document.getElementById('cDoctor').disabled = true;
+            } else {
+                fngetDoctors(value);
+                document.getElementById('cDoctor').disabled = false;
+            }
+        }
 
         $("#fecha").on("change", function () {
             validarFecha();
