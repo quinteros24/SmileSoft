@@ -44,7 +44,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </div>
@@ -610,13 +610,32 @@
                                 success: function (response) {
                                     if (response.codeStatus == 0) {
                                         let citas = response.itemJson
-                                        citas.map(item => {
-                                            if (item) {
-                                                item = JSON.parse(item)
-                                                allClinicalHistory = [...item]
-                                            }
-                                        })
-                                        console.log(allClinicalHistory)
+                                        console.log("Citas", citas.length);
+                                        if (citas.length != 0) {
+                                            citas.map(item => {
+                                                if (item) {
+                                                    item = JSON.parse(item)
+                                                    userClinicalHistory = [...item]
+                                                }
+                                            })
+                                            console.log(userClinicalHistory)
+                                        }else{
+                                            $("#clinicalHistoryModal").hide();
+                                            Swal.fire({
+                                                title: 'Error',
+                                                text: 'El usuario no tiene historia clinica',
+                                                icon: 'error',
+                                                confirmButtonText: 'Aceptar'
+                                            })
+                                        }
+                                        // if(citas)
+                                        // citas.map(item => {
+                                        //     if (item) {
+                                        //         item = JSON.parse(item)
+                                        //         allClinicalHistory = [...item]
+                                        //     }
+                                        // })
+                                        // console.log(allClinicalHistory)
                                     }
                                     else if (response.codeStatus == -1) {
                                         Swal.fire({
