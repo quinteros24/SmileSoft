@@ -92,8 +92,8 @@
             $.ajax({
                 url: sessionStorage.urlEP + '/api/Appointments/v1/GetAppointmentsList',
                 type: 'GET',
-                data: { 'uID': 0 },
-                // data: { 'dID': dID },
+                // data: { 'uID': 0 },
+                data: { 'dID': dID },
                 contentType: "application/json",
                 dataType: 'json',
                 success: function (data) {
