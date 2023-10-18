@@ -56,6 +56,8 @@ namespace EpSmilesoft
 
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddControllers().AddNewtonsoftJson();
+
             var app = builder.Build();
 
             //// Configure the HTTP request pipeline.
