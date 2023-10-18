@@ -1,6 +1,7 @@
-﻿<nav aria-label="breadcrumb" class="main-breadcrumb">
+﻿
+<nav aria-label="breadcrumb" class="main-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"> @* <a asp-controller="Home" asp-action="Index">Inicio</a> *@Inicio</li>
+        <li class="breadcrumb-item"> @* <a asp-controller="Home" asp-action="Index">Inicio</a>  *@Inicio</li>
         <li class="breadcrumb-item">Sitio</li>
         <li class="breadcrumb-item active" aria-current="page">
             Ajustes del Sitio
@@ -34,17 +35,28 @@
                     <a href="#wpsettings"
                        data-toggle="tab"
                        class="nav-item nav-link has-icon nav-link-faded">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 384 512" style="fill: #008cce" class="feather feather-user mr-2" fill="none"
+                        <i class="fa-regular fa-address-book fa-lg"></i>
+                        @* <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 384 512" style="fill: #008cce" class="feather feather-user mr-2" fill="none"
                              stroke="currentColor"
                              stroke-width="2"
                              stroke-linecap="round"
                              stroke-linejoin="round">
                             <circle cx="12" cy="12" r="3"></circle>
                             <path d="M256 48V64c0 17.7-14.3 32-32 32H160c-17.7 0-32-14.3-32-32V48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H256zM0 64C0 28.7 28.7 0 64 0H320c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zM160 320h64c44.2 0 80 35.8 80 80c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16c0-44.2 35.8-80 80-80zm-32-96a64 64 0 1 1 128 0 64 64 0 1 1 -128 0z" />
-                        </svg> Ajustes de Contacto
+                        </svg> *@ Ajustes de Contacto
                     </a>
-
-
+                    <a href="#questionsettings"
+                       data-toggle="tab"
+                       class="nav-item nav-link has-icon nav-link-faded">
+                        <i class="fa-solid fa-notes-medical fa-lg"></i> Configurar Formulario
+                        @* <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 384 512" style="fill: #008cce" class="feather feather-user mr-2" fill="none"
+                             stroke="currentColor"
+                             stroke-width="2"
+                             stroke-linecap="round"
+                             stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M96 352V96c0-35.3 28.7-64 64-64H416c35.3 0 64 28.7 64 64V293.5c0 17-6.7 33.3-18.7 45.3l-58.5 58.5c-12 12-28.3 18.7-45.3 18.7H160c-35.3 0-64-28.7-64-64zM272 128c-8.8 0-16 7.2-16 16v48H208c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h48v48c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V256h48c8.8 0 16-7.2 16-16V208c0-8.8-7.2-16-16-16H320V144c0-8.8-7.2-16-16-16H272zm24 336c13.3 0 24 10.7 24 24s-10.7 24-24 24H136C60.9 512 0 451.1 0 376V152c0-13.3 10.7-24 24-24s24 10.7 24 24l0 224c0 48.6 39.4 88 88 88H296z" /></svg> Configurar Formulario
+                     *@</a>
                 </nav>
             </div>
         </div>
@@ -88,6 +100,16 @@
                                 <path d="M256 48V64c0 17.7-14.3 32-32 32H160c-17.7 0-32-14.3-32-32V48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H256zM0 64C0 28.7 28.7 0 64 0H320c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zM160 320h64c44.2 0 80 35.8 80 80c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16c0-44.2 35.8-80 80-80zm-32-96a64 64 0 1 1 128 0 64 64 0 1 1 -128 0z" />
                             </svg>
                         </a>
+                        <a href="#questionsettings" data-toggle="tab" class="nav-link has-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 384 512" style="fill: #008cce" class="feather feather-user mr-2" fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="2"
+                                 stroke-linecap="round"
+                                 stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <path d="M96 352V96c0-35.3 28.7-64 64-64H416c35.3 0 64 28.7 64 64V293.5c0 17-6.7 33.3-18.7 45.3l-58.5 58.5c-12 12-28.3 18.7-45.3 18.7H160c-35.3 0-64-28.7-64-64zM272 128c-8.8 0-16 7.2-16 16v48H208c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h48v48c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V256h48c8.8 0 16-7.2 16-16V208c0-8.8-7.2-16-16-16H320V144c0-8.8-7.2-16-16-16H272zm24 336c13.3 0 24 10.7 24 24s-10.7 24-24 24H136C60.9 512 0 451.1 0 376V152c0-13.3 10.7-24 24-24s24 10.7 24 24l0 224c0 48.6 39.4 88 88 88H296z" />
+                            </svg> Configurar Formulario
+                        </a>
                     </li>
 
 
@@ -100,46 +122,43 @@
                     <hr />
                     <div class="card shadow mb-3">
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 fw-bold">Logos del Sitio</p>
+                            <p class="text-primary m-0 fw-bold">Logos</p>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
                                     <form>
 
-
                                         <div class="mb-3">
-                                            <label for="ChangeLogo" class="form-label"><span
-                                                    id="ChangeLogoLabel">Cambiar Logo del Login</span></label>
-                                            <input class="form-control" type="file" id="ChangeLogo" accept=".jpg, .png"
-                                                disabled>
-                                            <div class="mb-3 my-2 "><button class="btn btn-primary btn-en-desarrollo"
-                                                    type="submit" disabled>Subir</button></div>
+                                            <label for="ChangeLogo" class="form-label"><span id="ChangeLogoLabel">Cambiar Logo del Login</span></label>
+                                            <input class="form-control" type="file" id="ChangeLogo" accept=".jpg, .png" disabled>
+                                            <div class="mb-3 my-2 "><button class="btn btn-primary btn-en-desarrollo" type="submit" disabled>Subir</button></div>
 
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col">
+                                    <form>
+                                        <div class="mb-3">
+                                            <label for="logoInput" class="form-label">Cambiar Logo Menu Principal</label>
+                                            <input class="form-control" type="file" id="logoInput" accept=".jpg, .png">
+                                            <div class="mb-3 my-2">
+                                                <button class="btn btn-primary" type="button" id="updateLogo">Subir</button>
                                             </div>
-                                        </form>
-                                    </div>
-                                    <div class="col">
-                                        <form>
-                                            <div class="mb-3">
-                                                <label for="ChangeMainLogo" class="form-label">Cambiar Logo Menu Principal</label>
-                                                <input class="form-control" type="file" id="ChangeMainLogo" accept=".jpg, .png" disabled>
-                                                <div class="mb-3 my-2">
-                                                    <button class="btn btn-primary btn-en-desarrollo" type="submit" disabled>Subir</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                        <div class="card shadow mb-3">
-                            <div class="card-header py-3">
-                                <p class="text-primary m-0 fw-bold">Colores del Sitio</p>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
+                    </div>
+                    <div class="card shadow mb-3">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold">Colores</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row ">
+                                <div class="col-md-6">
+                                    <div class="card-body shadow align-content-center justify-content-center">
                                         <form>
                                             <div class="form-group">
                                                 <label for="BackgroundColor" class="form-label"> Cambiar Color Fondo del Sitio</label>
@@ -149,7 +168,9 @@
                                             </button>
                                         </form>
                                     </div>
-                                    <div class="col">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="card-body shadow align-content-center justify-content-center">
                                         <form>
                                             <div class="form-group">
                                                 <label for="SidebarColor">Cambiar Color de la Barra Lateral</label>
@@ -159,7 +180,11 @@
                                             </button>
                                         </form>
                                     </div>
-                                    <div class="col">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="card-body shadow align-content-center justify-content-center">
                                         <form>
                                             <div class="form-group">
                                                 <label for="NavbarColor">Cambiar Color de la Barra Superior</label>
@@ -170,83 +195,643 @@
                                             </button>
                                         </form>
                                     </div>
-                                    <select id="colorSelector">
-                                        <option value="bg-primary">Azul</option>
-                                        <option value="bg-danger">Rojo</option>
-                                        <option value="bg-success">Verde</option>
-                                        <!-- Agrega más opciones de colores según tus necesidades -->
-                                    </select>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Fin Ajustes del -->
-                    <!-- Ajustes de Contenido -->
-                    <div class="tab-pane" id="contentsettings">
-                        <h6>Ajustes del Contenido</h6>
-                        <hr />
-                        <form>
-                            <div class="form-group">
-                                <label class="d-block">Change Password</label>
-                                <input type="text"
-                                       class="form-control"
-                                       placeholder="Enter your old password" />
-                                <input type="text"
-                                       class="form-control mt-1"
-                                       placeholder="New password" />
-                                <input type="text"
-                                       class="form-control mt-1"
-                                       placeholder="Confirm new password" />
-                            </div>
-                        </form>
-                        <hr />
-                        <form>
-                            <div class="form-group">
-                                <label class="d-block">Two Factor Authentication</label>
-                                <button class="btn btn-info btn-en-desarrollo" type="button">
-                                    Enable two-factor authentication
-                                </button>
-                                <p class="small text-muted mt-2">
-                                    Two-factor authentication adds an additional layer of
-                                    security to your account by requiring more than just a
-                                    password to log in.
-                                </p>
-                            </div>
-                        </form>
-                        <hr />
-                        <form>
-                            <div class="form-group mb-0">
-                                <label class="d-block">Sessions</label>
-                                <p class="font-size-sm text-secondary">
-                                    This is a list of devices that have logged into your
-                                    account. Revoke any sessions that you do not recognize.
-                                </p>
-                                <ul class="list-group list-group-sm">
-                                    <li class="list-group-item has-icon">
-                                        <div>
-                                            <h6 class="mb-0">San Francisco City 190.24.335.55</h6>
-                                            <small class="text-muted">Your current session seen in United States</small>
-                                        </div>
-                                        <button class="btn btn-light btn-sm ml-auto btn-en-desarrollo"
-                                                type="button">
-                                            More info
-                                        </button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- Fin Ajustes de Contenido -->
+                </div>
+                <!-- Fin Ajustes del -->
 
+                <div class="tab-pane" id="wpsettings">
+                    <h6>Ajustes de Contacto</h6>
+                    <hr />
+                    <div class="card shadow mb-3">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold">Whatsapp</p>
+                        </div>
+                        <div class="card-body shadow">
+                            <div class="row ">
+                                <div class="col-md-12">
+                                    <div class="align-content-center justify-content-center">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="wpNumber" class="form-label"> Cambiar Número Contacto Whatsapp</label>
+                                                <input type="number" class="form-control" id="wpNumber">
+                                            </div><button type="button" class="btn btn-primary my-2" id="updateWP">
+                                                Actualizar
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="tab-pane" id="questionsettings">
+                    <h6>Configurar Preguntas de Historias Clinicas</h6>
+                    <hr />
+                    <!-- Formulario para agregar preguntas de historia clinica -->
+                    <div class="card shadow mb-3">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold">Formulario historia clínica</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <h4 class="text-center">Creador dinámico de preguntas</h4>
+                                <div class="form-group mb-2">
+                                    <label for="question-type">Seleccione el Tipo de Pregunta:</label>
+                                    <select class="form-control" id="question-type">
+                                        <option value="open">Abierta</option>
+                                        <option value="close">Cerrada</option>
+                                        <option value="multiple">Multiple</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label for="question">Título de la pregunta:</label>
+                                    <input type="text" class="form-control" id="question" />
+                                </div>
+                                <div class="form-group option-container mb-2 d-none ">
+                                    <label for="options">Opciones:</label>
+                                    <div id="options-container"></div>
+                                    <button type="button" class="btn btn-primary mt-2" id="add-option">
+                                        Agregar Opción
+                                    </button>
+                                </div>
+                                <button type="button" class="btn btn-success mt-2 mb-2" id="add-question">
+                                    Agregar pregunta
+                                </button>
+                            </div>
+                            </div>
+                    </div>
+                                <hr/>
+                    <div class="card shadow mb-3">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold">Lista de Preguntas Configuradas</p>
+                        </div>
+                                <div class="card-body">
+                                    <div class="row">
+
+                                @* <h2 class=" mt-2 mb-2 text-center">Tu lista de preguntas configuradas</h2> *@
+
+                                <form class="form-group mb-4" id="create-clinic-form-history"></form>
+
+                                <button type="button" class="btn btn-success mt-2 mb-2 d-none" id="save-all-questions">
+                                    Guardar todas las preguntas
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FIN Formulario para agregar preguntas de historia clinica -->
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-@section Scripts {
+@section Scripts{
 
-
+    <script src="~/assets/js/sitemanagement.js"></script>
     <script>
+
+        let structure = [];
+
+        $.ajax({
+            url: sessionStorage.urlEP + '/api/Generics/v1/GetUsersClinicStoryFormat?oID=1',
+            type: 'GET',
+            contentType: "application/json",
+            dataType: 'json',
+            async: false,
+            success: function ({ itemJson, codeStatus }) {
+                if (codeStatus == 0) {
+                    structure = JSON.parse(itemJson);
+                }
+                else if (response.codeStatus == -1) {
+                    Swal.fire({
+                        title: 'Error',
+                        text: response.messageStatus,
+                        icon: 'error',
+                        confirmButtonText: 'Aceptar'
+                    })
+                }
+            }
+        })
+
+
+        let finalStructure = [];
+        structure.length && drawQuestions(true)
+        // Agrega un manejador de eventos para la clase "btn-en-desarrollo"
+        document.addEventListener("DOMContentLoaded", function () {
+            const buttons = document.querySelectorAll(".btn-en-desarrollo");
+            event.preventDefault();
+            buttons.forEach(function (button) {
+                button.addEventListener("click", function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Esta Función esta en Desarrollo!',
+                        confirmButtonColor: '#008dc9'
+                    })
+                });
+            });
+        });
+        $("#question-type").change(function () {
+            if ($(this).val() === "multiple") {
+                $(".option-container").addClass("d-block");
+                $(".option-container").removeClass("d-none");
+            } else {
+                $(".option-container").addClass("d-none");
+                $(".option-container").removeClass("d-block");
+            }
+        });
+
+        $("#add-option").click(function () {
+            $("#options-container").append(`
+                                                                                        <div class="input-group mb-2">
+                                                                                        <input type="text" class="form-control option-input mx-1" placeholder="Nombre de la opción">
+                                                                                        <div class="input-group-append">
+                                                                                            <button class="btn btn-danger remove-option" type="button">-</button>
+                                                                                        </div>
+                                                                                        </div>
+                                                                                    `);
+        });
+
+        $(document).on("click", ".remove-option", function () {
+            $(this).closest(".input-group").remove();
+        });
+
+        $("#add-question").click(() => drawQuestions());
+
+        function drawQuestions(firstLoad = false) {
+            console.log("Cargar Preguntas");
+            const type = $("#question-type").val();
+            const name = $("#question").val();
+            let options = null;
+
+            if (type === "multiple") {
+                options = [];
+                $(".option-input").each(function () {
+                    const optionValue = $(this).val();
+                    if (optionValue.trim() !== "") {
+                        options.push(optionValue);
+                    }
+                });
+            }
+
+            if (!name && !firstLoad) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Debes agregar una pregunta!',
+                    confirmButtonColor: '#008dc9'
+                })
+                return;
+            }
+
+            const question = {
+                id: structure.length + 1,
+                type: type,
+                name: name,
+                options: options,
+            };
+
+            structure.push(question);
+
+            console.log({ structure })
+
+            if (structure.length) {
+                $("#save-all-questions").removeClass("d-none");
+                $("#save-all-questions").addClass("d-block");
+            }
+
+            if (!firstLoad) {
+                $("#question-type").val('')
+                $("#question").val('');
+            }
+
+            type === "multiple" && $(".input-group").remove();
+            updateStructuredForm(structure);
+        }
+
+        // Grafico dinamicamente las preguntas dependiendo de su tipo
+        function updateStructuredForm(struct) {
+            console.log({ struct })
+            let questionTypes = {
+                'open': function (question) {
+                    let inputField = $(`<input disabled placeholder="Pregunta abierta" type="text" id="${question.id}" class="form-control"></input><br>`);
+
+                    let container = $('<div class="form-group"></div>').append(
+                        `<label class="text-primary m-0 fw-bold" for="${question.id}">`
+                        + `Pregunta abierta # ${question.id}: ` + question.name +
+                        '</label><br>', inputField);
+
+                    return container
+                },
+                'close': function (question) {
+
+                    let checkBox1 = $(`<input disabled class="form-check-input" id="${question.id}" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
+
+                    let label1 = $(`<label class="form-check-label" for="${question.id}">`).text("SI");
+
+                    let checkBox2 = $(`<input disabled class="form-check-input" id="${question.id}0" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
+
+                    let label2 = $(`<label class="form-check-label" for="${question.id}0">`).text("NO");
+
+                    let container1 = $('<div class="form-check form-check-inline"></div>').append(checkBox1, label1);
+
+                    let container2 = $('<div class="form-check form-check-inline"></div>').append(checkBox2, label2);
+
+                    let container = $('<div class="mb-1 mt-2"></div>').append(`<p class="text-primary m-0 fw-bold">Pregunta cerrada # ${question.id}: ${question.name}</p>`, container1, container2);
+
+                    return container;
+                },
+                'multiple': function (question) {
+                    let options = $(`<select class="form-select" id="${question.id}" multiple></select>`);
+
+                    question.options.forEach(function (option) {
+                        options.append('<option disabled value="' + option + '">' + option + '</option>');
+                    });
+
+                    let container = $('<div class="mb-1"></div>').append(`<p class="text-primary m-0 fw-bold">Pregunta de opción múltiple # ${question.id}: ${question.name}</p>`, options)
+
+                    return container
+                }
+            };
+
+            let form = $('#create-clinic-form-history');
+            form.empty();
+
+            finalStructure = [];
+            // struct.forEach(function (question, index) {
+            //     question.id = index + 1;
+            //     let questionContainer = $(`<div class="question-${question.id}"></div>`);
+            //     // inserta un boton para eliminar cada pregunta
+            //     questionContainer.append(`<button type="button" class="btn btn-danger btn-sm mb-2" onclick="deleteQuestion(${question.id})">Eliminar</button>`);
+
+            //     if (question.type in questionTypes) {
+            //         let inputElement = questionTypes[question.type](question);
+            //         finalStructure.push(question);
+            //         questionContainer.append(inputElement);
+            //         form.append(questionContainer);
+            //     } else {
+            //         console.error('Tipo de pregunta no válido: ' + question.type);
+            //     }
+            // });
+
+            struct.forEach(function (question, index) {
+                console.log('Index:', index);
+                question.id = index + 1;
+                let questionContainer = $(`<div class="question-${question.id}"></div>`);
+                console.log('Index Question: ', question.id);
+                if (question.type in questionTypes) {
+                    let inputElement = questionTypes[question.type](question);
+                    finalStructure.push(question);
+
+                    questionContainer.append(inputElement);
+
+                    // Insert the "Eliminar" button below the input element
+                    questionContainer.append(`<div class="d-flex justify-content-end"><button type="button" class="btn btn-danger btn-sm mb-2" onclick="deleteQuestion(${question.id})">Eliminar</button></div><hr/>`);
+
+                    form.append(questionContainer);
+                } else {
+                    console.error('Tipo de pregunta no válido: ' + question.type);
+                }
+            });
+        }
+
+        // Función para eliminar una pregunta
+        function deleteQuestion(id) {
+            $(`.question-${id}`).remove();
+            structure = structure.filter((question) => question.id !== id);
+            updateStructuredForm(structure);
+        }
+        // let finalStructure2 =     [
+        //         {
+        //             "id": 1,
+        //             "type": "open",
+        //             "name": "Por qué asistió a la consulta?",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 2,
+        //             "type": "open",
+        //             "name": "Consultó antes con algún otro profesional?",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 3,
+        //             "type": "close",
+        //             "name": "Tomó algún medicamento?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 4,
+        //             "type": "open",
+        //             "name": "Nombre de los medicamentos",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 5,
+        //             "type": "open",
+        //             "name": "Desde cuando?",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 6,
+        //             "type": "close",
+        //             "name": "Obtuvo resultados?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 7,
+        //             "type": "close",
+        //             "name": "Ha tenido dolor?",
+        //             "options": ["Suave", "Moderado", "Intenso", "Temporario", "Intermitente", "Continuo", "Espontáneo", "Provocado", "Al frío", "Al calor", "Localizado", "Irradiado"]
+        //         },
+        //         {
+        //             "id": 8,
+        //             "type": "open",
+        //             "name": "dónde?",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 9,
+        //             "type": "open",
+        //             "name": "hacia dónde?",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 10,
+        //             "type": "open",
+        //             "name": "Puede calmarlo con algo?",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 11,
+        //             "type": "close",
+        //             "name": "Sufrió algún golpe en los dientes?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 12,
+        //             "type": "open",
+        //             "name": "cuándo?",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 13,
+        //             "type": "open",
+        //             "name": "cómo se produjo?",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 14,
+        //             "type": "close",
+        //             "name": "Se le fracturó algún diente?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 15,
+        //             "type": "open",
+        //             "name": "cuál?",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 16,
+        //             "type": "close",
+        //             "name": "recibió algún tratamiento?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 17,
+        //             "type": "open",
+        //             "name": "cuál?",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 18,
+        //             "type": "close",
+        //             "name": "Tiene dificultad para hablar?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 19,
+        //             "type": "close",
+        //             "name": "para masticar?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 20,
+        //             "type": "close",
+        //             "name": "para abrir la boca?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 21,
+        //             "type": "close",
+        //             "name": "para tragar los alimentos?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 22,
+        //             "type": "close",
+        //             "name": "Ha observado algo anormal en los labios?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 23,
+        //             "type": "close",
+        //             "name": "lengua?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 24,
+        //             "type": "close",
+        //             "name": "paladar?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 25,
+        //             "type": "close",
+        //             "name": "piso de boca?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 26,
+        //             "type": "close",
+        //             "name": "carrillos?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 27,
+        //             "type": "close",
+        //             "name": "rebordes?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 28,
+        //             "type": "close",
+        //             "name": "trígono",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 29,
+        //             "type": "close",
+        //             "name": "retromolar",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 30,
+        //             "type": "close",
+        //             "name": "Qué tipo de lesiones presenta: Manchas?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 31,
+        //             "type": "close",
+        //             "name": "Abultamiento de los tejidos?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 32,
+        //             "type": "close",
+        //             "name": "Ulceraciones?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 33,
+        //             "type": "close",
+        //             "name": "Ampollas?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 34,
+        //             "type": "open",
+        //             "name": "Otros",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 35,
+        //             "type": "close",
+        //             "name": "Le sangran las encías?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 36,
+        //             "type": "open",
+        //             "name": "cuándo?",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 37,
+        //             "type": "close",
+        //             "name": "Sale pus de algún lugar de su boca?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 38,
+        //             "type": "open",
+        //             "name": "de dónde?",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 39,
+        //             "type": "close",
+        //             "name": "Tiene movilidad en sus dientes?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 40,
+        //             "type": "close",
+        //             "name": "al morder siente altos los dientes?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 41,
+        //             "type": "close",
+        //             "name": "Ha tenido la cara hinchada?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 42,
+        //             "type": "close",
+        //             "name": "Se puso hielo?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 43,
+        //             "type": "close",
+        //             "name": "calor?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 44,
+        //             "type": "open",
+        //             "name": "otros?",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 45,
+        //             "type": "open",
+        //             "name": "Momentos de azúcar diario",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 46,
+        //             "type": "open",
+        //             "name": "Indice de placa",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 47,
+        //             "type": "open",
+        //             "name": "Estado de la higiene bucal",
+        //             "options": null
+        //         }
+        //     ];
+        // Envío la petición con la estructura final
+        $("#save-all-questions").click(() => {
+            $.ajax({
+                url: sessionStorage.urlEP + '/api/Generics/v1/StoreUsersClinicStoryFormat?oID=1&jsonObject=' + JSON.stringify(finalStructure),
+                type: 'GET',
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (response) {
+                    console.log(response)
+                    if (response.codeStatus == 0) {
+                        Swal.fire({
+                            title: 'Preguntas Guardadas',
+                            icon: 'info',
+                            confirmButtonText: 'Aceptar'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                swal.close();
+                                location.reload();
+                            }
+                        })
+                    }
+                    else if (response.codeStatus == -1) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: response.messageStatus,
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar'
+                        })
+                    }
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.reload();
+                }
+            })
+        });
+    </script>
+
+    @* <script>
         // Agrega un manejador de eventos para la clase "btn-en-desarrollo"
         document.addEventListener("DOMContentLoaded", function () {
             const buttons = document.querySelectorAll(".btn-en-desarrollo");
@@ -437,11 +1022,78 @@
         });
 
 
-    </script>
+    </script> *@
 
-    @* <script src="~/assets/js/jquery.min.js"></script> *@
+    @* <script>
+        // Obtén el enlace de WhatsApp y el campo de entrada por sus IDs
+        const wpNumberInput = document.getElementById("wpNumber");
+        const urlAPIset = `${sessionStorage.urlEP}/api/Generics/v1/SetContactNumber?oID=1&number=`;
+        // Agrega un escuchador de eventos al campo de entrada para detectar cambios
+        updateWP.addEventListener("click", function () {
+            // Obten el valor actual del campo de entrada
+            const nuevoNumero = wpNumberInput.value;
+            //Configurar numero whatsapp nuevo
+            //api/Generics/v1/SetContactNumber?oID=1'  "3024224517"
+            //oID=1&number=3024224517
+            fetch(sessionStorage.urlEP + '/api/Generics/v1/SetContactNumber?oID=1', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(nuevoNumero)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Algo salió mal!');
+                    }
+                })
+                .then(data => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Actualizado!',
+                        text: 'El número de Whatsapp ha sido actualizado',
+                        confirmButtonColor: '#008dc9'
+                    });
+                })
+                .catch(error => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: error.message,
+                        confirmButtonColor: '#008dc9'
+                    });
+                });
+
+        });
+
+        fetch(sessionStorage.urlEP + '/api/Generics/v1/GetContactNumber?oID=1', {
+            method: 'PUT'
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Algo salió mal!');
+                }
+            })
+            .then(data => {
+                wpNumberInput.value = data.itemJson;
+            })
+            .catch(error => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: error.message,
+                    confirmButtonColor: '#008dc9'
+                });
+            });
+
+    </script> *@
     @* <script src="~/assets/js/popper.js"></script> *@
     <script src="~/assets/js/bootstrap.min.js"></script>
-    @* <script src="~/assets/js/theme.js"></script> *@
-    <script type="text/javascript"></script>
+    <script src="~/assets/js/theme.js"></script>
+    @*  <script type="text/javascript"></script> *@
 }
+

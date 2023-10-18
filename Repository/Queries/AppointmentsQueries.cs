@@ -15,10 +15,10 @@ namespace Repository.Queries
 
             if(dID != null && dID != 0)
             {
-                WHERE_USER_DOCTOR = $" AND dID = {dID}";
+                WHERE_USER_DOCTOR = $" AND D.dID = {dID}";
             }
 
-            return $"DECLARE @filter AS VARCHAR(60) = '{filter}'" +
+            return $"DECLARE @filter AS VARCHAR(60) = '{filter}'\n" +
                    $"BEGIN TRY\n" +
                    $"    SELECT\n" +
                    $"        A.aID\n" +
