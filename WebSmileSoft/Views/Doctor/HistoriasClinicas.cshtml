@@ -22,27 +22,100 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-8">
+        @* <div class="col-md-8">
+        <!-- Historias Clínicas -->
+        <div class="card">
+        <div class="card-body">
+        <h5 class="card-title">Historia Clínica de [Nombre del Paciente]</h5>
+        <!-- Contenido de la Historia Clínica -->
+        <div class="mb-3">
+        <h6>Información Personal</h6>
+        <p><strong>Nombre:</strong> [Nombre del Paciente]</p>
+        <p><strong>Edad:</strong> [Edad del Paciente]</p>
+        <p><strong>Fecha de Nacimiento:</strong> [Fecha de Nacimiento]</p>
+        </div>
+        <div class="mb-3">
+        <h6>Historial Médico</h6>
+        <p><strong>Diagnóstico:</strong> [Diagnóstico]</p>
+        <p><strong>Tratamiento:</strong> [Tratamiento]</p>
+        <!-- Agregar más detalles según sea necesario -->
+        </div>
+        </div>
+        </div>
+        </div> *@
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-12" id="imprimir">
             <!-- Historias Clínicas -->
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Historia Clínica de [Nombre del Paciente]</h5>
-                    <!-- Contenido de la Historia Clínica -->
-                    <div class="mb-3">
-                        <h6>Información Personal</h6>
-                        <p><strong>Nombre:</strong> [Nombre del Paciente]</p>
-                        <p><strong>Edad:</strong> [Edad del Paciente]</p>
-                        <p><strong>Fecha de Nacimiento:</strong> [Fecha de Nacimiento]</p>
+                    <!-- Encabezado -->
+                    <div class="card-header mb-3">
+                        <div class="row mt-3">
+                            <div class="col-md-4 mt-3 text-center">
+                                <img src="~/assets/img/logo-nav.png" class="img-fluid" id="navLogo" title="logo">
+                            </div>
+                            <div class="col-md-4 mt-4 text-center justify-content-center align-content-center">
+                                <h5 class="card-title">Historia Clínica de <span id="patientName">[Nombre del Paciente]</span></h5>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <p>Fecha de la Historia Clínica: <span id="fechaHC">[Fecha de la Historia Clínica]</span></p>
+                                    <p>Versión del Documento: 1.0</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <h6>Historial Médico</h6>
-                        <p><strong>Diagnóstico:</strong> [Diagnóstico]</p>
-                        <p><strong>Tratamiento:</strong> [Tratamiento]</p>
-                        <!-- Agregar más detalles según sea necesario -->
+
+                    <div class="section">
+                        <!-- Contenido de la Historia Clínica -->
+                        <div class="row">
+                            <div class="mb-3">
+                                <h6>Información Personal</h6>
+                                <p><strong>Nombre:</strong> [Nombre del Paciente]</p>
+                                <p><strong>Edad:</strong> [Edad del Paciente]</p>
+                                <p><strong>Fecha de Nacimiento:</strong> [Fecha de Nacimiento]</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3">
+                                <h6>Historial Médico</h6>
+                                <p><strong>Diagnóstico:</strong> [Diagnóstico]</p>
+                                <p><strong>Tratamiento:</strong> [Tratamiento]</p>
+                                <!-- Agregar más detalles según sea necesario -->
+                            </div>
+                            <!-- Datos de Respuestas Generadas por Tratamientos -->
+                            <div class="row">
+                                <div class="mb-3">
+                                    <h6>Respuestas Generadas por Tratamientos</h6>
+                                    <!-- Agregar detalles de respuestas aquí -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Campo de Firma y Nombre del Doctor -->
+                        <div class="mb-3">
+                            <h6>Doctor:</h6>
+                            <p><strong>Nombre del Doctor:</strong> [Nombre del Doctor]</p>
+                            <!-- Agregar campo de firma del doctor si es necesario -->
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
+
+    </div>
+    <div class="row" id="pdfButton">
+        <a href="javascript:pruebaDivAPdf()" class="button">
+            <i class="fas fa-file-pdf fa-xl"></i> Generar PDF
+        </a>
+
+        @* <div id="imprimir">
+        <h1>
+        Esto es un DIV impreso en PDF
+        </h1>
+        </div> *@
     </div>
 </div>
 
@@ -51,40 +124,91 @@
 @section Scripts{
     <script>
         let userRole = sessionStorage.getItem('userRole');
-        if (userRole !== '2') {
+        if (userRole == '3') {
             logoutUser();
         }
-        document.addEventListener("DOMContentLoaded", function () {
-            // Tu código de generación de PDF aquí
-            function generatePDF() {
-                const pdf = new jsPDF();
 
-                // Agregar contenido al PDF
-                pdf.text("Historia Clínica de [Nombre del Paciente]", 10, 10);
-                pdf.text("Información Personal", 10, 20);
-                pdf.text("Nombre: [Nombre del Paciente]", 20, 30);
-                pdf.text("Edad: [Edad del Paciente]", 20, 40);
-                pdf.text("Fecha de Nacimiento: [Fecha de Nacimiento]", 20, 50);
 
-                pdf.text("Historial Médico", 10, 70);
-                pdf.text("Diagnóstico: [Diagnóstico]", 20, 80);
-                pdf.text("Tratamiento: [Tratamiento]", 20, 90);
-                // Puedes agregar más contenido según sea necesario
 
-                // Guardar o descargar el PDF
-                pdf.save("HistoriaClinica.pdf");
-            }
-
-            // Manejar clic en el botón "Generar PDF"
-            $("#generate-pdf").click(function () {
-                generatePDF();
-            });
-
-            // Manejar clic en el botón "Imprimir"
-            $("#print-page").click(function () {
-                window.print();
-            });
-        });
     </script>
 
+    <script>
+        // var pdf = new jsPDF('p', 'pt', 'letter');
+
+        // function openPDF() {
+        //     pdf.fromHTML($('#imprimir')[0], 15, 15, {
+        //         'width': 170
+        //     });
+        //     pdf.output('dataurlnewwindow');
+        // }
+
+        // pdf.addHTML($('#imprimir')[0], function () {
+        //     pdf.save('Test.pdf');
+        // });
+
+        //Generar PDF
+
+        // Create a button element to trigger the PDF generation
+        const generatePDFButton = document.createElement('button');
+        generatePDFButton.textContent = 'Generate PDF';
+
+        // Select the div by its id and append the button to it
+        const divElement = document.getElementById('pdfButton');
+        divElement.appendChild(generatePDFButton);
+
+        // function generatePDF(){
+        // // Create a button element to trigger the PDF generation
+        // const generatePDFButton = document.createElement('button');
+        // generatePDFButton.textContent = 'Generate PDF';
+        // document.body.appendChild(generatePDFButton);
+
+        // Add a click event listener to the button
+        // Add a click event listener to the button
+        // Add a click event listener to the button
+        generatePDFButton.addEventListener('click', () => {
+            // Use html2canvas to capture the HTML content of the specific div as an image
+            html2canvas(document.getElementById('imprimir')).then(canvas => {
+                // Use jsPDF to create a PDF document
+                const pdf = new jsPDF();
+                const imgData = canvas.toDataURL('image/png');
+                pdf.addImage(imgData, 'PNG', 0, 0, pdf.internal.pageSize.getWidth, pdf.internal.pageSize.getHeight);
+                pdf.save('report.pdf');
+            });
+        });
+
+
+        //}
+
+
+        function pruebaDivAPdf() {
+            var pdf = new jsPDF('p', 'pt', 'letter');
+            source = $('#imprimir')[0];
+
+            specialElementHandlers = {
+                '#bypassme': function (element, renderer) {
+                    return true
+                }
+            };
+            margins = {
+                top: 80,
+                bottom: 60,
+                left: 40,
+                width: 522
+            };
+
+            pdf.fromHTML(
+                source,
+                margins.left, // x coord
+                margins.top, { // y coord
+                'width': margins.width,
+                'elementHandlers': specialElementHandlers
+            },
+
+                function (dispose) {
+                    pdf.save('Prueba.pdf');
+                }, margins
+            );
+        }
+    </script>
+    <script src="~/assets/js/htmltocanvas2.min.js"></script>
 }
