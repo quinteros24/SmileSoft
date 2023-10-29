@@ -1,14 +1,8 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-
-
+﻿
 <div class="container mt-5">
     <h1 class="mb-4">Historias Clínicas</h1>
     <div class="row">
-        <div class="col-md-4" >
+        <div class="col-md-4">
             <!-- Panel de búsqueda de pacientes -->
             <i class="fa-solid fa-magnifying-glass text-primary fa-sm" onmouseenter="showDiv()" id="findIcon" style="display: none"> Buscar...</i>
             <div class="card" id="myDiv" onmouseleave="hideDiv()" onmouseenter="showDiv()">
@@ -17,9 +11,9 @@
                         <h5 class="card-title">Buscar Paciente</h5>
                         <form>
                             <div class="mb-3">
-                                <input type="text" class="form-control" placeholder="Nombre o ID del Paciente">
+                                <input type="text" class="form-control" placeholder="Documento del Paciente" id="userIdInput">
                             </div>
-                            <button type="button" class="btn btn-primary btn-en-desarrollo">Buscar</button>
+                            <button type="button" class="btn btn-primary" id="buscarButton">Buscar</button>
                         </form>
                     </div>
                 </div>
@@ -129,6 +123,50 @@
             });
         }
 
+        function loadUserClinicalHistory(inputUserId) {
+            // Define the parameters
+            let userClinicalHistory = [];
+            let allClinicalHistory = [];
+
+            console.log('UserDocument: ', inputUserId);
+            $.ajax({
+                url: sessionStorage.urlEP + `/api/Generics/v1/GetUserClinicStory?uDocument=${inputUserId}`,
+                type: 'GET',
+                contentType: "application/json",
+                dataType: 'json',
+                async: false,
+                success: function (response) {
+                    if (response.codeStatus === 0) {
+                        let citas = response.itemJson;
+                        citas.map(item => {
+                            if (item) {
+                                item = JSON.parse(item);
+                                allClinicalHistory = [...item];
+                            }
+                        });
+                        console.log(allClinicalHistory);
+                    } else if (response.codeStatus === -1) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: response.messageStatus,
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar',
+                        });
+                    }
+                },
+            });
+        }
+        // Attach a click event handler to the button
+        $("#buscarButton").on("click", function () {
+            let userId = $("#userIdInput").val(); // Get the user ID from the input field
+            loadUserClinicalHistory(userId);
+        });
+
+
+
+
+
+
         let timer; // Variable to store the timer
 
         function showDiv() {
@@ -219,8 +257,8 @@
             doc.autoPrint();
         }
 
-        // Llamar a la función para generar el PDF
-        //generarPDF();
+                // Llamar a la función para generar el PDF
+                //generarPDF();
 
     </script>
 }

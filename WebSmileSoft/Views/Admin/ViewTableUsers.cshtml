@@ -606,7 +606,8 @@
 
 
                             $.ajax({
-                                url: sessionStorage.urlEP + `/api/Generics/v1/GetUserClinicStory?uID=${userId}`,
+                                url: sessionStorage.urlEP + `/api/Generics/v1/GetUserClinicStory?uID=${userId}`, //or   'https://localhost:7039/api/Generics/v1/GetUserClinicStory?uDocument=1088313342' \
+
                                 type: 'GET',
                                 contentType: "application/json",
                                 dataType: 'json',

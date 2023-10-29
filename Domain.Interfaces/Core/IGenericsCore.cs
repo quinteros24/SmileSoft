@@ -13,6 +13,6 @@ namespace Domain.Interfaces
         Task<GenericResponseModel> SetUsersClinicStoryFormat(string jsonObject, int aID);
         Task<GenericResponseModel> SetContactNumber(string cellphoneNumber, int oID);
         Task<GenericResponseModel> GetContactNumber(int oID);
-        Task<GenericResponseModel> GetUserClinicStory(int uID);
+        Task<GenericResponseModel> GetUserClinicStory(int? uID, string? uDocument);
     }
 }
