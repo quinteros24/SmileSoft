@@ -374,3 +374,38 @@ div.dataTables_wrapper div.dataTables_filter input {
     animation: rotateIcon 5s linear infinite; /* Rota cada 60 segundos */
     z-index: 100;
 }
+
+
+/* Define animation for showing the div */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Define animation for hiding the div */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+/* Apply transitions to the div element */
+#myDiv {
+    animation: fadeIn 0.5s ease-in-out;
+    transition: animation 0.5s;
+}
+
+/* Apply transitions to the icon */
+#findIcon {
+    animation: fadeOut 0.5s ease-in-out;
+    transition: animation 0.5s;
+}

@@ -33,7 +33,18 @@
     <!-- END Calendar Script -->
     <script src="~/assets/js/utilities.js"></script>
 
-    @await Component.InvokeAsync("CommonData") <!-- Aquí "CommonData" se refiere al nombre de tu ViewComponent -->
+    <!-- Generar PDF-->
+    @* <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" asp-append-version="true"></script> *@
+    @* <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> *@
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js"></script>
+
+    @* <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script> *@
+    @*   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>https://unpkg.com/jspdf-autotable *@
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+
+
+    @await Component.InvokeAsync("CommonData")
 </head>
 
 
@@ -131,28 +142,7 @@
 
     <script>
         const whatsappLink = document.getElementById("whatsappLink"), urlAPI = `${sessionStorage.urlEP}/api/Generics/v1/GetContactNumber?oID=1`; async function getWhatsAppNumber() { try { const e = await fetch(urlAPI, { method: "PUT" }); if (!e.ok) throw new Error("No se pudo obtener el número de WhatsApp."); const t = await e.json(); whatsappLink.href = `https://api.whatsapp.com/send?phone=${encodeURIComponent(t.itemJson)}&text=${encodeURIComponent("Hola! Quisiera más información.")}` } catch (e) { console.error(e) } } getWhatsAppNumber();
-       </script>
-    @* <script>
-        const whatsappLink = document.getElementById("whatsappLink");
-        const urlAPI = `${sessionStorage.urlEP}/api/Generics/v1/GetContactNumber?oID=1`;
-
-        async function getWhatsAppNumber() {
-            try {
-                const response = await fetch(urlAPI, { method: "PUT" });
-                if (!response.ok) {
-                    throw new Error("No se pudo obtener el número de WhatsApp.");
-                }
-                const data = await response.json();
-                whatsappLink.href = `https://api.whatsapp.com/send?phone=${encodeURIComponent(data.itemJson)}&text=${encodeURIComponent("Hola! Quisiera más información.")}`;
-            } catch (error) {
-                console.error(error);
-            }
-        }
-
-        getWhatsAppNumber();
-
-
-    </script> *@
+    </script>
 
     @* <script>
 

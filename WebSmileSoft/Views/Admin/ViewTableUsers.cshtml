@@ -44,7 +44,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </div>
@@ -188,7 +188,7 @@
                                     defaultContent: '<button class="btn btn-primary btn-sm" id="btnEditar" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" title="Editar Usuario"><i class="fas fa-edit"></i></button> ' +
                                         '<button class="btn btn-success btn-sm deactivate-button" id="btnDesactivar" data-toggle="modal" data-target="#deactivateModal" data-toggle="tooltip" title="Desactivar Usuario" > <i class="fas fa-ban"> </i></button > ' +
                                         '<button class="btn btn-danger btn-sm password-button" id="btnPassword" data-toggle="modal" data-target="#passwordModal" data-toggle="tooltip" title="Cambiar contraseña" > <i class="fa-solid fa-lock"></i></button > ' +
-                                        '<button class="btn btn-primary mt-1 btn-sm" id="btnClinicalHistory" data-toggle="modal" data-target="#clinicalHistoryModal" data-toggle="tooltip" title="Ver historia clinica" > <i class="fa-solid fa-clipboard"></i></button >'
+                                        '<button class="btn btn-primary btn-sm" id="btnClinicalHistory" data-toggle="modal" data-target="#clinicalHistoryModal" data-toggle="tooltip" title="Ver historia clinica" > <i class="fa-solid fa-clipboard"></i></button >'
 
                                 }
                             ],
@@ -236,10 +236,14 @@
                             createdRow: function (row, data, dataIndex) {
                                 // Obtén el valor del estado en la columna "Estado"
                                 var estado = data[11]; // Asegúrate de que 8 sea el índice correcto para la columna "Estado"
-
+                                var rol = data[2];
+                                console.log('Rol Fila ', rol);
                                 // Si el estado es "cancelado", oculta los botones en esta fila
                                 if (estado === 'Inactivo') {
-                                    $(row).find('#btnPassword, #btnEditar').hide();
+                                    $(row).find('#btnPassword, #btnEditar, #btnClinicalHistory').hide();
+                                }
+                                if (rol != 'Pacientes') {
+                                    $(row).find('#btnClinicalHistory').hide();
                                 }
                             }
 

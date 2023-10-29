@@ -8,83 +8,219 @@
 <div class="container mt-5">
     <h1 class="mb-4">Historias Clínicas</h1>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4" >
             <!-- Panel de búsqueda de pacientes -->
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Buscar Paciente</h5>
-                    <form>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" placeholder="Nombre o ID del Paciente">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Buscar</button>
-                    </form>
+            <i class="fa-solid fa-magnifying-glass text-primary fa-sm" onmouseenter="showDiv()" id="findIcon" style="display: none"> Buscar...</i>
+            <div class="card" id="myDiv" onmouseleave="hideDiv()" onmouseenter="showDiv()">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Buscar Paciente</h5>
+                        <form>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Nombre o ID del Paciente">
+                            </div>
+                            <button type="button" class="btn btn-primary btn-en-desarrollo">Buscar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
+
         </div>
-        <div class="col-md-8">
+
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-12" id="imprimir">
             <!-- Historias Clínicas -->
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Historia Clínica de [Nombre del Paciente]</h5>
-                    <!-- Contenido de la Historia Clínica -->
-                    <div class="mb-3">
-                        <h6>Información Personal</h6>
-                        <p><strong>Nombre:</strong> [Nombre del Paciente]</p>
-                        <p><strong>Edad:</strong> [Edad del Paciente]</p>
-                        <p><strong>Fecha de Nacimiento:</strong> [Fecha de Nacimiento]</p>
+                    <!-- Encabezado -->
+                    <div class="card-header mb-3">
+                        <div class="row mt-3">
+                            <div class="col-md-4 mt-3 text-center">
+                                <img src="~/assets/img/logo-nav.png" class="img-fluid" id="navLogo" title="logo">
+                            </div>
+                            <div class="col-md-4 mt-4 text-center justify-content-center align-content-center">
+                                <h5 class="card-title">Historia Clínica de <span id="patientName">[Nombre del Paciente]</span></h5>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <p>Fecha de la Historia Clínica: <span id="fechaHC">[Fecha de la Historia Clínica]</span></p>
+                                    <p>Versión del Documento: 1.0</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <h6>Historial Médico</h6>
-                        <p><strong>Diagnóstico:</strong> [Diagnóstico]</p>
-                        <p><strong>Tratamiento:</strong> [Tratamiento]</p>
-                        <!-- Agregar más detalles según sea necesario -->
+
+                    <div class="section">
+                        <!-- Contenido de la Historia Clínica -->
+                        <div class="row">
+                            <div class="mb-3">
+                                <h6>Información Personal</h6>
+                                <p><strong>Nombre:</strong> [Nombre del Paciente]</p>
+                                <p><strong>Edad:</strong> [Edad del Paciente]</p>
+                                <p><strong>Fecha de Nacimiento:</strong> [Fecha de Nacimiento]</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3">
+                                <h6>Historial Médico</h6>
+                                <p><strong>Diagnóstico:</strong> [Diagnóstico]</p>
+                                <p><strong>Tratamiento:</strong> [Tratamiento]</p>
+                                <!-- Agregar más detalles según sea necesario -->
+                            </div>
+                            <!-- Datos de Respuestas Generadas por Tratamientos -->
+                            <div class="row">
+                                <div class="mb-3">
+                                    <h6>Respuestas Generadas por Tratamientos</h6>
+                                    <!-- Agregar detalles de respuestas aquí -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Campo de Firma y Nombre del Doctor -->
+                        <div class="mb-3">
+                            <h6>Doctor:</h6>
+                            <p><strong>Nombre del Doctor:</strong> [Nombre del Doctor]</p>
+                            <!-- Agregar campo de firma del doctor si es necesario -->
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
+
+    </div>
+    <div class="row" id="pdfButton">
+        <a href="javascript:pruebaDivAPdf()" class="button">
+            <i class="fas fa-file-pdf fa-xl"></i> Generar PDF
+        </a>
+        @* <button id="button-pdf" onclick="downloadPDF()">Download</button> *@
+
+        @* <div id="imprimir">
+        <h1>
+        Esto es un DIV impreso en PDF
+        </h1>
+        </div> *@
     </div>
 </div>
 
 
 
 @section Scripts{
+    @* <script src="~/assets/js/jspdf.umd.min.js"></script>
+    <script src="~/assets/js/jspdf.plugin.autotable.js"></script> *@
+    @* <script>
+        var doc = new jsPDF()
+        doc.autoTable({ html: '#imprimir' })
+        doc.save('table.pdf')</script> *@
+
+
     <script>
         let userRole = sessionStorage.getItem('userRole');
-        if (userRole !== '2') {
+        if (userRole == '3') {
             logoutUser();
         }
-        document.addEventListener("DOMContentLoaded", function () {
-            // Tu código de generación de PDF aquí
-            function generatePDF() {
-                const pdf = new jsPDF();
-
-                // Agregar contenido al PDF
-                pdf.text("Historia Clínica de [Nombre del Paciente]", 10, 10);
-                pdf.text("Información Personal", 10, 20);
-                pdf.text("Nombre: [Nombre del Paciente]", 20, 30);
-                pdf.text("Edad: [Edad del Paciente]", 20, 40);
-                pdf.text("Fecha de Nacimiento: [Fecha de Nacimiento]", 20, 50);
-
-                pdf.text("Historial Médico", 10, 70);
-                pdf.text("Diagnóstico: [Diagnóstico]", 20, 80);
-                pdf.text("Tratamiento: [Tratamiento]", 20, 90);
-                // Puedes agregar más contenido según sea necesario
-
-                // Guardar o descargar el PDF
-                pdf.save("HistoriaClinica.pdf");
-            }
-
-            // Manejar clic en el botón "Generar PDF"
-            $("#generate-pdf").click(function () {
-                generatePDF();
+        function downloadPDF() {
+            var pdf = new jsPDF('p', 'pt', 'a4');
+            $("#button-pdf").attr('hidden', 'true')
+            pdf.addHTML($("#imprimir"), 0, -20, { allowTaint: true, useCORS: true, pagesplit: false }, function () {
+                pdf.save('HistoriaClinica.pdf');
+                $("#button-pdf").removeAttr('hidden', 'true')
             });
+        }
 
-            // Manejar clic en el botón "Imprimir"
-            $("#print-page").click(function () {
-                window.print();
-            });
-        });
+        let timer; // Variable to store the timer
+
+        function showDiv() {
+            var div = document.getElementById("myDiv");
+            div.style.display = "block"; // Show the div
+            var icon = document.getElementById("findIcon");
+            icon.style.display = "none";
+            clearTimeout(timer); // Clear any previous hide timer
+        }
+
+        function hideDiv() {
+            var div = document.getElementById("myDiv");
+            var icon = document.getElementById("findIcon");
+            // Set a delay of 2 seconds (2000 milliseconds) before hiding the div
+            timer = setTimeout(function () {
+                icon.style.display = "block";
+                div.style.display = "none"; // Hide the div after the delay
+            }, 2000);
+        }
+
+
+        function generarPDF() {
+            // Crear un nuevo documento jsPDF
+            var doc = new jsPDF();
+
+            // Definir el contenido del encabezado
+            var logo = 'data:image/png;base64,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'; // Reemplaza con la ruta de tu imagen de logo
+            var headerText1 = 'Historia Clínica';
+            var headerText2 = 'Versión 1.0';
+            var currentDate = new Date();
+            var formattedDate =
+                currentDate.getDate() + '/' + (currentDate.getMonth() + 1) + '/' + currentDate.getFullYear();
+
+            // Agregar la imagen del logo en la primera columna del encabezado
+            //doc.addImage(logo, 'PNG', 10, 10, 30, 30);
+            doc.addImage(logo, "PNG", 25, 15, 30, 15);
+            //doc.text('logo', 10, 10, 30, 30);
+
+            // Agregar "Historia Clínica" en la segunda columna del encabezado
+            doc.setFontSize(14);
+            doc.text(headerText1, 80, 25);
+
+            // Agregar "Versión 1.0" en la tercera columna del encabezado
+            doc.setFontSize(12);
+            doc.text(headerText2, 140, 25);
+
+            // Agregar la fecha debajo del encabezado
+            doc.setFontSize(10);
+            doc.text('Fecha ' + formattedDate, 10, 50);
+
+            // Agregar el contenido del documento debajo del encabezado
+            doc.setFontSize(12);
+            //doc.text('Contenido de la Historia Clínica...', 10, 70);
+            // Definir los datos del paciente y los campos
+            var datosPaciente = [
+                ["Nombres", "Tipo de Documento", "CC", "CE"],
+                ["Apellidos", "Documento de Identificación"],
+            ];
+
+            // Definir los datos de contacto y los campos
+            var datosContacto = [["Celular", "Correo Electrónico"]];
+
+            // Establecer las coordenadas de inicio para la tabla de datos del paciente
+            var xPaciente = 10;
+            var yPaciente = 70;
+
+            // Establecer las coordenadas de inicio para la tabla de datos de contacto
+            var xContacto = 10;
+            var yContacto = yPaciente + datosPaciente.length * 10 + 10; // Dejar un espacio entre las dos tablas
+
+            // // Agregar la tabla de datos del paciente
+            // doc.autoTable({
+            //     head: datosPaciente,
+            //     body: [], // Puedes llenar estos datos posteriormente con tus variables de servicio
+            //     startY: yPaciente,
+            // });
+
+            // // Agregar la tabla de datos de contacto
+            // doc.autoTable({
+            //     head: datosContacto,
+            //     body: [], // Puedes llenar estos datos posteriormente con tus variables de servicio
+            //     startY: yContacto,
+            // });
+
+            // Guardar o mostrar el PDF
+            doc.save('historia_clinica.pdf');
+            // Set the document to automatically print via JS
+            doc.autoPrint();
+        }
+
+        // Llamar a la función para generar el PDF
+        //generarPDF();
+
     </script>
-
 }
