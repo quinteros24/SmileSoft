@@ -1470,11 +1470,3 @@ C:\Users\Usuario\source\repos\SmileSoft\WebSmileSoft\bin\Debug\net6.0\System.Web
 C:\Users\Usuario\source\repos\SmileSoft\WebSmileSoft\bin\Debug\net6.0\System.Web.WebPages.dll
 C:\Users\Usuario\source\repos\SmileSoft\WebSmileSoft\bin\Debug\net6.0\Microsoft.Web.Infrastructure.dll
 C:\Users\Usuario\source\repos\SmileSoft\WebSmileSoft\bin\Debug\net6.0\Rotativa.dll
-C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\WebSmileSoft\bin\Debug\net6.0\System.Web.Mvc.dll
-C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\WebSmileSoft\bin\Debug\net6.0\System.Web.Razor.dll
-C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\WebSmileSoft\bin\Debug\net6.0\System.Web.Helpers.dll
-C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\WebSmileSoft\bin\Debug\net6.0\System.Web.WebPages.Deployment.dll
-C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\WebSmileSoft\bin\Debug\net6.0\System.Web.WebPages.Razor.dll
-C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\WebSmileSoft\bin\Debug\net6.0\System.Web.WebPages.dll
-C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\WebSmileSoft\bin\Debug\net6.0\Microsoft.Web.Infrastructure.dll
-C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\WebSmileSoft\bin\Debug\net6.0\Rotativa.dll

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Repository.Queries;
 using System;
 using System.Data;
+using System.Reflection;
 using System.Security.Cryptography;
 
 namespace Repository
@@ -42,14 +43,14 @@ namespace Repository
             if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
             {
                 DataTable dt = ItemResponseDB.DtObject;
-                Items = Mapper.ToSelectList(dt,"spID","spName");
+                Items = Mapper.ToSelectList(dt, "spID", "spName");
             }
             return Items;
         }
 
         public async Task<List<SelectListItem>> GetDoctors(int? spID = 0)
         {
-            string query = $"SELECT D.dID, CONCAT(U.uName,' ',U.uLastName) AS dName FROM Doctors AS D INNER JOIN Users AS U ON D.uID = U.uID {(spID != 0? $"WHERE D.spID = {spID}" : "")}";
+            string query = $"SELECT D.dID, CONCAT(U.uName,' ',U.uLastName) AS dName FROM Doctors AS D INNER JOIN Users AS U ON D.uID = U.uID {(spID != 0 ? $"WHERE D.spID = {spID}" : "")}";
             Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
             ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
             List<SelectListItem> Items = new();
@@ -136,16 +137,27 @@ namespace Repository
             return genericResponseModel;
         }
 
-        public async Task<GenericResponseModel> GetUserClinicStory (int uID)
+        public async Task<GenericResponseModel> GetUserClinicStory(int? uID, string? uDocument)
         {
-            string query = $"SELECT MedicalRecordObject FROM Appointments WHERE [uID] = {uID} AND [oID] = 1 AND MedicalRecordObject IS NOT NULL ORDER BY aDate DESC";
+            //string query = $"SELECT MedicalRecordObject FROM Appointments WHERE [uID] = {uID} AND [oID] = 1 AND MedicalRecordObject IS NOT NULL ORDER BY aDate DESC"; 
+            //SELECT A.MedicalRecordObject FROM Appointments AS A INNER JOIN Users AS U ON A.uID = U.uID WHERE A.uID = 3 AND A.oID = 1 AND A.MedicalRecordObject IS NOT NULL OR U.uDocument = '999' ORDER BY A.aDate DESC
+            //string query = $"SELECT A.MedicalRecordObject FROM Appointments AS A\r\nINNER JOIN Users AS U ON A.uID = U.uID WHERE A.uID = {uID} AND A.oID = 1 AND A.MedicalRecordObject IS NOT NULL AND U.uDocument = {uDocument} ORDER BY A.aDate DESC";
+            string query = $"" +
+                $"SELECT A.MedicalRecordObject \r\n" +
+                $"FROM Appointments AS A \r\n" +
+                $"LEFT JOIN Users AS U ON A.uID = U.uID \r\n" +
+                $"WHERE (A.uID = '{uID}' OR U.uDocument = '{uDocument}') \r\n" +
+                $"    AND A.oID = 1 \r\n" +
+                $"    AND A.MedicalRecordObject IS NOT NULL \r\n" +
+                $"ORDER BY A.aDate DESC";
+            
             Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
             ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
             GenericResponseModel? genericResponseModel = new() { MessageStatus = "No hay historias clínicas para este usuario" };
             List<string> Medical = new();
             if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
             {
-                for(int i = 0; i < ItemResponseDB.DtObject.Rows.Count; i++)
+                for (int i = 0; i < ItemResponseDB.DtObject.Rows.Count; i++)
                 {
                     Medical.Add(ItemResponseDB.DtObject.Rows[i]["MedicalRecordObject"].ToString());
                 }
@@ -156,5 +168,7 @@ namespace Repository
             }
             return genericResponseModel;
         }
+
+     
     }
 }

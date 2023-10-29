@@ -80,11 +80,11 @@ namespace EpSmileSoft.Controllers
 
         [HttpGet]
         [Route("v1/GetUserDetails")]
-        public async Task<GenericResponseModel> GetUserDetails(int uID)
+        public async Task<GenericResponseModel> GetUserDetails(int? uID, string? uDocument)
         {
             try
             {
-                GenericResponseModel ItemGenericResponseModel = await _usersCore.GetUserDetails(uID);
+                GenericResponseModel ItemGenericResponseModel = await _usersCore.GetUserDetails(uID, uDocument);
                 return ItemGenericResponseModel;
             }
             catch

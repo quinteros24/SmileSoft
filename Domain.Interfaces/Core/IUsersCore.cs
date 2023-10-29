@@ -9,7 +9,7 @@ namespace Domain.Interfaces.Core
         Task<GenericResponseModel> ViewUsers(int utID);
         Task<GenericResponseModel> CreateUpdateUsers(UsersModelRequest Item);
         Task<GenericResponseModel> SetUserStatus(int uID, int uStatus);
-        Task<GenericResponseModel> GetUserDetails(int uID);
+        Task<GenericResponseModel> GetUserDetails(int? uID, string? uDocument);
 
     }
 }

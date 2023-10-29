@@ -242,9 +242,9 @@
                                 if (estado === 'Inactivo') {
                                     $(row).find('#btnPassword, #btnEditar, #btnClinicalHistory').hide();
                                 }
-                                if (rol != 'Pacientes') {
-                                    $(row).find('#btnClinicalHistory').hide();
-                                }
+                                // if (rol != 'Pacientes') {
+                                //     $(row).find('#btnClinicalHistory').hide();
+                                // }
                             }
 
                         });
@@ -607,6 +607,7 @@
 
                             $.ajax({
                                 url: sessionStorage.urlEP + `/api/Generics/v1/GetUserClinicStory?uID=${userId}`,
+
                                 type: 'GET',
                                 contentType: "application/json",
                                 dataType: 'json',

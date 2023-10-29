@@ -1,14 +1,8 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-
-
+﻿
 <div class="container mt-5">
     <h1 class="mb-4">Historias Clínicas</h1>
     <div class="row">
-        <div class="col-md-4" >
+        <div class="col-md-4">
             <!-- Panel de búsqueda de pacientes -->
             <i class="fa-solid fa-magnifying-glass text-primary fa-sm" onmouseenter="showDiv()" id="findIcon" style="display: none"> Buscar...</i>
             <div class="card" id="myDiv" onmouseleave="hideDiv()" onmouseenter="showDiv()">
@@ -17,9 +11,9 @@
                         <h5 class="card-title">Buscar Paciente</h5>
                         <form>
                             <div class="mb-3">
-                                <input type="text" class="form-control" placeholder="Nombre o ID del Paciente">
+                                <input type="text" class="form-control" placeholder="Documento del Paciente" id="userIdInput">
                             </div>
-                            <button type="button" class="btn btn-primary btn-en-desarrollo">Buscar</button>
+                            <button type="button" class="btn btn-primary" id="buscarButton">Buscar</button>
                         </form>
                     </div>
                 </div>
@@ -30,7 +24,7 @@
     </div>
     <hr />
     <div class="row">
-        <div class="col-md-12" id="imprimir">
+        <div class="col-md-12" id="imprimir" style="display:none;">
             <!-- Historias Clínicas -->
             <div class="card">
                 <div class="card-body">
@@ -41,11 +35,11 @@
                                 <img src="~/assets/img/logo-nav.png" class="img-fluid" id="navLogo" title="logo">
                             </div>
                             <div class="col-md-4 mt-4 text-center justify-content-center align-content-center">
-                                <h5 class="card-title">Historia Clínica de <span id="patientName">[Nombre del Paciente]</span></h5>
+                                <h5 class="card-title">Historia Clínica @* de <span id="patientFName">[Nombre del Paciente]</span> *@</h5>
                             </div>
                             <div class="col-md-4">
                                 <div class="text-center">
-                                    <p>Fecha de la Historia Clínica: <span id="fechaHC">[Fecha de la Historia Clínica]</span></p>
+                                    <p>Fecha: <span id="currentDate">[Fecha de la Historia Clínica]</span></p>
                                     <p>Versión del Documento: 1.0</p>
                                 </div>
                             </div>
@@ -55,52 +49,75 @@
                     <div class="section">
                         <!-- Contenido de la Historia Clínica -->
                         <div class="row">
-                            <div class="mb-3">
-                                <h6>Información Personal</h6>
-                                <p><strong>Nombre:</strong> [Nombre del Paciente]</p>
-                                <p><strong>Edad:</strong> [Edad del Paciente]</p>
-                                <p><strong>Fecha de Nacimiento:</strong> [Fecha de Nacimiento]</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="mb-3">
-                                <h6>Historial Médico</h6>
-                                <p><strong>Diagnóstico:</strong> [Diagnóstico]</p>
-                                <p><strong>Tratamiento:</strong> [Tratamiento]</p>
-                                <!-- Agregar más detalles según sea necesario -->
-                            </div>
-                            <!-- Datos de Respuestas Generadas por Tratamientos -->
-                            <div class="row">
+                            <div class="col-md-6">
                                 <div class="mb-3">
-                                    <h6>Respuestas Generadas por Tratamientos</h6>
-                                    <!-- Agregar detalles de respuestas aquí -->
+                                    <p><strong>Nombre:</strong> <span id="patientName"></span></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <p><strong>Apellidos:</strong> <span id="patientLName"></span></p>
                                 </div>
                             </div>
                         </div>
-                        <!-- Campo de Firma y Nombre del Doctor -->
-                        <div class="mb-3">
-                            <h6>Doctor:</h6>
-                            <p><strong>Nombre del Doctor:</strong> [Nombre del Doctor]</p>
-                            <!-- Agregar campo de firma del doctor si es necesario -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <p><strong>Edad:</strong> <span id="patientAge"></span></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <p><strong>Fecha de Nacimiento:</strong> <span id="patientBirthDay"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <p><strong>Cedula:</strong> <span id="patientuDocument"></span></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <p><strong>Correo electronico:</strong> <span id="patientEmail"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <!-- Datos Citas -->
+                            <div class="col-md-12">
+                                <div class="mb-3" style="display:none;">
+                                    <h6>Doctor</h6>
+                                    <p><strong>Nombre del Doctor:</strong> [Nombre del Doctor]</p>
+                                    <!-- Agregar campo de firma del doctor si es necesario -->
+                                </div>
+                                <div class="mb-3">
+                                    <h6>Reporte tratamientos</h6>
+                                    <div id="questionsContainer">
+                                        <form id="questionsContainerForm"></form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    @* <div class="row">
+                    <div class="col-md-12">
+                    <div id="questionsContainer">
+                    <!-- Aquí se cargará el contenido de la historia clínica -->
+                    </div>
+                    </div>
+                    </div> *@
                 </div>
             </div>
+            <div class="row" id="pdfButton">
+                <a href="javascript:generatePDF()" class="button">
+                    <i class="fas fa-file-pdf fa-xl"></i> Generar PDF
+                </a>
 
+            </div>
         </div>
-
-    </div>
-    <div class="row" id="pdfButton">
-        <a href="javascript:pruebaDivAPdf()" class="button">
-            <i class="fas fa-file-pdf fa-xl"></i> Generar PDF
-        </a>
-        @* <button id="button-pdf" onclick="downloadPDF()">Download</button> *@
-
-        @* <div id="imprimir">
-        <h1>
-        Esto es un DIV impreso en PDF
-        </h1>
-        </div> *@
     </div>
 </div>
 
@@ -110,9 +127,9 @@
     @* <script src="~/assets/js/jspdf.umd.min.js"></script>
     <script src="~/assets/js/jspdf.plugin.autotable.js"></script> *@
     @* <script>
-        var doc = new jsPDF()
-        doc.autoTable({ html: '#imprimir' })
-        doc.save('table.pdf')</script> *@
+    var doc = new jsPDF()
+    doc.autoTable({ html: '#imprimir' })
+    doc.save('table.pdf')</script> *@
 
 
     <script>
@@ -125,29 +142,388 @@
             $("#button-pdf").attr('hidden', 'true')
             pdf.addHTML($("#imprimir"), 0, -20, { allowTaint: true, useCORS: true, pagesplit: false }, function () {
                 pdf.save('HistoriaClinica.pdf');
-                $("#button-pdf").removeAttr('hidden', 'true')
+                $("#button-pdf").removeAttr('hidden', 'true');
             });
+
         }
+        let patientData = [];
+        console.log('PatientData: ', patientData);
+        // Function to populate patient information
+        function populatePatientInfo() {
+            // Get the current date
+            const currentDate = new Date();
+            // For example, to get the current year:
+            const currentYear = currentDate.getFullYear();
+            // To get the current month (0-11, where 0 is January and 11 is December):
+            const currentMonth = currentDate.getMonth();
+            // To get the current day of the month (1-31):
+            const currentDay = currentDate.getDate();
+            const currentDateFormat = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(currentDay).padStart(2, '0')}`;
+            let fechaCompleta = patientData.uBirthDate;
+            let fechaSolo = null;
+            if (fechaCompleta !== null && fechaCompleta !== undefined) {
+                fechaSolo = fechaCompleta.split('T')[0];
+            } else {
+                fechaSolo = patientData.uBirthDate;
+            }
+            console.log('Fecha de Nacimiento: ', fechaSolo);
+            document.getElementById("currentDate").textContent = currentDateFormat;
+            //document.getElementById("patientFName").textContent = patientData.uName + patientData.uLastName;
+            document.getElementById("patientName").textContent = patientData.uName;
+            document.getElementById("patientLName").textContent = patientData.uLastName;
+            document.getElementById("patientAge").textContent = calculateAge(patientData.uBirthDate); // You can create a function to calculate age
+            document.getElementById("patientBirthDay").textContent = fechaSolo; // You can create a function to format the date
+            document.getElementById("patientuDocument").textContent = patientData.uDocument; // You can create a function to calculate age
+            document.getElementById("patientEmail").textContent = patientData.uEmailAddress;
+        }
+
+        // Function to calculate age based on birthdate
+        function calculateAge(birthdate) {
+            // Parse the birthdate string into a Date object
+            let birthDate = new Date(birthdate);
+
+            // Get the current date
+            let currentDate = new Date();
+
+            // Calculate the difference in years
+            let age = currentDate.getFullYear() - birthDate.getFullYear();
+
+            // Check if the birthday for this year has already occurred
+            // If not, subtract one from the age
+            if (
+                currentDate.getMonth() < birthDate.getMonth() ||
+                (currentDate.getMonth() === birthDate.getMonth() &&
+                    currentDate.getDate() < birthDate.getDate())
+            ) {
+                age--;
+            }
+
+            return age;
+        }
+
+        // Function to format date
+        function formatDate(date) {
+            // Implement your logic to format the date here
+        }
+
+        // Call the function to populate patient information
+
+
+        async function loadUserClinicalHistory(inputUserId) {
+            try {
+                // Fetch user details
+                const userResponse = await fetch(`${sessionStorage.urlEP}/api/Users/v1/GetUserDetails?uDocument=${inputUserId}`);
+                const userData = await userResponse.json();
+
+                if (userData.itemJson === null) {
+                    mostrarMensajeError("No se cargó correctamente");
+                } else {
+                    patientData = userData.itemJson;
+                }
+
+                // Fetch clinical history
+                const clinicalHistoryResponse = await fetch(`${sessionStorage.urlEP}/api/Generics/v1/GetUserClinicStory?uDocument=${inputUserId}`);
+                const clinicalHistoryData = await clinicalHistoryResponse.json();
+
+                if (clinicalHistoryData.codeStatus == 0) {
+                    let allClinicalHistory = [];
+                    clinicalHistoryData.itemJson.forEach(item => {
+                        item = JSON.parse(item);
+                        allClinicalHistory = [...item];
+                        console.log('allClinicalHistory: ', allClinicalHistory);
+                    });
+                    // Process clinical history data and populate the form
+                    processClinicalHistoryData(allClinicalHistory);
+                } else {
+                    Swal.fire({
+                        title: 'Error',
+                        text: clinicalHistoryData.messageStatus,
+                        icon: 'error',
+                        confirmButtonText: 'Aceptar',
+                    });
+                }
+
+            } catch (error) {
+                mostrarMensajeError('Error al obtener detalles del usuario o historial clínico.');
+            }
+        }
+
+        function processClinicalHistoryData(allClinicalHistory) {
+            let questionTypes = {
+                'open': function (question) {
+                    let inputField = $(`<input disabled placeholder="${question.value}" type="text" id="${question.id}" class="form-control"></input><br>`);
+
+                    let container = $('<div class="form-group"></div>').append(
+                        `<label class="text-primary m-0 fw-bold" for="${question.id}">`
+                        + question.name +
+                        '</label><br>', inputField);
+
+                    return container
+                },
+                'close': function (question) {
+
+                    let checkBox1 = $(`<input disabled class="form-check-input" id="${question.id}" type="radio" >`).attr('name', "checkbox-close-question");
+                    // let checkBox1 = $(`<input disabled class="form-check-input" id="${question.id}" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
+
+                    let label1 = $(`<label class="form-check-label" for="${question.id}">`).text("SI");
+
+                    // let checkBox2 = $(`<input disabled class="form-check-input" id="${question.id}0" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
+                    let checkBox2 = $(`<input disabled class="form-check-input" id="${question.id}0" type="radio" >`).attr('name', "checkbox-close-question");
+
+                    let label2 = $(`<label class="form-check-label" for="${question.id}0">`).text("NO");
+
+                    let answer = question.value == 'SI' ? checkBox1 : checkBox2;
+                    answer.attr('checked', true)
+
+                    let container1 = $('<div class="form-check form-check-inline"></div>').append(checkBox1, label1);
+
+                    let container2 = $('<div class="form-check form-check-inline"></div>').append(checkBox2, label2);
+
+                    let container = $('<div class="mb-4 mt-2"></div>').append(`<p class="text-primary m-0 fw-bold">${question.name}</p>`, container1, container2);
+
+                    return container;
+                },
+                'multiple': function (question) {
+                    let options = $(`<select class="form-select" id="${question.id}" multiple></select>`);
+
+                    question.value.forEach(function (option) {
+                        options.append('<option disabled value="' + option + '">' + option + '</option>');
+                    });
+
+                    let container = $('<div class="mb-4"></div>').append(`<p class="text-primary m-0 fw-bold">${question.name}</p>`, options)
+
+                    return container
+                }
+            };
+            let form = $('#questionsContainerForm');
+            form.empty();
+            finalStructure = [];
+
+            // Create three columns using Bootstrap's grid system
+            let column1 = $('<div class="col-md-4"></div>');
+            let column2 = $('<div class="col-md-4"></div>');
+            let column3 = $('<div class="col-md-4"></div>');
+
+            allClinicalHistory.forEach(function (question, index) {
+                question.id = index + 1;
+
+                if (!question.type || !question.name) {
+                    console.error('Question is missing type or name:', question);
+                    return; // Skip questions with missing data
+                }
+
+                let questionContainer = $(`<div class="question-${question.id}"></div>`);
+
+                if (question.type === 'open') {
+                    let inputElement = questionTypes.open(question);
+                    finalStructure.push(question);
+                    questionContainer.append(inputElement);
+                } else if (question.type === 'close') {
+                    let inputElement = questionTypes.close(question);
+                    finalStructure.push(question);
+                    questionContainer.append(inputElement);
+                } else if (question.type === 'multiple') {
+                    let inputElement = questionTypes.multiple(question);
+                    finalStructure.push(question);
+                    questionContainer.append(inputElement);
+                } else {
+                    console.error('Tipo de pregunta no válido: ' + question.type);
+                }
+
+                // Add the question container to one of the three columns
+                if (index % 3 === 0) {
+                    column1.append(questionContainer);
+                } else if (index % 3 === 1) {
+                    column2.append(questionContainer);
+                } else {
+                    column3.append(questionContainer);
+                }
+            });
+
+            let clinicHistory = document.getElementById("imprimir");
+            clinicHistory.style.display = "block";
+
+            // Add the three columns to the form
+            let row = $('<div class="row"></div>').append(column1, column2, column3);
+            let container = $('<div class="container"></div>').append(row);
+            form.append(container);
+
+            // After populating the form, you can call the function to populate patient info
+            populatePatientInfo();
+        }
+
+
+
+
+        // Call loadUserClinicalHistory function with user ID
+        //loadUserClinicalHistory(inputUserId);
+
+
+        // function loadUserClinicalHistory(inputUserId) {
+        //     // Define the parameters
+        //     let userClinicalHistory = [];
+        //     let allClinicalHistory = [];
+
+        //     $.ajax({
+        //         url: sessionStorage.urlEP + '/api/Users/v1/GetUserDetails',
+        //         type: 'GET',
+        //         data: { 'uDocument': inputUserId },
+        //         contentType: "application/json",
+        //         dataType: 'json',
+        //         success: function (data) {
+        //             console.log("Cargando Respuesta")
+        //             console.log("Data:", data.itemJson);
+        //             //console.log(data.itemJson[0].uName);
+
+        //             if (data.itemJson === null) {
+        //                 mostrarMensajeError("No se cargo correctamente");
+        //             } else {
+        //                 let userData = data.itemJson; // Accede al primer elemento del arreglo
+        //                 patientData = userData;
+        //                 //actualizarFormulario(userData);
+        //             }
+        //         },
+        //         error: function (error) {
+        //             mostrarMensajeError('Error al obtener los detalles del usuario.');
+        //         }
+        //     });
+        //     console.log('UserDocument: ', inputUserId);
+        //     $.ajax({
+        //         url: sessionStorage.urlEP + `/api/Generics/v1/GetUserClinicStory?uDocument=${inputUserId}`,
+        //         type: 'GET',
+        //         contentType: "application/json",
+        //         dataType: 'json',
+        //         async: false,
+        //         success: function (response) {
+        //             // console.log('Response: tipo ', response.codeStatus);
+        //             if (response.codeStatus == 0) {
+        //                 let citas = response.itemJson;
+        //                 // console.log('Citas> ', citas);
+        //                 citas.map(item => {
+        //                     if (item) {
+        //                         item = JSON.parse(item);
+        //                         //console.log('item> ', item);
+        //                         allClinicalHistory = [...item];
+        //                     }
+        //                 });
+        //                 //console.log(allClinicalHistory);
+        //             } else {
+        //                 Swal.fire({
+        //                     title: 'Error',
+        //                     text: response.messageStatus,
+        //                     icon: 'error',
+        //                     confirmButtonText: 'Aceptar',
+        //                 });
+        //             }
+        //         },
+        //     });
+        //     let questionTypes = {
+        //         'open': function (question) {
+        //             let inputField = $(`<input disabled placeholder="${question.value}" type="text" id="${question.id}" class="form-control"></input><br>`);
+
+        //             let container = $('<div class="form-group"></div>').append(
+        //                 `<label class="text-primary m-0 fw-bold" for="${question.id}">`
+        //                 + question.name +
+        //                 '</label><br>', inputField);
+
+        //             return container
+        //         },
+        //         'close': function (question) {
+
+        //             let checkBox1 = $(`<input disabled class="form-check-input" id="${question.id}" type="radio" >`).attr('name', "checkbox-close-question");
+        //             // let checkBox1 = $(`<input disabled class="form-check-input" id="${question.id}" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
+
+        //             let label1 = $(`<label class="form-check-label" for="${question.id}">`).text("SI");
+
+        //             // let checkBox2 = $(`<input disabled class="form-check-input" id="${question.id}0" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
+        //             let checkBox2 = $(`<input disabled class="form-check-input" id="${question.id}0" type="radio" >`).attr('name', "checkbox-close-question");
+
+        //             let label2 = $(`<label class="form-check-label" for="${question.id}0">`).text("NO");
+
+        //             let answer = question.value == 'SI' ? checkBox1 : checkBox2;
+        //             answer.attr('checked', true)
+
+        //             let container1 = $('<div class="form-check form-check-inline"></div>').append(checkBox1, label1);
+
+        //             let container2 = $('<div class="form-check form-check-inline"></div>').append(checkBox2, label2);
+
+        //             let container = $('<div class="mb-4 mt-2"></div>').append(`<p class="text-primary m-0 fw-bold">${question.name}</p>`, container1, container2);
+
+        //             return container;
+        //         },
+        //         'multiple': function (question) {
+        //             let options = $(`<select class="form-select" id="${question.id}" multiple></select>`);
+
+        //             question.value.forEach(function (option) {
+        //                 options.append('<option disabled value="' + option + '">' + option + '</option>');
+        //             });
+
+        //             let container = $('<div class="mb-4"></div>').append(`<p class="text-primary m-0 fw-bold">${question.name}</p>`, options)
+
+        //             return container
+        //         }
+        //     };
+
+        //     let form = $('#history-clinical-modal-content');
+        //     form.empty();
+
+        //     finalStructure = [];
+        //     //console.log("Datos");
+        //     console.log('Historial Tratamientos Obtenidos: ', allClinicalHistory);
+        //     allClinicalHistory.forEach(function (question, index) {
+        //         question.id = index + 1;
+        //         let questionContainer = $(`<div class="question-${question.id}"></div>`);
+
+        //         if (question.type in questionTypes) {
+        //             let inputElement = questionTypes[question.type](question);
+        //             finalStructure.push(question);
+        //             questionContainer.append(inputElement);
+        //             form.append(questionContainer);
+        //         } else {
+        //             console.error('Tipo de pregunta no válido: ' + question.type);
+        //         }
+        //     });
+        //     let clinicHistory = document.getElementById("imprimir");
+        //     clinicHistory.style.display = "block";
+        //     let container = $('<div class="container"></div>').append(form);
+        //     $('#questionsContainer').append(container);
+        //     populatePatientInfo();
+        // }
+        // Attach a click event handler to the button
+        $("#buscarButton").on("click", function () {
+            let userId = $("#userIdInput").val(); // Get the user ID from the input field
+            loadUserClinicalHistory(userId);
+        });
+
 
         let timer; // Variable to store the timer
 
         function showDiv() {
-            var div = document.getElementById("myDiv");
+            let div = document.getElementById("myDiv");
             div.style.display = "block"; // Show the div
-            var icon = document.getElementById("findIcon");
+            let icon = document.getElementById("findIcon");
             icon.style.display = "none";
             clearTimeout(timer); // Clear any previous hide timer
         }
 
         function hideDiv() {
-            var div = document.getElementById("myDiv");
-            var icon = document.getElementById("findIcon");
+            let div = document.getElementById("myDiv");
+            let icon = document.getElementById("findIcon");
             // Set a delay of 2 seconds (2000 milliseconds) before hiding the div
             timer = setTimeout(function () {
                 icon.style.display = "block";
                 div.style.display = "none"; // Hide the div after the delay
             }, 2000);
         }
+
+
+
+
+
+
+
+
+
 
 
         function generarPDF() {
@@ -199,20 +575,6 @@
             var xContacto = 10;
             var yContacto = yPaciente + datosPaciente.length * 10 + 10; // Dejar un espacio entre las dos tablas
 
-            // // Agregar la tabla de datos del paciente
-            // doc.autoTable({
-            //     head: datosPaciente,
-            //     body: [], // Puedes llenar estos datos posteriormente con tus variables de servicio
-            //     startY: yPaciente,
-            // });
-
-            // // Agregar la tabla de datos de contacto
-            // doc.autoTable({
-            //     head: datosContacto,
-            //     body: [], // Puedes llenar estos datos posteriormente con tus variables de servicio
-            //     startY: yContacto,
-            // });
-
             // Guardar o mostrar el PDF
             doc.save('historia_clinica.pdf');
             // Set the document to automatically print via JS
@@ -222,5 +584,19 @@
         // Llamar a la función para generar el PDF
         //generarPDF();
 
+        function generatePDF(container) {
+            html2canvas(container).then(function (canvas) {
+                var imgData = canvas.toDataURL('image/png');
+                var contentHeight = canvas.height * 25.4 / 96; // convert pixels to millimeters
+                var doc = new jsPDF({
+                    unit: 'mm',
+                    format: [210, contentHeight + 20] // set the height of the document to fit the content
+                });
+                doc.addImage(imgData, 'PNG', 10, 10);
+                doc.save('document.pdf');
+            });
+        }
+
+                                                //generatePDF('imprimir');
     </script>
-}
+    }

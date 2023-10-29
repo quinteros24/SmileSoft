@@ -111,9 +111,9 @@ namespace Repository.Repos
             }
             return ResponseModel;
         }
-        public async Task<GenericResponseModel> GetUserDetails(int uID)
+        public async Task<GenericResponseModel> GetUserDetails(int? uID, string? uDocument)
         {
-            string query = UsersQueries.GetUserDetails(uID);
+            string query = UsersQueries.GetUserDetails(uID, uDocument);
             Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
             ResponseDB ItemResponseDB = await dl.Consultds(query);
             UsersModelResponse? User = new();
