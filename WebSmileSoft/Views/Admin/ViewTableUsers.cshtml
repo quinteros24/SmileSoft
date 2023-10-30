@@ -63,6 +63,10 @@
 
 @section Scripts {
     <script>
+        let userRole = sessionStorage.getItem("userRole"); "1" !== userRole && logoutUser(), document.getElementById("tipoUsuarioed").addEventListener("change", (function () { var e = document.getElementById("campoOpcional"); "2" === this.value ? e.style.display = "block" : e.style.display = "none" })), document.getElementById("tipoUsuario").addEventListener("change", (function () { var e = document.getElementById("campoOpcionala"); "2" === this.value ? e.style.display = "block" : e.style.display = "none" }));
+        </script>
+
+    @* <script>
         let userRole = sessionStorage.getItem('userRole');
         if (userRole !== '1') {
             logoutUser();
@@ -84,13 +88,13 @@
                 campoOpcional.style.display = "none";
             }
         });
-
+        </script> *@
+        <script>
         //<!-- Script para Visualizar Lista De Usuarios en la Tabla -->
         //Recibir el parametro de la funcion verusers(1) para filtrar por tipo de usuario
         $(document).ready(function () {
             verusers(3);
             $("#loadingScreen").show();
-
 
         });
 
@@ -242,9 +246,9 @@
                                 if (estado === 'Inactivo') {
                                     $(row).find('#btnPassword, #btnEditar, #btnClinicalHistory').hide();
                                 }
-                                // if (rol != 'Pacientes') {
-                                //     $(row).find('#btnClinicalHistory').hide();
-                                // }
+                                if (rol != 'Pacientes') {
+                                    $(row).find('#btnClinicalHistory').hide();
+                                }
                             }
 
                         });
@@ -871,6 +875,7 @@
                             icon: 'success',
                             confirmButtonText: 'Aceptar'
                         });
+                        verusers(3);
                     },
                     error: function () {
                         //alert("Error al agregar el usuario");
@@ -888,22 +893,25 @@
             $('[data-toggle="tooltip"]').tooltip();
 
         });
-        function generateUsername() {
-            const firstName = document.getElementById("nombres").value + '.';
-            const lastName = document.getElementById("apellidos").value;
+        // function generateUsername() {
+        //     const firstName = document.getElementById("nombres").value + '.';
+        //     const lastName = document.getElementById("apellidos").value;
 
-            // Combine the first name and last name to create the base username
-            const baseUsername = (firstName + lastName).toLowerCase().replace(/\s/g, "");
+        //     // Combine the first name and last name to create the base username
+        //     const baseUsername = (firstName + lastName).toLowerCase().replace(/\s/g, "");
 
-            // Generate a random number between 1 and 999 (adjust the range as needed)
-            const randomSuffix = Math.floor(Math.random() * 999) + 1;
+        //     // Generate a random number between 1 and 999 (adjust the range as needed)
+        //     const randomSuffix = Math.floor(Math.random() * 999) + 1;
 
-            // Combine the base username with the random number
-            const suggestedUsername = baseUsername + randomSuffix;
+        //     // Combine the base username with the random number
+        //     const suggestedUsername = baseUsername + randomSuffix;
 
-            // Update the username field with the suggested username
-            document.getElementById("usuario").value = suggestedUsername;
-        }
+        //     // Update the username field with the suggested username
+        //     document.getElementById("usuario").value = suggestedUsername;
+        // }
+    </script>
+    <script>
+        function generateUsername() { const e = (document.getElementById("nombres").value + "." + document.getElementById("apellidos").value).toLowerCase().replace(/\s/g, "") + (Math.floor(999 * Math.random()) + 1); document.getElementById("usuario").value = e }
     </script>
 
     }
