@@ -298,54 +298,31 @@
 
         let structure = [];
 
-        // $.ajax({
-        //     url: sessionStorage.urlEP + '/api/Generics/v1/GetUsersClinicStoryFormat?oID=1',
-        //     type: 'GET',
-        //     contentType: "application/json",
-        //     dataType: 'json',
-        //     async: false,
-        //     success: function ({ itemJson, codeStatus }) {
-        //         if (codeStatus == 0) {
-        //             structure = JSON.parse(itemJson);
-        //             console.log('Structure Json respond: ', structure);
-        //             console.log('Structure Json respond Long: ', structure.length);
+        $.ajax({
+            url: sessionStorage.urlEP + '/api/Generics/v1/GetUsersClinicStoryFormat?oID=1',
+            type: 'GET',
+            contentType: "application/json",
+            dataType: 'json',
+            async: false,
+            success: function ({ itemJson, codeStatus }) {
+                if (codeStatus == 0) {
+                    structure = JSON.parse(itemJson);
+                    console.log('Structure Json respond: ', structure);
+                    console.log('Structure Json respond Long: ', structure.length);
 
-        //         }
-        //         else if (response.codeStatus == -1) {
-        //             Swal.fire({
-        //                 title: 'Error',
-        //                 text: response.messageStatus,
-        //                 icon: 'error',
-        //                 confirmButtonText: 'Aceptar'
-        //             })
-        //         }
-        //     }
-        // })
-
-        fetch(`${sessionStorage.urlEP}/api/Generics/v1/GetUsersClinicStoryFormat?oID=1`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(response => response.json())
-            .then(({ itemJson, codeStatus }) => {
-                if (codeStatus === 0) {
-                    const structure = JSON.parse(itemJson);
-                    console.log('Structure Json respond:', structure);
-                    console.log('Structure Json respond Long:', structure.length);
-                } else if (codeStatus === -1) {
+                }
+                else if (response.codeStatus == -1) {
                     Swal.fire({
                         title: 'Error',
                         text: response.messageStatus,
                         icon: 'error',
                         confirmButtonText: 'Aceptar'
-                    });
+                    })
                 }
-            })
-            .catch(error => {
-                console.error(`Error: ${error}`);
-            });
+            }
+        })
+
+ 
 
 
         let finalStructure = [];
