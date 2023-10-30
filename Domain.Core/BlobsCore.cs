@@ -26,7 +26,7 @@ namespace Domain.Core
             _blobServiceClient = new BlobServiceClient(blobStorageConnectionString);
         }
 
-        public async Task<GenericResponseModel> CreateBlobStorage(IFormFile file)
+        public async Task<GenericResponseModel> CreateBlobStorage(IFormFile file, string blobName)
         {
             if (file == null || file.Length == 0)
             {
@@ -40,7 +40,6 @@ namespace Domain.Core
 
             // Nombre del contenedor y del blob (ajusta según tus necesidades)
             string containerName = "smilesoftimages";
-            string blobName = Guid.NewGuid().ToString(); // Puedes generar un nombre único para cada archivo
 
             // Obtén una referencia al contenedor (si no existe, lo crea)
             BlobContainerClient containerClient = _blobServiceClient.GetBlobContainerClient(containerName);

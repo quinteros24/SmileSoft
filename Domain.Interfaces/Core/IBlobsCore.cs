@@ -6,6 +6,6 @@ namespace Domain.Interfaces.Core
 {
     public interface IBlobsCore
     {
-        Task<GenericResponseModel> CreateBlobStorage(IFormFile file);
+        Task<GenericResponseModel> CreateBlobStorage(IFormFile file, string blobName);
     }
 }
