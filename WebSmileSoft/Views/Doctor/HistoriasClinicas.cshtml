@@ -496,6 +496,50 @@
         });
 
 
+        function loadUserClinicalHistory(inputUserId) {
+            // Define the parameters
+            let userClinicalHistory = [];
+            let allClinicalHistory = [];
+
+            console.log('UserDocument: ', inputUserId);
+            $.ajax({
+                url: sessionStorage.urlEP + `/api/Generics/v1/GetUserClinicStory?uDocument=${inputUserId}`,
+                type: 'GET',
+                contentType: "application/json",
+                dataType: 'json',
+                async: false,
+                success: function (response) {
+                    if (response.codeStatus === 0) {
+                        let citas = response.itemJson;
+                        citas.map(item => {
+                            if (item) {
+                                item = JSON.parse(item);
+                                allClinicalHistory = [...item];
+                            }
+                        });
+                        console.log(allClinicalHistory);
+                    } else if (response.codeStatus === -1) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: response.messageStatus,
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar',
+                        });
+                    }
+                },
+            });
+        }
+        // Attach a click event handler to the button
+        $("#buscarButton").on("click", function () {
+            let userId = $("#userIdInput").val(); // Get the user ID from the input field
+            loadUserClinicalHistory(userId);
+        });
+
+
+
+
+
+
         let timer; // Variable to store the timer
 
         function showDiv() {
@@ -581,8 +625,8 @@
             doc.autoPrint();
         }
 
-        // Llamar a la función para generar el PDF
-        //generarPDF();
+                // Llamar a la función para generar el PDF
+                //generarPDF();
 
         function generatePDF(container) {
             html2canvas(container).then(function (canvas) {
