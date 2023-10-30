@@ -680,51 +680,58 @@
                                     return container
                                 }
                             };
-
                             let form = $('#history-clinical-modal-content');
                             form.empty();
 
                             finalStructure = [];
                             console.log(allClinicalHistory)
+                            // Create three columns using Bootstrap's grid system
+                            let column1 = $('<div class="col-md-4"></div>');
+                            let column2 = $('<div class="col-md-4"></div>');
+                            let column3 = $('<div class="col-md-4"></div>');
+
                             allClinicalHistory.forEach(function (question, index) {
                                 question.id = index + 1;
+
+                                if (!question.type || !question.name) {
+                                    console.error('Question is missing type or name:', question);
+                                    return; // Skip questions with missing data
+                                }
+
                                 let questionContainer = $(`<div class="question-${question.id}"></div>`);
 
-                                if (question.type in questionTypes) {
-                                    let inputElement = questionTypes[question.type](question);
+                                if (question.type === 'open') {
+                                    let inputElement = questionTypes.open(question);
                                     finalStructure.push(question);
                                     questionContainer.append(inputElement);
-                                    form.append(questionContainer);
+                                } else if (question.type === 'close') {
+                                    let inputElement = questionTypes.close(question);
+                                    finalStructure.push(question);
+                                    questionContainer.append(inputElement);
+                                } else if (question.type === 'multiple') {
+                                    let inputElement = questionTypes.multiple(question);
+                                    finalStructure.push(question);
+                                    questionContainer.append(inputElement);
                                 } else {
                                     console.error('Tipo de pregunta no válido: ' + question.type);
                                 }
+
+                                // Add the question container to one of the three columns
+                                if (index % 3 === 0) {
+                                    column1.append(questionContainer);
+                                } else if (index % 3 === 1) {
+                                    column2.append(questionContainer);
+                                } else {
+                                    column3.append(questionContainer);
+                                }
                             });
 
+                            // Add the three columns to the form
+                            let row = $('<div class="row"></div>').append(column1, column2, column3);
+                            let container = $('<div class="container"></div>').append(row);
+                            form.append(container);
+                            
 
-                            /* $.ajax({
-                                 url: sessionStorage.urlEP + '/api/Users/v1/GetUserDetails',
-                                 type: 'GET',
-                                 data: { 'uID': userId },
-                                 contentType: "application/json",
-                                 dataType: 'json',
-                                 success: function (data) {
-                                     console.log("Cargando Respuesta")
-                                     console.log("Data:" + data.itemJson.uName);
-                                     //console.log(data.itemJson[0].uName);
-
-                                     if (data.itemJson === null) {
-                                         mostrarMensajeError("No se cargo correctamente");
-                                     } else {
-                                         let userData = data.itemJson; // Accede al primer elemento del arreglo
-                                         actualizarFormulario(userData);
-                                     }
-                                 },
-                                 error: function (error) {
-                                     mostrarMensajeError('Error al obtener los detalles del usuario.');
-                                 }
-                             });*/
-
-                            console.log('userId', userId)
                         });
 
                     }
