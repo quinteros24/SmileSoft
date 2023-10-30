@@ -34,10 +34,10 @@ namespace Repository.Queries
                 $"END CATCH";
         }
 
-        public static string GetUserDetails(int uID)
+        public static string GetUserDetails(int? uID, string? uDocument)
         {
             return $"BEGIN TRY\n " +
-                $"  SELECT *, 'OBJECT' AS TableName FROM dbo.Users AS U LEFT JOIN dbo.Doctors AS D ON U.uID = D.uID WHERE U.[uID] = {uID}\n" +
+                $"  SELECT *, 'OBJECT' AS TableName FROM dbo.Users AS U LEFT JOIN dbo.Doctors AS D ON U.uID = D.uID WHERE U.[uID] = '{uID}' OR U.uDocument = '{uDocument}'\n" +
                 $"    SELECT '0' AS OutputCodeError, 'Consulta correcta' AS OutputMessageError, 'Parameters' AS TableName\n" +
                 $"END TRY\n" +
                 $"BEGIN CATCH\n" +
