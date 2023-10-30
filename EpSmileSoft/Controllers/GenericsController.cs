@@ -82,10 +82,12 @@ namespace EpSmileSoft.Controllers
         //Obtiene el las historias clínicas del usuario
         [HttpGet]
         [Route("v1/GetUserClinicStory")]
-        public async Task<GenericResponseModel> GetUserClinicStory(int uID)
+        public async Task<GenericResponseModel> GetUserClinicStory(int? uID, string? uDocument)
         {
-            return await _genericsCore.GetUserClinicStory(uID);
+            return await _genericsCore.GetUserClinicStory(uID, uDocument);
         }
+
+     
 
     }
 }

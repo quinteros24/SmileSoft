@@ -88,9 +88,10 @@ namespace Domain.Core
             return await _genericsRepository.GetContactNumber(oID);
         }
 
-        public async Task<GenericResponseModel> GetUserClinicStory(int uID)
+        public async Task<GenericResponseModel> GetUserClinicStory(int? uID, string? uDocument)
         {
-            return await _genericsRepository.GetUserClinicStory(uID);
+            return await _genericsRepository.GetUserClinicStory(uID, uDocument);
         }
+ 
     }
 }

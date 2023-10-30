@@ -280,3 +280,4 @@ C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\obj\Release\net6.0\ref\EpSmi
 C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Release\net6.0\Azure.Storage.Blobs.dll
 C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Release\net6.0\Azure.Storage.Common.dll
 C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Release\net6.0\System.IO.Hashing.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Release\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
