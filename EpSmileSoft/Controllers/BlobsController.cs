@@ -3,6 +3,9 @@ using Domain.Interfaces.Core;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Specialized;
+using Azure.Storage.Blobs.Models;
 
 namespace EpSmileSoft.Controllers
 {
@@ -25,18 +28,35 @@ namespace EpSmileSoft.Controllers
             {
                 return BadRequest("Archivo no válido.");
             }
+            string tratamientoid = "tratamiento123";
+            // Obtener la fecha actual
+            DateTime fecha = DateTime.Now;
+            // Formatear la fecha en un formato específico
+            string fechaFormateada = fecha.ToString("yyyyMMddHHmmss");
+
+            // Construir el nombre del blob utilizando el identificador de tratamiento y la fecha
+            string blobName = $"{tratamientoid}_{fechaFormateada}";
 
             // Llama a la lógica de negocio para subir el archivo al Blob Storage
-            GenericResponseModel responseModel = await _blobsCore.CreateBlobStorage(file);
+            string blobUrl = await _blobsCore.CreateBlobStorage(file, blobName);
 
-            if (responseModel.Status)
+            if (blobUrl != null)
             {
-                return Ok(responseModel);
+                // Aquí puedes guardar la URL en la base de datos si es necesario
+
+                return Ok(blobUrl);
             }
             else
             {
-                return BadRequest(responseModel);
+                return BadRequest("Error al subir el archivo al Blob Storage.");
             }
+        }
+
+        [HttpGet("GetBlobFile")]
+        public async Task<IActionResult> GetBlobFile(string url)
+        {
+            BlobModel result = await _blobsCore.GetBlobFile(url);
+            return File(result.Content, result.ContentType);
         }
     }
 }
