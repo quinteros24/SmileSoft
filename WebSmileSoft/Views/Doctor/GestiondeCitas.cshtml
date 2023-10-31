@@ -9,15 +9,15 @@
             <div class="card-body">
                 <!-- Aquí va la tabla -->
                 <div class="table-responsive">
-                <table id="citasDoctor" class="table display" width="100%"></table>
+                    <table id="citasDoctor" class="table display" width="100%"></table>
                 </div>
             </div>
         </div>
 
         <div class="card mt-4">
             <div class="card-body">
-                <input type="file" id="fileInput" accept=".jpg, .jpeg, .png" />
-                <button id="uploadButton" class="btn btn-primary mt-2">Subir Archivo</button>
+                <input type="file" id="fileInput1" accept=".jpg, .jpeg, .png" />
+                <button id="uploadButton1" class="btn btn-primary mt-2">Subir Archivo</button>
                 <p id="message" class="mt-2"></p>
             </div>
         </div>
@@ -41,6 +41,8 @@
 
             <form class="form-group mb-4 align-items-center justify-content-center mt-1 p-4"
                   id="history-clinical-modal-content">
+                <input type="file" id="fileInput" accept=".jpg, .jpeg, .png" />
+                <button id="uploadButton" class="btn btn-primary mt-2">Subir Archivo</button>
             </form>
 
         </div>
@@ -116,7 +118,7 @@
                             orderable: false, // Para desactivar la ordenación en esta columna
                             data: null, // Usaremos la columna "Acciones" solo para botones
                             defaultContent: '<button class="btn btn-primary btn-sm btnDesactivarC" data-toggle="tooltip" title="Cancelar Cita" type="button"> <i class="fas fa-ban"> </i></button> ' +
-                                 '<button class="btn btn-warning btn-sm btnEditarC" data-toggle="modal" data-target="#editarCitaModal" data-toggle="tooltip" title="Reprogramar Cita"> <i class="fa-regular fa-pen-to-square"></i></button> '
+                                '<button class="btn btn-warning btn-sm btnEditarC" data-toggle="modal" data-target="#editarCitaModal" data-toggle="tooltip" title="Reprogramar Cita"> <i class="fa-regular fa-pen-to-square"></i></button> '
                         }
                     ],
                     data: dataSet,
@@ -392,6 +394,22 @@
                 }
             });
 
+            // Botón para seleccionar archivo
+            let fileInput = $('<input type="file" id="fileInput" accept=".jpg, .jpeg, .png" />');
+
+            // Botón para subir archivo
+            let uploadButton = $('<button id="uploadButton" class="btn btn-primary mt-2">Subir Archivo</button>');
+
+            uploadButton.click(() => {
+                uploadFile();
+            });
+
+            form.append(fileInput, uploadButton);
+
+            // ... Código para crear otros campos del formulario ...
+
+
+
             Swal.fire({
                 title: 'Agregar historia clínica',
                 confirmButtonText: 'Confirmar',
@@ -512,7 +530,8 @@
         }
 
         function uploadFile() {
-            const fileInput = document.getElementById("fileInput");
+            console.log("Función uploadFile ejecutada.");
+            const fileInput = document.getElementById("fileInput1");
             const message = document.getElementById("message");
 
             if (fileInput.files.length === 0) {
@@ -523,12 +542,6 @@
             const file = fileInput.files[0];
             const formData = new FormData();
             formData.append("file", file);
-
-            // Generar un nombre único para el archivo
-            const uniqueName = generateUniqueFileName(file.name);
-
-            // Agregar el nombre único al formData
-            formData.append("uniqueName", uniqueName);
 
             // URL del servicio de carga de blobs (reemplaza con tu URL)
             const uploadUrl = sessionStorage.urlEP + '/api/Blobs/upload';
@@ -549,20 +562,15 @@
                 });
         }
 
-        function generateUniqueFileName(originalName) {
-            const timestamp = new Date().getTime(); // Puedes utilizar una marca de tiempo
-            const randomString = Math.random().toString(36).substring(2); // Agregar una cadena aleatoria
-            const fileExtension = originalName.split('.').pop(); // Obtener la extensión del archivo
-            const uniqueName = `${timestamp}_${randomString}.${fileExtension}`;
-            return uniqueName;
-        }
+
+
 
         function showMessage(text, color) {
             message.textContent = text;
             message.style.color = color;
         }
 
-        document.getElementById("uploadButton").addEventListener("click", uploadFile);
+        document.getElementById("uploadButton1").addEventListener("click", uploadFile);
 
 
         $(document).ready(function () {
