@@ -142,15 +142,7 @@ namespace Repository
             //string query = $"SELECT MedicalRecordObject FROM Appointments WHERE [uID] = {uID} AND [oID] = 1 AND MedicalRecordObject IS NOT NULL ORDER BY aDate DESC"; 
             //SELECT A.MedicalRecordObject FROM Appointments AS A INNER JOIN Users AS U ON A.uID = U.uID WHERE A.uID = 3 AND A.oID = 1 AND A.MedicalRecordObject IS NOT NULL OR U.uDocument = '999' ORDER BY A.aDate DESC
             //string query = $"SELECT A.MedicalRecordObject FROM Appointments AS A\r\nINNER JOIN Users AS U ON A.uID = U.uID WHERE A.uID = {uID} AND A.oID = 1 AND A.MedicalRecordObject IS NOT NULL AND U.uDocument = {uDocument} ORDER BY A.aDate DESC";
-            string query = $"" +
-                $"SELECT A.MedicalRecordObject \r\n" +
-                $"FROM Appointments AS A \r\n" +
-                $"LEFT JOIN Users AS U ON A.uID = U.uID \r\n" +
-                $"WHERE (A.uID = '{uID}' OR U.uDocument = '{uDocument}') \r\n" +
-                $"    AND A.oID = 1 \r\n" +
-                $"    AND A.MedicalRecordObject IS NOT NULL \r\n" +
-                $"ORDER BY A.aDate DESC";
-            
+            string query = GenericsQueries.GetUserClinicStory(uID, uDocument);
             Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
             ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
             GenericResponseModel? genericResponseModel = new() { MessageStatus = "No hay historias clínicas para este usuario" };
@@ -164,6 +156,145 @@ namespace Repository
                 genericResponseModel.ItemJson = Medical;
                 genericResponseModel.CodeStatus = "0";
                 genericResponseModel.MessageStatus = "Consulta correcta";
+                genericResponseModel.Status = true;
+            }
+            return genericResponseModel;
+        }
+
+        public async Task<GenericResponseModel> GetDataSite(int? uID, string? IP = "")
+        {
+            string query = GenericsQueries.GetDataSite(uID,IP);
+            
+            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
+            ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
+            GenericResponseModel? genericResponseModel = new() { Status = false};
+
+            OfficeDataModel data = new();
+            if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
+            {
+                data = Mapper.GetObjectFromDataTable<OfficeDataModel?>(ItemResponseDB.DtObject);
+                genericResponseModel.Status = true;
+                genericResponseModel.RecordsQuantity = 1;
+                genericResponseModel.ItemJson = data;
+            }
+            return genericResponseModel;
+        }
+        
+
+        public async Task<GenericResponseModel> SetDataSiteUrlImageLogin(int uID, string data)
+        {
+            string query = $"BEGIN TRY\n" +
+                           $"    UPDATE Offices SET UrlImageLogin = '{data}' WHERE [oID] = (SELECT [oID] FROM Users WHERE [uID] = {uID})\n" +
+                           $"    SELECT 'Se ha actualizado la imagen para el inicio de sesión' AS OutputMessageError, '0' AS OutputCodeError\n" +
+                           $"END TRY\n" +
+                           $"BEGIN CATCH\n" +
+                           $"    SELECT ERROR_MESSAGE() AS OutputMessageError, ERROR_NUMBER() AS OutputCodeError\n" +
+                           $"END CATCH";
+
+            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
+            ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
+            GenericResponseModel? genericResponseModel = new();
+
+            if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
+            {
+                genericResponseModel.CodeStatus = ItemResponseDB.DtObject.Rows[0]["OutputCodeError"].ToString();
+                genericResponseModel.MessageStatus = ItemResponseDB.DtObject.Rows[0]["OutputMessageError"].ToString();
+                genericResponseModel.Status = true;
+            }
+            return genericResponseModel;
+        }
+        
+
+        public async Task<GenericResponseModel> SetDataSiteUrlImageMenu(int uID, string data)
+        {
+            string query = $"BEGIN TRY\n" +
+                           $"    UPDATE Offices SET UrlImageMenu = '{data}' WHERE [oID] = (SELECT [oID] FROM Users WHERE [uID] = {uID})\n" +
+                           $"    SELECT 'Se ha actualizado la imagen para el menú' AS OutputMessageError, '0' AS OutputCodeError\n" +
+                           $"END TRY\n" +
+                           $"BEGIN CATCH\n" +
+                           $"    SELECT ERROR_MESSAGE() AS OutputMessageError, ERROR_NUMBER() AS OutputCodeError\n" +
+                           $"END CATCH";
+
+            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
+            ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
+            GenericResponseModel? genericResponseModel = new();
+
+            if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
+            {
+                genericResponseModel.CodeStatus = ItemResponseDB.DtObject.Rows[0]["OutputCodeError"].ToString();
+                genericResponseModel.MessageStatus = ItemResponseDB.DtObject.Rows[0]["OutputMessageError"].ToString();
+                genericResponseModel.Status = true;
+            }
+            return genericResponseModel;
+        }
+        
+
+        public async Task<GenericResponseModel> SetDataSiteBackgroundColor(int uID, string data)
+        {
+            string query = $"BEGIN TRY\n" +
+                           $"    UPDATE Offices SET BackgroundColor = '{data}' WHERE [oID] = (SELECT [oID] FROM Users WHERE [uID] = {uID})\n" +
+                           $"    SELECT 'Se ha actualizado el color para el fondo' AS OutputMessageError, '0' AS OutputCodeError\n" +
+                           $"END TRY\n" +
+                           $"BEGIN CATCH\n" +
+                           $"    SELECT ERROR_MESSAGE() AS OutputMessageError, ERROR_NUMBER() AS OutputCodeError\n" +
+                           $"END CATCH";
+
+            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
+            ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
+            GenericResponseModel? genericResponseModel = new();
+
+            if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
+            {
+                genericResponseModel.CodeStatus = ItemResponseDB.DtObject.Rows[0]["OutputCodeError"].ToString();
+                genericResponseModel.MessageStatus = ItemResponseDB.DtObject.Rows[0]["OutputMessageError"].ToString();
+                genericResponseModel.Status = true;
+            }
+            return genericResponseModel;
+        }
+        
+
+        public async Task<GenericResponseModel> SetDataSiteTopColor(int uID, string data)
+        {
+            string query = $"BEGIN TRY\n" +
+                           $"    UPDATE Offices SET TopColor = '{data}' WHERE [oID] = (SELECT [oID] FROM Users WHERE [uID] = {uID})\n" +
+                           $"    SELECT 'Se ha actualizado el color para el encabezado' AS OutputMessageError, '0' AS OutputCodeError\n" +
+                           $"END TRY\n" +
+                           $"BEGIN CATCH\n" +
+                           $"    SELECT ERROR_MESSAGE() AS OutputMessageError, ERROR_NUMBER() AS OutputCodeError\n" +
+                           $"END CATCH";
+
+            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
+            ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
+            GenericResponseModel? genericResponseModel = new();
+
+            if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
+            {
+                genericResponseModel.CodeStatus = ItemResponseDB.DtObject.Rows[0]["OutputCodeError"].ToString();
+                genericResponseModel.MessageStatus = ItemResponseDB.DtObject.Rows[0]["OutputMessageError"].ToString();
+                genericResponseModel.Status = true;
+            }
+            return genericResponseModel;
+        }
+        
+
+        public async Task<GenericResponseModel> SetDataSiteSideColor(int uID, string data)
+        {
+            string query = $"BEGIN TRY\n" +
+                           $"    UPDATE Offices SET SideColor = '{data}' WHERE [oID] = (SELECT [oID] FROM Users WHERE [uID] = {uID})\n" +
+                           $"    SELECT 'Se ha actualizado el color para la barra lateral' AS OutputMessageError, '0' AS OutputCodeError\n" +
+                           $"END TRY\n" +
+                           $"BEGIN CATCH\n" +
+                           $"    SELECT ERROR_MESSAGE() AS OutputMessageError, ERROR_NUMBER() AS OutputCodeError\n" +
+                           $"END CATCH";
+
+            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
+            ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
+            GenericResponseModel? genericResponseModel = new();
+
+            if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
+            {
+                genericResponseModel.CodeStatus = ItemResponseDB.DtObject.Rows[0]["OutputCodeError"].ToString();
+                genericResponseModel.MessageStatus = ItemResponseDB.DtObject.Rows[0]["OutputMessageError"].ToString();
                 genericResponseModel.Status = true;
             }
             return genericResponseModel;

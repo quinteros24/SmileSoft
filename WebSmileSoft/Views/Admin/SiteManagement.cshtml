@@ -129,11 +129,11 @@
                             <div class="row">
                                 <div class="col">
                                     <form>
-
+                                        @* NO CAMBIAR ESTRUCTURA DE ELEMENTOS, LOS DATOS SE OBTIENEN SEGÚN SU ESTRUCTURA *@
                                         <div class="mb-3">
                                             <label for="ChangeLogo" class="form-label"><span id="ChangeLogoLabel">Cambiar Logo del Login</span></label>
-                                            <input class="form-control" type="file" id="ChangeLogo" accept=".jpg, .png" disabled>
-                                            <div class="mb-3 my-2 "><button class="btn btn-primary btn-en-desarrollo" type="submit" disabled>Subir</button></div>
+                                            <input class="form-control" type="file" id="ChangeLogo" accept=".jpg, .png" onchange="fnConvertToBase64(this)">
+                                            <div class="mb-3 my-2 "><button class="btn btn-primary" type="submit" onclick="uploadImage(this, 1)">Subir</button></div>
 
                                         </div>
                                     </form>
@@ -142,9 +142,9 @@
                                     <form>
                                         <div class="mb-3">
                                             <label for="logoInput" class="form-label">Cambiar Logo Menu Principal</label>
-                                            <input class="form-control" type="file" id="logoInput" accept=".jpg, .png">
+                                            <input class="form-control" type="file" id="logoInput" accept=".jpg, .png" onchange="fnConvertToBase64(this)">
                                             <div class="mb-3 my-2">
-                                                <button class="btn btn-primary" type="button" id="updateLogo">Subir</button>
+                                                <button class="btn btn-primary" type="button" id="updateLogo" onclick="uploadImage(this, 2)">Subir</button>
                                             </div>
                                         </div>
                                     </form>
@@ -164,7 +164,7 @@
                                             <div class="form-group">
                                                 <label for="BackgroundColor" class="form-label"> Cambiar Color Fondo del Sitio</label>
                                                 <input type="color" class="form-control form-control-color" id="BackgroundColor" value="#563d7c" title="Escoger Color" style="width: 6.5rem;">
-                                            </div><button type="button" class="btn btn-primary my-2 btn-en-desarrollo">
+                                            </div><button type="button" class="btn btn-primary my-2 " onclick="fnUpdateDataOffice(3)">
                                                 Actualizar
                                             </button>
                                         </form>
@@ -176,7 +176,7 @@
                                             <div class="form-group">
                                                 <label for="SidebarColor">Cambiar Color de la Barra Lateral</label>
                                                 <input type="color" class="form-control form-control-color" id="SidebarColor" value="#be1522" title="Escoger Color" style="width: 6.5rem;" />
-                                            </div><button type="button" class="btn btn-primary my-2 btn-en-desarrollo">
+                                            </div><button type="button" class="btn btn-primary my-2 " onclick="fnUpdateDataOffice(5)">
                                                 Actualizar
                                             </button>
                                         </form>
@@ -191,7 +191,7 @@
                                                 <label for="NavbarColor">Cambiar Color de la Barra Superior</label>
                                                 <input type="color" class="form-control form-control-color" id="NavbarColor" value="#be1522" title="Escoger Color" style="width: 6.5rem;" />
                                             </div>
-                                            <button type="button" class="btn btn-primary my-2 btn-en-desarrollo">
+                                            <button type="button" class="btn btn-primary my-2 " onclick="fnUpdateDataOffice(4)">
                                                 Actualizar
                                             </button>
                                         </form>
@@ -295,6 +295,140 @@
 
     <script src="~/assets/js/sitemanagement.js"></script>
     <script>
+
+        var base64Image = '';
+
+        $(document).ready(function () {
+            fnGetDataSite(sessionStorage.getItem('userID'));
+        });
+
+        function fnGetDataSite(uID){
+            $.ajax({
+                url: sessionStorage.urlEP + '/api/Generics/v1/GetDataSite?uID=' + uID,
+                type: 'GET',
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (response) {
+                    localStorage.setItem("urlImageLogin", response.itemJson.urlImageLogin);
+                    localStorage.setItem("urlImageMenu", response.itemJson.urlImageMenu);
+                    localStorage.setItem("backgroundColor", response.itemJson.backgroundColor);
+                    localStorage.setItem("topColor", response.itemJson.topColor);
+                    localStorage.setItem("sideColor", response.itemJson.sideColor);
+                    $('#imgLogin').attr('src', response.itemJson.urlImageLogin);
+                }
+            });
+        }
+
+        function fnConvertToBase64(element){
+            if (element.files && element.files[0]) {
+                let reader = new FileReader();
+
+                reader.onload = function (e) {
+                    const base64String = e.target.result;
+                    base64Image = base64String;
+                };
+
+                reader.readAsDataURL(element.files[0]);
+            }
+        }
+
+        function uploadImage(element, op){
+            let file = element.parentElement.previousElementSibling.files[0];
+
+            let uID = sessionStorage.getItem('userID');
+            let text = 'Menu';
+
+            if (op == 1) text = 'Login';
+
+            const formData = new FormData();
+            formData.append("file", file);
+
+            const uploadUrl = `${sessionStorage.urlEP}/api/Blobs/upload?citaID=0&genericName=ImageForOffice${text}_${uID}`;
+            
+            fetch(uploadUrl, {
+                method: "POST",
+                body: formData,
+            })
+                .then((response) => {
+                    fnUpdateDataOffice(op, response);
+                })
+                .catch((error) => {
+                    showMessage("Error de red al cargar el archivo.", "red");
+                });
+        }
+
+        function fnUpdateDataOffice(op = 0, url = ''){
+            if (op == 0) return;
+
+            if ((op == 1 || op == 2) && base64Image == '') return;
+
+            let route = '';
+            let data = '';
+
+            switch (op) {
+                case 1:
+                    route = 'SetDataSiteUrlImageLogin';
+                    data = url;
+                    break;
+
+                case 2:
+                    route = 'SetDataSiteUrlImageMenu';
+                    data = url;
+                    break;
+
+                case 3:
+                    route = 'SetDataSiteBackgroundColor';
+                    data = $('#BackgroundColor').val();
+                    break;
+
+                case 4:
+                    route = 'SetDataSiteTopColor';
+                    data = $('#NavbarColor').val();
+                    break;
+
+                case 5:
+                    route = 'SetDataSiteSideColor';
+                    data = $('#SidebarColor').val();
+                    break;
+
+                default:
+                    route = '';
+            }
+
+            if (route == '') return;
+
+            let uID = sessionStorage.getItem('userID');
+
+            $.ajax({
+                url: `${sessionStorage.urlEP}/api/Generics/v1/${route}?uID=${uID}&data=${data}`,
+                type: 'GET',
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (response) {
+                    if (response.codeStatus == '-1'){
+                        Swal.fire({
+                            title: 'Ups...',
+                            text: response.messageStatus,
+                            icon: 'warning',
+                            confirmButtonText: 'Aceptar'
+                        });
+                        return;
+                    }
+                    Swal.fire({
+                        title: '',
+                        text: response.messageStatus,
+                        icon: 'success',
+                        confirmButtonText: 'Aceptar'
+                    });
+                },
+            });
+
+        }
+
+
+
+
+
 
         let structure = [];
 

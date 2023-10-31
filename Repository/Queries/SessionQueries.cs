@@ -6,6 +6,17 @@ namespace Repository.Queries
     {
         public static string Login(LoginModelRequest ItemLogin)
         {
+            string ip = string.Empty;
+
+            if (!string.IsNullOrEmpty(ItemLogin.ipAddress))
+            {
+                ip = $"                    IF NOT EXISTS(SELECT TOP(1)* FROM ipAddressPerOffices WHERE ipAddress = '{ItemLogin.ipAddress}' AND [oID] = (SELECT [oID] FROM Users WHERE [uID] = @ExistantUser))\n" +
+                     $"                    BEGIN\n" +
+                     $"                        INSERT INTO ipAddressPerOffices([oID],ipAddress,ippoCreationDate)\n" +
+                     $"                        VALUES((SELECT [oID] FROM Users WHERE [uID] = @ExistantUser),'{ItemLogin.ipAddress}',GETUTCDATE())\n" +
+                     $"                    END\n";
+            }
+
             return  $"BEGIN TRY\n" +
                     $"    DECLARE @Login AS VARCHAR(MAX) = '{ItemLogin.UserLogin}'\n" +
                     $"    DECLARE @Password AS VARBINARY(64) = (SELECT HASHBYTES('SHA2_256',Cast('{ItemLogin.Password}' AS VARCHAR(8000))))\n" +
@@ -56,6 +67,7 @@ namespace Repository.Queries
                     $"                        dbo.Users AS U\n" +
                     $"                    WHERE\n" +
                     $"                        U.uID = @ExistantUser AND U.uPassword = @Password\n" +
+                    $"{ip}" +
                     $"                    SELECT '0' AS OutputCodeError, 'Inicio de sesión con éxito' AS OutputMessageError, 'Parameters' AS TableName\n" +
                     $"                    UPDATE dbo.Users SET uIsBlocked = 0, uFailedAttempts = 0 WHERE uID = @ExistantUser\n" +
                     $"                END\n" +
