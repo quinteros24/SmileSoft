@@ -132,7 +132,7 @@
 
                                         <div class="mb-3">
                                             <label for="ChangeLogo" class="form-label"><span id="ChangeLogoLabel">Cambiar Logo del Login</span></label>
-                                            <input class="form-control" type="file" id="ChangeLogo" accept=".jpg, .png" disabled>
+                                            <input class="form-control" type="file" id="ChangeLogo" accept=".jpg, .png" onchange="fnConvertToBase64(this)" disabled>
                                             <div class="mb-3 my-2 "><button class="btn btn-primary btn-en-desarrollo" type="submit" disabled>Subir</button></div>
 
                                         </div>
@@ -142,7 +142,7 @@
                                     <form>
                                         <div class="mb-3">
                                             <label for="logoInput" class="form-label">Cambiar Logo Menu Principal</label>
-                                            <input class="form-control" type="file" id="logoInput" accept=".jpg, .png">
+                                            <input class="form-control" type="file" id="logoInput" accept=".jpg, .png" onchange="fnConvertToBase64(this)">
                                             <div class="mb-3 my-2">
                                                 <button class="btn btn-primary" type="button" id="updateLogo">Subir</button>
                                             </div>
@@ -295,6 +295,41 @@
 
     <script src="~/assets/js/sitemanagement.js"></script>
     <script>
+
+        $(document).ready(function () {
+            fnGetDataSite(sessionStorage.getItem('userID'));
+        });
+
+        function fnGetDataSite(uID){
+            $.ajax({
+                url: sessionStorage.urlEP + '/api/Generics/v1/GetDataSite?uID=' + uID,
+                type: 'GET',
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (response) {
+                    localStorage.setItem("urlImageLogin", response.itemJson.urlImageLogin);
+                    localStorage.setItem("urlImageMenu", response.itemJson.urlImageMenu);
+                    localStorage.setItem("backgroundColor", response.itemJson.backgroundColor);
+                    localStorage.setItem("topColor", response.itemJson.topColor);
+                    localStorage.setItem("sideColor", response.itemJson.sideColor);
+                    $('#imgLogin').attr('src', response.itemJson.urlImageLogin);
+                }
+            });
+        }
+
+        function fnConvertToBase64(element){
+            if (element.files && element.files[0]) {
+                let reader = new FileReader();
+
+                reader.onload = function (e) {
+                    const base64String = e.target.result;
+                    console.log('Imagen en formato base64:', base64String);
+
+                };
+
+                reader.readAsDataURL(element.files[0]);
+            }
+        }
 
         let structure = [];
 

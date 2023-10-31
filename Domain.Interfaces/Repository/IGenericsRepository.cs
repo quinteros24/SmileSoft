@@ -14,5 +14,11 @@ namespace Domain.Interfaces
         Task<GenericResponseModel> SetContactNumber(string cellphoneNumber, int oID);
         Task<GenericResponseModel> GetContactNumber(int oID);
         Task<GenericResponseModel> GetUserClinicStory(int? uID, string? uDocument);
+        Task<GenericResponseModel> GetDataSite(int? uID, string? IP = "");
+        Task<GenericResponseModel> SetDataSiteUrlImageLogin(int uID, string data);
+        Task<GenericResponseModel> SetDataSiteUrlImageMenu(int uID, string data);
+        Task<GenericResponseModel> SetDataSiteBackgroundColor(int uID, string data);
+        Task<GenericResponseModel> SetDataSiteTopColor(int uID, string data);
+        Task<GenericResponseModel> SetDataSiteSideColor(int uID, string data);
     }
 }
