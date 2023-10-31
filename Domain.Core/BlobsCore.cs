@@ -28,7 +28,7 @@ namespace Domain.Core
             _blobServiceClient = new BlobServiceClient(blobStorageConnectionString);
         }
 
-        public async Task<string> CreateBlobStorage(IFormFile file, string blobName)
+        public async Task<string> CreateBlobStorage(IFormFile file, string citaID)
         {
             if (file == null || file.Length == 0)
             {
@@ -49,7 +49,7 @@ namespace Domain.Core
                 string fileExtension = Path.GetExtension(file.FileName);
 
                 // Agrega la extensión al nombre del Blob
-                string blobNameWithExtension = $"{blobName}{fileExtension}";
+                string blobNameWithExtension = $"{citaID}{fileExtension}";
 
                 BlobClient blobClient = containerClient.GetBlobClient(blobNameWithExtension);
                 await blobClient.UploadAsync(stream, true);
