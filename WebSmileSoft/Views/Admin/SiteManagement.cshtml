@@ -129,11 +129,11 @@
                             <div class="row">
                                 <div class="col">
                                     <form>
-
+                                        @* NO CAMBIAR ESTRUCTURA DE ELEMENTOS, LOS DATOS SE OBTIENEN SEGÚN SU ESTRUCTURA *@
                                         <div class="mb-3">
                                             <label for="ChangeLogo" class="form-label"><span id="ChangeLogoLabel">Cambiar Logo del Login</span></label>
                                             <input class="form-control" type="file" id="ChangeLogo" accept=".jpg, .png" onchange="fnConvertToBase64(this)">
-                                            <div class="mb-3 my-2 "><button class="btn btn-primary btn-en-desarrollo" type="submit" onclick="uploadImage(1)">Subir</button></div>
+                                            <div class="mb-3 my-2 "><button class="btn btn-primary btn-en-desarrollo" type="submit" onclick="uploadImage(this, 1)">Subir</button></div>
 
                                         </div>
                                     </form>
@@ -144,7 +144,7 @@
                                             <label for="logoInput" class="form-label">Cambiar Logo Menu Principal</label>
                                             <input class="form-control" type="file" id="logoInput" accept=".jpg, .png" onchange="fnConvertToBase64(this)">
                                             <div class="mb-3 my-2">
-                                                <button class="btn btn-primary" type="button" id="updateLogo" onclick="uploadImage(2)">Subir</button>
+                                                <button class="btn btn-primary" type="button" id="updateLogo" onclick="uploadImage(this, 2)">Subir</button>
                                             </div>
                                         </div>
                                     </form>
@@ -332,12 +332,32 @@
             }
         }
 
-        function uploadImage(op){
-            //uploadimage
-            fnUpdateDataOffice(op);
+        function uploadImage(element, op){
+            let file = element.parentElement.previousElementSibling.files[0];
+
+            let uID = sessionStorage.getItem('userID');
+            let text = 'Menu';
+
+            if (op == 1) text = 'Login';
+
+            const formData = new FormData();
+            formData.append("file", file);
+
+            const uploadUrl = `${sessionStorage.urlEP}/api/Blobs/upload?citaID=0&genericName=ImageForOffice${text}_${uID}`;
+            
+            fetch(uploadUrl, {
+                method: "POST",
+                body: formData,
+            })
+                .then((response) => {
+                    fnUpdateDataOffice(op, response);
+                })
+                .catch((error) => {
+                    showMessage("Error de red al cargar el archivo.", "red");
+                });
         }
 
-        function fnUpdateDataOffice(op = 0){
+        function fnUpdateDataOffice(op = 0, url = ''){
             if (op == 0) return;
 
             if ((op == 1 || op == 2) && base64Image == '') return;
@@ -348,12 +368,12 @@
             switch (op) {
                 case 1:
                     route = 'SetDataSiteUrlImageLogin';
-                    data = base64Image;
+                    data = url;
                     break;
 
                 case 2:
                     route = 'SetDataSiteUrlImageMenu';
-                    data = base64Image;
+                    data = url;
                     break;
 
                 case 3:
