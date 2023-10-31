@@ -9,15 +9,15 @@
             <div class="card-body">
                 <!-- Aquí va la tabla -->
                 <div class="table-responsive">
-                <table id="citasDoctor" class="table display" width="100%"></table>
+                    <table id="citasDoctor" class="table display" width="100%"></table>
                 </div>
             </div>
         </div>
 
         <div class="card mt-4">
             <div class="card-body">
-                <input type="file" id="fileInput" accept=".jpg, .jpeg, .png" />
-                <button id="uploadButton" class="btn btn-primary mt-2">Subir Archivo</button>
+                <input type="file" id="fileInput1" accept=".jpg, .jpeg, .png" />
+                <button id="uploadButton1" class="btn btn-primary mt-2">Subir Archivo</button>
                 <p id="message" class="mt-2"></p>
             </div>
         </div>
@@ -41,6 +41,8 @@
 
             <form class="form-group mb-4 align-items-center justify-content-center mt-1 p-4"
                   id="history-clinical-modal-content">
+                <input type="file" id="fileInput" accept=".jpg, .jpeg, .png" />
+                <button id="uploadButton" class="btn btn-primary mt-2">Subir Archivo</button>
             </form>
 
         </div>
@@ -116,7 +118,8 @@
                             orderable: false, // Para desactivar la ordenación en esta columna
                             data: null, // Usaremos la columna "Acciones" solo para botones
                             defaultContent: '<button class="btn btn-primary btn-sm btnDesactivarC" data-toggle="tooltip" title="Cancelar Cita" type="button"> <i class="fas fa-ban"> </i></button> ' +
-                                 '<button class="btn btn-warning btn-sm btnEditarC" data-toggle="modal" data-target="#editarCitaModal" data-toggle="tooltip" title="Reprogramar Cita"> <i class="fa-regular fa-pen-to-square"></i></button> '
+                                '<button class="btn btn-warning btn-sm btnEditarC" data-toggle="modal" data-target="#editarCitaModal" data-toggle="tooltip" title="Reprogramar Cita"> <i class="fa-regular fa-pen-to-square"></i></button> ' +
+                                '<button class="btn btn-warning btn-sm btnFileC" data-toggle="modal" data-target="#UploadFileCitaModal" data-toggle="tooltip" title="Subir Imagen"> <i class="fa-regular fa-pen-to-square"></i></button>'
                         }
                     ],
                     data: dataSet,
@@ -226,31 +229,36 @@
                     }
 
                 });
-                tablecitasd.column(9).nodes().to$().find('.btnEditarC').click(async function () {
+                tablecitasd.column(9).nodes().to$().find('.btnFileC').click(async function () {
                     // Maneja la acción del botón aqui
                     let data = tablecitasd.row($(this).parents('tr')).data();
                     let CitaID = data[1]; // la primera columna contiene el ID del usuario
-
-                    const { value: citaState } = await Swal.fire({
-                        title: 'Seleccionar estado de la cita',
-                        input: 'select',
-                        inputOptions: {
-                            '1': 'Pendiente',
-                            '2': 'Confirmada',
-                            '3': 'Completada'
+                    console.log("CitaID:", CitaID);
+                    Swal.fire({
+                        title: 'Select image',
+                        input: 'file',
+                        inputAttributes: {
+                            'accept': 'image/*',
+                            'aria-label': 'Upload your profile picture'
                         },
-                        inputPlaceholder: 'Selecciona el estado de la cita',
-                        showCancelButton: true,
-                        inputValidator: (value) => {
-                            return new Promise((resolve) => {
-                                if (value > 0) {
-                                    // alert(value);
-                                    //resolve(value); // Si se selecciona un estado, resolvemos con ese valor
-                                    changeDateStatus(value, CitaID);
-                                } else {
-                                    resolve('Debes seleccionar un estado de cita.');
-                                }
-                            });
+                        showCancelButton: true, // Add this if you want a cancel button
+                        inputValidator: (file) => {
+                            if (!file) {
+                                return 'You need to choose an image';
+                            }
+                        }
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            const reader = new FileReader();
+                            reader.onload = (e) => {
+                                uploadFile(result.value, CitaID); // Call the uploadFile function with the selected file
+                                Swal.fire({
+                                    title: 'Your uploaded picture',
+                                    imageUrl: e.target.result,
+                                    imageAlt: 'The uploaded picture'
+                                });
+                            };
+                            reader.readAsDataURL(result.value);
                         }
                     });
 
@@ -392,6 +400,23 @@
                 }
             });
 
+            // Botón para seleccionar archivo
+            let fileInput = $('<input type="file" id="fileInput" accept=".jpg, .jpeg, .png" />');
+
+            // Botón para subir archivo
+            let uploadButton = $('<button id="uploadButton" class="btn btn-primary mt-2">Subir Archivo</button>');
+
+            uploadButton.click(() => {
+                console.log("Botón Subir Archivo clicado");
+                uploadFile(CitaID);
+            });
+
+            form.append(fileInput, uploadButton);
+
+            // ... Código para crear otros campos del formulario ...
+
+
+
             Swal.fire({
                 title: 'Agregar historia clínica',
                 confirmButtonText: 'Confirmar',
@@ -413,11 +438,11 @@
             })
         }
 
-        function saveHistoryForm(form, citaID) {
+        function saveHistoryForm(form, CitaID) {
             $.ajax({
                 url: sessionStorage.urlEP + '/api/Generics/v1/SetUsersClinicStoryFormat',
                 type: 'GET',
-                data: { 'aID': citaID, 'jsonObject': JSON.stringify(form) },
+                data: { 'aID': CitaID, 'jsonObject': JSON.stringify(form) },
                 contentType: "application/json",
                 dataType: 'json',
                 success: function (response) {
@@ -429,7 +454,7 @@
                             confirmButtonText: 'Aceptar'
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                changeDateStatus(3, citaID);
+                                changeDateStatus(3, CitaID);
                                 // swal.close();
                                 // location.reload();
                             }
@@ -454,6 +479,9 @@
                 }
             })
         }
+
+
+
         function changeDateStatus(citaState, CitaID) {
             // Aquí puedes realizar la solicitud AJAX con el valor de citaState
             //console.log(`Estado de cita seleccionado: ${citaState}`);
@@ -511,36 +539,24 @@
             });
         }
 
-        function uploadFile() {
-            const fileInput = document.getElementById("fileInput");
-            const message = document.getElementById("message");
-
-            if (fileInput.files.length === 0) {
-                showMessage("Seleccione un archivo para cargar.", "red");
-                return;
-            }
-
-            const file = fileInput.files[0];
+        function uploadFile(file, CitaID) {
+            console.log("Función uploadFile ejecutada.");
             const formData = new FormData();
             formData.append("file", file);
 
-            // Generar un nombre único para el archivo
-            const uniqueName = generateUniqueFileName(file.name);
-
-            // Agregar el nombre único al formData
-            formData.append("uniqueName", uniqueName);
-
             // URL del servicio de carga de blobs (reemplaza con tu URL)
-            const uploadUrl = sessionStorage.urlEP + '/api/Blobs/upload';
-
+            const uploadUrl = `${sessionStorage.urlEP}/api/Blobs/upload?citaID=${CitaID}`;
+            console.log('dato enviado ', formData);
             fetch(uploadUrl, {
                 method: "POST",
                 body: formData,
             })
                 .then((response) => {
                     if (response.ok) {
+                        console.log("Archivo cargado exitosamente.");
                         showMessage("Archivo cargado exitosamente.", "green");
                     } else {
+                        console.log("Error al cargar el archivo.");
                         showMessage("Error al cargar el archivo.", "red");
                     }
                 })
@@ -549,13 +565,6 @@
                 });
         }
 
-        function generateUniqueFileName(originalName) {
-            const timestamp = new Date().getTime(); // Puedes utilizar una marca de tiempo
-            const randomString = Math.random().toString(36).substring(2); // Agregar una cadena aleatoria
-            const fileExtension = originalName.split('.').pop(); // Obtener la extensión del archivo
-            const uniqueName = `${timestamp}_${randomString}.${fileExtension}`;
-            return uniqueName;
-        }
 
         function showMessage(text, color) {
             message.textContent = text;
