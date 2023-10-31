@@ -7,6 +7,8 @@ using Domain.Interfaces.Repository;
 using Microsoft.Extensions.Configuration;
 using Azure.Storage.Blobs;
 using Microsoft.AspNetCore.Http;
+using Azure.Storage.Blobs.Models;
+using System.Net.Mime;
 
 namespace Domain.Core
 {
@@ -14,7 +16,7 @@ namespace Domain.Core
     {
         private readonly IBlobsRepository _blobsRepository;
         private readonly BlobServiceClient _blobServiceClient;
-
+        public static readonly List<string> ImageExtensions = new List<string> { ".JPG", ".JPEG", ".PNG" };
         public BlobsCore(IBlobsRepository blobsRepository, IConfiguration configuration)
         {
             _blobsRepository = blobsRepository;
@@ -26,16 +28,11 @@ namespace Domain.Core
             _blobServiceClient = new BlobServiceClient(blobStorageConnectionString);
         }
 
-        public async Task<GenericResponseModel> CreateBlobStorage(IFormFile file, string blobName)
+        public async Task<string> CreateBlobStorage(IFormFile file, string blobName)
         {
             if (file == null || file.Length == 0)
             {
-                return new GenericResponseModel
-                {
-                    Status = false,
-                    CodeStatus = "400",
-                    MessageStatus = "Archivo no válido."
-                };
+                return null;
             }
 
             // Nombre del contenedor y del blob (ajusta según tus necesidades)
@@ -48,16 +45,56 @@ namespace Domain.Core
             // Sube el archivo
             using (Stream stream = file.OpenReadStream())
             {
-                BlobClient blobClient = containerClient.GetBlobClient(blobName);
+                // Obtén la extensión del archivo desde el nombre del archivo original
+                string fileExtension = Path.GetExtension(file.FileName);
+
+                // Agrega la extensión al nombre del Blob
+                string blobNameWithExtension = $"{blobName}{fileExtension}";
+
+                BlobClient blobClient = containerClient.GetBlobClient(blobNameWithExtension);
                 await blobClient.UploadAsync(stream, true);
+
+                // Aquí puedes construir la URL del Blob y devolverla
+                string blobUrl = blobClient.Uri.ToString();
+                return blobUrl;
             }
 
-            return new GenericResponseModel
-            {
-                Status = true,
-                CodeStatus = "200",
-                MessageStatus = "Archivo subido correctamente."
-            };
+            return null;
         }
+
+        public async Task<BlobModel> GetBlobFile(string url)
+        {
+            var fileName = new Uri(url).Segments.LastOrDefault();
+
+            try
+            {
+                BlobContainerClient containerClient = _blobServiceClient.GetBlobContainerClient("smilesoftimages");
+                var blobClient = containerClient.GetBlobClient(fileName);
+                if (await blobClient.ExistsAsync())
+                {
+                    BlobDownloadResult content = await blobClient.DownloadContentAsync();
+                    var downloadedData = content.Content.ToStream();
+
+                    if (ImageExtensions.Contains(Path.GetExtension(fileName.ToUpperInvariant())))
+                    {
+                        var extension = Path.GetExtension(fileName);
+                        return new BlobModel { Content = downloadedData, ContentType = "image/" + extension.Remove(0, 1) };
+                    }
+                    else
+                    {
+                        return new BlobModel { Content = downloadedData, ContentType = content.Details.ContentType };
+                    }
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
     }
 }
