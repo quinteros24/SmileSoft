@@ -32,7 +32,7 @@ namespace Domain.Core
         {
             if (file == null || file.Length == 0)
             {
-                return null;
+                return string.Empty;
             }
 
             // Nombre del contenedor y del blob (ajusta según tus necesidades)
@@ -43,23 +43,20 @@ namespace Domain.Core
             await containerClient.CreateIfNotExistsAsync();
 
             // Sube el archivo
-            using (Stream stream = file.OpenReadStream())
-            {
-                // Obtén la extensión del archivo desde el nombre del archivo original
-                string fileExtension = Path.GetExtension(file.FileName);
+            using Stream stream = file.OpenReadStream();
+            // Obtén la extensión del archivo desde el nombre del archivo original
+            string fileExtension = Path.GetExtension(file.FileName);
 
-                // Agrega la extensión al nombre del Blob
-                string blobNameWithExtension = $"{citaID}{fileExtension}";
+            // Agrega la extensión al nombre del Blob
+            string blobNameWithExtension = $"{citaID}{fileExtension}";
 
-                BlobClient blobClient = containerClient.GetBlobClient(blobNameWithExtension);
-                await blobClient.UploadAsync(stream, true);
+            BlobClient blobClient = containerClient.GetBlobClient(blobNameWithExtension);
+            await blobClient.UploadAsync(stream, true);
 
-                // Aquí puedes construir la URL del Blob y devolverla
-                string blobUrl = blobClient.Uri.ToString();
-                return blobUrl;
-            }
+            // Aquí puedes construir la URL del Blob y devolverla
+            string blobUrl = blobClient.Uri.ToString();
 
-            return null;
+            return blobUrl;
         }
 
         public async Task<BlobModel> GetBlobFile(string url)
