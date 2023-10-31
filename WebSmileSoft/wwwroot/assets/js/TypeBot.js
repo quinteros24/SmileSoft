@@ -10,7 +10,7 @@ Typebot.initBubble({
             "https://s3.typebot.io/public/workspaces/clnyrmsbo000tmw0f6fvvcoo7/typebots/clnyrn1hl003xl90ftyqzh0ac/hostAvatar?v=1697830542773",
     },
     theme: {
-        button: { backgroundColor: "#83e0fc", size: "large" },
+        button: { backgroundColor: "#008dc9", size: "large" },
         chatWindow: { backgroundColor: "#FFFFFF" },
     },
 });
