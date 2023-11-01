@@ -14,7 +14,7 @@
                     <div class="row">
                         <div class="col-lg-6 d-none d-lg-flex">
                             <div class="flex-grow-1 bg-login-image d-flex ms-5"></div>
-                            <img src="~/assets/img/logo-r.png" class="img-fluid">
+                            <img id="imgLogin" src="~/assets/img/logo-r.png" onerror="this.onerror=null;this.src='~/assets/img/logo-r.png';" class="img-fluid">
                         </div>
 
                         @* <div class="col-lg-6" style="display: none">
@@ -121,6 +121,36 @@
 
     <script src="~/assets/js/typebot.js" type="module"></script>
     <script>
+        var ipAddressNet = '';
+        1
+        $(document).ready(function() {
+            fetch('https://ipinfo.io/json')
+                .then(response => response.json())
+                .then(data => {
+                    ipAddressNet = data.ip;
+                    ipAddressNet = ipAddressNet.substring(0, ipAddressNet.lastIndexOf('.'))
+                })
+                .catch(error => console.error('Error al obtener la IP', error));
+
+            if (ipAddressNet != undefined && ipAddressNet != null && ipAddressNet != '') {
+                $.ajax({
+                    url: sessionStorage.urlEP + '/api/Generics/v1/GetDataSite?IP=' + ipAddressNet,
+                    type: 'GET',
+                    contentType: "application/json",
+                    dataType: 'json',
+                    success: function (response) {
+                        localStorage.setItem("urlImageLogin", response.itemJson.urlImageLogin);
+                        localStorage.setItem("urlImageMenu", response.itemJson.urlImageMenu);
+                        localStorage.setItem("backgroundColor", response.itemJson.backgroundColor);
+                        localStorage.setItem("topColor", response.itemJson.topColor);
+                        localStorage.setItem("sideColor", response.itemJson.sideColor);
+                        $('#imgLogin').attr('src', response.itemJson.urlImageLogin);
+                    }
+                });
+            }
+        })
+
+
         function validarInicioSesion() {
             //console.log("Script Iniciar Sesion");
             // event.preventDefault();
@@ -129,6 +159,8 @@
 
             let username = document.getElementById("UserLogin").value;
             let password = document.getElementById("Password").value;
+
+            if (ipAddressNet == undefined) ipAddressNet = '';
 
             if (username === "") {
                 Swal.fire({
@@ -144,7 +176,8 @@
 
                 let data = {
                     UserLogin: username,
-                    password: password
+                    password: password,
+                    ipAddress: ipAddressNet
                 };
                 mostrarCarga();
                 $.ajax({
