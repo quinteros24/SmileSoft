@@ -23,7 +23,7 @@
                         </svg> Ajustes del Sitio
                     </a>
                     <a href="#wpsettings" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
-                        <i class="fa-regular fa-address-book fa-lg"></i>Ajustes de Contacto
+                        <i class="fa-regular fa-address-book fa-lg"></i> Ajustes de Contacto
                     </a>
                     <a href="#questionsettings" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
                        <i class="fa-solid fa-notes-medical fa-lg"></i> Configurar Formulario
@@ -33,7 +33,7 @@
         </div>
         <div class="card shadow mb-4 my-2">
             <div class="card-header py-3">
-                <h4 class="text-danger align-content-center fw-bold m-0">Importante!!</h4>
+                <h4 class="text-danger align-content-center fw-bold m-0">Información!!</h4>
             </div>
             <div>
                 <img class="w-100 img-fluid rounded" src="~/assets/img/anuncios/SmileSoft.png" alt="Slide Image">
@@ -93,7 +93,7 @@
             <div class="card-body tab-content">
                 <!-- Ajustes del Sitio -->
                 <div class="tab-pane active" id="sitesettings">
-                    <h6>Opciones del Sitio</h6>
+                    <h5 class="text-primary">Opciones del Sitio</h5>
                     <hr />
                     <div class="card shadow mb-3">
                         <div class="card-header py-3">
@@ -179,7 +179,7 @@
                 <!-- Fin Ajustes del -->
 
                 <div class="tab-pane" id="wpsettings">
-                    <h6>Ajustes de Contacto</h6>
+                    <h5 class="text-primary">Ajustes de Contacto</h5>
                     <hr />
                     <div class="card shadow mb-3">
                         <div class="card-header py-3">
@@ -206,7 +206,7 @@
                 </div>
 
                 <div class="tab-pane" id="questionsettings">
-                    <h6>Configurar Preguntas de Historias Clinicas</h6>
+                    <h5 class="text-primary">Configurar Preguntas de Historias Clinicas</h5>
                     <hr />
                     <!-- Formulario para agregar preguntas de historia clinica -->
                     <div class="card shadow mb-3">
@@ -272,10 +272,19 @@
 
     <script>
 
-        var base64Image = '';
+        let base64Image = '';
 
         $(document).ready(function () {
             fnGetDataSite(sessionStorage.getItem('userID'));
+            // Get the color values from localStorage
+            let backgroundColor = localStorage.getItem("backgroundColor");
+            let topColor = localStorage.getItem("topColor");
+            let sideColor = localStorage.getItem("sideColor");
+
+            // Set the initial colors for each input
+            document.getElementById("BackgroundColor").value = backgroundColor || "#563d7c";
+            document.getElementById("SidebarColor").value = sideColor || "#be1522";
+            document.getElementById("NavbarColor").value = topColor || "#be1522";
         });
 
         function fnGetDataSite(uID){
@@ -329,7 +338,7 @@
                 processData: false,
                 contentType: false,
                 success: function (response) {
-                    debugger;
+                    //debugger;
                     fnUpdateDataOffice(op, response);
                 },
                 error: function () {

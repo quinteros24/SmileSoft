@@ -203,9 +203,9 @@
                                     orderable: false, // Para desactivar la ordenación en esta columna
                                     data: null, // Usaremos la columna "Acciones" solo para botones
                                     defaultContent: '<button class="btn btn-primary btn-sm" id="btnEditar" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" title="Editar Usuario"><i class="fas fa-edit"></i></button> ' +
-                                        '<button class="btn btn-success btn-sm deactivate-button" id="btnDesactivar" data-toggle="modal" data-target="#deactivateModal" data-toggle="tooltip" title="Desactivar Usuario" > <i class="fas fa-ban"> </i></button > ' +
                                         '<button class="btn btn-danger btn-sm password-button" id="btnPassword" data-toggle="modal" data-target="#passwordModal" data-toggle="tooltip" title="Cambiar contraseña" > <i class="fa-solid fa-lock"></i></button > ' +
-                                        '<button class="btn btn-primary btn-sm" id="btnClinicalHistory" data-toggle="modal" data-target="#clinicalHistoryModal" data-toggle="tooltip" title="Ver historia clinica" > <i class="fa-solid fa-clipboard"></i></button >'
+                                        '<button class="btn btn-primary btn-sm" id="btnClinicalHistory" data-toggle="modal" data-target="#clinicalHistoryModal" data-toggle="tooltip" title="Ver Tratamientos del Paciente" > <i class="fa-solid fa-clipboard"></i></button >' +
+                                        '<button class="btn btn-success btn-sm deactivate-button mx-1" id="btnDesactivar" data-toggle="modal" data-target="#deactivateModal" data-toggle="tooltip" title="Desactivar o Activar Usuario" > <i class="fas fa-ban"> </i></button > '
 
                                 }
                             ],
@@ -613,35 +613,43 @@
                             });
                         });
                         table.column(12).nodes().to$().find('#btnClinicalHistory').click(function () {
-                            $("#clinicalHistoryModal").modal("show");
-
                             let data = table.row($(this).parents('tr')).data();
                             let userId = data[1];
                             $('#clinical-history-username').text(' ' + data[4] + ' ' + data[5]);
-
-
                             let userClinicalHistory = []
                             let allClinicalHistory = []
 
 
                             $.ajax({
                                 url: sessionStorage.urlEP + `/api/Generics/v1/GetUserClinicStory?uID=${userId}`,
-
                                 type: 'GET',
                                 contentType: "application/json",
                                 dataType: 'json',
                                 async: false,
                                 success: function (response) {
                                     if (response.codeStatus == 0) {
-                                        let citas = response.itemJson
-                                        citas.map(item => {
-                                            if (item) {
-                                                item = JSON.parse(item)
-                                                allClinicalHistory = [...item]
-                                            }
-                                        })
-                                        console.log(allClinicalHistory)
+
+                                        if (response.itemJson.length > 0) {
+                                            $("#clinicalHistoryModal").modal("show");
+                                            let citas = response.itemJson
+                                            citas.map(item => {
+                                                if (item) {
+                                                    item = JSON.parse(item)
+                                                    allClinicalHistory = [...item]
+                                                }
+                                            })
+                                            console.log(allClinicalHistory)
+                                        } else {
+                                            Swal.fire({
+                                                title: 'info',
+                                                text: 'No se encontraron registros',
+                                                icon: 'error',
+                                                confirmButtonText: 'Aceptar'
+                                            })
+                                        }
+
                                     }
+
                                     else if (response.codeStatus == -1) {
                                         Swal.fire({
                                             title: 'Error',
@@ -869,7 +877,7 @@
                     confirmButtonColor: '#008dc9'
                 });
                 //Clear Input
-                   $("#fechaNacimiento").val("");
+                $("#fechaNacimiento").val("");
             }
 
             //let formattedBirthDate = formatDateToISO8601(birthDate);

@@ -170,62 +170,6 @@
             });
         }
     </script>
-    @* <script>
-        var buildICSEntry = function (javascriptExampleDateObject) {
-
-            var calEntry = icsFormatter();
-
-            var title = 'sometitlestring';
-            var place = 'our secret meeting place';
-            var begin = new Date(javascriptExampleDateObject);
-            var end = new Date(Beginn.getTime() + 30 * 60000);
-
-            var description = 'A very long and boring description of what is the agenda of this super exclusiv pow-wow';
-
-            calEntry.addEvent(title, description, place, begin.toUTCString(), begin.toUTCString());
-            calEntry.download('ourSecretMeeting');
-        }
-    </script> *@
-@*     <script>
-
-        function fncheckDoctor(selectObject) {
-            var value = selectObject.value;
-            if (value == 0) {
-                document.getElementById('cDoctor').disabled = true;
-            } else {
-                fngetDoctors(value);
-                document.getElementById('cDoctor').disabled = false;
-            }
-        }
-
-        $("#fecha").on("change", function () {
-            validarFecha();
-        });
-
-        function obtenerFechaActualSinUTC(fechaActual) {
-            //const fechaActual = new Date();
-            const fechaSinUTC = new Date(fechaActual.getTime() - fechaActual.getTimezoneOffset() * 60000);
-            return fechaSinUTC.toISOString().split("T")[0]; // Obtiene la fecha en formato "YYYY-MM-DD"
-        }
-
-        function validarFecha() {
-            const fechaActual = obtenerFechaActualSinUTC(new Date());
-            console.log(fechaActual);
-            const fechaIngresada = obtenerFechaActualSinUTC(new Date(document.getElementById("fecha").value + "T05:00:00Z"));
-            console.log(fechaIngresada);
-            if (fechaIngresada < fechaActual) {
-                //alert("La fecha no puede ser menor que hoy.");
-                Swal.fire({
-                    icon: 'info',
-                    title: 'Oops...',
-                    text: 'La fecha no puede ser menor que hoy.',
-                    confirmButtonColor: '#008dc9'
-                })
-                document.getElementById("fecha").value = ""; // Limpia el campo de fecha
-            }
-        }
-
-    </script> *@
     <script>
         function fncheckDoctor(e) { var t = e.value; 0 == t ? document.getElementById("cDoctor").disabled = !0 : (fngetDoctors(t), document.getElementById("cDoctor").disabled = !1) } function obtenerFechaActualSinUTC(e) { return new Date(e.getTime() - 6e4 * e.getTimezoneOffset()).toISOString().split("T")[0] } $("#fecha").on("change", (function () { validarFecha() }));
         // const fechaActualSinUTC = obtenerFechaActualSinUTC();

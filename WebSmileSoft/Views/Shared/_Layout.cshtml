@@ -18,7 +18,7 @@
                 navElement.classList.remove('toggled'); // Remove the "toggled" class
             }
         });
-        
+
     </script>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.min.css" asp-append-version="true">
@@ -149,7 +149,9 @@
     }
 
     <script>
-        $(document).ready(function () {
+
+        document.addEventListener("DOMContentLoaded", function () {
+            //console.log("Hola");
             let uID = sessionStorage.getItem("userID");
             $.ajax({
                 url: sessionStorage.urlEP + '/api/Generics/v1/GetDataSite?uID=' + uID,

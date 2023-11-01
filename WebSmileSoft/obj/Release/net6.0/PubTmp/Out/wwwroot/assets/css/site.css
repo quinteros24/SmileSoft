@@ -46,7 +46,7 @@ body {
 }
 
 /*Modifica tu H
-*//* Oculta todos los elementos de menú por defecto */
+*/ /* Oculta todos los elementos de menú por defecto */
 #liAdmin, #liDoctor, #liUser, #divAdmin, #divDoctor, #divUser, #contenido {
     display: none;
 }
@@ -408,4 +408,47 @@ div.dataTables_wrapper div.dataTables_filter input {
 #findIcon {
     animation: fadeOut 0.5s ease-in-out;
     transition: animation 0.5s;
+}
+
+#navLogo {
+    max-width: 106px; /* Establece el ancho máximo */
+    height: auto; /* Mantiene la relación de aspecto original */
+}
+
+/* Media query para pantallas más pequeñas */
+@media (max-width: 768px) {
+    #navLogo {
+        max-width: 130%;
+        min-width: 100%;
+        padding-left: 10px;
+    }
+}
+
+/* Media query para pantallas más pequeñas */
+@media (max-width: 425px) {
+    #navLogo {
+        display: none; /* Oculta la imagen en pantallas más pequeñas que 425px */
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .nav-item2 span {
+        display: none !important;
+    }
+    .nav-item2 a {
+        padding-left: 0 !important; /* Añade espacio a la izquierda para desplazar el contenido hacia la izquierda */
+        z-index:99999 !important;
+    }
+}
+
+@media (max-width: 768px) {
+    #pdfButton {
+        display: none;
+    }
+}
+
+@media (max-width: 500px) {
+    .nav-item2 span {
+        display: none;
+    }
 }
