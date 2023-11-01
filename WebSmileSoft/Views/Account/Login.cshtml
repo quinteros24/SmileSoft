@@ -124,6 +124,11 @@
         var ipAddressNet = '';
         1
         $(document).ready(function() {
+            localStorage.setItem('urlImageLogin', 'https://smilesoftblobs.blob.core.windows.net/smilesoftimages/SMILESOFT.png')
+            localStorage.setItem('urlImageMenu', 'https://smilesoftblobs.blob.core.windows.net/smilesoftimages/SMILESOFTMENU.png')
+            localStorage.setItem('backgroundColor', '#ffffff')
+            localStorage.setItem('topColor', '#088ccc')
+            localStorage.setItem('sideColor', '#ffffff')
             fetch('https://ipinfo.io/json')
                 .then(response => response.json())
                 .then(data => {
