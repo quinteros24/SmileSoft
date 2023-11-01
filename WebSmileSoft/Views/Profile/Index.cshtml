@@ -5,7 +5,7 @@
 
 <nav aria-label="breadcrumb" class="main-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">@* <a asp-controller="Home" asp-action="Index">Inicio</a> *@Inicio</li>
+        <li class="breadcrumb-item">Inicio</li>
         <li class="breadcrumb-item">Usuario</li>
         <li class="breadcrumb-item active" aria-current="page">
             Ajustes de Usuario
@@ -275,7 +275,19 @@
                 });
             });
         });
+        $(document).ready(function () {
+            // Get the current date
+            const currentDate = new Date();
 
+            // Calculate the date 18 years ago
+            const maxDate = new Date(currentDate.getFullYear() - 18, currentDate.getMonth(), currentDate.getDate());
+
+            // Format the date as YYYY-MM-DD
+            const maxDateString = maxDate.toISOString().split('T')[0];
+
+            // Set the max attribute of the input element
+            document.getElementById('birthDatep').setAttribute('max', maxDateString);
+        });
 
         // Obtén una referencia al campo de fecha de nacimiento
         const fechaNacimientoInput = document.getElementById('birthDatep');

@@ -27,7 +27,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="fecha">Fecha</label>
-                            <input type="date" class="form-control" id="fecha" name="fecha" placeholder="YYYY-MM-DD" required>
+                            <input type="date" class="form-control datepicker" id="fecha" name="fecha" placeholder="YYYY-MM-DD" required>
                         </div>
                     </div><div class="col-md-3">
                         <div class="form-group">
@@ -303,7 +303,12 @@
             let uID = sessionStorage.getItem("userID");
             getUserCitas(uID);
             $("#loadingScreen").show();
-
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById("fecha").setAttribute("min", today);
+            $('.datepicker').datepicker({
+                todayHighlight: true,
+                language: 'es'
+            });
         });
         function getUserCitas(uID) {
             // Realizar solicitud AJAX para obtener la lista de usuarios

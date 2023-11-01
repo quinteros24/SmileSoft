@@ -4,7 +4,9 @@
     <div class="row">
         <div class="col-md-12">
             <!-- Panel de búsqueda de pacientes -->
-            <i class="fa-solid fa-magnifying-glass text-primary fa-sm" onmouseenter="showDiv()" id="findIcon" style="display: none"> Buscar Historia Clinica del Paciente</i>
+            <div id="findIcon" onmouseenter="showDiv()" style="display: none">
+                <i class="fa-solid fa-magnifying-glass text-primary fa-sm"> </i><span> Buscar Historia Clinica del Paciente</span>
+            </div>
             <div class="card" id="myDiv" onmouseleave="hideDiv()" onmouseenter="showDiv()">
                 <div class="card">
                     <div class="card-body text-primary">
@@ -199,7 +201,7 @@
             return age;
         }
 
-        
+
 
         // Call the function to populate patient information
         async function loadUserClinicalHistory(inputUserId) {
@@ -382,6 +384,15 @@
                 div.style.display = "none"; // Hide the div after the delay
             }, 2000);
         }
+        //Disable pdf button when the windows is below 1024px
+        $(window).resize(function () {
+            if ($(window).width() < 1024) {
 
+                $('#pdfButton').hide();
+            }
+            else {
+                $('#pdfButton').show();
+            }
+        });
     </script>
     }
