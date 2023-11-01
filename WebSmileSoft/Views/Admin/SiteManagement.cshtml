@@ -294,7 +294,8 @@
 
 @section Scripts{
 
-    <script src="~/assets/js/sitemanagement.js"></script>
+        <script src="~/assets/js/sitemanagement.js"></script>
+
     <script>
 
         var base64Image = '';
@@ -344,19 +345,38 @@
             const formData = new FormData();
             formData.append("file", file);
 
-            const uploadUrl = `${sessionStorage.urlEP}/api/Blobs/upload?citaID=0&genericName=ImageForOffice${text}_${uID}`;
+        //     const uploadUrl = `${sessionStorage.urlEP}/api/Blobs/upload?citaID=0&genericName=ImageForOffice${text}_${uID}`;
             
-            fetch(uploadUrl, {
-                method: "POST",
-                body: formData,
-            })
-                .then((response) => {
+        //     fetch(uploadUrl, {
+        //         method: "POST",
+        //         body: formData,
+        //     })
+        //         .then((response) => {
+        //             debugger;
+        //             fnUpdateDataOffice(op, response);
+        //         })
+        //         .catch((error) => {
+        //             showMessage("Error de red al cargar el archivo.", "red");
+        //         });
+            const uploadUrl = `${sessionStorage.urlEP}/api/Blobs/upload?citaID=0&genericName=ImageForOffice${text}_${uID}`;
+
+            $.ajax({
+                url: uploadUrl,
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    debugger;
                     fnUpdateDataOffice(op, response);
-                })
-                .catch((error) => {
+                },
+                error: function () {
                     showMessage("Error de red al cargar el archivo.", "red");
-                });
-        }
+                }
+            });
+
+    }
+
 
         function fnUpdateDataOffice(op = 0, url = ''){
             if (op == 0) return;
@@ -380,16 +400,19 @@
                 case 3:
                     route = 'SetDataSiteBackgroundColor';
                     data = $('#BackgroundColor').val();
+                    data = data.replace('#', '%23');
                     break;
 
                 case 4:
                     route = 'SetDataSiteTopColor';
                     data = $('#NavbarColor').val();
+                    data = data.replace('#', '%23');
                     break;
 
                 case 5:
                     route = 'SetDataSiteSideColor';
                     data = $('#SidebarColor').val();
+                    data = data.replace('#', '%23');
                     break;
 
                 default:
@@ -399,7 +422,7 @@
             if (route == '') return;
 
             let uID = sessionStorage.getItem('userID');
-
+            
             $.ajax({
                 url: `${sessionStorage.urlEP}/api/Generics/v1/${route}?uID=${uID}&data=${data}`,
                 type: 'GET',
