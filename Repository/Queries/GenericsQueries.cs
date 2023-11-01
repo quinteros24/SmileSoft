@@ -25,5 +25,36 @@ namespace Repository.Queries
                     $"    SELECT ERROR_NUMBER() AS OutputCodeError, ERROR_MESSAGE() AS OutputMessageError\n" +
                     $"END CATCH";
         }
+
+        public static string GetUserClinicStory(int? uID, string? uDocument)
+        {
+            return  $"SELECT A.MedicalRecordObject\n" +
+                    $"FROM Appointments AS A\n" +
+                    $"LEFT JOIN Users AS U ON A.uID = U.uID\n" +
+                    $"WHERE (A.uID = '{uID}' OR U.uDocument = '{uDocument}')\n" +
+                    $"    AND A.oID = 1\n" +
+                    $"    AND A.MedicalRecordObject IS NOT NULL\n" +
+                    $"ORDER BY A.aDate DESC";
+        }
+
+        public static string GetDataSite(int? uID, string? IP = "")
+        {
+            string query = $"SELECT TOP(1) UrlImageLogin, UrlImageMenu, BackgroundColor, TopColor, SideColor FROM Offices AS O \n";
+
+            string WHERE = $" WHERE [oID] = 0";
+
+            if (uID != null && uID != 0)
+            {
+                WHERE = $"INNER JOIN Users AS U ON O.oID = U.oID AND [uID] = {uID}";
+            }
+
+            if (!string.IsNullOrEmpty(IP))
+            {
+                WHERE = $"INNER JOIN ipAddressPerOffices AS IPPO ON O.oID = IPPO.oID AND ipAddress = '{IP}'";
+            }
+
+            query += WHERE;
+            return query;
+        }
     }
 }

@@ -8,12 +8,12 @@ namespace Repository.Queries
         {
             string WHERE_USER_DOCTOR = String.Empty;
 
-            if(uID != null && uID != 0)
+            if (uID != null && uID != 0)
             {
                 WHERE_USER_DOCTOR = $" AND U.uID = {uID}";
             }
 
-            if(dID != null && dID != 0)
+            if (dID != null && dID != 0)
             {
                 WHERE_USER_DOCTOR = $" AND D.dID = {dID}";
             }
@@ -50,32 +50,32 @@ namespace Repository.Queries
         public static string SetAppointment(AppointmentesModel Item)
         {
             string fechaB = String.Empty, fechaC = String.Empty, time = String.Empty;
-            if(Item.uBirthDate != null)
+            if (Item.uBirthDate != null)
             {
                 fechaB = Item.uBirthDate.Value.Year.ToString() + "-" + Item.uBirthDate.Value.Month.ToString("00") + "-" + Item.uBirthDate.Value.Day.ToString("00");
             }
-            if(Item.aDate != null)
+            if (Item.aDate != null)
             {
                 fechaC = Item.aDate.Value.Year.ToString() + "-" + Item.aDate.Value.Month.ToString("00") + "-" + Item.aDate.Value.Day.ToString("00");
             }
-            if(Item.aTime != null)
+            if (Item.aTime != null)
             {
                 time = Item.aTime.Value.Hours.ToString() + ":" + Item.aTime.Value.Minutes.ToString() + ":" + Item.aTime.Value.Seconds.ToString();
             }
 
             string DECLARE = $"DECLARE\n" +
-                             $"    @aID AS INT = {Item.aID?? 0}\n" +
-                             $"    ,@oID AS INT = {Item.oID?? 0}\n" +
-                             $"    ,@uID AS INT = {(Item.uID?? 0)}\n" +
-                             $"    ,@dtID AS INT = {Item.dtID?? 1}\n" +
-                             $"    ,@gID AS INT = {Item.gID?? 0}\n" +
+                             $"    @aID AS INT = {Item.aID ?? 0}\n" +
+                             $"    ,@oID AS INT = {Item.oID ?? 0}\n" +
+                             $"    ,@uID AS INT = {(Item.uID ?? 0)}\n" +
+                             $"    ,@dtID AS INT = {Item.dtID ?? 1}\n" +
+                             $"    ,@gID AS INT = {Item.gID ?? 0}\n" +
                              $"    ,@uDocument AS VARCHAR(20) = '{Item.uDocument}'\n" +
                              $"    ,@uName AS VARCHAR(200) = '{Item.uName}'\n" +
                              $"    ,@uLastName AS VARCHAR(200) = '{Item.uLastName}'\n" +
                              $"    ,@uCellphone AS VARCHAR(20) = '{Item.uCellphone}'\n" +
                              $"    ,@dID AS INT = {Item.dID}\n" +
                              $"    ,@aDescription AS VARCHAR(MAX) = '{Item.aDescription}'\n" +
-                             $"    ,@asID AS INT = {Item.asID?? 1}\n" +
+                             $"    ,@asID AS INT = {Item.asID ?? 1}\n" +
                              $"    ,@aDate AS DATETIME = '{fechaC}'\n" +
                              $"    ,@uBirthDate AS DATETIME = '{fechaB}'\n" +
                              $"    ,@aTime AS TIME = '{time}'\n" +
@@ -198,6 +198,15 @@ namespace Repository.Queries
                    $"    SELECT ERROR_NUMBER() AS OutputCodeError, ERROR_MESSAGE() AS OutputMessageError\n" +
                    $"END CATCH";
         }
+
+        public static string GetAppointmentsUserBlob(string? uDocument)
+        {
+            return $"SELECT a.aUrlImage\n" +
+                $"FROM Appointments AS a\n " +
+                $"INNER JOIN Users AS u ON a.uID = u.uID\n" +
+                $"WHERE u.uDocument = '{uDocument}' AND a.aUrlImage IS NOT NULL";
+        }
+
 
         public static string UpdateAppointmentDate(int uID, int aID, DateTime newDate, TimeOnly newTime)
         {

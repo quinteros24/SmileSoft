@@ -14,13 +14,13 @@
             </div>
         </div>
 
-        <div class="card mt-4">
+        @* <div class="card mt-4">
             <div class="card-body">
                 <input type="file" id="fileInput1" accept=".jpg, .jpeg, .png" />
                 <button id="uploadButton1" class="btn btn-primary mt-2">Subir Archivo</button>
                 <p id="message" class="mt-2"></p>
             </div>
-        </div>
+        </div> *@
 
     </div>
 </div>
@@ -58,7 +58,7 @@
 
     <script>
         let userRole = sessionStorage.getItem('userRole');
-        if (userRole !== '2') {
+        if (userRole !== '2' && userRole !== '1') {
             logoutUser();
         }
         function abrirCita() {
@@ -118,7 +118,8 @@
                             orderable: false, // Para desactivar la ordenación en esta columna
                             data: null, // Usaremos la columna "Acciones" solo para botones
                             defaultContent: '<button class="btn btn-primary btn-sm btnDesactivarC" data-toggle="tooltip" title="Cancelar Cita" type="button"> <i class="fas fa-ban"> </i></button> ' +
-                                '<button class="btn btn-warning btn-sm btnEditarC" data-toggle="modal" data-target="#editarCitaModal" data-toggle="tooltip" title="Reprogramar Cita"> <i class="fa-regular fa-pen-to-square"></i></button> '
+                                '<button class="btn btn-warning btn-sm btnEditarC" data-toggle="modal" data-target="#editarCitaModal" data-toggle="tooltip" title="Reprogramar Cita"> <i class="fa-regular fa-pen-to-square"></i></button> ' +
+                                '<button class="btn btn-success btn-sm btnFileC" data-toggle="modal" data-target="#UploadFileCitaModal" data-toggle="tooltip" title="Subir Imagen"> <i class="fa-solid fa-upload fa-bounce"></i></button>'
                         }
                     ],
                     data: dataSet,
@@ -228,31 +229,36 @@
                     }
 
                 });
-                tablecitasd.column(9).nodes().to$().find('.btnEditarC').click(async function () {
+                tablecitasd.column(9).nodes().to$().find('.btnFileC').click(async function () {
                     // Maneja la acción del botón aqui
                     let data = tablecitasd.row($(this).parents('tr')).data();
                     let CitaID = data[1]; // la primera columna contiene el ID del usuario
-
-                    const { value: citaState } = await Swal.fire({
-                        title: 'Seleccionar estado de la cita',
-                        input: 'select',
-                        inputOptions: {
-                            '1': 'Pendiente',
-                            '2': 'Confirmada',
-                            '3': 'Completada'
+                    console.log("CitaID:", CitaID);
+                    Swal.fire({
+                        title: 'Select image',
+                        input: 'file',
+                        inputAttributes: {
+                            'accept': 'image/*',
+                            'aria-label': 'Upload your profile picture'
                         },
-                        inputPlaceholder: 'Selecciona el estado de la cita',
-                        showCancelButton: true,
-                        inputValidator: (value) => {
-                            return new Promise((resolve) => {
-                                if (value > 0) {
-                                    // alert(value);
-                                    //resolve(value); // Si se selecciona un estado, resolvemos con ese valor
-                                    changeDateStatus(value, CitaID);
-                                } else {
-                                    resolve('Debes seleccionar un estado de cita.');
-                                }
-                            });
+                        showCancelButton: true, // Add this if you want a cancel button
+                        inputValidator: (file) => {
+                            if (!file) {
+                                return 'You need to choose an image';
+                            }
+                        }
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            const reader = new FileReader();
+                            reader.onload = (e) => {
+                                uploadFile(result.value, CitaID); // Call the uploadFile function with the selected file
+                                Swal.fire({
+                                    title: 'Your uploaded picture',
+                                    imageUrl: e.target.result,
+                                    imageAlt: 'The uploaded picture'
+                                });
+                            };
+                            reader.readAsDataURL(result.value);
                         }
                     });
 
@@ -401,7 +407,8 @@
             let uploadButton = $('<button id="uploadButton" class="btn btn-primary mt-2">Subir Archivo</button>');
 
             uploadButton.click(() => {
-                uploadFile();
+                console.log("Botón Subir Archivo clicado");
+                uploadFile(CitaID);
             });
 
             form.append(fileInput, uploadButton);
@@ -431,11 +438,11 @@
             })
         }
 
-        function saveHistoryForm(form, citaID) {
+        function saveHistoryForm(form, CitaID) {
             $.ajax({
                 url: sessionStorage.urlEP + '/api/Generics/v1/SetUsersClinicStoryFormat',
                 type: 'GET',
-                data: { 'aID': citaID, 'jsonObject': JSON.stringify(form) },
+                data: { 'aID': CitaID, 'jsonObject': JSON.stringify(form) },
                 contentType: "application/json",
                 dataType: 'json',
                 success: function (response) {
@@ -447,7 +454,7 @@
                             confirmButtonText: 'Aceptar'
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                changeDateStatus(3, citaID);
+                                changeDateStatus(3, CitaID);
                                 // swal.close();
                                 // location.reload();
                             }
@@ -472,6 +479,9 @@
                 }
             })
         }
+
+
+
         function changeDateStatus(citaState, CitaID) {
             // Aquí puedes realizar la solicitud AJAX con el valor de citaState
             //console.log(`Estado de cita seleccionado: ${citaState}`);
@@ -529,40 +539,51 @@
             });
         }
 
-        function uploadFile() {
+        function uploadFile(file, CitaID) {
             console.log("Función uploadFile ejecutada.");
-            const fileInput = document.getElementById("fileInput1");
-            const message = document.getElementById("message");
-
-            if (fileInput.files.length === 0) {
-                showMessage("Seleccione un archivo para cargar.", "red");
-                return;
-            }
-
-            const file = fileInput.files[0];
             const formData = new FormData();
             formData.append("file", file);
 
             // URL del servicio de carga de blobs (reemplaza con tu URL)
-            const uploadUrl = sessionStorage.urlEP + '/api/Blobs/upload';
-
+            const uploadUrl = `${sessionStorage.urlEP}/api/Blobs/upload?citaID=${CitaID}`;
+            console.log('dato enviado ', formData);
             fetch(uploadUrl, {
                 method: "POST",
                 body: formData,
             })
                 .then((response) => {
                     if (response.ok) {
-                        showMessage("Archivo cargado exitosamente.", "green");
+                        //console.log("Archivo cargado exitosamente.");
+                        //showMessage("Archivo cargado exitosamente.", "green");
+                        Swal.fire({
+                            title: 'Archivo cargado exitosamente.',
+                            icon: 'success',
+                            confirmButtonText: 'Aceptar'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload();
+                            }
+                        })
+                        
                     } else {
-                        showMessage("Error al cargar el archivo.", "red");
+                        //console.log("Error al cargar el archivo.");
+                        //showMessage("Error al cargar el archivo.", "red");
+                        Swal.fire({
+                            title: 'Error al cargar el archivo.',
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar'
+                        })
                     }
                 })
                 .catch((error) => {
-                    showMessage("Error de red al cargar el archivo.", "red");
+                    //showMessage("Error de red al cargar el archivo.", "red");
+                    Swal.fire({
+                        title: 'Error de red al cargar el archivo.',
+                        icon: 'error',
+                        confirmButtonText: 'Aceptar'
+                    })
                 });
         }
-
-
 
 
         function showMessage(text, color) {
@@ -570,7 +591,7 @@
             message.style.color = color;
         }
 
-        document.getElementById("uploadButton1").addEventListener("click", uploadFile);
+        document.getElementById("uploadButton").addEventListener("click", uploadFile);
 
 
         $(document).ready(function () {

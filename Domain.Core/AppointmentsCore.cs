@@ -28,5 +28,11 @@ namespace Domain.Core
             GenericResponseModel responseModel = await _appointmentsRepository.UpdateAppointmentStatus(aID, asID);
             return responseModel;
         }
+
+        public async Task<GenericResponseModel> GetAppointmentsUserBlob(string uDocument)
+        {
+            GenericResponseModel responseModel = await _appointmentsRepository.GetAppointmentsUserBlob(uDocument);
+            return responseModel;
+        }
     }
 }

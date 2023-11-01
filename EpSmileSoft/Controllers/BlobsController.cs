@@ -22,20 +22,25 @@ namespace EpSmileSoft.Controllers
         }
 
         [HttpPost("upload")]
-        public async Task<IActionResult> UploadBlob(IFormFile file)
+        public async Task<IActionResult> UploadBlob(IFormFile file, [FromQuery] string citaID, [FromQuery] string? genericName = "")
         {
             if (file == null || file.Length == 0)
             {
                 return BadRequest("Archivo no válido.");
             }
-            string tratamientoid = "tratamiento123";
-            // Obtener la fecha actual
             DateTime fecha = DateTime.Now;
             // Formatear la fecha en un formato específico
             string fechaFormateada = fecha.ToString("yyyyMMddHHmmss");
-
+            
+            Console.WriteLine($"citaID: {citaID}");
             // Construir el nombre del blob utilizando el identificador de tratamiento y la fecha
-            string blobName = $"{tratamientoid}_{fechaFormateada}";
+            string blobName = $"{citaID}_{fechaFormateada}";
+
+            if(genericName != null && genericName.Length > 0)
+                blobName = $"{genericName}_{fechaFormateada}";
+
+            
+            Console.WriteLine($"blobName: {blobName}");
 
             // Llama a la lógica de negocio para subir el archivo al Blob Storage
             string blobUrl = await _blobsCore.CreateBlobStorage(file, blobName);
