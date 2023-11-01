@@ -202,13 +202,13 @@
 
 
         // const fechaActualSinUTC = obtenerFechaActualSinUTC();
-        //console.log(fechaActualSinUTC);
+        ////console.log(fechaActualSinUTC);
 
         function validarFecha() {
             const fechaActual = obtenerFechaActualSinUTC(new Date());
-            console.log(fechaActual);
+            //console.log(fechaActual);
             const fechaIngresada = obtenerFechaActualSinUTC(new Date(document.getElementById("fecha").value + "T05:00:00Z"));
-            console.log(fechaIngresada);
+            //console.log(fechaIngresada);
             if (fechaIngresada < fechaActual) {
                 //alert("La fecha no puede ser menor que hoy.");
                 Swal.fire({
@@ -388,7 +388,7 @@
             let doctor = document.getElementById("cDoctor").value.trim();
             let message = document.getElementById("mensaje").value.trim();
 
-            console.log("Tiempo que envia " + time);
+            //console.log("Tiempo que envia " + time);
             //Datos de la Cuenta
             //let userRegister = document.getElementById("userNameRegister").value.trim();
             //let password = document.getElementById("password").value.trim();
@@ -439,7 +439,7 @@
                     data: JSON.stringify(data),
                     contentType: 'application/json',
                     success: function (response) {
-                        console.log(response.OutputCodeError);
+                        //console.log(response.OutputCodeError);
                         if (response.codeStatus === '0') {
                             // Registro exitoso, puedes redirigir al usuario o mostrar un mensaje de éxito
                             //alert('Usuario registrado con éxito.');

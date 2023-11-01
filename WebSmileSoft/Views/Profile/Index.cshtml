@@ -206,14 +206,14 @@
             //verifyToken();
             let uRol = sessionStorage.getItem('userRole');
             if (uRol == 2) {
-                console.log("Cargando Especialidades");
+                //console.log("Cargando Especialidades");
                 $.ajax({
                     type: 'GET',
                     url: '@ViewBag.urlEndPoint' + '/api/Generics/v1/GetSpecialities', // Ruta para crear o actualizar usuarios
                     // contentType: 'application/json',
                     success: function (response) {
-                        console.log(JSON.stringify(response));
-                        //console.log(JSON.parse(response));
+                        //console.log(JSON.stringify(response));
+                        ////console.log(JSON.parse(response));
                         redirectView(JSON.stringify(response), "#DatosEstudios");
                     }
                 });
@@ -274,7 +274,7 @@
             // Adjunta un controlador de eventos de clic al boton
             let uID = sessionStorage.getItem('userID');
 
-            //console.log("Buscando al Usuario " + uID);
+            ////console.log("Buscando al Usuario " + uID);
 
             $.ajax({
                 url: sessionStorage.urlEP + '/api/Users/v1/GetUserDetails',
@@ -283,23 +283,23 @@
                 contentType: "application/json",
                 dataType: 'json',
                 success: function (data) {
-                    console.log("Cargando Respuesta")
-                    console.log(data.itemJson);
+                    //console.log("Cargando Respuesta")
+                    //console.log(data.itemJson);
 
                     if (data.itemJson === null) {
-                        console.log("No se cargo correctamente el Formulario en View Profile");
+                        //console.log("No se cargo correctamente el Formulario en View Profile");
 
                     } else {
                         // Mostrar los datos en la consola o realizar otras acciones
                         let userData = data.itemJson; // Accede al primer elemento del arreglo
 
                         // Llama a una funcion para actualizar el formulario con los datos recibidos
-                        //console.log("Actualizando Formulario")
+                        ////console.log("Actualizando Formulario")
                         actualizarFormulario(userData);
                     }
                 },
                 error: function (error) {
-                    console.log('Error al obtener los detalles del usuario en View Profile.');
+                    //console.log('Error al obtener los detalles del usuario en View Profile.');
                 }
             });
 
@@ -387,7 +387,7 @@
             }
 
             const fechaNacimientoInput = document.getElementById('birthDatep');
-            console.log(fechaNacimientoInput.value);
+            //console.log(fechaNacimientoInput.value);
             const esMayorDe18 = validarEdadMayorDe18('birthDatep');
 
             if (updatedUserData.uName === "" || updatedUserData.uLastName === "") {
@@ -467,14 +467,14 @@
 
         function ChangeUserPass() {
 
-            console.log("Cambiar Contrasena");
+            //console.log("Cambiar Contrasena");
             event.preventDefault();
             let password = document.getElementById("NewPassword").value;
             let repeat_password = document.getElementById("Repeat_Password").value;
 
             let uID = sessionStorage.getItem('userID');;
 
-            console.log("ID del Usuario" + uID);
+            //console.log("ID del Usuario" + uID);
             if (password === "") {
                 Swal.fire({
                     text: 'Por favor, ingrese su nueva contrasena',
@@ -513,8 +513,8 @@
                     dataType: "json",
                     success: function (response) {
 
-                        // console.log("Solicitud exitosa. Datos enviados:", data);
-                        // console.log("Respuesta del servidor:", response);
+                        // //console.log("Solicitud exitosa. Datos enviados:", data);
+                        // //console.log("Respuesta del servidor:", response);
                         if (response.codeStatus == 0) {
 
                             //window.location.href = '@Url.Action("Index", "")';
@@ -532,7 +532,7 @@
                         }
                     },
                     error: function (xhr, status, error) {
-                        console.log("Error.");
+                        //console.log("Error.");
                     }
                 });
             }
@@ -591,7 +591,7 @@
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    //console.log("Desactivar 2" + userId);
+                    ////console.log("Desactivar 2" + userId);
                     // Realiza la solicitud AJAX para desactivar el usuario
                     $.ajax({
                         url: sessionStorage.urlEP + '/api/Users/v1/SetUserStatus/',
@@ -600,7 +600,7 @@
                         contentType: "application/json",
                         dataType: 'json',
                         success: function (response) {
-                            console.log("Respuesta del Servidor " + response);
+                            //console.log("Respuesta del Servidor " + response);
 
                             Swal.fire({
                                 title: 'Usuario Desactivado',

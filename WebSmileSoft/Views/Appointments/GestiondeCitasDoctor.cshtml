@@ -48,7 +48,7 @@
                     ];
                     dataSet.push(rowData);
                 });
-                console.log(dataSet);
+                //console.log(dataSet);
                 // Inicializa o actualiza el DataTable con los datos procesados
                 tablecitasd = $('#citasDoctor').DataTable({
                     columnDefs: [
@@ -170,7 +170,7 @@
 
                                     },
                                     error: function (error) {
-                                        console.log('Error al obtener los detalles del usuario.');
+                                        //console.log('Error al obtener los detalles del usuario.');
                                     }
 
                                 }).then((result) => {
@@ -214,12 +214,12 @@
                 });
             },
             error: function (error) {
-                console.log('Error al obtener los detalles del usuario.');
+                //console.log('Error al obtener los detalles del usuario.');
             }
         });
         function changeDateStatus(citaState, CitaID) {
             // Aquí puedes realizar la solicitud AJAX con el valor de citaState
-            //console.log(`Estado de cita seleccionado: ${citaState}`);
+            ////console.log(`Estado de cita seleccionado: ${citaState}`);
 
             $.ajax({
                 url: sessionStorage.urlEP + '/api/Appointments/v1/UpdateAppointmentStatus',
@@ -251,7 +251,7 @@
 
                 },
                 error: function (error) {
-                    console.log('Error al obtener los detalles del usuario.');
+                    //console.log('Error al obtener los detalles del usuario.');
                 }
 
             }).then((result) => {

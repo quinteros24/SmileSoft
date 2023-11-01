@@ -3,7 +3,7 @@ var icsFormatter = function() {
     'use strict';
 
     if (navigator.userAgent.indexOf('MSIE') > -1 && navigator.userAgent.indexOf('MSIE 10') == -1) {
-        console.log('Unsupported Browser');
+        //console.log('Unsupported Browser');
         return;
     }
 

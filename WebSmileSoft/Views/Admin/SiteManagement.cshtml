@@ -18,7 +18,8 @@
                 <nav class="nav flex-column nav-pills nav-gap-y-1">
                     <!-- Ajustes del Sitio -->
                     <a href="#sitesettings" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings mr-2"> <circle cx="12" cy="12" r="3"></circle>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings mr-2">
+                            <circle cx="12" cy="12" r="3"></circle>
                             <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                         </svg> Ajustes del Sitio
                     </a>
@@ -26,7 +27,7 @@
                         <i class="fa-regular fa-address-book fa-lg"></i> Ajustes de Contacto
                     </a>
                     <a href="#questionsettings" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
-                       <i class="fa-solid fa-notes-medical fa-lg"></i> Configurar Formulario
+                        <i class="fa-solid fa-notes-medical fa-lg"></i> Configurar Formulario
                     </a>
                 </nav>
             </div>
@@ -139,7 +140,7 @@
                                                 <label for="BackgroundColor" class="form-label"> Cambiar Color Fondo del Sitio</label>
                                                 <input type="color" class="form-control form-control-color mx-auto" id="BackgroundColor" value="#563d7c" title="Escoger Color" style="width: 6.5rem;">
                                                 <button type="button" class="btn btn-primary my-2 " onclick="fnUpdateDataOffice(3)">
-                                                Actualizar
+                                                    Actualizar
                                                 </button>
                                             </div>
                                         </form>
@@ -151,8 +152,8 @@
                                             <div class="form-group mx-auto">
                                                 <label for="SidebarColor">Cambiar Color de la Barra Lateral</label>
                                                 <input type="color" class="form-control form-control-color mx-auto" id="SidebarColor" value="#be1522" title="Escoger Color" style="width: 6.5rem;" />
-                                            <button type="button" class="btn btn-primary my-2 " onclick="fnUpdateDataOffice(5)">
-                                                Actualizar
+                                                <button type="button" class="btn btn-primary my-2 " onclick="fnUpdateDataOffice(5)">
+                                                    Actualizar
                                                 </button>
                                             </div>
                                         </form>
@@ -164,9 +165,9 @@
                                             <div class="form-group">
                                                 <label for="NavbarColor">Cambiar Color de la Barra Superior</label>
                                                 <input type="color" class="form-control form-control-color mx-auto" id="NavbarColor" value="#be1522" title="Escoger Color" style="width: 6.5rem;" />
-                                           
-                                            <button type="button" class="btn btn-primary my-2 " onclick="fnUpdateDataOffice(4)">
-                                                Actualizar
+
+                                                <button type="button" class="btn btn-primary my-2 " onclick="fnUpdateDataOffice(4)">
+                                                    Actualizar
                                                 </button>
                                             </div>
                                         </form>
@@ -268,7 +269,7 @@
 
 @section Scripts{
 
-        <script src="~/assets/js/sitemanagement.js"></script>
+    <script src="~/assets/js/sitemanagement.js"></script>
 
     <script>
 
@@ -287,7 +288,7 @@
             document.getElementById("NavbarColor").value = topColor || "#be1522";
         });
 
-        function fnGetDataSite(uID){
+        function fnGetDataSite(uID) {
             $.ajax({
                 url: sessionStorage.urlEP + '/api/Generics/v1/GetDataSite?uID=' + uID,
                 type: 'GET',
@@ -304,7 +305,7 @@
             });
         }
 
-        function fnConvertToBase64(element){
+        function fnConvertToBase64(element) {
             if (element.files && element.files[0]) {
                 let reader = new FileReader();
 
@@ -317,7 +318,7 @@
             }
         }
 
-        function uploadImage(element, op){
+        function uploadImage(element, op) {
             let file = element.parentElement.previousElementSibling.files[0];
 
             let uID = sessionStorage.getItem('userID');
@@ -328,7 +329,7 @@
             const formData = new FormData();
             formData.append("file", file);
 
-       
+
             const uploadUrl = `${sessionStorage.urlEP}/api/Blobs/upload?citaID=0&genericName=ImageForOffice${text}_${uID}`;
 
             $.ajax({
@@ -352,10 +353,10 @@
                 }
             });
 
-    }
+        }
 
 
-        function fnUpdateDataOffice(op = 0, url = ''){
+        function fnUpdateDataOffice(op = 0, url = '') {
             if (op == 0) return;
 
             if ((op == 1 || op == 2) && base64Image == '') return;
@@ -399,14 +400,14 @@
             if (route == '') return;
 
             let uID = sessionStorage.getItem('userID');
-            
+
             $.ajax({
                 url: `${sessionStorage.urlEP}/api/Generics/v1/${route}?uID=${uID}&data=${data}`,
                 type: 'GET',
                 contentType: "application/json",
                 dataType: 'json',
                 success: function (response) {
-                    if (response.codeStatus == '-1'){
+                    if (response.codeStatus == '-1') {
                         Swal.fire({
                             title: 'Ups...',
                             text: response.messageStatus,
@@ -427,37 +428,75 @@
         }
 
         let structure = [];
+        function getUsersClinicStoryFormat() {
+            $.ajax({
+                url: `${sessionStorage.urlEP}/api/Generics/v1/GetUsersClinicStoryFormat?oID=1`,
+                type: 'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                async: false,
+                success: function (response) {
+                    //const { itemJson, codeStatus } = response;
 
-        $.ajax({
-            url: sessionStorage.urlEP + '/api/Generics/v1/GetUsersClinicStoryFormat?oID=1',
-            type: 'GET',
-            contentType: "application/json",
-            dataType: 'json',
-            async: false,
-            success: function ({ itemJson, codeStatus }) {
-                if (codeStatus == 0) {
-                    structure = JSON.parse(itemJson);
-                    console.log('Structure Json respond: ', structure);
-                    console.log('Structure Json respond Long: ', structure.length);
-
+                    if (response.codeStatus == 0) {
+                        ////console.log("response.itemJson: ", response.itemJson);
+                        structure = [];
+                        structure = JSON.parse(response.itemJson);
+                        ////console.log('Structure Json respond: ', structure);
+                        ////console.log('Structure Json respond Long: ', structure.length);
+                    } else if (response.codeStatus == -1) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: response.messageStatus,
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar'
+                        });
+                    }
+                },
+                error: function (error) {
+                    console.error('There was a problem with the AJAX request:', error);
                 }
-                else if (response.codeStatus == -1) {
-                    Swal.fire({
-                        title: 'Error',
-                        text: response.messageStatus,
-                        icon: 'error',
-                        confirmButtonText: 'Aceptar'
-                    })
-                }
-            }
-        })
+            });
+        }
 
- 
+        getUsersClinicStoryFormat();
+
+
+        // $.ajax({
+        //     url: sessionStorage.urlEP + '/api/Generics/v1/GetUsersClinicStoryFormat?oID=1',
+        //     type: 'GET',
+        //     contentType: "application/json",
+        //     dataType: 'json',
+        //     async: false,
+        //     success: function ({ itemJson, codeStatus }) {
+        //         if (codeStatus == 0) {
+        //             structure2 = itemJson; //Test
+        //             //structure = JSON.parse(itemJson);
+        //             structure = JSON.parse(itemJson).filter(item => item !== null);
+        //             //console.log('Structure2 Json respond: ', structure2);
+        //             //console.log('Structure2 Json respond Long: ', structure2.length);
+        //             //console.log('Structure Json respond: ', structure);
+        //             //console.log('Structure Json respond Long: ', structure.length);
+
+        //         }
+        //         else if (response.codeStatus == -1) {
+        //             Swal.fire({
+        //                 title: 'Error',
+        //                 text: response.messageStatus,
+        //                 icon: 'error',
+        //                 confirmButtonText: 'Aceptar'
+        //             })
+        //         }
+        //     }
+        // })
+
+
 
 
         let finalStructure = [];
+        //debugger;
         structure.length && drawQuestions(true)
-
+        //console.log('Structure length: ', structure.length);
         $("#question-type").change(function () {
             if ($(this).val() === "multiple") {
                 $(".option-container").addClass("d-block");
@@ -470,15 +509,14 @@
 
         $("#add-option").click(function () {
             $("#options-container").append(`
-                                                                                                                <div class="input-group mb-2">
-                                                                                                                <input type="text" class="form-control option-input mx-1" placeholder="Nombre de la opción">
-                                                                                                                <div class="input-group-append">
-                                                                                                                    <button class="btn btn-danger remove-option" type="button">-</button>
-                                                                                                                </div>
-                                                                                                                </div>
-                                                                                                            `);
+                                                                                                                                <div class="input-group mb-2">
+                                                                                                                                <input type="text" class="form-control option-input mx-1" placeholder="Nombre de la opción">
+                                                                                                                                <div class="input-group-append">
+                                                                                                                                    <button class="btn btn-danger remove-option" type="button">-</button>
+                                                                                                                                </div>
+                                                                                                                                </div>
+                                                                                                                            `);
         });
-
         $(document).on("click", ".remove-option", function () {
             $(this).closest(".input-group").remove();
         });
@@ -486,7 +524,7 @@
         $("#add-question").click(() => drawQuestions());
 
         function drawQuestions(firstLoad = false) {
-            console.log("Cargar Preguntas");
+            ////console.log("Cargar Preguntas");
             const type = $("#question-type").val();
             const name = $("#question").val();
             let options = null;
@@ -510,8 +548,8 @@
                 })
                 return;
             }
-            console.log('Estructure: ', structure);
-            console.log('Estructure long: ', structure.length);
+            ////console.log('Estructure: ', structure);
+            ////console.log('Estructure long: ', structure.length);
             const question = {
                 // id: structure.length + 1,
                 id: structure.length + 1,
@@ -522,7 +560,7 @@
 
             structure.push(question);
 
-            console.log({ structure })
+            ////console.log({ structure })
 
             if (structure.length) {
                 $("#save-all-questions").removeClass("d-none");
@@ -535,12 +573,17 @@
             }
 
             type === "multiple" && $(".input-group").remove();
+
+            // Elimina la última pregunta agregada
+            if (structure.length > 0) {
+                structure.pop();
+            }
             updateStructuredForm(structure);
         }
 
         // Grafico dinamicamente las preguntas dependiendo de su tipo
         function updateStructuredForm(struct) {
-            console.log({ struct })
+            ////console.log({ struct })
             let questionTypes = {
                 'open': function (question) {
                     let inputField = $(`<input disabled placeholder="Pregunta abierta" type="text" id="${question.id}" class="form-control"></input><br>`);
@@ -587,15 +630,15 @@
             form.empty();
 
             finalStructure = [];
-            // console.log('Struct: ', struct);
-            // console.log('Struct: ', struct.length);
+            // //console.log('Struct: ', struct);
+            // //console.log('Struct: ', struct.length);
 
 
             struct.forEach(function (question, index) {
-                console.log('Index:', index);
+                ////console.log('Index:', index);
                 question.id = index + 1;
                 let questionContainer = $(`<div class="question-${question.id}"></div>`);
-                console.log('Index Question: ', question.id);
+                ////console.log('Index Question: ', question.id);
                 if (question.type in questionTypes) {
                     let inputElement = questionTypes[question.type](question);
                     finalStructure.push(question);
@@ -910,7 +953,7 @@
                 contentType: "application/json",
                 dataType: 'json',
                 success: function (response) {
-                    console.log(response)
+                    ////console.log(response)
                     if (response.codeStatus == 0) {
                         Swal.fire({
                             title: 'Preguntas Guardadas',
@@ -933,7 +976,7 @@
                     }
                 },
                 error: function (error) {
-                    console.log(error);
+                    //console.log(error);
                 }
             }).then((result) => {
                 if (result.isConfirmed) {

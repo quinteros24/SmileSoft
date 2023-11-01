@@ -145,7 +145,7 @@
                 contentType: "application/json",
                 dataType: 'json',
                 success: function (data) {
-                    //console.log(data);
+                    ////console.log(data);
 
                     if (data.itemJson === null) {
                         $("#userCount").text("0");
@@ -159,7 +159,7 @@
 
                 },
                 error: function (error) {
-                    console.log('Error al obtener la lista de usuarios.');
+                    //console.log('Error al obtener la lista de usuarios.');
 
                 }
             });
@@ -171,7 +171,7 @@
                 contentType: "application/json",
                 dataType: 'json',
                 success: function (data) {
-                    //console.log(data);
+                    ////console.log(data);
 
                     if (data.itemJson === null) {
                         $("#userDoctor").text("0");
@@ -183,7 +183,7 @@
                     }
                 },
                 error: function (error) {
-                    console.log('Error al obtener la lista de usuarios.');
+                    //console.log('Error al obtener la lista de usuarios.');
                 }
             });
             var utID = 1;
@@ -194,7 +194,7 @@
                 contentType: "application/json",
                 dataType: 'json',
                 success: function (data) {
-                    //console.log(data);
+                    ////console.log(data);
 
                     if (data.itemJson === null) {
                         $("#userAdmin").text("0");
@@ -208,7 +208,7 @@
 
                 },
                 error: function (error) {
-                    console.log('Error al obtener la lista de usuarios.');
+                    //console.log('Error al obtener la lista de usuarios.');
                 }
             });
 
@@ -220,7 +220,7 @@
             $("#buscarUsuarioBtn").click(function () {
                 var uID = 3;
 
-                //console.log("Buscando al Usuario " + uID);
+                ////console.log("Buscando al Usuario " + uID);
 
                 $.ajax({
                     url: '@ViewBag.urlEndPoint' + '/api/Users/v1/GetUserDetails',
@@ -229,20 +229,20 @@
                     contentType: "application/json",
                     dataType: 'json',
                     success: function (data) {
-                        //console.log(data);
+                        ////console.log(data);
 
                         if (data.itemJson === null) {
-                            console.log("No se cargó correctamente");
+                            //console.log("No se cargó correctamente");
 
                         } else {
                             // Mostrar los datos en la consola o realizar otras acciones
-                            console.log("Datos Cargados Correctamente");
-                            console.log(data.itemJson);
+                            //console.log("Datos Cargados Correctamente");
+                            //console.log(data.itemJson);
 
                         }
                     },
                     error: function (error) {
-                        console.log('Error al obtener los detalles del usuario.');
+                        //console.log('Error al obtener los detalles del usuario.');
                     }
                 });
             });
@@ -411,7 +411,7 @@
 
                                         },
                                         error: function (error) {
-                                            console.log('Error al obtener los detalles del usuario.');
+                                            //console.log('Error al obtener los detalles del usuario.');
                                         }
 
                                     }).then((result) => {
@@ -448,7 +448,7 @@
                                         $("#createFormHistory").click(() => createFormHistory(CitaID));
                                     } else {
                                         $("#form-history-content").empty();
-                                        console.log('Guardar cambios', event.target.value);
+                                        //console.log('Guardar cambios', event.target.value);
                                         changeDateStatus(event.target.value, CitaID);
                                     }
                                 })
@@ -456,7 +456,7 @@
                             inputValidator: (value) => {
                                 return new Promise((resolve) => {
                                     if (value > 0) {
-                                        console.log(value)
+                                        //console.log(value)
 
                                         // alert(value);
                                         //resolve(value); // Si se selecciona un estado, resolvemos con ese valor
@@ -471,13 +471,13 @@
                     });
                 },
                 error: function (error) {
-                    console.log('Error al obtener la lista de usuarios.');
+                    //console.log('Error al obtener la lista de usuarios.');
                 }
             });
         }
 
         function createFormHistory(citaID) {
-            console.log(citaID);
+            //console.log(citaID);
             Swal.close();
             // TODO hacer petición para obtener la estructura del formulario
 
@@ -591,7 +591,7 @@
                 contentType: "application/json",
                 dataType: 'json',
                 success: function (response) {
-                    console.log(response)
+                    //console.log(response)
                     if (response.codeStatus == 0) {
                         Swal.fire({
                             title: 'Historia Clinica Creada',
@@ -615,7 +615,7 @@
                     }
                 },
                 error: function (error) {
-                    console.log('Error al obtener los detalles del usuario.');
+                    //console.log('Error al obtener los detalles del usuario.');
                 }
 
             }).then((result) => {
@@ -627,7 +627,7 @@
 
         function changeDateStatus(citaState, CitaID) {
             // Aquí puedes realizar la solicitud AJAX con el valor de citaState
-            //console.log(`Estado de cita seleccionado: ${citaState}`);
+            ////console.log(`Estado de cita seleccionado: ${citaState}`);
 
             $.ajax({
                 url: sessionStorage.urlEP + '/api/Appointments/v1/UpdateAppointmentStatus',
@@ -659,7 +659,7 @@
 
                 },
                 error: function (error) {
-                    console.log('Error al obtener los detalles del usuario.');
+                    //console.log('Error al obtener los detalles del usuario.');
                 }
 
             }).then((result) => {

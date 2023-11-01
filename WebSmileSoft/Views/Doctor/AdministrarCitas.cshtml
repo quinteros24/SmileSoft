@@ -48,7 +48,7 @@
                 dataType: 'json',
                 success: function (data) {
                     $("#loadingScreen").hide();
-                    //console.log("Respuesta del Servidor " + data);
+                    ////console.log("Respuesta del Servidor " + data);
                     // Procesar los datos recibidos y agregar filas a la tabla
                     let dataSet = [];
                     let users = data.itemJson;
@@ -167,7 +167,7 @@
 
                                     },
                                     error: function (error) {
-                                        console.log('Error al obtener los detalles del usuario.');
+                                        //console.log('Error al obtener los detalles del usuario.');
                                     }
 
                                 }).then((result) => {
@@ -223,7 +223,7 @@
 
                                     },
                                     error: function (error) {
-                                        console.log('Error al obtener los detalles del usuario.');
+                                        //console.log('Error al obtener los detalles del usuario.');
                                     }
 
                                 }).then((result) => {

@@ -136,7 +136,7 @@
                     dataType: 'json',
                     success: function (data) {
                         $("#loadingScreen").hide();
-                        //console.log("Respuesta del Servidor " + data);
+                        ////console.log("Respuesta del Servidor " + data);
                         // Procesar los datos recibidos y agregar filas a la tabla
                         let dataSet = [];
                         let users = data.itemJson;
@@ -206,7 +206,6 @@
                                         '<button class="btn btn-danger btn-sm password-button" id="btnPassword" data-toggle="modal" data-target="#passwordModal" data-toggle="tooltip" title="Cambiar contraseña" > <i class="fa-solid fa-lock"></i></button > ' +
                                         '<button class="btn btn-primary btn-sm" id="btnClinicalHistory" data-toggle="modal" data-target="#clinicalHistoryModal" data-toggle="tooltip" title="Ver Tratamientos del Paciente" > <i class="fa-solid fa-clipboard"></i></button >' +
                                         '<button class="btn btn-success btn-sm deactivate-button mx-1" id="btnDesactivar" data-toggle="modal" data-target="#deactivateModal" data-toggle="tooltip" title="Desactivar o Activar Usuario" > <i class="fas fa-ban"> </i></button > '
-
                                 }
                             ],
                             //responsive: true,
@@ -254,7 +253,7 @@
                                 // Obtén el valor del estado en la columna "Estado"
                                 var estado = data[11]; // Asegúrate de que 8 sea el índice correcto para la columna "Estado"
                                 var rol = data[2];
-                                console.log('Rol Fila ', rol);
+                                //console.log('Rol Fila ', rol);
                                 // Si el estado es "cancelado", oculta los botones en esta fila
                                 if (estado === 'Inactivo') {
                                     $(row).find('#btnPassword, #btnEditar, #btnClinicalHistory').hide();
@@ -263,9 +262,7 @@
                                     $(row).find('#btnClinicalHistory').hide();
                                 }
                             }
-
                         });
-
                         Swal.close();
                         //Editar Usuario --> Funcionando a Medias, No cambia Usuarios a Doctores
                         table.column(12).nodes().to$().find('#btnEditar').click(function () {
@@ -280,9 +277,9 @@
                                 contentType: "application/json",
                                 dataType: 'json',
                                 success: function (data) {
-                                    console.log("Cargando Respuesta")
-                                    console.log("Data:" + data.itemJson.uName);
-                                    //console.log(data.itemJson[0].uName);
+                                    //console.log("Cargando Respuesta")
+                                    //console.log("Data:" + data.itemJson.uName);
+                                    ////console.log(data.itemJson[0].uName);
 
                                     if (data.itemJson === null) {
                                         mostrarMensajeError("No se cargo correctamente");
@@ -343,7 +340,7 @@
                             onChangeAgeNotification(fechaNacimientoInput);
 
                             $("#saveChangesBtn").click(function () {
-                                console.log("Save Changes");
+                                //console.log("Save Changes");
                                 let updatedUserData = {
                                     // Recoge los datos actualizados desde los campos del formulario
 
@@ -492,9 +489,9 @@
                             let userName = data[4] + ' ' + data[5];
                             let StatusI = StatusMappingI[data[11]];
                             let estadoActual = data[11];
-                            console.log("Documento" + loginName + " User ID: " + userId);
-                            console.log("Estado" + estadoActual);
-                            console.log("Estado Mapeado " + StatusI)
+                            //console.log("Documento" + loginName + " User ID: " + userId);
+                            //console.log("Estado" + estadoActual);
+                            //console.log("Estado Mapeado " + StatusI)
                             let action = StatusI === 1 ? 'desactivar' : 'activar';
                             let uRol = rolesMappingI[utID];
                             // Muestra un mensaje de confirmación antes de realizar la acción
@@ -519,8 +516,8 @@
                                         contentType: "application/json",
                                         dataType: 'json',
                                         success: function (response) {
-                                            console.log("Respuesta del Servidor " + response);
-                                            console.log("Rol del Usuario desactivado " + uRol);
+                                            //console.log("Respuesta del Servidor " + response);
+                                            //console.log("Rol del Usuario desactivado " + uRol);
                                             Swal.fire({
                                                 title: 'Usuario ' + action.charAt(0).toUpperCase() + action.slice(1), // Capitalizar la acción
                                                 text: 'El usuario ' + loginName + ' se ' + action + 'ó correctamente',
@@ -548,7 +545,7 @@
                             let data = table.row($(this).parents('tr')).data();
 
                             let userId = data[1]; // Supongamos que la primera columna contiene el ID del usuario
-                            console.log("contraseña " + userId)
+                            //console.log("contraseña " + userId)
                             let userNameEdit = data[4] + ' ' + data[5];
                             let userRol = data[2];
                             let rolesMappingI = {
@@ -566,7 +563,7 @@
                             $("#editPassword").modal("show");
 
 
-                            console.log("Usuario a Editar" + userId);
+                            //console.log("Usuario a Editar" + userId);
                             // Realiza una solicitud AJAX para obtener los detalles del usuario
 
                             $("#changePasswordBtn").click(function () {
@@ -616,10 +613,11 @@
                             let data = table.row($(this).parents('tr')).data();
                             let userId = data[1];
                             $('#clinical-history-username').text(' ' + data[4] + ' ' + data[5]);
-                            let userClinicalHistory = []
-                            let allClinicalHistory = []
-
-
+                            let userClinicalHistory = [];
+                            let allClinicalHistory = [];
+                            let form = $('#history-clinical-modal-content');
+                            let tratamientoID = 1;
+                            let totalTratamientos = 0;
                             $.ajax({
                                 url: sessionStorage.urlEP + `/api/Generics/v1/GetUserClinicStory?uID=${userId}`,
                                 type: 'GET',
@@ -627,8 +625,10 @@
                                 dataType: 'json',
                                 async: false,
                                 success: function (response) {
+                                    totalTratamientos = response.itemJson.length;
+                                    debugger;
                                     if (response.codeStatus == 0) {
-
+                                        form.empty();
                                         if (response.itemJson.length > 0) {
                                             $("#clinicalHistoryModal").modal("show");
                                             let citas = response.itemJson
@@ -636,9 +636,12 @@
                                                 if (item) {
                                                     item = JSON.parse(item)
                                                     allClinicalHistory = [...item]
+                                                    debugger;
+                                                    drawClinicTreatments(allClinicalHistory);
+                                                    tratamientoID++;
                                                 }
                                             })
-                                            console.log(allClinicalHistory)
+                                            //console.log(allClinicalHistory)
                                         } else {
                                             Swal.fire({
                                                 title: 'info',
@@ -647,9 +650,7 @@
                                                 confirmButtonText: 'Aceptar'
                                             })
                                         }
-
                                     }
-
                                     else if (response.codeStatus == -1) {
                                         Swal.fire({
                                             title: 'Error',
@@ -660,104 +661,105 @@
                                     }
                                 }
                             })
+                            function drawClinicTreatments(allClinicalHistory) {
+                                let questionTypes = {
+                                    'open': function (question) {
+                                        let inputField = $(`<input disabled placeholder="${question.value}" type="text" id="${question.id}" class="form-control"></input><br>`);
 
-                            let questionTypes = {
-                                'open': function (question) {
-                                    let inputField = $(`<input disabled placeholder="${question.value}" type="text" id="${question.id}" class="form-control"></input><br>`);
+                                        let container = $('<div class="form-group"></div>').append(
+                                            `<label class="text-primary m-0 fw-bold" for="${question.id}">`
+                                            + question.name +
+                                            '</label><br>', inputField);
 
-                                    let container = $('<div class="form-group"></div>').append(
-                                        `<label class="text-primary m-0 fw-bold" for="${question.id}">`
-                                        + question.name +
-                                        '</label><br>', inputField);
+                                        return container
+                                    },
+                                    'close': function (question) {
 
-                                    return container
-                                },
-                                'close': function (question) {
+                                        let checkBox1 = $(`<input disabled class="form-check-input" id="${question.id}" type="radio" >`).attr('name', "checkbox-close-question");
+                                        // let checkBox1 = $(`<input disabled class="form-check-input" id="${question.id}" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
 
-                                    let checkBox1 = $(`<input disabled class="form-check-input" id="${question.id}" type="radio" >`).attr('name', "checkbox-close-question");
-                                    // let checkBox1 = $(`<input disabled class="form-check-input" id="${question.id}" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
+                                        let label1 = $(`<label class="form-check-label" for="${question.id}">`).text("SI");
 
-                                    let label1 = $(`<label class="form-check-label" for="${question.id}">`).text("SI");
+                                        // let checkBox2 = $(`<input disabled class="form-check-input" id="${question.id}0" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
+                                        let checkBox2 = $(`<input disabled class="form-check-input" id="${question.id}0" type="radio" >`).attr('name', "checkbox-close-question");
 
-                                    // let checkBox2 = $(`<input disabled class="form-check-input" id="${question.id}0" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
-                                    let checkBox2 = $(`<input disabled class="form-check-input" id="${question.id}0" type="radio" >`).attr('name', "checkbox-close-question");
+                                        let label2 = $(`<label class="form-check-label" for="${question.id}0">`).text("NO");
 
-                                    let label2 = $(`<label class="form-check-label" for="${question.id}0">`).text("NO");
+                                        let answer = question.value == 'SI' ? checkBox1 : checkBox2;
+                                        answer.attr('checked', true)
 
-                                    let answer = question.value == 'SI' ? checkBox1 : checkBox2;
-                                    answer.attr('checked', true)
+                                        let container1 = $('<div class="form-check form-check-inline"></div>').append(checkBox1, label1);
 
-                                    let container1 = $('<div class="form-check form-check-inline"></div>').append(checkBox1, label1);
+                                        let container2 = $('<div class="form-check form-check-inline"></div>').append(checkBox2, label2);
 
-                                    let container2 = $('<div class="form-check form-check-inline"></div>').append(checkBox2, label2);
+                                        let container = $('<div class="mb-4 mt-2"></div>').append(`<p class="text-primary m-0 fw-bold">${question.name}</p>`, container1, container2);
 
-                                    let container = $('<div class="mb-4 mt-2"></div>').append(`<p class="text-primary m-0 fw-bold">${question.name}</p>`, container1, container2);
+                                        return container;
+                                    },
+                                    'multiple': function (question) {
+                                        let options = $(`<select class="form-select" id="${question.id}" multiple></select>`);
 
-                                    return container;
-                                },
-                                'multiple': function (question) {
-                                    let options = $(`<select class="form-select" id="${question.id}" multiple></select>`);
+                                        question.value.forEach(function (option) {
+                                            options.append('<option disabled value="' + option + '">' + option + '</option>');
+                                        });
 
-                                    question.value.forEach(function (option) {
-                                        options.append('<option disabled value="' + option + '">' + option + '</option>');
-                                    });
+                                        let container = $('<div class="mb-4"></div>').append(`<p class="text-primary m-0 fw-bold">${question.name}</p>`, options)
 
-                                    let container = $('<div class="mb-4"></div>').append(`<p class="text-primary m-0 fw-bold">${question.name}</p>`, options)
+                                        return container
+                                    }
+                                };
 
-                                    return container
-                                }
-                            };
-                            let form = $('#history-clinical-modal-content');
-                            form.empty();
+                                //form.empty();
 
-                            finalStructure = [];
-                            console.log(allClinicalHistory)
-                            // Create three columns using Bootstrap's grid system
-                            let column1 = $('<div class="col-md-4"></div>');
-                            let column2 = $('<div class="col-md-4"></div>');
-                            let column3 = $('<div class="col-md-4"></div>');
+                                finalStructure = [];
+                                //console.log(allClinicalHistory)
+                                // Create three columns using Bootstrap's grid system
+                                let column1 = $('<div class="col-md-4"></div>');
+                                let column2 = $('<div class="col-md-4"></div>');
+                                let column3 = $('<div class="col-md-4"></div>');
 
-                            allClinicalHistory.forEach(function (question, index) {
-                                question.id = index + 1;
+                                allClinicalHistory.forEach(function (question, index) {
+                                    question.id = index + 1;
 
-                                if (!question.type || !question.name) {
-                                    console.error('Question is missing type or name:', question);
-                                    return; // Skip questions with missing data
-                                }
+                                    if (!question.type || !question.name) {
+                                        console.error('Question is missing type or name:', question);
+                                        return; // Skip questions with missing data
+                                    }
 
-                                let questionContainer = $(`<div class="question-${question.id}"></div>`);
+                                    let questionContainer = $(`<div class="question-${question.id}"></div>`);
 
-                                if (question.type === 'open') {
-                                    let inputElement = questionTypes.open(question);
-                                    finalStructure.push(question);
-                                    questionContainer.append(inputElement);
-                                } else if (question.type === 'close') {
-                                    let inputElement = questionTypes.close(question);
-                                    finalStructure.push(question);
-                                    questionContainer.append(inputElement);
-                                } else if (question.type === 'multiple') {
-                                    let inputElement = questionTypes.multiple(question);
-                                    finalStructure.push(question);
-                                    questionContainer.append(inputElement);
-                                } else {
-                                    console.error('Tipo de pregunta no válido: ' + question.type);
-                                }
+                                    if (question.type === 'open') {
+                                        let inputElement = questionTypes.open(question);
+                                        finalStructure.push(question);
+                                        questionContainer.append(inputElement);
+                                    } else if (question.type === 'close') {
+                                        let inputElement = questionTypes.close(question);
+                                        finalStructure.push(question);
+                                        questionContainer.append(inputElement);
+                                    } else if (question.type === 'multiple') {
+                                        let inputElement = questionTypes.multiple(question);
+                                        finalStructure.push(question);
+                                        questionContainer.append(inputElement);
+                                    } else {
+                                        console.error('Tipo de pregunta no válido: ' + question.type);
+                                    }
 
-                                // Add the question container to one of the three columns
-                                if (index % 3 === 0) {
-                                    column1.append(questionContainer);
-                                } else if (index % 3 === 1) {
-                                    column2.append(questionContainer);
-                                } else {
-                                    column3.append(questionContainer);
-                                }
-                            });
+                                    // Add the question container to one of the three columns
+                                    if (index % 3 === 0) {
+                                        column1.append(questionContainer);
+                                    } else if (index % 3 === 1) {
+                                        column2.append(questionContainer);
+                                    } else {
+                                        column3.append(questionContainer);
+                                    }
+                                });
 
-                            // Add the three columns to the form
-                            let row = $('<div class="row"></div>').append(column1, column2, column3);
-                            let container = $('<div class="container"></div>').append(row);
-                            form.append(container);
-
+                                // Add the three columns to the form
+                                let row = $('<div class="row"></div>').append(column1, column2, column3);
+                                let container = $('<div class="container"></div>').append(row);
+                                container.append('<hr>');
+                                form.append(container);
+                            }
 
                         });
 

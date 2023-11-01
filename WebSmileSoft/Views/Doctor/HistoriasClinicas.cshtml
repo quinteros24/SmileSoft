@@ -147,7 +147,7 @@
         }
 
         let patientData = [];
-        console.log('PatientData: ', patientData);
+        //console.log('PatientData: ', patientData);
         // Function to populate patient information
         function populatePatientInfo() {
             // Get the current date
@@ -167,7 +167,7 @@
                 fechaSolo = patientData.uBirthDate;
             }
             sessionStorage.setItem('patientDataID', patientData.uID);
-            console.log('Fecha de Nacimiento: ', fechaSolo);
+            //console.log('Fecha de Nacimiento: ', fechaSolo);
             document.getElementById("currentDate").textContent = currentDateFormat;
             //document.getElementById("patientFName").textContent = patientData.uName + patientData.uLastName;
             document.getElementById("patientName").textContent = patientData.uName;
@@ -206,7 +206,7 @@
         
         function getAppoinmentData(patientID) {
             //debugger;
-            //console.log("Funcion getAppoinmentData");
+            ////console.log("Funcion getAppoinmentData");
             $.ajax({
                 url: sessionStorage.urlEP + '/api/Appointments/v1/GetAppointmentsList',
                 type: 'GET',
@@ -230,7 +230,7 @@
                             ]; dataSet.push(rowData);
 
                         }
-                        //console.log("ROW Data : ", rowData);
+                        ////console.log("ROW Data : ", rowData);
                         appointmentDates = dataSet;
                     });
                     appointmentDates = dataSet;
@@ -239,7 +239,7 @@
         }
         let tratamientoID = 1;
         let totalTratamientos = 0;
-        console.log("Apoinment Dates: ", appointmentDates);
+        //console.log("Apoinment Dates: ", appointmentDates);
         // Call the function to populate patient information
         async function loadUserClinicalHistory(inputUserId) {
             try {
@@ -247,7 +247,7 @@
                 // Fetch user details
                 const userResponse = await fetch(`${sessionStorage.urlEP}/api/Users/v1/GetUserDetails?uDocument=${inputUserId}`);
                 const userData = await userResponse.json();
-                console.log('userData in async function: ', userData)
+                //console.log('userData in async function: ', userData)
                 if (userData.itemJson === null) {
                     mostrarMensajeError("No se cargó correctamente");
                 } else if (userData.itemJson.utID !== 3) {
@@ -273,7 +273,7 @@
                         clinicalHistoryData.itemJson.forEach(item => {
                             item = JSON.parse(item);
                             allClinicalHistory = [...item];
-                            console.log('allClinicalHistory: ', allClinicalHistory);
+                            //console.log('allClinicalHistory: ', allClinicalHistory);
                             processClinicalHistoryData(allClinicalHistory);
                             tratamientoID++;
                         });
@@ -394,8 +394,8 @@
             let row = $('<div class="row"></div>').append(column1, column2, column3);
             let container = $('<div class="container"></div>').append(row);
             container.append('<hr>');
-            //console.log('Tratamiento ID: ', tratamientoID);
-            //console.log('Total Tratamientos: ', totalTratamientos);
+            ////console.log('Tratamiento ID: ', tratamientoID);
+            ////console.log('Total Tratamientos: ', totalTratamientos);
             if(tratamientoID < totalTratamientos) {
                 let tratamientoID2 = tratamientoID + 1;
                 let MostrarFechaCita = appointmentDates[tratamientoID2][3];

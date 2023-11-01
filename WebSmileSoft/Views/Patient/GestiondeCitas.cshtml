@@ -120,14 +120,14 @@
             const hora = time;
 
             const dateTimeICS = formatDateForICS(fecha, hora);
-            console.log(dateTimeICS); // Debe imprimir '20231018T080000Z'
+            //console.log(dateTimeICS); // Debe imprimir '20231018T080000Z'
 
             const newTime = addOneHourToTime(time);
             const dateTimeICSend = formatDateForICS(fecha, newTime);
-            console.log(dateTimeICSend);
+            //console.log(dateTimeICSend);
 
-            console.log('Datos Consulta para Calendario');
-            console.log(date, time, doctor, message);
+            //console.log('Datos Consulta para Calendario');
+            //console.log(date, time, doctor, message);
             var event = {
                 summary: 'Cita Odontologica con el Doctor:' + ' ' + doctor,
                 description: 'Motivo:' + ' ' + message,
@@ -173,8 +173,8 @@
     <script>
         function fncheckDoctor(e) { var t = e.value; 0 == t ? document.getElementById("cDoctor").disabled = !0 : (fngetDoctors(t), document.getElementById("cDoctor").disabled = !1) } function obtenerFechaActualSinUTC(e) { return new Date(e.getTime() - 6e4 * e.getTimezoneOffset()).toISOString().split("T")[0] } $("#fecha").on("change", (function () { validarFecha() }));
         // const fechaActualSinUTC = obtenerFechaActualSinUTC();
-        //console.log(fechaActualSinUTC);
-        function validarFecha() { const e = obtenerFechaActualSinUTC(new Date); console.log(e); const o = obtenerFechaActualSinUTC(new Date(document.getElementById("fecha").value + "T05:00:00Z")); console.log(o), o < e && (Swal.fire({ icon: "info", title: "Oops...", text: "La fecha no puede ser menor que hoy.", confirmButtonColor: "#008dc9" }), document.getElementById("fecha").value = "") }
+        ////console.log(fechaActualSinUTC);
+        function validarFecha() { const e = obtenerFechaActualSinUTC(new Date); //console.log(e); const o = obtenerFechaActualSinUTC(new Date(document.getElementById("fecha").value + "T05:00:00Z")); //console.log(o), o < e && (Swal.fire({ icon: "info", title: "Oops...", text: "La fecha no puede ser menor que hoy.", confirmButtonColor: "#008dc9" }), document.getElementById("fecha").value = "") }
         
 
         function validarHora() {
@@ -267,7 +267,7 @@
                 dataType: 'json',
                 success: function (data) {
                     $("#loadingScreen").hide();
-                    //console.log("Respuesta del Servidor " + data);
+                    ////console.log("Respuesta del Servidor " + data);
                     // Procesar los datos recibidos y agregar filas a la tabla
                     let dataSet = [];
                     let users = data.itemJson;
@@ -409,7 +409,7 @@
 
                                         },
                                         error: function (error) {
-                                            console.log('Error al obtener los detalles del usuario.');
+                                            //console.log('Error al obtener los detalles del usuario.');
                                         }
 
                                     }).then((result) => {
@@ -465,7 +465,7 @@
 
                                     },
                                     error: function (error) {
-                                        console.log('Error al obtener los detalles del usuario.');
+                                        //console.log('Error al obtener los detalles del usuario.');
                                     }
 
                                 }).then((result) => {
@@ -573,7 +573,7 @@
                     data: JSON.stringify(data),
                     contentType: 'application/json',
                     success: function (response) {
-                        console.log(response.OutputCodeError);
+                        //console.log(response.OutputCodeError);
                         if (response.codeStatus === '0') {
                             // Registro exitoso, puedes redirigir al usuario o mostrar un mensaje de éxito
                             //alert('Usuario registrado con éxito.');

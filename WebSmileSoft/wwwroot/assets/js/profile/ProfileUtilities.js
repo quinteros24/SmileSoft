@@ -22,7 +22,7 @@ $(document).ready(function () {
     // Adjunta un controlador de eventos de clic al boton
     let uID = sessionStorage.getItem('userID');
 
-    //console.log("Buscando al Usuario " + uID);
+    ////console.log("Buscando al Usuario " + uID);
 
     $.ajax({
         url: sessionStorage.urlEP + '/api/Users/v1/GetUserDetails',
@@ -31,23 +31,23 @@ $(document).ready(function () {
         contentType: "application/json",
         dataType: 'json',
         success: function (data) {
-            console.log("Cargando Respuesta")
-            console.log(data.itemJson);
+            //console.log("Cargando Respuesta")
+            //console.log(data.itemJson);
 
             if (data.itemJson === null) {
-                console.log("No se cargo correctamente");
+                //console.log("No se cargo correctamente");
                 
             } else {
                 // Mostrar los datos en la consola o realizar otras acciones
                 let userData = data.itemJson[0]; // Accede al primer elemento del arreglo
 
                 // Llama a una funcion para actualizar el formulario con los datos recibidos
-                console.log("Actualizando Formulario")
+                //console.log("Actualizando Formulario")
                 actualizarFormulario(userData);
             }
         },
         error: function (error) {
-            console.log('Error al obtener los detalles del usuario.');
+            //console.log('Error al obtener los detalles del usuario.');
         }
     });
 
@@ -60,7 +60,7 @@ $(document).ready(function () {
 
         // Rellena los campos del formulario con los datos del usuario
         $("#username").val(userData.uLoginName);
-        //console.log("Nombre de Usuario" + userData.uLoginName);
+        ////console.log("Nombre de Usuario" + userData.uLoginName);
         $("#user_names").val(userData.uName);
         $("#user_lastnames").val(userData.uLastName);
         $("#editCorreo").val(userData.uEmailAddress);
@@ -141,14 +141,14 @@ $(".update-profile-button").click(function () {
 
 function ChangeUserPass() {
 
-    console.log("Cambiar Contrasena");
+    //console.log("Cambiar Contrasena");
     event.preventDefault();
     let password = document.getElementById("NewPassword").value;
     let repeat_password = document.getElementById("Repeat_Password").value;
 
     let uID = sessionStorage.getItem('userID');;
 
-    console.log("ID del Usuario" + uID);
+    //console.log("ID del Usuario" + uID);
     if (password === "") {
         Swal.fire({
             text: 'Por favor, ingrese su nueva contrasena',
@@ -187,8 +187,8 @@ function ChangeUserPass() {
             dataType: "json",
             success: function (response) {
 
-                // console.log("Solicitud exitosa. Datos enviados:", data);
-                // console.log("Respuesta del servidor:", response);
+                // //console.log("Solicitud exitosa. Datos enviados:", data);
+                // //console.log("Respuesta del servidor:", response);
                 if (response.codeStatus == 0) {
 
                     //window.location.href = '@Url.Action("Index", "")';
@@ -206,7 +206,7 @@ function ChangeUserPass() {
                 }
             },
             error: function (xhr, status, error) {
-                console.log("Error.");
+                //console.log("Error.");
             }
         });
     }
@@ -270,7 +270,7 @@ $("#desactivarCuentabtn").click(function () {
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {
-            //console.log("Desactivar 2" + userId);
+            ////console.log("Desactivar 2" + userId);
             // Realiza la solicitud AJAX para desactivar el usuario
             $.ajax({
                 url: sessionStorage.urlEP + '/api/Users/v1/SetUserStatus/',
@@ -279,7 +279,7 @@ $("#desactivarCuentabtn").click(function () {
                 contentType: "application/json",
                 dataType: 'json',
                 success: function (response) {
-                    console.log("Respuesta del Servidor " + response);
+                    //console.log("Respuesta del Servidor " + response);
 
                     Swal.fire({
                         title: 'Usuario Desactivado',

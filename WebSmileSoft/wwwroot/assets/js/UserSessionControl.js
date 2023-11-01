@@ -10,7 +10,7 @@ const logoutUser = () => {
     sessionStorage.clear();
 
     // Realiza una solicitud al servidor para cerrar la sesión
-    console.log(`logoutUser ${inactivityTimeout}`);
+    //console.log(`logoutUser ${inactivityTimeout}`);
 
     // Redirecciona a la página de inicio de sesión
     window.location.href = logoutUrl; // Reemplaza con la URL correcta
@@ -29,7 +29,7 @@ const verifyToken = async () => {
         userNameLogin: sessionStorage.getItem('userLogin')
     };
     // Realiza una solicitud al servidor para verificar el token
-    console.log("Validando el token");
+    //console.log("Validando el token");
     const response = await fetch(`${sessionStorage.getItem('urlEP')}/api/Generics/v1/GenerateJWToken`, {
         method: 'POST',
         headers: {
