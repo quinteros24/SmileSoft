@@ -135,6 +135,26 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+
+    <script>
+        $(document).ready(function () {
+            let uID = sessionStorage.getItem("userID");
+            $.ajax({
+                url: sessionStorage.urlEP + '/api/Generics/v1/GetDataSite?uID=' + uID,
+                type: 'GET',
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (response) {
+                    localStorage.setItem("urlImageLogin", response.itemJson.urlImageLogin);
+                    localStorage.setItem("urlImageMenu", response.itemJson.urlImageMenu);
+                    localStorage.setItem("backgroundColor", response.itemJson.backgroundColor);
+                    localStorage.setItem("topColor", response.itemJson.topColor);
+                    localStorage.setItem("sideColor", response.itemJson.sideColor);
+                    $('#navLogo').attr('src', response.itemJson.urlImageMenu);
+                }
+            });
+        });
+    </script>
     <script src="~/assets/js/usersessioncontrol.js"></script>
     <!-- BEGIN PAGE LEVEL CUSTOM SCRIPTS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>

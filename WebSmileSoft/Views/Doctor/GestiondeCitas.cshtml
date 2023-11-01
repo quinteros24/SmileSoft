@@ -14,13 +14,13 @@
             </div>
         </div>
 
-        <div class="card mt-4">
+        @* <div class="card mt-4">
             <div class="card-body">
                 <input type="file" id="fileInput1" accept=".jpg, .jpeg, .png" />
                 <button id="uploadButton1" class="btn btn-primary mt-2">Subir Archivo</button>
                 <p id="message" class="mt-2"></p>
             </div>
-        </div>
+        </div> *@
 
     </div>
 </div>
@@ -58,7 +58,7 @@
 
     <script>
         let userRole = sessionStorage.getItem('userRole');
-        if (userRole !== '2') {
+        if (userRole !== '2' && userRole !== '1') {
             logoutUser();
         }
         function abrirCita() {
@@ -119,7 +119,7 @@
                             data: null, // Usaremos la columna "Acciones" solo para botones
                             defaultContent: '<button class="btn btn-primary btn-sm btnDesactivarC" data-toggle="tooltip" title="Cancelar Cita" type="button"> <i class="fas fa-ban"> </i></button> ' +
                                 '<button class="btn btn-warning btn-sm btnEditarC" data-toggle="modal" data-target="#editarCitaModal" data-toggle="tooltip" title="Reprogramar Cita"> <i class="fa-regular fa-pen-to-square"></i></button> ' +
-                                '<button class="btn btn-warning btn-sm btnFileC" data-toggle="modal" data-target="#UploadFileCitaModal" data-toggle="tooltip" title="Subir Imagen"> <i class="fa-regular fa-pen-to-square"></i></button>'
+                                '<button class="btn btn-success btn-sm btnFileC" data-toggle="modal" data-target="#UploadFileCitaModal" data-toggle="tooltip" title="Subir Imagen"> <i class="fa-solid fa-upload fa-bounce"></i></button>'
                         }
                     ],
                     data: dataSet,
@@ -143,7 +143,7 @@
 
                         // Si el estado es "cancelado", oculta los botones en esta fila
                         if (estado === 'Cancelado') {
-                            $(row).find('.btnDesactivarC, .btnEditarC').hide();
+                            $(row).find('.btnDesactivarC, .btnEditarC, .btnFileC').hide();
                         }
                     }
                 });
@@ -553,15 +553,35 @@
             })
                 .then((response) => {
                     if (response.ok) {
-                        console.log("Archivo cargado exitosamente.");
-                        showMessage("Archivo cargado exitosamente.", "green");
+                        //console.log("Archivo cargado exitosamente.");
+                        //showMessage("Archivo cargado exitosamente.", "green");
+                        Swal.fire({
+                            title: 'Archivo cargado exitosamente.',
+                            icon: 'success',
+                            confirmButtonText: 'Aceptar'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload();
+                            }
+                        })
+                        
                     } else {
-                        console.log("Error al cargar el archivo.");
-                        showMessage("Error al cargar el archivo.", "red");
+                        //console.log("Error al cargar el archivo.");
+                        //showMessage("Error al cargar el archivo.", "red");
+                        Swal.fire({
+                            title: 'Error al cargar el archivo.',
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar'
+                        })
                     }
                 })
                 .catch((error) => {
-                    showMessage("Error de red al cargar el archivo.", "red");
+                    //showMessage("Error de red al cargar el archivo.", "red");
+                    Swal.fire({
+                        title: 'Error de red al cargar el archivo.',
+                        icon: 'error',
+                        confirmButtonText: 'Aceptar'
+                    })
                 });
         }
 
