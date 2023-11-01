@@ -36,12 +36,7 @@ namespace EpSmileSoft.Controllers
         {
             return await _appointmentsCore.UpdateAppointmentStatus(aID, asID);
         }
-        [HttpGet]
-        [Route("v1/GetAppointmentsUserBlob")]
-        public async Task<GenericResponseModel> GetAppointmentsUserBlob(string uDocument)
-        {
-            return await _appointmentsCore.GetAppointmentsUserBlob(uDocument);
-        }
+        
 
     }
 }

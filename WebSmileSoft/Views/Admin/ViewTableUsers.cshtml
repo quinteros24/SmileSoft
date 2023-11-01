@@ -64,7 +64,7 @@
 @section Scripts {
     <script>
         let userRole = sessionStorage.getItem("userRole"); "1" !== userRole && logoutUser(), document.getElementById("tipoUsuarioed").addEventListener("change", (function () { var e = document.getElementById("campoOpcional"); "2" === this.value ? e.style.display = "block" : e.style.display = "none" })), document.getElementById("tipoUsuario").addEventListener("change", (function () { var e = document.getElementById("campoOpcionala"); "2" === this.value ? e.style.display = "block" : e.style.display = "none" }));
-        </script>
+    </script>
 
     @* <script>
         let userRole = sessionStorage.getItem('userRole');
@@ -89,7 +89,7 @@
             }
         });
         </script> *@
-        <script>
+    <script>
         //<!-- Script para Visualizar Lista De Usuarios en la Tabla -->
         //Recibir el parametro de la funcion verusers(1) para filtrar por tipo de usuario
         $(document).ready(function () {
@@ -97,7 +97,20 @@
             $("#loadingScreen").show();
 
         });
+        $(document).ready(function () {
+            // Get the current date
+            const currentDate = new Date();
 
+            // Calculate the date 18 years ago
+            const maxDate = new Date(currentDate.getFullYear() - 18, currentDate.getMonth(), currentDate.getDate());
+
+            // Format the date as YYYY-MM-DD
+            const maxDateString = maxDate.toISOString().split('T')[0];
+
+            // Set the max attribute of the input element
+            document.getElementById('fechaNacimientoed').setAttribute('max', maxDateString);
+            document.getElementById('fechaNacimiento').setAttribute('max', maxDateString);
+        });
         //Funcion para visualizar la lista de usuarios en la tabla pasando como parametro el tipo de usuario
         function verusers(utID) {
             // Realizar solicitud AJAX para obtener la lista de usuarios
@@ -420,6 +433,8 @@
                                         text: 'No tienes la mayoría de edad, ponte en contacto con soporte.',
                                         confirmButtonColor: '#008dc9'
                                     });
+                                    //Clear Input
+                                    $("#fechaNacimientoed").val("");
                                 }
 
                                 //let formattedBirthDate = formatDateToISO8601(birthDate);
@@ -734,7 +749,7 @@
                             let row = $('<div class="row"></div>').append(column1, column2, column3);
                             let container = $('<div class="container"></div>').append(row);
                             form.append(container);
-                            
+
 
                         });
 
@@ -853,6 +868,8 @@
                     text: 'No tienes la mayoría de edad, ponte en contacto con soporte.',
                     confirmButtonColor: '#008dc9'
                 });
+                //Clear Input
+                   $("#fechaNacimiento").val("");
             }
 
             //let formattedBirthDate = formatDateToISO8601(birthDate);

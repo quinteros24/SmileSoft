@@ -1,7 +1,9 @@
-﻿
+﻿@{
+    ViewData["Title"] = "Site Management";
+}
 <nav aria-label="breadcrumb" class="main-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"> @* <a asp-controller="Home" asp-action="Index">Inicio</a>  *@Inicio</li>
+        <li class="breadcrumb-item"> Inicio</li>
         <li class="breadcrumb-item">Sitio</li>
         <li class="breadcrumb-item active" aria-current="page">
             Ajustes del Sitio
@@ -15,48 +17,16 @@
             <div class="card-body">
                 <nav class="nav flex-column nav-pills nav-gap-y-1">
                     <!-- Ajustes del Sitio -->
-                    <a href="#sitesettings"
-                       data-toggle="tab"
-                       class="nav-item nav-link has-icon nav-link-faded">
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                             width="24"
-                             height="24"
-                             viewBox="0 0 24 24"
-                             fill="none"
-                             stroke="currentColor"
-                             stroke-width="2"
-                             stroke-linecap="round"
-                             stroke-linejoin="round"
-                             class="feather feather-settings mr-2">
-                            <circle cx="12" cy="12" r="3"></circle>
+                    <a href="#sitesettings" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings mr-2"> <circle cx="12" cy="12" r="3"></circle>
                             <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                         </svg> Ajustes del Sitio
                     </a>
-                    <a href="#wpsettings"
-                       data-toggle="tab"
-                       class="nav-item nav-link has-icon nav-link-faded">
-                        <i class="fa-regular fa-address-book fa-lg"></i>
-                        @* <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 384 512" style="fill: #008cce" class="feather feather-user mr-2" fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="3"></circle>
-                        <path d="M256 48V64c0 17.7-14.3 32-32 32H160c-17.7 0-32-14.3-32-32V48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H256zM0 64C0 28.7 28.7 0 64 0H320c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zM160 320h64c44.2 0 80 35.8 80 80c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16c0-44.2 35.8-80 80-80zm-32-96a64 64 0 1 1 128 0 64 64 0 1 1 -128 0z" />
-                        </svg> *@ Ajustes de Contacto
+                    <a href="#wpsettings" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                        <i class="fa-regular fa-address-book fa-lg"></i>Ajustes de Contacto
                     </a>
-                    <a href="#questionsettings"
-                       data-toggle="tab"
-                       class="nav-item nav-link has-icon nav-link-faded">
-                        <i class="fa-solid fa-notes-medical fa-lg"></i> Configurar Formulario
-                        @* <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 384 512" style="fill: #008cce" class="feather feather-user mr-2" fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="3"></circle>
-                        <path d="M96 352V96c0-35.3 28.7-64 64-64H416c35.3 0 64 28.7 64 64V293.5c0 17-6.7 33.3-18.7 45.3l-58.5 58.5c-12 12-28.3 18.7-45.3 18.7H160c-35.3 0-64-28.7-64-64zM272 128c-8.8 0-16 7.2-16 16v48H208c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h48v48c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V256h48c8.8 0 16-7.2 16-16V208c0-8.8-7.2-16-16-16H320V144c0-8.8-7.2-16-16-16H272zm24 336c13.3 0 24 10.7 24 24s-10.7 24-24 24H136C60.9 512 0 451.1 0 376V152c0-13.3 10.7-24 24-24s24 10.7 24 24l0 224c0 48.6 39.4 88 88 88H296z" /></svg> Configurar Formulario
-                        *@
+                    <a href="#questionsettings" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                       <i class="fa-solid fa-notes-medical fa-lg"></i> Configurar Formulario
                     </a>
                 </nav>
             </div>
@@ -89,8 +59,10 @@
                                  class="feather feather-settings">
                                 <circle cx="12" cy="12" r="3"></circle>
                                 <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                            </svg>
+                            </svg><span>Opciones del Sitio</span>
                         </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="#wpsettings" data-toggle="tab" class="nav-link has-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 384 512" style="fill: #008cce" class="feather feather-user mr-2" fill="none"
                                  stroke="currentColor"
@@ -99,8 +71,10 @@
                                  stroke-linejoin="round">
                                 <circle cx="12" cy="12" r="3"></circle>
                                 <path d="M256 48V64c0 17.7-14.3 32-32 32H160c-17.7 0-32-14.3-32-32V48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H256zM0 64C0 28.7 28.7 0 64 0H320c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zM160 320h64c44.2 0 80 35.8 80 80c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16c0-44.2 35.8-80 80-80zm-32-96a64 64 0 1 1 128 0 64 64 0 1 1 -128 0z" />
-                            </svg>
+                            </svg> <span>Ajustes de Contacto</span>
                         </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="#questionsettings" data-toggle="tab" class="nav-link has-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 384 512" style="fill: #008cce" class="feather feather-user mr-2" fill="none"
                                  stroke="currentColor"
@@ -109,7 +83,7 @@
                                  stroke-linejoin="round">
                                 <circle cx="12" cy="12" r="3"></circle>
                                 <path d="M96 352V96c0-35.3 28.7-64 64-64H416c35.3 0 64 28.7 64 64V293.5c0 17-6.7 33.3-18.7 45.3l-58.5 58.5c-12 12-28.3 18.7-45.3 18.7H160c-35.3 0-64-28.7-64-64zM272 128c-8.8 0-16 7.2-16 16v48H208c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h48v48c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V256h48c8.8 0 16-7.2 16-16V208c0-8.8-7.2-16-16-16H320V144c0-8.8-7.2-16-16-16H272zm24 336c13.3 0 24 10.7 24 24s-10.7 24-24 24H136C60.9 512 0 451.1 0 376V152c0-13.3 10.7-24 24-24s24 10.7 24 24l0 224c0 48.6 39.4 88 88 88H296z" />
-                            </svg> Configurar Formulario
+                            </svg> <span>Configurar Formulario</span>
                         </a>
                     </li>
 
@@ -345,19 +319,7 @@
             const formData = new FormData();
             formData.append("file", file);
 
-        //     const uploadUrl = `${sessionStorage.urlEP}/api/Blobs/upload?citaID=0&genericName=ImageForOffice${text}_${uID}`;
-            
-        //     fetch(uploadUrl, {
-        //         method: "POST",
-        //         body: formData,
-        //     })
-        //         .then((response) => {
-        //             debugger;
-        //             fnUpdateDataOffice(op, response);
-        //         })
-        //         .catch((error) => {
-        //             showMessage("Error de red al cargar el archivo.", "red");
-        //         });
+       
             const uploadUrl = `${sessionStorage.urlEP}/api/Blobs/upload?citaID=0&genericName=ImageForOffice${text}_${uID}`;
 
             $.ajax({
@@ -372,6 +334,12 @@
                 },
                 error: function () {
                     showMessage("Error de red al cargar el archivo.", "red");
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Error de red al cargar el archivo.',
+                        icon: 'error',
+                        confirmButtonText: 'Aceptar'
+                    })
                 }
             });
 
@@ -448,11 +416,6 @@
             });
 
         }
-
-
-
-
-
 
         let structure = [];
 

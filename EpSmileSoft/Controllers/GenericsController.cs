@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Domain.Core;
+using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -136,5 +137,11 @@ namespace EpSmileSoft.Controllers
             return await _genericsCore.SetDataSiteSideColor(uID, data);
         }
 
+        [HttpGet]
+        [Route("v1/GetAppointmentsUserBlob")]
+        public async Task<GenericResponseModel> GetAppointmentsUserBlob(string uDocument)
+        {
+            return await _genericsCore.GetAppointmentsUserBlob(uDocument);
+        }
     }
 }

@@ -55,8 +55,8 @@
 
 /* Estilo adicional para el contenido del sidebar */
 #accordionSidebar {
-    flex: 1; /* Permite que este elemento crezca para ocupar el espacio disponible */
-    padding: 20px; /* Ajusta el relleno según tu diseño */
+    flex: auto; /* Permite que este elemento crezca para ocupar el espacio disponible */
+    padding: 1px !important; /* Ajusta el relleno según tu diseño */
     color: #fff; /* Cambia el color de texto según tu diseño */
 }
 
@@ -82,7 +82,7 @@
 @media (max-width: 768px) {
     #sidebar {
         position: static; /* Cambia la posición a estática para que se ajuste al flujo del documento */
-        width: 20%; /* Ocupa todo el ancho disponible */
+        width: 16%; /* Ocupa todo el ancho disponible */
         /*background-color: #333;*/
     }
 
