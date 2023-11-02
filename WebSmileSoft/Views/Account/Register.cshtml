@@ -137,6 +137,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.min.js" asp-append-version="true"></script>
 
     <script>
+        
         $(document).ready(function () {
             // Get the current date
             const currentDate = new Date();
@@ -152,39 +153,137 @@
         });
     </script>
 
-    @{
+    @* @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-
+    } *@
     <script>
-        function ageValidation(birthDate) {
-            // Obtener la fecha actual
+        function validarEdadMayorDe18(idCampoFechaNacimiento) {
+            const fechaNacimientoInput = document.getElementById(idCampoFechaNacimiento);
+            const fechaNacimiento = new Date(fechaNacimientoInput.value);
+
+            // Calcula la fecha actual
             const fechaActual = new Date();
 
-            // Calcular la fecha de nacimiento a partir de la cadena de fecha
+            // Calcula la edad en años
+            const edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
+
+            // Verifica si la edad es menor de 18 años
+            if (edad < 18) {
+                // Muestra un mensaje de error utilizando SweetAlert2
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Debes ser mayor de 18 años',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+
+                // Retorna false para indicar que la validación falló
+                return false;
+            }
+
+            // Retorna true si la validación pasó exitosamente
+            return true;
+        }
+        // Ejemplo de cómo llamar a la función de validación
+        // const esMayorDe18 = validarEdadMayorDe18('fechaNacimientoed');
+
+        // if (esMayorDe18) {
+        //     // Continuar con el proceso si la validación es True
+        function onChangeAgeNotification(idCampoFecha) {
+            idCampoFecha.addEventListener('change', function () {
+                // Obtén la fecha de nacimiento ingresada por el usuario
+                const fechaNacimiento = new Date(this.value);
+
+                // Calcula la fecha actual
+                const fechaActual = new Date();
+
+                // Calcula la edad en años
+                const edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
+
+                // Verifica si la edad es menor de 18 años
+                if (edad < 18) {
+                    //alert('Debes ser mayor de 18 años para registrarte.');
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'El usuario debe ser mayor de 18 años',
+                        icon: 'error',
+                        confirmButtonText: 'Aceptar'
+                    });
+                    // Puedes agregar aquí más acciones si la validación falla, como borrar la fecha o mostrar un mensaje de error.
+                }
+            });
+        }
+
+
+        debugger;
+        function CheckPass(password) {
+            if (password.length < 8) {
+                return false;
+            }
+
+            if (!/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/\d/.test(password)) {
+                return false;
+            }
+
+            return true; // Si la contraseña cumple con los requisitos, retorna null
+        }
+        // Función para permitir solo numeros en un campo de entrada
+        function allowNumbersOnly(inputField) {
+            inputField.value = inputField.value.replace(/[^0-9]/g, '');
+        }
+
+        
+        function mostrarCargando() {
+            Swal.fire({
+                title: 'Cargando',
+                text: 'Por favor, espere un momento...',
+                showCancelButton: false,
+                showConfirmButton: false,
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+        }
+
+        function mostrarMensajeError(mensaje) {
+            Swal.fire({
+                title: 'Error',
+                text: mensaje,
+                icon: 'error',
+                confirmButtonText: 'Aceptar'
+            });
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            const buttons = document.querySelectorAll(".btn-en-desarrollo");
+
+            buttons.forEach(function (button) {
+                button.addEventListener("click", function () {
+                    event.preventDefault();
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Este Modulo esta en Desarrollo!',
+                        confirmButtonColor: '#008dc9'
+                    })
+                });
+            });
+        });
+    </script>
+    <script>
+
+        function ageValidation(birthDate) {
             const fechaNac = new Date(birthDate);
-
-            // Calcular la diferencia en años
-            const { getFullYear, getMonth, getDate } = fechaActual;
-            const edad = getFullYear() - fechaNac.getFullYear() - (getMonth() < fechaNac.getMonth() || (getMonth() === fechaNac.getMonth() && getDate() < fechaNac.getDate()));
-
-            // Comprobar si la edad es mayor o igual a 18
+            const edad = (new Date()).getFullYear() - fechaNac.getFullYear() - (new Date().getMonth() < fechaNac.getMonth() || (new Date().getMonth() === fechaNac.getMonth() && new Date().getDate() < fechaNac.getDate()));
             return edad >= 18;
         }
+
         function generateUsername() {
             const firstName = document.getElementById("userFirstNameRegister").value.trim();
             const lastName = document.getElementById("userLastNameRegister").value.trim();
-
-            // Combine the first name and last name to create the base username
             const baseUsername = `${firstName}.${lastName}`.toLowerCase().replace(/\s/g, "");
-
-            // Generate a random number between 1 and 999 (adjust the range as needed)
             const randomSuffix = Math.floor(Math.random() * 999) + 1;
-
-            // Combine the base username with the random number
             const suggestedUsername = `${baseUsername}${randomSuffix}`;
-
-            // Update the username field with the suggested username
             document.getElementById("userNameRegister").value = suggestedUsername;
         }
         // Obtén una referencia al campo de fecha de nacimiento
@@ -194,161 +293,142 @@
         function registrarUsuario() {
             let firstName = document.getElementById("userFirstNameRegister").value.trim();
             let lastName = document.getElementById("userLastNameRegister").value.trim();
-            const documentID = document.getElementById("IdNumber").value.trim();
-            const address = document.getElementById("address").value.trim();
-            const mobileNumber = document.getElementById("mobileNumber").value.trim();
-            const email = document.getElementById("email").value.trim();
-            const userRegister = document.getElementById("userNameRegister").value.trim();
-            const password = document.getElementById("password").value.trim();
-            const confirmPassword = document.getElementById("confirmPassword").value.trim();
-            const birthDate = document.getElementById("birthDate").value.trim();
-            const documentType = parseInt(document.getElementById("tipo_documento").value.trim(), 10);
+            let documentID = document.getElementById("IdNumber").value.trim();
+            let address = document.getElementById("address").value.trim();
+            let mobileNumber = document.getElementById("mobileNumber").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let userRegister = document.getElementById("userNameRegister").value.trim();
+            let password = document.getElementById("password").value.trim();
+            let confirmPassword = document.getElementById("confirmPassword").value.trim();
+            let birthDate = document.getElementById("birthDate").value.trim();
+            let documentType = parseInt(document.getElementById("tipo_documento").value.trim(), 10);
 
-            const genderSelect = document.getElementById("genderSelect");
-            const gender = genderSelect.options[genderSelect.selectedIndex].value;
+            let genderSelect = document.getElementById("genderSelect");
+            let gender = genderSelect.options[genderSelect.selectedIndex].value;
 
-            const esMayorDe18 = validarEdadMayorDe18('birthDate');
+            let esMayorDe18 = validarEdadMayorDe18('birthDate');
+            let estadoValidaciones = true;
+            const inputs = [
+                { field: firstName, message: 'Por favor, ingrese su nombre completo.' },
+                { field: lastName, message: 'Por favor, ingrese su apellido completo.' },
+                { field: documentID, message: 'Por favor, ingrese su número de documento.' },
+                { field: birthDate, message: 'Por favor, ingrese su fecha de nacimiento.' },
+                { field: gender, message: 'Por favor, seleccione su género.' },
+                { field: address, message: 'Por favor, ingrese su dirección.' },
+                { field: mobileNumber, message: 'Por favor, ingrese su número de celular o teléfono.' },
+                { field: email, message: 'Por favor, ingrese su correo electrónico.' },
+                { field: userRegister, message: 'Por favor, ingrese su usuario.' },
+                { field: password, message: 'Por favor, ingrese su contraseña.' },
+                { field: confirmPassword, message: 'Por favor, ingrese la confirmación de su contraseña.' }
+            ];
 
-            switch ('') {
-                case firstName:
-                case lastName:
+            for (let i = 0; i < inputs.length; i++) {
+                if (!inputs[i].field) {
                     Swal.fire({
-                        text: `Por favor, ingrese su nombre completo.`,
+                        text: inputs[i].message,
                         confirmButtonColor: '#008dc9'
                     });
-                    break;
-                case documentID:
-                    Swal.fire({
-                        text: `Por favor, ingrese su número de documento.`,
-                        confirmButtonColor: '#008dc9'
-                    });
-                    break;
-                case birthDate:
-                    Swal.fire({
-                        text: `Por favor, ingrese su fecha de nacimiento.`,
-                        confirmButtonColor: '#008dc9'
-                    });
-                    break;
-                case gender:
-                    Swal.fire({
-                        text: `Por favor, seleccione su género.`,
-                        confirmButtonColor: '#008dc9'
-                    });
-                    break;
-                case address:
-                    Swal.fire({
-                        text: `Por favor, ingrese su dirección.`,
-                        confirmButtonColor: '#008dc9'
-                    });
-                    break;
-                case mobileNumber:
-                    Swal.fire({
-                        text: `Por favor, ingrese su número de celular o telefono.`,
-                        confirmButtonColor: '#008dc9'
-                    });
-                    break;
-                case email:
-                    Swal.fire({
-                        text: `Por favor, ingrese su correo electrónico.`,
-                        confirmButtonColor: '#008dc9'
-                    });
-                    break;
-                case userRegister:
-                    Swal.fire({
-                        text: `Por favor, ingrese su usuario.`,
-                        confirmButtonColor: '#008dc9'
-                    });
-                    break;
-                case password:
-                    Swal.fire({
-                        text: `Por favor, ingrese su contraseña.`,
-                        confirmButtonColor: '#008dc9'
-                    });
-                    break;
-                case confirmPassword:
-                    Swal.fire({
-                        text: `Por favor, ingrese la confirmación de su contraseña.`,
-                        confirmButtonColor: '#008dc9'
-                    });
-                    break;
-                default:
-                    if (!CheckPass(password)) {
-                        Swal.fire({
-                            text: `La contraseña no cumple con los requisitos.`,
-                            confirmButtonColor: '#008dc9'
-                        });
-                    } else if (confirmPassword != password) {
-                        Swal.fire({
-                            text: `Las contraseñas no coinciden.`,
-                            confirmButtonColor: '#008dc9'
-                        });
-                    } else if (!esMayorDe18) {
-                        Swal.fire({
-                            text: `No tienes la mayoría de edad, ponte en contacto con soporte.`,
-                            confirmButtonColor: '#008dc9'
-                        });
-                    } else {
-                        const data = {
-                            uID: 0,
-                            utID: 3,
-                            uName: firstName,
-                            ulastName: lastName,
-                            uDocument: documentID,
-                            uAddress: address,
-                            uCellphone: mobileNumber,
-                            uEmailAddress: email,
-                            uLoginName: userRegister,
-                            uPassword: password,
-                            dtID: documentType,
-                            uStatus: true,
-                            gID: parseInt(gender),
-                            oID: 1,
-                            uBirthDate: birthDate
-                        };
-                        $.ajax({
-                            type: 'POST',
-                            url: '@ViewBag.urlEndPoint' + '/api/Users/v1/CreateUpdateUsers',
-                            data: JSON.stringify(data),
-                            contentType: 'application/json',
-                            success: (response) => {
-                                if (response.codeStatus == 0) {
-                                    Swal.fire({
-                                        icon: 'success',
-                                        title: response.messageStatus,
-                                        confirmButtonColor: '#008dc9',
-                                        allowOutsideClick: false,
-                                        allowEscapeKey: false,
-                                    }).then((result) => {
-                                        if (result.isConfirmed) {
-                                            window.location.href = '@Url.Action("Login", "Account")';
-                                        }
-                                    });
-                                } else {
-                                    Swal.fire({
-                                        title: 'Error',
-                                        text: response.messageStatus,
-                                        icon: 'error',
-                                        confirmButtonText: 'Aceptar'
-                                    });
+                    estadoValidaciones = false;
+                    return;
+                }
+            }
+
+            if (!CheckPass(password)) {
+                Swal.fire({
+                    text: `La contraseña no cumple con los requisitos.`,
+                    confirmButtonColor: '#008dc9'
+                });
+                estadoValidaciones = false;
+                return;
+            }
+
+            if (confirmPassword != password) {
+                Swal.fire({
+                    text: `Las contraseñas no coinciden.`,
+                    confirmButtonColor: '#008dc9'
+                });
+                estadoValidaciones = false;
+                return;
+            }
+
+            if (!esMayorDe18) {
+                Swal.fire({
+                    text: `No tienes la mayoría de edad, ponte en contacto con soporte.`,
+                    confirmButtonColor: '#008dc9'
+                });
+                estadoValidaciones = false;
+                return;
+            }
+            if (!validarEmail(email)){
+                Swal.fire({
+                    text: `El correo electrónico no es valido.`,
+                    confirmButtonColor: '#008dc9'
+                });
+                estadoValidaciones = false;
+                return;
+            }
+            const data = {
+                uID: 0,
+                utID: 3,
+                uName: firstName,
+                ulastName: lastName,
+                uDocument: documentID,
+                uAddress: address,
+                uCellphone: mobileNumber,
+                uEmailAddress: email,
+                uLoginName: userRegister,
+                uPassword: password,
+                dtID: documentType,
+                uStatus: true,
+                gID: parseInt(gender),
+                oID: 1,
+                uBirthDate: birthDate
+            };
+            debugger;
+            if (estadoValidaciones) {
+                $.ajax({
+                    type: 'POST',
+                    url: '@ViewBag.urlEndPoint' + '/api/Users/v1/CreateUpdateUsers',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json',
+                    success: (response) => {
+                        if (response.codeStatus == 0) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: response.messageStatus,
+                                confirmButtonColor: '#008dc9',
+                                allowOutsideClick: false,
+                                allowEscapeKey: false,
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = '@Url.Action("Login", "Account")';
                                 }
-                            },
-                            error: (error) => {
-                                Swal.fire({
-                                    title: 'Error',
-                                    text: 'Ha ocurrido un error al intentar registrar el usuario.',
-                                    icon: 'error',
-                                    confirmButtonText: 'Aceptar'
-                                });
-                            }
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Error',
+                                text: response.messageStatus,
+                                icon: 'error',
+                                confirmButtonText: 'Aceptar'
+                            });
+                        }
+                    },
+                    error: () => {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Ha ocurrido un error al intentar registrar el usuario.',
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar'
                         });
                     }
+                });
             }
         }
 
 
 
     </script>
-    @*  <script src="~/assets/js/registerutilities.js"></script> *@
+    <script src="~/assets/js/registerutilities.js"></script>
 
     }
 

@@ -117,7 +117,7 @@
     </a> *@
 
     <div id="logout-link" data-logout-url="@Url.Action("Login", "Account")"></div>
-
+    <a id="whatsappLink" href="https://api.whatsapp.com/send" class="float" target="_blank" data-toggle="tooltip" data-placement="top" title="Estamos aquí para ayudarte"><i id="whatsappIcon" class="fa-brands fa-whatsapp my-float"></i></a>
 
 
     <!-- Custom Theme Script -->
@@ -141,6 +141,10 @@
     </script>
 
     <script>
+        let userRoleS = sessionStorage.getItem("userRole");
+        if (userRoleS != 3) {
+            document.getElementById("whatsappLink").style.display = "none";
+        }
         const whatsappLink = document.getElementById("whatsappLink"), urlAPI = `${sessionStorage.urlEP}/api/Generics/v1/GetContactNumber?oID=1`; async function getWhatsAppNumber() { try { const e = await fetch(urlAPI, { method: "PUT" }); if (!e.ok) throw new Error("No se pudo obtener el número de WhatsApp."); const t = await e.json(); whatsappLink.href = `https://api.whatsapp.com/send?phone=${encodeURIComponent(t.itemJson)}&text=${encodeURIComponent("Hola! Quisiera más información.")}` } catch (e) { console.error(e) } } getWhatsAppNumber();
     </script>
 
