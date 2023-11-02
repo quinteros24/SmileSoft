@@ -494,7 +494,7 @@
                                 }
                             }
                         }
-                        //console.log(result.lineWidth);
+                        console.log(result.lineWidth);
                         var borderColor = parseColor(element, function (elem) {
                             return window.getComputedStyle(elem)[borderColorSide];
                         });

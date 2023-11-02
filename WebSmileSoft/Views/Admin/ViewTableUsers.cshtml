@@ -626,7 +626,7 @@
                                 async: false,
                                 success: function (response) {
                                     totalTratamientos = response.itemJson.length;
-                                    debugger;
+                                    //debugger;
                                     if (response.codeStatus == 0) {
                                         form.empty();
                                         if (response.itemJson.length > 0) {
@@ -636,7 +636,7 @@
                                                 if (item) {
                                                     item = JSON.parse(item)
                                                     allClinicalHistory = [...item]
-                                                    debugger;
+                                                    //debugger;
                                                     drawClinicTreatments(allClinicalHistory);
                                                     tratamientoID++;
                                                 }

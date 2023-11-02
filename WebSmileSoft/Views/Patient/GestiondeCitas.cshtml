@@ -174,7 +174,7 @@
         function fncheckDoctor(e) { var t = e.value; 0 == t ? document.getElementById("cDoctor").disabled = !0 : (fngetDoctors(t), document.getElementById("cDoctor").disabled = !1) } function obtenerFechaActualSinUTC(e) { return new Date(e.getTime() - 6e4 * e.getTimezoneOffset()).toISOString().split("T")[0] } $("#fecha").on("change", (function () { validarFecha() }));
         // const fechaActualSinUTC = obtenerFechaActualSinUTC();
         ////console.log(fechaActualSinUTC);
-        function validarFecha() { const e = obtenerFechaActualSinUTC(new Date); //console.log(e); const o = obtenerFechaActualSinUTC(new Date(document.getElementById("fecha").value + "T05:00:00Z")); //console.log(o), o < e && (Swal.fire({ icon: "info", title: "Oops...", text: "La fecha no puede ser menor que hoy.", confirmButtonColor: "#008dc9" }), document.getElementById("fecha").value = "") }
+        function validarFecha() { const e = obtenerFechaActualSinUTC(new Date); console.log(e); const o = obtenerFechaActualSinUTC(new Date(document.getElementById("fecha").value + "T05:00:00Z")); console.log(o), o < e && (Swal.fire({ icon: "info", title: "Oops...", text: "La fecha no puede ser menor que hoy.", confirmButtonColor: "#008dc9" }), document.getElementById("fecha").value = "") }
         
 
         function validarHora() {
