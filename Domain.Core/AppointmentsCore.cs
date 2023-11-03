@@ -29,10 +29,6 @@ namespace Domain.Core
             return responseModel;
         }
 
-        public async Task<GenericResponseModel> GetAppointmentsUserBlob(string uDocument)
-        {
-            GenericResponseModel responseModel = await _appointmentsRepository.GetAppointmentsUserBlob(uDocument);
-            return responseModel;
-        }
+       
     }
 }

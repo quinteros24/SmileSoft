@@ -418,8 +418,9 @@ div.dataTables_wrapper div.dataTables_filter input {
 /* Media query para pantallas más pequeñas */
 @media (max-width: 768px) {
     #navLogo {
-        max-width: 85%;
-        Reduzca el ancho máximo para pantallas más pequeñas
+        max-width: 130%;
+        min-width: 100%;
+        padding-left: 10px;
     }
 }
 
@@ -439,3 +440,16 @@ div.dataTables_wrapper div.dataTables_filter input {
         z-index:99999 !important;
     }
 }
+
+@media (max-width: 768px) {
+    #pdfButton {
+        display: none;
+    }
+}
+
+@media (max-width: 500px) {
+    .nav-item2 span {
+        display: none;
+    }
+}
+

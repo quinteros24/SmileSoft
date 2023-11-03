@@ -94,20 +94,5 @@ namespace Repository
             return genericResponseModel;
         }
 
-        public async Task<GenericResponseModel> GetAppointmentsUserBlob(string? uDocument)
-        {
-            string Query = AppointmentsQueries.GetAppointmentsUserBlob(uDocument);
-            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
-            ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(Query);
-            GenericResponseModel? genericResponseModel = new();
-            if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
-            {
-                DataTable dt = ItemResponseDB.DtObject;
-                genericResponseModel.CodeStatus = dt.Rows[0]["outputCodeError"].ToString();
-                genericResponseModel.MessageStatus = dt.Rows[0]["outputMessageError"].ToString();
-                genericResponseModel.Status = genericResponseModel.CodeStatus == "0";
-            }
-            return genericResponseModel;
-        }
     }
 }

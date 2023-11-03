@@ -199,14 +199,6 @@ namespace Repository.Queries
                    $"END CATCH";
         }
 
-        public static string GetAppointmentsUserBlob(string? uDocument)
-        {
-            return $"SELECT a.aUrlImage\n" +
-                $"FROM Appointments AS a\n " +
-                $"INNER JOIN Users AS u ON a.uID = u.uID\n" +
-                $"WHERE u.uDocument = '{uDocument}' AND a.aUrlImage IS NOT NULL";
-        }
-
 
         public static string UpdateAppointmentDate(int uID, int aID, DateTime newDate, TimeOnly newTime)
         {

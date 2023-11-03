@@ -1,6 +1,6 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
     // Set initial values from local storage
-    console.log("Funcion Cambiar tema cargada")
+    //console.log("Funcion Cambiar tema cargada")
     const backgroundColor = localStorage.getItem('backgroundColor');
     if (backgroundColor) {
         $("#content-wrapper").css("background-color", backgroundColor);

@@ -85,8 +85,12 @@
                                     <h4 class="text-dark mb-4"><strong>Iniciar Sesión</strong></h4>
                                 </div>
                                 <form class="user">
-                                    <div class="mb-3"><input class="form-control form-control-user" type="text" id="UserLogin" aria-describedby="emailHelp" placeholder="Username" name="Username"></div>
-                                    <div class="mb-3"><input class="form-control form-control-user" type="password" id="Password" placeholder="Contraseña" name="password"></div>
+                                    <div class="mb-3">
+                                        <input class="form-control form-control-user" type="text" id="UserLogin" aria-describedby="emailHelp" placeholder="Username" name="Username" autocomplete="username">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input class="form-control form-control-user" type="password" id="Password" placeholder="Contraseña" name="password" autocomplete="current-password">
+                                    </div>
                                     <div class="mb-3">
                                         <div class="custom-control custom-checkbox small">
                                             <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="remember_me"><label class="form-check-label custom-control-label" for="remember_me">Recordarme</label></div>
@@ -157,7 +161,7 @@
 
 
         function validarInicioSesion() {
-            //console.log("Script Iniciar Sesion");
+            ////console.log("Script Iniciar Sesion");
             // event.preventDefault();
             const urlEP = '@ViewBag.urlEndPoint';
             sessionStorage.setItem("urlEP", urlEP);
@@ -247,7 +251,7 @@
                         }
                     },
                     error: function (error) {
-                        //console.log("Error.");
+                        ////console.log("Error.");
                         Swal.fire({
                             text: "Error. " + error,
                             confirmButtonColor: '#008dc9'

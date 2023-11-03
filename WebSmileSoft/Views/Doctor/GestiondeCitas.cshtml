@@ -65,7 +65,7 @@
             window.location.href = '@Url.Action("AdministrarCitas", "Doctor")';
         } //SetAppointment
         let dID = sessionStorage.getItem("doctorID");
-        console.log('ID Doctor: ', dID);
+        //console.log('ID Doctor: ', dID);
         $.ajax({
             url: sessionStorage.urlEP + '/api/Appointments/v1/GetAppointmentsList',
             type: 'GET',
@@ -93,7 +93,7 @@
                     ];
                     dataSet.push(rowData);
                 });
-                console.log(dataSet);
+                //console.log(dataSet);
                 // Inicializa o actualiza el DataTable con los datos procesados
                 tablecitasd = $('#citasDoctor').DataTable({
                     columnDefs: [
@@ -216,7 +216,7 @@
 
                                     },
                                     error: function (error) {
-                                        console.log('Error al obtener los detalles del usuario.');
+                                        //console.log('Error al obtener los detalles del usuario.');
                                     }
 
                                 }).then((result) => {
@@ -233,7 +233,7 @@
                     // Maneja la acción del botón aqui
                     let data = tablecitasd.row($(this).parents('tr')).data();
                     let CitaID = data[1]; // la primera columna contiene el ID del usuario
-                    console.log("CitaID:", CitaID);
+                    //console.log("CitaID:", CitaID);
                     Swal.fire({
                         title: 'Select image',
                         input: 'file',
@@ -287,7 +287,7 @@
                                     $("#createFormHistory").click(() => createFormHistory(CitaID));
                                 } else {
                                     $("#form-history-content").empty();
-                                    console.log('Guardar cambios', event.target.value);
+                                    //console.log('Guardar cambios', event.target.value);
                                     changeDateStatus(event.target.value, CitaID);
                                 }
                             })
@@ -295,7 +295,7 @@
                         inputValidator: (value) => {
                             return new Promise((resolve) => {
                                 if (value > 0) {
-                                    console.log(value)
+                                    //console.log(value)
 
                                     // alert(value);
                                     //resolve(value); // Si se selecciona un estado, resolvemos con ese valor
@@ -310,12 +310,12 @@
                 });
             },
             error: function (error) {
-                console.log('Error al obtener los detalles del usuario.');
+                //console.log('Error al obtener los detalles del usuario.');
             }
         });
 
         function createFormHistory(citaID) {
-            console.log(citaID);
+            //console.log(citaID);
             Swal.close();
             // TODO hacer petición para obtener la estructura del formulario
 
@@ -401,13 +401,16 @@
             });
 
             // Botón para seleccionar archivo
-            let fileInput = $('<input type="file" id="fileInput" accept=".jpg, .jpeg, .png" />');
-
+            let fileInput = $('<input type="file" class="form-control" id="fileInput" accept=".jpg, .jpeg, .png" />');
+            let label = $(' <label class="input-group-text" for="fileInput" > Upload </label>')
             // Botón para subir archivo
             let uploadButton = $('<button id="uploadButton" class="btn btn-primary mt-2">Subir Archivo</button>');
-
+            // <div class="input-group mb-3" >
+            //     <input type="file" class="form-control" id = "inputGroupFile02" >
+            //         <label class="input-group-text" for= "inputGroupFile02" > Upload < /label>
+            //             < /div>
             uploadButton.click(() => {
-                console.log("Botón Subir Archivo clicado");
+                //console.log("Botón Subir Archivo clicado");
                 uploadFile(CitaID);
             });
 
@@ -422,6 +425,7 @@
                 confirmButtonText: 'Confirmar',
                 html: form,
                 focusConfirm: false,
+                width: 900
             }).then((result) => {
                 if (result.isConfirmed) {
                     finalStructure = finalStructure.map((question) => {
@@ -446,7 +450,7 @@
                 contentType: "application/json",
                 dataType: 'json',
                 success: function (response) {
-                    console.log(response)
+                    //console.log(response)
                     if (response.codeStatus == 0) {
                         Swal.fire({
                             title: 'Historia Clinica Creada',
@@ -470,7 +474,7 @@
                     }
                 },
                 error: function (error) {
-                    console.log('Error al obtener los detalles del usuario.');
+                    //console.log('Error al obtener los detalles del usuario.');
                 }
 
             }).then((result) => {
@@ -484,7 +488,7 @@
 
         function changeDateStatus(citaState, CitaID) {
             // Aquí puedes realizar la solicitud AJAX con el valor de citaState
-            //console.log(`Estado de cita seleccionado: ${citaState}`);
+            ////console.log(`Estado de cita seleccionado: ${citaState}`);
 
             $.ajax({
                 url: sessionStorage.urlEP + '/api/Appointments/v1/UpdateAppointmentStatus',
@@ -516,7 +520,7 @@
 
                 },
                 error: function (error) {
-                    console.log('Error al obtener los detalles del usuario.');
+                    //console.log('Error al obtener los detalles del usuario.');
                 }
 
             }).then((result) => {
@@ -533,27 +537,27 @@
                 showCancelButton: false,
                 showConfirmButton: false,
                 allowOutsideClick: false,
-                onBeforeOpen: () => {
+                didOpen: () => {
                     Swal.showLoading();
                 }
             });
         }
 
         function uploadFile(file, CitaID) {
-            console.log("Función uploadFile ejecutada.");
+            //console.log("Función uploadFile ejecutada.");
             const formData = new FormData();
             formData.append("file", file);
 
             // URL del servicio de carga de blobs (reemplaza con tu URL)
             const uploadUrl = `${sessionStorage.urlEP}/api/Blobs/upload?citaID=${CitaID}`;
-            console.log('dato enviado ', formData);
+            //console.log('dato enviado ', formData);
             fetch(uploadUrl, {
                 method: "POST",
                 body: formData,
             })
                 .then((response) => {
                     if (response.ok) {
-                        //console.log("Archivo cargado exitosamente.");
+                        ////console.log("Archivo cargado exitosamente.");
                         //showMessage("Archivo cargado exitosamente.", "green");
                         Swal.fire({
                             title: 'Archivo cargado exitosamente.',
@@ -566,7 +570,7 @@
                         })
                         
                     } else {
-                        //console.log("Error al cargar el archivo.");
+                        ////console.log("Error al cargar el archivo.");
                         //showMessage("Error al cargar el archivo.", "red");
                         Swal.fire({
                             title: 'Error al cargar el archivo.',

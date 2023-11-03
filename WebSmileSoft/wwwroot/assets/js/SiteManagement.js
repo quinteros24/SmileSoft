@@ -27,20 +27,20 @@ if (userRole !== '1') {
 // Cambiar el color de fondo
 $("#BackgroundColor").on("input", function () {
     const color = $(this).val();
-    console.log("Aplicando color a Fondo");
+    //console.log("Aplicando color a Fondo");
     // $("#SiteContainerRender").css("background-color", color);
     $("#content-wrapper").css("background-color", color);
 });
 // Cambiar el color de la barra lateral
 $("#SidebarColor").on("input", function () {
     const color = $(this).val();
-    console.log("Aplicando color a SideBar");
+    //console.log("Aplicando color a SideBar");
     $("#sidebar").css("background-color", color);
 });
 // Cambiar el color de la barra lateral
 $("#NavbarColor").on("input", function () {
     const color = $(this).val();
-    console.log("Aplicando color a Barra Superior");
+    //console.log("Aplicando color a Barra Superior");
     $("#nav_bar").removeClass("bg-primary");
     $("#nav_bar").css("background-color", color);
 });
