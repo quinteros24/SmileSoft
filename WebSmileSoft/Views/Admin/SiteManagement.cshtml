@@ -102,7 +102,7 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="display:none;">
                                     <form>
                                         @* NO CAMBIAR ESTRUCTURA DE ELEMENTOS, LOS DATOS SE OBTIENEN SEGÚN SU ESTRUCTURA *@
                                         <div class="mb-3">
@@ -113,7 +113,7 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <form>
                                         <div class="mb-3">
                                             <label for="logoInput" class="form-label">Cambiar Logo Menu Principal</label>
@@ -133,7 +133,7 @@
                         </div>
                         <div class="card-body">
                             <div class="row ">
-                                <div class="col-md-4">
+                                <div class="col-md-4" style="display:none;">
                                     <div class="card-body shadow align-content-center justify-content-center text-center">
                                         <form>
                                             <div class="form-group mx-auto">
@@ -146,7 +146,7 @@
                                         </form>
                                     </div>
                                 </div>
-                                <div class="col-md-4 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <div class="card-body shadow align-content-center justify-content-center text-center">
                                         <form>
                                             <div class="form-group mx-auto">
@@ -159,7 +159,7 @@
                                         </form>
                                     </div>
                                 </div>
-                                <div class="col-md-4 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <div class="card-body shadow align-content-center justify-content-center text-center">
                                         <form>
                                             <div class="form-group">
@@ -490,9 +490,6 @@
         //     }
         // })
 
-
-
-
         let finalStructure = [];
         //debugger;
         structure.length && drawQuestions(true)
@@ -509,13 +506,13 @@
 
         $("#add-option").click(function () {
             $("#options-container").append(`
-                                                                                                                                <div class="input-group mb-2">
-                                                                                                                                <input type="text" class="form-control option-input mx-1" placeholder="Nombre de la opción">
-                                                                                                                                <div class="input-group-append">
-                                                                                                                                    <button class="btn btn-danger remove-option" type="button">-</button>
-                                                                                                                                </div>
-                                                                                                                                </div>
-                                                                                                                            `);
+               <div class="input-group mb-2">
+               <input type="text" class="form-control option-input mx-1" placeholder="Nombre de la opción">
+               <div class="input-group-append">
+                   <button class="btn btn-danger remove-option" type="button">-</button>
+               </div>
+               </div>
+            `);
         });
         $(document).on("click", ".remove-option", function () {
             $(this).closest(".input-group").remove();
