@@ -5,7 +5,7 @@
 
 <nav aria-label="breadcrumb" class="main-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">@* <a asp-controller="Home" asp-action="Index">Inicio</a> *@Inicio</li>
+        <li class="breadcrumb-item">Inicio</li>
         <li class="breadcrumb-item">Usuario</li>
         <li class="breadcrumb-item active" aria-current="page">
             Ajustes de Usuario
@@ -151,26 +151,6 @@
                             </svg>
                         </a>
                     </li>
-                    @* <li class="nav-item">
-                    <a href="#notification"
-                    data-toggle="tab"
-                    class="nav-link has-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="feather feather-bell">
-                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                    </svg>
-                    </a>
-                    </li> *@
-
                 </ul>
             </div>
             <div class="card-body tab-content">
@@ -180,7 +160,7 @@
                 <!-- Opciones de Cuenta -->
 
                 <div class="tab-pane" id="account">
-                    <h6>Opciones de la Cuenta</h6>
+                    <h5 class="text-primary">Opciones de la Cuenta</h5>
                     <hr />
                     <form>
                         <div class="form-group">
@@ -207,10 +187,6 @@
                     <partial name="Security" />
                 </div>
 
-                <!-- Mostrar Campo Datos Medicos de los doctores -->
-                @* <div class="tab-pane" id="medicaldata">
-                <partial name="DatosMedicos" />
-                </div> *@
             </div>
         </div>
     </div>
@@ -230,14 +206,14 @@
             //verifyToken();
             let uRol = sessionStorage.getItem('userRole');
             if (uRol == 2) {
-                console.log("Cargando Especialidades");
+                //console.log("Cargando Especialidades");
                 $.ajax({
                     type: 'GET',
                     url: '@ViewBag.urlEndPoint' + '/api/Generics/v1/GetSpecialities', // Ruta para crear o actualizar usuarios
                     // contentType: 'application/json',
                     success: function (response) {
-                        console.log(JSON.stringify(response));
-                        //console.log(JSON.parse(response));
+                        //console.log(JSON.stringify(response));
+                        ////console.log(JSON.parse(response));
                         redirectView(JSON.stringify(response), "#DatosEstudios");
                     }
                 });
@@ -275,7 +251,19 @@
                 });
             });
         });
+        $(document).ready(function () {
+            // Get the current date
+            const currentDate = new Date();
 
+            // Calculate the date 18 years ago
+            const maxDate = new Date(currentDate.getFullYear() - 18, currentDate.getMonth(), currentDate.getDate());
+
+            // Format the date as YYYY-MM-DD
+            const maxDateString = maxDate.toISOString().split('T')[0];
+
+            // Set the max attribute of the input element
+            document.getElementById('birthDatep').setAttribute('max', maxDateString);
+        });
 
         // Obtén una referencia al campo de fecha de nacimiento
         const fechaNacimientoInput = document.getElementById('birthDatep');
@@ -286,7 +274,7 @@
             // Adjunta un controlador de eventos de clic al boton
             let uID = sessionStorage.getItem('userID');
 
-            //console.log("Buscando al Usuario " + uID);
+            ////console.log("Buscando al Usuario " + uID);
 
             $.ajax({
                 url: sessionStorage.urlEP + '/api/Users/v1/GetUserDetails',
@@ -295,31 +283,31 @@
                 contentType: "application/json",
                 dataType: 'json',
                 success: function (data) {
-                    console.log("Cargando Respuesta")
-                    console.log(data.itemJson);
+                    //console.log("Cargando Respuesta")
+                    //console.log(data.itemJson);
 
                     if (data.itemJson === null) {
-                        console.log("No se cargo correctamente el Formulario en View Profile");
+                        //console.log("No se cargo correctamente el Formulario en View Profile");
 
                     } else {
                         // Mostrar los datos en la consola o realizar otras acciones
                         let userData = data.itemJson; // Accede al primer elemento del arreglo
 
                         // Llama a una funcion para actualizar el formulario con los datos recibidos
-                        //console.log("Actualizando Formulario")
+                        ////console.log("Actualizando Formulario")
                         actualizarFormulario(userData);
                     }
                 },
                 error: function (error) {
-                    console.log('Error al obtener los detalles del usuario en View Profile.');
+                    //console.log('Error al obtener los detalles del usuario en View Profile.');
                 }
             });
 
             // Funcion para actualizar el formulario con los datos del usuario
             function actualizarFormulario(userData) {
                 let StatusMapping = {
-                    0: 'Activo',
-                    1: 'Inactivo'
+                    true: 'Activo',
+                    false: 'Inactivo'
                 };
                 let fechaCompleta = userData.uBirthDate;
                 let fechaSolo = null;
@@ -399,7 +387,7 @@
             }
 
             const fechaNacimientoInput = document.getElementById('birthDatep');
-            console.log(fechaNacimientoInput.value);
+            //console.log(fechaNacimientoInput.value);
             const esMayorDe18 = validarEdadMayorDe18('birthDatep');
 
             if (updatedUserData.uName === "" || updatedUserData.uLastName === "") {
@@ -408,7 +396,7 @@
                     confirmButtonColor: '#008dc9'
                 });
             }
-            
+
             else if (updatedUserData.uBirthDate === "") {
                 Swal.fire({
                     text: 'Por favor, ingrese su fecha de nacimiento.',
@@ -479,14 +467,14 @@
 
         function ChangeUserPass() {
 
-            console.log("Cambiar Contrasena");
+            //console.log("Cambiar Contrasena");
             event.preventDefault();
             let password = document.getElementById("NewPassword").value;
             let repeat_password = document.getElementById("Repeat_Password").value;
 
             let uID = sessionStorage.getItem('userID');;
 
-            console.log("ID del Usuario" + uID);
+            //console.log("ID del Usuario" + uID);
             if (password === "") {
                 Swal.fire({
                     text: 'Por favor, ingrese su nueva contrasena',
@@ -525,8 +513,8 @@
                     dataType: "json",
                     success: function (response) {
 
-                        // console.log("Solicitud exitosa. Datos enviados:", data);
-                        // console.log("Respuesta del servidor:", response);
+                        // //console.log("Solicitud exitosa. Datos enviados:", data);
+                        // //console.log("Respuesta del servidor:", response);
                         if (response.codeStatus == 0) {
 
                             //window.location.href = '@Url.Action("Index", "")';
@@ -544,7 +532,7 @@
                         }
                     },
                     error: function (xhr, status, error) {
-                        console.log("Error.");
+                        //console.log("Error.");
                     }
                 });
             }
@@ -603,7 +591,7 @@
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    //console.log("Desactivar 2" + userId);
+                    ////console.log("Desactivar 2" + userId);
                     // Realiza la solicitud AJAX para desactivar el usuario
                     $.ajax({
                         url: sessionStorage.urlEP + '/api/Users/v1/SetUserStatus/',
@@ -612,7 +600,7 @@
                         contentType: "application/json",
                         dataType: 'json',
                         success: function (response) {
-                            console.log("Respuesta del Servidor " + response);
+                            //console.log("Respuesta del Servidor " + response);
 
                             Swal.fire({
                                 title: 'Usuario Desactivado',
