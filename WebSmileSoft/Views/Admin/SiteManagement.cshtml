@@ -1,7 +1,9 @@
-﻿
+﻿@{
+    ViewData["Title"] = "Site Management";
+}
 <nav aria-label="breadcrumb" class="main-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"> @* <a asp-controller="Home" asp-action="Index">Inicio</a>  *@Inicio</li>
+        <li class="breadcrumb-item"> Inicio</li>
         <li class="breadcrumb-item">Sitio</li>
         <li class="breadcrumb-item active" aria-current="page">
             Ajustes del Sitio
@@ -15,55 +17,24 @@
             <div class="card-body">
                 <nav class="nav flex-column nav-pills nav-gap-y-1">
                     <!-- Ajustes del Sitio -->
-                    <a href="#sitesettings"
-                       data-toggle="tab"
-                       class="nav-item nav-link has-icon nav-link-faded">
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                             width="24"
-                             height="24"
-                             viewBox="0 0 24 24"
-                             fill="none"
-                             stroke="currentColor"
-                             stroke-width="2"
-                             stroke-linecap="round"
-                             stroke-linejoin="round"
-                             class="feather feather-settings mr-2">
+                    <a href="#sitesettings" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings mr-2">
                             <circle cx="12" cy="12" r="3"></circle>
                             <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                         </svg> Ajustes del Sitio
                     </a>
-                    <a href="#wpsettings"
-                       data-toggle="tab"
-                       class="nav-item nav-link has-icon nav-link-faded">
-                        <i class="fa-regular fa-address-book fa-lg"></i>
-                        @* <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 384 512" style="fill: #008cce" class="feather feather-user mr-2" fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="3"></circle>
-                        <path d="M256 48V64c0 17.7-14.3 32-32 32H160c-17.7 0-32-14.3-32-32V48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H256zM0 64C0 28.7 28.7 0 64 0H320c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zM160 320h64c44.2 0 80 35.8 80 80c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16c0-44.2 35.8-80 80-80zm-32-96a64 64 0 1 1 128 0 64 64 0 1 1 -128 0z" />
-                        </svg> *@ Ajustes de Contacto
+                    <a href="#wpsettings" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                        <i class="fa-regular fa-address-book fa-lg"></i> Ajustes de Contacto
                     </a>
-                    <a href="#questionsettings"
-                       data-toggle="tab"
-                       class="nav-item nav-link has-icon nav-link-faded">
+                    <a href="#questionsettings" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
                         <i class="fa-solid fa-notes-medical fa-lg"></i> Configurar Formulario
-                        @* <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 384 512" style="fill: #008cce" class="feather feather-user mr-2" fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="3"></circle>
-                        <path d="M96 352V96c0-35.3 28.7-64 64-64H416c35.3 0 64 28.7 64 64V293.5c0 17-6.7 33.3-18.7 45.3l-58.5 58.5c-12 12-28.3 18.7-45.3 18.7H160c-35.3 0-64-28.7-64-64zM272 128c-8.8 0-16 7.2-16 16v48H208c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h48v48c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V256h48c8.8 0 16-7.2 16-16V208c0-8.8-7.2-16-16-16H320V144c0-8.8-7.2-16-16-16H272zm24 336c13.3 0 24 10.7 24 24s-10.7 24-24 24H136C60.9 512 0 451.1 0 376V152c0-13.3 10.7-24 24-24s24 10.7 24 24l0 224c0 48.6 39.4 88 88 88H296z" /></svg> Configurar Formulario
-                        *@
                     </a>
                 </nav>
             </div>
         </div>
         <div class="card shadow mb-4 my-2">
             <div class="card-header py-3">
-                <h4 class="text-danger align-content-center fw-bold m-0">Importante!!</h4>
+                <h4 class="text-danger align-content-center fw-bold m-0">Información!!</h4>
             </div>
             <div>
                 <img class="w-100 img-fluid rounded" src="~/assets/img/anuncios/SmileSoft.png" alt="Slide Image">
@@ -89,8 +60,10 @@
                                  class="feather feather-settings">
                                 <circle cx="12" cy="12" r="3"></circle>
                                 <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                            </svg>
+                            </svg><span>Opciones del Sitio</span>
                         </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="#wpsettings" data-toggle="tab" class="nav-link has-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 384 512" style="fill: #008cce" class="feather feather-user mr-2" fill="none"
                                  stroke="currentColor"
@@ -99,8 +72,10 @@
                                  stroke-linejoin="round">
                                 <circle cx="12" cy="12" r="3"></circle>
                                 <path d="M256 48V64c0 17.7-14.3 32-32 32H160c-17.7 0-32-14.3-32-32V48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H256zM0 64C0 28.7 28.7 0 64 0H320c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zM160 320h64c44.2 0 80 35.8 80 80c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16c0-44.2 35.8-80 80-80zm-32-96a64 64 0 1 1 128 0 64 64 0 1 1 -128 0z" />
-                            </svg>
+                            </svg> <span>Ajustes de Contacto</span>
                         </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="#questionsettings" data-toggle="tab" class="nav-link has-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 384 512" style="fill: #008cce" class="feather feather-user mr-2" fill="none"
                                  stroke="currentColor"
@@ -109,7 +84,7 @@
                                  stroke-linejoin="round">
                                 <circle cx="12" cy="12" r="3"></circle>
                                 <path d="M96 352V96c0-35.3 28.7-64 64-64H416c35.3 0 64 28.7 64 64V293.5c0 17-6.7 33.3-18.7 45.3l-58.5 58.5c-12 12-28.3 18.7-45.3 18.7H160c-35.3 0-64-28.7-64-64zM272 128c-8.8 0-16 7.2-16 16v48H208c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h48v48c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V256h48c8.8 0 16-7.2 16-16V208c0-8.8-7.2-16-16-16H320V144c0-8.8-7.2-16-16-16H272zm24 336c13.3 0 24 10.7 24 24s-10.7 24-24 24H136C60.9 512 0 451.1 0 376V152c0-13.3 10.7-24 24-24s24 10.7 24 24l0 224c0 48.6 39.4 88 88 88H296z" />
-                            </svg> Configurar Formulario
+                            </svg> <span>Configurar Formulario</span>
                         </a>
                     </li>
 
@@ -119,7 +94,7 @@
             <div class="card-body tab-content">
                 <!-- Ajustes del Sitio -->
                 <div class="tab-pane active" id="sitesettings">
-                    <h6>Opciones del Sitio</h6>
+                    <h5 class="text-primary">Opciones del Sitio</h5>
                     <hr />
                     <div class="card shadow mb-3">
                         <div class="card-header py-3">
@@ -127,18 +102,18 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col">
+                                <div class="col-md-6">
                                     <form>
                                         @* NO CAMBIAR ESTRUCTURA DE ELEMENTOS, LOS DATOS SE OBTIENEN SEGÚN SU ESTRUCTURA *@
                                         <div class="mb-3">
                                             <label for="ChangeLogo" class="form-label"><span id="ChangeLogoLabel">Cambiar Logo del Login</span></label>
                                             <input class="form-control" type="file" id="ChangeLogo" accept=".jpg, .png" onchange="fnConvertToBase64(this)">
-                                            <div class="mb-3 my-2 "><button class="btn btn-primary btn-en-desarrollo" type="submit" onclick="uploadImage(this, 1)">Subir</button></div>
+                                            <div class="mb-3 my-2 "><button class="btn btn-primary" type="submit" onclick="uploadImage(this, 1)">Subir</button></div>
 
                                         </div>
                                     </form>
                                 </div>
-                                <div class="col">
+                                <div class="col-md-6">
                                     <form>
                                         <div class="mb-3">
                                             <label for="logoInput" class="form-label">Cambiar Logo Menu Principal</label>
@@ -158,42 +133,43 @@
                         </div>
                         <div class="card-body">
                             <div class="row ">
-                                <div class="col-md-6">
-                                    <div class="card-body shadow align-content-center justify-content-center">
+                                <div class="col-md-4">
+                                    <div class="card-body shadow align-content-center justify-content-center text-center">
                                         <form>
-                                            <div class="form-group">
+                                            <div class="form-group mx-auto">
                                                 <label for="BackgroundColor" class="form-label"> Cambiar Color Fondo del Sitio</label>
-                                                <input type="color" class="form-control form-control-color" id="BackgroundColor" value="#563d7c" title="Escoger Color" style="width: 6.5rem;">
-                                            </div><button type="button" class="btn btn-primary my-2 btn-en-desarrollo" onclick="fnUpdateDataOffice(3)">
-                                                Actualizar
-                                            </button>
+                                                <input type="color" class="form-control form-control-color mx-auto" id="BackgroundColor" value="#563d7c" title="Escoger Color" style="width: 6.5rem;">
+                                                <button type="button" class="btn btn-primary my-2 " onclick="fnUpdateDataOffice(3)">
+                                                    Actualizar
+                                                </button>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <div class="card-body shadow align-content-center justify-content-center">
+                                <div class="col-md-4 mb-3">
+                                    <div class="card-body shadow align-content-center justify-content-center text-center">
                                         <form>
-                                            <div class="form-group">
+                                            <div class="form-group mx-auto">
                                                 <label for="SidebarColor">Cambiar Color de la Barra Lateral</label>
-                                                <input type="color" class="form-control form-control-color" id="SidebarColor" value="#be1522" title="Escoger Color" style="width: 6.5rem;" />
-                                            </div><button type="button" class="btn btn-primary my-2 btn-en-desarrollo" onclick="fnUpdateDataOffice(5)">
-                                                Actualizar
-                                            </button>
+                                                <input type="color" class="form-control form-control-color mx-auto" id="SidebarColor" value="#be1522" title="Escoger Color" style="width: 6.5rem;" />
+                                                <button type="button" class="btn btn-primary my-2 " onclick="fnUpdateDataOffice(5)">
+                                                    Actualizar
+                                                </button>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <div class="card-body shadow align-content-center justify-content-center">
+                                <div class="col-md-4 mb-3">
+                                    <div class="card-body shadow align-content-center justify-content-center text-center">
                                         <form>
                                             <div class="form-group">
                                                 <label for="NavbarColor">Cambiar Color de la Barra Superior</label>
-                                                <input type="color" class="form-control form-control-color" id="NavbarColor" value="#be1522" title="Escoger Color" style="width: 6.5rem;" />
+                                                <input type="color" class="form-control form-control-color mx-auto" id="NavbarColor" value="#be1522" title="Escoger Color" style="width: 6.5rem;" />
+
+                                                <button type="button" class="btn btn-primary my-2 " onclick="fnUpdateDataOffice(4)">
+                                                    Actualizar
+                                                </button>
                                             </div>
-                                            <button type="button" class="btn btn-primary my-2 btn-en-desarrollo" onclick="fnUpdateDataOffice(4)">
-                                                Actualizar
-                                            </button>
                                         </form>
                                     </div>
                                 </div>
@@ -204,7 +180,7 @@
                 <!-- Fin Ajustes del -->
 
                 <div class="tab-pane" id="wpsettings">
-                    <h6>Ajustes de Contacto</h6>
+                    <h5 class="text-primary">Ajustes de Contacto</h5>
                     <hr />
                     <div class="card shadow mb-3">
                         <div class="card-header py-3">
@@ -231,7 +207,7 @@
                 </div>
 
                 <div class="tab-pane" id="questionsettings">
-                    <h6>Configurar Preguntas de Historias Clinicas</h6>
+                    <h5 class="text-primary">Configurar Preguntas de Historias Clinicas</h5>
                     <hr />
                     <!-- Formulario para agregar preguntas de historia clinica -->
                     <div class="card shadow mb-3">
@@ -294,15 +270,25 @@
 @section Scripts{
 
     <script src="~/assets/js/sitemanagement.js"></script>
+
     <script>
 
-        var base64Image = '';
+        let base64Image = '';
 
         $(document).ready(function () {
             fnGetDataSite(sessionStorage.getItem('userID'));
+            // Get the color values from localStorage
+            let backgroundColor = localStorage.getItem("backgroundColor");
+            let topColor = localStorage.getItem("topColor");
+            let sideColor = localStorage.getItem("sideColor");
+
+            // Set the initial colors for each input
+            document.getElementById("BackgroundColor").value = backgroundColor || "#563d7c";
+            document.getElementById("SidebarColor").value = sideColor || "#be1522";
+            document.getElementById("NavbarColor").value = topColor || "#be1522";
         });
 
-        function fnGetDataSite(uID){
+        function fnGetDataSite(uID) {
             $.ajax({
                 url: sessionStorage.urlEP + '/api/Generics/v1/GetDataSite?uID=' + uID,
                 type: 'GET',
@@ -319,7 +305,7 @@
             });
         }
 
-        function fnConvertToBase64(element){
+        function fnConvertToBase64(element) {
             if (element.files && element.files[0]) {
                 let reader = new FileReader();
 
@@ -332,7 +318,7 @@
             }
         }
 
-        function uploadImage(element, op){
+        function uploadImage(element, op) {
             let file = element.parentElement.previousElementSibling.files[0];
 
             let uID = sessionStorage.getItem('userID');
@@ -343,21 +329,34 @@
             const formData = new FormData();
             formData.append("file", file);
 
+
             const uploadUrl = `${sessionStorage.urlEP}/api/Blobs/upload?citaID=0&genericName=ImageForOffice${text}_${uID}`;
-            
-            fetch(uploadUrl, {
-                method: "POST",
-                body: formData,
-            })
-                .then((response) => {
+
+            $.ajax({
+                url: uploadUrl,
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    //debugger;
                     fnUpdateDataOffice(op, response);
-                })
-                .catch((error) => {
+                },
+                error: function () {
                     showMessage("Error de red al cargar el archivo.", "red");
-                });
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Error de red al cargar el archivo.',
+                        icon: 'error',
+                        confirmButtonText: 'Aceptar'
+                    })
+                }
+            });
+
         }
 
-        function fnUpdateDataOffice(op = 0, url = ''){
+
+        function fnUpdateDataOffice(op = 0, url = '') {
             if (op == 0) return;
 
             if ((op == 1 || op == 2) && base64Image == '') return;
@@ -379,16 +378,19 @@
                 case 3:
                     route = 'SetDataSiteBackgroundColor';
                     data = $('#BackgroundColor').val();
+                    data = data.replace('#', '%23');
                     break;
 
                 case 4:
                     route = 'SetDataSiteTopColor';
                     data = $('#NavbarColor').val();
+                    data = data.replace('#', '%23');
                     break;
 
                 case 5:
                     route = 'SetDataSiteSideColor';
                     data = $('#SidebarColor').val();
+                    data = data.replace('#', '%23');
                     break;
 
                 default:
@@ -405,7 +407,7 @@
                 contentType: "application/json",
                 dataType: 'json',
                 success: function (response) {
-                    if (response.codeStatus == '-1'){
+                    if (response.codeStatus == '-1') {
                         Swal.fire({
                             title: 'Ups...',
                             text: response.messageStatus,
@@ -425,43 +427,76 @@
 
         }
 
-
-
-
-
-
         let structure = [];
+        function getUsersClinicStoryFormat() {
+            $.ajax({
+                url: `${sessionStorage.urlEP}/api/Generics/v1/GetUsersClinicStoryFormat?oID=1`,
+                type: 'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                async: false,
+                success: function (response) {
+                    //const { itemJson, codeStatus } = response;
 
-        $.ajax({
-            url: sessionStorage.urlEP + '/api/Generics/v1/GetUsersClinicStoryFormat?oID=1',
-            type: 'GET',
-            contentType: "application/json",
-            dataType: 'json',
-            async: false,
-            success: function ({ itemJson, codeStatus }) {
-                if (codeStatus == 0) {
-                    structure = JSON.parse(itemJson);
-                    console.log('Structure Json respond: ', structure);
-                    console.log('Structure Json respond Long: ', structure.length);
-
+                    if (response.codeStatus == 0) {
+                        ////console.log("response.itemJson: ", response.itemJson);
+                        structure = [];
+                        structure = JSON.parse(response.itemJson);
+                        ////console.log('Structure Json respond: ', structure);
+                        ////console.log('Structure Json respond Long: ', structure.length);
+                    } else if (response.codeStatus == -1) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: response.messageStatus,
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar'
+                        });
+                    }
+                },
+                error: function (error) {
+                    console.error('There was a problem with the AJAX request:', error);
                 }
-                else if (response.codeStatus == -1) {
-                    Swal.fire({
-                        title: 'Error',
-                        text: response.messageStatus,
-                        icon: 'error',
-                        confirmButtonText: 'Aceptar'
-                    })
-                }
-            }
-        })
+            });
+        }
 
- 
+        getUsersClinicStoryFormat();
+
+
+        // $.ajax({
+        //     url: sessionStorage.urlEP + '/api/Generics/v1/GetUsersClinicStoryFormat?oID=1',
+        //     type: 'GET',
+        //     contentType: "application/json",
+        //     dataType: 'json',
+        //     async: false,
+        //     success: function ({ itemJson, codeStatus }) {
+        //         if (codeStatus == 0) {
+        //             structure2 = itemJson; //Test
+        //             //structure = JSON.parse(itemJson);
+        //             structure = JSON.parse(itemJson).filter(item => item !== null);
+        //             //console.log('Structure2 Json respond: ', structure2);
+        //             //console.log('Structure2 Json respond Long: ', structure2.length);
+        //             //console.log('Structure Json respond: ', structure);
+        //             //console.log('Structure Json respond Long: ', structure.length);
+
+        //         }
+        //         else if (response.codeStatus == -1) {
+        //             Swal.fire({
+        //                 title: 'Error',
+        //                 text: response.messageStatus,
+        //                 icon: 'error',
+        //                 confirmButtonText: 'Aceptar'
+        //             })
+        //         }
+        //     }
+        // })
+
+
 
 
         let finalStructure = [];
+        //debugger;
         structure.length && drawQuestions(true)
-
+        //console.log('Structure length: ', structure.length);
         $("#question-type").change(function () {
             if ($(this).val() === "multiple") {
                 $(".option-container").addClass("d-block");
@@ -474,15 +509,14 @@
 
         $("#add-option").click(function () {
             $("#options-container").append(`
-                                                                                                                <div class="input-group mb-2">
-                                                                                                                <input type="text" class="form-control option-input mx-1" placeholder="Nombre de la opción">
-                                                                                                                <div class="input-group-append">
-                                                                                                                    <button class="btn btn-danger remove-option" type="button">-</button>
-                                                                                                                </div>
-                                                                                                                </div>
-                                                                                                            `);
+                                                                                                                                <div class="input-group mb-2">
+                                                                                                                                <input type="text" class="form-control option-input mx-1" placeholder="Nombre de la opción">
+                                                                                                                                <div class="input-group-append">
+                                                                                                                                    <button class="btn btn-danger remove-option" type="button">-</button>
+                                                                                                                                </div>
+                                                                                                                                </div>
+                                                                                                                            `);
         });
-
         $(document).on("click", ".remove-option", function () {
             $(this).closest(".input-group").remove();
         });
@@ -490,7 +524,7 @@
         $("#add-question").click(() => drawQuestions());
 
         function drawQuestions(firstLoad = false) {
-            console.log("Cargar Preguntas");
+            ////console.log("Cargar Preguntas");
             const type = $("#question-type").val();
             const name = $("#question").val();
             let options = null;
@@ -514,8 +548,8 @@
                 })
                 return;
             }
-            console.log('Estructure: ', structure);
-            console.log('Estructure long: ', structure.length);
+            ////console.log('Estructure: ', structure);
+            ////console.log('Estructure long: ', structure.length);
             const question = {
                 // id: structure.length + 1,
                 id: structure.length + 1,
@@ -526,7 +560,7 @@
 
             structure.push(question);
 
-            console.log({ structure })
+            ////console.log({ structure })
 
             if (structure.length) {
                 $("#save-all-questions").removeClass("d-none");
@@ -539,12 +573,17 @@
             }
 
             type === "multiple" && $(".input-group").remove();
+
+            // Elimina la última pregunta agregada
+            if (structure.length > 0) {
+                structure.pop();
+            }
             updateStructuredForm(structure);
         }
 
         // Grafico dinamicamente las preguntas dependiendo de su tipo
         function updateStructuredForm(struct) {
-            console.log({ struct })
+            ////console.log({ struct })
             let questionTypes = {
                 'open': function (question) {
                     let inputField = $(`<input disabled placeholder="Pregunta abierta" type="text" id="${question.id}" class="form-control"></input><br>`);
@@ -591,15 +630,15 @@
             form.empty();
 
             finalStructure = [];
-            // console.log('Struct: ', struct);
-            // console.log('Struct: ', struct.length);
+            // //console.log('Struct: ', struct);
+            // //console.log('Struct: ', struct.length);
 
 
             struct.forEach(function (question, index) {
-                console.log('Index:', index);
+                ////console.log('Index:', index);
                 question.id = index + 1;
                 let questionContainer = $(`<div class="question-${question.id}"></div>`);
-                console.log('Index Question: ', question.id);
+                ////console.log('Index Question: ', question.id);
                 if (question.type in questionTypes) {
                     let inputElement = questionTypes[question.type](question);
                     finalStructure.push(question);
@@ -914,7 +953,7 @@
                 contentType: "application/json",
                 dataType: 'json',
                 success: function (response) {
-                    console.log(response)
+                    ////console.log(response)
                     if (response.codeStatus == 0) {
                         Swal.fire({
                             title: 'Preguntas Guardadas',
@@ -937,7 +976,7 @@
                     }
                 },
                 error: function (error) {
-                    console.log(error);
+                    //console.log(error);
                 }
             }).then((result) => {
                 if (result.isConfirmed) {

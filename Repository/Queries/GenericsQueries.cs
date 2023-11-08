@@ -37,6 +37,15 @@ namespace Repository.Queries
                     $"ORDER BY A.aDate DESC";
         }
 
+        public static string GetAppointmentsUserBlob(string uDocument)
+        {
+            return $"SELECT A.aUrlImage\n" +
+                $"FROM Appointments AS A\n " +
+                $"INNER JOIN Users AS U ON A.uID = U.uID\n" +
+                $"WHERE U.uDocument = '{uDocument}' AND A.aUrlImage IS NOT NULL\n" +
+                $"ORDER BY A.aDate DESC";
+        }
+
         public static string GetDataSite(int? uID, string? IP = "")
         {
             string query = $"SELECT TOP(1) UrlImageLogin, UrlImageMenu, BackgroundColor, TopColor, SideColor FROM Offices AS O \n";

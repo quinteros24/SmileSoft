@@ -122,6 +122,10 @@ namespace Domain.Core
         {
             return await _genericsRepository.SetDataSiteSideColor(uID , data);
         }
+        public async Task<GenericResponseModel> GetAppointmentsUserBlob(string uDocument)
+        {
+            return await _genericsRepository.GetAppointmentsUserBlob(uDocument);
+        }
 
     }
 }

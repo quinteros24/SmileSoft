@@ -20,5 +20,6 @@ namespace Domain.Interfaces
         Task<GenericResponseModel> SetDataSiteBackgroundColor(int uID, string data);
         Task<GenericResponseModel> SetDataSiteTopColor(int uID, string data);
         Task<GenericResponseModel> SetDataSiteSideColor(int uID, string data);
+        Task<GenericResponseModel> GetAppointmentsUserBlob(string uDocument);
     }
 }

@@ -36,5 +36,7 @@ namespace EpSmileSoft.Controllers
         {
             return await _appointmentsCore.UpdateAppointmentStatus(aID, asID);
         }
+        
+
     }
 }
