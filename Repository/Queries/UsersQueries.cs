@@ -34,10 +34,10 @@ namespace Repository.Queries
                 $"END CATCH";
         }
 
-        public static string GetUserDetails(int uID)
+        public static string GetUserDetails(int? uID, string? uDocument)
         {
             return $"BEGIN TRY\n " +
-                $"  SELECT *, 'OBJECT' AS TableName FROM dbo.Users AS U LEFT JOIN dbo.Doctors AS D ON U.uID = D.uID WHERE U.[uID] = {uID}\n" +
+                $"  SELECT *, 'OBJECT' AS TableName FROM dbo.Users AS U LEFT JOIN dbo.Doctors AS D ON U.uID = D.uID WHERE U.[uID] = '{uID}' OR U.uDocument = '{uDocument}'\n" +
                 $"    SELECT '0' AS OutputCodeError, 'Consulta correcta' AS OutputMessageError, 'Parameters' AS TableName\n" +
                 $"END TRY\n" +
                 $"BEGIN CATCH\n" +
@@ -50,7 +50,7 @@ namespace Repository.Queries
             string fecha = Item.uBirthDate.Value.Year.ToString() + "-" + Item.uBirthDate.Value.Month.ToString("00") + "-" + Item.uBirthDate.Value.Day.ToString("00");
 
             string query = $"DECLARE @aux AS TABLE([uID] INT)\n" +
-                             $"DECLARE @Response AS VARCHAR(MAX) = 'Usuario '\n" +
+                             $"DECLARE @Response AS VARCHAR(MAX) = 'Usuario ', @CodeResponse AS VARCHAR(10) = '-1'\n" +
                              $"BEGIN TRY\n";
 
             if (Item.uID == 0)
@@ -78,6 +78,7 @@ namespace Repository.Queries
                     $"        VALUES ({Item.utID}, '{Item.uName}', '{Item.uLastName}', '{Item.uCellphone}', '{Item.uAddress}', '{Item.uLoginName}', \n" +
                     $"        '{Item.uEmailAddress}', HASHBYTES('SHA2_256', CAST('{Item.uPassword}' AS VARCHAR(8000))), {Item.dtID}, '{Item.uDocument}', {(Item.uStatus ? 1 : 0)},{Item.oID},{Item.gID},'{fecha}');\n" +
                     $"        SET @Response = CONCAT(@Response,'Registrado con éxito.')\n" +
+                    $"        SET @CodeResponse = '0'\n" +
                     $"    END\n";
 
                 /*query += $"    INSERT INTO dbo.Users (utID, uName, uLastName, uCellphone, uAddress, uLoginName, uEmailAddress, uPassword, dtID, uDocument, uStatus, oID, gID, uBirthDate)\n" +
@@ -135,6 +136,7 @@ namespace Repository.Queries
                 // Eliminar la última coma y agregar la condición WHERE
                 query = query.TrimEnd(',', ' ') + $"\n    WHERE [uID] = {Item.uID};\n" +
                         $"    INSERT INTO @aux([uID])VALUES({Item.uID})\n" + 
+                        $"    SET @CodeResponse = '0'\n" + 
                         $"    SET @Response = CONCAT(@Response,'actualizado con éxito.')\n";
 
             }
@@ -159,7 +161,7 @@ namespace Repository.Queries
                          $"    END\n";
             }
 
-            query +=     $"    SELECT '0' AS OutputCodeError, @Response AS OutputMessageError\n" +
+            query +=     $"    SELECT @CodeResponse AS OutputCodeError, @Response AS OutputMessageError\n" +
                          $"END TRY\n" +
                          $"BEGIN CATCH\n" +
                          $"    SELECT ERROR_NUMBER() AS OutputCodeError, ERROR_MESSAGE() AS OutputMessageError, 'Parameters' AS TableName\n" +

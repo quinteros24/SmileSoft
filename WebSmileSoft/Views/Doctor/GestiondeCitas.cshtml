@@ -9,9 +9,46 @@
             <div class="card-body">
                 <!-- Aquí va la tabla -->
                 <div class="table-responsive">
-                <table id="citasDoctor" class="table display" width="100%"></table>
+                    <table id="citasDoctor" class="table display" width="100%"></table>
                 </div>
             </div>
+        </div>
+
+        <div class="card mt-4">
+            <div class="card-body">
+                <input type="file" id="fileInput1" accept=".jpg, .jpeg, .png" />
+                <button id="uploadButton1" class="btn btn-primary mt-2">Subir Archivo</button>
+                <p id="message" class="mt-2"></p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal fade  " id="clinicalHistoryModal" tabindex="-1" aria-labelledby="passwordModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <spanc class="d-flex flex-row">
+                    <h5 class="align-self-center" id="passwordModalLabel">Historia clínica de: </h5>
+                    <h5 class="align-self-center" id="clinical-history-username"> </h5>
+                </spanc>
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form class="form-group mb-4 align-items-center justify-content-center mt-1 p-4"
+                  id="history-clinical-modal-content">
+                <input type="file" id="fileInput" accept=".jpg, .jpeg, .png" />
+                <button id="uploadButton" class="btn btn-primary mt-2">Subir Archivo</button>
+            </form>
+
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         </div>
     </div>
 </div>
@@ -27,9 +64,13 @@
         function abrirCita() {
             window.location.href = '@Url.Action("AdministrarCitas", "Doctor")';
         } //SetAppointment
+        let dID = sessionStorage.getItem("doctorID");
+        console.log('ID Doctor: ', dID);
         $.ajax({
             url: sessionStorage.urlEP + '/api/Appointments/v1/GetAppointmentsList',
             type: 'GET',
+            // data: { 'uID': 0 },
+            data: { 'dID': dID },
             contentType: "application/json",
             dataType: 'json',
             success: function (data) {
@@ -40,7 +81,7 @@
                     let fechaCita = cita.aDate;
                     let fechaFormateada = fechaCita.substring(0, 10);
                     let rowData = [
-                        index+1,
+                        index + 1,
                         cita.aID,
                         fechaFormateada,
                         cita.uName,
@@ -77,7 +118,8 @@
                             orderable: false, // Para desactivar la ordenación en esta columna
                             data: null, // Usaremos la columna "Acciones" solo para botones
                             defaultContent: '<button class="btn btn-primary btn-sm btnDesactivarC" data-toggle="tooltip" title="Cancelar Cita" type="button"> <i class="fas fa-ban"> </i></button> ' +
-                                '<button class="btn btn-warning btn-sm btnEditarC" data-toggle="modal" data-toggle="tooltip" title="Cambiar Estado de la Cita"> <i class="fa-regular fa-pen-to-square"></i></button> '
+                                '<button class="btn btn-warning btn-sm btnEditarC" data-toggle="modal" data-target="#editarCitaModal" data-toggle="tooltip" title="Reprogramar Cita"> <i class="fa-regular fa-pen-to-square"></i></button> ' +
+                                '<button class="btn btn-warning btn-sm btnFileC" data-toggle="modal" data-target="#UploadFileCitaModal" data-toggle="tooltip" title="Subir Imagen"> <i class="fa-regular fa-pen-to-square"></i></button>'
                         }
                     ],
                     data: dataSet,
@@ -187,6 +229,40 @@
                     }
 
                 });
+                tablecitasd.column(9).nodes().to$().find('.btnFileC').click(async function () {
+                    // Maneja la acción del botón aqui
+                    let data = tablecitasd.row($(this).parents('tr')).data();
+                    let CitaID = data[1]; // la primera columna contiene el ID del usuario
+                    console.log("CitaID:", CitaID);
+                    Swal.fire({
+                        title: 'Select image',
+                        input: 'file',
+                        inputAttributes: {
+                            'accept': 'image/*',
+                            'aria-label': 'Upload your profile picture'
+                        },
+                        showCancelButton: true, // Add this if you want a cancel button
+                        inputValidator: (file) => {
+                            if (!file) {
+                                return 'You need to choose an image';
+                            }
+                        }
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            const reader = new FileReader();
+                            reader.onload = (e) => {
+                                uploadFile(result.value, CitaID); // Call the uploadFile function with the selected file
+                                Swal.fire({
+                                    title: 'Your uploaded picture',
+                                    imageUrl: e.target.result,
+                                    imageAlt: 'The uploaded picture'
+                                });
+                            };
+                            reader.readAsDataURL(result.value);
+                        }
+                    });
+
+                });
                 tablecitasd.column(9).nodes().to$().find('.btnEditarC').click(async function () {
                     // Maneja la acción del botón aqui
                     let data = tablecitasd.row($(this).parents('tr')).data();
@@ -202,12 +278,28 @@
                         },
                         inputPlaceholder: 'Selecciona el estado de la cita',
                         showCancelButton: true,
+                        html: "<div id='form-history-content'></div>",
+                        didOpen: function (ele) {
+                            $(ele).find('.swal2-select').insertBefore($(ele).find('.swal2-content div'));
+                            Swal.getInput().addEventListener('change', (event) => {
+                                if (event.target.value == 3) {
+                                    $("#form-history-content").append('<button type="button" class="btn btn-primary" id="createFormHistory">Agregar historia clínica</button>');
+                                    $("#createFormHistory").click(() => createFormHistory(CitaID));
+                                } else {
+                                    $("#form-history-content").empty();
+                                    console.log('Guardar cambios', event.target.value);
+                                    changeDateStatus(event.target.value, CitaID);
+                                }
+                            })
+                        },
                         inputValidator: (value) => {
                             return new Promise((resolve) => {
                                 if (value > 0) {
+                                    console.log(value)
+
                                     // alert(value);
                                     //resolve(value); // Si se selecciona un estado, resolvemos con ese valor
-                                    changeDateStatus(value, CitaID);
+                                    //changeDateStatus(value, CitaID);
                                 } else {
                                     resolve('Debes seleccionar un estado de cita.');
                                 }
@@ -221,6 +313,175 @@
                 console.log('Error al obtener los detalles del usuario.');
             }
         });
+
+        function createFormHistory(citaID) {
+            console.log(citaID);
+            Swal.close();
+            // TODO hacer petición para obtener la estructura del formulario
+
+            let structure = [];
+
+            $.ajax({
+                url: sessionStorage.urlEP + '/api/Generics/v1/GetUsersClinicStoryFormat?oID=1',
+                type: 'GET',
+                contentType: "application/json",
+                dataType: 'json',
+                async: false,
+                success: function ({ itemJson, codeStatus }) {
+                    if (codeStatus == 0) {
+                        structure = JSON.parse(itemJson);
+                    }
+                    else if (response.codeStatus == -1) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: response.messageStatus,
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar'
+                        })
+                    }
+                }
+            })
+
+
+            let questionTypes = {
+                'open': function (question) {
+                    let inputField = $(`<input type="text" id="${question.id}" class="form-control"></input><br>`);
+
+                    let container = $('<div class="form-group"></div>').append(
+                        `<label class="text-primary m-0 fw-bold" for="${question.id}">` + question.name + '</label><br>', inputField);
+
+                    return container
+                },
+                'close': function (question) {
+
+                    let checkBox1 = $(`<input class="form-check-input" id="${question.id}" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
+
+                    let label1 = $(`<label class="form-check-label" for="${question.id}">`).text("SI");
+
+                    let checkBox2 = $(`<input class="form-check-input" id="${question.id}0" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
+
+                    let label2 = $(`<label class="form-check-label" for="${question.id}0">`).text("NO");
+
+                    let container1 = $('<div class="form-check form-check-inline"></div>').append(checkBox1, label1);
+
+                    let container2 = $('<div class="form-check form-check-inline"></div>').append(checkBox2, label2);
+
+                    let container = $('<div class="card-header"></div>').append(`<p class="text-primary m-0 fw-bold">${question.name}</p>`, container1, container2);
+
+                    return container;
+                },
+                'multiple': function (question) {
+                    let options = $(`<select class="form-select" id="${question.id}" multiple></select>`);
+
+                    question.options.forEach(function (option) {
+                        options.append('<option value="' + option + '">' + option + '</option>');
+                    });
+
+                    let container = $('<div class="card-header py-3"></div>').append(`<p class="text-primary m-0 fw-bold">${question.name}</p>`, options)
+
+                    return container
+                }
+            };
+
+            let form = $('<form class="form-group" id="create-form-history"></form>');
+
+            let finalStructure = [];
+            structure.forEach(function (question, index) {
+                let questionContainer = $('<div class="question"></div>');
+
+                if (question.type in questionTypes) {
+                    let inputElement = questionTypes[question.type](question);
+                    question.id = index + 1;
+                    finalStructure.push(question);
+                    questionContainer.append(inputElement);
+                    form.append(questionContainer);
+                } else {
+                    console.error('Tipo de pregunta no válido: ' + question.type);
+                }
+            });
+
+            // Botón para seleccionar archivo
+            let fileInput = $('<input type="file" id="fileInput" accept=".jpg, .jpeg, .png" />');
+
+            // Botón para subir archivo
+            let uploadButton = $('<button id="uploadButton" class="btn btn-primary mt-2">Subir Archivo</button>');
+
+            uploadButton.click(() => {
+                console.log("Botón Subir Archivo clicado");
+                uploadFile(CitaID);
+            });
+
+            form.append(fileInput, uploadButton);
+
+            // ... Código para crear otros campos del formulario ...
+
+
+
+            Swal.fire({
+                title: 'Agregar historia clínica',
+                confirmButtonText: 'Confirmar',
+                html: form,
+                focusConfirm: false,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    finalStructure = finalStructure.map((question) => {
+                        let value = $(`#${question.id}`).val()
+                        if (question.type == 'close') {
+                            value = $(`#${question.id}:checked`).val() == 'on' ? 'SI' : 'NO';
+                        }
+                        return {
+                            ...question, value
+                        }
+                    });
+                    saveHistoryForm(finalStructure, citaID);
+                }
+            })
+        }
+
+        function saveHistoryForm(form, CitaID) {
+            $.ajax({
+                url: sessionStorage.urlEP + '/api/Generics/v1/SetUsersClinicStoryFormat',
+                type: 'GET',
+                data: { 'aID': CitaID, 'jsonObject': JSON.stringify(form) },
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (response) {
+                    console.log(response)
+                    if (response.codeStatus == 0) {
+                        Swal.fire({
+                            title: 'Historia Clinica Creada',
+                            icon: 'info',
+                            confirmButtonText: 'Aceptar'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                changeDateStatus(3, CitaID);
+                                // swal.close();
+                                // location.reload();
+                            }
+                        })
+                    }
+                    else if (response.codeStatus == -1) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: response.messageStatus,
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar'
+                        })
+                    }
+                },
+                error: function (error) {
+                    console.log('Error al obtener los detalles del usuario.');
+                }
+
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.reload();
+                }
+            })
+        }
+
+
+
         function changeDateStatus(citaState, CitaID) {
             // Aquí puedes realizar la solicitud AJAX con el valor de citaState
             //console.log(`Estado de cita seleccionado: ${citaState}`);
@@ -277,6 +538,42 @@
                 }
             });
         }
+
+        function uploadFile(file, CitaID) {
+            console.log("Función uploadFile ejecutada.");
+            const formData = new FormData();
+            formData.append("file", file);
+
+            // URL del servicio de carga de blobs (reemplaza con tu URL)
+            const uploadUrl = `${sessionStorage.urlEP}/api/Blobs/upload?citaID=${CitaID}`;
+            console.log('dato enviado ', formData);
+            fetch(uploadUrl, {
+                method: "POST",
+                body: formData,
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        console.log("Archivo cargado exitosamente.");
+                        showMessage("Archivo cargado exitosamente.", "green");
+                    } else {
+                        console.log("Error al cargar el archivo.");
+                        showMessage("Error al cargar el archivo.", "red");
+                    }
+                })
+                .catch((error) => {
+                    showMessage("Error de red al cargar el archivo.", "red");
+                });
+        }
+
+
+        function showMessage(text, color) {
+            message.textContent = text;
+            message.style.color = color;
+        }
+
+        document.getElementById("uploadButton").addEventListener("click", uploadFile);
+
+
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
 

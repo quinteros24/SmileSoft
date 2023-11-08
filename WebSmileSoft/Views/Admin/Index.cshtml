@@ -89,8 +89,8 @@
             </div>
         </div>
     </div>
-   
-    
+
+
 </section>
 
 <!-- Modal Editar Cita -->
@@ -439,12 +439,28 @@
                             },
                             inputPlaceholder: 'Selecciona el estado de la cita',
                             showCancelButton: true,
+                            html: "<div id='form-history-content'></div>",
+                            didOpen: function (ele) {
+                                $(ele).find('.swal2-select').insertBefore($(ele).find('.swal2-content div'));
+                                Swal.getInput().addEventListener('change', (event) => {
+                                    if (event.target.value == 3) {
+                                        $("#form-history-content").append('<button type="button" class="btn btn-primary" id="createFormHistory">Agregar historia clínica</button>');
+                                        $("#createFormHistory").click(() => createFormHistory(CitaID));
+                                    } else {
+                                        $("#form-history-content").empty();
+                                        console.log('Guardar cambios', event.target.value);
+                                        changeDateStatus(event.target.value, CitaID);
+                                    }
+                                })
+                            },
                             inputValidator: (value) => {
                                 return new Promise((resolve) => {
                                     if (value > 0) {
+                                        console.log(value)
+
                                         // alert(value);
                                         //resolve(value); // Si se selecciona un estado, resolvemos con ese valor
-                                        changeDateStatus(value, CitaID);
+                                        //changeDateStatus(value, CitaID);
                                     } else {
                                         resolve('Debes seleccionar un estado de cita.');
                                     }
@@ -458,6 +474,155 @@
                     console.log('Error al obtener la lista de usuarios.');
                 }
             });
+        }
+
+        function createFormHistory(citaID) {
+            console.log(citaID);
+            Swal.close();
+            // TODO hacer petición para obtener la estructura del formulario
+
+            let structure = [];
+
+            $.ajax({
+                url: sessionStorage.urlEP + '/api/Generics/v1/GetUsersClinicStoryFormat?oID=1',
+                type: 'GET',
+                contentType: "application/json",
+                dataType: 'json',
+                async: false,
+                success: function ({ itemJson, codeStatus }) {
+                    if (codeStatus == 0) {
+                        structure = JSON.parse(itemJson);
+                    }
+                    else if (response.codeStatus == -1) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: response.messageStatus,
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar'
+                        })
+                    }
+                }
+            })
+
+
+            let questionTypes = {
+                'open': function (question) {
+                    let inputField = $(`<input type="text" id="${question.id}" class="form-control"></input><br>`);
+
+                    let container = $('<div class="form-group"></div>').append(
+                        `<label class="text-primary m-0 fw-bold" for="${question.id}">` + question.name + '</label><br>', inputField);
+
+                    return container
+                },
+                'close': function (question) {
+
+                    let checkBox1 = $(`<input class="form-check-input" id="${question.id}" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
+
+                    let label1 = $(`<label class="form-check-label" for="${question.id}">`).text("SI");
+
+                    let checkBox2 = $(`<input class="form-check-input" id="${question.id}0" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
+
+                    let label2 = $(`<label class="form-check-label" for="${question.id}0">`).text("NO");
+
+                    let container1 = $('<div class="form-check form-check-inline"></div>').append(checkBox1, label1);
+
+                    let container2 = $('<div class="form-check form-check-inline"></div>').append(checkBox2, label2);
+
+                    let container = $('<div class="card-header"></div>').append(`<p class="text-primary m-0 fw-bold">${question.name}</p>`, container1, container2);
+
+                    return container;
+                },
+                'multiple': function (question) {
+                    let options = $(`<select class="form-select" id="${question.id}" multiple></select>`);
+
+                    question.options.forEach(function (option) {
+                        options.append('<option value="' + option + '">' + option + '</option>');
+                    });
+
+                    let container = $('<div class="card-header py-3"></div>').append(`<p class="text-primary m-0 fw-bold">${question.name}</p>`, options)
+
+                    return container
+                }
+            };
+
+            let form = $('<form class="form-group" id="create-form-history"></form>');
+
+            let finalStructure = [];
+            structure.forEach(function (question, index) {
+                let questionContainer = $('<div class="question"></div>');
+
+                if (question.type in questionTypes) {
+                    let inputElement = questionTypes[question.type](question);
+                    question.id = index + 1;
+                    finalStructure.push(question);
+                    questionContainer.append(inputElement);
+                    form.append(questionContainer);
+                } else {
+                    console.error('Tipo de pregunta no válido: ' + question.type);
+                }
+            });
+
+            Swal.fire({
+                title: 'Agregar historia clínica',
+                confirmButtonText: 'Confirmar',
+                html: form,
+                focusConfirm: false,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    finalStructure = finalStructure.map((question) => {
+                        let value = $(`#${question.id}`).val()
+                        if (question.type == 'close') {
+                            value = $(`#${question.id}:checked`).val() == 'on' ? 'SI' : 'NO';
+                        }
+                        return {
+                            ...question, value
+                        }
+                    });
+                    saveHistoryForm(finalStructure, citaID);
+                }
+            })
+        }
+
+        function saveHistoryForm(form, citaID) {
+            $.ajax({
+                url: sessionStorage.urlEP + '/api/Generics/v1/SetUsersClinicStoryFormat',
+                type: 'GET',
+                data: { 'aID': citaID, 'jsonObject': JSON.stringify(form) },
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (response) {
+                    console.log(response)
+                    if (response.codeStatus == 0) {
+                        Swal.fire({
+                            title: 'Historia Clinica Creada',
+                            icon: 'info',
+                            confirmButtonText: 'Aceptar'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                changeDateStatus(3, citaID);
+                                // swal.close();
+                                // location.reload();
+                            }
+                        })
+                    }
+                    else if (response.codeStatus == -1) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: response.messageStatus,
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar'
+                        })
+                    }
+                },
+                error: function (error) {
+                    console.log('Error al obtener los detalles del usuario.');
+                }
+
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.reload();
+                }
+            })
         }
 
         function changeDateStatus(citaState, CitaID) {
@@ -520,6 +685,11 @@
             $('[data-toggle="tooltip"]').tooltip();
 
         });
+
+        function toggleCheckboxes(checkbox) {
+            $("input[name='checkbox-close-question']").prop('checked', false);
+            $(checkbox).prop('checked', true);
+        }
 
 
 

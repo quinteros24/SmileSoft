@@ -372,3 +372,8 @@ C:\Users\Usuario\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.IO.H
 C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Azure.Storage.Blobs.dll
 C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Azure.Storage.Common.dll
 C:\Users\santi\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.IO.Hashing.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Azure.Storage.Blobs.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Azure.Storage.Common.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\System.IO.Hashing.dll
+C:\Users\Usuario\source\repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
