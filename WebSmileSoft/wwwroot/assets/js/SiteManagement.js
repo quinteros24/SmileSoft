@@ -3,44 +3,44 @@ let userRole = sessionStorage.getItem('userRole');
 if (userRole !== '1') {
     logoutUser();
 }
-document.getElementById('updateLogo').addEventListener('click', function () {
-    // Obtener el archivo seleccionado
-    const fileInput = document.getElementById('logoInput');
-    const file = fileInput.files[0];
+//document.getElementById('updateLogo').addEventListener('click', function () {
+//    // Obtener el archivo seleccionado
+//    const fileInput = document.getElementById('logoInput');
+//    const file = fileInput.files[0];
 
-    if (file) {
-        // Crear una URL para la imagen seleccionada
-        const objectURL = URL.createObjectURL(file);
+//    if (file) {
+//        // Crear una URL para la imagen seleccionada
+//        const objectURL = URL.createObjectURL(file);
 
-        // Actualizar la fuente de la imagen en la barra de navegación
-        document.getElementById('navLogo').src = objectURL;
+//        // Actualizar la fuente de la imagen en la barra de navegación
+//        document.getElementById('navLogo').src = objectURL;
 
-        // Aquí puedes enviar la imagen al servidor para guardarla
-        // y asignarle un nombre único en tu directorio de imágenes.
-        // Luego, actualiza la fuente de la imagen en el servidor.
+//        // Aquí puedes enviar la imagen al servidor para guardarla
+//        // y asignarle un nombre único en tu directorio de imágenes.
+//        // Luego, actualiza la fuente de la imagen en el servidor.
 
-        // También puedes considerar la posibilidad de almacenar la
-        // ruta de la imagen en tu base de datos para recuperarla
-        // cuando sea necesario.
-    }
-});
+//        // También puedes considerar la posibilidad de almacenar la
+//        // ruta de la imagen en tu base de datos para recuperarla
+//        // cuando sea necesario.
+//    }
+//});
 // Cambiar el color de fondo
 $("#BackgroundColor").on("input", function () {
     const color = $(this).val();
-    console.log("Aplicando color a Fondo");
+    //console.log("Aplicando color a Fondo");
     // $("#SiteContainerRender").css("background-color", color);
     $("#content-wrapper").css("background-color", color);
 });
 // Cambiar el color de la barra lateral
 $("#SidebarColor").on("input", function () {
     const color = $(this).val();
-    console.log("Aplicando color a SideBar");
+    //console.log("Aplicando color a SideBar");
     $("#sidebar").css("background-color", color);
 });
 // Cambiar el color de la barra lateral
 $("#NavbarColor").on("input", function () {
     const color = $(this).val();
-    console.log("Aplicando color a Barra Superior");
+    //console.log("Aplicando color a Barra Superior");
     $("#nav_bar").removeClass("bg-primary");
     $("#nav_bar").css("background-color", color);
 });

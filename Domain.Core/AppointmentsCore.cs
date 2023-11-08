@@ -28,5 +28,7 @@ namespace Domain.Core
             GenericResponseModel responseModel = await _appointmentsRepository.UpdateAppointmentStatus(aID, asID);
             return responseModel;
         }
+
+       
     }
 }

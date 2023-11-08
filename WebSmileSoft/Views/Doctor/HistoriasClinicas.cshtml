@@ -2,12 +2,14 @@
 <div class="container mt-5">
     <h1 class="mb-4">Historias Clínicas</h1>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-12">
             <!-- Panel de búsqueda de pacientes -->
-            <i class="fa-solid fa-magnifying-glass text-primary fa-sm" onmouseenter="showDiv()" id="findIcon" style="display: none"> Buscar Historia Clinica del Paciente</i>
+            <div id="findIcon" onmouseenter="showDiv()" style="display: none">
+                <i class="fa-solid fa-magnifying-glass text-primary fa-sm"> </i><span> Buscar Historia Clinica del Paciente</span>
+            </div>
             <div class="card" id="myDiv" onmouseleave="hideDiv()" onmouseenter="showDiv()">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body text-primary">
                         <h5 class="card-title">Buscar Historia Clinica</h5>
                         <form>
                             <div class="mb-3">
@@ -94,7 +96,7 @@
                                     <!-- Agregar campo de firma del doctor si es necesario -->
                                 </div>
                                 <div class="mb-3">
-                                    <h6>Reporte tratamientos</h6>
+                                    <h6>Historial tratamientos</h6>
                                     <div id="questionsContainer">
                                         <form id="questionsContainerForm"></form>
                                     </div>
@@ -102,16 +104,9 @@
                             </div>
                         </div>
                     </div>
-                    @* <div class="row">
-                    <div class="col-md-12">
-                    <div id="questionsContainer">
-                    <!-- Aquí se cargará el contenido de la historia clínica -->
-                    </div>
-                    </div>
-                    </div> *@
                 </div>
             </div>
-            
+
         </div>
         <div class="row" id="pdfButton" style="display:none;">
             <a href="javascript:generarPDF()" class="button">
@@ -125,15 +120,7 @@
 
 
 @section Scripts{
-    @* <script src="~/assets/js/jspdf.umd.min.js"></script>
-    <script src="~/assets/js/jspdf.plugin.autotable.js"></script> *@
-    @* <script>
-    var doc = new jsPDF()
-    doc.autoTable({ html: '#imprimir' })
-    doc.save('table.pdf')</script> *@
-
     <script>
-
         function generarPDF() {
             // Get the container element
             const container = document.getElementById('imprimir');
@@ -144,7 +131,7 @@
                 // Create a new jsPDF instance
                 const pdf = new jsPDF();
                 // Add the canvas to the PDF
-                pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, pdf.internal.pageSize.getWidth(), 0);
+                pdf.addImage(canvas.toDataURL('image/png', 0.5), 'PNG', 0, 0, pdf.internal.pageSize.getWidth(), 0);
                 // Save the PDF
                 pdf.save('historia-clinica.pdf');
                 $("#button-pdf").removeAttr('hidden', 'true');
@@ -158,9 +145,9 @@
         if (userRole == '3') {
             logoutUser();
         }
-        
+
         let patientData = [];
-        console.log('PatientData: ', patientData);
+        //console.log('PatientData: ', patientData);
         // Function to populate patient information
         function populatePatientInfo() {
             // Get the current date
@@ -179,7 +166,8 @@
             } else {
                 fechaSolo = patientData.uBirthDate;
             }
-            console.log('Fecha de Nacimiento: ', fechaSolo);
+            sessionStorage.setItem('patientDataID', patientData.uID);
+            //console.log('Fecha de Nacimiento: ', fechaSolo);
             document.getElementById("currentDate").textContent = currentDateFormat;
             //document.getElementById("patientFName").textContent = patientData.uName + patientData.uLastName;
             document.getElementById("patientName").textContent = patientData.uName;
@@ -213,52 +201,99 @@
 
             return age;
         }
+        let patientID = sessionStorage.getItem('patientDataID');
+        let appointmentDates = [];
+        
+        function getAppoinmentData(patientID) {
+            //debugger;
+            ////console.log("Funcion getAppoinmentData");
+            $.ajax({
+                url: sessionStorage.urlEP + '/api/Appointments/v1/GetAppointmentsList',
+                type: 'GET',
+                data: { 'uDocument': patientID },
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (data) {
+                    // Procesar los datos recibidos y agregar filas a la tabla
+                    let dataSet = [];
+                   
+                    $.each(data.itemJson, function (index, cita) {
+                        let fechaCita = cita.aDate;
+                        let fechaFormateada = fechaCita.substring(0, 10);
+                        if (cita.asName === "Realizado") {
+                            let rowData = [
+                                cita.aID,
+                                cita.uDoctorName,
+                                cita.aDescription,
+                                fechaFormateada,
+                                cita.asName
+                            ]; dataSet.push(rowData);
 
-        // Function to format date
-        function formatDate(date) {
-            // Implement your logic to format the date here
+                        }
+                        ////console.log("ROW Data : ", rowData);
+                        appointmentDates = dataSet;
+                    });
+                    appointmentDates = dataSet;
+                }
+            });
         }
-
+        let tratamientoID = 1;
+        let totalTratamientos = 0;
+        //console.log("Apoinment Dates: ", appointmentDates);
         // Call the function to populate patient information
         async function loadUserClinicalHistory(inputUserId) {
             try {
+                getAppoinmentData(inputUserId);
                 // Fetch user details
                 const userResponse = await fetch(`${sessionStorage.urlEP}/api/Users/v1/GetUserDetails?uDocument=${inputUserId}`);
                 const userData = await userResponse.json();
-                console.log('userData in async function: ', userData)
+                //console.log('userData in async function: ', userData)
                 if (userData.itemJson === null) {
                     mostrarMensajeError("No se cargó correctamente");
-                } else {
-                    patientData = userData.itemJson;
-                }
-
-                // Fetch clinical history
-                const clinicalHistoryResponse = await fetch(`${sessionStorage.urlEP}/api/Generics/v1/GetUserClinicStory?uDocument=${inputUserId}`);
-                const clinicalHistoryData = await clinicalHistoryResponse.json();
-
-                if (clinicalHistoryData.codeStatus == 0) {
-                    let allClinicalHistory = [];
-                    clinicalHistoryData.itemJson.forEach(item => {
-                        item = JSON.parse(item);
-                        allClinicalHistory = [...item];
-                        console.log('allClinicalHistory: ', allClinicalHistory);
-                    });
-                    // Process clinical history data and populate the form
-                    processClinicalHistoryData(allClinicalHistory);
-                } else {
+                } else if (userData.itemJson.utID !== 3) {
+                    let buttonPDF = document.getElementById("pdfButton");
+                    buttonPDF.style.display = "none";
                     Swal.fire({
                         title: 'Error',
-                        text: clinicalHistoryData.messageStatus,
+                        text: 'El usuario ingresado no es un paciente, por favor ingrese un usuario válido.',
                         icon: 'error',
                         confirmButtonText: 'Aceptar',
                     });
+                } else {
+                    patientData = userData.itemJson;
+                    // Fetch clinical history
+                    const clinicalHistoryResponse = await fetch(`${sessionStorage.urlEP}/api/Generics/v1/GetUserClinicStory?uDocument=${inputUserId}`);
+
+                    const clinicalHistoryData = await clinicalHistoryResponse.json();
+                    totalTratamientos = clinicalHistoryData.itemJson.length;
+                    if (clinicalHistoryData.codeStatus == 0) {
+                        let allClinicalHistory = [];
+                        let form = $('#questionsContainerForm');
+                        form.empty();
+                        clinicalHistoryData.itemJson.forEach(item => {
+                            item = JSON.parse(item);
+                            allClinicalHistory = [...item];
+                            //console.log('allClinicalHistory: ', allClinicalHistory);
+                            processClinicalHistoryData(allClinicalHistory);
+                            tratamientoID++;
+                        });
+                        // Process clinical history data and populate the form
+
+                    } else {
+                        Swal.fire({
+                            title: 'Error',
+                            text: clinicalHistoryData.messageStatus,
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar',
+                        });
+                    }
                 }
 
             } catch (error) {
                 mostrarMensajeError('Error al obtener detalles del usuario o historial clínico.');
             }
         }
-
+        
         function processClinicalHistoryData(allClinicalHistory) {
             let questionTypes = {
                 'open': function (question) {
@@ -307,7 +342,7 @@
                 }
             };
             let form = $('#questionsContainerForm');
-            form.empty();
+            //form.empty();
             finalStructure = [];
 
             // Create three columns using Bootstrap's grid system
@@ -349,6 +384,7 @@
                 } else {
                     column3.append(questionContainer);
                 }
+
             });
 
             let clinicHistory = document.getElementById("imprimir");
@@ -357,7 +393,20 @@
             // Add the three columns to the form
             let row = $('<div class="row"></div>').append(column1, column2, column3);
             let container = $('<div class="container"></div>').append(row);
-            form.append(container);
+            container.append('<hr>');
+            ////console.log('Tratamiento ID: ', tratamientoID);
+            ////console.log('Total Tratamientos: ', totalTratamientos);
+            if(tratamientoID < totalTratamientos) {
+                let tratamientoID2 = tratamientoID + 1;
+                let MostrarFechaCita = appointmentDates[tratamientoID2][3];
+                let MostrarDoctorCita = appointmentDates[tratamientoID2][1];
+                let MostrarMotivoCita = appointmentDates[tratamientoID2][2];
+                container.append(`<h6>#${tratamientoID2} | Fecha de la Consulta: ${MostrarFechaCita} | Doctor: ${MostrarDoctorCita} | Motivo: ${MostrarMotivoCita} </h6>`);
+                form.append(container);
+            }
+            else {
+                form.append(container);
+            }
 
             // After populating the form, you can call the function to populate patient info
             populatePatientInfo();
@@ -384,13 +433,22 @@
         function hideDiv() {
             let div = document.getElementById("myDiv");
             let icon = document.getElementById("findIcon");
-           
+
             // Set a delay of 2 seconds (2000 milliseconds) before hiding the div
             timer = setTimeout(function () {
                 icon.style.display = "block";
                 div.style.display = "none"; // Hide the div after the delay
             }, 2000);
         }
+        //Disable pdf button when the windows is below 1024px
+        $(window).resize(function () {
+            if ($(window).width() < 1024) {
 
+                $('#pdfButton').hide();
+            }
+            else {
+                $('#pdfButton').show();
+            }
+        });
     </script>
     }

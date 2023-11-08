@@ -281,3 +281,4 @@ C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Release\net6.0
 C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Release\net6.0\Azure.Storage.Common.dll
 C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Release\net6.0\System.IO.Hashing.dll
 C:\Users\Alejandro Vasquez\Source\Repos\SmileSoft\EpSmileSoft\bin\Release\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\Usuario\source\repos\SmileSoft\EpSmileSoft\bin\Release\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll

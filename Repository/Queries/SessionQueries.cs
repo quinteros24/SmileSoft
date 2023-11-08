@@ -10,9 +10,9 @@ namespace Repository.Queries
 
             if (!string.IsNullOrEmpty(ItemLogin.ipAddress))
             {
-                ip = $"                    IF NOT EXISTS(SELECT TOP(1)* FROM ipAdressPerOffices WHERE ipAddress = '{ItemLogin.ipAddress}' AND [oID] = (SELECT [oID] FROM Users WHERE [uID] = @ExistantUser))\n" +
+                ip = $"                    IF NOT EXISTS(SELECT TOP(1)* FROM ipAddressPerOffices WHERE ipAddress = '{ItemLogin.ipAddress}' AND [oID] = (SELECT [oID] FROM Users WHERE [uID] = @ExistantUser))\n" +
                      $"                    BEGIN\n" +
-                     $"                        INSERT INTO ipAdressPerOffices([oID],ipAddress,ippoCreationDate)\n" +
+                     $"                        INSERT INTO ipAddressPerOffices([oID],ipAddress,ippoCreationDate)\n" +
                      $"                        VALUES((SELECT [oID] FROM Users WHERE [uID] = @ExistantUser),'{ItemLogin.ipAddress}',GETUTCDATE())\n" +
                      $"                    END\n";
             }
