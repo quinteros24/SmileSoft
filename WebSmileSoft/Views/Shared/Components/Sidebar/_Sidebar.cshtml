@@ -39,12 +39,19 @@
                         <i class="fas fa-tools "></i><span class="ms-2">Administrar Sitio</span>
                     </a>
                 </li>
-                <li class="nav-item nav-item2">
+                <li class="nav-item nav-item2 ">
+
+                    <a class="nav-link" asp-controller="Doctor" asp-action="HistoriasClinicas">
+                        <i class="fa-solid fa-hospital-user"></i><span class="ms-2">Historias Clinicas</span>
+                    </a>
+
+                </li>
+                @* <li class="nav-item nav-item2">
                     <a class="nav-link" asp-controller="Admin" asp-action="TestBench">
 
                         <i class="fas fa-tools "></i><span class="ms-2">Pruebas</span>
                     </a>
-                </li>
+                </li> *@
             </ul>
         </div>
 
@@ -66,16 +73,16 @@
                     </a>
 
                 </li>
-                <li class="nav-item nav-item2">
+                <li class="nav-item nav-item2" style="display:none;">
 
                     <a class="nav-link" asp-controller="Doctor" asp-action="GestionPacientes">
                         <i class="fa-solid fa-users-between-lines"></i><span class="ms-2">Gestión de Pacientes</span>
                     </a>
 
                 </li>
-                <li class="nav-item nav-item2 ">
+                <li class="nav-item nav-item2 " >
 
-                    <a class="nav-link" asp-controller="Doctor" asp-action="HistoriasClinicas">
+                    <a class="nav-link" asp-controller="Doctor" asp-action="HistoriasClinicas" >
                         <i class="fa-solid fa-hospital-user"></i><span class="ms-2">Historias Clinicas</span>
                     </a>
 
@@ -95,14 +102,14 @@
                     </a>
 
                 </li> *@
-                <li class="nav-item nav-item2 ">
+                <li class="nav-item nav-item2">
 
                     <a class="nav-link" asp-controller="Patient" asp-action="GestiondeCitas">
                         <i class="fa-solid fa-calendar-days"></i><span class="ms-2">Gestión de Citas Usuarios</span>
                     </a>
 
                 </li>
-                <li class="nav-item nav-item2 ">
+                <li class="nav-item nav-item2" style="display:none;">
 
 
                     <a class="nav-link" asp-controller="Patient" asp-action="HistoriaClinicaPacientes">
@@ -117,7 +124,7 @@
         </div>
 
         <div>
-            <ul class="nav text-center flex-column" id="accordionSidebar">
+            <ul class="nav text-center" id="accordionSidebar">
                 <li class="nav-item nav-item2 ">
                     <a class="nav-link" onclick="CerrarSesion()" style="user-select: none;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">

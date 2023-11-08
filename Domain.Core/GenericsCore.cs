@@ -88,9 +88,40 @@ namespace Domain.Core
             return await _genericsRepository.GetContactNumber(oID);
         }
 
-        public async Task<GenericResponseModel> GetUserClinicStory(int uID)
+        public async Task<GenericResponseModel> GetUserClinicStory(int? uID, string? uDocument)
         {
-            return await _genericsRepository.GetUserClinicStory(uID);
+            return await _genericsRepository.GetUserClinicStory(uID, uDocument);
         }
+
+        public async Task<GenericResponseModel> GetDataSite(int? uID, string? IP = "")
+        {
+            return await _genericsRepository.GetDataSite(uID, IP);
+        }
+
+        public async Task<GenericResponseModel> SetDataSiteUrlImageLogin(int uID, string data)
+        {
+            return await _genericsRepository.SetDataSiteUrlImageLogin(uID, data);
+        }
+
+        public async Task<GenericResponseModel> SetDataSiteUrlImageMenu(int uID, string data)
+        {
+            return await _genericsRepository.SetDataSiteUrlImageMenu(uID, data);
+        }
+
+        public async Task<GenericResponseModel> SetDataSiteBackgroundColor(int uID, string data)
+        {
+            return await _genericsRepository.SetDataSiteBackgroundColor(uID, data);
+        }
+
+        public async Task<GenericResponseModel> SetDataSiteTopColor(int uID, string data)
+        {
+            return await _genericsRepository.SetDataSiteTopColor(uID, data);
+        }
+
+        public async Task<GenericResponseModel> SetDataSiteSideColor(int uID, string data)
+        {
+            return await _genericsRepository.SetDataSiteSideColor(uID , data);
+        }
+
     }
 }

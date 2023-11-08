@@ -35,9 +35,9 @@ namespace Domain.Core
             GenericResponseModel ItemGenericResponseModel = await _usersRepository.SetUserStatus(uID, uStatus);
             return ItemGenericResponseModel;
         }
-        public async Task<GenericResponseModel> GetUserDetails(int uID)
+        public async Task<GenericResponseModel> GetUserDetails(int? uID, string? uDocument)
         {
-            GenericResponseModel ItemGenericResponseModel = await _usersRepository.GetUserDetails(uID);
+            GenericResponseModel ItemGenericResponseModel = await _usersRepository.GetUserDetails(uID, uDocument);
             return ItemGenericResponseModel;
         }
 

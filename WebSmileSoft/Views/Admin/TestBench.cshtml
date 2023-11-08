@@ -13,40 +13,65 @@
         if (userRole !== '1') {
             logoutUser();
         }
-        let structure = [
+        let questions = [
             {
                 type: 'open',
-                name: 'Ha tenido dolor?',
+                name: '¿Ha experimentado dolor dental recientemente?',
+            },
+            {
+                type: 'open',
+                name: '¿En una escala del 1 al 10, cuán intenso es el dolor? (1 = nada, 10 = extremadamente intenso)',
             },
             {
                 type: 'close',
-                name: '¿Tiene Mamá?',
+                name: '¿Ha tenido alguna alergia a medicamentos o materiales dentales?',
             },
             {
                 type: 'close',
-                name: 'Vive con sus Padres',
-            },
-            {
-                type: 'close',
-                name: '¿Es un dolor intenso?',
+                name: '¿Está tomando actualmente algún medicamento? (Sí/No)',
             },
             {
                 type: 'multiple',
-                name: '¿Cuál es su color favorito?',
-                options: ['Rojo', 'Azul', 'Verde'],
+                name: '¿Cuál es el propósito de su cita?',
+                options: ['Limpieza dental de rutina', 'Examen de rutina', 'Dolor o molestia dental', 'Tratamiento específico'],
+            },
+            {
+                type: 'close',
+                name: '¿Tiene seguro dental? (Sí/No)',
+            },
+            {
+                type: 'open',
+                name: '¿Ha tenido cirugías dentales previas?',
+            },
+            {
+                type: 'open',
+                name: '¿Cuándo fue su última visita al dentista?',
+            },
+            {
+                type: 'close',
+                name: '¿Fuma o mastica tabaco? (Sí/No)',
+            },
+            {
+                type: 'close',
+                name: '¿Consume alcohol regularmente? (Sí/No)',
+            },
+            {
+                type: 'close',
+                name: '¿Ha notado sangrado en las encías al cepillarse? (Sí/No)',
             },
             {
                 type: 'multiple',
-                name: '¿Cuál es su medio de transporte?',
-                options: ['Bus', 'Moto', 'Carro'],
-            },
+                name: '¿Qué tratamiento está considerando o necesita?',
+                options: ['Blanqueamiento dental', 'Extracción dental', 'Empastes', 'Coronas', 'Ortodoncia', 'Implantes dentales'],
+            }
         ];
+
         // Obtén el elemento donde deseas agregar el formulario
         const formContainer = document.getElementById('formulario');
 
         // Recorre la estructura JSON y crea los elementos del formulario
         let rowCounter = 0;
-        structure.forEach((question, index) => {
+        questions.forEach((question, index) => {
             if (index % 2 === 0) {
                 // Comienza una nueva fila cada dos preguntas
                 rowCounter++;
@@ -128,7 +153,7 @@
                 // Enviar los datos al servidor utilizando AJAX (ejemplo con jQuery)
                 $.ajax({
                     type: 'POST', // o 'GET', dependiendo de tu backend
-                    url: 'URL_DEL_BACKEND', // Reemplaza con la URL de tu backend
+                    url: 'URL_DEL_BACKEND', 
                     data: JSON.stringify(formDataObject), // Convertir el objeto a JSON
                     contentType: 'application/json', // Especificar el tipo de contenido
                     success: function (response) {

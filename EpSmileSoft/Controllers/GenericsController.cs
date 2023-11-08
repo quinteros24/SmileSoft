@@ -2,6 +2,7 @@
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Repository;
 
 namespace EpSmileSoft.Controllers
 {
@@ -79,12 +80,60 @@ namespace EpSmileSoft.Controllers
             return await _genericsCore.GetContactNumber(oID);
         }
 
-        //Obtiene el las historias clínicas del usuario
+        //Obtiene las historias clínicas del usuario
         [HttpGet]
         [Route("v1/GetUserClinicStory")]
-        public async Task<GenericResponseModel> GetUserClinicStory(int uID)
+        public async Task<GenericResponseModel> GetUserClinicStory(int? uID, string? uDocument)
         {
-            return await _genericsCore.GetUserClinicStory(uID);
+            return await _genericsCore.GetUserClinicStory(uID, uDocument);
+        }
+
+        //Obtiene los datos de configuracion de sitio
+        [HttpGet]
+        [Route("v1/GetDataSite")]
+        public async Task<GenericResponseModel> GetDataSite(int? uID = 0, string? IP = "")
+        {
+            return await _genericsCore.GetDataSite(uID, IP);
+        }
+
+        //Guarda los datos de configuración de sitio
+        [HttpGet]
+        [Route("v1/SetDataSiteUrlImageLogin")]
+        public async Task<GenericResponseModel> SetDataSiteUrlImageLogin(int uID, string data)
+        {
+            return await _genericsCore.SetDataSiteUrlImageLogin(uID, data);
+        }
+
+        //Guarda los datos de configuración de sitio
+        [HttpGet]
+        [Route("v1/SetDataSiteUrlImageMenu")]
+        public async Task<GenericResponseModel> SetDataSiteUrlImageMenu(int uID, string data)
+        {
+            return await _genericsCore.SetDataSiteUrlImageMenu(uID, data);
+        }
+
+        //Guarda los datos de configuración de sitio
+        [HttpGet]
+        [Route("v1/SetDataSiteBackgroundColor")]
+        public async Task<GenericResponseModel> SetDataSiteBackgroundColor(int uID, string data)
+        {
+            return await _genericsCore.SetDataSiteBackgroundColor(uID, data);
+        }
+
+        //Guarda los datos de configuración de sitio
+        [HttpGet]
+        [Route("v1/SetDataSiteTopColor")]
+        public async Task<GenericResponseModel> SetDataSiteTopColor(int uID, string data)
+        {
+            return await _genericsCore.SetDataSiteTopColor(uID, data);
+        }
+
+        //Guarda los datos de configuración de sitio
+        [HttpGet]
+        [Route("v1/SetDataSiteSideColor")]
+        public async Task<GenericResponseModel> SetDataSiteSideColor(int uID, string data)
+        {
+            return await _genericsCore.SetDataSiteSideColor(uID, data);
         }
 
     }
