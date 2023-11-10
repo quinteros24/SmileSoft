@@ -109,9 +109,11 @@
 
         </div>
         <div class="row" id="pdfButton" style="display:none;">
-            <a href="javascript:generarPDF()" class="button">
+            <div class="col-6 col-md-3 col-sm-2">
+                <a href="javascript:generarPDF()" class="button btn btn-primary btn-sm">
                 <i class="fas fa-file-pdf fa-xl"></i> Generar PDF
-            </a>
+                </a>
+            </div>
 
         </div>
     </div>
@@ -249,10 +251,10 @@
                 const userData = await userResponse.json();
                 //console.log('userData in async function: ', userData)
                 //console.log("Userdata Json:", userData.itemJson);
+                let buttonPDF = document.getElementById("pdfButton");
 
                 if (userData.itemJson === null) {
                     buttonPDF.style.display = "none";
-
                     Swal.fire({
                         title: 'Info',
                         text: 'El usuario ingresado no existe, por favor ingrese un usuario válido.',
@@ -261,7 +263,6 @@
                     });
 
                 } else if (userData.itemJson.utID !== 3) {
-                    let buttonPDF = document.getElementById("pdfButton");
                     buttonPDF.style.display = "none";
                     Swal.fire({
                         title: 'Info',
@@ -277,12 +278,14 @@
                     const clinicalHistoryData = await clinicalHistoryResponse.json();
                     totalTratamientos = clinicalHistoryData.itemJson.length;
                     if (totalTratamientos === 0) {
+                        buttonPDF.style.display = "none";
                         Swal.fire({
                             title: 'Info',
                             text: 'El usuario ingresado no tiene historial clínica.',
                             icon: 'info',
                             confirmButtonText: 'Aceptar',
                         });
+
                     }else if (clinicalHistoryData.codeStatus == 0) {
                         let allClinicalHistory = [];
                         let form = $('#questionsContainerForm');
@@ -292,6 +295,7 @@
                             allClinicalHistory = [...item];
                             //console.log('allClinicalHistory: ', allClinicalHistory);
                             processClinicalHistoryData(allClinicalHistory);
+                            buttonPDF.style.display = "block";
                             tratamientoID++;
                         });
                         // Process clinical history data and populate the form
@@ -433,8 +437,8 @@
         $("#buscarButton").on("click", function () {
             let userId = $("#userIdInput").val(); // Get the user ID from the input field
             loadUserClinicalHistory(userId);
-            let buttonPDF = document.getElementById("pdfButton");
-            buttonPDF.style.display = "block";
+            // let buttonPDF = document.getElementById("pdfButton");
+            // buttonPDF.style.display = "block";
         });
 
         let timer; // Variable to store the timer

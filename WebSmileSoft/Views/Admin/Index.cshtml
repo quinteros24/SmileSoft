@@ -308,8 +308,8 @@
                                 title: 'Acciones',
                                 orderable: false, // Para desactivar la ordenación en esta columna
                                 data: null, // Usaremos la columna "Acciones" solo para botones
-                                defaultContent: '<button class="btn btn-primary btn-sm btnDesactivarC" data-toggle="tooltip" title="Cancelar Cita" type="button"> <i class="fas fa-ban"> </i></button> ' +
-                                    '<button class="btn btn-warning btn-sm btnEditarC" data-toggle="modal" data-target="#editarCitaModal" data-toggle="tooltip" title="Reprogramar Cita"> <i class="fa-regular fa-pen-to-square"></i></button> '
+                                defaultContent: '<button class="btn btn-warning btn-sm btnEditarC" data-toggle="modal" data-target="#editarCitaModal" data-toggle="tooltip" title="Cambiar Estado Cita"> <i class="fa-regular fa-pen-to-square"></i></button> ' +
+                                        '<button class="btn btn-primary btn-sm btnDesactivarC" data-toggle="tooltip" title="Cancelar Cita" type="button"> <i class="fas fa-ban"> </i></button> ' 
                             }
                         ],
 
@@ -337,7 +337,14 @@
                             if (estado === 'Cancelado') {
                                 $(row).find('.btnDesactivarC, .btnEditarC').hide();
                             }
-                        }
+                            // Si el estado es "realizado", oculta los botones en esta fila
+                            if (estado === 'Realizado') {
+                                $(row).find('.btnDesactivarC, .btnEditarC').hide();
+                            }
+                            if (estado === 'Confirmado') {
+                                $(row).find('.btnDesactivarC').hide();
+                            }
+                        },
 
                     });
                     if (dateStatus == "Cancelado") {

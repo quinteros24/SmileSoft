@@ -393,15 +393,31 @@
             //let userRegister = document.getElementById("userNameRegister").value.trim();
             //let password = document.getElementById("password").value.trim();
 
-
-
-            if (!ageValidation(birthDate)) {
+            //console.log("Doctor: " + doctor);
+            //Validar que todos los campos del Formulario esten llenos
+            if (firstName === "" || lastName === "" || documentID === "" || email === "" || mobileNumber === "" || date === "" || time === "" || doctor === "" || message === "") {
+                //alert("Todos los campos son obligatorios");
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Oops...',
+                    text: 'Todos los campos son obligatorios',
+                    confirmButtonColor: '#008dc9'
+                })
+                return;
+            } else if (doctor == 0) {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Oops...',
+                    text: 'Debes seleccionar un Doctor',
+                    confirmButtonColor: '#008dc9'
+                })
+            } else if (!ageValidation(birthDate)) {
                 Swal.fire({
                     text: 'Edad Incorrecta, Recuerda que debes ser mayor de Edad.',
                     confirmButtonColor: '#008dc9'
                 });
-            }
-            else {
+                return;
+            } else {
                 // let formattedBirthDate = formatToDatetime(birthDate);
                 let data = {
                     //Datos de la cuenta

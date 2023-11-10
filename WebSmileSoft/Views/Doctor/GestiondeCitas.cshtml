@@ -15,11 +15,11 @@
         </div>
 
         @* <div class="card mt-4">
-            <div class="card-body">
-                <input type="file" id="fileInput1" accept=".jpg, .jpeg, .png" />
-                <button id="uploadButton1" class="btn btn-primary mt-2">Subir Archivo</button>
-                <p id="message" class="mt-2"></p>
-            </div>
+        <div class="card-body">
+        <input type="file" id="fileInput1" accept=".jpg, .jpeg, .png" />
+        <button id="uploadButton1" class="btn btn-primary mt-2">Subir Archivo</button>
+        <p id="message" class="mt-2"></p>
+        </div>
         </div> *@
 
     </div>
@@ -100,11 +100,13 @@
                         {
                             target: 0,
                             visible: true,
-                            searchable: true
+                            searchable: true,
+                            //ordenar por fecha la tabla
+                            orderData: [0, 1]
                         }
                     ],
                     columns: [
-                        { title: '#' },
+                        { title: '#', visible: false },
                         { title: 'IdCita', visible: false },
                         { title: 'Fecha' },
                         { title: 'Nombre' },
@@ -119,7 +121,7 @@
                             data: null, // Usaremos la columna "Acciones" solo para botones
                             defaultContent: '<button class="btn btn-primary btn-sm btnDesactivarC" data-toggle="tooltip" title="Cancelar Cita" type="button"> <i class="fas fa-ban"> </i></button> ' +
                                 '<button class="btn btn-warning btn-sm btnEditarC" data-toggle="modal" data-target="#editarCitaModal" data-toggle="tooltip" title="Reprogramar Cita"> <i class="fa-regular fa-pen-to-square"></i></button> ' +
-                                '<button class="btn btn-success btn-sm btnFileC" data-toggle="modal" data-target="#UploadFileCitaModal" data-toggle="tooltip" title="Subir Imagen"> <i class="fa-solid fa-upload fa-bounce"></i></button>'
+                                '<button class="btn btn-success btn-sm btnFileC" data-toggle="modal" data-target="#UploadFileCitaModal" data-toggle="tooltip" title="Subir Imagen" style="display: none;"> <i class="fa-solid fa-upload fa-bounce"></i></button>'
                         }
                     ],
                     data: dataSet,
@@ -144,6 +146,13 @@
                         // Si el estado es "cancelado", oculta los botones en esta fila
                         if (estado === 'Cancelado') {
                             $(row).find('.btnDesactivarC, .btnEditarC, .btnFileC').hide();
+                        }
+                        // Si el estado es "realizado", oculta los botones en esta fila
+                        if (estado === 'Realizado') {
+                            $(row).find('.btnDesactivarC, .btnEditarC').hide();
+                        }
+                        if (estado === 'Confirmado') {
+                            $(row).find('.btnDesactivarC').hide();
                         }
                     }
                 });
@@ -568,7 +577,7 @@
                                 location.reload();
                             }
                         })
-                        
+
                     } else {
                         ////console.log("Error al cargar el archivo.");
                         //showMessage("Error al cargar el archivo.", "red");
