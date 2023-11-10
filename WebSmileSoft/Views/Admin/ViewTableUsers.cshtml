@@ -66,7 +66,7 @@
         let userRole = sessionStorage.getItem("userRole"); "1" !== userRole && logoutUser(), document.getElementById("tipoUsuarioed").addEventListener("change", (function () { var e = document.getElementById("campoOpcional"); "2" === this.value ? e.style.display = "block" : e.style.display = "none" })), document.getElementById("tipoUsuario").addEventListener("change", (function () { var e = document.getElementById("campoOpcionala"); "2" === this.value ? e.style.display = "block" : e.style.display = "none" }));
     </script>
 
-   
+
     <script>
         //<!-- Script para Visualizar Lista De Usuarios en la Tabla -->
         //Recibir el parametro de la funcion verusers(1) para filtrar por tipo de usuario
@@ -242,6 +242,8 @@
                                 // Si el estado es "cancelado", oculta los botones en esta fila
                                 if (estado === 'Inactivo') {
                                     $(row).find('#btnPassword, #btnEditar, #btnClinicalHistory').hide();
+                                    //Cambiar Color btnDesactivar a btn-primary
+                                    $(row).find('#btnDesactivar').removeClass('btn-success').addClass('btn-primary');
                                 }
                                 if (rol != 'Pacientes') {
                                     $(row).find('#btnClinicalHistory').hide();

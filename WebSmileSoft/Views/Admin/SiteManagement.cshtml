@@ -119,7 +119,7 @@
                                             <label for="logoInput" class="form-label">Cambiar Logo Menu Principal</label>
                                             <input class="form-control" type="file" id="logoInput" accept=".jpg, .png" onchange="fnConvertToBase64(this)">
                                             <div class="mb-3 my-2">
-                                                <button class="btn btn-primary" type="button" id="updateLogo" onclick="uploadImage(this, 2)">Subir</button>
+                                                <button class="btn btn-primary mx-4" type="button" id="updateLogo" onclick="uploadImage(this, 2)">Subir</button><span class="text-primary">*Tamaño recomendado de 140x70px*</span>
                                             </div>
                                         </div>
                                     </form>
@@ -232,11 +232,11 @@
                                 <div class="form-group option-container mb-2 d-none ">
                                     <label for="options">Opciones:</label>
                                     <div id="options-container"></div>
-                                    <button type="button" class="btn btn-primary mt-2" id="add-option">
+                                    <button type="button" class="btn btn-warning mt-2" id="add-option">
                                         Agregar Opción
                                     </button>
                                 </div>
-                                <button type="button" class="btn btn-success mt-2 mb-2" id="add-question">
+                                <button type="button" class="btn btn-primary mt-2 mb-2" id="add-question">
                                     Agregar pregunta
                                 </button>
                             </div>
@@ -254,7 +254,7 @@
 
                                 <form class="form-group mb-4" id="create-clinic-form-history"></form>
 
-                                <button type="button" class="btn btn-success mt-2 mb-2 d-none" id="save-all-questions">
+                                <button type="button" class="btn btn-primary mt-2 mb-2 d-none" id="save-all-questions">
                                     Guardar todas las preguntas
                                 </button>
                             </div>
@@ -331,27 +331,61 @@
 
 
             const uploadUrl = `${sessionStorage.urlEP}/api/Blobs/upload?citaID=0&genericName=ImageForOffice${text}_${uID}`;
+            //Validar el input si no tiene nada mostrar alerta
+            if (file == undefined) {
+                //showMessage("Por favor seleccione una imagen.", "red");
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Por favor seleccione una imagen.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar',
+                    confirmButtonColor: '#008dc9'
+                })
+                return;
+            } else if (file.type != 'image/jpeg' && file.type != 'image/png') {
+                //showMessage("El formato de la imagen no es válido.", "red");
+                Swal.fire({
+                    title: 'Error',
+                    text: 'El formato de la imagen no es válido.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar',
+                    confirmButtonColor: '#008dc9'
+                })
+                return;
+            } else if (file.size > 2097152) {
+                //showMessage("El tamaño de la imagen no puede superar los 2MB.", "red");
+                Swal.fire({
+                    title: 'Error',
+                    text: 'El tamaño de la imagen no puede superar los 2MB.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar',
+                    confirmButtonColor: '#008dc9'
+                })
+                return;
+            } else {
 
-            $.ajax({
-                url: uploadUrl,
-                type: "POST",
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function (response) {
-                    //debugger;
-                    fnUpdateDataOffice(op, response);
-                },
-                error: function () {
-                    showMessage("Error de red al cargar el archivo.", "red");
-                    Swal.fire({
-                        title: 'Error',
-                        text: 'Error de red al cargar el archivo.',
-                        icon: 'error',
-                        confirmButtonText: 'Aceptar'
-                    })
-                }
-            });
+                $.ajax({
+                    url: uploadUrl,
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        //debugger;
+                        fnUpdateDataOffice(op, response);
+                    },
+                    error: function () {
+                        //showMessage("Error de red al cargar el archivo.", "red");
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Por favor revise el formato de su archivo, e intente nuevamente.',
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9'
+                        })
+                    }
+                });
+            }
 
         }
 
@@ -412,7 +446,8 @@
                             title: 'Ups...',
                             text: response.messageStatus,
                             icon: 'warning',
-                            confirmButtonText: 'Aceptar'
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9'
                         });
                         return;
                     }
@@ -420,8 +455,11 @@
                         title: '',
                         text: response.messageStatus,
                         icon: 'success',
-                        confirmButtonText: 'Aceptar'
+                        confirmButtonText: 'Aceptar',
+                        confirmButtonColor: '#008dc9'
                     });
+                    //Refrescar Sitio Web
+                    location.reload();
                 },
             });
 
@@ -449,7 +487,8 @@
                             title: 'Error',
                             text: response.messageStatus,
                             icon: 'error',
-                            confirmButtonText: 'Aceptar'
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9'
                         });
                     }
                 },
@@ -473,11 +512,6 @@
         //             structure2 = itemJson; //Test
         //             //structure = JSON.parse(itemJson);
         //             structure = JSON.parse(itemJson).filter(item => item !== null);
-        //             //console.log('Structure2 Json respond: ', structure2);
-        //             //console.log('Structure2 Json respond Long: ', structure2.length);
-        //             //console.log('Structure Json respond: ', structure);
-        //             //console.log('Structure Json respond Long: ', structure.length);
-
         //         }
         //         else if (response.codeStatus == -1) {
         //             Swal.fire({
@@ -492,6 +526,7 @@
 
         let finalStructure = [];
         //debugger;
+        console.log("Structure antes de dibujar: ", structure);
         structure.length && drawQuestions(true)
         //console.log('Structure length: ', structure.length);
         $("#question-type").change(function () {
@@ -506,13 +541,13 @@
 
         $("#add-option").click(function () {
             $("#options-container").append(`
-               <div class="input-group mb-2">
-               <input type="text" class="form-control option-input mx-1" placeholder="Nombre de la opción">
-               <div class="input-group-append">
-                   <button class="btn btn-danger remove-option" type="button">-</button>
-               </div>
-               </div>
-            `);
+                                                                       <div class="input-group mb-2">
+                                                                       <input type="text" class="form-control option-input mx-1" placeholder="Nombre de la opción">
+                                                                       <div class="input-group-append">
+                                                                           <button class="btn btn-danger remove-option" type="button">-</button>
+                                                                       </div>
+                                                                       </div>
+                                                                    `);
         });
         $(document).on("click", ".remove-option", function () {
             $(this).closest(".input-group").remove();
@@ -522,6 +557,7 @@
 
         function drawQuestions(firstLoad = false) {
             ////console.log("Cargar Preguntas");
+
             const type = $("#question-type").val();
             const name = $("#question").val();
             let options = null;
@@ -545,10 +581,7 @@
                 })
                 return;
             }
-            ////console.log('Estructure: ', structure);
-            ////console.log('Estructure long: ', structure.length);
             const question = {
-                // id: structure.length + 1,
                 id: structure.length + 1,
                 type: type,
                 name: name,
@@ -557,7 +590,6 @@
 
             structure.push(question);
 
-            ////console.log({ structure })
 
             if (structure.length) {
                 $("#save-all-questions").removeClass("d-none");
@@ -571,8 +603,8 @@
 
             type === "multiple" && $(".input-group").remove();
 
-            // Elimina la última pregunta agregada
-            if (structure.length > 0) {
+            //Eliminar Pregunta Fantasma
+            if (firstLoad) {
                 structure.pop();
             }
             updateStructuredForm(structure);
@@ -954,8 +986,9 @@
                     if (response.codeStatus == 0) {
                         Swal.fire({
                             title: 'Preguntas Guardadas',
-                            icon: 'info',
-                            confirmButtonText: 'Aceptar'
+                            icon: 'success',
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9'
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 swal.close();
@@ -967,8 +1000,9 @@
                         Swal.fire({
                             title: 'Error',
                             text: response.messageStatus,
-                            icon: 'error',
-                            confirmButtonText: 'Aceptar'
+                            icon: 'info',
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9'
                         })
                     }
                 },

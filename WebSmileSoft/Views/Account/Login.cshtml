@@ -84,7 +84,7 @@
                                 <div class="text-center">
                                     <h4 class="text-dark mb-4"><strong>Iniciar Sesión</strong></h4>
                                 </div>
-                                <form class="user">
+                                <form class="user needs-validation" novalidate>
                                     <div class="mb-3">
                                         <input class="form-control form-control-user" type="text" id="UserLogin" aria-describedby="emailHelp" placeholder="Username" name="Username" autocomplete="username">
                                     </div>
@@ -102,10 +102,10 @@
                                 @*<div class="text-center"><a class="small" asp-controller="Account" asp-action="ForgotPassword">Olvidaste la Contraseña?</a></div>*@
                                 <div class="row">
 
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-lg-6 col-md-6 mb-3">
                                         <a class="btn btn-primary d-block btn-user w-100 border rounded-5" asp-controller="Account" asp-action="Register">Registrarse</a>
                                     </div>
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-lg-6 col-md-6 mb-3">
                                         <a class="btn btn-primary d-block btn-user w-100 border rounded-5" asp-controller="Account" asp-action="RequestanAppointment">Solicitar una Cita</a>
 
                                     </div>
