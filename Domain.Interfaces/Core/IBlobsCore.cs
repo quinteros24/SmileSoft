@@ -1,6 +1,5 @@
 ﻿using Domain.Entities;
 using Microsoft.AspNetCore.Http;
-using System.Threading.Tasks;
 
 namespace Domain.Interfaces.Core
 {

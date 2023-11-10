@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace WebSmileSoft.Models
+﻿namespace WebSmileSoft.Models
 {
     public class SpecialityViewModel
     {

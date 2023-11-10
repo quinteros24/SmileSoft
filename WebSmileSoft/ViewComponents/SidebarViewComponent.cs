@@ -9,7 +9,7 @@ namespace WebSmileSoft.ViewComponents
             return View(viewName: "_Sidebar");
         }
 
-       
+
 
     }
 }

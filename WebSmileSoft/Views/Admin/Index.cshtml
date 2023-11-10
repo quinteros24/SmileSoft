@@ -533,11 +533,11 @@
                 },
                 'close': function (question) {
 
-                    let checkBox1 = $(`<input class="form-check-input" id="${question.id}" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
+                    let checkBox1 = $(`<input class="form-check-input" id="${question.id}" type="checkbox" >`).attr('name', "checkbox-close-question");
 
                     let label1 = $(`<label class="form-check-label" for="${question.id}">`).text("SI");
 
-                    let checkBox2 = $(`<input class="form-check-input" id="${question.id}0" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
+                    let checkBox2 = $(`<input class="form-check-input" id="${question.id}0" type="checkbox">`).attr('name', "checkbox-close-question");
 
                     let label2 = $(`<label class="form-check-label" for="${question.id}0">`).text("NO");
 
@@ -559,6 +559,16 @@
                     let container = $('<div class="card-header py-3"></div>').append(`<p class="text-primary m-0 fw-bold">${question.name}</p>`, options)
 
                     return container
+                },
+                'fileUpload': function (question) {
+                    let inputField = $(`<div class="col-9"><input placeholder="Imagen" type="file" id="${question.id}" accept=".jpg , .png" class="form-control"></input><br></div>`);
+
+                    let container = $('<div class="row"><div class="form-group">').append(
+                        `<label class="text-primary m-0 fw-bold" for="${question.id}">`
+                        + `Imagen # ${question.id}: ` + question.name +
+                        '</label><br>', inputField, `<div class="col-3"><button class="btn btn-primary btnFileC border rounded-5" type="button" id="${question.name + question.id}"> Subir </button></div></div>`);
+
+                    return container
                 }
             };
 
@@ -578,7 +588,11 @@
                     console.error('Tipo de pregunta no válido: ' + question.type);
                 }
             });
-
+            // form.css({
+            //     'display': 'grid',
+            //     'grid-template-columns': '1fr 1fr',
+            //     'grid-gap': '10px'
+            // });
             Swal.fire({
                 title: 'Agregar historia clínica',
                 confirmButtonText: 'Confirmar',

@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
-using Microsoft.AspNetCore.Mvc;
 using Domain.Interfaces.Core;
+using Microsoft.AspNetCore.Mvc;
 
 
 namespace EpSmileSoft.Controllers
@@ -33,25 +33,25 @@ namespace EpSmileSoft.Controllers
         }
 
         [HttpGet]
-         [Route("v1/ViewUsers")]
-         public async Task<GenericResponseModel> ViewUsers(int utID)
-         {
-             try
-             {
-                 GenericResponseModel ItemGenericResponseModel = await _usersCore.ViewUsers(utID);
-                 return ItemGenericResponseModel;
-             }
-             catch
-             {
-                 return new GenericResponseModel();
-             }
-         }
+        [Route("v1/ViewUsers")]
+        public async Task<GenericResponseModel> ViewUsers(int utID)
+        {
+            try
+            {
+                GenericResponseModel ItemGenericResponseModel = await _usersCore.ViewUsers(utID);
+                return ItemGenericResponseModel;
+            }
+            catch
+            {
+                return new GenericResponseModel();
+            }
+        }
 
         [HttpPost]
         [Route("v1/CreateUpdateUsers")]
         public async Task<GenericResponseModel> CreateUpdateUsers([FromBody] UsersModelRequest Item)
         {
-            
+
             try
             {
                 GenericResponseModel ItemGenericResponseModel = await _usersCore.CreateUpdateUsers(Item);

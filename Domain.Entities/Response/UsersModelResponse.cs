@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Domain.Entities.Response
+﻿namespace Domain.Entities.Response
 {
 
 

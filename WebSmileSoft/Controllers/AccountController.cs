@@ -1,11 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using WebSmileSoft.Models;
-using WebSmileSoft.Interfaces;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Net.Http.Headers;
+using WebSmileSoft.Interfaces;
+using WebSmileSoft.Models;
 
 namespace WebSmileSoft.Controllers
 {

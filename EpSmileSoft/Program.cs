@@ -1,5 +1,5 @@
-using EpSmileSoft.Extensions;
 using Domain.Interfaces;
+using EpSmileSoft.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -21,7 +21,8 @@ namespace EpSmilesoft
                        .AllowAnyHeader();
             }));
 
-            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => {
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
                 options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                 {
 
