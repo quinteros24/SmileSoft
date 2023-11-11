@@ -1,16 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using NuGet.ContentModel;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using WebSmileSoft.Interfaces;
 using WebSmileSoft.Models;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
-using Microsoft.AspNetCore.Authorization;
 
 namespace WebSmileSoft.Controllers
 {
-   
+
     public class ProfileController : Controller
     {
 
@@ -21,7 +18,7 @@ namespace WebSmileSoft.Controllers
         {
             _settings = settings;
         }
-     
+
 
 
         // GET: HomeController1
@@ -51,7 +48,7 @@ namespace WebSmileSoft.Controllers
 
         public IActionResult Security()
         {
-         
+
             return PartialView();
         }
 
@@ -99,6 +96,6 @@ namespace WebSmileSoft.Controllers
                 return ChangePasswordViewModelItem;
         }
 
-       
+
     }
 }

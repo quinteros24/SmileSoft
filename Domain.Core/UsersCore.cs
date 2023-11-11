@@ -1,7 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces.Core;
 using Domain.Interfaces.Repository;
-using Repository.Repos;
 
 namespace Domain.Core
 {

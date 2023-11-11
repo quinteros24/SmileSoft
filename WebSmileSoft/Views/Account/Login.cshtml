@@ -8,9 +8,9 @@
 <section class="container flex-grow-1">
     @*  <div id="loader" class="loader"></div> *@
     <div class="row justify-content-center">
-        <div class="col-md-9 col-lg-12 col-xl-10">
-            <div class="card shadow-lg o-hidden border-0 my-5">
-                <div class="card-body p-0 shadow">
+        <div class="col-md-9 col-lg-12 col-xl-10 loginContainer">
+            <div class="card shadow-lg o-hidden border-0 my-5 " id="loginBox">
+                <div class="card-body p-0" id="loginBody">
                     <div class="row">
                         <div class="col-lg-6 d-none d-lg-flex">
                             <div class="flex-grow-1 bg-login-image d-flex ms-5"></div>
@@ -84,7 +84,7 @@
                                 <div class="text-center">
                                     <h4 class="text-dark mb-4"><strong>Iniciar Sesión</strong></h4>
                                 </div>
-                                <form class="user">
+                                <form class="user needs-validation" novalidate>
                                     <div class="mb-3">
                                         <input class="form-control form-control-user" type="text" id="UserLogin" aria-describedby="emailHelp" placeholder="Username" name="Username" autocomplete="username">
                                     </div>
@@ -102,10 +102,10 @@
                                 @*<div class="text-center"><a class="small" asp-controller="Account" asp-action="ForgotPassword">Olvidaste la Contraseña?</a></div>*@
                                 <div class="row">
 
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-lg-6 col-md-6 mb-3">
                                         <a class="btn btn-primary d-block btn-user w-100 border rounded-5" asp-controller="Account" asp-action="Register">Registrarse</a>
                                     </div>
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-lg-6 col-md-6 mb-3">
                                         <a class="btn btn-primary d-block btn-user w-100 border rounded-5" asp-controller="Account" asp-action="RequestanAppointment">Solicitar una Cita</a>
 
                                     </div>
@@ -126,7 +126,6 @@
     <script src="~/assets/js/typebot.js" type="module"></script>
     <script>
         var ipAddressNet = '';
-        1
         $(document).ready(function() {
             localStorage.setItem('urlImageLogin', 'https://smilesoftblobs.blob.core.windows.net/smilesoftimages/SMILESOFT.png')
             localStorage.setItem('urlImageMenu', 'https://smilesoftblobs.blob.core.windows.net/smilesoftimages/SMILESOFTMENU.png')

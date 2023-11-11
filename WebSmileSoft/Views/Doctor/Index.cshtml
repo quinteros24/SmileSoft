@@ -4,38 +4,42 @@
 
 <section>
     <div class="row d-sm-flex justify-content-center align-items-center mb-4">
-        <div class="col-md-6 col-xl-3 mb-4">
-            <div class="card shadow border-start-primary py-2">
-                <div class="card-body">
-                    <div class="row align-items-center no-gutters">
-                        <div class="col me-2">
-                            <div class="text-uppercase text-primary fw-bold text-xs mb-1"><span>Citas</span></div>
-                            <div class=" fw-bold h5 mb-0"><span class="align-items-center" id="dateCount"></span></div><!-- Cargar datos de la base de datos -->
+        <div class="col-lg-6 col-md-4 mb-2">
+            <a class="nav-link" asp-controller="Doctor" asp-action="GestiondeCitas" class="text-decoration-none">
+                <div class="card shadow border-start-primary py-2">
+                    <div class="card-body">
+                        <div class="row align-items-center no-gutters">
+                            <div class="col me-2">
+                                <div class="text-uppercase text-primary fw-bold text-xs mb-1"><span>Citas</span></div>
+                                <div class=" fw-bold h5 mb-0"><span class="align-items-center" id="dateCount"></span></div><!-- Cargar datos de la base de datos -->
+                            </div>
+                            <div class="col-auto"><i class="fa-solid fa-user fa-2x text-gray-300"></i></div>
                         </div>
-                        <div class="col-auto"><i class="fa-solid fa-user fa-2x text-gray-300"></i></div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
-        <div class="col-md-6 col-xl-3 mb-4">
+        <div class="col-lg-6 col-md-4 mb-2">
+            <a class="nav-link" asp-controller="Doctor" asp-action="HistoriasClinicas" class="text-decoration-none">
+                <div class="card shadow border-start-success py-2">
+                    <div class="card-body">
+                        <div class="row align-items-center no-gutters">
+                            <div class="col me-2">
+                                <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Pacientes Atendidos</span></div>
+                                <div class="fw-bold h5 mb-0"><span id="dateComplete"></span></div><!-- Cargar datos de la base de datos -->
+                            </div>
+                            <div class="col-auto"><i class="fa-solid fa-user-doctor fa-2x text-gray-300"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-6 col-md-4 mb-2">
             <div class="card shadow border-start-success py-2">
                 <div class="card-body">
                     <div class="row align-items-center no-gutters">
                         <div class="col me-2">
-                            <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Pacientes Atendidos</span></div>
-                            <div class="fw-bold h5 mb-0"><span id="dateComplete"></span></div><!-- Cargar datos de la base de datos -->
-                        </div>
-                        <div class="col-auto"><i class="fa-solid fa-user-doctor fa-2x text-gray-300"></i></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-xl-3 mb-4">
-            <div class="card shadow border-start-success py-2">
-                <div class="card-body">
-                    <div class="row align-items-center no-gutters">
-                        <div class="col me-2">
-                            <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Pacientes Pendientes</span></div>
+                            <div class="text-uppercase text-warning fw-bold text-xs mb-1"><span>Pacientes Pendientes</span></div>
                             <div class=" fw-bold h5 mb-0"><span id="datePending"></span></div><!-- Cargar datos de la base de datos -->
                         </div>
                         <div class="col-auto"><i class="fa-solid fa-user-shield fa-2x text-gray-300"></i></div>
@@ -44,11 +48,11 @@
             </div>
         </div>
     </div>
- 
+
     <div class="d-flex row col-md-12 justify-content-center align-content-center text-primary">
         <!-- Vista de Citas -->
         <div class="col-md-3" style="display:none">
-            <section id="citas" >
+            <section id="citas">
                 <h2>Citas Programadas</h2>
                 <!-- Calendario de citas -->
                 <div id="calendar"></div>
@@ -60,8 +64,8 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                    <table class="table" id="citasDoctores">
-                    </table>
+                        <table class="table" id="citasDoctores">
+                        </table>
                     </div>
                 </div>
             </div>
@@ -104,7 +108,7 @@
                     let users = data.itemJson;
                     console.table(users);
                     if (users !== null) {
-                       $("#dateCount").text(users.length);
+                        $("#dateCount").text(users.length);
                     }
                     let citasPendientes = 0; // Inicializa el contador de citas pendientes
                     let citasRealizadas = 0; // Inicializa el contador de citas pendientes
@@ -112,7 +116,7 @@
                         let fechaCita = cita.aDate;
                         let fechaFormateada = fechaCita.substring(0, 10);
                         let rowData = [
-                            index+1,
+                            index + 1,
                             cita.aID,
                             cita.uName,
                             cita.uCellphone,

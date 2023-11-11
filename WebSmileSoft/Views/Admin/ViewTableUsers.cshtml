@@ -66,29 +66,7 @@
         let userRole = sessionStorage.getItem("userRole"); "1" !== userRole && logoutUser(), document.getElementById("tipoUsuarioed").addEventListener("change", (function () { var e = document.getElementById("campoOpcional"); "2" === this.value ? e.style.display = "block" : e.style.display = "none" })), document.getElementById("tipoUsuario").addEventListener("change", (function () { var e = document.getElementById("campoOpcionala"); "2" === this.value ? e.style.display = "block" : e.style.display = "none" }));
     </script>
 
-    @* <script>
-        let userRole = sessionStorage.getItem('userRole');
-        if (userRole !== '1') {
-            logoutUser();
-        }
-        document.getElementById("tipoUsuarioed").addEventListener("change", function () {
-            var campoOpcional = document.getElementById("campoOpcional");
-            if (this.value === "2") {
-                campoOpcional.style.display = "block";
-            } else {
-                campoOpcional.style.display = "none";
-            }
-        });
 
-        document.getElementById("tipoUsuario").addEventListener("change", function () {
-            var campoOpcional = document.getElementById("campoOpcionala");
-            if (this.value === "2") {
-                campoOpcional.style.display = "block";
-            } else {
-                campoOpcional.style.display = "none";
-            }
-        });
-        </script> *@
     <script>
         //<!-- Script para Visualizar Lista De Usuarios en la Tabla -->
         //Recibir el parametro de la funcion verusers(1) para filtrar por tipo de usuario
@@ -147,8 +125,8 @@
                             3: 'Pacientes'
                         };
                         let BlockMapping = {
-                            true: 'Desbloqueado',
-                            false: 'Bloqueado'
+                            false: 'Desbloqueado',
+                            true: 'Bloqueado'
                         };
                         let StatusMapping = {
                             true: 'Activo',
@@ -196,16 +174,21 @@
                                 { title: 'Celular' },
                                 { title: 'Tipo Documento', visible: false },
                                 { title: 'Documento' },
-                                { title: 'Bloqueado', visible: false },
+                                {
+                                    title: 'Bloqueado',
+                                    orderable: false, // Para desactivar la ordenación en esta columna
+                                    data: null, // Usaremos la columna "Acciones" solo para botones
+                                    defaultContent: '<div class="row" style="width: auto;"> <button class="btn btn-primary btn-sm deactivate-button  col-12" id="btnActivar" data-toggle="modal" data-target="#deactivateModal" data-toggle="tooltip" title="Desbloquear Usuario">Desbloquear</button></div> '
+                                },
                                 { title: 'Estado' },
                                 {
                                     title: 'Acciones',
                                     orderable: false, // Para desactivar la ordenación en esta columna
                                     data: null, // Usaremos la columna "Acciones" solo para botones
-                                    defaultContent: '<button class="btn btn-primary btn-sm" id="btnEditar" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" title="Editar Usuario"><i class="fas fa-edit"></i></button> ' +
-                                        '<button class="btn btn-danger btn-sm password-button" id="btnPassword" data-toggle="modal" data-target="#passwordModal" data-toggle="tooltip" title="Cambiar contraseña" > <i class="fa-solid fa-lock"></i></button > ' +
-                                        '<button class="btn btn-primary btn-sm" id="btnClinicalHistory" data-toggle="modal" data-target="#clinicalHistoryModal" data-toggle="tooltip" title="Ver Tratamientos del Paciente" > <i class="fa-solid fa-clipboard"></i></button >' +
-                                        '<button class="btn btn-success btn-sm deactivate-button mx-1" id="btnDesactivar" data-toggle="modal" data-target="#deactivateModal" data-toggle="tooltip" title="Desactivar o Activar Usuario" > <i class="fas fa-ban"> </i></button > '
+                                    defaultContent: '<div class="row" style="width: 9rem;"> <button class="btn btn-primary btn-sm  col-12 col-sm-6 col-md-3" id="btnEditar" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" title="Editar Usuario"><i class="fas fa-edit"></i></button> ' +
+                                        '<button class="btn btn-danger btn-sm password-button  col-12 col-sm-6 col-md-3" id="btnPassword" data-toggle="modal" data-target="#passwordModal" data-toggle="tooltip" title="Cambiar contraseña" > <i class="fa-solid fa-lock"></i></button > ' +
+                                        '<button class="btn btn-primary btn-sm  col-12 col-sm-6 col-md-3" id="btnClinicalHistory" data-toggle="modal" data-target="#clinicalHistoryModal" data-toggle="tooltip" title="Ver Tratamientos del Paciente" > <i class="fa-solid fa-clipboard"></i></button >' +
+                                        '<button class="btn btn-success btn-sm deactivate-button  col-12 col-sm-6 col-md-3" id="btnDesactivar" data-toggle="modal" data-target="#deactivateModal" data-toggle="tooltip" title="Desactivar o Activar Usuario" > <i class="fas fa-ban"> </i></button > </div>'
                                 }
                             ],
                             //responsive: true,
@@ -251,19 +234,28 @@
                             ],
                             createdRow: function (row, data, dataIndex) {
                                 // Obtén el valor del estado en la columna "Estado"
-                                var estado = data[11]; // Asegúrate de que 8 sea el índice correcto para la columna "Estado"
+                                let BlockStatus = data[10];
+                                console.log("BlockStatus " + BlockStatus);
+                                var estado = data[11];
                                 var rol = data[2];
                                 //console.log('Rol Fila ', rol);
                                 // Si el estado es "cancelado", oculta los botones en esta fila
                                 if (estado === 'Inactivo') {
                                     $(row).find('#btnPassword, #btnEditar, #btnClinicalHistory').hide();
+                                    //Cambiar Color btnDesactivar a btn-primary
+                                    $(row).find('#btnDesactivar').removeClass('btn-success').addClass('btn-primary');
                                 }
                                 if (rol != 'Pacientes') {
                                     $(row).find('#btnClinicalHistory').hide();
                                 }
+                                if (BlockStatus === 'Desbloqueado') {
+                                    //Deshabilitar el boton de desbloquear
+                                    $(row).find('#btnActivar').prop('disabled', true);
+                                }
                             }
                         });
                         Swal.close();
+
                         //Editar Usuario --> Funcionando a Medias, No cambia Usuarios a Doctores
                         table.column(12).nodes().to$().find('#btnEditar').click(function () {
                             // Maneja la acción del botón aqui
@@ -760,6 +752,36 @@
                                 container.append('<hr>');
                                 form.append(container);
                             }
+
+                        });
+                        table.column(10).nodes().to$().find('#btnActivar').click(function () {
+                            let data = table.row($(this).parents('tr')).data();
+                            let userId = data[1];
+                            // Realiza la solicitud AJAX para cambiar el estado del usuario
+                            $.ajax({
+                                url: sessionStorage.urlEP + '/api/Users/v1/UnblockUser/',
+                                type: 'GET',
+                                data: { 'uID': userId },
+                                contentType: "application/json",
+                                dataType: 'json'
+                            }).done(function (response) {
+                                Swal.fire({
+                                    title: 'Usuario Desbloqueado',
+                                    text: 'El usuario ' + data[3] + ' se desbloqueó correctamente',
+                                    icon: 'success',
+                                    confirmButtonText: 'Aceptar'
+
+
+                                });
+                            }
+                            ).fail(function (response) {
+                                Swal.fire({
+                                    title: 'Error',
+                                    text: 'Error al desbloquear el usuario',
+                                    icon: 'error',
+                                    confirmButtonText: 'Aceptar'
+                                });
+                            });
 
                         });
 

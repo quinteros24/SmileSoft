@@ -3,6 +3,6 @@
     public class CreateUpdateUsersViewModelRequest
     {
         public string Password { get; set; } = null!;
-        public int UID { get; set; } 
+        public int UID { get; set; }
     }
 }

@@ -3,10 +3,8 @@
 }
 <div class="container">
     <div class="welcome-container shadow mb-4">
-        <h1 class="text-primary">Bienvenido a SmileSoft</h1>
-        <span class="d-none d-lg-inline me-2 small text-primary" style="font-weight: bold;" id="SaludoUsuario">
-        </span>
-
+        <h2 class="text-primary display-4 ">Bienvenido a SmileSoft</h2>
+        <span class="d-none d-lg-inline me-2 small text-primary fw-bold" id="SaludoUsuario"></span>
     </div>
     <!-- Sección de selección de servicios -->
     <div class="card">
@@ -17,7 +15,6 @@
                 </div>
             </div>
             <div class="row">
-
                 <div class="col-md-6 col-xl-3 mb-4">
                     <a class="nav-link" asp-controller="Patient" asp-action="GestiondeCitas" class="text-decoration-none">
                         <div class="card shadow border-start-primary py-2 card-hover bg-primary">
@@ -61,13 +58,13 @@
             ////console.log("Validar si tiene Datos de Direccion");
             let valDireccion = sessionStorage.getItem("userAddress");
             //console.log(valDireccion);
-            if (valDireccion == null) {
+            if (valDireccion == null || valDireccion == "null" || valDireccion == "") {
                 //console.log("Mostrar Swal");
 
                 // Si valDireccion es nulo, muestra una alerta al usuario
                 Swal.fire({
                     title: '¡Bienvenido!',
-                    text: 'Por favor, Actualice sus Datos',
+                    text: 'Por favor, Actualice todos sus Datos',
                     icon: 'info',
                     confirmButtonText: 'Aceptar'
                 }).then((result) => {

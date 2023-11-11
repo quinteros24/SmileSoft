@@ -1,11 +1,4 @@
 ﻿using Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Repository.Queries
 {
@@ -44,7 +37,7 @@ namespace Repository.Queries
                 $"    SELECT ERROR_NUMBER() AS OutputCodeError, ERROR_MESSAGE() AS OutputMessageError, 'Parameters' AS TableName\n" +
                 $"END CATCH";
         }
-       
+
         public static string CreateUpdateUsers(UsersModelRequest Item)
         {
             string fecha = Item.uBirthDate.Value.Year.ToString() + "-" + Item.uBirthDate.Value.Month.ToString("00") + "-" + Item.uBirthDate.Value.Day.ToString("00");
@@ -135,13 +128,13 @@ namespace Repository.Queries
 
                 // Eliminar la última coma y agregar la condición WHERE
                 query = query.TrimEnd(',', ' ') + $"\n    WHERE [uID] = {Item.uID};\n" +
-                        $"    INSERT INTO @aux([uID])VALUES({Item.uID})\n" + 
-                        $"    SET @CodeResponse = '0'\n" + 
+                        $"    INSERT INTO @aux([uID])VALUES({Item.uID})\n" +
+                        $"    SET @CodeResponse = '0'\n" +
                         $"    SET @Response = CONCAT(@Response,'actualizado con éxito.')\n";
 
             }
 
-            if(Item.utID == 2)
+            if (Item.utID == 2)
             {
                 query += $"    IF NOT EXISTS(SELECT TOP(1)* FROM Doctors WHERE [uID] = (SELECT [uID] FROM @aux))\n" +
                          $"    BEGIN\n" +
@@ -161,7 +154,7 @@ namespace Repository.Queries
                          $"    END\n";
             }
 
-            query +=     $"    SELECT @CodeResponse AS OutputCodeError, @Response AS OutputMessageError\n" +
+            query += $"    SELECT @CodeResponse AS OutputCodeError, @Response AS OutputMessageError\n" +
                          $"END TRY\n" +
                          $"BEGIN CATCH\n" +
                          $"    SELECT ERROR_NUMBER() AS OutputCodeError, ERROR_MESSAGE() AS OutputMessageError, 'Parameters' AS TableName\n" +

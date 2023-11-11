@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace WebSmileSoft.Models
+﻿namespace WebSmileSoft.Models
 {
     public class UsuariosModel
     {

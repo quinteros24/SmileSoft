@@ -17,7 +17,7 @@ namespace Repository.Queries
                      $"                    END\n";
             }
 
-            return  $"BEGIN TRY\n" +
+            return $"BEGIN TRY\n" +
                     $"    DECLARE @Login AS VARCHAR(MAX) = '{ItemLogin.UserLogin}'\n" +
                     $"    DECLARE @Password AS VARBINARY(64) = (SELECT HASHBYTES('SHA2_256',Cast('{ItemLogin.Password}' AS VARCHAR(8000))))\n" +
                     $"    --DECLARE @DeveloperPass AS VARBINARY(64) = (SELECT HASHBYTES('SHA2_256',Cast('smile' AS VARCHAR(8000))))\n" +

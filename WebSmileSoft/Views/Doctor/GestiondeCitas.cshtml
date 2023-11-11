@@ -15,11 +15,11 @@
         </div>
 
         @* <div class="card mt-4">
-            <div class="card-body">
-                <input type="file" id="fileInput1" accept=".jpg, .jpeg, .png" />
-                <button id="uploadButton1" class="btn btn-primary mt-2">Subir Archivo</button>
-                <p id="message" class="mt-2"></p>
-            </div>
+        <div class="card-body">
+        <input type="file" id="fileInput1" accept=".jpg, .jpeg, .png" />
+        <button id="uploadButton1" class="btn btn-primary mt-2">Subir Archivo</button>
+        <p id="message" class="mt-2"></p>
+        </div>
         </div> *@
 
     </div>
@@ -66,6 +66,7 @@
         } //SetAppointment
         let dID = sessionStorage.getItem("doctorID");
         //console.log('ID Doctor: ', dID);
+        let urlBlob = "";
         $.ajax({
             url: sessionStorage.urlEP + '/api/Appointments/v1/GetAppointmentsList',
             type: 'GET',
@@ -100,11 +101,13 @@
                         {
                             target: 0,
                             visible: true,
-                            searchable: true
+                            searchable: true,
+                            //ordenar por fecha la tabla
+                            orderData: [0, 1]
                         }
                     ],
                     columns: [
-                        { title: '#' },
+                        { title: '#', visible: false },
                         { title: 'IdCita', visible: false },
                         { title: 'Fecha' },
                         { title: 'Nombre' },
@@ -119,7 +122,7 @@
                             data: null, // Usaremos la columna "Acciones" solo para botones
                             defaultContent: '<button class="btn btn-primary btn-sm btnDesactivarC" data-toggle="tooltip" title="Cancelar Cita" type="button"> <i class="fas fa-ban"> </i></button> ' +
                                 '<button class="btn btn-warning btn-sm btnEditarC" data-toggle="modal" data-target="#editarCitaModal" data-toggle="tooltip" title="Reprogramar Cita"> <i class="fa-regular fa-pen-to-square"></i></button> ' +
-                                '<button class="btn btn-success btn-sm btnFileC" data-toggle="modal" data-target="#UploadFileCitaModal" data-toggle="tooltip" title="Subir Imagen"> <i class="fa-solid fa-upload fa-bounce"></i></button>'
+                                '<button class="btn btn-success btn-sm btnFileC" data-toggle="modal" data-target="#UploadFileCitaModal" data-toggle="tooltip" title="Subir Imagen" style="display: block;"> <i class="fa-solid fa-upload fa-bounce"></i></button>'
                         }
                     ],
                     data: dataSet,
@@ -144,6 +147,13 @@
                         // Si el estado es "cancelado", oculta los botones en esta fila
                         if (estado === 'Cancelado') {
                             $(row).find('.btnDesactivarC, .btnEditarC, .btnFileC').hide();
+                        }
+                        // Si el estado es "realizado", oculta los botones en esta fila
+                        if (estado === 'Realizado') {
+                            $(row).find('.btnDesactivarC, .btnEditarC').hide();
+                        }
+                        if (estado === 'Confirmado') {
+                            $(row).find('.btnDesactivarC').hide();
                         }
                     }
                 });
@@ -244,7 +254,7 @@
                         showCancelButton: true, // Add this if you want a cancel button
                         inputValidator: (file) => {
                             if (!file) {
-                                return 'You need to choose an image';
+                                return 'Tienes que elegir una imagen';
                             }
                         }
                     }).then((result) => {
@@ -279,12 +289,14 @@
                         inputPlaceholder: 'Selecciona el estado de la cita',
                         showCancelButton: true,
                         html: "<div id='form-history-content'></div>",
+                        confirmButtonColor: '#008dc9',
                         didOpen: function (ele) {
                             $(ele).find('.swal2-select').insertBefore($(ele).find('.swal2-content div'));
                             Swal.getInput().addEventListener('change', (event) => {
                                 if (event.target.value == 3) {
                                     $("#form-history-content").append('<button type="button" class="btn btn-primary" id="createFormHistory">Agregar historia clínica</button>');
                                     $("#createFormHistory").click(() => createFormHistory(CitaID));
+                                    //swalUploadTratamiento(CitaID);
                                 } else {
                                     $("#form-history-content").empty();
                                     //console.log('Guardar cambios', event.target.value);
@@ -313,7 +325,36 @@
                 //console.log('Error al obtener los detalles del usuario.');
             }
         });
-
+        function swalUploadTratamiento(IDCita) {
+            Swal.fire({
+                title: 'Select image',
+                input: 'file',
+                inputAttributes: {
+                    'accept': 'image/*',
+                    'aria-label': 'Upload your profile picture'
+                },
+                showCancelButton: true, // Add this if you want a cancel button
+                inputValidator: (file) => {
+                    if (!file) {
+                        return 'Tienes que elegir una imagen';
+                    }
+                },
+                confirmButtonColor: '#008dc9'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        uploadFile(result.value, IDCita); // Call the uploadFile function with the selected file
+                        // Swal.fire({
+                        //     title: 'Your uploaded picture',
+                        //     imageUrl: e.target.result,
+                        //     imageAlt: 'The uploaded picture'
+                        // });
+                    };
+                    reader.readAsDataURL(result.value);
+                }
+            });
+        }
         function createFormHistory(citaID) {
             //console.log(citaID);
             Swal.close();
@@ -336,7 +377,9 @@
                             title: 'Error',
                             text: response.messageStatus,
                             icon: 'error',
-                            confirmButtonText: 'Aceptar'
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9'
+
                         })
                     }
                 }
@@ -354,11 +397,11 @@
                 },
                 'close': function (question) {
 
-                    let checkBox1 = $(`<input class="form-check-input" id="${question.id}" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
+                    let checkBox1 = $(`<input class="form-check-input" id="${question.id}" type="checkbox" >`).attr('name', "checkbox-close-question");
 
                     let label1 = $(`<label class="form-check-label" for="${question.id}">`).text("SI");
 
-                    let checkBox2 = $(`<input class="form-check-input" id="${question.id}0" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
+                    let checkBox2 = $(`<input class="form-check-input" id="${question.id}0" type="checkbox">`).attr('name', "checkbox-close-question");
 
                     let label2 = $(`<label class="form-check-label" for="${question.id}0">`).text("NO");
 
@@ -380,6 +423,16 @@
                     let container = $('<div class="card-header py-3"></div>').append(`<p class="text-primary m-0 fw-bold">${question.name}</p>`, options)
 
                     return container
+                },
+                'fileUpload': function (question) {
+                    let inputField = $(`<div class="col-9"><input placeholder="Imagen" type="file" id="${question.id}" accept=".jpg , .png" class="form-control"></input><br></div>`);
+
+                    let container = $('<div class="row"><div class="form-group">').append(
+                        `<label class="text-primary m-0 fw-bold" for="${question.id}">`
+                        + `Imagen # ${question.id}: ` + question.name +
+                        '</label><br>', inputField, `<div class="col-3"><button class="btn btn-primary btnFileC border rounded-5" type="button" id="${question.name + question.id}"> Subir </button></div></div>`);
+
+                    return container
                 }
             };
 
@@ -399,23 +452,35 @@
                     console.error('Tipo de pregunta no válido: ' + question.type);
                 }
             });
-
-            // Botón para seleccionar archivo
-            let fileInput = $('<input type="file" class="form-control" id="fileInput" accept=".jpg, .jpeg, .png" />');
-            let label = $(' <label class="input-group-text" for="fileInput" > Upload </label>')
-            // Botón para subir archivo
-            let uploadButton = $('<button id="uploadButton" class="btn btn-primary mt-2">Subir Archivo</button>');
-            // <div class="input-group mb-3" >
-            //     <input type="file" class="form-control" id = "inputGroupFile02" >
-            //         <label class="input-group-text" for= "inputGroupFile02" > Upload < /label>
-            //             < /div>
-            uploadButton.click(() => {
-                //console.log("Botón Subir Archivo clicado");
-                uploadFile(CitaID);
+            // Add CSS to create a grid with two columns
+            form.css({
+                'display': 'grid',
+                'grid-template-columns': '1fr 1fr',
+                'grid-gap': '10px'
             });
 
-            form.append(fileInput, uploadButton);
+            //btnFileC on click in this button class upload file but dont close the modal and save the response url in a variable
+            // $(".btnFileC").click( () =>{
+            //     uploadFile(CitaID);
+            // });
 
+
+
+            // // Botón para seleccionar archivo
+            // let fileInput = $('<input type="file" class="form-control" id="fileInput" accept=".jpg, .jpeg, .png" />');
+            // let label = $(' <label class="input-group-text" for="fileInput" > Upload </label>')
+            // // Botón para subir archivo
+            // let uploadButton = $('<button id="uploadButton" class="btn btn-primary mt-2">Subir Archivo</button>');
+            // // <div class="input-group mb-3" >
+            // //     <input type="file" class="form-control" id = "inputGroupFile02" >
+            // //         <label class="input-group-text" for= "inputGroupFile02" > Upload < /label>
+            // //             < /div>
+            // uploadButton.click(() => {
+            //     //console.log("Botón Subir Archivo clicado");
+            //     uploadFile(CitaID);
+            // });
+
+            // form.append(fileInput, uploadButton);
             // ... Código para crear otros campos del formulario ...
 
 
@@ -425,7 +490,8 @@
                 confirmButtonText: 'Confirmar',
                 html: form,
                 focusConfirm: false,
-                width: 900
+                width: 900,
+                confirmButtonColor: '#008dc9'
             }).then((result) => {
                 if (result.isConfirmed) {
                     finalStructure = finalStructure.map((question) => {
@@ -455,7 +521,8 @@
                         Swal.fire({
                             title: 'Historia Clinica Creada',
                             icon: 'info',
-                            confirmButtonText: 'Aceptar'
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9'
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 changeDateStatus(3, CitaID);
@@ -469,7 +536,8 @@
                             title: 'Error',
                             text: response.messageStatus,
                             icon: 'error',
-                            confirmButtonText: 'Aceptar'
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9'
                         })
                     }
                 },
@@ -564,11 +632,13 @@
                             icon: 'success',
                             confirmButtonText: 'Aceptar'
                         }).then((result) => {
-                            if (result.isConfirmed) {
-                                location.reload();
-                            }
+                            console.log("Blob response: ", response);
+                            urlBlob = response;
+                            // if (result.isConfirmed) {
+                            //     location.reload();
+                            // }
                         })
-                        
+
                     } else {
                         ////console.log("Error al cargar el archivo.");
                         //showMessage("Error al cargar el archivo.", "red");
@@ -582,8 +652,8 @@
                 .catch((error) => {
                     //showMessage("Error de red al cargar el archivo.", "red");
                     Swal.fire({
-                        title: 'Error de red al cargar el archivo.',
-                        icon: 'error',
+                        title: 'Por favor revise el formato de su archivo, e intente nuevamente.',
+                        icon: 'info',
                         confirmButtonText: 'Aceptar'
                     })
                 });

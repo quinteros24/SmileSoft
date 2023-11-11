@@ -1,5 +1,4 @@
 ﻿using Domain.Entities;
-using Domain.Interfaces.Repository;
 
 namespace Domain.Interfaces.Core
 {

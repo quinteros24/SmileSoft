@@ -66,7 +66,7 @@
                     <label for="mensaje" class="form-label">Motivo:</label>
                     <textarea class="form-control" id="mensaje" name="mensaje" rows="2"></textarea>
                 </div>
-                <button type="button" class="btn btn-primary" onclick="SolicitarCitaPaciente();" id="generateICS">Agendar Cita</button>
+                <button type="button" class="btn btn-primary" onclick="SolicitarCitaPaciente();" >Agendar Cita</button>
             </form>
         </div>
     </div>
@@ -76,7 +76,7 @@
 
 
 
-    <script>
+   @*  <script>
 
         function formatDateForICS(date, time) {
             // Convierte la fecha en el formato requerido por ICS (AAAAMMDD)
@@ -169,7 +169,7 @@
                 return v.toString(16);
             });
         }
-    </script>
+    </script> *@
     <script>
         function fncheckDoctor(e) { var t = e.value; 0 == t ? document.getElementById("cDoctor").disabled = !0 : (fngetDoctors(t), document.getElementById("cDoctor").disabled = !1) } function obtenerFechaActualSinUTC(e) { return new Date(e.getTime() - 6e4 * e.getTimezoneOffset()).toISOString().split("T")[0] } $("#fecha").on("change", (function () { validarFecha() }));
         // const fechaActualSinUTC = obtenerFechaActualSinUTC();
@@ -336,6 +336,9 @@
                             // Si el estado es "cancelado", oculta los botones en esta fila
                             if (estado === 'Cancelado') {
                                 $(row).find('.btnDesactivarC, .btnEditarC').hide();
+                            }
+                            if (estado === 'Realizado') {
+                                $(row).find('.btnDesactivarC, .btnEditarC').prop('disabled', true);
                             }
                         }
 

@@ -109,9 +109,11 @@
 
         </div>
         <div class="row" id="pdfButton" style="display:none;">
-            <a href="javascript:generarPDF()" class="button">
+            <div class="col-6 col-md-3 col-sm-2">
+                <a href="javascript:generarPDF()" class="button btn btn-primary btn-sm">
                 <i class="fas fa-file-pdf fa-xl"></i> Generar PDF
-            </a>
+                </a>
+            </div>
 
         </div>
     </div>
@@ -203,7 +205,7 @@
         }
         let patientID = sessionStorage.getItem('patientDataID');
         let appointmentDates = [];
-        
+
         function getAppoinmentData(patientID) {
             //debugger;
             ////console.log("Funcion getAppoinmentData");
@@ -216,7 +218,7 @@
                 success: function (data) {
                     // Procesar los datos recibidos y agregar filas a la tabla
                     let dataSet = [];
-                   
+
                     $.each(data.itemJson, function (index, cita) {
                         let fechaCita = cita.aDate;
                         let fechaFormateada = fechaCita.substring(0, 10);
@@ -248,15 +250,24 @@
                 const userResponse = await fetch(`${sessionStorage.urlEP}/api/Users/v1/GetUserDetails?uDocument=${inputUserId}`);
                 const userData = await userResponse.json();
                 //console.log('userData in async function: ', userData)
+                //console.log("Userdata Json:", userData.itemJson);
+                let buttonPDF = document.getElementById("pdfButton");
+
                 if (userData.itemJson === null) {
-                    mostrarMensajeError("No se cargó correctamente");
-                } else if (userData.itemJson.utID !== 3) {
-                    let buttonPDF = document.getElementById("pdfButton");
                     buttonPDF.style.display = "none";
                     Swal.fire({
-                        title: 'Error',
+                        title: 'Info',
+                        text: 'El usuario ingresado no existe, por favor ingrese un usuario válido.',
+                        icon: 'info',
+                        confirmButtonText: 'Aceptar',
+                    });
+
+                } else if (userData.itemJson.utID !== 3) {
+                    buttonPDF.style.display = "none";
+                    Swal.fire({
+                        title: 'Info',
                         text: 'El usuario ingresado no es un paciente, por favor ingrese un usuario válido.',
-                        icon: 'error',
+                        icon: 'info',
                         confirmButtonText: 'Aceptar',
                     });
                 } else {
@@ -266,7 +277,16 @@
 
                     const clinicalHistoryData = await clinicalHistoryResponse.json();
                     totalTratamientos = clinicalHistoryData.itemJson.length;
-                    if (clinicalHistoryData.codeStatus == 0) {
+                    if (totalTratamientos === 0) {
+                        buttonPDF.style.display = "none";
+                        Swal.fire({
+                            title: 'Info',
+                            text: 'El usuario ingresado no tiene historial clínica.',
+                            icon: 'info',
+                            confirmButtonText: 'Aceptar',
+                        });
+
+                    }else if (clinicalHistoryData.codeStatus == 0) {
                         let allClinicalHistory = [];
                         let form = $('#questionsContainerForm');
                         form.empty();
@@ -275,15 +295,16 @@
                             allClinicalHistory = [...item];
                             //console.log('allClinicalHistory: ', allClinicalHistory);
                             processClinicalHistoryData(allClinicalHistory);
+                            buttonPDF.style.display = "block";
                             tratamientoID++;
                         });
                         // Process clinical history data and populate the form
 
                     } else {
                         Swal.fire({
-                            title: 'Error',
+                            title: 'Info',
                             text: clinicalHistoryData.messageStatus,
-                            icon: 'error',
+                            icon: 'info',
                             confirmButtonText: 'Aceptar',
                         });
                     }
@@ -293,7 +314,7 @@
                 mostrarMensajeError('Error al obtener detalles del usuario o historial clínico.');
             }
         }
-        
+
         function processClinicalHistoryData(allClinicalHistory) {
             let questionTypes = {
                 'open': function (question) {
@@ -396,7 +417,7 @@
             container.append('<hr>');
             ////console.log('Tratamiento ID: ', tratamientoID);
             ////console.log('Total Tratamientos: ', totalTratamientos);
-            if(tratamientoID < totalTratamientos) {
+            if (tratamientoID < totalTratamientos) {
                 let tratamientoID2 = tratamientoID + 1;
                 let MostrarFechaCita = appointmentDates[tratamientoID2][3];
                 let MostrarDoctorCita = appointmentDates[tratamientoID2][1];
@@ -416,8 +437,8 @@
         $("#buscarButton").on("click", function () {
             let userId = $("#userIdInput").val(); // Get the user ID from the input field
             loadUserClinicalHistory(userId);
-            let buttonPDF = document.getElementById("pdfButton");
-            buttonPDF.style.display = "block";
+            // let buttonPDF = document.getElementById("pdfButton");
+            // buttonPDF.style.display = "block";
         });
 
         let timer; // Variable to store the timer

@@ -102,7 +102,7 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="display:none;">
                                     <form>
                                         @* NO CAMBIAR ESTRUCTURA DE ELEMENTOS, LOS DATOS SE OBTIENEN SEGÚN SU ESTRUCTURA *@
                                         <div class="mb-3">
@@ -113,13 +113,13 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <form>
                                         <div class="mb-3">
                                             <label for="logoInput" class="form-label">Cambiar Logo Menu Principal</label>
                                             <input class="form-control" type="file" id="logoInput" accept=".jpg, .png" onchange="fnConvertToBase64(this)">
                                             <div class="mb-3 my-2">
-                                                <button class="btn btn-primary" type="button" id="updateLogo" onclick="uploadImage(this, 2)">Subir</button>
+                                                <button class="btn btn-primary mx-4" type="button" id="updateLogo" onclick="uploadImage(this, 2)">Subir</button><span class="text-primary">*Tamaño recomendado de 140x70px*</span>
                                             </div>
                                         </div>
                                     </form>
@@ -133,7 +133,7 @@
                         </div>
                         <div class="card-body">
                             <div class="row ">
-                                <div class="col-md-4">
+                                <div class="col-md-4" style="display:none;">
                                     <div class="card-body shadow align-content-center justify-content-center text-center">
                                         <form>
                                             <div class="form-group mx-auto">
@@ -146,7 +146,7 @@
                                         </form>
                                     </div>
                                 </div>
-                                <div class="col-md-4 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <div class="card-body shadow align-content-center justify-content-center text-center">
                                         <form>
                                             <div class="form-group mx-auto">
@@ -159,7 +159,7 @@
                                         </form>
                                     </div>
                                 </div>
-                                <div class="col-md-4 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <div class="card-body shadow align-content-center justify-content-center text-center">
                                         <form>
                                             <div class="form-group">
@@ -223,6 +223,7 @@
                                         <option value="open">Abierta</option>
                                         <option value="close">Cerrada</option>
                                         <option value="multiple">Multiple</option>
+                                        <option value="fileUpload">Imagen</option>
                                     </select>
                                 </div>
                                 <div class="form-group mb-2">
@@ -232,11 +233,11 @@
                                 <div class="form-group option-container mb-2 d-none ">
                                     <label for="options">Opciones:</label>
                                     <div id="options-container"></div>
-                                    <button type="button" class="btn btn-primary mt-2" id="add-option">
+                                    <button type="button" class="btn btn-warning mt-2" id="add-option">
                                         Agregar Opción
                                     </button>
                                 </div>
-                                <button type="button" class="btn btn-success mt-2 mb-2" id="add-question">
+                                <button type="button" class="btn btn-primary mt-2 mb-2" id="add-question">
                                     Agregar pregunta
                                 </button>
                             </div>
@@ -254,7 +255,7 @@
 
                                 <form class="form-group mb-4" id="create-clinic-form-history"></form>
 
-                                <button type="button" class="btn btn-success mt-2 mb-2 d-none" id="save-all-questions">
+                                <button type="button" class="btn btn-primary mt-2 mb-2 d-none" id="save-all-questions">
                                     Guardar todas las preguntas
                                 </button>
                             </div>
@@ -331,27 +332,61 @@
 
 
             const uploadUrl = `${sessionStorage.urlEP}/api/Blobs/upload?citaID=0&genericName=ImageForOffice${text}_${uID}`;
+            //Validar el input si no tiene nada mostrar alerta
+            if (file == undefined) {
+                //showMessage("Por favor seleccione una imagen.", "red");
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Por favor seleccione una imagen.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar',
+                    confirmButtonColor: '#008dc9'
+                })
+                return;
+            } else if (file.type != 'image/jpeg' && file.type != 'image/png') {
+                //showMessage("El formato de la imagen no es válido.", "red");
+                Swal.fire({
+                    title: 'Error',
+                    text: 'El formato de la imagen no es válido.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar',
+                    confirmButtonColor: '#008dc9'
+                })
+                return;
+            } else if (file.size > 2097152) {
+                //showMessage("El tamaño de la imagen no puede superar los 2MB.", "red");
+                Swal.fire({
+                    title: 'Error',
+                    text: 'El tamaño de la imagen no puede superar los 2MB.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar',
+                    confirmButtonColor: '#008dc9'
+                })
+                return;
+            } else {
 
-            $.ajax({
-                url: uploadUrl,
-                type: "POST",
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function (response) {
-                    //debugger;
-                    fnUpdateDataOffice(op, response);
-                },
-                error: function () {
-                    showMessage("Error de red al cargar el archivo.", "red");
-                    Swal.fire({
-                        title: 'Error',
-                        text: 'Error de red al cargar el archivo.',
-                        icon: 'error',
-                        confirmButtonText: 'Aceptar'
-                    })
-                }
-            });
+                $.ajax({
+                    url: uploadUrl,
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        //debugger;
+                        fnUpdateDataOffice(op, response);
+                    },
+                    error: function () {
+                        //showMessage("Error de red al cargar el archivo.", "red");
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Por favor revise el formato de su archivo, e intente nuevamente.',
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9'
+                        })
+                    }
+                });
+            }
 
         }
 
@@ -412,7 +447,8 @@
                             title: 'Ups...',
                             text: response.messageStatus,
                             icon: 'warning',
-                            confirmButtonText: 'Aceptar'
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9'
                         });
                         return;
                     }
@@ -420,35 +456,50 @@
                         title: '',
                         text: response.messageStatus,
                         icon: 'success',
-                        confirmButtonText: 'Aceptar'
+                        confirmButtonText: 'Aceptar',
+                        confirmButtonColor: '#008dc9'
                     });
+                    //Refrescar Sitio Web
+                    location.reload();
                 },
             });
 
         }
 
         let structure = [];
-        $.ajax({
-            url: sessionStorage.urlEP + '/api/Generics/v1/GetUsersClinicStoryFormat?oID=1',
-            type: 'GET',
-            contentType: "application/json",
-            dataType: 'json',
-            async: false,
-            success: function ({ itemJson, codeStatus }) {
-                if (codeStatus == 0) {
-                    let structureR = JSON.parse(itemJson);
-                    structure = structureR.pop();
+        function getUsersClinicStoryFormat() {
+            $.ajax({
+                url: `${sessionStorage.urlEP}/api/Generics/v1/GetUsersClinicStoryFormat?oID=1`,
+                type: 'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                async: false,
+                success: function (response) {
+                    //const { itemJson, codeStatus } = response;
+
+                    if (response.codeStatus == 0) {
+                        ////console.log("response.itemJson: ", response.itemJson);
+                        structure = [];
+                        structure = JSON.parse(response.itemJson);
+                        ////console.log('Structure Json respond: ', structure);
+                        ////console.log('Structure Json respond Long: ', structure.length);
+                    } else if (response.codeStatus == -1) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: response.messageStatus,
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9'
+                        });
+                    }
+                },
+                error: function (error) {
+                    console.error('There was a problem with the AJAX request:', error);
                 }
-                else if (response.codeStatus == -1) {
-                    Swal.fire({
-                        title: 'Error',
-                        text: response.messageStatus,
-                        icon: 'error',
-                        confirmButtonText: 'Aceptar'
-                    })
-                }
-            }
-        })
+            });
+        }
+
+        getUsersClinicStoryFormat();
 
 
         // $.ajax({
@@ -462,11 +513,6 @@
         //             structure2 = itemJson; //Test
         //             //structure = JSON.parse(itemJson);
         //             structure = JSON.parse(itemJson).filter(item => item !== null);
-        //             //console.log('Structure2 Json respond: ', structure2);
-        //             //console.log('Structure2 Json respond Long: ', structure2.length);
-        //             //console.log('Structure Json respond: ', structure);
-        //             //console.log('Structure Json respond Long: ', structure.length);
-
         //         }
         //         else if (response.codeStatus == -1) {
         //             Swal.fire({
@@ -479,26 +525,11 @@
         //     }
         // })
 
-
-
-
         let finalStructure = [];
+        //debugger;
+        console.log("Structure antes de dibujar: ", structure);
         structure.length && drawQuestions(true)
-        // Agrega un manejador de eventos para la clase "btn-en-desarrollo"
-        document.addEventListener("DOMContentLoaded", function () {
-            const buttons = document.querySelectorAll(".btn-en-desarrollo");
-            event.preventDefault();
-            buttons.forEach(function (button) {
-                button.addEventListener("click", function () {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Esta Función esta en Desarrollo!',
-                        confirmButtonColor: '#008dc9'
-                    })
-                });
-            });
-        });
+        //console.log('Structure length: ', structure.length);
         $("#question-type").change(function () {
             if ($(this).val() === "multiple") {
                 $(".option-container").addClass("d-block");
@@ -511,15 +542,14 @@
 
         $("#add-option").click(function () {
             $("#options-container").append(`
-                                                                                                <div class="input-group mb-2">
-                                                                                                <input type="text" class="form-control option-input mx-1" placeholder="Nombre de la opción">
-                                                                                                <div class="input-group-append">
-                                                                                                    <button class="btn btn-danger remove-option" type="button">-</button>
-                                                                                                </div>
-                                                                                                </div>
-                                                                                            `);
+                                                                                                                               <div class="input-group mb-2">
+                                                                                                                               <input type="text" class="form-control option-input mx-1" placeholder="Nombre de la opción">
+                                                                                                                               <div class="input-group-append">
+                                                                                                                                   <button class="btn btn-danger remove-option" type="button">-</button>
+                                                                                                                               </div>
+                                                                                                                               </div>
+                                                                                                                            `);
         });
-
         $(document).on("click", ".remove-option", function () {
             $(this).closest(".input-group").remove();
         });
@@ -527,7 +557,8 @@
         $("#add-question").click(() => drawQuestions());
 
         function drawQuestions(firstLoad = false) {
-            console.log("Cargar Preguntas");
+            ////console.log("Cargar Preguntas");
+
             const type = $("#question-type").val();
             const name = $("#question").val();
             let options = null;
@@ -551,7 +582,6 @@
                 })
                 return;
             }
-
             const question = {
                 id: structure.length + 1,
                 type: type,
@@ -561,19 +591,21 @@
 
             structure.push(question);
 
-            console.log({ structure })
-
             if (structure.length) {
                 $("#save-all-questions").removeClass("d-none");
                 $("#save-all-questions").addClass("d-block");
             }
-
             if (!firstLoad) {
                 $("#question-type").val('')
                 $("#question").val('');
             }
 
             type === "multiple" && $(".input-group").remove();
+
+            //Eliminar Pregunta Fantasma
+            if (firstLoad) {
+                structure.pop();
+            }
             updateStructuredForm(structure);
         }
 
@@ -619,6 +651,22 @@
                     let container = $('<div class="mb-1"></div>').append(`<p class="text-primary m-0 fw-bold">Pregunta de opción múltiple # ${question.id}: ${question.name}</p>`, options)
 
                     return container
+                },
+                //<div class="mb-3">
+                //< label for= "logoInput" class= "form-label" > Cambiar Logo Menu Principal < /label>
+                //< input class="form-control" type = "file" id = "logoInput" accept = ".jpg, .png" onchange = "fnConvertToBase64(this)" >
+                //<div class="mb-3 my-2" >
+                //<button class="btn btn-primary mx-4" type = "button" id = "updateLogo" onclick = "uploadImage(this, 2)" > Subir < /button><span class="text-primary">*Tamaño recomendado de 140x70px*</span >
+                //< /div>
+                'fileUpload': function (question) {
+                    let inputField = $(`<input disabled placeholder="Imagen" type="file" id="${question.id}" accept=".jpg , .png" class="form-control"></input><br>`);
+
+                    let container = $('<div class="form-group"></div>').append(
+                        `<label class="text-primary m-0 fw-bold" for="${question.id}">`
+                        + `Imagen # ${question.id}: ` + question.name +
+                        '</label><br>', inputField, `<button class="btn btn-primary btnFileC" type="button" id="${question.name + question.id}" disabled> Subir </button>`);
+
+                    return container
                 }
             };
 
@@ -649,8 +697,9 @@
                     console.error('Tipo de pregunta no válido: ' + question.type);
                 }
             });
-        }
+            
 
+        }
         // Función para eliminar una pregunta
         function deleteQuestion(id) {
             $(`.question-${id}`).remove();
@@ -953,8 +1002,9 @@
                     if (response.codeStatus == 0) {
                         Swal.fire({
                             title: 'Preguntas Guardadas',
-                            icon: 'info',
-                            confirmButtonText: 'Aceptar'
+                            icon: 'success',
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9'
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 swal.close();
@@ -966,8 +1016,9 @@
                         Swal.fire({
                             title: 'Error',
                             text: response.messageStatus,
-                            icon: 'error',
-                            confirmButtonText: 'Aceptar'
+                            icon: 'info',
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9'
                         })
                     }
                 },

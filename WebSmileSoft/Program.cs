@@ -1,9 +1,4 @@
-using System.Configuration;
-using System.Text;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.IdentityModel.Tokens;
 using WebSmileSoft.Interfaces;
 using WebSmileSoft.Models;
 
@@ -51,7 +46,16 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.UseRouting();
 //app.MapRazorPages();
-
+//si la ruta no existe lo redirige a la ruta por defecto
+app.UseAuthentication();
+app.UseAuthorization();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+               name: "default",
+                      pattern: "{controller=Account}/{action=Login}");
+    //endpoints.MapRazorPages();
+});
 
 app.MapControllerRoute(
     name: "default",

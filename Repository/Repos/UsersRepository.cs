@@ -158,11 +158,11 @@ namespace Repository.Repos
             }
             return genericResponseModel;
         }
-       
+
     }
 
 }
-   
 
-       
+
+
 

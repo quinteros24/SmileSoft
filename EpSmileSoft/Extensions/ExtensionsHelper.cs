@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Domain.Interfaces.Repository;
-using Domain.Interfaces.Core;
-using Repository.Repos;
-using Domain.Core;
+﻿using Domain.Core;
 using Domain.Interfaces;
+using Domain.Interfaces.Core;
+using Domain.Interfaces.Repository;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Repository;
+using Repository.Repos;
 
 namespace EpSmileSoft.Extensions
 {
