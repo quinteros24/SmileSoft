@@ -1,7 +1,9 @@
-﻿using Domain.Entities;
+﻿using Domain.Core;
+using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Repository;
 
 namespace EpSmileSoft.Controllers
 {
@@ -15,7 +17,7 @@ namespace EpSmileSoft.Controllers
         {
             _genericsCore = genericsCore;
         }
-
+        
         [HttpPost]
         [Route("v1/GenerateJWToken")]
         public async Task<GenericResponseModel> GenerateJWToken([FromHeader] int uID, [FromBody] TokenRequestModel item)

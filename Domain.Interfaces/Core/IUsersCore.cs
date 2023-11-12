@@ -9,6 +9,6 @@ namespace Domain.Interfaces.Core
         Task<GenericResponseModel> CreateUpdateUsers(UsersModelRequest Item);
         Task<GenericResponseModel> SetUserStatus(int uID, int uStatus);
         Task<GenericResponseModel> GetUserDetails(int? uID, string? uDocument);
-
+        Task<GenericResponseModel> UnblockUser(int uID);
     }
 }
