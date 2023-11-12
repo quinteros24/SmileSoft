@@ -372,6 +372,7 @@ div.dataTables_wrapper div.dataTables_filter input {
 /* Aplica la animación al icono */
 #whatsappIcon {
     animation: rotateIcon 5s linear infinite; /* Rota cada 60 segundos */
+    
     z-index: 100;
 }
 
@@ -453,3 +454,31 @@ div.dataTables_wrapper div.dataTables_filter input {
     }
 }
 
+/*Ajustar Boton Whatsapp a diferentes tamaños de pantalla*/
+@media (max-width: 768px) {
+    .float {
+        width: 40px;
+        height: 40px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 20px;
+    }
+
+        .float .my-float {
+            margin-top: 9px;
+        }
+}
+
+@media (max-width: 425px) {
+    .float {
+        max-width: 30px;
+        max-height: 30px;
+        bottom: 10px;
+        right: 10px;
+        font-size: 20px;
+    }
+
+        .float .my-float {
+            margin-top: 9px;
+        }
+}
