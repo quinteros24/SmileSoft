@@ -14,11 +14,11 @@
         <!-- Elementos de menú -->
         <div id="divAdmin">
             <ul class="nav text-center flex-column" id="accordionSidebar">
-                <li class="nav-item nav-item2"><a class="nav-link" asp-controller="Admin" asp-action="Index"><i class="fas fa-tachometer-alt "></i><span class="ms-2 text">Dashboard</span></a></li>
-                <li class="nav-item nav-item2"><a class="nav-link" asp-controller="Admin" asp-action="ViewTableUsers"><i class="fa-solid fa-table-list"></i><span class="ms-2">Administrar Usuarios</span></a></li>
-                <li class="nav-item nav-item2"><a class="nav-link" asp-controller="Admin" asp-action="SiteManagement"><i class="fas fa-tools "></i><span class="ms-2 text">Administrar Sitio</span></a></li>
-                <li class="nav-item nav-item2 "><a class="nav-link" asp-controller="Doctor" asp-action="HistoriasClinicas"><i class="fa-solid fa-hospital-user"></i><span class="ms-2 text">Historias Clinicas</span></a></li>
-                <li class="nav-item nav-item2"><a class="nav-link" asp-controller="Doctor" asp-action="GestiondeCitas"><i class="fa-solid fa-calendar-days"></i><span class="ms-2 text">Gestión de Citas Doctores</span></a></li>
+                <li class="nav-item nav-item2" id="Dashboard"><a class="nav-link" asp-controller="Admin" asp-action="Index"><i class="fas fa-tachometer-alt "></i><span class="ms-2 text">Dashboard</span></a></li>
+                <li class="nav-item nav-item2" id="AdminUsers"><a class="nav-link" asp-controller="Admin" asp-action="ViewTableUsers"><i class="fa-solid fa-table-list"></i><span class="ms-2">Administrar Usuarios</span></a></li>
+                <li class="nav-item nav-item2" id="AdminSite"><a class="nav-link" asp-controller="Admin" asp-action="SiteManagement"><i class="fas fa-tools "></i><span class="ms-2 text">Administrar Sitio</span></a></li>
+                <li class="nav-item nav-item2 " id="ClinicHistory"><a class="nav-link" asp-controller="Doctor" asp-action="HistoriasClinicas"><i class="fa-solid fa-hospital-user"></i><span class="ms-2 text">Historias Clinicas</span></a></li>
+                <li class="nav-item nav-item2" id="AdminAppointments"><a class="nav-link" asp-controller="Doctor" asp-action="GestiondeCitas"><i class="fa-solid fa-calendar-days"></i><span class="ms-2 text">Gestión de Citas Doctores</span></a></li>
             </ul>
         </div>
 
@@ -41,7 +41,7 @@
         </div>
 
         <div>
-            <ul class="nav text-center" id="accordionSidebar">
+            <ul class="nav text-center logoutUsers" id="accordionSidebar">
                 <li class="nav-item nav-item2 "><a class="nav-link" onclick="CerrarSesion()" style="user-select: none;"><i class="fa-solid fa-right-from-bracket"></i><span>Cerrar Sesión</span></a></li>
             </ul>
         </div>
