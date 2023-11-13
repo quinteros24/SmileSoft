@@ -3,8 +3,8 @@
 }
 <section class="container flex-grow-1">
     <div class="row justify-content-center">
-        @*  <div class="col-md-9 col-lg-12 col-xl-10"> *@
-        <div class="card shadow-lg o-hidden border-0 my-5">
+        @*<div class="col-md-9 col-lg-12 col-xl-10"> *@
+        <div class="card shadow-lg o-hidden border-0 my-5 rounded-5">
             <div class="card-body p-0">
                 @* <div class="row"> *@
                     @* <div class="container mt-4"> *@
@@ -226,17 +226,23 @@
             const fechaHoraActualMasDosHoras = new Date();
             fechaHoraActualMasDosHoras.setUTCHours(fechaHoraActualMasDosHoras.getUTCHours() + 2);
 
-            if (horaIngresada < horaActual || horaIngresada < "08:00" || horaIngresada > "17:00" || horaIngresada > fechaHoraActualMasDosHoras.getUTCHours()) {
+            if (horaIngresada < horaActual || horaIngresada < "08:00" || horaIngresada > "14:00" || horaIngresada > fechaHoraActualMasDosHoras.getUTCHours()) {
                 //alert("La hora debe estar entre las 08:00 y las 17:00 y no puede ser menor que 2 horas desde ahora.");
                 Swal.fire({
                     icon: 'info',
                     title: 'Oops...',
-                    text: 'La hora debe estar entre las 08:00 AM y las 5:00 PM y puede ser maximo 2 horas antes de la cita.',
+                    text: 'La hora debe estar entre las 08:00 AM y las 4:00 PM y puede ser maximo 2 horas antes de la cita.',
                     confirmButtonColor: '#008dc9'
                 })
                 document.getElementById("cHora").value = ""; // Limpia el campo de hora
             }
         }
+        //VAlidar Formato de la hora tiene que ser exacta
+        $('#cHora').on('focusout', function () {
+            let value = $(this).val();
+            value = value.substring(0, value.indexOf(':'));
+            this.value = value + ':00';
+        });
 
         $("#cHora").on("change", function () {
             validarHora();

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using WebSmileSoft.Interfaces;
-using WebSmileSoft.Models; // Asegúrate de importar el espacio de nombres de tus modelos de usuario y roles
 
 namespace WebSmileSoft.Controllers
 {
@@ -28,7 +27,7 @@ namespace WebSmileSoft.Controllers
             return View();
         }
 
-       
+
 
         public IActionResult UserManagement()
         {
@@ -63,7 +62,7 @@ namespace WebSmileSoft.Controllers
             return PartialView();
         }
 
-        
+
         [HttpPost]
         public IActionResult EditUsers([FromBody] List<SelectListItem> specialities)
         {
@@ -73,7 +72,7 @@ namespace WebSmileSoft.Controllers
         public IActionResult TestBench()
         {
             ViewBag.urlEndPoint = _settings.urlEndPoint;
-           
+
             return View();
         }
 

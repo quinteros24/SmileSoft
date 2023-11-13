@@ -8,9 +8,9 @@
 <section class="container flex-grow-1">
     @*  <div id="loader" class="loader"></div> *@
     <div class="row justify-content-center">
-        <div class="col-md-9 col-lg-12 col-xl-10">
-            <div class="card shadow-lg o-hidden border-0 my-5">
-                <div class="card-body p-0 shadow">
+        <div class="col-md-9 col-lg-12 col-xl-10 loginContainer">
+            <div class="card shadow-lg o-hidden border-0 my-5 " id="loginBox">
+                <div class="card-body p-0" id="loginBody">
                     <div class="row">
                         <div class="col-lg-6 d-none d-lg-flex">
                             <div class="flex-grow-1 bg-login-image d-flex ms-5"></div>
@@ -18,65 +18,65 @@
                         </div>
 
                         @* <div class="col-lg-6" style="display: none">
-                            <div class="p-5">
-                                <div class="text-center">
-                                    <h4 class="text-dark mb-4"><strong>Iniciar Sesión</strong></h4>
-                                </div>
-                                @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
-                                {
-                                    <div class="alert alert-danger">
-                                        @ViewBag.ErrorMessage
-                                        @ViewBag.urlEndPoint
-                                        @ViewBag.jsonUsuario
-                                    </div>
-                                }
+                        <div class="p-5">
+                        <div class="text-center">
+                        <h4 class="text-dark mb-4"><strong>Iniciar Sesión</strong></h4>
+                        </div>
+                        @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                        {
+                        <div class="alert alert-danger">
+                        @ViewBag.ErrorMessage
+                        @ViewBag.urlEndPoint
+                        @ViewBag.jsonUsuario
+                        </div>
+                        }
 
-                               
-                                    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "user needs-validation", novalidate = "novalidate" }))
-                                    {
-                                        <div class="form-group">
-                                            <div class="mb-3">
-                                                @Html.LabelFor(model => model.UserLogin, new { @class = "control-label" })
 
-                                                @Html.TextBoxFor(model => model.UserLogin, new { @class = "form-control border rounded-5", placeholder = "Nombre de Usuario", required = "required" })
-                                                </div>
-                                            <div class="invalid-feedback">Por favor, ingrese su nombre de usuario.</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="mb-3">
-                                            @Html.LabelFor(model => model.password, new { @class = "control-label" })
-                                                @Html.PasswordFor(model => model.password, new { @class = "form-control border rounded-5", placeholder = "Contraseña", required = "required" })
-                                                <div class="invalid-feedback">Por favor, ingrese su contraseña.</div>
-                                            </div>
-                                        </div>
-                                    <button type="submit" class="btn btn-primary d-block btn-user w-100 fs-6">Iniciar Sesión</button>
-                                    }
-                              
-                              <hr />
+                        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "user needs-validation", novalidate = "novalidate" }))
+                        {
+                        <div class="form-group">
+                        <div class="mb-3">
+                        @Html.LabelFor(model => model.UserLogin, new { @class = "control-label" })
 
-                               @*  <form class="user">
-                                    @using (Html.BeginForm("Login", "Account", FormMethod.Post))
-                                    {
-                                        @Html.LabelFor(model => model.UserLogin)
-                                        @Html.TextBoxFor(model => model.UserLogin)
-                                        <br />
-                                        @Html.LabelFor(model => model.password)
-                                        @Html.PasswordFor(model => model.password)
-                                        <br />
-                                        <input type="submit" value="Iniciar Sesión" />
-                                    }
-                                </form> @
-                                <div class="row">
+                        @Html.TextBoxFor(model => model.UserLogin, new { @class = "form-control border rounded-5", placeholder = "Nombre de Usuario", required = "required" })
+                        </div>
+                        <div class="invalid-feedback">Por favor, ingrese su nombre de usuario.</div>
+                        </div>
+                        <div class="form-group">
+                        <div class="mb-3">
+                        @Html.LabelFor(model => model.password, new { @class = "control-label" })
+                        @Html.PasswordFor(model => model.password, new { @class = "form-control border rounded-5", placeholder = "Contraseña", required = "required" })
+                        <div class="invalid-feedback">Por favor, ingrese su contraseña.</div>
+                        </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary d-block btn-user w-100 fs-6">Iniciar Sesión</button>
+                        }
 
-                                    <div class="col-md-6 mb-3">
-                                        <a class="btn btn-primary d-block btn-user w-100 border rounded-5" asp-controller="Account" asp-action="Register">Registrarse</a>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <a class="btn btn-primary d-block btn-user w-100 border rounded-5" asp-controller="Account" asp-action="RequestanAppointment">Solicitar una Cita</a>
+                        <hr />
 
-                                    </div>
-                                </div>
-                            </div>
+                        @*  <form class="user">
+                        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                        {
+                        @Html.LabelFor(model => model.UserLogin)
+                        @Html.TextBoxFor(model => model.UserLogin)
+                        <br />
+                        @Html.LabelFor(model => model.password)
+                        @Html.PasswordFor(model => model.password)
+                        <br />
+                        <input type="submit" value="Iniciar Sesión" />
+                        }
+                        </form> @
+                        <div class="row">
+
+                        <div class="col-md-6 mb-3">
+                        <a class="btn btn-primary d-block btn-user w-100 border rounded-5" asp-controller="Account" asp-action="Register">Registrarse</a>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                        <a class="btn btn-primary d-block btn-user w-100 border rounded-5" asp-controller="Account" asp-action="RequestanAppointment">Solicitar una Cita</a>
+
+                        </div>
+                        </div>
+                        </div>
                         </div> *@
 
                         <div class="col-lg-6">
@@ -126,8 +126,7 @@
     <script src="~/assets/js/typebot.js" type="module"></script>
     <script>
         var ipAddressNet = '';
-        1
-        $(document).ready(function() {
+        $(document).ready(function () {
             localStorage.setItem('urlImageLogin', 'https://smilesoftblobs.blob.core.windows.net/smilesoftimages/SMILESOFT.png')
             localStorage.setItem('urlImageMenu', 'https://smilesoftblobs.blob.core.windows.net/smilesoftimages/SMILESOFTMENU.png')
             localStorage.setItem('backgroundColor', '#ffffff')
@@ -200,7 +199,12 @@
                     success: function (response) {
 
                         if (response.codeStatus == 0) {
-
+                            //localStorage.setItem('tutorial', false);
+                            //Si tutorial no existe en el local storage, se crea y se le asigna el valor false
+                            //si ya existe no la cambiara
+                            if (localStorage.getItem('tutorial') == null) {
+                                localStorage.setItem('tutorial', false);
+                            }
                             sessionStorage.setItem('accessToken', response.itemJson.uToken);
                             sessionStorage.setItem('userRole', response.itemJson.utID);
                             sessionStorage.setItem('userID', response.itemJson.uID);
