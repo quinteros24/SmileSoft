@@ -29,6 +29,9 @@
                     <a href="#questionsettings" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
                         <i class="fa-solid fa-notes-medical fa-lg"></i> Configurar Formulario
                     </a>
+                    <a href="#logData" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                        <i class="fa-solid fa-notes-medical fa-lg"></i> Registros del Sitio
+                    </a>
                 </nav>
             </div>
         </div>
@@ -87,7 +90,18 @@
                             </svg> <span>Configurar Formulario</span>
                         </a>
                     </li>
-
+                    <li class="nav-item">
+                        <a href="#logData" data-toggle="tab" class="nav-link has-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 384 512" style="fill: #008cce" class="feather feather-user mr-2" fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="2"
+                                 stroke-linecap="round"
+                                 stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <path d="M96 352V96c0-35.3 28.7-64 64-64H416c35.3 0 64 28.7 64 64V293.5c0 17-6.7 33.3-18.7 45.3l-58.5 58.5c-12 12-28.3 18.7-45.3 18.7H160c-35.3 0-64-28.7-64-64zM272 128c-8.8 0-16 7.2-16 16v48H208c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h48v48c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V256h48c8.8 0 16-7.2 16-16V208c0-8.8-7.2-16-16-16H320V144c0-8.8-7.2-16-16-16H272zm24 336c13.3 0 24 10.7 24 24s-10.7 24-24 24H136C60.9 512 0 451.1 0 376V152c0-13.3 10.7-24 24-24s24 10.7 24 24l0 224c0 48.6 39.4 88 88 88H296z" />
+                            </svg> <span>Registros del Sitio</span>
+                        </a>
+                    </li>
 
                 </ul>
             </div>
@@ -262,6 +276,11 @@
                         </div>
                     </div>
                     <!-- FIN Formulario para agregar preguntas de historia clinica -->
+                </div>
+                <div class="tab-pane" id="logData">
+                    <h5 class="text-primary">Registros del Sitio</h5>
+                    <hr />
+                    <partial name="ViewLog" />
                 </div>
             </div>
         </div>
@@ -542,13 +561,13 @@
 
         $("#add-option").click(function () {
             $("#options-container").append(`
-                                                                                                                               <div class="input-group mb-2">
-                                                                                                                               <input type="text" class="form-control option-input mx-1" placeholder="Nombre de la opción">
-                                                                                                                               <div class="input-group-append">
-                                                                                                                                   <button class="btn btn-danger remove-option" type="button">-</button>
-                                                                                                                               </div>
-                                                                                                                               </div>
-                                                                                                                            `);
+                                                                                                                                                               <div class="input-group mb-2">
+                                                                                                                                                               <input type="text" class="form-control option-input mx-1" placeholder="Nombre de la opción">
+                                                                                                                                                               <div class="input-group-append">
+                                                                                                                                                                   <button class="btn btn-danger remove-option" type="button">-</button>
+                                                                                                                                                               </div>
+                                                                                                                                                               </div>
+                                                                                                                                                            `);
         });
         $(document).on("click", ".remove-option", function () {
             $(this).closest(".input-group").remove();
@@ -697,7 +716,7 @@
                     console.error('Tipo de pregunta no válido: ' + question.type);
                 }
             });
-            
+
 
         }
         // Función para eliminar una pregunta
@@ -993,7 +1012,7 @@
         // Envío la petición con la estructura final
         $("#save-all-questions").click(() => {
             $.ajax({
-                url: sessionStorage.urlEP + '/api/Generics/v1/StoreUsersClinicStoryFormat?oID=1&jsonObject=' + JSON.stringify(finalStructure),
+                url: sessionStorage.urlEP + `/api/Generics/v1/StoreUsersClinicStoryFormat?uIDPetition=${uIDPetition}&oID=1&jsonObject=` + JSON.stringify(finalStructure),
                 type: 'GET',
                 contentType: "application/json",
                 dataType: 'json',
@@ -1047,7 +1066,95 @@
             });
         });
     </script>
+    <script>
+        //Script para el Log de Datos
 
+        function getServiceRecords() {
+            let serviceRecords = [];
+            // let serviceRecords = [
+            //     { id: 1, date: '2021-10-01', description: 'Servicio 1', result: 'Éxito' },
+            //     { id: 2, date: '2021-10-02', description: 'Servicio 2', result: 'Error' },
+            //     { id: 3, date: '2021-10-03', description: 'Servicio 3', result: 'Éxito' },
+            //     { id: 4, date: '2021-10-04', description: 'Servicio 4', result: 'Éxito' },
+            //     { id: 5, date: '2021-10-05', description: 'Servicio 5', result: 'Error' },
+            // ];
+            //ruta del servicio https://ep-smilesoft.azurewebsites.net/api/Generics/v1/Getlogs?pageNumber=1
+            //se le envia el parametro pageNumber para la paginacion
+            //de la response se muestra el uID, el nombre del usuario, la fecha y la accion realizada
+            $.ajax({
+                url: sessionStorage.urlEP + '/api/Generics/v1/Getlogs?pageNumber=1',
+                type: 'GET',
+                contentType: "application/json",
+                dataType: 'json',
+                async: false,
+                success: function (response) {
+                    let rolesMapping = {
+                        1: 'Administrador',
+                        2: 'Doctores',
+                        3: 'Pacientes'
+                    };
+                    if (response.codeStatus == 0) {
+                        //"uID": 206,
+                        // "uName": "Alfredo",
+                        //     "uLoginName": "10101004",
+                        //         "utID": 3,
+                        //             "logAction": "CREAR",
+                        //logCreationDate
+                        //Mapear estos datos en el array serviceRecords
+                        $.each(response.itemJson, function (index, usuario) {
+                            let rol = rolesMapping[usuario.utID];
+                            let rowData = [
+                                index + 1,
+                                usuario.uID,
+                                rol,
+                                usuario.uName,
+                                usuario.uLoginName,
+                                usuario.logAction,
+                                usuario.logCreationDate
+                            ];
+                            serviceRecords.push(rowData);
+                        });
+                    }else if (response.codeStatus == -1) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: response.messageStatus,
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9'
+                        })
+                    }
+                },
+                error: function (error) {
+                    //console.log(error);
+                }
+            });
+            console.log("Services Records: ", serviceRecords);
+            return serviceRecords;
+        }
+
+
+
+
+
+
+        function renderServiceRecords() {
+            const serviceRecords = getServiceRecords();
+            const serviceRecordsTable = $('#service-records');
+            serviceRecordsTable.empty();
+            for (const record of serviceRecords) {
+                const row = $('<tr>');
+                row.append($('<td>').text(record.id));
+                row.append($('<td>').text(record.date));
+                row.append($('<td>').text(record.description));
+                row.append($('<td>').text(record.result));
+                serviceRecordsTable.append(row);
+            }
+        }
+
+        $(document).ready(() => {
+            renderServiceRecords();
+        });
+    </script>
 
     @* <script src="~/assets/js/popper.js"></script> *@
     <script src="~/assets/js/bootstrap.min.js"></script>

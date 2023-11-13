@@ -343,8 +343,18 @@
                 $("#Universityname").val(userData.dUniversityName);
             }
         });
-
-
+        //Validar que el input editCorreo sea un correo valido si no limpiar el input
+        $("#editCorreo").change(function () {
+            let correo = $("#editCorreo").val();
+            if (!validateEmail(correo)) {
+                Swal.fire({
+                    text: 'Por favor, ingrese un correo valido.',
+                    confirmButtonColor: '#008dc9'
+                });
+                $("#editCorreo").val("");
+            }
+        });
+        
         $(".update-profile-button").click(function () {
 
 
@@ -505,7 +515,7 @@
                 $.ajax({
 
                     type: "POST",
-                    url: sessionStorage.urlEP + '/api/Users/v1/ChangePassword',
+                    url: sessionStorage.urlEP + `/api/Users/v1/ChangePassword?uIDPetition=${uIDPetition}`,
                     //header: {'Authorization': 'Bearer ' + sessionStorage.getItem('accessToken') },
                     data: JSON.stringify(data),
                     contentType: "application/json",
@@ -594,7 +604,7 @@
                     ////console.log("Desactivar 2" + userId);
                     // Realiza la solicitud AJAX para desactivar el usuario
                     $.ajax({
-                        url: sessionStorage.urlEP + '/api/Users/v1/SetUserStatus/',
+                        url: sessionStorage.urlEP + `/api/Users/v1/SetUserStatus/?uIDPetition=${uIDPetition}`,
                         type: 'GET',
                         data: { 'uID': uID, 'uStatus': uStatus },
                         contentType: "application/json",
