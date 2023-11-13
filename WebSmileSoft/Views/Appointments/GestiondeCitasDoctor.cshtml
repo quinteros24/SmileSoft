@@ -141,7 +141,7 @@
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 $.ajax({
-                                    url: sessionStorage.urlEP + '/api/Appointments/v1/UpdateAppointmentStatus',
+                                    url: sessionStorage.urlEP + `/api/Appointments/v1/UpdateAppointmentStatus?uIDPetition=${uIDPetition}`,
                                     type: 'GET',
                                     data: { 'aID': CitaID, 'asID': 4 },
                                     contentType: "application/json",
@@ -222,7 +222,7 @@
             ////console.log(`Estado de cita seleccionado: ${citaState}`);
 
             $.ajax({
-                url: sessionStorage.urlEP + '/api/Appointments/v1/UpdateAppointmentStatus',
+                url: sessionStorage.urlEP + `/api/Appointments/v1/UpdateAppointmentStatus?uIDPetition=${uIDPetition}`,
                 type: 'GET',
                 data: { 'aID': CitaID, 'asID': citaState },
                 contentType: "application/json",
