@@ -50,6 +50,7 @@ namespace Repository.Queries
         public static string SetAppointment(AppointmentesModel Item)
         {
             string fechaB = String.Empty, fechaC = String.Empty, time = String.Empty;
+
             if (Item.uBirthDate != null)
             {
                 fechaB = Item.uBirthDate.Value.Year.ToString() + "-" + Item.uBirthDate.Value.Month.ToString("00") + "-" + Item.uBirthDate.Value.Day.ToString("00");
@@ -62,6 +63,8 @@ namespace Repository.Queries
             {
                 time = Item.aTime.Value.Hours.ToString() + ":" + Item.aTime.Value.Minutes.ToString() + ":" + Item.aTime.Value.Seconds.ToString();
             }
+
+            string logAction = String.Empty;
 
             string DECLARE = $"DECLARE\n" +
                              $"    @aID AS INT = {Item.aID ?? 0}\n" +
@@ -77,6 +80,7 @@ namespace Repository.Queries
                              $"    ,@aDescription AS VARCHAR(MAX) = '{Item.aDescription}'\n" +
                              $"    ,@asID AS INT = {Item.asID ?? 1}\n" +
                              $"    ,@aDate AS DATETIME = '{fechaC}'\n" +
+                             $"    ,@logDescription AS VARCHAR(MAX) = ''\n" +
                              $"    ,@uBirthDate AS DATETIME = '{fechaB}'\n" +
                              $"    ,@aTime AS TIME = '{time}'\n" +
                              $"    ,@ResponseCreation AS VARCHAR(MAX) = 'Puede iniciar sesión con su nombre de usuario o correo electrónico para gestionar los detalles de la cita.'\n" +
@@ -86,6 +90,7 @@ namespace Repository.Queries
 
             if (Item.aID is null || Item.aID == 0)
             {
+                logAction = "CREAR";
                 //CREAR
                 QUERY += $"    DECLARE @id AS INT = (SELECT [uID] FROM Users WHERE uDocument = @uDocument)\n" +
                          $"    IF EXISTS(SELECT TOP(1)* FROM Appointments AS A INNER JOIN Users AS U ON U.uID = A.uID WHERE A.uID = @id AND A.aDate = @aDate AND A.aTime = @aTime AND A.dID = @dID  )\n" +
@@ -105,13 +110,14 @@ namespace Repository.Queries
                          $"                IF NOT EXISTS(SELECT TOP(1)* FROM Users WHERE [uDocument] = @uDocument)\n" +
                          $"                BEGIN\n" +
                          $"                    --NO EXISTE LO CREAMOS\n" +
-                         $"                    INSERT INTO Users(utID,uName,uLastName,uCellphone,uLoginName,uPassword,dtID,uDocument,[oID],gID,uBirthDate)\n" +
-                         $"                    VALUES(3,@uName,@uLastName,@uCellphone,@uDocument,@uPassword,@dtID,@uDocument,@oID,@gID,@uBirthDate)\n" +
+                         $"                    INSERT INTO Users(utID,uName,uLastName,uCellphone,uLoginName,uPassword,dtID,uDocument,[oID],gID,uBirthDate,uEmailAddress)\n" +
+                         $"                    VALUES(3,@uName,@uLastName,@uCellphone,@uDocument,@uPassword,@dtID,@uDocument,@oID,@gID,@uBirthDate,'{Item.uEmailAddress}')\n" +
                          $"                    SET @ResponseCreation = CONCAT(\n" +
-                         $"                        'Se ha registrado correctamente, para ver el detalle de las citas puede iniciar sesión con el usuario '\n" +
+                         $"                        'Se ha registrado correctamente, para ver el detalle de las citas puede iniciar sesión con el usuario \"'\n" +
                          $"                        ,@uDocument\n" +
                          $"                        ,'\". Su contraseña es el documento de identidad')\n" +
                          $"                    SET @uID = (SELECT TOP(1)[uID] FROM Users WHERE [uDocument] = @uDocument)\n" +
+                         $"                    SET @logDescription = CONCAT(@logDescription,'Se ha creado el usuario \"@uDocument\". ')\n" +
                          $"                END\n" +
                          $"                SET @uID = (SELECT TOP(1)[uID] FROM Users WHERE [uDocument] = @uDocument)\n" +
                          $"            END\n" +
@@ -122,6 +128,7 @@ namespace Repository.Queries
                          $"                    INSERT INTO Appointments([oID],[uID],[dID],aDate,aTime,aDescription)\n" +
                          $"                    VALUES(@oID,@uID,@dID,@aDate,@aTime,@aDescription)\n" +
                          $"                    SET @ResponseCreation = CONCAT('La cita se ha crado. ',@ResponseCreation)\n" +
+                         $"                    SET @logDescription = CONCAT(@logDescription,'Se ha creado la cita.')\n" +
                          $"                END\n" +
                          $"                ELSE\n" +
                          $"                    SET @ResponseCreation = 'El usuario no se ha podidio encontrar, por favor intente de nuevo'\n" +
@@ -132,6 +139,7 @@ namespace Repository.Queries
             }
             else
             {
+                logAction = "EDITAR";
                 //EDITAR
                 QUERY += $"IF EXISTS(SELECT TOP(1)* FROM Appointments WHERE aID = @aID)\n" +
                          $"    BEGIN \n" +
@@ -145,15 +153,27 @@ namespace Repository.Queries
                          $"        WHERE \n" +
                          $"            aID = @aID\n" +
                          $"        SELECT '0' AS OutputCodeError, CONCAT('Se han actualizado los datos de la cita ',@aID) AS OutputMessageError\n" +
+                         $"        SET @logDescription = 'Se ha editado la cita'\n" +
                          $"    END\n" +
                          $"    ELSE\n" +
                          $"        SELECT '-1' AS OutputCodeError, 'No se encontraron datos, por favor intente nuevamente' AS OutputMessageError\n";
             }
+            
+            string JSON = Newtonsoft.Json.JsonConvert.SerializeObject(Item);
 
-            QUERY += "END TRY\n" +
-                     "BEGIN CATCH\n" +
-                     "    SELECT ERROR_NUMBER() AS OutputCodeError, ERROR_MESSAGE() AS OutputMessageError\n" +
-                     "END CATCH";
+
+            string LOG = $"DECLARE @utID INT = (SELECT utID FROM Users WHERE [uID] = @uID)\n" +
+                         $"IF(@logDescription != '')\n" +
+                         $"BEGIN\n" +
+                         $"    INSERT INTO Logs([uID],utID,logAction,logDescription,logJSON)\n" +
+                         $"    VALUES(@uID,@utID,'{logAction}',@logDescription, '{JSON}')\n" +
+                         $"END\n";
+
+            QUERY += $"    {LOG}\n" +
+                      "END TRY\n" +
+                      "BEGIN CATCH\n" +
+                      "    SELECT ERROR_NUMBER() AS OutputCodeError, ERROR_MESSAGE() AS OutputMessageError\n" +
+                      "END CATCH";
 
             return QUERY;
         }
