@@ -32,9 +32,9 @@ namespace EpSmileSoft.Controllers
 
         [HttpGet]
         [Route("v1/UpdateAppointmentStatus")]
-        public async Task<GenericResponseModel> UpdateAppointmentStatus(int aID, int asID)
+        public async Task<GenericResponseModel> UpdateAppointmentStatus(int aID, int asID, int uIDPetition)
         {
-            return await _appointmentsCore.UpdateAppointmentStatus(aID, asID);
+            return await _appointmentsCore.UpdateAppointmentStatus(aID, asID, uIDPetition);
         }
         
 

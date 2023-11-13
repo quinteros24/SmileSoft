@@ -23,9 +23,9 @@ namespace Domain.Core
             return responseModel;
         }
 
-        public async Task<GenericResponseModel> UpdateAppointmentStatus(int aID, int asID)
+        public async Task<GenericResponseModel> UpdateAppointmentStatus(int aID, int asID, int uIDPetition)
         {
-            GenericResponseModel responseModel = await _appointmentsRepository.UpdateAppointmentStatus(aID, asID);
+            GenericResponseModel responseModel = await _appointmentsRepository.UpdateAppointmentStatus(aID, asID, uIDPetition);
             return responseModel;
         }
 
