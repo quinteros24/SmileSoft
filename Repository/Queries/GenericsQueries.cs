@@ -65,5 +65,25 @@ namespace Repository.Queries
             query += WHERE;
             return query;
         }
+
+        public static string Getlogs(int pageNumber = 1)
+        {
+            return $"SELECT\n" +
+                   $"    L.uID\n" +
+                   $"    ,U.uName\n" +
+                   $"    ,U.uLoginName\n" +
+                   $"    ,L.utID\n" +
+                   $"    ,L.logAction\n" +
+                   $"    ,L.logDescription\n" +
+                   $"    ,L.logJSON\n" +
+                   $"    ,L.logCreationDate\n" +
+                   $"    ,(SELECT COUNT(*) FROM Logs) AS TotalRecords\n" +
+                   $"FROM\n" +
+                   $"    Logs AS L INNER JOIN Users AS U ON L.uID = U.uID\n" +
+                   $"ORDER BY\n" +
+                   $"    L.logCreationDate DESC\n" +
+                   $"    ,U.uName ASC\n" +
+                   $"    OFFSET 10 *({pageNumber} - 1) ROWS FETCH NEXT 10 ROWS ONLY";
+        }
     }
 }

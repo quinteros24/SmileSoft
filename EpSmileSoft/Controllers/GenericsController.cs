@@ -52,25 +52,25 @@ namespace EpSmileSoft.Controllers
         //Setea la configuración del json
         [HttpGet]
         [Route("v1/StoreUsersClinicStoryFormat")]
-        public async Task<GenericResponseModel> StoreUsersClinicStoryFormat(int oID, string jsonObject)
+        public async Task<GenericResponseModel> StoreUsersClinicStoryFormat(int oID, string jsonObject, int uIDPetition)
         {
-            return await _genericsCore.StoreUsersClinicStoryFormat(jsonObject, oID);
+            return await _genericsCore.StoreUsersClinicStoryFormat(jsonObject, oID, uIDPetition);
         }
 
         //Setea la historia clínica del paciente
         [HttpGet]
         [Route("v1/SetUsersClinicStoryFormat")]
-        public async Task<GenericResponseModel> SetUsersClinicStoryFormat(string jsonObject, int aID)
+        public async Task<GenericResponseModel> SetUsersClinicStoryFormat(string jsonObject, int aID, int uIDPetition)
         {
-            return await _genericsCore.SetUsersClinicStoryFormat(jsonObject, aID);
+            return await _genericsCore.SetUsersClinicStoryFormat(jsonObject, aID, uIDPetition);
         }
 
         //Setea el numero de contacto para las redes sociales
         [HttpPut]
         [Route("v1/SetContactNumber")]
-        public async Task<GenericResponseModel> SetContactNumber([FromBody] string cellphoneNumber, int oID)
+        public async Task<GenericResponseModel> SetContactNumber([FromBody] string cellphoneNumber, int oID, int uIDPetition)
         {
-            return await _genericsCore.SetContactNumber(cellphoneNumber, oID);
+            return await _genericsCore.SetContactNumber(cellphoneNumber, oID, uIDPetition);
         }
 
         //Obtiene el numero de contacto para las redes sociales
@@ -142,6 +142,13 @@ namespace EpSmileSoft.Controllers
         public async Task<GenericResponseModel> GetAppointmentsUserBlob(string uDocument)
         {
             return await _genericsCore.GetAppointmentsUserBlob(uDocument);
+        }
+
+        [HttpGet]
+        [Route("v1/Getlogs")]
+        public async Task<GenericResponseModel> Getlogs(int pageNumber = 1)
+        {
+            return await _genericsCore.Getlogs(pageNumber);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using System.Dynamic;
 
 namespace Repository.Queries
 {
@@ -178,13 +179,29 @@ namespace Repository.Queries
             return QUERY;
         }
 
-        public static string UpdateAppointmentStatus(int aID, int asID)
+        public static string UpdateAppointmentStatus(int aID, int asID, int uIDPetition)
         {
+            dynamic obj = new ExpandoObject();
+            obj.aID = aID;
+            obj.asID = asID;
+            obj.uIDPetition = uIDPetition;
+
+            string JSON = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
+
+
+            string LOG = $"DECLARE @utID INT = (SELECT utID FROM Users WHERE [uID] = {uIDPetition})\n" +
+                         $"IF(@logDescription != '')\n" +
+                         $"BEGIN\n" +
+                         $"    INSERT INTO Logs([uID],utID,logAction,logDescription,logJSON)\n" +
+                         $"    VALUES({uIDPetition},@utID,'ACTUALIZAR',@logDescription, '{JSON}')\n" +
+                         $"END\n";
+
             return $"DECLARE \n" +
                    $"    @asID AS INT = {asID},\n" +
                    $"    @aID AS INT = {aID},\n" +
                    $"    @aDate AS DATE,\n" +
                    $"    @response AS VARCHAR(100),\n" +
+                   $"    @logDescription AS VARCHAR(MAX) = '',\n" +
                    $"    @responseCode AS VARCHAR(5),\n" +
                    $"    @dateNow AS DATE = DATEADD(dd, 0, DATEDIFF(dd, 0, GETUTCDATE()))\n\n" +
                    $"BEGIN TRY\n" +
@@ -210,9 +227,11 @@ namespace Repository.Queries
                    $"                aID = @aID\n" +
                    $"            SET @responseCode = '0'\n" +
                    $"            SET @response = CONCAT('La cita número ',@aID,' ha pasado a estado ',(SELECT asDescription FROM AppointmentStates WHERE asID = @asID))\n" +
+                   $"            SET @logDescription = CONCAT('La cita número ',@aID,' ha pasado a estado ',(SELECT asDescription FROM AppointmentStates WHERE asID = @asID))\n" +
                    $"        END\n" +
                    $"    END\n" +
                    $"    SELECT @responseCode AS OutputCodeError, @response AS OutputMessageError\n" +
+                   $"    {LOG}" +
                    $"END TRY\n" +
                    $"BEGIN CATCH\n" +
                    $"    SELECT ERROR_NUMBER() AS OutputCodeError, ERROR_MESSAGE() AS OutputMessageError\n" +

@@ -19,11 +19,11 @@ namespace EpSmileSoft.Controllers
         /// <summary> Verificación de datos e inicio de sesión </summary>
         [HttpPost]
         [Route("v1/ChangePassword")]
-        public async Task<GenericResponseModel> ChangePassword([FromBody] ChangePasswordModelRequest Item)
+        public async Task<GenericResponseModel> ChangePassword([FromBody] ChangePasswordModelRequest Item, int uIDPetition)
         {
             try
             {
-                GenericResponseModel ItemGenericResponseModel = await _usersCore.ChangePassword(Item);
+                GenericResponseModel ItemGenericResponseModel = await _usersCore.ChangePassword(Item, uIDPetition);
                 return ItemGenericResponseModel;
             }
             catch
@@ -49,12 +49,12 @@ namespace EpSmileSoft.Controllers
 
         [HttpPost]
         [Route("v1/CreateUpdateUsers")]
-        public async Task<GenericResponseModel> CreateUpdateUsers([FromBody] UsersModelRequest Item)
+        public async Task<GenericResponseModel> CreateUpdateUsers([FromBody] UsersModelRequest Item, int uIDPetition)
         {
             
             try
             {
-                GenericResponseModel ItemGenericResponseModel = await _usersCore.CreateUpdateUsers(Item);
+                GenericResponseModel ItemGenericResponseModel = await _usersCore.CreateUpdateUsers(Item, uIDPetition);
                 return ItemGenericResponseModel;
             }
             catch
@@ -65,11 +65,11 @@ namespace EpSmileSoft.Controllers
 
         [HttpGet]
         [Route("v1/SetUserStatus")]
-        public async Task<GenericResponseModel> SetUserStatus(int uID, int uStatus)
+        public async Task<GenericResponseModel> SetUserStatus(int uID, int uStatus, int uIDPetition)
         {
             try
             {
-                GenericResponseModel ItemResponseModel = await _usersCore.SetUserStatus(uID, uStatus);
+                GenericResponseModel ItemResponseModel = await _usersCore.SetUserStatus(uID, uStatus, uIDPetition);
                 return ItemResponseModel;
             }
             catch
@@ -95,11 +95,11 @@ namespace EpSmileSoft.Controllers
 
         [HttpGet]
         [Route("v1/UnblockUser")]
-        public async Task<GenericResponseModel> UnblockUser(int uID)
+        public async Task<GenericResponseModel> UnblockUser(int uID, int uIDPetition)
         {
             try
             {
-                GenericResponseModel ItemGenericResponseModel = await _usersCore.UnblockUser(uID);
+                GenericResponseModel ItemGenericResponseModel = await _usersCore.UnblockUser(uID, uIDPetition);
                 return ItemGenericResponseModel;
             }
             catch
