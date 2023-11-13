@@ -93,9 +93,20 @@ namespace EpSmileSoft.Controllers
             }
         }
 
-
-
-
+        [HttpGet]
+        [Route("v1/UnblockUser")]
+        public async Task<GenericResponseModel> UnblockUser(int uID)
+        {
+            try
+            {
+                GenericResponseModel ItemGenericResponseModel = await _usersCore.UnblockUser(uID);
+                return ItemGenericResponseModel;
+            }
+            catch
+            {
+                return new GenericResponseModel();
+            }
+        }
 
     }
 }
