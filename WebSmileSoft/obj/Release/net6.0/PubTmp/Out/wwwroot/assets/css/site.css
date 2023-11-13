@@ -411,8 +411,8 @@ div.dataTables_wrapper div.dataTables_filter input {
 }
 
 #navLogo {
-    max-width: 106px; /* Establece el ancho máximo */
-    height: auto; /* Mantiene la relación de aspecto original */
+    max-width: 140px; /* Establece el ancho máximo */
+    max-height: 70px; /* Mantiene la relación de aspecto original */
 }
 
 /* Media query para pantallas más pequeñas */

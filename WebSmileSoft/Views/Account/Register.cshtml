@@ -6,13 +6,14 @@
         <div class="col-md-9 col-lg-12 col-xl-10">
             <div class="card shadow-lg o-hidden border-0">
                 <div class="card-body p-5 shadow">
-                    <div class="row">
+                    <div class="row justify-content-center">
                         <div class="d-flex flex-column align-items-center">
-                            <img src="~/assets/img/logo-2.png" class="img-fluid w-25" alt="SmileSoftLogo">
+                            <img src="~/assets/img/logo-2.png" class="img-fluid" id="registerLogo" alt="SmileSoftLogo">
+                        <hr/>
                         </div>
-
-                        <form class="row p-5" id="registerForm">
-                            <div class="col-md-6 mb-3">
+                        <form class="row ms-2 needs-validation" id="registerForm" novalidate>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                                 <label class="visually-hidden" for="userFirstNameRegister">Nombres</label>
                                 <div class="input-group">
                                     <div class="input-group-text">Nombres</div>
@@ -20,15 +21,16 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6 mb-3">
+                                <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                                 <label class="visually-hidden" for="userLastNameRegister">Apellidos</label>
                                 <div class="input-group">
                                     <div class="input-group-text">Apellidos</div>
                                     <input type="text" class="form-control" id="userLastNameRegister" oninput="generateUsername()" required>
                                 </div>
                             </div>
+                            </div><div class="row">
 
-                            <div class="col-md-6 mb-3">
+                                <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                                 <label class="visually-hidden" for="tipo_documento">Tipo de Documento</label>
                                 <div class="input-group">
                                     <div class="input-group-text">Tipo de Documento</div>
@@ -39,22 +41,23 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6 mb-3">
+                                <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                                 <div class="input-group">
                                     <!--<label class="form-outline" for="IdNumber">Numero</label>-->
                                     <span class="input-group-text" id="inputGroup-sizing-default">Documento</span>
                                     <input type="text" id="IdNumber" class="form-control" required />
                                 </div>
                             </div>
+                            </div><div class="row">
 
-                            <div class="col-md-6 mb-3">
+                                <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                                 <div class="input-group">
                                     <span class="input-group-text">Fecha de nacimiento</span>
                                     <input type="date" id="birthDate" class="form-control " placeholder="YYYY-MM-DD" required />
                                 </div>
                             </div>
 
-                            <div class="col-md-6 mb-3">
+                                <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                                 <div class="input-group" id="genderOptions">
                                     <label class="input-group-text" for="genderSelect">Género</label>
                                     <select class="form-select" id="genderSelect">
@@ -65,62 +68,66 @@
                                     </select>
                                 </div>
                             </div>
+                            </div><div class="row">
 
-                            <div class="col-md-6 mb-3">
+                                <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                                 <div class=" input-group">
                                     <span class="input-group-text">Dirección</span>
                                     <input type="text" id="address" class="form-control" required />
                                 </div>
                             </div>
 
-                            <div class="col-md-6 mb-3">
+                                <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                                 <div class="input-group">
                                     <span class="input-group-text">Numero de celular</span>
                                     <input type="number" id="mobileNumber" class="form-control" required />
                                 </div>
                             </div>
+                            <div class="row"></div>
 
-                            <div class="col-md-6 mb-3">
+                                <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                                 <div class="input-group ">
                                     <span class="input-group-text">Correo electrónico</span>
                                     <input type="email" id="email" class="form-control " placeholder="usuario@example.com" required />
                                 </div>
                             </div>
-                            <div class="col-md-6 mb-3">
+
+
+                                <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                                 <div class="input-group ">
                                     <span class="input-group-text">Nombre de Usuario</span>
                                     <input type="text" id="userNameRegister" class="form-control" autocomplete="username" required />
                                 </div>
                             </div>
-
-                            <div class="col-md-6 mb-3">
+                            </div><div class="row">
+                                <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                                 <div class="input-group ">
                                     <span class="input-group-text">Contraseña</span>
                                     <input type="password" id="password" class="form-control" placeholder="" autocomplete="new-password" required />
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                                <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                                 <div class="input-group">
                                     <span class="input-group-text">Confirmar contraseña</span>
                                     <input type="password" id="confirmPassword" class="form-control"
                                            placeholder="" autocomplete="new-password" required />
                                 </div>
                             </div>
-
+                           
                             <div id="passwordHelpBlock" class="form-text">
                                 Tu contraseña debe ser minimo de 8 caracteres, debe contener letras, números o caracteres
                                 especiales, y no debe contener espacios o emojis.
                             </div>
-
+                            </div>
                         </form>
                         <div class="text-end mt-4">
-                            <button type="button" class="btn btn-primary d-block btn-user w-100" onclick="registrarUsuario();">
+                            <button type="submit" class="btn btn-primary d-block btn-user w-100 mb-1 border rounded-5" onclick="registrarUsuario();">
                                 <strong>Registrarte</strong>
                             </button>
                         </div>
-                        <hr>
-                        <div class="text-center"><a class="small" href="@Url.Action("Login","Account")">Ya tienes Cuenta? Inicia Sesión!</a></div>
+                        <hr/>
+                        <div class="text-end"><a class="small btn btn-primary border rounded-5" href="@Url.Action("Login","Account")">Ya tienes Cuenta? Inicia Sesión!</a></div>
                         <div class="form-check" style="display:none"><input class="form-check-input custom-control-input" type="checkbox" id="remember_me"><label class="form-check-label custom-control-label" for="remember_me">Recordarme</label></div>
 
                     </div>
@@ -180,7 +187,7 @@
                 // Retorna false para indicar que la validación falló
                 return false;
             }
-
+            
             // Retorna true si la validación pasó exitosamente
             return true;
         }
@@ -215,7 +222,7 @@
         }
 
 
-        debugger;
+        //debugger;
         function CheckPass(password) {
             if (password.length < 8) {
                 return false;
@@ -384,7 +391,7 @@
                 oID: 1,
                 uBirthDate: birthDate
             };
-            debugger;
+            //debugger;
             if (estadoValidaciones) {
                 $.ajax({
                     type: 'POST',

@@ -7,6 +7,8 @@
     <div class="row justify-content-center">
         <div class="row">
             <div class="col-md-6 col-xl-3 mb-4">
+                <a class="nav-link" asp-controller="Admin" asp-action="ViewTableUsers" class="text-decoration-none">
+             
                 <div class="card shadow border-start-primary py-2 card-admin">
                     <div class="card-body">
                         <div class="row align-items-center no-gutters">
@@ -17,9 +19,12 @@
                             <div class="col-auto"><i class="fa-solid fa-user fa-2x text-gray-300"></i></div>
                         </div>
                     </div>
-                </div>
+                    </div>
+                </a>
             </div>
             <div class="col-md-6 col-xl-3 mb-4">
+                <a class="nav-link" asp-controller="Admin" asp-action="ViewTableUsers" class="text-decoration-none">
+             
                 <div class="card shadow border-start-success py-2 card-admin">
                     <div class="card-body">
                         <div class="row align-items-center no-gutters">
@@ -30,9 +35,12 @@
                             <div class="col-auto"><i class="fa-solid fa-user-doctor fa-2x text-gray-300"></i></div>
                         </div>
                     </div>
-                </div>
+                    </div>
+                </a>
             </div>
             <div class="col-md-6 col-xl-3 mb-4">
+                <a class="nav-link" asp-controller="Admin" asp-action="ViewTableUsers" class="text-decoration-none">
+             
                 <div class="card shadow border-start-success py-2 card-admin">
                     <div class="card-body">
                         <div class="row align-items-center no-gutters">
@@ -43,10 +51,12 @@
                             <div class="col-auto"><i class="fa-solid fa-user fa-2x text-gray-300"></i></div>
                         </div>
                     </div>
-                </div>
+                    </div>
+                </a>
             </div>
             <div class="col-md-6 col-xl-3 mb-4">
-
+                <a class="nav-link" asp-controller="Doctor" asp-action="GestiondeCitas" class="text-decoration-none">
+             
                 @*  <div class="cardClock">
                 <p class="time-text" id="time"><span>11:11</span></p>
                 <p class="day-text" id="date">Wednesday, June 15th</p>
@@ -62,7 +72,7 @@
                             <div class="col-auto"><i class="fa-solid fa-user fa-2x text-gray-300"></i></div>
                         </div>
                     </div>
-                </div>
+                </div></a>
             </div>
         </div>
         <div class="d-flex row col-md-12 justify-content-center align-content-center text-primary">
@@ -308,8 +318,8 @@
                                 title: 'Acciones',
                                 orderable: false, // Para desactivar la ordenación en esta columna
                                 data: null, // Usaremos la columna "Acciones" solo para botones
-                                defaultContent: '<button class="btn btn-primary btn-sm btnDesactivarC" data-toggle="tooltip" title="Cancelar Cita" type="button"> <i class="fas fa-ban"> </i></button> ' +
-                                    '<button class="btn btn-warning btn-sm btnEditarC" data-toggle="modal" data-target="#editarCitaModal" data-toggle="tooltip" title="Reprogramar Cita"> <i class="fa-regular fa-pen-to-square"></i></button> '
+                                defaultContent: '<button class="btn btn-warning btn-sm btnEditarC" data-toggle="modal" data-target="#editarCitaModal" data-toggle="tooltip" title="Cambiar Estado Cita"> <i class="fa-regular fa-pen-to-square"></i></button> ' +
+                                        '<button class="btn btn-primary btn-sm btnDesactivarC" data-toggle="tooltip" title="Cancelar Cita" type="button"> <i class="fas fa-ban"> </i></button> ' 
                             }
                         ],
 
@@ -337,7 +347,14 @@
                             if (estado === 'Cancelado') {
                                 $(row).find('.btnDesactivarC, .btnEditarC').hide();
                             }
-                        }
+                            // Si el estado es "realizado", oculta los botones en esta fila
+                            if (estado === 'Realizado') {
+                                $(row).find('.btnDesactivarC, .btnEditarC').hide();
+                            }
+                            if (estado === 'Confirmado') {
+                                $(row).find('.btnDesactivarC').hide();
+                            }
+                        },
 
                     });
                     if (dateStatus == "Cancelado") {

@@ -7,7 +7,74 @@
     -moz-appearance: textfield;
     -webkit-appearance: textfield;
 }
+
 #imgLogin {
     max-width: 516px; /* Establece el ancho máximo */
     height: auto; /* Mantiene la relación de aspecto original */
 }
+
+#AppointmentLogo {
+    max-width: 350px; /* Establece el ancho máximo */
+    max-height: 170px; /* Mantiene la relación de aspecto original */
+    display: block; /* Asegura que la imagen se muestre como un bloque */
+    margin: 1rem 0 0 -2rem; /* Centra la imagen horizontalmente */
+}
+
+
+#registerLogo {
+    max-width: 300px; /* Establece el ancho máximo en relación al contenedor */
+    max-height: 170px; /* Ajusta la altura automáticamente para mantener la relación de aspecto original */
+    display: block; /* Asegura que la imagen se muestre como un bloque */
+    margin: 0 auto; /* Centra la imagen horizontalmente */
+}
+/*Si la pantalla es menor a 425px la cambia */
+/*Animar la transicion al ocultar*/
+@media screen and (max-width: 768px) {
+    #registerLogo {
+        transition: opacity 0.5s ease-in-out;
+        max-width: 150px; /* Establece el ancho máximo en relación al contenedor */
+        height: auto; /* Ajusta la altura automáticamente para mantener la relación de aspecto original */
+        display: block; /* Asegura que la imagen se muestre como un bloque */
+    }
+    #AppointmentLogo {
+        max-width: 175px !important; /* Establece el ancho máximo */
+        max-height: 85px !important; /* Mantiene la relación de aspecto original */
+        display: block; /* Asegura que la imagen se muestre como un bloque */
+        margin: 1rem 0 0 -3rem; /* Centra la imagen horizontalmente */
+    }
+
+}
+
+/*Si la pantalla es menor a 700 se oculta la imagen id AppointmentLogo*/
+@media screen and (max-width: 700px) {
+    #AppointmentLogo {
+        display: none !important;
+        transition: opacity 0.5s ease-in-out;
+    }
+}
+@media screen and (max-width: 425px) {
+    #registerLogo {
+        transition: opacity 0.5s ease-in-out;
+        max-width: 10rem; /* Establece el ancho máximo en relación al contenedor */
+        height: auto; /* Ajusta la altura automáticamente para mantener la relación de aspecto original */
+        display: block; /* Asegura que la imagen se muestre como un bloque */
+        margin: 0 auto; /* Centra la imagen horizontalmente */
+    }
+
+    #AppointmentLogo {
+        display: none !important;
+        transition: opacity 0.5s ease-in-out;
+    }
+}
+@media screen and (max-width: 420px) {
+    #registerLogo {
+        transition: opacity 0.5s ease-in-out;
+        display: none !important;
+    }
+
+    #AppointmentLogo {
+        display: none !important;
+        transition: opacity 0.5s ease-in-out;
+    }
+}
+
