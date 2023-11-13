@@ -1,5 +1,5 @@
-﻿using Domain.Entities;
-using Domain.Interfaces;
+﻿using Domain.Interfaces;
+using Domain.Entities;
 
 namespace Domain.Core
 {
@@ -29,6 +29,6 @@ namespace Domain.Core
             return responseModel;
         }
 
-
+       
     }
 }

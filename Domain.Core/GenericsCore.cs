@@ -1,12 +1,12 @@
-﻿using Domain.Entities;
-using Domain.Interfaces;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Domain.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Domain.Entities;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 
 namespace Domain.Core
 {
@@ -39,7 +39,7 @@ namespace Domain.Core
             );
             var newTokenString = new JwtSecurityTokenHandler().WriteToken(newToken);
             GenericResponseModel responseModel = await _genericsRepository.UpdateTokenSession(uID, token, newTokenString);
-            responseModel.ItemJson = responseModel.Status ? newTokenString : null;
+            responseModel.ItemJson = responseModel.Status? newTokenString : null;
             return responseModel;
         }
 
@@ -120,7 +120,7 @@ namespace Domain.Core
 
         public async Task<GenericResponseModel> SetDataSiteSideColor(int uID, string data)
         {
-            return await _genericsRepository.SetDataSiteSideColor(uID, data);
+            return await _genericsRepository.SetDataSiteSideColor(uID , data);
         }
         public async Task<GenericResponseModel> GetAppointmentsUserBlob(string uDocument)
         {

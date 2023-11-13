@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces.Core;
 using Domain.Interfaces.Repository;
+using Repository.Repos;
 
 namespace Domain.Core
 {
@@ -37,6 +38,11 @@ namespace Domain.Core
         public async Task<GenericResponseModel> GetUserDetails(int? uID, string? uDocument)
         {
             GenericResponseModel ItemGenericResponseModel = await _usersRepository.GetUserDetails(uID, uDocument);
+            return ItemGenericResponseModel;
+        }
+        public async Task<GenericResponseModel> UnblockUser(int uID)
+        {
+            GenericResponseModel ItemGenericResponseModel = await _usersRepository.UnblockUser(uID);
             return ItemGenericResponseModel;
         }
 

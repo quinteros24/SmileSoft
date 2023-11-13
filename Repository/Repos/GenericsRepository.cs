@@ -3,7 +3,10 @@ using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Repository.Queries;
+using System;
 using System.Data;
+using System.Reflection;
+using System.Security.Cryptography;
 
 namespace Repository
 {
@@ -176,11 +179,11 @@ namespace Repository
 
         public async Task<GenericResponseModel> GetDataSite(int? uID, string? IP = "")
         {
-            string query = GenericsQueries.GetDataSite(uID, IP);
-
+            string query = GenericsQueries.GetDataSite(uID,IP);
+            
             Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
             ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
-            GenericResponseModel? genericResponseModel = new() { Status = false };
+            GenericResponseModel? genericResponseModel = new() { Status = false};
 
             OfficeDataModel data = new();
             if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
@@ -192,7 +195,7 @@ namespace Repository
             }
             return genericResponseModel;
         }
-
+        
 
         public async Task<GenericResponseModel> SetDataSiteUrlImageLogin(int uID, string data)
         {
@@ -216,7 +219,7 @@ namespace Repository
             }
             return genericResponseModel;
         }
-
+        
 
         public async Task<GenericResponseModel> SetDataSiteUrlImageMenu(int uID, string data)
         {
@@ -240,7 +243,7 @@ namespace Repository
             }
             return genericResponseModel;
         }
-
+        
 
         public async Task<GenericResponseModel> SetDataSiteBackgroundColor(int uID, string data)
         {
@@ -264,7 +267,7 @@ namespace Repository
             }
             return genericResponseModel;
         }
-
+        
 
         public async Task<GenericResponseModel> SetDataSiteTopColor(int uID, string data)
         {
@@ -288,7 +291,7 @@ namespace Repository
             }
             return genericResponseModel;
         }
-
+        
 
         public async Task<GenericResponseModel> SetDataSiteSideColor(int uID, string data)
         {
@@ -313,6 +316,6 @@ namespace Repository
             return genericResponseModel;
         }
 
-
+     
     }
 }

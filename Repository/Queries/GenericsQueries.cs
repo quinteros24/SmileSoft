@@ -1,10 +1,13 @@
-﻿namespace Repository.Queries
+﻿using Newtonsoft.Json.Linq;
+using System.Globalization;
+
+namespace Repository.Queries
 {
     public class GenericsQueries
     {
         public static string UpdateTokenSession(int uID, string token, string newToken)
         {
-            return $"DECLARE @uID AS INT = {uID}\n" +
+            return  $"DECLARE @uID AS INT = {uID}\n" +
                     $"DECLARE \n" +
                     $"    @token AS NVARCHAR(MAX) = '{token}',\n" +
                     $"    @newToken AS NVARCHAR(MAX) = '{newToken}',\n" +
@@ -25,7 +28,7 @@
 
         public static string GetUserClinicStory(int? uID, string? uDocument)
         {
-            return $"SELECT A.MedicalRecordObject\n" +
+            return  $"SELECT A.MedicalRecordObject\n" +
                     $"FROM Appointments AS A\n" +
                     $"LEFT JOIN Users AS U ON A.uID = U.uID\n" +
                     $"WHERE (A.uID = '{uID}' OR U.uDocument = '{uDocument}')\n" +

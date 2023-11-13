@@ -159,10 +159,26 @@ namespace Repository.Repos
             return genericResponseModel;
         }
 
+        public async Task<GenericResponseModel> UnblockUser(int uID)
+        {
+            string query = $"UPDATE Users\n" +
+                           $"SET uLastAttemptDate = 0, uIsBlocked = 0\n" +
+                           $"WHERE [uID] = {uID}";
+
+            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
+            _ = await dl.ConsultSqlDataTableAsync(query);
+            
+            GenericResponseModel genericResponseModel = new();
+
+            genericResponseModel.Status = true;
+
+            return genericResponseModel;
+        }
+       
     }
 
 }
+   
 
-
-
+       
 

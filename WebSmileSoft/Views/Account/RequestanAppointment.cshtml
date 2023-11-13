@@ -237,6 +237,12 @@
                 document.getElementById("cHora").value = ""; // Limpia el campo de hora
             }
         }
+        //VAlidar Formato de la hora tiene que ser exacta
+        $('#cHora').on('focusout', function () {
+            let value = $(this).val();
+            value = value.substring(0, value.indexOf(':'));
+            this.value = value + ':00';
+        });
 
         $("#cHora").on("change", function () {
             validarHora();
