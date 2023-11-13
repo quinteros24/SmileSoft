@@ -254,7 +254,7 @@
 
                 {
                     element: '.wrapper', popover: { title: 'Gracias por Usar Smilesoft', description: '' }, onDeselected: () => {
-                        localStorage.setItem('tutorial', false);
+                        localStorage.setItem('tutorial', true);
                     }
                 },
 
@@ -269,10 +269,11 @@
         let tutorialState = localStorage.getItem('tutorial');
         if (tutorialState === "false") {
             // Mostrar el tutorial
+            localStorage.setItem('tutorial', true);
             driverObj.drive();
 
             // Establecer la variable para indicar que el usuario ha visto el tutorial
-            localStorage.setItem('tutorial', true);
+            
         }
 
     </script>

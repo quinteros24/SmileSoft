@@ -6,6 +6,9 @@
         <h2 class="text-primary display-4 ">Bienvenido a SmileSoft</h2>
         <span class="d-none d-lg-inline me-2 small text-primary fw-bold" id="SaludoUsuario"></span>
     </div>
+
+
+
     <!-- Sección de selección de servicios -->
     <div class="card">
         <div class="card-header">
@@ -52,6 +55,96 @@
 </div>
 
 @section Scripts {
+    <script>
+
+        const driver = window.driver.js.driver;
+
+        const driverObj = driver({
+            showProgress: true,
+            showButtons: [
+                'next',
+                'previous',
+                'close'
+            ],
+            steps: [
+                {
+                    element: '.wrapper',
+                    popover: {
+                        title: 'Bienvenido a Smilesoft',
+                        description: 'Este es el área principal de Smilesoft. Te guiaremos a través de las diversas funcionalidades de nuestro sitio para asegurarnos de que aproveches al máximo tu experiencia.'
+                    }
+                },
+                {
+                    element: '#nav_bar',
+                    popover: {
+                        title: 'Barra Superior',
+                        description: 'La Barra Superior es tu punto central de navegación. Desde aquí, puedes buscar información en nuestra aplicación o acceder a tu perfil para personalizar tu experiencia.'
+                    }
+                },
+                {
+                    element: '#MenuPerfil',
+                    popover: {
+                        title: 'Perfil',
+                        description: 'Accede a los ajustes de tu perfil desde este menú. Al hacer clic, se mostrarán las opciones de perfil, permitiéndote personalizar tu cuenta según tus preferencias.'
+                    },
+                    onNextClick: () => {
+                        //añadir la clase show al elemento id=ShowProfileMenu y cambiar el aria-expanded a true
+                        document.getElementById('ShowProfileMenu').classList.add('show');
+                        document.getElementById('ShowProfileMenu').setAttribute('aria-expanded', 'true');
+                        driverObj.moveNext();
+                    },
+                },
+                //{ element: '#ShowProfileMenu', popover: { title: 'Perfil', description: 'Desde aqui podremos acceder a los ajustes de nuestro perfil' } },
+                {
+                    element: '.sidebar',
+                    popover: {
+                        title: 'Menú de Opciones',
+                        description: 'El Menú de Opciones muestra los diferentes aplicativos de nuestro software. Explora las diversas funciones que ofrecemos para mejorar tu experiencia con Smilesoft.'
+                    }
+                },
+                //{ element: '#divAdmin', popover: { title: 'Opciones Administrador', description: 'Estas son las rutas que podra usar el administrador del aplicativo' } },
+                {
+                    element: '#gestionCitas',
+                    popover: {
+                        title: 'Citas registradas',
+                        description: 'Accede a un resumen de todas las citas que tienes registradas en nuestro Aplicativo. Este panel te permite gestionar, programar y dar seguimiento a las citas de manera eficiente.'
+                    }
+                },
+
+                {
+                    element: '.logoutUsers',
+                    popover: {
+                        title: 'Cerrar Sesión',
+                        description: 'Cierra tu sesión fácilmente desde este enlace cuando hayas terminado de utilizar Smilesoft. Garantizamos la seguridad de tu cuenta con este sencillo paso.'
+                    }
+                },
+
+                {
+                    element: '.wrapper', popover: { title: 'Gracias por Usar Smilesoft', description: '' }, onDeselected: () => {
+                        localStorage.setItem('tutorial', true);
+                    }
+                },
+
+            ],
+
+
+        });
+        //debugger;
+        //driverObj.drive();
+        console.log("Tutorial", localStorage.getItem('tutorial'));
+        // Cuando el usuario inicia sesión por primera vez
+        let tutorialState = localStorage.getItem('tutorial');
+        if (tutorialState === "false") {
+            // Mostrar el tutorial
+            localStorage.setItem('tutorial', true);
+            driverObj.drive();
+
+            // Establecer la variable para indicar que el usuario ha visto el tutorial
+
+        }
+
+    </script>
+
     <script>
         $(document).ready(function () {
             //verifyToken();
