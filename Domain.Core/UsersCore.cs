@@ -40,6 +40,11 @@ namespace Domain.Core
             GenericResponseModel ItemGenericResponseModel = await _usersRepository.GetUserDetails(uID, uDocument);
             return ItemGenericResponseModel;
         }
+        public async Task<GenericResponseModel> UnblockUser(int uID)
+        {
+            GenericResponseModel ItemGenericResponseModel = await _usersRepository.UnblockUser(uID);
+            return ItemGenericResponseModel;
+        }
 
 
     }
