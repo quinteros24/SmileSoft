@@ -223,6 +223,7 @@
                                         <option value="open">Abierta</option>
                                         <option value="close">Cerrada</option>
                                         <option value="multiple">Multiple</option>
+                                        <option value="fileUpload">Imagen</option>
                                     </select>
                                 </div>
                                 <div class="form-group mb-2">
@@ -541,13 +542,13 @@
 
         $("#add-option").click(function () {
             $("#options-container").append(`
-                                                                       <div class="input-group mb-2">
-                                                                       <input type="text" class="form-control option-input mx-1" placeholder="Nombre de la opción">
-                                                                       <div class="input-group-append">
-                                                                           <button class="btn btn-danger remove-option" type="button">-</button>
-                                                                       </div>
-                                                                       </div>
-                                                                    `);
+                                                                                                                               <div class="input-group mb-2">
+                                                                                                                               <input type="text" class="form-control option-input mx-1" placeholder="Nombre de la opción">
+                                                                                                                               <div class="input-group-append">
+                                                                                                                                   <button class="btn btn-danger remove-option" type="button">-</button>
+                                                                                                                               </div>
+                                                                                                                               </div>
+                                                                                                                            `);
         });
         $(document).on("click", ".remove-option", function () {
             $(this).closest(".input-group").remove();
@@ -590,12 +591,10 @@
 
             structure.push(question);
 
-
             if (structure.length) {
                 $("#save-all-questions").removeClass("d-none");
                 $("#save-all-questions").addClass("d-block");
             }
-
             if (!firstLoad) {
                 $("#question-type").val('')
                 $("#question").val('');
@@ -652,6 +651,22 @@
                     let container = $('<div class="mb-1"></div>').append(`<p class="text-primary m-0 fw-bold">Pregunta de opción múltiple # ${question.id}: ${question.name}</p>`, options)
 
                     return container
+                },
+                //<div class="mb-3">
+                //< label for= "logoInput" class= "form-label" > Cambiar Logo Menu Principal < /label>
+                //< input class="form-control" type = "file" id = "logoInput" accept = ".jpg, .png" onchange = "fnConvertToBase64(this)" >
+                //<div class="mb-3 my-2" >
+                //<button class="btn btn-primary mx-4" type = "button" id = "updateLogo" onclick = "uploadImage(this, 2)" > Subir < /button><span class="text-primary">*Tamaño recomendado de 140x70px*</span >
+                //< /div>
+                'fileUpload': function (question) {
+                    let inputField = $(`<input disabled placeholder="Imagen" type="file" id="${question.id}" accept=".jpg , .png" class="form-control"></input><br>`);
+
+                    let container = $('<div class="form-group"></div>').append(
+                        `<label class="text-primary m-0 fw-bold" for="${question.id}">`
+                        + `Imagen # ${question.id}: ` + question.name +
+                        '</label><br>', inputField, `<button class="btn btn-primary btnFileC" type="button" id="${question.name + question.id}" disabled> Subir </button>`);
+
+                    return container
                 }
             };
 
@@ -682,8 +697,9 @@
                     console.error('Tipo de pregunta no válido: ' + question.type);
                 }
             });
-        }
+            
 
+        }
         // Función para eliminar una pregunta
         function deleteQuestion(id) {
             $(`.question-${id}`).remove();
