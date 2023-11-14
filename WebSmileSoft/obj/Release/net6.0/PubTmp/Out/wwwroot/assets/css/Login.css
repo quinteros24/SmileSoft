@@ -115,9 +115,10 @@ margin-top: 3rem;
         margin-top: -2.5rem;
     }
 }
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 540px) {
     .loginContainer{
-        margin-top: -2.9rem;
+        width: 100%;
+        height: 100vh;
     }
     body {
         margin: 0;
