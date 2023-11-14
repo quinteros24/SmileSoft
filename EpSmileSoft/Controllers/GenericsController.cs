@@ -150,5 +150,26 @@ namespace EpSmileSoft.Controllers
         {
             return await _genericsCore.Getlogs(pageNumber);
         }
+
+        [HttpGet]
+        [Route("v1/GetStates")]
+        public async Task<List<SelectListItem>> GetStates()
+        {
+            return await _genericsCore.GetStates();
+        }
+
+        [HttpGet]
+        [Route("v1/GetCities")]
+        public async Task<List<SelectListItem>> GetCities(int sID)
+        {
+            return await _genericsCore.GetCities(sID);
+        }
+
+        [HttpGet]
+        [Route("v1/GetDocumentTypes")]
+        public async Task<List<SelectListItem>> GetDocumentTypes()
+        {
+            return await _genericsCore.GetDocumentTypes();
+        }
     }
 }

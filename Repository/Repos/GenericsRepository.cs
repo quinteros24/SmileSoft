@@ -360,7 +360,7 @@ namespace Repository
             string query = GenericsQueries.Getlogs(pageNumber);
             Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
             ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
-            LogsModel? logsModel = new();
+            List<LogsModel?> logsModel = new();
             GenericResponseModel? genericResponseModel = new() { CodeStatus = "-1" };
 
             if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
@@ -368,9 +368,9 @@ namespace Repository
                 genericResponseModel.CodeStatus = "0";
                 genericResponseModel.Status = true;
                 genericResponseModel.RecordsQuantity = ItemResponseDB.DtObject.Rows.Count;
-                logsModel = Mapper.GetObjectFromDataTable<LogsModel?>(ItemResponseDB.DtObject);
+                logsModel = Mapper.GetListFromDataTable<LogsModel?>(ItemResponseDB.DtObject);
                 //Total de registros menos las páginas pasadas menos la pagina actual
-                logsModel!.RecordsLeft = logsModel.TotalRecords - ((pageNumber - 1) * 10) - genericResponseModel.RecordsQuantity;
+                logsModel[0]!.RecordsLeft = logsModel[0]!.TotalRecords - ((pageNumber - 1) * 10) - genericResponseModel.RecordsQuantity;
             }
 
             genericResponseModel.ItemJson = logsModel;
@@ -378,6 +378,46 @@ namespace Repository
             return genericResponseModel;
         }
 
-     
+        public async Task<List<SelectListItem>> GetStates()
+        {
+            string query = $"SELECT [sID], sName FROM States";
+            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
+            ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
+            List<SelectListItem> Items = new();
+            if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
+            {
+                DataTable dt = ItemResponseDB.DtObject;
+                Items = Mapper.ToSelectList(dt, "sID", "sName");
+            }
+            return Items;
+        }
+
+        public async Task<List<SelectListItem>> GetCities(int sID)
+        {
+            string query = $"SELECT cID,cName FROM Cities WHERE [sID] = {sID}";
+            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
+            ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
+            List<SelectListItem> Items = new();
+            if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
+            {
+                DataTable dt = ItemResponseDB.DtObject;
+                Items = Mapper.ToSelectList(dt, "cID", "cName");
+            }
+            return Items;
+        }
+
+        public async Task<List<SelectListItem>> GetDocumentTypes()
+        {
+            string query = $"SELECT dtID, CONCAT(dtName,'- ',dtDescription) AS dtName FROM DocumentTypes";
+            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
+            ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
+            List<SelectListItem> Items = new();
+            if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
+            {
+                DataTable dt = ItemResponseDB.DtObject;
+                Items = Mapper.ToSelectList(dt, "dtID", "dtName");
+            }
+            return Items;
+        }
     }
 }
