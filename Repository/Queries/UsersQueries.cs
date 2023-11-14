@@ -29,7 +29,7 @@ namespace Repository.Queries
                     $"    UPDATE dbo.Users SET uPassword = HASHBYTES('SHA2_256',Cast('{Item.Password}' AS VARCHAR(8000)))\n" +
                     $"    WHERE [uID] = {Item.UID} \n" +
                     $"    SELECT '0' AS OutputCodeError, 'Se ha cambiado la contraseña del usuario \"@uName\".' AS OutputMessageError\n" +
-                    $"    SET @logDescription = 'Se ha cambiado la contraseña del usuario \"@uName\"'\n" +
+                    $"    SET @logDescription = CONCAT('Se ha cambiado la contraseña del usuario \"',@uName,'\"')\n" +
                     $"    {LOG}\n" +
                     $"END TRY\n" +
                     $"BEGIN CATCH\n" +
@@ -113,7 +113,7 @@ namespace Repository.Queries
             }
             else if (Item.uID != 0)
             {
-                query += $"IF NOT EXISTS(SELECT * FROM Users WHERE uEmailAddress = '{Item.uEmailAddress}' OR uDocument = '{Item.uDocument}' OR uLoginName = '{Item.uLoginName}')\n" +
+                query += $"IF NOT EXISTS(SELECT * FROM Users WHERE (uEmailAddress = '{Item.uEmailAddress}' OR uDocument = '{Item.uDocument}' OR uLoginName = '{Item.uLoginName}') AND [uID] != {Item.uID})\n" +
                          $"BEGIN\n";
                 // Actualizar un usuario existente
                 query += $"    UPDATE dbo.Users SET ";
@@ -229,7 +229,7 @@ namespace Repository.Queries
                    $"    DECLARE @uLoginName AS VARCHAR(100) = (SELECT uLoginName FROM dbo.Users WHERE uID = {uID}), @logDescription AS VARCHAR(MAX) = ''\n" +
                    $"    UPDATE dbo.Users SET uStatus = {uStatus} WHERE uID = {uID}\n" +
                    $"    SELECT '0' AS OutputCodeError, 'El usuario \"@uLoginName\" se ha {status}' AS OutputMessageError\n" +
-                   $"    SET @logDescription = 'El usuario \"@uLoginName\" se ha {status}'\n" +
+                   $"    SET @logDescription = CONCAT('El usuario \"',@uLoginName,'\" se ha {status}')\n" +
                    $"    {LOG}\n" +
                    $"END\n" +
                    $"ELSE\n" +
