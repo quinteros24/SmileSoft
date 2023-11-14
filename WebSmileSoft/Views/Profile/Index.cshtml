@@ -454,12 +454,23 @@
                     contentType: "application/json",
                     dataType: "json",
                     success: function (response) {
-                        Swal.fire({
-                            title: 'Datos Actualizados',
-                            text: 'Los datos del usuario se actualizaron correctamente',
-                            icon: 'success',
-                            confirmButtonText: 'Aceptar'
-                        });
+                        if (response.codeStatus == 0) {
+                            Swal.fire({
+                                title: 'Datos Actualizados',
+                                text: 'Los datos del usuario se actualizaron correctamente',
+                                icon: 'success',
+                                confirmButtonText: 'Aceptar'
+                            });
+
+                            // Realiza otras acciones después de guardar los cambios si es necesario
+                        } else {
+                            Swal.fire({
+                                title: 'Error',
+                                text: response.messageStatus,
+                                icon: 'info',
+                                confirmButtonText: 'Aceptar'
+                            });
+                        }
 
                         // Realiza otras acciones después de guardar los cambios si es necesario
                     },

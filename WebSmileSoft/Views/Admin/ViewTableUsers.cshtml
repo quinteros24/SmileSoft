@@ -249,6 +249,8 @@
                                     $(row).find('#btnClinicalHistory').hide();
                                 }
                                 if (BlockStatus === 'Desbloqueado') {
+                                    //Ocular el boton de desbloquear
+                                    $(row).find('#btnActivar').hide();
                                     //Deshabilitar el boton de desbloquear
                                     $(row).find('#btnActivar').prop('disabled', true);
                                     //Cambiar color del boton a primary
@@ -438,8 +440,8 @@
                                         contentType: "application/json", // Especifica el tipo de contenido
                                         dataType: "json",
                                         success: function (response) {
-                                           //si codeStatus es 0, se actualizo correctamente
-                                           //si codeStatus es 2601, La cedula ya esta registrada
+                                            //si codeStatus es 0, se actualizo correctamente
+                                            //si codeStatus es 2601, La cedula ya esta registrada
                                             if (response.codeStatus == 0) {
                                                 $("#editModal").modal("hide");
                                                 Swal.fire({
@@ -452,11 +454,11 @@
                                                         verusers(updatedUserData.utID);
                                                     }
                                                 })
-                                            }else if(response.codeStatus == 2601){
+                                            } else {
                                                 Swal.fire({
                                                     title: 'Error',
-                                                    text: 'La cedula ya esta registrada',
-                                                    icon: 'error',
+                                                    text: response.messageStatus,
+                                                    icon: 'info',
                                                     confirmButtonText: 'Aceptar'
                                                 });
                                             }
@@ -932,31 +934,41 @@
                     url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Ruta para agregar el usuario
                     data: JSON.stringify(userData), // Convierte userData a JSON
                     contentType: "application/json", // Especifica el tipo de contenido
-
                     dataType: "json",
-                    success: function (result) {
-                        // Actualiza la vista o realiza alguna otra acción
-                        $("#addUserModal").modal("hide");
-                        //alert("Usuario agregado correctamente");
-                        // Cierra el modal de agregar usuario
-                        Swal.fire({
-                            title: 'Usuario Agregado',
-                            text: 'El usuario se agregó correctamente',
-                            icon: 'success',
-                            confirmButtonText: 'Aceptar'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                verusers(3);
-                            }
-
-                        });
+                    success: function (response) {
+                        // si result = 0, se agrego correctamente
+                        // si result != 0, no se agrego correctamente
+                        console.log("response " + response);
+                        console.log("response codeStatus " + response.codeStatus);
+                        if (response.codeStatus == 0) {
+                            $("#addUserModal").modal("hide");
+                            //alert("Usuario agregado correctamente");
+                            // Cierra el modal de agregar usuario
+                            Swal.fire({
+                                title: 'Usuario Agregado',
+                                text: 'El usuario se agregó correctamente',
+                                icon: 'success',
+                                confirmButtonText: 'Aceptar'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    verusers(3);
+                                }
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Error',
+                                text: response.messageStatus,
+                                icon: 'info',
+                                confirmButtonText: 'Aceptar'
+                            });
+                        }
 
                     },
                     error: function () {
                         //alert("Error al agregar el usuario");
                         Swal.fire({
                             title: 'Error',
-                            text: result.messageCode,
+                            text: response.messageCode,
                             icon: 'error',
                             confirmButtonText: 'Aceptar'
                         });

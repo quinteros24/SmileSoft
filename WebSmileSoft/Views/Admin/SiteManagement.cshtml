@@ -1067,10 +1067,14 @@
         });
     </script>
     <script>
-        //Script para el Log de Datos
+        
+           
+        const tableBody = document.getElementById('table-body');
 
+        //Script para el Log de Datos
+        let serviceRecord = [];
         function getServiceRecords() {
-            let serviceRecords = [];
+            
             // let serviceRecords = [
             //     { id: 1, date: '2021-10-01', description: 'Servicio 1', result: 'Éxito' },
             //     { id: 2, date: '2021-10-02', description: 'Servicio 2', result: 'Error' },
@@ -1112,7 +1116,7 @@
                                 usuario.logAction,
                                 usuario.logCreationDate
                             ];
-                            serviceRecords.push(rowData);
+                            serviceRecord.push(rowData);
                         });
                     }else if (response.codeStatus == -1) {
                         Swal.fire({
@@ -1128,27 +1132,27 @@
                     //console.log(error);
                 }
             });
-            console.log("Services Records: ", serviceRecords);
-            return serviceRecords;
+            console.log("Services Records: ", serviceRecord);
+            //return serviceRecords;
         }
 
-
-
-
-
-
         function renderServiceRecords() {
-            const serviceRecords = getServiceRecords();
+            getServiceRecords();
             const serviceRecordsTable = $('#service-records');
             serviceRecordsTable.empty();
-            for (const record of serviceRecords) {
-                const row = $('<tr>');
-                row.append($('<td>').text(record.id));
-                row.append($('<td>').text(record.date));
-                row.append($('<td>').text(record.description));
-                row.append($('<td>').text(record.result));
-                serviceRecordsTable.append(row);
-            }
+            serviceRecord.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                                    <td>${item.uID}</td>
+                                    <td>${item.uName}</td>
+                                    <td>${item.uLoginName}</td>
+                                    <td>${item.utID}</td>
+                                    <td>${item.logAction}</td>
+                                    <td>${item.logDescription}</td>
+                                    <td>${item.logCreationDate}</td>
+                                `;
+                tableBody.appendChild(row);
+            });
         }
 
         $(document).ready(() => {
