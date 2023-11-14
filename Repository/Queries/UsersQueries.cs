@@ -113,6 +113,8 @@ namespace Repository.Queries
             }
             else if (Item.uID != 0)
             {
+                query += $"IF NOT EXISTS(SELECT * FROM Users WHERE uEmailAddress = '{Item.uEmailAddress}' OR uDocument = '{Item.uDocument}')\n" +
+                         $"BEGIN\n";
                 // Actualizar un usuario existente
                 query += $"    UPDATE dbo.Users SET ";
 
@@ -162,12 +164,20 @@ namespace Repository.Queries
                         $"    SET @CodeResponse = '0'\n" +
                         $"    SET @Response = CONCAT(@Response,'actualizado con éxito.')\n" +
                         $"    SET @logAction = 'EDITAR'\n" +
-                        $"    SET @logDescription = 'Se ha editado el usuario \"{Item.uLoginName}\"'\n";
+                        $"    SET @logDescription = 'Se ha editado el usuario \"{Item.uLoginName}\"'\n" +
+                        $"END\n" +
+                        $"ELSE\n" +
+                        $"BEGIN\n" +
+                        $"    SET @CodeResponse = '-1'\n" +
+                        $"    SET @Response = 'Ya existe un usuario con este correo o este documento.'\n" +
+                        $"END\n";
             }
 
             if(Item.utID == 2)
             {
-                query += $"    IF NOT EXISTS(SELECT TOP(1)* FROM Doctors WHERE [uID] = (SELECT [uID] FROM @aux))\n" +
+                query += $"IF(@CodeResponse = '0')\n" +
+                         $"BEGIN\n" +
+                         $"    IF NOT EXISTS(SELECT TOP(1)* FROM Doctors WHERE [uID] = (SELECT [uID] FROM @aux))\n" +
                          $"    BEGIN\n" +
                          $"        INSERT INTO Doctors([uID],utID,dAcademicLevel,dDegree,dUniversityName,spID,dProfessionalCard)\n" +
                          $"        VALUES((SELECT [uID] FROM @aux),2,'{Item.dAcademicLevel}','{Item.dDegree}','{Item.dUniversityName}',{Item.spID},'{Item.dProfessionalCard}')\n" +
@@ -182,7 +192,8 @@ namespace Repository.Queries
                          $"            ,spID = {Item.spID}\n" +
                          $"            ,dProfessionalCard = '{Item.dProfessionalCard}'\n" +
                          $"        WHERE [uID] = (SELECT [uID] FROM @aux)\n" +
-                         $"    END\n";
+                         $"    END\n" +
+                         $"END\n";
             }
 
             query +=     $"    SELECT @CodeResponse AS OutputCodeError, @Response AS OutputMessageError\n" +
