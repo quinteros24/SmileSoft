@@ -122,16 +122,15 @@ body {
     .loginContainer {
         width: 100%;
         height: 100vh;
+        margin-top: 7rem;
     }
-
-    .loginBox {
-        width: 100%;
+    .registerContainer{
+width: 100%;
         height: 100vh;
+        margin-top: 1rem;
     }
-
-    .loginBody {
-        width: 100%;
-        height: 100vh;
+    .appointmentContainer{
+        margin-top: 0rem;
     }
 
     body {
