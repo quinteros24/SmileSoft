@@ -561,13 +561,13 @@
 
         $("#add-option").click(function () {
             $("#options-container").append(`
-                                                                                                                                                               <div class="input-group mb-2">
-                                                                                                                                                               <input type="text" class="form-control option-input mx-1" placeholder="Nombre de la opción">
-                                                                                                                                                               <div class="input-group-append">
-                                                                                                                                                                   <button class="btn btn-danger remove-option" type="button">-</button>
-                                                                                                                                                               </div>
-                                                                                                                                                               </div>
-                                                                                                                                                            `);
+                                                                                                                                                                       <div class="input-group mb-2">
+                                                                                                                                                                       <input type="text" class="form-control option-input mx-1" placeholder="Nombre de la opción">
+                                                                                                                                                                       <div class="input-group-append">
+                                                                                                                                                                           <button class="btn btn-danger remove-option" type="button">-</button>
+                                                                                                                                                                       </div>
+                                                                                                                                                                       </div>
+                                                                                                                                                                    `);
         });
         $(document).on("click", ".remove-option", function () {
             $(this).closest(".input-group").remove();
@@ -1067,24 +1067,10 @@
         });
     </script>
     <script>
-        
-           
-        const tableBody = document.getElementById('table-body');
 
         //Script para el Log de Datos
-        let serviceRecord = [];
+
         function getServiceRecords() {
-            
-            // let serviceRecords = [
-            //     { id: 1, date: '2021-10-01', description: 'Servicio 1', result: 'Éxito' },
-            //     { id: 2, date: '2021-10-02', description: 'Servicio 2', result: 'Error' },
-            //     { id: 3, date: '2021-10-03', description: 'Servicio 3', result: 'Éxito' },
-            //     { id: 4, date: '2021-10-04', description: 'Servicio 4', result: 'Éxito' },
-            //     { id: 5, date: '2021-10-05', description: 'Servicio 5', result: 'Error' },
-            // ];
-            //ruta del servicio https://ep-smilesoft.azurewebsites.net/api/Generics/v1/Getlogs?pageNumber=1
-            //se le envia el parametro pageNumber para la paginacion
-            //de la response se muestra el uID, el nombre del usuario, la fecha y la accion realizada
             $.ajax({
                 url: sessionStorage.urlEP + '/api/Generics/v1/Getlogs?pageNumber=1',
                 type: 'GET',
@@ -1098,12 +1084,7 @@
                         3: 'Pacientes'
                     };
                     if (response.codeStatus == 0) {
-                        //"uID": 206,
-                        // "uName": "Alfredo",
-                        //     "uLoginName": "10101004",
-                        //         "utID": 3,
-                        //             "logAction": "CREAR",
-                        //logCreationDate
+                        let serviceRecord = [];
                         //Mapear estos datos en el array serviceRecords
                         $.each(response.itemJson, function (index, usuario) {
                             let rol = rolesMapping[usuario.utID];
@@ -1118,7 +1099,8 @@
                             ];
                             serviceRecord.push(rowData);
                         });
-                    }else if (response.codeStatus == -1) {
+                        drawTable(serviceRecord);
+                    } else if (response.codeStatus == -1) {
                         Swal.fire({
                             title: 'Error',
                             text: response.messageStatus,
@@ -1132,37 +1114,43 @@
                     //console.log(error);
                 }
             });
-            console.log("Services Records: ", serviceRecord);
-            //return serviceRecords;
         }
-
-        function renderServiceRecords() {
-            getServiceRecords();
-            const serviceRecordsTable = $('#service-records');
-            serviceRecordsTable.empty();
-            serviceRecord.forEach(item => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                                    <td>${item.uID}</td>
-                                    <td>${item.uName}</td>
-                                    <td>${item.uLoginName}</td>
-                                    <td>${item.utID}</td>
-                                    <td>${item.logAction}</td>
-                                    <td>${item.logDescription}</td>
-                                    <td>${item.logCreationDate}</td>
-                                `;
-                tableBody.appendChild(row);
+        function drawTable(arrayData) {
+            tablecitasd = $('#logsServicios').DataTable({
+                columnDefs: [
+                    {
+                        target: 0,
+                        visible: true,
+                        searchable: true,
+                        //ordenar por fecha la tabla
+                        orderData: [0, 1]
+                    }
+                ],
+                columns: [
+                    { title: '#', visible: true },
+                    { title: 'ID Usuario', visible: false },
+                    { title: 'Rol' },
+                    { title: 'Nombre' },
+                    { title: 'Usuario' },
+                    { title: 'Acción' },
+                    { title: 'Fecha' }
+                ],
+                data: arrayData,
+                dom: 'Bfrtip',
+                select: true,
+                destroy: true,
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json',
+                }
             });
         }
 
+
         $(document).ready(() => {
-            renderServiceRecords();
+            getServiceRecords();
         });
     </script>
-
-    @* <script src="~/assets/js/popper.js"></script> *@
     <script src="~/assets/js/bootstrap.min.js"></script>
     <script src="~/assets/js/theme.js"></script>
-    @*  <script type="text/javascript"></script> *@
 }
 

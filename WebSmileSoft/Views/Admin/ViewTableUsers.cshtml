@@ -64,6 +64,17 @@
 @section Scripts {
     <script>
         let userRole = sessionStorage.getItem("userRole"); "1" !== userRole && logoutUser(), document.getElementById("tipoUsuarioed").addEventListener("change", (function () { var e = document.getElementById("campoOpcional"); "2" === this.value ? e.style.display = "block" : e.style.display = "none" })), document.getElementById("tipoUsuario").addEventListener("change", (function () { var e = document.getElementById("campoOpcionala"); "2" === this.value ? e.style.display = "block" : e.style.display = "none" }));
+        function CheckPass2(password) {
+            if (password.length < 8) {
+                return false;
+            }
+
+            if (!/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/\d/.test(password) || !/[^A-Za-z0-9]/.test(password) || /\s/.test(password)) {
+                return false;
+            }
+
+            return true; // Si la contraseña cumple con los requisitos, retorna true
+        }
     </script>
 
 
@@ -562,20 +573,26 @@
                             let uRol = rolesMappingI[userRol];
                             //$("#usernamepass").val(userNameEdit);
                             var userNamePassSpan = document.getElementById("userNamePass");
-
+                            document.addEventListener('keydown', function (event) {
+                                // Verifica si la tecla presionada es "Enter"
+                                if (event.key === 'Enter') {
+                                    // Cancela el evento de envío del formulario
+                                    event.preventDefault();
+                                }
+                            });
                             // Establece el contenido del span
                             userNamePassSpan.innerHTML = userNameEdit;
                             // Abre el modal de edición
                             $("#editPassword").modal("show");
-
-
-                            //console.log("Usuario a Editar" + userId);
-                            // Realiza una solicitud AJAX para obtener los detalles del usuario
-
                             $("#changePasswordBtn").click(function () {
+                                changeUserPassword();
+                            });
 
+                            function changeUserPassword() {
+                                debugger;
                                 let password = $("#newPassword").val();
-                                if (!CheckPass(password)) {
+                                console.log("password " + password)
+                                if (CheckPass(password) == false) {
                                     Swal.fire({
                                         text: 'La contraseña no cumple con los requisitos.',
                                         confirmButtonColor: '#008dc9'
@@ -587,33 +604,89 @@
                                         uID: userId,
                                         Password: password
                                     };
-                                    // Realiza una solicitud AJAX para guardar los cambios en el servidor
-                                    $.ajax({
-                                        url: sessionStorage.urlEP + `/api/Users/v1/ChangePassword?uIDPetition=${uIDPetition}`, // Reemplaza con la URL correcta
-                                        type: 'POST',
-                                        data: JSON.stringify(updatedUserData), // Convierte updatedUserData a JSON
-                                        contentType: "application/json", // Especifica el tipo de contenido
-                                        dataType: "json",
-                                        success: function (response) {
-                                            // Cierra el modal de edición
-                                            if (response.codeStatus == 0) {
-                                                $("#editPassword").modal("hide");
-                                                //window.location.href = '@Url.Action("Index", "")';
-                                                Swal.fire({
-                                                    text: 'contraseña actualizada con exito',
-                                                    confirmButtonColor: '#008dc9'
-                                                });
-                                                verusers(uRol);
-                                            } else {
-                                                mostrarMensajeError(result.messageStatus);
+                                    if (CheckPass(updatedUserData.Password) == true) {
+                                        // Realiza una solicitud AJAX para guardar los cambios en el servidor
+                                        $.ajax({
+                                            url: sessionStorage.urlEP + `/api/Users/v1/ChangePassword?uIDPetition=${uIDPetition}`, // Reemplaza con la URL correcta
+                                            type: 'POST',
+                                            data: JSON.stringify(updatedUserData), // Convierte updatedUserData a JSON
+                                            contentType: "application/json", // Especifica el tipo de contenido
+                                            dataType: "json",
+                                            success: function (response) {
+                                                //verusers(uRol);
+                                                if (response.codeStatus == 0) {
+                                                    $("#editPassword").modal("hide");
+                                                    Swal.fire({
+                                                        title: 'Contraseña Actualizada',
+                                                        text: 'La contraseña del usuario ' + userNameEdit + ' se actualizó correctamente',
+                                                        icon: 'success',
+                                                        confirmButtonText: 'Aceptar'
+                                                    }).then((result) => {
+                                                        if (result.isConfirmed) {
+                                                            verusers(uRol);
+                                                        }
+                                                    })
+
+                                                } else {
+                                                    mostrarMensajeError(result.messageStatus);
+                                                }
+                                            },
+                                            error: function () {
+                                                // $("#editModal").modal("hide");
                                             }
-                                        },
-                                        error: function () {
-                                            // $("#editModal").modal("hide");
-                                        }
-                                    });
+                                        });
+                                    } else {
+                                        Swal.fire({
+                                            text: 'La contraseña no cumple con los requisitos.',
+                                            confirmButtonColor: '#008dc9'
+                                        });
+                                    }
                                 }
-                            });
+                            };
+                            // $("#changePasswordForm").submit(function (event) {
+                            //     event.preventDefault();
+                            //     let password = $("#newPassword").val();
+                            //     if (!CheckPass(password)) {
+                            //         Swal.fire({
+                            //             text: 'La contraseña no cumple con los requisitos.',
+                            //             confirmButtonColor: '#008dc9'
+                            //         });
+                            //     } else {
+                            //         let updatedUserData = {
+                            //             uID: userId,
+                            //             Password: password
+                            //         };
+                            //         $.ajax({
+                            //             url: sessionStorage.urlEP + `/api/Users/v1/ChangePassword?uIDPetition=${uIDPetition}`,
+                            //             type: 'POST',
+                            //             data: JSON.stringify(updatedUserData),
+                            //             contentType: "application/json",
+                            //             dataType: "json",
+                            //             success: function (response) {
+                            //                 if (response.codeStatus == 0) {
+                            //                     $("#editPassword").modal("hide");
+                            //                     Swal.fire({
+                            //                         title: 'Contraseña Actualizada',
+                            //                         text: 'La contraseña del usuario ' + userNameEdit + ' se actualizó correctamente',
+                            //                         icon: 'success',
+                            //                         confirmButtonText: 'Aceptar'
+                            //                     }).then((result) => {
+                            //                         if (result.isConfirmed) {
+                            //                             verusers(uRol);
+                            //                         }
+                            //                     })
+
+                            //                 } else {
+                            //                     mostrarMensajeError(result.messageStatus);
+                            //                 }
+                            //             },
+                            //             error: function () {
+                            //                 // $("#editModal").modal("hide");
+                            //             }
+                            //         });
+                            //     }
+                            // });
+
                         });
                         table.column(12).nodes().to$().find('#btnClinicalHistory').click(function () {
                             let data = table.row($(this).parents('tr')).data();
@@ -925,55 +998,123 @@
                 });
                 //Clear Input
                 $("#fechaNacimiento").val("");
+            } else if (userData.uPassword === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese una contraseña.',
+                    confirmButtonColor: '#008dc9'
+                });
             }
-
+            else if (CheckPass(userData.uPassword) == false) {
+                Swal.fire({
+                    text: 'La contraseña no cumple con los requisitos.',
+                    confirmButtonColor: '#008dc9'
+                });
+            }
             //let formattedBirthDate = formatDateToISO8601(birthDate);
             else {
-                $.ajax({
-                    type: "POST",
-                    url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Ruta para agregar el usuario
-                    data: JSON.stringify(userData), // Convierte userData a JSON
-                    contentType: "application/json", // Especifica el tipo de contenido
-                    dataType: "json",
-                    success: function (response) {
-                        // si result = 0, se agrego correctamente
-                        // si result != 0, no se agrego correctamente
-                        console.log("response " + response);
-                        console.log("response codeStatus " + response.codeStatus);
-                        if (response.codeStatus == 0) {
-                            $("#addUserModal").modal("hide");
-                            //alert("Usuario agregado correctamente");
-                            // Cierra el modal de agregar usuario
-                            Swal.fire({
-                                title: 'Usuario Agregado',
-                                text: 'El usuario se agregó correctamente',
-                                icon: 'success',
-                                confirmButtonText: 'Aceptar'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    verusers(3);
+                if (userData.utID == 2) {
+                    //Deben llenarse los campos Academicos
+                    //validar que los campos tengan informacion
+                    if (userData.dAcademicLevel === "" || userData.dDegree === "" || userData.spID === "" || userData.dProfessionalCard === "" || userData.dUniversityName === "") {
+                        Swal.fire({
+                            text: 'Por favor, ingrese los datos Academicos.',
+                            confirmButtonColor: '#008dc9'
+                        });
+                    } else {
+                        $.ajax({
+                            type: "POST",
+                            url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Ruta para agregar el usuario
+                            data: JSON.stringify(userData), // Convierte userData a JSON
+                            contentType: "application/json", // Especifica el tipo de contenido
+                            dataType: "json",
+                            success: function (response) {
+                                // si result = 0, se agrego correctamente
+                                // si result != 0, no se agrego correctamente
+                                console.log("response " + response);
+                                console.log("response codeStatus " + response.codeStatus);
+                                if (response.codeStatus == 0) {
+                                    $("#addUserModal").modal("hide");
+                                    //alert("Usuario agregado correctamente");
+                                    // Cierra el modal de agregar usuario
+                                    Swal.fire({
+                                        title: 'Usuario Agregado',
+                                        text: 'El usuario se agregó correctamente',
+                                        icon: 'success',
+                                        confirmButtonText: 'Aceptar'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            verusers(3);
+                                        }
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        title: 'Error',
+                                        text: response.messageStatus,
+                                        icon: 'info',
+                                        confirmButtonText: 'Aceptar'
+                                    });
                                 }
-                            });
-                        } else {
+
+                            },
+                            error: function () {
+                                //alert("Error al agregar el usuario");
+                                Swal.fire({
+                                    title: 'Error',
+                                    text: response.messageCode,
+                                    icon: 'error',
+                                    confirmButtonText: 'Aceptar'
+                                });
+                            }
+                        });
+                    }
+
+                } else {
+                    $.ajax({
+                        type: "POST",
+                        url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Ruta para agregar el usuario
+                        data: JSON.stringify(userData), // Convierte userData a JSON
+                        contentType: "application/json", // Especifica el tipo de contenido
+                        dataType: "json",
+                        success: function (response) {
+                            // si result = 0, se agrego correctamente
+                            // si result != 0, no se agrego correctamente
+                            console.log("response " + response);
+                            console.log("response codeStatus " + response.codeStatus);
+                            if (response.codeStatus == 0) {
+                                $("#addUserModal").modal("hide");
+                                //alert("Usuario agregado correctamente");
+                                // Cierra el modal de agregar usuario
+                                Swal.fire({
+                                    title: 'Usuario Agregado',
+                                    text: 'El usuario se agregó correctamente',
+                                    icon: 'success',
+                                    confirmButtonText: 'Aceptar'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        verusers(3);
+                                    }
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: 'Error',
+                                    text: response.messageStatus,
+                                    icon: 'info',
+                                    confirmButtonText: 'Aceptar'
+                                });
+                            }
+
+                        },
+                        error: function () {
+                            //alert("Error al agregar el usuario");
                             Swal.fire({
                                 title: 'Error',
-                                text: response.messageStatus,
-                                icon: 'info',
+                                text: response.messageCode,
+                                icon: 'error',
                                 confirmButtonText: 'Aceptar'
                             });
                         }
-
-                    },
-                    error: function () {
-                        //alert("Error al agregar el usuario");
-                        Swal.fire({
-                            title: 'Error',
-                            text: response.messageCode,
-                            icon: 'error',
-                            confirmButtonText: 'Aceptar'
-                        });
-                    }
-                });
+                    });
+                }
             }
         });
         $(document).ready(function () {

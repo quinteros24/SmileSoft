@@ -463,7 +463,15 @@
                             });
 
                             // Realiza otras acciones después de guardar los cambios si es necesario
-                        } else {
+                        } else if (response.codeStatus == 547) {
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Debe Actualizar la Información Académica',
+                                icon: 'info',
+                                confirmButtonText: 'Aceptar'
+                            });
+                        }
+                        else {
                             Swal.fire({
                                 title: 'Error',
                                 text: response.messageStatus,
