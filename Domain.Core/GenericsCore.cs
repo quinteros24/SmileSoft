@@ -133,5 +133,20 @@ namespace Domain.Core
             return await _genericsRepository.Getlogs(pageNumber);
         }
 
+        public async Task<List<SelectListItem>> GetStates()
+        {
+            return await _genericsRepository.GetStates();
+        }
+
+        public async Task<List<SelectListItem>> GetCities(int sID)
+        {
+            return await _genericsRepository.GetCities(sID);
+        }
+
+        public async Task<List<SelectListItem>> GetDocumentTypes()
+        {
+            return await _genericsRepository.GetDocumentTypes();
+        }
+
     }
 }
