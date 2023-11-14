@@ -107,13 +107,13 @@
             </div>
             <div class="card-body tab-content">
                 <div class="tab-pane active" id="sitesettings">
-                    @* <partial name="ViewSiteOptions" /> *@
+                    <partial name="ViewSiteOptions" />
                 </div>
                 <div class="tab-pane" id="wpsettings">
                     <partial name="ViewWhatsapp" />
                 </div>
                 <div class="tab-pane" id="questionsettings">
-                    @* <partial name="ViewQuestions" /> *@
+                    <partial name="ViewQuestions" />
                 </div>
                 <div class="tab-pane" id="logData">
                     <h5 class="text-primary">Registros del Sitio</h5>
@@ -131,31 +131,31 @@
 
     <script>
         //cuando cargue el sitio carga la primer vista parcial
-        $(document).ready(function () {
-            // Realiza una solicitud AJAX al controlador que devuelve la vista parcial
-            $.ajax({
-                url: '/Admin/ViewSiteOptions', // Reemplaza esto con la URL de tu acción del controlador
-                type: 'GET',
-                success: function (data) {
-                    // Actualiza el contenido del div con la vista parcial devuelta
-                    $('#sitesettings').html(data);
-                    //executeScripts();
-                }
-            });
-        });
+        // $(document).ready(function () {
+        //     // Realiza una solicitud AJAX al controlador que devuelve la vista parcial
+        //     $.ajax({
+        //         url: '/Admin/ViewSiteOptions', // Reemplaza esto con la URL de tu acción del controlador
+        //         type: 'GET',
+        //         success: function (data) {
+        //             // Actualiza el contenido del div con la vista parcial devuelta
+        //             $('#sitesettings').html(data);
+        //             //executeScripts();
+        //         }
+        //     });
+        // });
 
-        $('#sitesettingslink').click(function () {
-            // Realiza una solicitud AJAX al controlador que devuelve la vista parcial
-            $.ajax({
-                url: '/Admin/ViewSiteOptions', // Reemplaza esto con la URL de tu acción del controlador
-                type: 'GET',
-                success: function (data) {
-                    // Actualiza el contenido del div con la vista parcial devuelta
-                    $('#sitesettings').html(data);
-                    siteLayoutScript();
-                }
-            });
-        });
+        // $('#sitesettingslink').click(function () {
+        //     // Realiza una solicitud AJAX al controlador que devuelve la vista parcial
+        //     $.ajax({
+        //         url: '/Admin/ViewSiteOptions', // Reemplaza esto con la URL de tu acción del controlador
+        //         type: 'GET',
+        //         success: function (data) {
+        //             // Actualiza el contenido del div con la vista parcial devuelta
+        //             $('#sitesettings').html(data);
+        //             siteLayoutScript();
+        //         }
+        //     });
+        // });
         // $('#wpsettingslink').click(function () {
         //     // Realiza una solicitud AJAX al controlador que devuelve la vista parcial
         //     $.ajax({
@@ -167,18 +167,18 @@
         //         }
         //     });
         // });
-        $('#questionsettingslink').click(function () {
-            // Realiza una solicitud AJAX al controlador que devuelve la vista parcial
-            $.ajax({
-                url: '/Admin/ViewQuestions', // Reemplaza esto con la URL de tu acción del controlador
-                type: 'GET',
-                success: function (data) {
-                    // Actualiza el contenido del div con la vista parcial devuelta
-                    $('#questionsettings').html(data);
-                    questionStructureScript();
-                }
-            });
-        });
+        // $('#questionsettingslink').click(function () {
+        //     // Realiza una solicitud AJAX al controlador que devuelve la vista parcial
+        //     $.ajax({
+        //         url: '/Admin/ViewQuestions', // Reemplaza esto con la URL de tu acción del controlador
+        //         type: 'GET',
+        //         success: function (data) {
+        //             // Actualiza el contenido del div con la vista parcial devuelta
+        //             $('#questionsettings').html(data);
+        //             questionStructureScript();
+        //         }
+        //     });
+        // });
         $('#logDatalink').click(function () {
             // Realiza una solicitud AJAX al controlador que devuelve la vista parcial
             $.ajax({
@@ -192,766 +192,766 @@
             });
         });
 
-        function siteLayoutScript() {
-            let base64Image = '';
+        // function siteLayoutScript() {
+        let base64Image = '';
 
-            $(document).ready(function () {
-                fnGetDataSite(sessionStorage.getItem('userID'));
-                // Get the color values from localStorage
-                let backgroundColor = localStorage.getItem("backgroundColor");
-                let topColor = localStorage.getItem("topColor");
-                let sideColor = localStorage.getItem("sideColor");
+        $(document).ready(function () {
+            fnGetDataSite(sessionStorage.getItem('userID'));
+            // Get the color values from localStorage
+            let backgroundColor = localStorage.getItem("backgroundColor");
+            let topColor = localStorage.getItem("topColor");
+            let sideColor = localStorage.getItem("sideColor");
 
-                // Set the initial colors for each input
-                document.getElementById("BackgroundColor").value = backgroundColor || "#563d7c";
-                document.getElementById("SidebarColor").value = sideColor || "#be1522";
-                document.getElementById("NavbarColor").value = topColor || "#be1522";
+            // Set the initial colors for each input
+            document.getElementById("BackgroundColor").value = backgroundColor || "#563d7c";
+            document.getElementById("SidebarColor").value = sideColor || "#be1522";
+            document.getElementById("NavbarColor").value = topColor || "#be1522";
+        });
+
+        function fnGetDataSite(uID) {
+            $.ajax({
+                url: sessionStorage.urlEP + '/api/Generics/v1/GetDataSite?uID=' + uID,
+                type: 'GET',
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (response) {
+                    localStorage.setItem("urlImageLogin", response.itemJson.urlImageLogin);
+                    localStorage.setItem("urlImageMenu", response.itemJson.urlImageMenu);
+                    localStorage.setItem("backgroundColor", response.itemJson.backgroundColor);
+                    localStorage.setItem("topColor", response.itemJson.topColor);
+                    localStorage.setItem("sideColor", response.itemJson.sideColor);
+                    $('#imgLogin').attr('src', response.itemJson.urlImageLogin);
+                }
             });
+        }
 
-            function fnGetDataSite(uID) {
+        // function fnConvertToBase64(element) {
+        //     if (element.files && element.files[0]) {
+        //         let reader = new FileReader();
+
+        //         reader.onload = function (e) {
+        //             const base64String = e.target.result;
+        //             base64Image = base64String;
+        //         };
+
+        //         reader.readAsDataURL(element.files[0]);
+        //     }
+        // }
+
+        function uploadImage(element, op) {
+            let file = element.parentElement.previousElementSibling.files[0];
+
+            let uID = sessionStorage.getItem('userID');
+            let text = 'Menu';
+
+            if (op == 1) text = 'Login';
+
+            const formData = new FormData();
+            formData.append("file", file);
+
+
+            const uploadUrl = `${sessionStorage.urlEP}/api/Blobs/upload?citaID=0&genericName=ImageForOffice${text}_${uID}`;
+            //Validar el input si no tiene nada mostrar alerta
+            if (file == undefined) {
+                //showMessage("Por favor seleccione una imagen.", "red");
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Por favor seleccione una imagen.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar',
+                    confirmButtonColor: '#008dc9'
+                })
+                return;
+            } else if (file.type != 'image/jpeg' && file.type != 'image/png') {
+                //showMessage("El formato de la imagen no es válido.", "red");
+                Swal.fire({
+                    title: 'Error',
+                    text: 'El formato de la imagen no es válido.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar',
+                    confirmButtonColor: '#008dc9'
+                })
+                return;
+            } else if (file.size > 2097152) {
+                //showMessage("El tamaño de la imagen no puede superar los 2MB.", "red");
+                Swal.fire({
+                    title: 'Error',
+                    text: 'El tamaño de la imagen no puede superar los 2MB.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar',
+                    confirmButtonColor: '#008dc9'
+                })
+                return;
+            } else {
+
                 $.ajax({
-                    url: sessionStorage.urlEP + '/api/Generics/v1/GetDataSite?uID=' + uID,
-                    type: 'GET',
-                    contentType: "application/json",
-                    dataType: 'json',
+                    url: uploadUrl,
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
                     success: function (response) {
-                        localStorage.setItem("urlImageLogin", response.itemJson.urlImageLogin);
-                        localStorage.setItem("urlImageMenu", response.itemJson.urlImageMenu);
-                        localStorage.setItem("backgroundColor", response.itemJson.backgroundColor);
-                        localStorage.setItem("topColor", response.itemJson.topColor);
-                        localStorage.setItem("sideColor", response.itemJson.sideColor);
-                        $('#imgLogin').attr('src', response.itemJson.urlImageLogin);
+                        //debugger;
+                        fnUpdateDataOffice(op, response);
+                    },
+                    error: function () {
+                        //showMessage("Error de red al cargar el archivo.", "red");
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Por favor revise el formato de su archivo, e intente nuevamente.',
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9'
+                        })
                     }
                 });
             }
 
-            function fnConvertToBase64(element) {
-                if (element.files && element.files[0]) {
-                    let reader = new FileReader();
+        }
 
-                    reader.onload = function (e) {
-                        const base64String = e.target.result;
-                        base64Image = base64String;
-                    };
 
-                    reader.readAsDataURL(element.files[0]);
-                }
+        function fnUpdateDataOffice(op = 0, url = '') {
+            if (op == 0) return;
+
+            if ((op == 1 || op == 2) && base64Image == '') return;
+
+            let route = '';
+            let data = '';
+            debugger;
+            switch (op) {
+                case 1:
+                    route = 'SetDataSiteUrlImageLogin';
+                    data = url;
+                    break;
+
+                case 2:
+                    route = 'SetDataSiteUrlImageMenu';
+                    data = url;
+                    break;
+
+                case 3:
+                    route = 'SetDataSiteBackgroundColor';
+                    data = $('#BackgroundColor').val();
+                    data = data.replace('#', '%23');
+                    break;
+
+                case 4:
+                    route = 'SetDataSiteTopColor';
+                    data = $('#NavbarColor').val();
+                    data = data.replace('#', '%23');
+                    break;
+
+                case 5:
+                    route = 'SetDataSiteSideColor';
+                    data = $('#SidebarColor').val();
+                    data = data.replace('#', '%23');
+                    break;
+
+                default:
+                    route = '';
             }
 
-            function uploadImage(element, op) {
-                let file = element.parentElement.previousElementSibling.files[0];
+            if (route == '') return;
 
-                let uID = sessionStorage.getItem('userID');
-                let text = 'Menu';
+            let uID = sessionStorage.getItem('userID');
 
-                if (op == 1) text = 'Login';
-
-                const formData = new FormData();
-                formData.append("file", file);
-
-
-                const uploadUrl = `${sessionStorage.urlEP}/api/Blobs/upload?citaID=0&genericName=ImageForOffice${text}_${uID}`;
-                //Validar el input si no tiene nada mostrar alerta
-                if (file == undefined) {
-                    //showMessage("Por favor seleccione una imagen.", "red");
-                    Swal.fire({
-                        title: 'Error',
-                        text: 'Por favor seleccione una imagen.',
-                        icon: 'error',
-                        confirmButtonText: 'Aceptar',
-                        confirmButtonColor: '#008dc9'
-                    })
-                    return;
-                } else if (file.type != 'image/jpeg' && file.type != 'image/png') {
-                    //showMessage("El formato de la imagen no es válido.", "red");
-                    Swal.fire({
-                        title: 'Error',
-                        text: 'El formato de la imagen no es válido.',
-                        icon: 'error',
-                        confirmButtonText: 'Aceptar',
-                        confirmButtonColor: '#008dc9'
-                    })
-                    return;
-                } else if (file.size > 2097152) {
-                    //showMessage("El tamaño de la imagen no puede superar los 2MB.", "red");
-                    Swal.fire({
-                        title: 'Error',
-                        text: 'El tamaño de la imagen no puede superar los 2MB.',
-                        icon: 'error',
-                        confirmButtonText: 'Aceptar',
-                        confirmButtonColor: '#008dc9'
-                    })
-                    return;
-                } else {
-
-                    $.ajax({
-                        url: uploadUrl,
-                        type: "POST",
-                        data: formData,
-                        processData: false,
-                        contentType: false,
-                        success: function (response) {
-                            //debugger;
-                            fnUpdateDataOffice(op, response);
-                        },
-                        error: function () {
-                            //showMessage("Error de red al cargar el archivo.", "red");
-                            Swal.fire({
-                                title: 'Error',
-                                text: 'Por favor revise el formato de su archivo, e intente nuevamente.',
-                                icon: 'error',
-                                confirmButtonText: 'Aceptar',
-                                confirmButtonColor: '#008dc9'
-                            })
-                        }
-                    });
-                }
-
-            }
-
-
-            function fnUpdateDataOffice(op = 0, url = '') {
-                if (op == 0) return;
-
-                if ((op == 1 || op == 2) && base64Image == '') return;
-
-                let route = '';
-                let data = '';
-
-                switch (op) {
-                    case 1:
-                        route = 'SetDataSiteUrlImageLogin';
-                        data = url;
-                        break;
-
-                    case 2:
-                        route = 'SetDataSiteUrlImageMenu';
-                        data = url;
-                        break;
-
-                    case 3:
-                        route = 'SetDataSiteBackgroundColor';
-                        data = $('#BackgroundColor').val();
-                        data = data.replace('#', '%23');
-                        break;
-
-                    case 4:
-                        route = 'SetDataSiteTopColor';
-                        data = $('#NavbarColor').val();
-                        data = data.replace('#', '%23');
-                        break;
-
-                    case 5:
-                        route = 'SetDataSiteSideColor';
-                        data = $('#SidebarColor').val();
-                        data = data.replace('#', '%23');
-                        break;
-
-                    default:
-                        route = '';
-                }
-
-                if (route == '') return;
-
-                let uID = sessionStorage.getItem('userID');
-
-                $.ajax({
-                    url: `${sessionStorage.urlEP}/api/Generics/v1/${route}?uID=${uID}&data=${data}`,
-                    type: 'GET',
-                    contentType: "application/json",
-                    dataType: 'json',
-                    success: function (response) {
-                        if (response.codeStatus == '-1') {
-                            Swal.fire({
-                                title: 'Ups...',
-                                text: response.messageStatus,
-                                icon: 'warning',
-                                confirmButtonText: 'Aceptar',
-                                confirmButtonColor: '#008dc9'
-                            });
-                            return;
-                        }
+            $.ajax({
+                url: `${sessionStorage.urlEP}/api/Generics/v1/${route}?uID=${uID}&data=${data}`,
+                type: 'GET',
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (response) {
+                    if (response.codeStatus == '-1') {
                         Swal.fire({
-                            title: '',
+                            title: 'Ups...',
                             text: response.messageStatus,
-                            icon: 'success',
+                            icon: 'warning',
                             confirmButtonText: 'Aceptar',
                             confirmButtonColor: '#008dc9'
                         });
-                        //Refrescar Sitio Web
-                        location.reload();
-                    },
-                });
-
-            }
-        }
-        function questionStructureScript() {
-            let structure = [];
-            function getUsersClinicStoryFormat() {
-                $.ajax({
-                    url: `${sessionStorage.urlEP}/api/Generics/v1/GetUsersClinicStoryFormat?oID=1`,
-                    type: 'GET',
-                    dataType: 'json',
-                    contentType: 'application/json',
-                    async: false,
-                    success: function (response) {
-                        //const { itemJson, codeStatus } = response;
-
-                        if (response.codeStatus == 0) {
-                            ////console.log("response.itemJson: ", response.itemJson);
-                            structure = [];
-                            structure = JSON.parse(response.itemJson);
-                            ////console.log('Structure Json respond: ', structure);
-                            ////console.log('Structure Json respond Long: ', structure.length);
-                        } else if (response.codeStatus == -1) {
-                            Swal.fire({
-                                title: 'Error',
-                                text: response.messageStatus,
-                                icon: 'error',
-                                confirmButtonText: 'Aceptar',
-                                confirmButtonColor: '#008dc9'
-                            });
-                        }
-                    },
-                    error: function (error) {
-                        console.error('There was a problem with the AJAX request:', error);
+                        return;
                     }
-                });
-            }
-
-            getUsersClinicStoryFormat();
-
-
-            // $.ajax({
-            //     url: sessionStorage.urlEP + '/api/Generics/v1/GetUsersClinicStoryFormat?oID=1',
-            //     type: 'GET',
-            //     contentType: "application/json",
-            //     dataType: 'json',
-            //     async: false,
-            //     success: function ({ itemJson, codeStatus }) {
-            //         if (codeStatus == 0) {
-            //             structure2 = itemJson; //Test
-            //             //structure = JSON.parse(itemJson);
-            //             structure = JSON.parse(itemJson).filter(item => item !== null);
-            //         }
-            //         else if (response.codeStatus == -1) {
-            //             Swal.fire({
-            //                 title: 'Error',
-            //                 text: response.messageStatus,
-            //                 icon: 'error',
-            //                 confirmButtonText: 'Aceptar'
-            //             })
-            //         }
-            //     }
-            // })
-
-            let finalStructure = [];
-            //debugger;
-            //console.log("Structure antes de dibujar: ", structure);
-            structure.length && drawQuestions(true)
-            //console.log('Structure length: ', structure.length);
-            $("#question-type").change(function () {
-                if ($(this).val() === "multiple") {
-                    $(".option-container").addClass("d-block");
-                    $(".option-container").removeClass("d-none");
-                } else {
-                    $(".option-container").addClass("d-none");
-                    $(".option-container").removeClass("d-block");
-                }
-            });
-
-            $("#add-option").click(function () {
-                $("#options-container").append(`
-                                                                                                                                                                                                                       <div class="input-group mb-2">
-                                                                                                                                                                                                                       <input type="text" class="form-control option-input mx-1" placeholder="Nombre de la opción">
-                                                                                                                                                                                                                       <div class="input-group-append">
-                                                                                                                                                                                                                           <button class="btn btn-danger remove-option" type="button">-</button>
-                                                                                                                                                                                                                       </div>
-                                                                                                                                                                                                                       </div>
-                                                                                                                                                                                                                    `);
-            });
-            $(document).on("click", ".remove-option", function () {
-                $(this).closest(".input-group").remove();
-            });
-
-            $("#add-question").click(() => drawQuestions());
-
-            function drawQuestions(firstLoad = false) {
-                ////console.log("Cargar Preguntas");
-
-                const type = $("#question-type").val();
-                const name = $("#question").val();
-                let options = null;
-
-                if (type === "multiple") {
-                    options = [];
-                    $(".option-input").each(function () {
-                        const optionValue = $(this).val();
-                        if (optionValue.trim() !== "") {
-                            options.push(optionValue);
-                        }
-                    });
-                }
-
-                if (!name && !firstLoad) {
                     Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Debes agregar una pregunta!',
+                        title: '',
+                        text: response.messageStatus,
+                        icon: 'success',
+                        confirmButtonText: 'Aceptar',
                         confirmButtonColor: '#008dc9'
-                    })
-                    return;
-                }
-                const question = {
-                    id: structure.length + 1,
-                    type: type,
-                    name: name,
-                    options: options,
-                };
+                    });
+                    //Refrescar Sitio Web
+                    location.reload();
+                },
+            });
 
-                structure.push(question);
+        }
 
-                if (structure.length) {
-                    $("#save-all-questions").removeClass("d-none");
-                    $("#save-all-questions").addClass("d-block");
-                }
-                if (!firstLoad) {
-                    $("#question-type").val('')
-                    $("#question").val('');
-                }
 
-                type === "multiple" && $(".input-group").remove();
+        let structure = [];
+        function getUsersClinicStoryFormat() {
+            $.ajax({
+                url: `${sessionStorage.urlEP}/api/Generics/v1/GetUsersClinicStoryFormat?oID=1`,
+                type: 'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                async: false,
+                success: function (response) {
+                    //const { itemJson, codeStatus } = response;
 
-                //Eliminar Pregunta Fantasma
-                if (firstLoad) {
-                    structure.pop();
-                }
-                updateStructuredForm(structure);
-            }
-
-            // Grafico dinamicamente las preguntas dependiendo de su tipo
-            function updateStructuredForm(struct) {
-                ////console.log({ struct })
-                let questionTypes = {
-                    'open': function (question) {
-                        let inputField = $(`<input disabled placeholder="Pregunta abierta" type="text" id="${question.id}" class="form-control"></input><br>`);
-
-                        let container = $('<div class="form-group"></div>').append(
-                            `<label class="text-primary m-0 fw-bold" for="${question.id}">`
-                            + `Pregunta abierta # ${question.id}: ` + question.name +
-                            '</label><br>', inputField);
-
-                        return container
-                    },
-                    'close': function (question) {
-
-                        let checkBox1 = $(`<input disabled class="form-check-input" id="${question.id}" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
-
-                        let label1 = $(`<label class="form-check-label" for="${question.id}">`).text("SI");
-
-                        let checkBox2 = $(`<input disabled class="form-check-input" id="${question.id}0" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
-
-                        let label2 = $(`<label class="form-check-label" for="${question.id}0">`).text("NO");
-
-                        let container1 = $('<div class="form-check form-check-inline"></div>').append(checkBox1, label1);
-
-                        let container2 = $('<div class="form-check form-check-inline"></div>').append(checkBox2, label2);
-
-                        let container = $('<div class="mb-1 mt-2"></div>').append(`<p class="text-primary m-0 fw-bold">Pregunta cerrada # ${question.id}: ${question.name}</p>`, container1, container2);
-
-                        return container;
-                    },
-                    'multiple': function (question) {
-                        let options = $(`<select class="form-select" id="${question.id}" multiple></select>`);
-
-                        question.options.forEach(function (option) {
-                            options.append('<option disabled value="' + option + '">' + option + '</option>');
+                    if (response.codeStatus == 0) {
+                        ////console.log("response.itemJson: ", response.itemJson);
+                        structure = [];
+                        structure = JSON.parse(response.itemJson);
+                        ////console.log('Structure Json respond: ', structure);
+                        ////console.log('Structure Json respond Long: ', structure.length);
+                    } else if (response.codeStatus == -1) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: response.messageStatus,
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9'
                         });
-
-                        let container = $('<div class="mb-1"></div>').append(`<p class="text-primary m-0 fw-bold">Pregunta de opción múltiple # ${question.id}: ${question.name}</p>`, options)
-
-                        return container
-                    },
-                    //<div class="mb-3">
-                    //< label for= "logoInput" class= "form-label" > Cambiar Logo Menu Principal < /label>
-                    //< input class="form-control" type = "file" id = "logoInput" accept = ".jpg, .png" onchange = "fnConvertToBase64(this)" >
-                    //<div class="mb-3 my-2" >
-                    //<button class="btn btn-primary mx-4" type = "button" id = "updateLogo" onclick = "uploadImage(this, 2)" > Subir < /button><span class="text-primary">*Tamaño recomendado de 140x70px*</span >
-                    //< /div>
-                    'fileUpload': function (question) {
-                        let inputField = $(`<input disabled placeholder="Imagen" type="file" id="${question.id}" accept=".jpg , .png" class="form-control"></input><br>`);
-
-                        let container = $('<div class="form-group"></div>').append(
-                            `<label class="text-primary m-0 fw-bold" for="${question.id}">`
-                            + `Imagen # ${question.id}: ` + question.name +
-                            '</label><br>', inputField, `<button class="btn btn-primary btnFileC" type="button" id="${question.name + question.id}" disabled> Subir </button>`);
-
-                        return container
                     }
-                };
-
-                let form = $('#create-clinic-form-history');
-                form.empty();
-
-                finalStructure = [];
-                // //console.log('Struct: ', struct);
-                // //console.log('Struct: ', struct.length);
-
-
-                struct.forEach(function (question, index) {
-                    ////console.log('Index:', index);
-                    question.id = index + 1;
-                    let questionContainer = $(`<div class="question-${question.id}"></div>`);
-                    ////console.log('Index Question: ', question.id);
-                    if (question.type in questionTypes) {
-                        let inputElement = questionTypes[question.type](question);
-                        finalStructure.push(question);
-
-                        questionContainer.append(inputElement);
-
-                        // Insert the "Eliminar" button below the input element
-                        questionContainer.append(`<div class="d-flex justify-content-end"><button type="button" class="btn btn-danger btn-sm mb-2" onclick="deleteQuestion(${question.id})">Eliminar</button></div><hr/>`);
-
-                        form.append(questionContainer);
-                    } else {
-                        console.error('Tipo de pregunta no válido: ' + question.type);
-                    }
-                });
-
-
-            }
-            // Función para eliminar una pregunta
-            function deleteQuestion(id) {
-                $(`.question-${id}`).remove();
-                structure = structure.filter((question) => question.id !== id);
-                updateStructuredForm(structure);
-            }
-            // let finalStructure2 =     [
-            //         {
-            //             "id": 1,
-            //             "type": "open",
-            //             "name": "Por qué asistió a la consulta?",
-            //             "options": null
-            //         },
-            //         {
-            //             "id": 2,
-            //             "type": "open",
-            //             "name": "Consultó antes con algún otro profesional?",
-            //             "options": null
-            //         },
-            //         {
-            //             "id": 3,
-            //             "type": "close",
-            //             "name": "Tomó algún medicamento?",
-            //             "options": ["Sí", "No"]
-            //         },
-            //         {
-            //             "id": 4,
-            //             "type": "open",
-            //             "name": "Nombre de los medicamentos",
-            //             "options": null
-            //         },
-            //         {
-            //             "id": 5,
-            //             "type": "open",
-            //             "name": "Desde cuando?",
-            //             "options": null
-            //         },
-            //         {
-            //             "id": 6,
-            //             "type": "close",
-            //             "name": "Obtuvo resultados?",
-            //             "options": ["Sí", "No"]
-            //         },
-            //         {
-            //             "id": 7,
-            //             "type": "close",
-            //             "name": "Ha tenido dolor?",
-            //             "options": ["Suave", "Moderado", "Intenso", "Temporario", "Intermitente", "Continuo", "Espontáneo", "Provocado", "Al frío", "Al calor", "Localizado", "Irradiado"]
-            //         },
-            //         {
-            //             "id": 8,
-            //             "type": "open",
-            //             "name": "dónde?",
-            //             "options": null
-            //         },
-            //         {
-            //             "id": 9,
-            //             "type": "open",
-            //             "name": "hacia dónde?",
-            //             "options": null
-            //         },
-            //         {
-            //             "id": 10,
-            //             "type": "open",
-            //             "name": "Puede calmarlo con algo?",
-            //             "options": null
-            //         },
-            //         {
-            //             "id": 11,
-            //             "type": "close",
-            //             "name": "Sufrió algún golpe en los dientes?",
-            //             "options": ["Sí", "No"]
-            //         },
-            //         {
-            //             "id": 12,
-            //             "type": "open",
-            //             "name": "cuándo?",
-            //             "options": null
-            //         },
-            //         {
-            //             "id": 13,
-            //             "type": "open",
-            //             "name": "cómo se produjo?",
-            //             "options": null
-            //         },
-            //         {
-            //             "id": 14,
-            //             "type": "close",
-            //             "name": "Se le fracturó algún diente?",
-            //             "options": ["Sí", "No"]
-            //         },
-            //         {
-            //             "id": 15,
-            //             "type": "open",
-            //             "name": "cuál?",
-            //             "options": null
-            //         },
-            //         {
-            //             "id": 16,
-            //             "type": "close",
-            //             "name": "recibió algún tratamiento?",
-            //             "options": ["Sí", "No"]
-            //         },
-            //         {
-            //             "id": 17,
-            //             "type": "open",
-            //             "name": "cuál?",
-            //             "options": null
-            //         },
-            //         {
-            //             "id": 18,
-            //             "type": "close",
-            //             "name": "Tiene dificultad para hablar?",
-            //             "options": ["Sí", "No"]
-            //         },
-            //         {
-            //             "id": 19,
-            //             "type": "close",
-            //             "name": "para masticar?",
-            //             "options": ["Sí", "No"]
-            //         },
-            //         {
-            //             "id": 20,
-            //             "type": "close",
-            //             "name": "para abrir la boca?",
-            //             "options": ["Sí", "No"]
-            //         },
-            //         {
-            //             "id": 21,
-            //             "type": "close",
-            //             "name": "para tragar los alimentos?",
-            //             "options": ["Sí", "No"]
-            //         },
-            //         {
-            //             "id": 22,
-            //             "type": "close",
-            //             "name": "Ha observado algo anormal en los labios?",
-            //             "options": ["Sí", "No"]
-            //         },
-            //         {
-            //             "id": 23,
-            //             "type": "close",
-            //             "name": "lengua?",
-            //             "options": ["Sí", "No"]
-            //         },
-            //         {
-            //             "id": 24,
-            //             "type": "close",
-            //             "name": "paladar?",
-            //             "options": ["Sí", "No"]
-            //         },
-            //         {
-            //             "id": 25,
-            //             "type": "close",
-            //             "name": "piso de boca?",
-            //             "options": ["Sí", "No"]
-            //         },
-            //         {
-            //             "id": 26,
-            //             "type": "close",
-            //             "name": "carrillos?",
-            //             "options": ["Sí", "No"]
-            //         },
-            //         {
-            //             "id": 27,
-            //             "type": "close",
-            //             "name": "rebordes?",
-            //             "options": ["Sí", "No"]
-            //         },
-            //         {
-            //             "id": 28,
-            //             "type": "close",
-            //             "name": "trígono",
-            //             "options": ["Sí", "No"]
-            //         },
-            //         {
-            //             "id": 29,
-            //             "type": "close",
-            //             "name": "retromolar",
-            //             "options": ["Sí", "No"]
-            //         },
-            //         {
-            //             "id": 30,
-            //             "type": "close",
-            //             "name": "Qué tipo de lesiones presenta: Manchas?",
-            //             "options": ["Sí", "No"]
-            //         },
-            //         {
-            //             "id": 31,
-            //             "type": "close",
-            //             "name": "Abultamiento de los tejidos?",
-            //             "options": ["Sí", "No"]
-            //         },
-            //         {
-            //             "id": 32,
-            //             "type": "close",
-            //             "name": "Ulceraciones?",
-            //             "options": ["Sí", "No"]
-            //         },
-            //         {
-            //             "id": 33,
-            //             "type": "close",
-            //             "name": "Ampollas?",
-            //             "options": ["Sí", "No"]
-            //         },
-            //         {
-            //             "id": 34,
-            //             "type": "open",
-            //             "name": "Otros",
-            //             "options": null
-            //         },
-            //         {
-            //             "id": 35,
-            //             "type": "close",
-            //             "name": "Le sangran las encías?",
-            //             "options": ["Sí", "No"]
-            //         },
-            //         {
-            //             "id": 36,
-            //             "type": "open",
-            //             "name": "cuándo?",
-            //             "options": null
-            //         },
-            //         {
-            //             "id": 37,
-            //             "type": "close",
-            //             "name": "Sale pus de algún lugar de su boca?",
-            //             "options": ["Sí", "No"]
-            //         },
-            //         {
-            //             "id": 38,
-            //             "type": "open",
-            //             "name": "de dónde?",
-            //             "options": null
-            //         },
-            //         {
-            //             "id": 39,
-            //             "type": "close",
-            //             "name": "Tiene movilidad en sus dientes?",
-            //             "options": ["Sí", "No"]
-            //         },
-            //         {
-            //             "id": 40,
-            //             "type": "close",
-            //             "name": "al morder siente altos los dientes?",
-            //             "options": ["Sí", "No"]
-            //         },
-            //         {
-            //             "id": 41,
-            //             "type": "close",
-            //             "name": "Ha tenido la cara hinchada?",
-            //             "options": ["Sí", "No"]
-            //         },
-            //         {
-            //             "id": 42,
-            //             "type": "close",
-            //             "name": "Se puso hielo?",
-            //             "options": ["Sí", "No"]
-            //         },
-            //         {
-            //             "id": 43,
-            //             "type": "close",
-            //             "name": "calor?",
-            //             "options": ["Sí", "No"]
-            //         },
-            //         {
-            //             "id": 44,
-            //             "type": "open",
-            //             "name": "otros?",
-            //             "options": null
-            //         },
-            //         {
-            //             "id": 45,
-            //             "type": "open",
-            //             "name": "Momentos de azúcar diario",
-            //             "options": null
-            //         },
-            //         {
-            //             "id": 46,
-            //             "type": "open",
-            //             "name": "Indice de placa",
-            //             "options": null
-            //         },
-            //         {
-            //             "id": 47,
-            //             "type": "open",
-            //             "name": "Estado de la higiene bucal",
-            //             "options": null
-            //         }
-            //     ];
-            // Envío la petición con la estructura final
-            $("#save-all-questions").click(() => {
-                $.ajax({
-                    url: sessionStorage.urlEP + `/api/Generics/v1/StoreUsersClinicStoryFormat?uIDPetition=${uIDPetition}&oID=1&jsonObject=` + JSON.stringify(finalStructure),
-                    type: 'GET',
-                    contentType: "application/json",
-                    dataType: 'json',
-                    success: function (response) {
-                        ////console.log(response)
-                        if (response.codeStatus == 0) {
-                            Swal.fire({
-                                title: 'Preguntas Guardadas',
-                                icon: 'success',
-                                confirmButtonText: 'Aceptar',
-                                confirmButtonColor: '#008dc9'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    swal.close();
-                                    location.reload();
-                                }
-                            })
-                        }
-                        else if (response.codeStatus == -1) {
-                            Swal.fire({
-                                title: 'Error',
-                                text: response.messageStatus,
-                                icon: 'info',
-                                confirmButtonText: 'Aceptar',
-                                confirmButtonColor: '#008dc9'
-                            })
-                        }
-                    },
-                    error: function (error) {
-                        //console.log(error);
-                    }
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        location.reload();
-                    }
-                })
+                },
+                error: function (error) {
+                    console.error('There was a problem with the AJAX request:', error);
+                }
             });
         }
+
+        getUsersClinicStoryFormat();
+
+
+        // $.ajax({
+        //     url: sessionStorage.urlEP + '/api/Generics/v1/GetUsersClinicStoryFormat?oID=1',
+        //     type: 'GET',
+        //     contentType: "application/json",
+        //     dataType: 'json',
+        //     async: false,
+        //     success: function ({ itemJson, codeStatus }) {
+        //         if (codeStatus == 0) {
+        //             structure2 = itemJson; //Test
+        //             //structure = JSON.parse(itemJson);
+        //             structure = JSON.parse(itemJson).filter(item => item !== null);
+        //         }
+        //         else if (response.codeStatus == -1) {
+        //             Swal.fire({
+        //                 title: 'Error',
+        //                 text: response.messageStatus,
+        //                 icon: 'error',
+        //                 confirmButtonText: 'Aceptar'
+        //             })
+        //         }
+        //     }
+        // })
+
+        let finalStructure = [];
+        //debugger;
+        //console.log("Structure antes de dibujar: ", structure);
+        structure.length && drawQuestions(true)
+        //console.log('Structure length: ', structure.length);
+        $("#question-type").change(function () {
+            if ($(this).val() === "multiple") {
+                $(".option-container").addClass("d-block");
+                $(".option-container").removeClass("d-none");
+            } else {
+                $(".option-container").addClass("d-none");
+                $(".option-container").removeClass("d-block");
+            }
+        });
+
+        $("#add-option").click(function () {
+            $("#options-container").append(`
+                                                                                                                                                                                                                                       <div class="input-group mb-2">
+                                                                                                                                                                                                                                       <input type="text" class="form-control option-input mx-1" placeholder="Nombre de la opción">
+                                                                                                                                                                                                                                       <div class="input-group-append">
+                                                                                                                                                                                                                                           <button class="btn btn-danger remove-option" type="button">-</button>
+                                                                                                                                                                                                                                       </div>
+                                                                                                                                                                                                                                       </div>
+                                                                                                                                                                                                                                    `);
+        });
+        $(document).on("click", ".remove-option", function () {
+            $(this).closest(".input-group").remove();
+        });
+
+        $("#add-question").click(() => drawQuestions());
+
+        function drawQuestions(firstLoad = false) {
+            ////console.log("Cargar Preguntas");
+
+            const type = $("#question-type").val();
+            const name = $("#question").val();
+            let options = null;
+
+            if (type === "multiple") {
+                options = [];
+                $(".option-input").each(function () {
+                    const optionValue = $(this).val();
+                    if (optionValue.trim() !== "") {
+                        options.push(optionValue);
+                    }
+                });
+            }
+
+            if (!name && !firstLoad) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Debes agregar una pregunta!',
+                    confirmButtonColor: '#008dc9'
+                })
+                return;
+            }
+            const question = {
+                id: structure.length + 1,
+                type: type,
+                name: name,
+                options: options,
+            };
+
+            structure.push(question);
+
+            if (structure.length) {
+                $("#save-all-questions").removeClass("d-none");
+                $("#save-all-questions").addClass("d-block");
+            }
+            if (!firstLoad) {
+                $("#question-type").val('')
+                $("#question").val('');
+            }
+
+            type === "multiple" && $(".input-group").remove();
+
+            //Eliminar Pregunta Fantasma
+            if (firstLoad) {
+                structure.pop();
+            }
+            updateStructuredForm(structure);
+        }
+
+        // Grafico dinamicamente las preguntas dependiendo de su tipo
+        function updateStructuredForm(struct) {
+            ////console.log({ struct })
+            let questionTypes = {
+                'open': function (question) {
+                    let inputField = $(`<input disabled placeholder="Pregunta abierta" type="text" id="${question.id}" class="form-control"></input><br>`);
+
+                    let container = $('<div class="form-group"></div>').append(
+                        `<label class="text-primary m-0 fw-bold" for="${question.id}">`
+                        + `Pregunta abierta # ${question.id}: ` + question.name +
+                        '</label><br>', inputField);
+
+                    return container
+                },
+                'close': function (question) {
+
+                    let checkBox1 = $(`<input disabled class="form-check-input" id="${question.id}" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
+
+                    let label1 = $(`<label class="form-check-label" for="${question.id}">`).text("SI");
+
+                    let checkBox2 = $(`<input disabled class="form-check-input" id="${question.id}0" type="checkbox" onclick="toggleCheckboxes(this)">`).attr('name', "checkbox-close-question");
+
+                    let label2 = $(`<label class="form-check-label" for="${question.id}0">`).text("NO");
+
+                    let container1 = $('<div class="form-check form-check-inline"></div>').append(checkBox1, label1);
+
+                    let container2 = $('<div class="form-check form-check-inline"></div>').append(checkBox2, label2);
+
+                    let container = $('<div class="mb-1 mt-2"></div>').append(`<p class="text-primary m-0 fw-bold">Pregunta cerrada # ${question.id}: ${question.name}</p>`, container1, container2);
+
+                    return container;
+                },
+                'multiple': function (question) {
+                    let options = $(`<select class="form-select" id="${question.id}" multiple></select>`);
+
+                    question.options.forEach(function (option) {
+                        options.append('<option disabled value="' + option + '">' + option + '</option>');
+                    });
+
+                    let container = $('<div class="mb-1"></div>').append(`<p class="text-primary m-0 fw-bold">Pregunta de opción múltiple # ${question.id}: ${question.name}</p>`, options)
+
+                    return container
+                },
+                //<div class="mb-3">
+                //< label for= "logoInput" class= "form-label" > Cambiar Logo Menu Principal < /label>
+                //< input class="form-control" type = "file" id = "logoInput" accept = ".jpg, .png" onchange = "fnConvertToBase64(this)" >
+                //<div class="mb-3 my-2" >
+                //<button class="btn btn-primary mx-4" type = "button" id = "updateLogo" onclick = "uploadImage(this, 2)" > Subir < /button><span class="text-primary">*Tamaño recomendado de 140x70px*</span >
+                //< /div>
+                'fileUpload': function (question) {
+                    let inputField = $(`<input disabled placeholder="Imagen" type="file" id="${question.id}" accept=".jpg , .png" class="form-control"></input><br>`);
+
+                    let container = $('<div class="form-group"></div>').append(
+                        `<label class="text-primary m-0 fw-bold" for="${question.id}">`
+                        + `Imagen # ${question.id}: ` + question.name +
+                        '</label><br>', inputField, `<button class="btn btn-primary btnFileC" type="button" id="${question.name + question.id}" disabled> Subir </button>`);
+
+                    return container
+                }
+            };
+
+            let form = $('#create-clinic-form-history');
+            form.empty();
+
+            finalStructure = [];
+            // //console.log('Struct: ', struct);
+            // //console.log('Struct: ', struct.length);
+
+
+            struct.forEach(function (question, index) {
+                ////console.log('Index:', index);
+                question.id = index + 1;
+                let questionContainer = $(`<div class="question-${question.id}"></div>`);
+                ////console.log('Index Question: ', question.id);
+                if (question.type in questionTypes) {
+                    let inputElement = questionTypes[question.type](question);
+                    finalStructure.push(question);
+
+                    questionContainer.append(inputElement);
+
+                    // Insert the "Eliminar" button below the input element
+                    questionContainer.append(`<div class="d-flex justify-content-end"><button type="button" class="btn btn-danger btn-sm mb-2" onclick="deleteQuestion(${question.id})">Eliminar</button></div><hr/>`);
+
+                    form.append(questionContainer);
+                } else {
+                    console.error('Tipo de pregunta no válido: ' + question.type);
+                }
+            });
+
+
+        }
+        // Función para eliminar una pregunta
+        function deleteQuestion(id) {
+            $(`.question-${id}`).remove();
+            structure = structure.filter((question) => question.id !== id);
+            updateStructuredForm(structure);
+        }
+        // let finalStructure2 =     [
+        //         {
+        //             "id": 1,
+        //             "type": "open",
+        //             "name": "Por qué asistió a la consulta?",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 2,
+        //             "type": "open",
+        //             "name": "Consultó antes con algún otro profesional?",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 3,
+        //             "type": "close",
+        //             "name": "Tomó algún medicamento?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 4,
+        //             "type": "open",
+        //             "name": "Nombre de los medicamentos",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 5,
+        //             "type": "open",
+        //             "name": "Desde cuando?",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 6,
+        //             "type": "close",
+        //             "name": "Obtuvo resultados?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 7,
+        //             "type": "close",
+        //             "name": "Ha tenido dolor?",
+        //             "options": ["Suave", "Moderado", "Intenso", "Temporario", "Intermitente", "Continuo", "Espontáneo", "Provocado", "Al frío", "Al calor", "Localizado", "Irradiado"]
+        //         },
+        //         {
+        //             "id": 8,
+        //             "type": "open",
+        //             "name": "dónde?",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 9,
+        //             "type": "open",
+        //             "name": "hacia dónde?",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 10,
+        //             "type": "open",
+        //             "name": "Puede calmarlo con algo?",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 11,
+        //             "type": "close",
+        //             "name": "Sufrió algún golpe en los dientes?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 12,
+        //             "type": "open",
+        //             "name": "cuándo?",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 13,
+        //             "type": "open",
+        //             "name": "cómo se produjo?",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 14,
+        //             "type": "close",
+        //             "name": "Se le fracturó algún diente?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 15,
+        //             "type": "open",
+        //             "name": "cuál?",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 16,
+        //             "type": "close",
+        //             "name": "recibió algún tratamiento?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 17,
+        //             "type": "open",
+        //             "name": "cuál?",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 18,
+        //             "type": "close",
+        //             "name": "Tiene dificultad para hablar?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 19,
+        //             "type": "close",
+        //             "name": "para masticar?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 20,
+        //             "type": "close",
+        //             "name": "para abrir la boca?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 21,
+        //             "type": "close",
+        //             "name": "para tragar los alimentos?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 22,
+        //             "type": "close",
+        //             "name": "Ha observado algo anormal en los labios?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 23,
+        //             "type": "close",
+        //             "name": "lengua?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 24,
+        //             "type": "close",
+        //             "name": "paladar?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 25,
+        //             "type": "close",
+        //             "name": "piso de boca?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 26,
+        //             "type": "close",
+        //             "name": "carrillos?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 27,
+        //             "type": "close",
+        //             "name": "rebordes?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 28,
+        //             "type": "close",
+        //             "name": "trígono",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 29,
+        //             "type": "close",
+        //             "name": "retromolar",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 30,
+        //             "type": "close",
+        //             "name": "Qué tipo de lesiones presenta: Manchas?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 31,
+        //             "type": "close",
+        //             "name": "Abultamiento de los tejidos?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 32,
+        //             "type": "close",
+        //             "name": "Ulceraciones?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 33,
+        //             "type": "close",
+        //             "name": "Ampollas?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 34,
+        //             "type": "open",
+        //             "name": "Otros",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 35,
+        //             "type": "close",
+        //             "name": "Le sangran las encías?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 36,
+        //             "type": "open",
+        //             "name": "cuándo?",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 37,
+        //             "type": "close",
+        //             "name": "Sale pus de algún lugar de su boca?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 38,
+        //             "type": "open",
+        //             "name": "de dónde?",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 39,
+        //             "type": "close",
+        //             "name": "Tiene movilidad en sus dientes?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 40,
+        //             "type": "close",
+        //             "name": "al morder siente altos los dientes?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 41,
+        //             "type": "close",
+        //             "name": "Ha tenido la cara hinchada?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 42,
+        //             "type": "close",
+        //             "name": "Se puso hielo?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 43,
+        //             "type": "close",
+        //             "name": "calor?",
+        //             "options": ["Sí", "No"]
+        //         },
+        //         {
+        //             "id": 44,
+        //             "type": "open",
+        //             "name": "otros?",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 45,
+        //             "type": "open",
+        //             "name": "Momentos de azúcar diario",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 46,
+        //             "type": "open",
+        //             "name": "Indice de placa",
+        //             "options": null
+        //         },
+        //         {
+        //             "id": 47,
+        //             "type": "open",
+        //             "name": "Estado de la higiene bucal",
+        //             "options": null
+        //         }
+        //     ];
+        // Envío la petición con la estructura final
+        $("#save-all-questions").click(() => {
+            $.ajax({
+                url: sessionStorage.urlEP + `/api/Generics/v1/StoreUsersClinicStoryFormat?uIDPetition=${uIDPetition}&oID=1&jsonObject=` + JSON.stringify(finalStructure),
+                type: 'GET',
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (response) {
+                    ////console.log(response)
+                    if (response.codeStatus == 0) {
+                        Swal.fire({
+                            title: 'Preguntas Guardadas',
+                            icon: 'success',
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                swal.close();
+                                location.reload();
+                            }
+                        })
+                    }
+                    else if (response.codeStatus == -1) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: response.messageStatus,
+                            icon: 'info',
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9'
+                        })
+                    }
+                },
+                error: function (error) {
+                    //console.log(error);
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.reload();
+                }
+            })
+        });
+
 
 
     </script>
@@ -976,6 +976,7 @@
                         };
                         if (response.codeStatus == 0) {
                             let serviceRecord = [];
+                            console.log(response.itemJson);
                             longitudRespuesta = response.itemJson.length;
                             //Mapear estos datos en el array serviceRecords
                             $.each(response.itemJson, function (index, usuario) {

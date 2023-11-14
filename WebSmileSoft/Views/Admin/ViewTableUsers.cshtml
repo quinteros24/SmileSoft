@@ -352,12 +352,12 @@
                                     // Recoge los datos actualizados desde los campos del formulario
 
                                     //Datos Personales
-                                    uName: $("#editNombree").val(),
-                                    uLastName: $("#editApellidoe").val(),
+                                    uName: $("#editNombree").val().trim(),
+                                    uLastName: $("#editApellidoe").val().trim(),
                                     dtID: parseInt($("#tipoDocumentoed").val()),
                                     uDocument: $("#editDocumentoed").val().trim(),
                                     gID: parseInt($("#tGeneroed").val()),
-                                    uBirthDate: $("#fechaNacimientoed").val(),
+                                    uBirthDate: $("#fechaNacimientoed").val().trim(),
 
                                     //Datos de Contacto
                                     uEmailAddress: $("#editCorreoed").val().trim(),
@@ -378,7 +378,7 @@
 
                                 }
                                 if (updatedUserData.utID == 2) {
-                                    updatedUserData.dAcademicLevel = $("#AcademicLeveled").val();
+                                    updatedUserData.dAcademicLevel = $("#AcademicLeveled").val().trim();
                                     updatedUserData.dDegree = $("#TituloAcademicoed").val().trim();
                                     updatedUserData.spID = parseInt($("#Specialityed").val());
                                     updatedUserData.dProfessionalCard = $("#ProfessionalLicenseed").val().trim();
@@ -663,7 +663,7 @@
                             });
 
                             function changeUserPassword() {
-                                debugger;
+                                //debugger;
                                 let password = $("#newPassword").val();
                                 //console.log("password " + password)
                                 if (CheckPass(password) == false) {
@@ -939,7 +939,7 @@
         onChangeAgeNotification(fechaNacimientoInput);
         // Controlador de clic para el botón "Agregar"
         $("#add-user").click(function () {
-
+            //debugger;
             let userData = {
                 //Datos Personales
                 uName: $("#nombres").val().trim(),
@@ -978,7 +978,7 @@
 
             const esMayorDe18 = validarEdadMayorDe18('fechaNacimiento');
 
-            if (userData.firstName === "" || userData.lastName === "") {
+            if (userData.uName === "" || userData.uLastName === "") {
                 Swal.fire({
                     text: 'Por favor, ingrese su nombre completo.',
                     confirmButtonColor: '#008dc9'
@@ -1159,24 +1159,8 @@
         });
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
-
         });
-        // function generateUsername() {
-        //     const firstName = document.getElementById("nombres").value + '.';
-        //     const lastName = document.getElementById("apellidos").value;
 
-        //     // Combine the first name and last name to create the base username
-        //     const baseUsername = (firstName + lastName).toLowerCase().replace(/\s/g, "");
-
-        //     // Generate a random number between 1 and 999 (adjust the range as needed)
-        //     const randomSuffix = Math.floor(Math.random() * 999) + 1;
-
-        //     // Combine the base username with the random number
-        //     const suggestedUsername = baseUsername + randomSuffix;
-
-        //     // Update the username field with the suggested username
-        //     document.getElementById("usuario").value = suggestedUsername;
-        // }
     </script>
     <script>
         function generateUsername() { const e = (document.getElementById("nombres").value + "." + document.getElementById("apellidos").value).toLowerCase().replace(/\s/g, "") + (Math.floor(999 * Math.random()) + 1); document.getElementById("usuario").value = e }

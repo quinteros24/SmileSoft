@@ -7,15 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\assets\js\Appoinments\**" />
     <Compile Remove="wwwroot\assets\js\doctor\**" />
     <Compile Remove="wwwroot\assets\plugins\**" />
     <Compile Remove="wwwroot\assets\video\**" />
+    <Content Remove="wwwroot\assets\js\Appoinments\**" />
     <Content Remove="wwwroot\assets\js\doctor\**" />
     <Content Remove="wwwroot\assets\plugins\**" />
     <Content Remove="wwwroot\assets\video\**" />
+    <EmbeddedResource Remove="wwwroot\assets\js\Appoinments\**" />
     <EmbeddedResource Remove="wwwroot\assets\js\doctor\**" />
     <EmbeddedResource Remove="wwwroot\assets\plugins\**" />
     <EmbeddedResource Remove="wwwroot\assets\video\**" />
+    <None Remove="wwwroot\assets\js\Appoinments\**" />
     <None Remove="wwwroot\assets\js\doctor\**" />
     <None Remove="wwwroot\assets\plugins\**" />
     <None Remove="wwwroot\assets\video\**" />
@@ -50,10 +54,6 @@
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Views\Home\About.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\assets\js\Appoinments\" />
   </ItemGroup>
 
 </Project>
