@@ -22,5 +22,8 @@ namespace Domain.Interfaces
         Task<GenericResponseModel> SetDataSiteSideColor(int uID, string data);
         Task<GenericResponseModel> GetAppointmentsUserBlob(string uDocument);
         Task<GenericResponseModel> Getlogs(int pageNumber = 1);
+        Task<List<SelectListItem>> GetStates();
+        Task<List<SelectListItem>> GetCities(int sID);
+        Task<List<SelectListItem>> GetDocumentTypes();
     }
 }
