@@ -113,7 +113,7 @@ namespace Repository.Queries
             }
             else if (Item.uID != 0)
             {
-                query += $"IF NOT EXISTS(SELECT * FROM Users WHERE uEmailAddress = '{Item.uEmailAddress}' OR uDocument = '{Item.uDocument}')\n" +
+                query += $"IF NOT EXISTS(SELECT * FROM Users WHERE uEmailAddress = '{Item.uEmailAddress}' OR uDocument = '{Item.uDocument}' OR uLoginName = '{Item.uLoginName}')\n" +
                          $"BEGIN\n";
                 // Actualizar un usuario existente
                 query += $"    UPDATE dbo.Users SET ";
