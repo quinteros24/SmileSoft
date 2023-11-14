@@ -78,9 +78,9 @@ namespace Repository
             return genericResponseModel;
         }
 
-        public async Task<GenericResponseModel> UpdateAppointmentStatus(int aID, int asID)
+        public async Task<GenericResponseModel> UpdateAppointmentStatus(int aID, int asID, int uIDPetition)
         {
-            string Query = AppointmentsQueries.UpdateAppointmentStatus(aID, asID);
+            string Query = AppointmentsQueries.UpdateAppointmentStatus(aID, asID, uIDPetition);
             Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
             ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(Query);
             GenericResponseModel? genericResponseModel = new();

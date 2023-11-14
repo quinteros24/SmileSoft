@@ -58,14 +58,14 @@ namespace Domain.Core
             return await _genericsRepository.GetUsersClinicStoryFormat(oID);
         }
 
-        public async Task<GenericResponseModel> StoreUsersClinicStoryFormat(string jsonObject, int oID)
+        public async Task<GenericResponseModel> StoreUsersClinicStoryFormat(string jsonObject, int oID, int uIDPetition)
         {
             GenericResponseModel genericResponseModel = new();
             genericResponseModel.MessageStatus = "Ha ocurrido un error con el formato JSON";
             try
             {
                 var validator = JsonConvert.DeserializeObject(jsonObject);
-                return await _genericsRepository.StoreUsersClinicStoryFormat(jsonObject, oID);
+                return await _genericsRepository.StoreUsersClinicStoryFormat(jsonObject, oID, uIDPetition);
             }
             catch
             {
@@ -73,14 +73,14 @@ namespace Domain.Core
             }
         }
 
-        public async Task<GenericResponseModel> SetUsersClinicStoryFormat(string jsonObject, int aID)
+        public async Task<GenericResponseModel> SetUsersClinicStoryFormat(string jsonObject, int aID, int uIDPetition)
         {
-            return await _genericsRepository.SetUsersClinicStoryFormat(jsonObject, aID);
+            return await _genericsRepository.SetUsersClinicStoryFormat(jsonObject, aID, uIDPetition);
         }
 
-        public async Task<GenericResponseModel> SetContactNumber(string cellphoneNumber, int oID)
+        public async Task<GenericResponseModel> SetContactNumber(string cellphoneNumber, int oID, int uIDPetition)
         {
-            return await _genericsRepository.SetContactNumber(cellphoneNumber, oID);
+            return await _genericsRepository.SetContactNumber(cellphoneNumber, oID, uIDPetition);
         }
 
         public async Task<GenericResponseModel> GetContactNumber(int oID)
@@ -122,9 +122,15 @@ namespace Domain.Core
         {
             return await _genericsRepository.SetDataSiteSideColor(uID , data);
         }
+
         public async Task<GenericResponseModel> GetAppointmentsUserBlob(string uDocument)
         {
             return await _genericsRepository.GetAppointmentsUserBlob(uDocument);
+        }
+
+        public async Task<GenericResponseModel> Getlogs(int pageNumber = 1)
+        {
+            return await _genericsRepository.Getlogs(pageNumber);
         }
 
     }

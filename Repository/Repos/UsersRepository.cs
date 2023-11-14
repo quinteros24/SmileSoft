@@ -5,6 +5,7 @@ using Domain.Interfaces;
 using Domain.Interfaces.Repository;
 using Repository.Queries;
 using System.Data;
+using System.Dynamic;
 
 namespace Repository.Repos
 {
@@ -16,9 +17,9 @@ namespace Repository.Repos
             this._configuration = configuration;
         }
 
-        public async Task<GenericResponseModel> ChangePassword(ChangePasswordModelRequest Item)
+        public async Task<GenericResponseModel> ChangePassword(ChangePasswordModelRequest Item, int uIDPetition)
         {
-            string query = UsersQueries.ChangePassword(Item);
+            string query = UsersQueries.ChangePassword(Item, uIDPetition);
             Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
             ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
             GenericResponseModel ResponseModel = new();
@@ -80,9 +81,9 @@ namespace Repository.Repos
             return genericResponseModel;
         }
 
-        public async Task<GenericResponseModel> CreateUpdateUsers(UsersModelRequest Item)
+        public async Task<GenericResponseModel> CreateUpdateUsers(UsersModelRequest Item, int uIDPetition)
         {
-            string query = UsersQueries.CreateUpdateUsers(Item);
+            string query = UsersQueries.CreateUpdateUsers(Item, uIDPetition);
             Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
             ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
             GenericResponseModel ResponseModel = new();
@@ -96,9 +97,9 @@ namespace Repository.Repos
             return ResponseModel;
         }
 
-        public async Task<GenericResponseModel> SetUserStatus(int uID, int uStatus)
+        public async Task<GenericResponseModel> SetUserStatus(int uID, int uStatus, int uIDPetition)
         {
-            string query = UsersQueries.SetUserStatus(uID, uStatus);
+            string query = UsersQueries.SetUserStatus(uID, uStatus, uIDPetition);
             Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
             ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
             GenericResponseModel ResponseModel = new();
@@ -159,11 +160,22 @@ namespace Repository.Repos
             return genericResponseModel;
         }
 
-        public async Task<GenericResponseModel> UnblockUser(int uID)
+        public async Task<GenericResponseModel> UnblockUser(int uID, int uIDPetition)
         {
+            dynamic obj = new ExpandoObject();
+            obj.uID = uID;
+            obj.uIDPetition = uIDPetition;
+
+            string JSON = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
+
+            string LOG = $"DECLARE @utID INT = (SELECT utID FROM Users WHERE [uID] = {uIDPetition}), @uLoginName AS VARCHAR(100) = (SELECT uLoginName FROM Users WHERE [uID] = {uIDPetition})\n" +
+                         $"INSERT INTO Logs([uID],utID,logAction,logDescription,logJSON)\n" +
+                         $"VALUES({uIDPetition},@utID,'EDITAR','Se ha desbloqueado el usuario \"@uLoginName\"', '{JSON}')\n";
+
             string query = $"UPDATE Users\n" +
                            $"SET uLastAttemptDate = 0, uIsBlocked = 0\n" +
-                           $"WHERE [uID] = {uID}";
+                           $"WHERE [uID] = {uID}\n" +
+                           $"{LOG}\n";
 
             Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
             _ = await dl.ConsultSqlDataTableAsync(query);
