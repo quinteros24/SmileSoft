@@ -13,9 +13,9 @@
                         <h5 class="card-title">Buscar Historia Clinica</h5>
                         <form>
                             <div class="row">
-                                <div class="col-3 mb-1 form-floating">
+                                <div class="col-3 mb-1 ">
                                 <input type="text" class="form-control" placeholder="Documento del Paciente" id="userIdInput">
-                                    <label for="userIdInput">Documento del Paciente</label>
+                                    @* <label for="userIdInput">Documento del Paciente</label> *@
                             </div>
                             <div class="col-2">
                                 <button type="button" class="btn btn-primary" id="buscarButton">Buscar</button>
@@ -420,8 +420,7 @@
             let row = $('<div class="row"></div>').append(column1, column2, column3);
             let container = $('<div class="container"></div>').append(row);
             container.append('<hr>');
-            ////console.log('Tratamiento ID: ', tratamientoID);
-            ////console.log('Total Tratamientos: ', totalTratamientos);
+
             if (tratamientoID < totalTratamientos) {
                 let tratamientoID2 = tratamientoID + 1;
                 let MostrarFechaCita = appointmentDates[tratamientoID2][3];
@@ -434,47 +433,14 @@
                 form.append(container);
             }
 
-            // After populating the form, you can call the function to populate patient info
             populatePatientInfo();
         }
-
 
         $("#buscarButton").on("click", function () {
             let userId = $("#userIdInput").val().trim(); // Get the user ID from the input field
             loadUserClinicalHistory(userId);
-            // let buttonPDF = document.getElementById("pdfButton");
-            // buttonPDF.style.display = "block";
         });
 
-        let timer; // Variable to store the timer
-
-        // function showDiv() {
-        //     let div = document.getElementById("myDiv");
-        //     div.style.display = "block"; // Show the div
-        //     let icon = document.getElementById("findIcon");
-        //     icon.style.display = "none";
-        //     clearTimeout(timer); // Clear any previous hide timer
-        // }
-
-        // function hideDiv() {
-        //     let div = document.getElementById("myDiv");
-        //     let icon = document.getElementById("findIcon");
-
-        //     // Set a delay of 2 seconds (2000 milliseconds) before hiding the div
-        //     timer = setTimeout(function () {
-        //         icon.style.display = "block";
-        //         div.style.display = "none"; // Hide the div after the delay
-        //     }, 2000);
-        // }
-        // //Disable pdf button when the windows is below 1024px
-        // $(window).resize(function () {
-        //     if ($(window).width() < 1024) {
-
-        //         $('#pdfButton').hide();
-        //     }
-        //     else {
-        //         $('#pdfButton').show();
-        //     }
-        // });
+        
     </script>
     }
