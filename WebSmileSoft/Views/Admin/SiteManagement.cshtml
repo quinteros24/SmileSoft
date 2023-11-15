@@ -316,7 +316,7 @@
 
             let route = '';
             let data = '';
-            
+
             switch (op) {
                 case 1:
                     route = 'SetDataSiteUrlImageLogin';
@@ -445,9 +445,9 @@
         // })
 
         let finalStructure = [];
-       
+
         structure.length && drawQuestions(true)
-        
+
         $("#question-type").change(function () {
             if ($(this).val() === "multiple") {
                 $(".option-container").addClass("d-block");
@@ -460,13 +460,13 @@
 
         $("#add-option").click(function () {
             $("#options-container").append(`
-                                                                                                                                                                                                                                       <div class="input-group mb-2">
-                                                                                                                                                                                                                                       <input type="text" class="form-control option-input mx-1" placeholder="Nombre de la opción">
-                                                                                                                                                                                                                                       <div class="input-group-append">
-                                                                                                                                                                                                                                           <button class="btn btn-danger remove-option" type="button">-</button>
-                                                                                                                                                                                                                                       </div>
-                                                                                                                                                                                                                                       </div>
-                                                                                                                                                                                                                                    `);
+                                                                                                                                                                                                                                               <div class="input-group mb-2">
+                                                                                                                                                                                                                                               <input type="text" class="form-control option-input mx-1" placeholder="Nombre de la opción">
+                                                                                                                                                                                                                                               <div class="input-group-append">
+                                                                                                                                                                                                                                                   <button class="btn btn-danger remove-option" type="button">-</button>
+                                                                                                                                                                                                                                               </div>
+                                                                                                                                                                                                                                               </div>
+                                                                                                                                                                                                                                            `);
         });
         $(document).on("click", ".remove-option", function () {
             $(this).closest(".input-group").remove();
@@ -961,6 +961,7 @@
 
             //Script para el Log de Datos
             let longitudRespuesta = 0;
+            let totalRegistros = 0;
             function getServiceRecords(currentPage) {
                 $.ajax({
                     url: sessionStorage.urlEP + '/api/Generics/v1/Getlogs?pageNumber=' + currentPage,
@@ -976,7 +977,7 @@
                         };
                         if (response.codeStatus == 0) {
                             let serviceRecord = [];
-                            console.log(response.itemJson);
+                            totalRegistros = response.itemJson[1].totalRecords;
                             longitudRespuesta = response.itemJson.length;
                             //Mapear estos datos en el array serviceRecords
                             $.each(response.itemJson, function (index, usuario) {
@@ -992,7 +993,7 @@
                                 ];
                                 serviceRecord.push(rowData);
                             });
-                            drawTable(serviceRecord);
+                            drawTable(serviceRecord, currentPage);
                         } else if (response.codeStatus == -1) {
                             Swal.fire({
                                 title: 'Error',
@@ -1008,8 +1009,8 @@
                     }
                 });
             }
-
-            function drawTable(arrayData) {
+            function drawTable(arrayData, cpage) {
+                let paginas = Math.floor(totalRegistros / 10) - 2;
                 tableLogsServices = $('#logsServicios').DataTable({
                     columns: [
                         { title: '#', visible: false },
@@ -1025,14 +1026,16 @@
                     destroy: true,
                     searching: false, // ocultar la búsqueda
                     paging: false, // ocultar la paginación
-                    info: false,
+                    info: true,
                     language: {
                         url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json',
+                        info: 'Mostrando pagina ' + cpage + ' de ' + paginas + ' ',
                     },
                 });
-                // currentPage = tableLogsServices.page.info().page + 1;
-                // console.log("currentPage: ", currentPage);
+                
             }
+
+            
 
 
             $(document).ready(() => {
