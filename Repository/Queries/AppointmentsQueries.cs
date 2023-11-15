@@ -128,7 +128,7 @@ namespace Repository.Queries
                          $"                    --SE CREA LA CITA\n" +
                          $"                    INSERT INTO Appointments([oID],[uID],[dID],aDate,aTime,aDescription)\n" +
                          $"                    VALUES(@oID,@uID,@dID,@aDate,@aTime,@aDescription)\n" +
-                         $"                    SET @ResponseCreation = CONCAT('La cita se ha crado. ',@ResponseCreation)\n" +
+                         $"                    SET @ResponseCreation = CONCAT('La cita se ha creado. ',@ResponseCreation)\n" +
                          $"                    SET @logDescription = CONCAT(@logDescription,'Se ha creado la cita.')\n" +
                          $"                END\n" +
                          $"                ELSE\n" +

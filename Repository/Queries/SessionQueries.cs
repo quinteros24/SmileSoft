@@ -1,4 +1,6 @@
 ﻿using Domain.Entities;
+using System.Dynamic;
+using System.Net.NetworkInformation;
 
 namespace Repository.Queries
 {
@@ -6,6 +8,15 @@ namespace Repository.Queries
     {
         public static string Login(LoginModelRequest ItemLogin)
         {
+            string JSON = Newtonsoft.Json.JsonConvert.SerializeObject(ItemLogin);
+
+            string LOG = $"DECLARE @utID INT = (SELECT utID FROM Users WHERE [uID] = @ExistantUser)\n" +
+                         $"IF(@logDescription != '')\n" +
+                         $"BEGIN\n" +
+                         $"    INSERT INTO Logs([uID],utID,logAction,logDescription,logJSON)\n" +
+                         $"    VALUES(@ExistantUser,@utID,'LOGIN',@logDescription, '{JSON}')\n" +
+                         $"END\n";
+
             string ip = string.Empty;
 
             if (!string.IsNullOrEmpty(ItemLogin.ipAddress))
@@ -18,7 +29,7 @@ namespace Repository.Queries
             }
 
             return  $"BEGIN TRY\n" +
-                    $"    DECLARE @Login AS VARCHAR(MAX) = '{ItemLogin.UserLogin}'\n" +
+                    $"    DECLARE @Login AS VARCHAR(MAX) = '{ItemLogin.UserLogin}', @logDescription AS VARCHAR(MAX) = ''\n" +
                     $"    DECLARE @Password AS VARBINARY(64) = (SELECT HASHBYTES('SHA2_256',Cast('{ItemLogin.Password}' AS VARCHAR(8000))))\n" +
                     $"    --DECLARE @DeveloperPass AS VARBINARY(64) = (SELECT HASHBYTES('SHA2_256',Cast('smile' AS VARCHAR(8000))))\n" +
                     $"    IF EXISTS (SELECT TOP(1)U.uID FROM dbo.Users AS U WHERE U.uLoginName = @Login OR U.uEmailAddress = @Login OR U.uDocument = @Login)\n" +
@@ -69,7 +80,9 @@ namespace Repository.Queries
                     $"                        U.uID = @ExistantUser AND U.uPassword = @Password\n" +
                     $"{ip}" +
                     $"                    SELECT '0' AS OutputCodeError, 'Inicio de sesión con éxito' AS OutputMessageError, 'Parameters' AS TableName\n" +
+                    $"                    SET @logDescription = CONCAT('Se ha iniciado sesión con el usuario \"',@Login,'\"')\n" +
                     $"                    UPDATE dbo.Users SET uIsBlocked = 0, uFailedAttempts = 0 WHERE uID = @ExistantUser\n" +
+                    $"{LOG}\n" +
                     $"                END\n" +
                     $"            END\n" +
                     $"        END\n" +

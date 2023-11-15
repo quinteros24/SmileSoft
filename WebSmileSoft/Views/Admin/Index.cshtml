@@ -599,6 +599,9 @@
                             inputPlaceholder: 'Selecciona el estado de la cita',
                             showCancelButton: true,
                             html: "<div id='form-history-content'></div>",
+                            allowOutsideClick: false,
+                            width: '50%',
+                            confirmButtonColor: '#008dc9',
                             didOpen: function (ele) {
                                 $(ele).find('.swal2-select').insertBefore($(ele).find('.swal2-content div'));
                                 Swal.getInput().addEventListener('change', (event) => {
@@ -657,7 +660,8 @@
                             title: 'Error',
                             text: response.messageStatus,
                             icon: 'error',
-                            confirmButtonText: 'Aceptar'
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9'
                         })
                     }
                 }
@@ -703,12 +707,12 @@
                     return container
                 },
                 'fileUpload': function (question) {
-                    let inputField = $(`<div class="col-9"><input placeholder="Imagen" type="file" id="uploadIMG" accept=".jpg , .png" class="form-control uploadIMG"></input><br></div>`);
+                    let inputField = $(`<div class="col-10"><input placeholder="Imagen" type="file" id="uploadIMG" accept=".jpg , .png" class="form-control uploadIMG"></input><br></div>`);
 
                     let container = $('<div class="row"><div class="form-group">').append(
                         `<label class="text-primary m-0 fw-bold" for="${question.id}">`
                         + `Imagen # ${question.id}: ` + question.name +
-                        '</label><br>', inputField, `<div class="col-3"><button class="btn btn-primary btnFileUpload border rounded-5" type="button" id="btnFileUpload"> Subir </button></div></div>`);
+                        '</label><br>', inputField, `<div class="col-2"><button class="btn btn-primary btnFileUpload" type="button" id="btnFileUpload"> Subir </button></div></div>`);
 
                     return container
                 }
@@ -729,27 +733,13 @@
                     processData: false,
                     contentType: false,
                     success: function (response) {
-                        //debugger;
-                        console.log("Respuesta del Servicio Blob: ", response);
-                        // Swal.fire({
-                        //     title: 'Tratamiento Subido',
-                        //     text: 'La imagen ha sido subida exitosamente.',
-                        //     icon: 'success',
-                        //     confirmButtonText: 'Aceptar'
-                        // })
-                        //al input le cambiamos el tipo de archivo a string y le asignamos el valor de la respuesta del servicio
-                        // Cambiar el tipo de input a text
                         $('#uploadIMG').attr('type', 'text');
-                        //desabilitar el input y esconder el boton subir
                         $('#uploadIMG').prop('disabled', true);
                         $('.btnFileUpload').hide();
-                        // Establecer el valor del input con la URL del blob
                         $('#uploadIMG').val(response);
-
-                        console.log("valor del input: ", $('#uploadIMG').val());
+                        //console.log("valor del input: ", $('#uploadIMG').val());
                     },
                     error: function () {
-                        //showMessage("Error de red al cargar el archivo.", "red");
                         Swal.fire({
                             title: 'Error',
                             text: 'Por favor revise el formato de su archivo, e intente nuevamente.',
@@ -775,16 +765,19 @@
                     console.error('Tipo de pregunta no válido: ' + question.type);
                 }
             });
-            // form.css({
-            //     'display': 'grid',
-            //     'grid-template-columns': '1fr 1fr',
-            //     'grid-gap': '10px'
-            // });
+            form.css({
+                'display': 'grid',
+                'grid-template-columns': '1fr 1fr',
+                'grid-gap': '10px'
+            });
             Swal.fire({
                 title: 'Agregar historia clínica',
                 confirmButtonText: 'Confirmar',
                 html: form,
                 focusConfirm: false,
+                allowOutsideClick: false,
+                width: '50%',
+                confirmButtonColor: '#008dc9',
             }).then((result) => {
                 if (result.isConfirmed) {
                     finalStructure = finalStructure.map((question) => {
@@ -805,26 +798,15 @@
             })
         }
 
-        //al dar clic en subir subir el input file y guardar la imagen en el servidor, luego la respuesta del servicio asignarla como el value del input para guardar esta url
-        //`${sessionStorage.urlEP}/api/Blobs/upload?citaID=0&genericName=Appointment${citaID}`;
-        
-
-
-
         function saveHistoryForm(form, citaID) {
-            // debugger;
-            // console.log("Formulario: ", form);
-            // let uploadIMGValue = $('#uploadIMG').val();
-            // form.push({
-            //     id: 1,
-            //     type: 'fileUpload',
-            //     options: null,
-            //     value: uploadIMGValue
-            // });
-            // console.log("Formulario: ", form);
             $.ajax({
+                // url: sessionStorage.urlEP + `/api/Generics/v1/SetUsersClinicStoryFormat?uIDPetition=${uIDPetition}`,
+                // type: 'GET',
+                // data: { 'aID': citaID, 'jsonObject': JSON.stringify(form) },
+                // contentType: "application/json",
+                // dataType: 'json',
                 url: sessionStorage.urlEP + `/api/Generics/v1/SetUsersClinicStoryFormat?uIDPetition=${uIDPetition}`,
-                type: 'GET',
+                type: 'POST',
                 data: { 'aID': citaID, 'jsonObject': JSON.stringify(form) },
                 contentType: "application/json",
                 dataType: 'json',
@@ -835,7 +817,8 @@
                         Swal.fire({
                             title: 'Historia Clinica Creada',
                             icon: 'info',
-                            confirmButtonText: 'Aceptar'
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9'
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 changeDateStatus(3, citaID);
@@ -849,12 +832,19 @@
                             title: 'Error',
                             text: response.messageStatus,
                             icon: 'error',
-                            confirmButtonText: 'Aceptar'
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9'
                         })
                     }
                 },
-                error: function (error) {
-                    //console.log('Error al obtener los detalles del usuario.');
+                error: function (response) {
+                    Swal.fire({
+                        title: response,
+                        text: 'Ocurrio un error intente nuevamente.',
+                        icon: 'info',
+                        confirmButtonText: 'Aceptar',
+                        confirmButtonColor: '#008dc9'
+                    })
                 }
 
             }).then((result) => {
@@ -879,7 +869,8 @@
                         Swal.fire({
                             title: response.messageStatus,
                             icon: 'info',
-                            confirmButtonText: 'Aceptar'
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9'
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 swal.close();
@@ -892,7 +883,8 @@
                             title: 'Error',
                             text: response.messageStatus,
                             icon: 'error',
-                            confirmButtonText: 'Aceptar'
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9'
                         })
                     }
 

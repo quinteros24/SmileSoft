@@ -225,18 +225,18 @@
             });
         }
 
-        // function fnConvertToBase64(element) {
-        //     if (element.files && element.files[0]) {
-        //         let reader = new FileReader();
+        function fnConvertToBase64(element) {
+            if (element.files && element.files[0]) {
+                let reader = new FileReader();
 
-        //         reader.onload = function (e) {
-        //             const base64String = e.target.result;
-        //             base64Image = base64String;
-        //         };
+                reader.onload = function (e) {
+                    const base64String = e.target.result;
+                    base64Image = base64String;
+                };
 
-        //         reader.readAsDataURL(element.files[0]);
-        //     }
-        // }
+                reader.readAsDataURL(element.files[0]);
+            }
+        }
 
         function uploadImage(element, op) {
             let file = element.parentElement.previousElementSibling.files[0];
@@ -291,7 +291,6 @@
                     processData: false,
                     contentType: false,
                     success: function (response) {
-                        //debugger;
                         fnUpdateDataOffice(op, response);
                     },
                     error: function () {
@@ -317,7 +316,7 @@
 
             let route = '';
             let data = '';
-            debugger;
+            
             switch (op) {
                 case 1:
                     route = 'SetDataSiteUrlImageLogin';
@@ -446,10 +445,9 @@
         // })
 
         let finalStructure = [];
-        //debugger;
-        //console.log("Structure antes de dibujar: ", structure);
+       
         structure.length && drawQuestions(true)
-        //console.log('Structure length: ', structure.length);
+        
         $("#question-type").change(function () {
             if ($(this).val() === "multiple") {
                 $(".option-container").addClass("d-block");
@@ -912,13 +910,15 @@
         //     ];
         // Envío la petición con la estructura final
         $("#save-all-questions").click(() => {
+            let uID = sessionStorage.getItem('userID');
             $.ajax({
-                url: sessionStorage.urlEP + `/api/Generics/v1/StoreUsersClinicStoryFormat?uIDPetition=${uIDPetition}&oID=1&jsonObject=` + JSON.stringify(finalStructure),
-                type: 'GET',
+                //url: sessionStorage.urlEP + `/api/Generics/v1/StoreUsersClinicStoryFormat?uIDPetition=${uIDPetition}&oID=1&jsonObject=` + JSON.stringify(finalStructure),
+                url: sessionStorage.urlEP + '/api/Generics/v1/StoreUsersClinicStoryFormat?oID=1&uIDPetition=' + uID,
+                type: 'POST',
                 contentType: "application/json",
                 dataType: 'json',
+                data: JSON.stringify(finalStructure),
                 success: function (response) {
-                    ////console.log(response)
                     if (response.codeStatus == 0) {
                         Swal.fire({
                             title: 'Preguntas Guardadas',
@@ -943,7 +943,7 @@
                     }
                 },
                 error: function (error) {
-                    //console.log(error);
+                    console.log(error);
                 }
             }).then((result) => {
                 if (result.isConfirmed) {
@@ -985,9 +985,9 @@
                                     index + 1,
                                     usuario.uID,
                                     rol,
-                                    usuario.uName,
                                     usuario.uLoginName,
                                     usuario.logAction,
+                                    usuario.logDescription,
                                     usuario.logCreationDate
                                 ];
                                 serviceRecord.push(rowData);
@@ -1012,12 +1012,12 @@
             function drawTable(arrayData) {
                 tableLogsServices = $('#logsServicios').DataTable({
                     columns: [
-                        { title: '#', visible: true },
+                        { title: '#', visible: false },
                         { title: 'ID Usuario', visible: false },
                         { title: 'Rol' },
                         { title: 'Nombre' },
-                        { title: 'Usuario' },
                         { title: 'Acción' },
+                        { title: 'Descripción' },
                         { title: 'Fecha' }
                     ],
                     data: arrayData,

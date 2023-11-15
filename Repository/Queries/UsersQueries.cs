@@ -29,7 +29,7 @@ namespace Repository.Queries
                     $"    UPDATE dbo.Users SET uPassword = HASHBYTES('SHA2_256',Cast('{Item.Password}' AS VARCHAR(8000)))\n" +
                     $"    WHERE [uID] = {Item.UID} \n" +
                     $"    SELECT '0' AS OutputCodeError, 'Se ha cambiado la contraseña del usuario \"@uName\".' AS OutputMessageError\n" +
-                    $"    SET @logDescription = 'Se ha cambiado la contraseña del usuario \"@uName\"'\n" +
+                    $"    SET @logDescription = CONCAT('Se ha cambiado la contraseña del usuario \"',@uName,'\"')\n" +
                     $"    {LOG}\n" +
                     $"END TRY\n" +
                     $"BEGIN CATCH\n" +
@@ -67,7 +67,7 @@ namespace Repository.Queries
                          $"IF(@logDescription != '')\n" +
                          $"BEGIN\n" +
                          $"    INSERT INTO Logs([uID],utID,logAction,logDescription,logJSON)\n" +
-                         $"    VALUES({uIDPetition},@utID,'@logAction',@logDescription, '{JSON}')\n" +
+                         $"    VALUES({uIDPetition},@utID,@logAction,@logDescription, '{JSON}')\n" +
                          $"END\n";
 
             string fecha = Item.uBirthDate.Value.Year.ToString() + "-" + Item.uBirthDate.Value.Month.ToString("00") + "-" + Item.uBirthDate.Value.Day.ToString("00");
@@ -113,6 +113,8 @@ namespace Repository.Queries
             }
             else if (Item.uID != 0)
             {
+                query += $"IF NOT EXISTS(SELECT * FROM Users WHERE (uEmailAddress = '{Item.uEmailAddress}' OR uDocument = '{Item.uDocument}' OR uLoginName = '{Item.uLoginName}') AND [uID] != {Item.uID})\n" +
+                         $"BEGIN\n";
                 // Actualizar un usuario existente
                 query += $"    UPDATE dbo.Users SET ";
 
@@ -162,12 +164,20 @@ namespace Repository.Queries
                         $"    SET @CodeResponse = '0'\n" +
                         $"    SET @Response = CONCAT(@Response,'actualizado con éxito.')\n" +
                         $"    SET @logAction = 'EDITAR'\n" +
-                        $"    SET @logDescription = 'Se ha editado el usuario \"{Item.uLoginName}\"'\n";
+                        $"    SET @logDescription = 'Se ha editado el usuario \"{Item.uLoginName}\"'\n" +
+                        $"END\n" +
+                        $"ELSE\n" +
+                        $"BEGIN\n" +
+                        $"    SET @CodeResponse = '-1'\n" +
+                        $"    SET @Response = 'Ya existe un usuario con este correo o este documento.'\n" +
+                        $"END\n";
             }
 
             if(Item.utID == 2)
             {
-                query += $"    IF NOT EXISTS(SELECT TOP(1)* FROM Doctors WHERE [uID] = (SELECT [uID] FROM @aux))\n" +
+                query += $"IF(@CodeResponse = '0')\n" +
+                         $"BEGIN\n" +
+                         $"    IF NOT EXISTS(SELECT TOP(1)* FROM Doctors WHERE [uID] = (SELECT [uID] FROM @aux))\n" +
                          $"    BEGIN\n" +
                          $"        INSERT INTO Doctors([uID],utID,dAcademicLevel,dDegree,dUniversityName,spID,dProfessionalCard)\n" +
                          $"        VALUES((SELECT [uID] FROM @aux),2,'{Item.dAcademicLevel}','{Item.dDegree}','{Item.dUniversityName}',{Item.spID},'{Item.dProfessionalCard}')\n" +
@@ -182,7 +192,8 @@ namespace Repository.Queries
                          $"            ,spID = {Item.spID}\n" +
                          $"            ,dProfessionalCard = '{Item.dProfessionalCard}'\n" +
                          $"        WHERE [uID] = (SELECT [uID] FROM @aux)\n" +
-                         $"    END\n";
+                         $"    END\n" +
+                         $"END\n";
             }
 
             query +=     $"    SELECT @CodeResponse AS OutputCodeError, @Response AS OutputMessageError\n" +
@@ -218,7 +229,7 @@ namespace Repository.Queries
                    $"    DECLARE @uLoginName AS VARCHAR(100) = (SELECT uLoginName FROM dbo.Users WHERE uID = {uID}), @logDescription AS VARCHAR(MAX) = ''\n" +
                    $"    UPDATE dbo.Users SET uStatus = {uStatus} WHERE uID = {uID}\n" +
                    $"    SELECT '0' AS OutputCodeError, 'El usuario \"@uLoginName\" se ha {status}' AS OutputMessageError\n" +
-                   $"    SET @logDescription = 'El usuario \"@uLoginName\" se ha {status}'\n" +
+                   $"    SET @logDescription = CONCAT('El usuario \"',@uLoginName,'\" se ha {status}')\n" +
                    $"    {LOG}\n" +
                    $"END\n" +
                    $"ELSE\n" +
