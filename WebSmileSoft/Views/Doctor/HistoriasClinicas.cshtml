@@ -4,18 +4,23 @@
     <div class="row">
         <div class="col-md-12">
             <!-- Panel de búsqueda de pacientes -->
-            <div id="findIcon" onmouseenter="showDiv()" style="display: none">
+            @* <div id="findIcon" onmouseenter="showDiv()" style="display: none">
                 <i class="fa-solid fa-magnifying-glass text-primary fa-sm"> </i><span> Buscar Historia Clinica del Paciente</span>
-            </div>
-            <div class="card" id="myDiv" onmouseleave="hideDiv()" onmouseenter="showDiv()">
+            </div> *@
+            <div class="card" id="myDiv" @* onmouseleave="hideDiv()" onmouseenter="showDiv()" *@>
                 <div class="card">
                     <div class="card-body text-primary">
                         <h5 class="card-title">Buscar Historia Clinica</h5>
                         <form>
-                            <div class="mb-3">
+                            <div class="row">
+                                <div class="col-3 mb-1 form-floating">
                                 <input type="text" class="form-control" placeholder="Documento del Paciente" id="userIdInput">
+                                    <label for="userIdInput">Documento del Paciente</label>
                             </div>
-                            <button type="button" class="btn btn-primary" id="buscarButton">Buscar</button>
+                            <div class="col-2">
+                                <button type="button" class="btn btn-primary" id="buscarButton">Buscar</button>
+                            </div>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -435,7 +440,7 @@
 
 
         $("#buscarButton").on("click", function () {
-            let userId = $("#userIdInput").val(); // Get the user ID from the input field
+            let userId = $("#userIdInput").val().trim(); // Get the user ID from the input field
             loadUserClinicalHistory(userId);
             // let buttonPDF = document.getElementById("pdfButton");
             // buttonPDF.style.display = "block";
@@ -443,33 +448,33 @@
 
         let timer; // Variable to store the timer
 
-        function showDiv() {
-            let div = document.getElementById("myDiv");
-            div.style.display = "block"; // Show the div
-            let icon = document.getElementById("findIcon");
-            icon.style.display = "none";
-            clearTimeout(timer); // Clear any previous hide timer
-        }
+        // function showDiv() {
+        //     let div = document.getElementById("myDiv");
+        //     div.style.display = "block"; // Show the div
+        //     let icon = document.getElementById("findIcon");
+        //     icon.style.display = "none";
+        //     clearTimeout(timer); // Clear any previous hide timer
+        // }
 
-        function hideDiv() {
-            let div = document.getElementById("myDiv");
-            let icon = document.getElementById("findIcon");
+        // function hideDiv() {
+        //     let div = document.getElementById("myDiv");
+        //     let icon = document.getElementById("findIcon");
 
-            // Set a delay of 2 seconds (2000 milliseconds) before hiding the div
-            timer = setTimeout(function () {
-                icon.style.display = "block";
-                div.style.display = "none"; // Hide the div after the delay
-            }, 2000);
-        }
-        //Disable pdf button when the windows is below 1024px
-        $(window).resize(function () {
-            if ($(window).width() < 1024) {
+        //     // Set a delay of 2 seconds (2000 milliseconds) before hiding the div
+        //     timer = setTimeout(function () {
+        //         icon.style.display = "block";
+        //         div.style.display = "none"; // Hide the div after the delay
+        //     }, 2000);
+        // }
+        // //Disable pdf button when the windows is below 1024px
+        // $(window).resize(function () {
+        //     if ($(window).width() < 1024) {
 
-                $('#pdfButton').hide();
-            }
-            else {
-                $('#pdfButton').show();
-            }
-        });
+        //         $('#pdfButton').hide();
+        //     }
+        //     else {
+        //         $('#pdfButton').show();
+        //     }
+        // });
     </script>
     }

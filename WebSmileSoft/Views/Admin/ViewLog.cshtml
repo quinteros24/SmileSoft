@@ -1,19 +1,25 @@
 ﻿
 <div class="container">
     @* <h1>Registro de Servicios</h1> *@
-    <table>
-        <thead>
-            <tr>
-                <th>uID</th>
-                <th>uName</th>
-                <th>uLoginName</th>
-                <th>utID</th>
-                <th>logAction</th>
-                <th>logDescription</th>
-                <th>logCreationDate</th>
-            </tr>
-        </thead>
-        <tbody id="table-body">
-        </tbody>
-    </table>
+    <div class="card">
+        <div class="card-header text-bg-primary">
+            Logs Servicios
+        </div>
+        <div class="card-body">
+            <!-- Aquí va la tabla -->
+
+            <div class="table-responsive">
+                <table id="logsServicios" class="table display" width="100%"></table>
+            </div>
+            <div class="row justify-content-end mt-2">
+                <div class="col-12 col-md-12 col-sm-3 text-end ">
+                    <button class="btn btn-datatable btn-primary" id="logPrev">Anterior</button>
+                    <button class="btn btn-datatable btn-primary" id="logNext">Siguiente</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
 </div>
+
