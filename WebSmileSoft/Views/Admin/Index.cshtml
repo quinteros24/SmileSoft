@@ -729,27 +729,13 @@
                     processData: false,
                     contentType: false,
                     success: function (response) {
-                        //debugger;
-                        console.log("Respuesta del Servicio Blob: ", response);
-                        // Swal.fire({
-                        //     title: 'Tratamiento Subido',
-                        //     text: 'La imagen ha sido subida exitosamente.',
-                        //     icon: 'success',
-                        //     confirmButtonText: 'Aceptar'
-                        // })
-                        //al input le cambiamos el tipo de archivo a string y le asignamos el valor de la respuesta del servicio
-                        // Cambiar el tipo de input a text
                         $('#uploadIMG').attr('type', 'text');
-                        //desabilitar el input y esconder el boton subir
                         $('#uploadIMG').prop('disabled', true);
                         $('.btnFileUpload').hide();
-                        // Establecer el valor del input con la URL del blob
                         $('#uploadIMG').val(response);
-
-                        console.log("valor del input: ", $('#uploadIMG').val());
+                        //console.log("valor del input: ", $('#uploadIMG').val());
                     },
                     error: function () {
-                        //showMessage("Error de red al cargar el archivo.", "red");
                         Swal.fire({
                             title: 'Error',
                             text: 'Por favor revise el formato de su archivo, e intente nuevamente.',

@@ -170,10 +170,10 @@ namespace Repository.Repos
 
             string LOG = $"DECLARE @utID INT = (SELECT utID FROM Users WHERE [uID] = {uIDPetition}), @uLoginName AS VARCHAR(100) = (SELECT uLoginName FROM Users WHERE [uID] = {uIDPetition})\n" +
                          $"INSERT INTO Logs([uID],utID,logAction,logDescription,logJSON)\n" +
-                         $"VALUES({uIDPetition},@utID,'EDITAR','Se ha desbloqueado el usuario \"@uLoginName\"', '{JSON}')\n";
+                         $"VALUES({uIDPetition},@utID,'EDITAR',CONCAT('Se ha desbloqueado el usuario \"',@uLoginName,'\"'), '{JSON}')\n";
 
             string query = $"UPDATE Users\n" +
-                           $"SET uLastAttemptDate = 0, uIsBlocked = 0\n" +
+                           $"SET uFailedAttempts = 0, uIsBlocked = 0\n" +
                            $"WHERE [uID] = {uID}\n" +
                            $"{LOG}\n";
 
