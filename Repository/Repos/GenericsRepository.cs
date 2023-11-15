@@ -115,7 +115,6 @@ namespace Repository
             string JSON = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
 
             string LOG = $"DECLARE @utID INT = (SELECT utID FROM Users WHERE [uID] = {uIDPetition})\n" +
-                         $"IF(@logDescription != '')\n" +
                          $"INSERT INTO Logs([uID],utID,logAction,logDescription,logJSON)\n" +
                          $"VALUES({uIDPetition},@utID,'CREAR','Se ha agregado la historia clínica a la cita', '{JSON}')\n";
 

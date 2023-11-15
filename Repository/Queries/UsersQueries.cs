@@ -67,7 +67,7 @@ namespace Repository.Queries
                          $"IF(@logDescription != '')\n" +
                          $"BEGIN\n" +
                          $"    INSERT INTO Logs([uID],utID,logAction,logDescription,logJSON)\n" +
-                         $"    VALUES({uIDPetition},@utID,'@logAction',@logDescription, '{JSON}')\n" +
+                         $"    VALUES({uIDPetition},@utID,@logAction,@logDescription, '{JSON}')\n" +
                          $"END\n";
 
             string fecha = Item.uBirthDate.Value.Year.ToString() + "-" + Item.uBirthDate.Value.Month.ToString("00") + "-" + Item.uBirthDate.Value.Day.ToString("00");
