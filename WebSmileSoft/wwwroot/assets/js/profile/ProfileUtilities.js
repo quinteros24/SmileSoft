@@ -179,7 +179,7 @@ function ChangeUserPass() {
         $.ajax({
 
             type: "POST",
-            url: sessionStorage.urlEP + '/api/Users/v1/ChangePassword',
+            url: sessionStorage.urlEP + `/api/Users/v1/ChangePassword?uIDPetition=${uIDPetition}`,
             //header: {'Authorization': 'Bearer ' + sessionStorage.getItem('accessToken') },
             data: JSON.stringify(data),
             contentType: "application/json",
@@ -273,7 +273,7 @@ $("#desactivarCuentabtn").click(function () {
             ////console.log("Desactivar 2" + userId);
             // Realiza la solicitud AJAX para desactivar el usuario
             $.ajax({
-                url: sessionStorage.urlEP + '/api/Users/v1/SetUserStatus/',
+                url: sessionStorage.urlEP + `/api/Users/v1/SetUserStatus/?uIDPetition=${uIDPetition}`,
                 type: 'GET',
                 data: { 'uID': uID, 'uStatus' : uStatus },
                 contentType: "application/json",

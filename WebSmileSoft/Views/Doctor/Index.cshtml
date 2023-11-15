@@ -97,7 +97,7 @@
                     element: '#nav_bar',
                     popover: {
                         title: 'Barra Superior',
-                        description: 'La Barra Superior es tu punto central de navegación. Desde aquí, puedes buscar información en nuestra aplicación o acceder a tu perfil para personalizar tu experiencia.'
+                        description: 'La Barra Superior es tu punto central de navegación. Desde aquí, puedes acceder a tu perfil para actualizar tus datos.'
                     }
                 },
                 {
@@ -179,7 +179,7 @@
         });
         //debugger;
         //driverObj.drive();
-        console.log("Tutorial", localStorage.getItem('tutorial'));
+        //console.log("Tutorial", localStorage.getItem('tutorial'));
         // Cuando el usuario inicia sesión por primera vez
         let tutorialState = localStorage.getItem('tutorial');
         if (tutorialState === "false") {

@@ -62,6 +62,12 @@ namespace WebSmileSoft.Controllers
             return PartialView();
         }
 
+        //Vista para el Log de la aplicación
+        public IActionResult ViewLog()
+        {
+            return PartialView();
+        }
+
 
         [HttpPost]
         public IActionResult EditUsers([FromBody] List<SelectListItem> specialities)
