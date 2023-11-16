@@ -482,3 +482,12 @@ div.dataTables_wrapper div.dataTables_filter input {
             margin-top: 9px;
         }
 }
+
+#blobQuestion{
+    max-width: 200px;
+    max-height: 200px;
+}
+.blobQuestion{
+    max-width: 200px;
+    max-height: 200px;
+}
