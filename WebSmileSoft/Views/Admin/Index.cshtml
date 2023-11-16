@@ -273,7 +273,7 @@
             driverObj.drive();
 
             // Establecer la variable para indicar que el usuario ha visto el tutorial
-            
+
         }
 
     </script>
@@ -283,6 +283,7 @@
         if (userRole !== '1') {
             logoutUser();
         }
+        let selectAppointment = null;
         let eventos = [];
         $(document).ready(function () {
             //verifyToken();
@@ -404,6 +405,7 @@
 
 
         });
+
         function getUserCitas(uID) {
             // Realizar solicitud AJAX para obtener la lista de usuarios
             // var utID = 1;
@@ -539,7 +541,7 @@
                             }).then((result) => {
                                 if (result.isConfirmed) {
                                     $.ajax({
-                                        url: sessionStorage.urlEP + '/api/Appointments/v1/UpdateAppointmentStatus',
+                                        url: sessionStorage.urlEP + `/api/Appointments/v1/UpdateAppointmentStatus?uIDPetition=${uIDPetition}`,
                                         type: 'GET',
                                         data: { 'aID': CitaID, 'asID': 4 },
                                         contentType: "application/json",
@@ -585,7 +587,7 @@
                         // Maneja la acción del botón aqui
                         let data = tableCitas.row($(this).parents('tr')).data();
                         let CitaID = data[1]; // la primera columna contiene el ID del usuario
-
+                        selectAppointment = CitaID;
                         const { value: citaState } = await Swal.fire({
                             title: 'Seleccionar estado de la cita',
                             input: 'select',
@@ -597,6 +599,9 @@
                             inputPlaceholder: 'Selecciona el estado de la cita',
                             showCancelButton: true,
                             html: "<div id='form-history-content'></div>",
+                            allowOutsideClick: false,
+                            width: '50%',
+                            confirmButtonColor: '#008dc9',
                             didOpen: function (ele) {
                                 $(ele).find('.swal2-select').insertBefore($(ele).find('.swal2-content div'));
                                 Swal.getInput().addEventListener('change', (event) => {
@@ -655,7 +660,8 @@
                             title: 'Error',
                             text: response.messageStatus,
                             icon: 'error',
-                            confirmButtonText: 'Aceptar'
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9'
                         })
                     }
                 }
@@ -701,18 +707,49 @@
                     return container
                 },
                 'fileUpload': function (question) {
-                    let inputField = $(`<div class="col-9"><input placeholder="Imagen" type="file" id="${question.id}" accept=".jpg , .png" class="form-control"></input><br></div>`);
+                    let inputField = $(`<div class="col-10"><input placeholder="Imagen" type="file" id="uploadIMG" accept=".jpg , .png" class="form-control uploadIMG"></input><br></div>`);
 
                     let container = $('<div class="row"><div class="form-group">').append(
                         `<label class="text-primary m-0 fw-bold" for="${question.id}">`
                         + `Imagen # ${question.id}: ` + question.name +
-                        '</label><br>', inputField, `<div class="col-3"><button class="btn btn-primary btnFileC border rounded-5" type="button" id="${question.name + question.id}"> Subir </button></div></div>`);
+                        '</label><br>', inputField, `<div class="col-2"><button class="btn btn-primary btnFileUpload" type="button" id="btnFileUpload"> Subir </button></div></div>`);
 
                     return container
                 }
             };
 
             let form = $('<form class="form-group" id="create-form-history"></form>');
+
+            $(document).on('click', '.btnFileUpload', function () {
+
+                let citaID = selectAppointment;
+                let file = $(this).parent().parent().find('.uploadIMG').prop('files')[0];
+                let formData = new FormData();
+                formData.append('file', file);
+                $.ajax({
+                    url: `${sessionStorage.urlEP}/api/Blobs/upload?citaID=${citaID}&genericName=cita_${citaID}`,
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        $('#uploadIMG').attr('type', 'text');
+                        $('#uploadIMG').prop('disabled', true);
+                        $('.btnFileUpload').hide();
+                        $('#uploadIMG').val(response);
+                        //console.log("valor del input: ", $('#uploadIMG').val());
+                    },
+                    error: function () {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Por favor revise el formato de su archivo, e intente nuevamente.',
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9'
+                        })
+                    }
+                });
+            });
 
             let finalStructure = [];
             structure.forEach(function (question, index) {
@@ -738,6 +775,9 @@
                 confirmButtonText: 'Confirmar',
                 html: form,
                 focusConfirm: false,
+                allowOutsideClick: false,
+                width: '50%',
+                confirmButtonColor: '#008dc9',
             }).then((result) => {
                 if (result.isConfirmed) {
                     finalStructure = finalStructure.map((question) => {
@@ -745,9 +785,13 @@
                         if (question.type == 'close') {
                             value = $(`#${question.id}:checked`).val() == 'on' ? 'SI' : 'NO';
                         }
+                        if (question.type == 'fileUpload') {
+                            value = $('#uploadIMG').val();
+                        }
                         return {
                             ...question, value
                         }
+                        
                     });
                     saveHistoryForm(finalStructure, citaID);
                 }
@@ -756,18 +800,25 @@
 
         function saveHistoryForm(form, citaID) {
             $.ajax({
-                url: sessionStorage.urlEP + '/api/Generics/v1/SetUsersClinicStoryFormat',
-                type: 'GET',
+                // url: sessionStorage.urlEP + `/api/Generics/v1/SetUsersClinicStoryFormat?uIDPetition=${uIDPetition}`,
+                // type: 'GET',
+                // data: { 'aID': citaID, 'jsonObject': JSON.stringify(form) },
+                // contentType: "application/json",
+                // dataType: 'json',
+                url: sessionStorage.urlEP + `/api/Generics/v1/SetUsersClinicStoryFormat?uIDPetition=${uIDPetition}`,
+                type: 'POST',
                 data: { 'aID': citaID, 'jsonObject': JSON.stringify(form) },
                 contentType: "application/json",
                 dataType: 'json',
                 success: function (response) {
+                    //debugger;
                     //console.log(response)
                     if (response.codeStatus == 0) {
                         Swal.fire({
                             title: 'Historia Clinica Creada',
                             icon: 'info',
-                            confirmButtonText: 'Aceptar'
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9'
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 changeDateStatus(3, citaID);
@@ -781,12 +832,19 @@
                             title: 'Error',
                             text: response.messageStatus,
                             icon: 'error',
-                            confirmButtonText: 'Aceptar'
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9'
                         })
                     }
                 },
-                error: function (error) {
-                    //console.log('Error al obtener los detalles del usuario.');
+                error: function (response) {
+                    Swal.fire({
+                        title: 'Ocurrio un error intente nuevamente',
+                        text: 'Revisa los campos del Tratamiento',
+                        icon: 'info',
+                        confirmButtonText: 'Aceptar',
+                        confirmButtonColor: '#008dc9'
+                    })
                 }
 
             }).then((result) => {
@@ -801,7 +859,7 @@
             ////console.log(`Estado de cita seleccionado: ${citaState}`);
 
             $.ajax({
-                url: sessionStorage.urlEP + '/api/Appointments/v1/UpdateAppointmentStatus',
+                url: sessionStorage.urlEP + `/api/Appointments/v1/UpdateAppointmentStatus?uIDPetition=${uIDPetition}`,
                 type: 'GET',
                 data: { 'aID': CitaID, 'asID': citaState },
                 contentType: "application/json",
@@ -811,7 +869,8 @@
                         Swal.fire({
                             title: response.messageStatus,
                             icon: 'info',
-                            confirmButtonText: 'Aceptar'
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9'
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 swal.close();
@@ -824,7 +883,8 @@
                             title: 'Error',
                             text: response.messageStatus,
                             icon: 'error',
-                            confirmButtonText: 'Aceptar'
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9'
                         })
                     }
 

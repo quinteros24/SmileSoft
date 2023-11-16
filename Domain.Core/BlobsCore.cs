@@ -1,10 +1,14 @@
-﻿using Azure.Storage.Blobs;
-using Azure.Storage.Blobs.Models;
+﻿using System;
+using System.IO;
+using System.Threading.Tasks;
 using Domain.Entities;
 using Domain.Interfaces.Core;
 using Domain.Interfaces.Repository;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using Azure.Storage.Blobs;
+using Microsoft.AspNetCore.Http;
+using Azure.Storage.Blobs.Models;
+using System.Net.Mime;
 
 namespace Domain.Core
 {

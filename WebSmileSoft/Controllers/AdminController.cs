@@ -62,6 +62,30 @@ namespace WebSmileSoft.Controllers
             return PartialView();
         }
 
+        //Vista para el Log de la aplicación
+        public IActionResult ViewLog()
+        {
+            return PartialView();
+        }
+
+        //Vista para las opciones del sitio
+        public IActionResult ViewSiteOptions()
+        {
+            return PartialView();
+        }
+
+        //Vista para configurar el whatsapp
+        public IActionResult ViewWhatsapp()
+        {
+            return PartialView();
+        }
+
+        //Vista para configurar las preguntas del sitio
+        public IActionResult ViewQuestions()
+        {
+            return PartialView();
+        }
+
 
         [HttpPost]
         public IActionResult EditUsers([FromBody] List<SelectListItem> specialities)

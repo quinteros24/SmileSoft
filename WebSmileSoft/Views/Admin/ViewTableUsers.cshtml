@@ -64,6 +64,17 @@
 @section Scripts {
     <script>
         let userRole = sessionStorage.getItem("userRole"); "1" !== userRole && logoutUser(), document.getElementById("tipoUsuarioed").addEventListener("change", (function () { var e = document.getElementById("campoOpcional"); "2" === this.value ? e.style.display = "block" : e.style.display = "none" })), document.getElementById("tipoUsuario").addEventListener("change", (function () { var e = document.getElementById("campoOpcionala"); "2" === this.value ? e.style.display = "block" : e.style.display = "none" }));
+        function CheckPass2(password) {
+            if (password.length < 8) {
+                return false;
+            }
+
+            if (!/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/\d/.test(password) || !/[^A-Za-z0-9]/.test(password) || /\s/.test(password)) {
+                return false;
+            }
+
+            return true; // Si la contraseña cumple con los requisitos, retorna true
+        }
     </script>
 
 
@@ -160,7 +171,7 @@
                             ];
                             dataSet.push(rowData);
                         });
-
+                        let selectRol = 0;
                         // Inicializa o actualiza el DataTable con los datos procesados
                         table = $('#example').DataTable({
                             columns: [
@@ -186,9 +197,16 @@
                                     orderable: false, // Para desactivar la ordenación en esta columna
                                     data: null, // Usaremos la columna "Acciones" solo para botones
                                     defaultContent: '<div class="row" style="width: 9rem;"> <button class="btn btn-primary btn-sm  col-12 col-sm-6 col-md-3" id="btnEditar" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" title="Editar Usuario"><i class="fas fa-edit"></i></button> ' +
-                                        '<button class="btn btn-danger btn-sm password-button  col-12 col-sm-6 col-md-3" id="btnPassword" data-toggle="modal" data-target="#passwordModal" data-toggle="tooltip" title="Cambiar contraseña" > <i class="fa-solid fa-lock"></i></button > ' +
+                                        '<button class="btn btn-danger btn-sm password-button col-12 col-sm-6 col-md-3" id="btnPassword" data-toggle="modal" data-target="#passwordModal" data-toggle="tooltip" title="Cambiar contraseña" > <i class="fa-solid fa-lock"></i></button > ' +
                                         '<button class="btn btn-primary btn-sm  col-12 col-sm-6 col-md-3" id="btnClinicalHistory" data-toggle="modal" data-target="#clinicalHistoryModal" data-toggle="tooltip" title="Ver Tratamientos del Paciente" > <i class="fa-solid fa-clipboard"></i></button >' +
-                                        '<button class="btn btn-success btn-sm deactivate-button  col-12 col-sm-6 col-md-3" id="btnDesactivar" data-toggle="modal" data-target="#deactivateModal" data-toggle="tooltip" title="Desactivar o Activar Usuario" > <i class="fas fa-ban"> </i></button > </div>'
+                                        '<button class="btn btn-success btn-sm deactivate-button  col-12 col-sm-6 col-md-3" id="btnDesactivar" data-toggle="modal" data-target="#deactivateModal" data-toggle="tooltip" title="Desactivar o Activar Usuario" > <i class="fas fa-ban"> </i></button ></div>'
+                                },
+                                {
+                                    title: 'Citas',
+                                    orderable: false, // Para desactivar la ordenación en esta columna
+                                    visible: false,
+                                    data: null, // Usaremos la columna "Acciones" solo para botones
+                                    defaultContent: '<div class="row text-center" style="width: 9rem;"><button class="btn btn-warning btn-sm Agendar-Cita  col-12 col-sm-6 col-md-3" id="Agendar-Cita" data-toggle="modal" data-target="#deactivateModal" data-toggle="tooltip" title="Agendar Cita" > <i class="fa-regular fa-calendar-days"></i></button > </div> '
                                 }
                             ],
                             //responsive: true,
@@ -235,7 +253,7 @@
                             createdRow: function (row, data, dataIndex) {
                                 // Obtén el valor del estado en la columna "Estado"
                                 let BlockStatus = data[10];
-                                console.log("BlockStatus " + BlockStatus);
+                                //console.log("BlockStatus " + BlockStatus);
                                 var estado = data[11];
                                 var rol = data[2];
                                 //console.log('Rol Fila ', rol);
@@ -247,15 +265,33 @@
                                 }
                                 if (rol != 'Pacientes') {
                                     $(row).find('#btnClinicalHistory').hide();
+                                    //ocultar boton Agendar-Cita
+                                    $(row).find('#Agendar-Cita').hide();
+                                    //Ocultar la columna de Citas
+                                    selectRol = 0;
+                                }
+                                if (rol == 'Pacientes') {
+                                    //mostrar la columna de Citas
+                                    selectRol = 3;
+
                                 }
                                 if (BlockStatus === 'Desbloqueado') {
+                                    //Ocular el boton de desbloquear
+                                    $(row).find('#btnActivar').hide();
                                     //Deshabilitar el boton de desbloquear
                                     $(row).find('#btnActivar').prop('disabled', true);
+                                    //Cambiar color del boton a primary
+                                    $(row).find('#btnActivar').removeClass('btn-primary').addClass('btn-success');
                                 }
+
                             }
                         });
                         Swal.close();
-
+                        // if (selectRol == 3) {
+                        //     table.column(13).visible(true);
+                        // } else {
+                        //     table.column(13).visible(false);
+                        // }
                         //Editar Usuario --> Funcionando a Medias, No cambia Usuarios a Doctores
                         table.column(12).nodes().to$().find('#btnEditar').click(function () {
                             // Maneja la acción del botón aqui
@@ -337,20 +373,20 @@
                                     // Recoge los datos actualizados desde los campos del formulario
 
                                     //Datos Personales
-                                    uName: $("#editNombree").val(),
-                                    uLastName: $("#editApellidoe").val(),
+                                    uName: $("#editNombree").val().trim(),
+                                    uLastName: $("#editApellidoe").val().trim(),
                                     dtID: parseInt($("#tipoDocumentoed").val()),
-                                    uDocument: $("#editDocumentoed").val(),
+                                    uDocument: $("#editDocumentoed").val().trim(),
                                     gID: parseInt($("#tGeneroed").val()),
-                                    uBirthDate: $("#fechaNacimientoed").val(),
+                                    uBirthDate: $("#fechaNacimientoed").val().trim(),
 
                                     //Datos de Contacto
-                                    uEmailAddress: $("#editCorreoed").val(),
-                                    uCellphone: $("#editCelulared").val(),
-                                    uAddress: $("#direccioned").val(),
+                                    uEmailAddress: $("#editCorreoed").val().trim(),
+                                    uCellphone: $("#editCelulared").val().trim(),
+                                    uAddress: $("#direccioned").val().trim(),
 
                                     //Datos de Cuenta
-                                    uLoginName: $("#usernameed").val(),
+                                    uLoginName: $("#usernameed").val().trim(),
                                     uID: userId,
                                     utID: parseInt($("#tipoUsuarioed").val()),
                                     uStatus: true,
@@ -363,11 +399,11 @@
 
                                 }
                                 if (updatedUserData.utID == 2) {
-                                    updatedUserData.dAcademicLevel = $("#AcademicLeveled").val();
-                                    updatedUserData.dDegree = $("#TituloAcademicoed").val();
+                                    updatedUserData.dAcademicLevel = $("#AcademicLeveled").val().trim();
+                                    updatedUserData.dDegree = $("#TituloAcademicoed").val().trim();
                                     updatedUserData.spID = parseInt($("#Specialityed").val());
-                                    updatedUserData.dProfessionalCard = $("#ProfessionalLicenseed").val();
-                                    updatedUserData.dUniversityName = $("#Universitynameed").val();
+                                    updatedUserData.dProfessionalCard = $("#ProfessionalLicenseed").val().trim();
+                                    updatedUserData.dUniversityName = $("#Universitynameed").val().trim();
                                 }
 
                                 const esMayorDe18 = validarEdadMayorDe18('fechaNacimientoed');
@@ -428,41 +464,125 @@
 
                                 //let formattedBirthDate = formatDateToISO8601(birthDate);
                                 else {
-                                    // Realiza una solicitud AJAX para guardar los cambios en el servidor
-                                    $.ajax({
-                                        url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Reemplaza con la URL correcta
-                                        type: 'POST',
-                                        data: JSON.stringify(updatedUserData), // Convierte updatedUserData a JSON
-                                        contentType: "application/json", // Especifica el tipo de contenido
-                                        dataType: "json",
-                                        success: function (response) {
-                                            // Cierra el modal de edición
-                                            $("#editModal").modal("hide");
-                                            Swal.fire({
-                                                title: 'Usuario Actualizado',
-                                                text: 'El usuario ' + updatedUserData.uLoginName + ' se actualizó correctamente',
-                                                icon: 'success',
-                                                confirmButtonText: 'Aceptar'
-                                            }).then((result) => {
-                                                if (result.isConfirmed) {
-                                                    verusers(updatedUserData.utID);
-                                                }
-                                            })
-                                        },
-                                        error: function () {
+                                    if (updatedUserData.utID == 2) {
+                                        //validamos que los campos academicos no esten vacios
 
+                                        if (updatedUserData.dAcademicLevel === "Seleccionar" || updatedUserData.dAcademicLevel === "") {
                                             Swal.fire({
-                                                title: 'Error',
-                                                text: 'Error al guardar los cambios',
-                                                icon: 'error',
-                                                confirmButtonText: 'Aceptar'
+                                                text: 'Por favor, seleccione su nivel academico.',
+                                                confirmButtonColor: '#008dc9'
                                             });
-                                            $("#editModal").modal("hide");
+                                        } else if (updatedUserData.dDegree === "") {
+                                            Swal.fire({
+                                                text: 'Por favor, ingrese su titulo academico.',
+                                                confirmButtonColor: '#008dc9'
+                                            });
+                                        } else if (updatedUserData.spID === "Seleccionar" || updatedUserData.spID === "") {
+                                            Swal.fire({
+                                                text: 'Por favor, seleccione su especialidad.',
+                                                confirmButtonColor: '#008dc9'
+                                            });
+                                        } else if (updatedUserData.dProfessionalCard === "") {
+                                            Swal.fire({
+                                                text: 'Por favor, ingrese su tarjeta profesional.',
+                                                confirmButtonColor: '#008dc9'
+                                            });
+                                        } else if (updatedUserData.dUniversityName === "") {
+                                            Swal.fire({
+                                                text: 'Por favor, ingrese su universidad.',
+                                                confirmButtonColor: '#008dc9'
+                                            });
+                                        } else {
+                                            // Realiza una solicitud AJAX para guardar los cambios en el servidor
+                                            $.ajax({
+                                                url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Reemplaza con la URL correcta
+                                                type: 'POST',
+                                                data: JSON.stringify(updatedUserData), // Convierte updatedUserData a JSON
+                                                contentType: "application/json", // Especifica el tipo de contenido
+                                                dataType: "json",
+                                                success: function (response) {
+                                                    //si codeStatus es 0, se actualizo correctamente
+                                                    //si codeStatus es 2601, La cedula ya esta registrada
+                                                    if (response.codeStatus == 0) {
+                                                        $("#editModal").modal("hide");
+                                                        Swal.fire({
+                                                            title: 'Usuario Actualizado',
+                                                            text: 'El usuario ' + updatedUserData.uLoginName + ' se actualizó correctamente',
+                                                            icon: 'success',
+                                                            confirmButtonText: 'Aceptar'
+                                                        }).then((result) => {
+                                                            if (result.isConfirmed) {
+                                                                verusers(updatedUserData.utID);
+                                                            }
+                                                        })
+                                                    } else {
+                                                        Swal.fire({
+                                                            title: 'Error',
+                                                            text: response.messageStatus,
+                                                            icon: 'info',
+                                                            confirmButtonText: 'Aceptar'
+                                                        });
+                                                    }
+                                                },
+                                                error: function () {
+                                                    Swal.fire({
+                                                        title: 'Error',
+                                                        text: 'Error al guardar los cambios',
+                                                        icon: 'error',
+                                                        confirmButtonText: 'Aceptar'
+                                                    });
+                                                    $("#editModal").modal("hide");
+                                                }
+                                            });
                                         }
-                                    });
+                                    } else {
+                                        // Realiza una solicitud AJAX para guardar los cambios en el servidor
+                                        $.ajax({
+                                            url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Reemplaza con la URL correcta
+                                            type: 'POST',
+                                            data: JSON.stringify(updatedUserData), // Convierte updatedUserData a JSON
+                                            contentType: "application/json", // Especifica el tipo de contenido
+                                            dataType: "json",
+                                            success: function (response) {
+                                                //si codeStatus es 0, se actualizo correctamente
+                                                //si codeStatus es 2601, La cedula ya esta registrada
+                                                if (response.codeStatus == 0) {
+                                                    $("#editModal").modal("hide");
+                                                    Swal.fire({
+                                                        title: 'Usuario Actualizado',
+                                                        text: 'El usuario ' + updatedUserData.uLoginName + ' se actualizó correctamente',
+                                                        icon: 'success',
+                                                        confirmButtonText: 'Aceptar'
+                                                    }).then((result) => {
+                                                        if (result.isConfirmed) {
+                                                            verusers(updatedUserData.utID);
+                                                        }
+                                                    })
+                                                } else {
+                                                    Swal.fire({
+                                                        title: 'Error',
+                                                        text: response.messageStatus,
+                                                        icon: 'info',
+                                                        confirmButtonText: 'Aceptar'
+                                                    });
+                                                }
+                                            },
+                                            error: function () {
+
+                                                Swal.fire({
+                                                    title: 'Error',
+                                                    text: 'Error al guardar los cambios',
+                                                    icon: 'error',
+                                                    confirmButtonText: 'Aceptar'
+                                                });
+                                                $("#editModal").modal("hide");
+                                            }
+                                        });
+                                    }
                                 }
                             });
                         });
+
                         //Desactivar Estado --> Funcionando Bien
                         table.column(12).nodes().to$().find('#btnDesactivar').click(function () {
                             let StatusMappingI = {
@@ -502,7 +622,7 @@
 
                                     // Realiza la solicitud AJAX para cambiar el estado del usuario
                                     $.ajax({
-                                        url: sessionStorage.urlEP + '/api/Users/v1/SetUserStatus/',
+                                        url: sessionStorage.urlEP + `/api/Users/v1/SetUserStatus/?uIDPetition=${uIDPetition}`,
                                         type: 'GET',
                                         data: { 'uID': userId, 'uStatus': newStatus },
                                         contentType: "application/json",
@@ -548,20 +668,26 @@
                             let uRol = rolesMappingI[userRol];
                             //$("#usernamepass").val(userNameEdit);
                             var userNamePassSpan = document.getElementById("userNamePass");
-
+                            document.addEventListener('keydown', function (event) {
+                                // Verifica si la tecla presionada es "Enter"
+                                if (event.key === 'Enter') {
+                                    // Cancela el evento de envío del formulario
+                                    event.preventDefault();
+                                }
+                            });
                             // Establece el contenido del span
                             userNamePassSpan.innerHTML = userNameEdit;
                             // Abre el modal de edición
                             $("#editPassword").modal("show");
-
-
-                            //console.log("Usuario a Editar" + userId);
-                            // Realiza una solicitud AJAX para obtener los detalles del usuario
-
                             $("#changePasswordBtn").click(function () {
+                                changeUserPassword();
+                            });
 
+                            function changeUserPassword() {
+                                //debugger;
                                 let password = $("#newPassword").val();
-                                if (!CheckPass(password)) {
+                                //console.log("password " + password)
+                                if (CheckPass(password) == false) {
                                     Swal.fire({
                                         text: 'La contraseña no cumple con los requisitos.',
                                         confirmButtonColor: '#008dc9'
@@ -573,33 +699,48 @@
                                         uID: userId,
                                         Password: password
                                     };
-                                    // Realiza una solicitud AJAX para guardar los cambios en el servidor
-                                    $.ajax({
-                                        url: sessionStorage.urlEP + '/api/Users/v1/ChangePassword', // Reemplaza con la URL correcta
-                                        type: 'POST',
-                                        data: JSON.stringify(updatedUserData), // Convierte updatedUserData a JSON
-                                        contentType: "application/json", // Especifica el tipo de contenido
-                                        dataType: "json",
-                                        success: function (response) {
-                                            // Cierra el modal de edición
-                                            if (response.codeStatus == 0) {
-                                                $("#editPassword").modal("hide");
-                                                //window.location.href = '@Url.Action("Index", "")';
-                                                Swal.fire({
-                                                    text: 'contraseña actualizada con exito',
-                                                    confirmButtonColor: '#008dc9'
-                                                });
-                                                verusers(uRol);
-                                            } else {
-                                                mostrarMensajeError(result.messageStatus);
+                                    if (CheckPass(updatedUserData.Password) == true) {
+                                        // Realiza una solicitud AJAX para guardar los cambios en el servidor
+                                        $.ajax({
+                                            url: sessionStorage.urlEP + `/api/Users/v1/ChangePassword?uIDPetition=${uIDPetition}`, // Reemplaza con la URL correcta
+                                            type: 'POST',
+                                            data: JSON.stringify(updatedUserData), // Convierte updatedUserData a JSON
+                                            contentType: "application/json", // Especifica el tipo de contenido
+                                            dataType: "json",
+                                            success: function (response) {
+                                                //verusers(uRol);
+                                                if (response.codeStatus == 0) {
+                                                    $("#editPassword").modal("hide");
+                                                    Swal.fire({
+                                                        title: 'Contraseña Actualizada',
+                                                        text: 'La contraseña del usuario ' + userNameEdit + ' se actualizó correctamente',
+                                                        icon: 'success',
+                                                        confirmButtonText: 'Aceptar',
+                                                        confirmButtonColor: '#008dc9'
+                                                    }).then((result) => {
+                                                        if (result.isConfirmed) {
+                                                            verusers(uRol);
+                                                        }
+                                                    })
+
+                                                } else {
+                                                    mostrarMensajeError(result.messageStatus);
+                                                }
+                                            },
+                                            error: function () {
+                                                // $("#editModal").modal("hide");
                                             }
-                                        },
-                                        error: function () {
-                                            // $("#editModal").modal("hide");
-                                        }
-                                    });
+                                        });
+                                    } else {
+                                        Swal.fire({
+                                            text: 'La contraseña no cumple con los requisitos.',
+                                            confirmButtonColor: '#008dc9'
+                                        });
+                                    }
                                 }
-                            });
+                            };
+
+
                         });
                         table.column(12).nodes().to$().find('#btnClinicalHistory').click(function () {
                             let data = table.row($(this).parents('tr')).data();
@@ -757,9 +898,15 @@
                         table.column(10).nodes().to$().find('#btnActivar').click(function () {
                             let data = table.row($(this).parents('tr')).data();
                             let userId = data[1];
+                            let rolesMappingI = {
+                                Administrador: 1,
+                                Doctores: 2,
+                                Pacientes: 3
+                            };
+                            let userRol = rolesMappingI[data[2]];
                             // Realiza la solicitud AJAX para cambiar el estado del usuario
                             $.ajax({
-                                url: sessionStorage.urlEP + '/api/Users/v1/UnblockUser/',
+                                url: sessionStorage.urlEP + `/api/Users/v1/UnblockUser/?uIDPetition=${uIDPetition}`,
                                 type: 'GET',
                                 data: { 'uID': userId },
                                 contentType: "application/json",
@@ -769,10 +916,15 @@
                                     title: 'Usuario Desbloqueado',
                                     text: 'El usuario ' + data[3] + ' se desbloqueó correctamente',
                                     icon: 'success',
-                                    confirmButtonText: 'Aceptar'
+                                    confirmButtonText: 'Aceptar',
+                                    confirmButtonColor: '#008dc9'
 
-
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        verusers(userRol);
+                                    }
                                 });
+
                             }
                             ).fail(function (response) {
                                 Swal.fire({
@@ -784,7 +936,90 @@
                             });
 
                         });
+                        //modal cuando den clic en el boton para agendar citas
+                        table.column(13).nodes().to$().find('#Agendar-Cita').click(function () {
+                            let data = table.row($(this).parents('tr')).data();
+                            let documento = data[9];
+                            let loginName = data[3];
+                            console.log('Documento ' + documento);
 
+                            //     //Datos de la Cita
+                            //     asID: 0,
+                            //     aID: 0,
+                            //     aDate: date,
+                            //     aTime: time,
+                            //     dID: parseInt(doctor),
+                            //     aDescription: message
+                            //Hacer un Swal para obtener los datos de la cita
+                            Swal.fire({
+                                title: 'Agendar Cita a: ' + loginName,
+                                html:
+                                    '<div class="row">' +
+                                    '<div class="col-6">' +
+                                    '<label for="fecha">Fecha</label>' +
+                                    '<input type="date" id="fecha" class="form-control datepicker" placeholder="YYYY-MM-DD" required>' +
+                                    '</div>' +
+                                    '<div class="col-6">' +
+                                    '<label for="hora">Hora</label>' +
+                                    '<input type="time" id="hora" class="form-control" min="08:00" max="20:00" step="3600" required>' +
+                                    '</div>' +
+                                    '<div class="col-12">' +
+                                    '<label for="selEspecialidad">Especialidad</label>' +
+                                    '<select id="selEspecialidad" class="form-control" required>' +
+                                    '<option value="0">Seleccionar Especialidad</option>' +
+                                    '<option value="1">Odontología general</option>' +
+                                    '<option value="2">Endodoncia</option>' +
+                                    '<option value="3">Cirugía oral</option>' +
+                                    '<option value="4">Ortodoncia</option>' +
+                                    '<option value="5">Odontopediatría</option>' +
+                                    '<option value="6">Periodoncia</option>' +
+                                    '</select>' +
+                                    '</div>' +
+                                    '<div class="col-12">' +
+                                    '<label for="motivo">Motivo</label>' +
+                                    '<textarea id="motivo" class="form-control" required></textarea>' +
+                                    '</div>' +
+                                    '</div>',
+                                confirmButtonText: 'Agendar',
+                                confirmButtonColor: '#008dc9',
+                                focusConfirm: false,
+                                width: '50%',
+                                preConfirm: () => {
+                                    const date = Swal.getPopup().querySelector('#fecha').value
+                                    const time = Swal.getPopup().querySelector('#hora').value
+                                    const doctor = Swal.getPopup().querySelector('#selEspecialidad').value
+                                    const message = Swal.getPopup().querySelector('#motivo').value
+                                    // no permitir que el selector #fecha puedan elegir una fecha menor a la de hoy
+                                    let today = new Date();
+                                    let dd = today.getDate();
+                                    let mm = today.getMonth() + 1; //January is 0!
+                                    let yyyy = today.getFullYear();
+                                    if (dd < 10) {
+                                        dd = '0' + dd;
+                                    }
+                                    if (mm < 10) {
+                                        mm = '0' + mm;
+                                    }
+                                    today = yyyy + '-' + mm + '-' + dd;
+                                    document.getElementById("fecha").setAttribute("min", today);
+                                    //hacer la validacion
+                                    if(date < today){
+                                        Swal.showValidationMessage(`La fecha no puede ser menor a la de hoy`)
+                                    }
+                                    if (!date || !time || !doctor || !message) {
+                                        Swal.showValidationMessage(`Por favor, ingrese todos los campos`)
+                                    }
+                                    return { date: date, time: time, doctor: doctor, message: message }
+                                }
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    Swal.fire({
+                                        title: `${result.value.date} ${result.value.time} ${result.value.doctor} ${result.value.message}`
+                                    })
+                                }
+                            })
+
+                        });
                     }
                 });
             } else {
@@ -811,27 +1046,27 @@
         onChangeAgeNotification(fechaNacimientoInput);
         // Controlador de clic para el botón "Agregar"
         $("#add-user").click(function () {
-
+            //debugger;
             let userData = {
                 //Datos Personales
-                uName: $("#nombres").val(),
-                uLastName: $("#apellidos").val(),
-                dtID: parseInt($("#tipoDocumento").val()),
-                uDocument: $("#numeroDocumento").val(),
+                uName: $("#nombres").val().trim(),
+                uLastName: $("#apellidos").val().trim(),
+                dtID: parseInt($("#tipoDocumento").val().trim()),
+                uDocument: $("#numeroDocumento").val().trim(),
                 //gID: 0,//parseInt($("tGeneroe").val()),
-                gID: parseInt($("#tipoGenero").val()),
-                uBirthDate: $("#fechaNacimiento").val(),
+                gID: parseInt($("#tipoGenero").val().trim()),
+                uBirthDate: $("#fechaNacimiento").val().trim(),
 
                 //Datos de Contacto
-                uEmailAddress: $("#correo").val(),
-                uCellphone: $("#celular").val(),
-                uAddress: $("#direccion").val(),
+                uEmailAddress: $("#correo").val().trim(),
+                uCellphone: $("#celular").val().trim(),
+                uAddress: $("#direccion").val().trim(),
 
                 //Datos de Cuenta
-                uLoginName: $("#usuario").val(),
-                uPassword: $("#password").val(),
+                uLoginName: $("#usuario").val().trim(),
+                uPassword: $("#password").val().trim(),
                 uID: 0,
-                utID: parseInt($("#tipoUsuario").val()),
+                utID: parseInt($("#tipoUsuario").val().trim()),
                 uStatus: true,
                 oID: 1,
                 dAcademicLevel: null,
@@ -841,16 +1076,16 @@
                 dUniversityName: null
             };
             if (userData.utID == 2) {
-                userData.dAcademicLevel = $("#AcademicLevela").val();
-                userData.dDegree = $("#TituloAcademicoa").val();
-                userData.spID = parseInt($("#Specialitya").val());
-                userData.dProfessionalCard = $("#Tarjeta_Profesionala").val();
-                userData.dUniversityName = $("#Universitynamea").val();
+                userData.dAcademicLevel = $("#AcademicLevela").val().trim();
+                userData.dDegree = $("#TituloAcademicoa").val().trim();
+                userData.spID = parseInt($("#Specialitya").val().trim());
+                userData.dProfessionalCard = $("#Tarjeta_Profesionala").val().trim();
+                userData.dUniversityName = $("#Universitynamea").val().trim();
             }
 
             const esMayorDe18 = validarEdadMayorDe18('fechaNacimiento');
 
-            if (userData.firstName === "" || userData.lastName === "") {
+            if (userData.uName === "" || userData.uLastName === "") {
                 Swal.fire({
                     text: 'Por favor, ingrese su nombre completo.',
                     confirmButtonColor: '#008dc9'
@@ -902,62 +1137,215 @@
                 });
                 //Clear Input
                 $("#fechaNacimiento").val("");
+            } else if (userData.uPassword === "") {
+                Swal.fire({
+                    text: 'Por favor, ingrese una contraseña.',
+                    confirmButtonColor: '#008dc9'
+                });
             }
-
+            else if (CheckPass(userData.uPassword) == false) {
+                Swal.fire({
+                    text: 'La contraseña no cumple con los requisitos.',
+                    confirmButtonColor: '#008dc9'
+                });
+            }
             //let formattedBirthDate = formatDateToISO8601(birthDate);
             else {
-                $.ajax({
-                    type: "POST",
-                    url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Ruta para agregar el usuario
-                    data: JSON.stringify(userData), // Convierte userData a JSON
-                    contentType: "application/json", // Especifica el tipo de contenido
+                if (userData.utID == 2) {
+                    //Deben llenarse los campos Academicos
+                    //validar que los campos tengan informacion
+                    if (userData.dAcademicLevel === "" || userData.dDegree === "" || userData.spID === "" || userData.dProfessionalCard === "" || userData.dUniversityName === "") {
+                        Swal.fire({
+                            text: 'Por favor, ingrese los datos Academicos.',
+                            confirmButtonColor: '#008dc9'
+                        });
+                    } else {
+                        //validar contraseña
+                        if (CheckPass(userData.uPassword) == false) {
+                            Swal.fire({
+                                text: 'La contraseña no cumple con los requisitos.',
+                                confirmButtonColor: '#008dc9'
+                            });
+                        } else {
+                            $.ajax({
+                                type: "POST",
+                                url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Ruta para agregar el usuario
+                                data: JSON.stringify(userData), // Convierte userData a JSON
+                                contentType: "application/json", // Especifica el tipo de contenido
+                                dataType: "json",
+                                success: function (response) {
+                                    // si result = 0, se agrego correctamente
+                                    // si result != 0, no se agrego correctamente
+                                    //console.log("response " + response);
+                                    //console.log("response codeStatus " + response.codeStatus);
+                                    if (response.codeStatus == 0) {
+                                        $("#addUserModal").modal("hide");
+                                        //alert("Usuario agregado correctamente");
+                                        // Cierra el modal de agregar usuario
+                                        Swal.fire({
+                                            title: 'Usuario Agregado',
+                                            text: 'El usuario se agregó correctamente',
+                                            icon: 'success',
+                                            confirmButtonText: 'Aceptar'
+                                        }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                verusers(3);
+                                            }
+                                        });
+                                    } else {
+                                        Swal.fire({
+                                            title: 'Error',
+                                            text: response.messageStatus,
+                                            icon: 'info',
+                                            confirmButtonText: 'Aceptar'
+                                        });
+                                    }
 
-                    dataType: "json",
-                    success: function (result) {
-                        // Actualiza la vista o realiza alguna otra acción
-                        $("#addUserModal").modal("hide");
-                        //alert("Usuario agregado correctamente");
-                        // Cierra el modal de agregar usuario
-                        Swal.fire({
-                            title: 'Usuario Agregado',
-                            text: 'El usuario se agregó correctamente',
-                            icon: 'success',
-                            confirmButtonText: 'Aceptar'
-                        });
-                        verusers(3);
-                    },
-                    error: function () {
-                        //alert("Error al agregar el usuario");
-                        Swal.fire({
-                            title: 'Error',
-                            text: result.messageCode,
-                            icon: 'error',
-                            confirmButtonText: 'Aceptar'
-                        });
+                                },
+                                error: function () {
+                                    //alert("Error al agregar el usuario");
+                                    Swal.fire({
+                                        title: 'Error',
+                                        text: response.messageCode,
+                                        icon: 'error',
+                                        confirmButtonText: 'Aceptar'
+                                    });
+                                }
+                            });
+                        }
                     }
-                });
+
+                } else {
+                    $.ajax({
+                        type: "POST",
+                        url: sessionStorage.urlEP + '/api/Users/v1/CreateUpdateUsers', // Ruta para agregar el usuario
+                        data: JSON.stringify(userData), // Convierte userData a JSON
+                        contentType: "application/json", // Especifica el tipo de contenido
+                        dataType: "json",
+                        success: function (response) {
+                            // si result = 0, se agrego correctamente
+                            // si result != 0, no se agrego correctamente
+                            //console.log("response " + response);
+                            //console.log("response codeStatus " + response.codeStatus);
+                            if (response.codeStatus == 0) {
+                                $("#addUserModal").modal("hide");
+                                //alert("Usuario agregado correctamente");
+                                // Cierra el modal de agregar usuario
+                                Swal.fire({
+                                    title: 'Usuario Agregado',
+                                    text: 'El usuario se agregó correctamente',
+                                    icon: 'success',
+                                    confirmButtonText: 'Aceptar'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        verusers(3);
+                                    }
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: 'Error',
+                                    text: response.messageStatus,
+                                    icon: 'info',
+                                    confirmButtonText: 'Aceptar'
+                                });
+                            }
+
+                        },
+                        error: function () {
+                            //alert("Error al agregar el usuario");
+                            Swal.fire({
+                                title: 'Error',
+                                text: response.messageCode,
+                                icon: 'error',
+                                confirmButtonText: 'Aceptar'
+                            });
+                        }
+                    });
+                }
             }
         });
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
-
         });
-        // function generateUsername() {
-        //     const firstName = document.getElementById("nombres").value + '.';
-        //     const lastName = document.getElementById("apellidos").value;
 
-        //     // Combine the first name and last name to create the base username
-        //     const baseUsername = (firstName + lastName).toLowerCase().replace(/\s/g, "");
+        //Validar Inputs Cita
+        function fncheckDoctor(e) { var t = e.value; 0 == t ? document.getElementById("Doctor").disabled = !0 : (fngetDoctors(t), document.getElementById("Doctor").disabled = !1) } function obtenerFechaActualSinUTC(e) { return new Date(e.getTime() - 6e4 * e.getTimezoneOffset()).toISOString().split("T")[0] } $("#fecha").on("change", (function () { validarFecha() }));
+        // const fechaActualSinUTC = obtenerFechaActualSinUTC();
+        ////console.log(fechaActualSinUTC);
+        function validarFecha() { const e = obtenerFechaActualSinUTC(new Date); console.log(e); const o = obtenerFechaActualSinUTC(new Date(document.getElementById("fecha").value + "T05:00:00Z")); console.log(o), o < e && (Swal.fire({ icon: "info", title: "Oops...", text: "La fecha no puede ser menor que hoy.", confirmButtonColor: "#008dc9" }), document.getElementById("fecha").value = "") }
+        $('#hora').on('focusout', function () {
+            let value = $(this).val();
+            value = value.substring(0, value.indexOf(':'));
+            this.value = value + ':00';
+        });
 
-        //     // Generate a random number between 1 and 999 (adjust the range as needed)
-        //     const randomSuffix = Math.floor(Math.random() * 999) + 1;
+        function validarHora() {
+            const horaIngresada = document.getElementById("hora").value;
+            const horaActual = new Date().getUTCHours();
+            const fechaHoraActualMasDosHoras = new Date();
+            fechaHoraActualMasDosHoras.setUTCHours(fechaHoraActualMasDosHoras.getUTCHours() + 2);
 
-        //     // Combine the base username with the random number
-        //     const suggestedUsername = baseUsername + randomSuffix;
+            if (horaIngresada < horaActual || horaIngresada < "08:00" || horaIngresada > "16:00" || horaIngresada > fechaHoraActualMasDosHoras.getUTCHours()) {
+                //alert("La hora debe estar entre las 08:00 y las 17:00 y no puede ser menor que 2 horas desde ahora.");
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Oops...',
+                    text: 'La hora debe estar entre las 08:00 AM y las 4:00 PM y puede ser maximo 2 horas antes de la cita.',
+                    confirmButtonColor: '#008dc9'
+                })
+                document.getElementById("cHora").value = ""; // Limpia el campo de hora
+            }
+        }
 
-        //     // Update the username field with the suggested username
-        //     document.getElementById("usuario").value = suggestedUsername;
-        // }
+        $("#hora").on("change", function () {
+            validarHora();
+        });
+
+
+        function fngetDoctors(spID) {
+            $.ajax({
+                type: 'GET',
+                url: '@ViewBag.urlEndPoint' + '/api/Generics/v1/GetDoctors?spID=' + spID, // Ruta para crear o actualizar usuarios
+                contentType: 'application/json',
+                success: function (response) {
+                    var select = document.getElementById("cDoctor");
+                    select.options.length = 0;
+                    var option = document.createElement("option");
+                    option.value = 0;
+                    option.text = "Seleccionar Doctor";
+                    select.appendChild(option);
+                    for (var i = 0; i < response.length; i++) {
+                        var option = document.createElement("option");
+                        option.value = response[i].value;
+                        option.text = response[i].text;
+                        select.appendChild(option);
+                    }
+
+                },
+                error: function (error) {
+                    // Manejar errores de la solicitud AJAX
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Se presento un error al obtener la información',
+                        confirmButtonColor: '#008dc9'
+                    })
+                }
+            });
+        }
+
+        function showTimePicker() {
+            document.getElementById('timePicker').style.display = 'block';
+        }
+        $('.datepicker').datepicker({
+            todayHighlight: true,
+            language: 'es'
+        });
+        function setSelectedTime() {
+            const selectedHour = document.getElementById('hora').value;
+            document.getElementById('hora').value = selectedHour + ':00';
+            document.getElementById('timePicker').style.display = 'none';
+        }
     </script>
     <script>
         function generateUsername() { const e = (document.getElementById("nombres").value + "." + document.getElementById("apellidos").value).toLowerCase().replace(/\s/g, "") + (Math.floor(999 * Math.random()) + 1); document.getElementById("usuario").value = e }

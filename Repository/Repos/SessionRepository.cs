@@ -4,6 +4,7 @@ using Domain.Interfaces;
 using Domain.Interfaces.Repository;
 using Repository.Queries;
 using System.Data;
+using System.Runtime.CompilerServices;
 
 namespace Repository.Repos
 {
@@ -21,7 +22,7 @@ namespace Repository.Repos
             ResponseDB ItemResponseDB = await dl.Consultds(Query);
             LoginModelResponse? loginModelResponse = new();
             GenericResponseModel? genericResponseModel = new();
-            if (ItemResponseDB != null && ItemResponseDB.DsObject != null)
+            if (ItemResponseDB != null && ItemResponseDB.DsObject != null) 
             {
                 foreach (DataTable dt in ItemResponseDB.DsObject.Tables)
                 {
@@ -39,7 +40,7 @@ namespace Repository.Repos
                                     genericResponseModel.MessageStatus = dt.Rows[0]["OutputMessageError"].ToString();
                                     genericResponseModel.CodeStatus = dt.Rows[0]["OutputCodeError"].ToString();
                                 }
-                                catch (Exception ex)
+                                catch(Exception ex)
                                 {
                                     Console.WriteLine(ex.ToString());
                                 }
@@ -58,7 +59,7 @@ namespace Repository.Repos
             {
                 genericResponseModel.ItemJson = loginModelResponse;
                 genericResponseModel.Status = true;
-            }
+            } 
             return genericResponseModel;
         }
     }

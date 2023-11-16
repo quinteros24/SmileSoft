@@ -14,7 +14,7 @@ namespace DataAccess
         {
             ObjConnection = new Connections(connectionString);
         }
-
+        
         public DataTable? Consult(string query)
         {
             try

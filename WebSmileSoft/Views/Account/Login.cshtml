@@ -7,6 +7,9 @@
 
 <section class="container flex-grow-1">
     @*  <div id="loader" class="loader"></div> *@
+    <div id="movilLogo">
+        <img id="movilimg" src="~/assets/img/logo-r.png" onerror="this.onerror=null;this.src='~/assets/img/logo-r.png';" class="img-fluid">
+    </div>
     <div class="row justify-content-center">
         <div class="col-md-9 col-lg-12 col-xl-10 loginContainer">
             <div class="card shadow-lg o-hidden border-0 my-5 " id="loginBox">
@@ -86,7 +89,7 @@
                                 </div>
                                 <form class="user needs-validation" novalidate>
                                     <div class="mb-3">
-                                        <input class="form-control form-control-user" type="text" id="UserLogin" aria-describedby="emailHelp" placeholder="Username" name="Username" autocomplete="username">
+                                        <input class="form-control form-control-user" type="text" id="UserLogin" aria-describedby="emailHelp" placeholder="Usuario" name="Username" autocomplete="username">
                                     </div>
                                     <div class="mb-3">
                                         <input class="form-control form-control-user" type="password" id="Password" placeholder="Contraseña" name="password" autocomplete="current-password">
@@ -200,7 +203,8 @@
 
                         if (response.codeStatus == 0) {
                             //localStorage.setItem('tutorial', false);
-                            //Si tutorial no existe en el local storage, se crea y se le asigna el valor false
+                            //Si tutorial no existe en el local storag
+                            // e, se crea y se le asigna el valor false
                             //si ya existe no la cambiara
                             if (localStorage.getItem('tutorial') == null) {
                                 localStorage.setItem('tutorial', false);

@@ -32,7 +32,7 @@
                     </div><div class="col-md-3">
                         <div class="form-group">
                             <label for="hora">Hora</label>
-                            <input type="time" class="form-control" id="cHora" name="Hora"
+                            <input type="time" class="form-control timePicker" id="cHora" name="Hora"
                                    min="08:00" max="20:00" step="3600" required>
                         </div>
                     </div>
@@ -74,108 +74,16 @@
 
 @section Scripts{
 
-
-
-   @*  <script>
-
-        function formatDateForICS(date, time) {
-            // Convierte la fecha en el formato requerido por ICS (AAAAMMDD)
-            const formattedDate = date.replace(/-/g, '');
-
-            // Convierte la hora en el formato requerido por ICS (HHMMSS)
-            const formattedTime = time.replace(/:/g, '');
-
-            // Combina la fecha y la hora en un formato completo (AAAAMMDDTHHMMSSZ)
-            const dateTime = formattedDate + 'T' + formattedTime + 'Z';
-
-            return dateTime;
-        }
-        function addOneHourToTime(time) {
-            // Divide la hora en horas, minutos y segundos
-            const parts = time.split(':');
-            const hours = parseInt(parts[0], 10);
-            const minutes = parseInt(parts[1], 10);
-            const seconds = parseInt(parts[2], 10);
-
-            // Suma una hora
-            const newHours = hours + 1;
-
-            // Asegúrate de que la hora no supere las 23
-            const adjustedHours = newHours > 23 ? 0 : newHours;
-
-            // Formatea la nueva hora
-            const newTime = `${adjustedHours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
-            return newTime;
-        }
-        document.getElementById('generateICS').addEventListener('click', function () {
-            // Datos del evento
-            let date = document.getElementById("fecha").value.trim();
-            let time = document.getElementById("cHora").value.trim() + ':00';
-            let doctor = document.getElementById("cDoctor").value.trim();
-            let message = document.getElementById("mensaje").value.trim();
-
-            // Ejemplo de uso
-            const fecha = date;
-            const hora = time;
-
-            const dateTimeICS = formatDateForICS(fecha, hora);
-            //console.log(dateTimeICS); // Debe imprimir '20231018T080000Z'
-
-            const newTime = addOneHourToTime(time);
-            const dateTimeICSend = formatDateForICS(fecha, newTime);
-            //console.log(dateTimeICSend);
-
-            //console.log('Datos Consulta para Calendario');
-            //console.log(date, time, doctor, message);
-            var event = {
-                summary: 'Cita Odontologica con el Doctor:' + ' ' + doctor,
-                description: 'Motivo:' + ' ' + message,
-                location: 'SmileSoft',
-                start: dateTimeICS, // Fecha y hora de inicio en formato UTC (AñoMesDíaTHoraMinutoSegundoZ)
-                end: dateTimeICSend   // Fecha y hora de fin en formato UTC
-            };
-
-            // Generar el contenido del archivo ICS
-            var icsData =
-                'BEGIN:VCALENDAR\r\n' +
-                'VERSION:2.0\r\n' +
-                'BEGIN:VEVENT\r\n' +
-                'DTSTAMP:' + (new Date()).toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z\r\n' +
-                'UID:' + generateUID() + '\r\n' +
-                'DTSTART:' + event.start + '\r\n' +
-                'DTEND:' + event.end + '\r\n' +
-                'SUMMARY:' + event.summary + '\r\n' +
-                'DESCRIPTION:' + event.description + '\r\n' +
-                'LOCATION:' + event.location + '\r\n' +
-                'END:VEVENT\r\n' +
-                'END:VCALENDAR\r\n';
-
-            // Descargar el archivo ICS
-            var blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
-            var link = document.createElement('a');
-            link.href = window.URL.createObjectURL(blob);
-            link.setAttribute('download', 'evento.ics');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        });
-
-        function generateUID() {
-            // Generar un identificador único
-            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-                var r = Math.random() * 16 | 0,
-                    v = c == 'x' ? r : (r & 0x3 | 0x8);
-                return v.toString(16);
-            });
-        }
-    </script> *@
     <script>
         function fncheckDoctor(e) { var t = e.value; 0 == t ? document.getElementById("cDoctor").disabled = !0 : (fngetDoctors(t), document.getElementById("cDoctor").disabled = !1) } function obtenerFechaActualSinUTC(e) { return new Date(e.getTime() - 6e4 * e.getTimezoneOffset()).toISOString().split("T")[0] } $("#fecha").on("change", (function () { validarFecha() }));
         // const fechaActualSinUTC = obtenerFechaActualSinUTC();
         ////console.log(fechaActualSinUTC);
         function validarFecha() { const e = obtenerFechaActualSinUTC(new Date); console.log(e); const o = obtenerFechaActualSinUTC(new Date(document.getElementById("fecha").value + "T05:00:00Z")); console.log(o), o < e && (Swal.fire({ icon: "info", title: "Oops...", text: "La fecha no puede ser menor que hoy.", confirmButtonColor: "#008dc9" }), document.getElementById("fecha").value = "") }
-        
+        $('#cHora').on('focusout', function () {
+            let value = $(this).val();
+            value = value.substring(0, value.indexOf(':'));
+            this.value = value + ':00';
+        });
 
         function validarHora() {
             const horaIngresada = document.getElementById("cHora").value;
@@ -183,12 +91,12 @@
             const fechaHoraActualMasDosHoras = new Date();
             fechaHoraActualMasDosHoras.setUTCHours(fechaHoraActualMasDosHoras.getUTCHours() + 2);
 
-            if (horaIngresada < horaActual || horaIngresada < "08:00" || horaIngresada > "17:00" || horaIngresada > fechaHoraActualMasDosHoras.getUTCHours()) {
+            if (horaIngresada < horaActual || horaIngresada < "08:00" || horaIngresada > "16:00" || horaIngresada > fechaHoraActualMasDosHoras.getUTCHours()) {
                 //alert("La hora debe estar entre las 08:00 y las 17:00 y no puede ser menor que 2 horas desde ahora.");
                 Swal.fire({
                     icon: 'info',
                     title: 'Oops...',
-                    text: 'La hora debe estar entre las 08:00 AM y las 5:00 PM y puede ser maximo 2 horas antes de la cita.',
+                    text: 'La hora debe estar entre las 08:00 AM y las 4:00 PM y puede ser maximo 2 horas antes de la cita.',
                     confirmButtonColor: '#008dc9'
                 })
                 document.getElementById("cHora").value = ""; // Limpia el campo de hora
@@ -383,7 +291,7 @@
                             }).then((result) => {
                                 if (result.isConfirmed) {
                                     $.ajax({
-                                        url: sessionStorage.urlEP + '/api/Appointments/v1/UpdateAppointmentStatus',
+                                        url: sessionStorage.urlEP + `/api/Appointments/v1/UpdateAppointmentStatus?uIDPetition=${uIDPetition}`,
                                         type: 'GET',
                                         data: { 'aID': CitaID, 'asID': 4 },
                                         contentType: "application/json",
@@ -439,7 +347,7 @@
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 $.ajax({
-                                    url: sessionStorage.urlEP + '/api/Appointments/v1/UpdateAppointmentStatus',
+                                    url: sessionStorage.urlEP + `/api/Appointments/v1/UpdateAppointmentStatus?uIDPetition=${uIDPetition}`,
                                     type: 'POST',
                                     data: { 'aID': CitaID },
                                     contentType: "application/json",
@@ -492,28 +400,6 @@
     </script>
 
     <script>
-
-        // function ageValidation(birthDate) {
-        //     // Obtener la fecha actual
-        //     let fechaActual = new Date();
-
-        //     // Calcular la fecha de nacimiento a partir de la cadena de fecha
-        //     let fechaNac = new Date(birthDate);
-
-        //     // Calcular la diferencia en años
-        //     let edad = fechaActual.getFullYear() - fechaNac.getFullYear();
-
-        //     // Verificar si el cumpleaños ya ocurrió este año o no
-        //     if (
-        //         (fechaNac.getMonth() > fechaActual.getMonth()) ||
-        //         (fechaNac.getMonth() === fechaActual.getMonth() && fechaNac.getDate() > fechaActual.getDate())
-        //     ) {
-        //         edad--;
-        //     }
-
-        //     // Comprobar si la edad es mayor o igual a 18 y menor o igual a 100
-        //     return edad >= 18 && edad <= 100;
-        // }
 
         function SolicitarCitaPaciente() {
 

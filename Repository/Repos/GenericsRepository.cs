@@ -3,7 +3,12 @@ using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Repository.Queries;
+using System;
 using System.Data;
+using System.Dynamic;
+using System.Reflection;
+using System.Security.Cryptography;
+using System.Text.Json.Nodes;
 
 namespace Repository
 {
@@ -75,9 +80,20 @@ namespace Repository
             return genericResponseModel;
         }
 
-        public async Task<GenericResponseModel> StoreUsersClinicStoryFormat(string jsonObject, int oID)
+        public async Task<GenericResponseModel> StoreUsersClinicStoryFormat(string jsonObject, int oID, int uIDPetition)
         {
-            string query = $"UPDATE Offices SET MedicalRecordFormat = '{jsonObject}' WHERE [oID] = {oID}";
+            dynamic obj = new ExpandoObject();
+            obj.jsonObject = jsonObject;
+            obj.oID = oID;
+            obj.uIDPetition = uIDPetition;
+
+            string JSON = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
+
+            string LOG = $"DECLARE @utID INT = (SELECT utID FROM Users WHERE [uID] = {uIDPetition})\n" +
+                         $"INSERT INTO Logs([uID],utID,logAction,logDescription,logJSON)\n" +
+                         $"VALUES({uIDPetition},@utID,'EDITAR','Se ha editado el formato de historias clínicas', '{JSON}')\n";
+
+            string query = $"UPDATE Offices SET MedicalRecordFormat = '{jsonObject}' WHERE [oID] = {oID}\n{LOG}";
             Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
             ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
             GenericResponseModel? genericResponseModel = new()
@@ -89,9 +105,20 @@ namespace Repository
             return genericResponseModel;
         }
 
-        public async Task<GenericResponseModel> SetUsersClinicStoryFormat(string jsonObject, int aID)
+        public async Task<GenericResponseModel> SetUsersClinicStoryFormat(string jsonObject, int aID, int uIDPetition)
         {
-            string query = $"UPDATE Appointments SET MedicalRecordObject = '{jsonObject}' WHERE [aID] = {aID}";
+            dynamic obj = new ExpandoObject();
+            obj.jsonObject = jsonObject;
+            obj.aID = aID;
+            obj.uIDPetition = uIDPetition;
+
+            string JSON = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
+
+            string LOG = $"DECLARE @utID INT = (SELECT utID FROM Users WHERE [uID] = {uIDPetition})\n" +
+                         $"INSERT INTO Logs([uID],utID,logAction,logDescription,logJSON)\n" +
+                         $"VALUES({uIDPetition},@utID,'CREAR','Se ha agregado la historia clínica a la cita', '{JSON}')\n";
+
+            string query = $"UPDATE Appointments SET MedicalRecordObject = '{jsonObject}' WHERE [aID] = {aID}\n{LOG}";
             Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
             ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
             GenericResponseModel? genericResponseModel = new()
@@ -103,9 +130,21 @@ namespace Repository
             return genericResponseModel;
         }
 
-        public async Task<GenericResponseModel> SetContactNumber(string cellphoneNumber, int oID)
+        public async Task<GenericResponseModel> SetContactNumber(string cellphoneNumber, int oID, int uIDPetition)
         {
-            string query = $"UPDATE Offices SET ContactNumber = '{cellphoneNumber}' WHERE [oID] = {oID}";
+            dynamic obj = new ExpandoObject();
+            obj.cellphoneNumber = cellphoneNumber;
+            obj.oID = oID;
+            obj.uIDPetition = uIDPetition;
+
+            string JSON = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
+
+            string LOG = $"DECLARE @utID INT = (SELECT utID FROM Users WHERE [uID] = {uIDPetition})\n" +
+                         $"IF(@logDescription != '')\n" +
+                         $"INSERT INTO Logs([uID],utID,logAction,logDescription,logJSON)\n" +
+                         $"VALUES({uIDPetition},@utID,'CREAR','Se ha agregado el número de contacto', '{JSON}')\n";
+
+            string query = $"UPDATE Offices SET ContactNumber = '{cellphoneNumber}' WHERE [oID] = {oID}\n{LOG}";
             Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
             ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
             GenericResponseModel? genericResponseModel = new() { MessageStatus = "No se ha podido guardar el número de contacto, intente nuevamente por favor" };
@@ -176,11 +215,11 @@ namespace Repository
 
         public async Task<GenericResponseModel> GetDataSite(int? uID, string? IP = "")
         {
-            string query = GenericsQueries.GetDataSite(uID, IP);
-
+            string query = GenericsQueries.GetDataSite(uID,IP);
+            
             Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
             ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
-            GenericResponseModel? genericResponseModel = new() { Status = false };
+            GenericResponseModel? genericResponseModel = new() { Status = false};
 
             OfficeDataModel data = new();
             if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
@@ -192,7 +231,7 @@ namespace Repository
             }
             return genericResponseModel;
         }
-
+        
 
         public async Task<GenericResponseModel> SetDataSiteUrlImageLogin(int uID, string data)
         {
@@ -216,7 +255,7 @@ namespace Repository
             }
             return genericResponseModel;
         }
-
+        
 
         public async Task<GenericResponseModel> SetDataSiteUrlImageMenu(int uID, string data)
         {
@@ -240,7 +279,7 @@ namespace Repository
             }
             return genericResponseModel;
         }
-
+        
 
         public async Task<GenericResponseModel> SetDataSiteBackgroundColor(int uID, string data)
         {
@@ -264,7 +303,7 @@ namespace Repository
             }
             return genericResponseModel;
         }
-
+        
 
         public async Task<GenericResponseModel> SetDataSiteTopColor(int uID, string data)
         {
@@ -288,7 +327,7 @@ namespace Repository
             }
             return genericResponseModel;
         }
-
+        
 
         public async Task<GenericResponseModel> SetDataSiteSideColor(int uID, string data)
         {
@@ -314,5 +353,70 @@ namespace Repository
         }
 
 
+
+        public async Task<GenericResponseModel> Getlogs(int pageNumber = 1)
+        {
+            string query = GenericsQueries.Getlogs(pageNumber);
+            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
+            ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
+            List<LogsModel?> logsModel = new();
+            GenericResponseModel? genericResponseModel = new() { CodeStatus = "-1" };
+
+            if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
+            {
+                genericResponseModel.CodeStatus = "0";
+                genericResponseModel.Status = true;
+                genericResponseModel.RecordsQuantity = ItemResponseDB.DtObject.Rows.Count;
+                logsModel = Mapper.GetListFromDataTable<LogsModel?>(ItemResponseDB.DtObject);
+                //Total de registros menos las páginas pasadas menos la pagina actual
+                logsModel[0]!.RecordsLeft = logsModel[0]!.TotalRecords - ((pageNumber - 1) * 10) - genericResponseModel.RecordsQuantity;
+            }
+
+            genericResponseModel.ItemJson = logsModel;
+
+            return genericResponseModel;
+        }
+
+        public async Task<List<SelectListItem>> GetStates()
+        {
+            string query = $"SELECT [sID], sName FROM States";
+            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
+            ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
+            List<SelectListItem> Items = new();
+            if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
+            {
+                DataTable dt = ItemResponseDB.DtObject;
+                Items = Mapper.ToSelectList(dt, "sID", "sName");
+            }
+            return Items;
+        }
+
+        public async Task<List<SelectListItem>> GetCities(int sID)
+        {
+            string query = $"SELECT cID,cName FROM Cities WHERE [sID] = {sID}";
+            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
+            ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
+            List<SelectListItem> Items = new();
+            if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
+            {
+                DataTable dt = ItemResponseDB.DtObject;
+                Items = Mapper.ToSelectList(dt, "cID", "cName");
+            }
+            return Items;
+        }
+
+        public async Task<List<SelectListItem>> GetDocumentTypes()
+        {
+            string query = $"SELECT dtID, CONCAT(dtName,'- ',dtDescription) AS dtName FROM DocumentTypes";
+            Data dl = new(_configuration != null ? _configuration.SmileSoftConnection : String.Empty);
+            ResponseDB ItemResponseDB = await dl.ConsultSqlDataTableAsync(query);
+            List<SelectListItem> Items = new();
+            if (ItemResponseDB != null && ItemResponseDB.DtObject != null)
+            {
+                DataTable dt = ItemResponseDB.DtObject;
+                Items = Mapper.ToSelectList(dt, "dtID", "dtName");
+            }
+            return Items;
+        }
     }
 }
