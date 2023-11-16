@@ -13,12 +13,12 @@ namespace EpSmileSoft.Controllers
         private readonly IAppointmentsCore _appointmentsCore;
         public AppointmentsController(IAppointmentsCore appointmentsCore)
         {
-            _appointmentsCore = appointmentsCore;
+            _appointmentsCore = appointmentsCore;   
         }
 
         [HttpGet]
         [Route("v1/GetAppointmentsList")]
-        public async Task<GenericResponseModel> GetAppointmentsList(int? uID = 0, int? dID = 0, string? filter = "")
+        public async Task<GenericResponseModel> GetAppointmentsList(int? uID = 0, int? dID = 0,  string? filter = "")
         {
             return await _appointmentsCore.GetAppointmentsList(uID, dID, filter);
         }
@@ -32,11 +32,11 @@ namespace EpSmileSoft.Controllers
 
         [HttpGet]
         [Route("v1/UpdateAppointmentStatus")]
-        public async Task<GenericResponseModel> UpdateAppointmentStatus(int aID, int asID)
+        public async Task<GenericResponseModel> UpdateAppointmentStatus(int aID, int asID, int uIDPetition)
         {
-            return await _appointmentsCore.UpdateAppointmentStatus(aID, asID);
+            return await _appointmentsCore.UpdateAppointmentStatus(aID, asID, uIDPetition);
         }
-
+        
 
     }
 }

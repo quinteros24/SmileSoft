@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces.Core;
 using Domain.Interfaces.Repository;
+using Repository.Repos;
 
 namespace Domain.Core
 {
@@ -11,9 +12,9 @@ namespace Domain.Core
         {
             _usersRepository = usersRepository;
         }
-        public async Task<GenericResponseModel> ChangePassword(ChangePasswordModelRequest Item)
+        public async Task<GenericResponseModel> ChangePassword(ChangePasswordModelRequest Item, int uIDPetition)
         {
-            GenericResponseModel ItemGenericResponseModel = await _usersRepository.ChangePassword(Item);
+            GenericResponseModel ItemGenericResponseModel = await _usersRepository.ChangePassword(Item, uIDPetition);
             return ItemGenericResponseModel;
         }
 
@@ -23,20 +24,25 @@ namespace Domain.Core
             return ItemGenericResponseModel;
         }
 
-        public async Task<GenericResponseModel> CreateUpdateUsers(UsersModelRequest Item)
+        public async Task<GenericResponseModel> CreateUpdateUsers(UsersModelRequest Item, int uIDPetition)
         {
-            GenericResponseModel ItemGenericResponseModel = await _usersRepository.CreateUpdateUsers(Item);
+            GenericResponseModel ItemGenericResponseModel = await _usersRepository.CreateUpdateUsers(Item, uIDPetition);
             return ItemGenericResponseModel;
         }
 
-        public async Task<GenericResponseModel> SetUserStatus(int uID, int uStatus)
+        public async Task<GenericResponseModel> SetUserStatus(int uID, int uStatus, int uIDPetition)
         {
-            GenericResponseModel ItemGenericResponseModel = await _usersRepository.SetUserStatus(uID, uStatus);
+            GenericResponseModel ItemGenericResponseModel = await _usersRepository.SetUserStatus(uID, uStatus, uIDPetition);
             return ItemGenericResponseModel;
         }
         public async Task<GenericResponseModel> GetUserDetails(int? uID, string? uDocument)
         {
             GenericResponseModel ItemGenericResponseModel = await _usersRepository.GetUserDetails(uID, uDocument);
+            return ItemGenericResponseModel;
+        }
+        public async Task<GenericResponseModel> UnblockUser(int uID, int uIDPetition)
+        {
+            GenericResponseModel ItemGenericResponseModel = await _usersRepository.UnblockUser(uID, uIDPetition);
             return ItemGenericResponseModel;
         }
 

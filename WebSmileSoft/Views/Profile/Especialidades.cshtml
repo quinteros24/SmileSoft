@@ -10,18 +10,33 @@
     <div class="card-body">
         <form>
             <div class="row">
-                <div class="mb-3"><label class="form-label" for="AcademicLevel"><strong>Nivel Académico </strong></label><input class="form-control" type="text" id="AcademicLevel" placeholder="" name="TituloAcademico"></div>
+                <div class="mb-3">
+                    <label class="form-label" for="AcademicLevel"><strong>Nivel Académico </strong></label>
+                    @*   <input class="form-control" type="text" id="AcademicLevela" placeholder="" name="TituloAcademico"></div> *@
+                    <select class="form-control" type="text" id="AcademicLevel" placeholder="" name="academiclevel" disabled>
+                        <option value="0">Seleccionar Opción</option>
+                        <option value="1">Educación Preescolar</option>
+                        <option value="2">Educación Primaria</option>
+                        <option value="3">Educación Secundaria</option>
+                        <option value="4">Educación Técnica o Vocacional</option>
+                        <option value="5">Educación Superior (Universidad o Colegio)</option>
+                        <option value="6">Postgrado o Posgrado (Maestría o Doctorado)</option>
+                    </select>
+                </div>
             </div>
+            @* <div class="row">
+                <div class="mb-3"><label class="form-label" for="AcademicLevel"><strong>Nivel Académico </strong></label><input class="form-control" type="text" id="AcademicLevel" placeholder="" name="TituloAcademico"></div>
+            </div> *@
             <div class="row">
-                <div class="mb-3"><label class="form-label" for="TituloAcademico"><strong>Titulo Académico </strong></label><input class="form-control" type="text" id="TituloAcademico" placeholder="" name="TituloAcademico"></div>
+                <div class="mb-3"><label class="form-label" for="TituloAcademico"><strong>Titulo Académico </strong></label><input class="form-control" type="text" id="TituloAcademico" placeholder="" name="TituloAcademico" disabled></div>
                 @*  <div class="mb-3"><label class="form-label" for="Speciality"><strong>Especialidad </strong></label><input class="form-control" type="text" id="Speciality" placeholder="Speciality" name="Speciality"></div> *@
 
             </div> <div class="row">
-                <div class="mb-3"><label class="form-label" for="Universityname"><strong>Universidad </strong></label><input class="form-control" type="text" id="Universityname" placeholder="" name="University"></div>
+                <div class="mb-3"><label class="form-label" for="Universityname"><strong>Universidad </strong></label><input class="form-control" type="text" id="Universityname" placeholder="" name="University" disabled></div>
             </div>
             <div class="mb-3">
                 <label for="Speciality">Selecciona una Especialidad:</label>
-                <select id="Speciality" name="Especialidad" class="form-control" asp-items="@ViewBag.Specialities">
+                <select id="Speciality" name="Especialidad" class="form-control" asp-items="@ViewBag.Specialities" disabled>
                     <option value="0">Seleccionar Especialidad</option>
                     @*  @foreach (var especialidad in Model)
                     {
@@ -35,7 +50,7 @@
                     <label class="form-label" for="Tarjeta_Profesional">
                         <strong>Tarjeta Profesional </strong>
                     </label>
-                    <input class="form-control" type="text" id="Tarjeta_Profesional" placeholder="" name="Tarjeta_Profesional">
+                    <input class="form-control" type="text" id="Tarjeta_Profesional" placeholder="" name="Tarjeta_Profesional" disabled>
                 </div>
             </div>
         </form>

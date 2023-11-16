@@ -343,22 +343,30 @@
                 $("#Universityname").val(userData.dUniversityName);
             }
         });
-
-
+        //Validar que el input editCorreo sea un correo valido si no limpiar el input
+        $("#editCorreo").change(function () {
+            let correo = $("#editCorreo").val();
+            if (!validateEmail(correo)) {
+                Swal.fire({
+                    text: 'Por favor, ingrese un correo valido.',
+                    confirmButtonColor: '#008dc9'
+                });
+                $("#editCorreo").val("");
+            }
+        });
+        
         $(".update-profile-button").click(function () {
-
-
             let updatedUserData = {
                 //Datos de la Cuenta
                 uID: parseInt(sessionStorage.getItem('userID')),
                 utID: parseInt(sessionStorage.getItem('userRole')),
-                uLoginName: $("#username").val(),
+                uLoginName: $("#username").val().trim(),
                 uStatus: true,
                 uIsBlock: false,
                 oID: 1,
                 //Datos de Personales
-                uName: $("#user_names").val(),
-                uLastName: $("#user_lastnames").val(),
+                uName: $("#user_names").val().trim(),
+                uLastName: $("#user_lastnames").val().trim(),
                 //dtID: parseInt($("#id_type").val()),
                 //uDocument: $("#id_number").val(),
                 gID: parseInt($("#genderSelect").val()),
@@ -366,9 +374,9 @@
                 //uBirthDate: formattedBirthDate,
 
                 //Datos de Contacto
-                uEmailAddress: $("#editCorreo").val(),
-                uAddress: $("#address").val(),
-                uCellphone: $("#phone_number").val(),
+                uEmailAddress: $("#editCorreo").val().trim(),
+                uAddress: $("#address").val().trim(),
+                uCellphone: $("#phone_number").val().trim(),
 
                 //Datos Estudios
                 dAcademicLevel: null,
@@ -380,10 +388,10 @@
             }
             if (updatedUserData.utID == 2) {
                 updatedUserData.dAcademicLevel = $("#AcademicLevel").val();
-                updatedUserData.dDegree = $("#TituloAcademico").val();
+                updatedUserData.dDegree = $("#TituloAcademico").val().trim();
                 updatedUserData.spID = $("#Speciality").val();
-                updatedUserData.dProfessionalCard = $("#Tarjeta_Profesional").val();
-                updatedUserData.dUniversityName = $("#Universityname").val();
+                updatedUserData.dProfessionalCard = $("#Tarjeta_Profesional").val().trim();
+                updatedUserData.dUniversityName = $("#Universityname").val().trim();
             }
 
             const fechaNacimientoInput = document.getElementById('birthDatep');
@@ -444,12 +452,31 @@
                     contentType: "application/json",
                     dataType: "json",
                     success: function (response) {
-                        Swal.fire({
-                            title: 'Datos Actualizados',
-                            text: 'Los datos del usuario se actualizaron correctamente',
-                            icon: 'success',
-                            confirmButtonText: 'Aceptar'
-                        });
+                        if (response.codeStatus == 0) {
+                            Swal.fire({
+                                title: 'Datos Actualizados',
+                                text: 'Los datos del usuario se actualizaron correctamente',
+                                icon: 'success',
+                                confirmButtonText: 'Aceptar'
+                            });
+
+                            // Realiza otras acciones después de guardar los cambios si es necesario
+                        } else if (response.codeStatus == 547) {
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Debe Actualizar la Información Académica',
+                                icon: 'info',
+                                confirmButtonText: 'Aceptar'
+                            });
+                        }
+                        else {
+                            Swal.fire({
+                                title: 'Error',
+                                text: response.messageStatus,
+                                icon: 'info',
+                                confirmButtonText: 'Aceptar'
+                            });
+                        }
 
                         // Realiza otras acciones después de guardar los cambios si es necesario
                     },
@@ -505,7 +532,7 @@
                 $.ajax({
 
                     type: "POST",
-                    url: sessionStorage.urlEP + '/api/Users/v1/ChangePassword',
+                    url: sessionStorage.urlEP + `/api/Users/v1/ChangePassword?uIDPetition=${uIDPetition}`,
                     //header: {'Authorization': 'Bearer ' + sessionStorage.getItem('accessToken') },
                     data: JSON.stringify(data),
                     contentType: "application/json",
@@ -594,7 +621,7 @@
                     ////console.log("Desactivar 2" + userId);
                     // Realiza la solicitud AJAX para desactivar el usuario
                     $.ajax({
-                        url: sessionStorage.urlEP + '/api/Users/v1/SetUserStatus/',
+                        url: sessionStorage.urlEP + `/api/Users/v1/SetUserStatus/?uIDPetition=${uIDPetition}`,
                         type: 'GET',
                         data: { 'uID': uID, 'uStatus': uStatus },
                         contentType: "application/json",

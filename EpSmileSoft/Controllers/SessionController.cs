@@ -1,7 +1,9 @@
 ﻿using Domain.Entities;
-using Domain.Interfaces;
-using Domain.Interfaces.Core;
 using Microsoft.AspNetCore.Mvc;
+using Domain.Interfaces.Core;
+using Domain.Interfaces;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace EpSmileSoft.Controllers
 {
@@ -13,7 +15,7 @@ namespace EpSmileSoft.Controllers
     {
         private readonly ISessionCore _sessionCore;
         private readonly IGenericsCore _genericsCore;
-        public SessionController(ISessionCore sessionCore, IGenericsCore genericsCore)
+        public SessionController(ISessionCore sessionCore, IGenericsCore genericsCore) 
         {
             _sessionCore = sessionCore;
             _genericsCore = genericsCore;

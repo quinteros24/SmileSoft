@@ -1,4 +1,7 @@
-﻿using Domain.Interfaces.Repository;
+﻿using Domain.Entities;
+using Domain.Interfaces.Repository;
+using Repository.Queries;
+using System.Threading.Tasks;
 
 namespace Repository.Repos
 {

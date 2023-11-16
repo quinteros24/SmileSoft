@@ -1,7 +1,9 @@
-﻿using Domain.Entities;
+﻿using Domain.Core;
+using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Repository;
 
 namespace EpSmileSoft.Controllers
 {
@@ -15,7 +17,7 @@ namespace EpSmileSoft.Controllers
         {
             _genericsCore = genericsCore;
         }
-
+        
         [HttpPost]
         [Route("v1/GenerateJWToken")]
         public async Task<GenericResponseModel> GenerateJWToken([FromHeader] int uID, [FromBody] TokenRequestModel item)
@@ -48,27 +50,27 @@ namespace EpSmileSoft.Controllers
         }
 
         //Setea la configuración del json
-        [HttpGet]
+        [HttpPost]
         [Route("v1/StoreUsersClinicStoryFormat")]
-        public async Task<GenericResponseModel> StoreUsersClinicStoryFormat(int oID, string jsonObject)
+        public async Task<GenericResponseModel> StoreUsersClinicStoryFormat([FromQuery] int oID, [FromQuery] int uIDPetition, [FromBody] string jsonObject)
         {
-            return await _genericsCore.StoreUsersClinicStoryFormat(jsonObject, oID);
+            return await _genericsCore.StoreUsersClinicStoryFormat(jsonObject, oID, uIDPetition);
         }
 
         //Setea la historia clínica del paciente
-        [HttpGet]
+        [HttpPost]
         [Route("v1/SetUsersClinicStoryFormat")]
-        public async Task<GenericResponseModel> SetUsersClinicStoryFormat(string jsonObject, int aID)
+        public async Task<GenericResponseModel> SetUsersClinicStoryFormat([FromBody] string jsonObject, [FromQuery] int aID, [FromQuery] int uIDPetition)
         {
-            return await _genericsCore.SetUsersClinicStoryFormat(jsonObject, aID);
+            return await _genericsCore.SetUsersClinicStoryFormat(jsonObject, aID, uIDPetition);
         }
 
         //Setea el numero de contacto para las redes sociales
         [HttpPut]
         [Route("v1/SetContactNumber")]
-        public async Task<GenericResponseModel> SetContactNumber([FromBody] string cellphoneNumber, int oID)
+        public async Task<GenericResponseModel> SetContactNumber([FromBody] string cellphoneNumber, [FromQuery] int oID, [FromQuery] int uIDPetition)
         {
-            return await _genericsCore.SetContactNumber(cellphoneNumber, oID);
+            return await _genericsCore.SetContactNumber(cellphoneNumber, oID, uIDPetition);
         }
 
         //Obtiene el numero de contacto para las redes sociales
@@ -140,6 +142,34 @@ namespace EpSmileSoft.Controllers
         public async Task<GenericResponseModel> GetAppointmentsUserBlob(string uDocument)
         {
             return await _genericsCore.GetAppointmentsUserBlob(uDocument);
+        }
+
+        [HttpGet]
+        [Route("v1/Getlogs")]
+        public async Task<GenericResponseModel> Getlogs(int pageNumber = 1)
+        {
+            return await _genericsCore.Getlogs(pageNumber);
+        }
+
+        [HttpGet]
+        [Route("v1/GetStates")]
+        public async Task<List<SelectListItem>> GetStates()
+        {
+            return await _genericsCore.GetStates();
+        }
+
+        [HttpGet]
+        [Route("v1/GetCities")]
+        public async Task<List<SelectListItem>> GetCities(int sID)
+        {
+            return await _genericsCore.GetCities(sID);
+        }
+
+        [HttpGet]
+        [Route("v1/GetDocumentTypes")]
+        public async Task<List<SelectListItem>> GetDocumentTypes()
+        {
+            return await _genericsCore.GetDocumentTypes();
         }
     }
 }

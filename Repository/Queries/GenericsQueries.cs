@@ -1,10 +1,13 @@
-﻿namespace Repository.Queries
+﻿using Newtonsoft.Json.Linq;
+using System.Globalization;
+
+namespace Repository.Queries
 {
     public class GenericsQueries
     {
         public static string UpdateTokenSession(int uID, string token, string newToken)
         {
-            return $"DECLARE @uID AS INT = {uID}\n" +
+            return  $"DECLARE @uID AS INT = {uID}\n" +
                     $"DECLARE \n" +
                     $"    @token AS NVARCHAR(MAX) = '{token}',\n" +
                     $"    @newToken AS NVARCHAR(MAX) = '{newToken}',\n" +
@@ -25,7 +28,7 @@
 
         public static string GetUserClinicStory(int? uID, string? uDocument)
         {
-            return $"SELECT A.MedicalRecordObject\n" +
+            return  $"SELECT A.MedicalRecordObject\n" +
                     $"FROM Appointments AS A\n" +
                     $"LEFT JOIN Users AS U ON A.uID = U.uID\n" +
                     $"WHERE (A.uID = '{uID}' OR U.uDocument = '{uDocument}')\n" +
@@ -61,6 +64,26 @@
 
             query += WHERE;
             return query;
+        }
+
+        public static string Getlogs(int pageNumber = 1)
+        {
+            return $"SELECT\n" +
+                   $"    L.uID\n" +
+                   $"    ,U.uName\n" +
+                   $"    ,U.uLoginName\n" +
+                   $"    ,L.utID\n" +
+                   $"    ,L.logAction\n" +
+                   $"    ,L.logDescription\n" +
+                   $"    ,L.logJSON\n" +
+                   $"    ,L.logCreationDate\n" +
+                   $"    ,(SELECT COUNT(*) FROM Logs) AS TotalRecords\n" +
+                   $"FROM\n" +
+                   $"    Logs AS L INNER JOIN Users AS U ON L.uID = U.uID\n" +
+                   $"ORDER BY\n" +
+                   $"    L.logCreationDate DESC\n" +
+                   $"    ,U.uName ASC\n" +
+                   $"    OFFSET 10 *({pageNumber} - 1) ROWS FETCH NEXT 10 ROWS ONLY";
         }
     }
 }
