@@ -65,6 +65,8 @@ namespace Domain.Core
             try
             {
                 var validator = JsonConvert.DeserializeObject(jsonObject);
+                jsonObject = jsonObject.Substring(9);
+                jsonObject = jsonObject.Remove(jsonObject.Length - 1);
                 return await _genericsRepository.StoreUsersClinicStoryFormat(jsonObject, oID, uIDPetition);
             }
             catch
@@ -75,6 +77,8 @@ namespace Domain.Core
 
         public async Task<GenericResponseModel> SetUsersClinicStoryFormat(string jsonObject, int aID, int uIDPetition)
         {
+            jsonObject = jsonObject.Substring(9);
+            jsonObject = jsonObject.Remove(jsonObject.Length - 1);
             return await _genericsRepository.SetUsersClinicStoryFormat(jsonObject, aID, uIDPetition);
         }
 
