@@ -509,12 +509,13 @@
         }
 
         function saveHistoryForm(form, CitaID) {
+            form = '{"data": ' + JSON.stringify(form) + '}'; //NO EDITAR ESTA ESTRUCTURA A MENOS QUE SE VAYA A AJUSTAR EL SERVICIO
             $.ajax({
-                url: sessionStorage.urlEP + `/api/Generics/v1/SetUsersClinicStoryFormat?uIDPetition=${uIDPetition}`,
-                type: 'GET',
-                data: { 'aID': CitaID, 'jsonObject': JSON.stringify(form) },
+                url: sessionStorage.urlEP + `/api/Generics/v1/SetUsersClinicStoryFormat?uIDPetition=${uIDPetition}&aID=${CitaID}`,
+                type: 'POST',
                 contentType: "application/json",
                 dataType: 'json',
+                data: JSON.stringify(form),
                 success: function (response) {
                     //console.log(response)
                     if (response.codeStatus == 0) {

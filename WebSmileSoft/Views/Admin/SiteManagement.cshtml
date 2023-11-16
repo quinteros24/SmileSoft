@@ -911,6 +911,7 @@
         // Envío la petición con la estructura final
         $("#save-all-questions").click(() => {
             let uID = sessionStorage.getItem('userID');
+            finalStructure = '{"data": ' + JSON.stringify(finalStructure) + '}'; //NO EDITAR ESTA ESTRUCTURA A MENOS QUE SE VAYA A AJUSTAR EL SERVICIO
             $.ajax({
                 //url: sessionStorage.urlEP + `/api/Generics/v1/StoreUsersClinicStoryFormat?uIDPetition=${uIDPetition}&oID=1&jsonObject=` + JSON.stringify(finalStructure),
                 url: sessionStorage.urlEP + '/api/Generics/v1/StoreUsersClinicStoryFormat?oID=1&uIDPetition=' + uID,
