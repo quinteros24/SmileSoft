@@ -129,23 +129,23 @@
 
 @section Scripts{
     <script>
-        // function generarPDF() {
-        //     // Get the container element
-        //     const container = document.getElementById('imprimir');
-        //     $("#button-pdf").attr('hidden', 'true')
-        //     $("#imprimir").removeClass('shadow');
-        //     // Use html2canvas to convert the container to a canvas
-        //     html2canvas(container).then(canvas => {
-        //         // Create a new jsPDF instance
-        //         const pdf = new jsPDF();
-        //         // Add the canvas to the PDF
-        //         pdf.addImage(canvas.toDataURL('image/png', 0.5), 'PNG', 0, 0, pdf.internal.pageSize.getWidth(), 0);
-        //         // Save the PDF
-        //         pdf.save('historia-clinica.pdf');
-        //         $("#button-pdf").removeAttr('hidden', 'true');
-        //         $("#imprimir").addClass('shadow');
-        //     });
-        // };
+        function generarPDF() {
+            // Get the container element
+            const container = document.getElementById('imprimir');
+            $("#button-pdf").attr('hidden', 'true')
+            $("#imprimir").removeClass('shadow');
+            // Use html2canvas to convert the container to a canvas
+            html2canvas(container).then(canvas => {
+                // Create a new jsPDF instance
+                const pdf = new jsPDF();
+                // Add the canvas to the PDF
+                pdf.addImage(canvas.toDataURL('image/png', 0.5), 'PNG', 0, 0, pdf.internal.pageSize.getWidth(), 0);
+                // Save the PDF
+                pdf.save('historia-clinica.pdf');
+                $("#button-pdf").removeAttr('hidden', 'true');
+                $("#imprimir").addClass('shadow');
+            });
+        };
 
         function printDiv() {
             // var printContents = document.getElementById(divId).innerHTML;
