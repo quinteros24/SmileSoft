@@ -397,11 +397,12 @@
                     //const { itemJson, codeStatus } = response;
 
                     if (response.codeStatus == 0) {
-                        ////console.log("response.itemJson: ", response.itemJson);
+                        //console.log("response.itemJson: ", response.itemJson);
                         structure = [];
-                        structure = JSON.parse(response.itemJson);
-                        ////console.log('Structure Json respond: ', structure);
-                        ////console.log('Structure Json respond Long: ', structure.length);
+                        let structureObject = JSON.parse(response.itemJson);
+                        structure = structureObject.data;
+                        //console.log('Structure Json respond: ', structure);
+                        //console.log('Structure Json respond Long: ', structure.length);
                     } else if (response.codeStatus == -1) {
                         Swal.fire({
                             title: 'Error',
@@ -420,29 +421,6 @@
 
         getUsersClinicStoryFormat();
 
-
-        // $.ajax({
-        //     url: sessionStorage.urlEP + '/api/Generics/v1/GetUsersClinicStoryFormat?oID=1',
-        //     type: 'GET',
-        //     contentType: "application/json",
-        //     dataType: 'json',
-        //     async: false,
-        //     success: function ({ itemJson, codeStatus }) {
-        //         if (codeStatus == 0) {
-        //             structure2 = itemJson; //Test
-        //             //structure = JSON.parse(itemJson);
-        //             structure = JSON.parse(itemJson).filter(item => item !== null);
-        //         }
-        //         else if (response.codeStatus == -1) {
-        //             Swal.fire({
-        //                 title: 'Error',
-        //                 text: response.messageStatus,
-        //                 icon: 'error',
-        //                 confirmButtonText: 'Aceptar'
-        //             })
-        //         }
-        //     }
-        // })
 
         let finalStructure = [];
 
@@ -570,12 +548,6 @@
 
                     return container
                 },
-                //<div class="mb-3">
-                //< label for= "logoInput" class= "form-label" > Cambiar Logo Menu Principal < /label>
-                //< input class="form-control" type = "file" id = "logoInput" accept = ".jpg, .png" onchange = "fnConvertToBase64(this)" >
-                //<div class="mb-3 my-2" >
-                //<button class="btn btn-primary mx-4" type = "button" id = "updateLogo" onclick = "uploadImage(this, 2)" > Subir < /button><span class="text-primary">*Tamaño recomendado de 140x70px*</span >
-                //< /div>
                 'fileUpload': function (question) {
                     let inputField = $(`<input disabled placeholder="Imagen" type="file" id="${question.id}" accept=".jpg , .png" class="form-control"></input><br>`);
 
@@ -592,10 +564,7 @@
             form.empty();
 
             finalStructure = [];
-            // //console.log('Struct: ', struct);
-            // //console.log('Struct: ', struct.length);
-
-
+ 
             struct.forEach(function (question, index) {
                 ////console.log('Index:', index);
                 question.id = index + 1;
@@ -622,6 +591,9 @@
         function deleteQuestion(id) {
             $(`.question-${id}`).remove();
             structure = structure.filter((question) => question.id !== id);
+            //No permitir mas de dos preguntas de tipo fileUpload
+
+
             updateStructuredForm(structure);
         }
         // let finalStructure2 =     [
@@ -911,6 +883,7 @@
         // Envío la petición con la estructura final
         $("#save-all-questions").click(() => {
             let uID = sessionStorage.getItem('userID');
+            finalStructure = '{"data": ' + JSON.stringify(finalStructure) + '}'; //NO EDITAR ESTA ESTRUCTURA A MENOS QUE SE VAYA A AJUSTAR EL SERVICIO
             $.ajax({
                 //url: sessionStorage.urlEP + `/api/Generics/v1/StoreUsersClinicStoryFormat?uIDPetition=${uIDPetition}&oID=1&jsonObject=` + JSON.stringify(finalStructure),
                 url: sessionStorage.urlEP + '/api/Generics/v1/StoreUsersClinicStoryFormat?oID=1&uIDPetition=' + uID,
