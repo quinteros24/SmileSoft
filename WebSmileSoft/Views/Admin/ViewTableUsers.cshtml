@@ -839,6 +839,11 @@
                                         let container = $('<div class="mb-4"></div>').append(`<p class="text-primary m-0 fw-bold">${question.name}</p>`, options)
 
                                         return container
+                                    },
+                                    'fileUpload': function (question) {
+                                        let img = $(`<img src="${question.value}" class="img-fluid blobQuestion" id="${question.id}" title="blobTreatment">`);
+                                        let container = $('<div class="mb-4"></div>').append(`<p class="text-primary m-0 fw-bold">${question.name}</p>`)
+                                        return container
                                     }
                                 };
 
@@ -871,6 +876,10 @@
                                         questionContainer.append(inputElement);
                                     } else if (question.type === 'multiple') {
                                         let inputElement = questionTypes.multiple(question);
+                                        finalStructure.push(question);
+                                        questionContainer.append(inputElement);
+                                    } else if (question.tyoe === 'fileUpload') {
+                                        let inputElement = questionTypes.fileUpload(question);
                                         finalStructure.push(question);
                                         questionContainer.append(inputElement);
                                     } else {
@@ -1003,7 +1012,7 @@
                                     today = yyyy + '-' + mm + '-' + dd;
                                     document.getElementById("fecha").setAttribute("min", today);
                                     //hacer la validacion
-                                    if(date < today){
+                                    if (date < today) {
                                         Swal.showValidationMessage(`La fecha no puede ser menor a la de hoy`)
                                     }
                                     if (!date || !time || !doctor || !message) {
@@ -1337,10 +1346,10 @@
         function showTimePicker() {
             document.getElementById('timePicker').style.display = 'block';
         }
-        $('.datepicker').datepicker({
-            todayHighlight: true,
-            language: 'es'
-        });
+        // $('.datepicker').datepicker({
+        //     todayHighlight: true,
+        //     language: 'es'
+        // });
         function setSelectedTime() {
             const selectedHour = document.getElementById('hora').value;
             document.getElementById('hora').value = selectedHour + ':00';

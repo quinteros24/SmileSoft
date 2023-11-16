@@ -249,80 +249,128 @@
         let totalTratamientos = 0;
         //console.log("Apoinment Dates: ", appointmentDates);
         // Call the function to populate patient information
-        async function loadUserClinicalHistory(inputUserId) {
-            try {
-                getAppoinmentData(inputUserId);
-                // Fetch user details
-                const userResponse = await fetch(`${sessionStorage.urlEP}/api/Users/v1/GetUserDetails?uDocument=${inputUserId}`);
-                const userData = await userResponse.json();
-                //console.log('userData in async function: ', userData)
-                //console.log("Userdata Json:", userData.itemJson);
-                let buttonPDF = document.getElementById("pdfButton");
+        // async function loadUserClinicalHistory(inputUserId) {
+        //     try {
+        //         getAppoinmentData(inputUserId);
+        //         // Fetch user details
+        //         let userResponse = await fetch(`${sessionStorage.urlEP}/api/Users/v1/GetUserDetails?uDocument=${inputUserId}`);
+        //         let userData = await userResponse.json();
+        //         console.log('userData in async function: ', userData)
+        //         console.log("Userdata Json:", userData.itemJson);
+        //         let buttonPDF = document.getElementById("pdfButton");
 
-                if (userData.itemJson === null) {
-                    buttonPDF.style.display = "none";
-                    Swal.fire({
-                        title: 'Info',
-                        text: 'El usuario ingresado no existe, por favor ingrese un usuario válido.',
-                        icon: 'info',
-                        confirmButtonText: 'Aceptar',
-                    });
+        //         if (userData.itemJson === null) {
+        //             buttonPDF.style.display = "none";
+        //             Swal.fire({
+        //                 title: 'Info',
+        //                 text: 'El usuario ingresado no existe, por favor ingrese un usuario válido.',
+        //                 icon: 'info',
+        //                 confirmButtonText: 'Aceptar',
+        //             });
 
-                } else if (userData.itemJson.utID !== 3) {
-                    buttonPDF.style.display = "none";
-                    Swal.fire({
-                        title: 'Info',
-                        text: 'El usuario ingresado no es un paciente, por favor ingrese un usuario válido.',
-                        icon: 'info',
-                        confirmButtonText: 'Aceptar',
-                    });
-                } else {
-                    patientData = userData.itemJson;
-                    // Fetch clinical history
-                    const clinicalHistoryResponse = await fetch(`${sessionStorage.urlEP}/api/Generics/v1/GetUserClinicStory?uDocument=${inputUserId}`);
+        //         } else if (userData.itemJson.utID !== 3) {
+        //             buttonPDF.style.display = "none";
+        //             Swal.fire({
+        //                 title: 'Info',
+        //                 text: 'El usuario ingresado no es un paciente, por favor ingrese un usuario válido.',
+        //                 icon: 'info',
+        //                 confirmButtonText: 'Aceptar',
+        //             });
+        //         } else {
+        //             patientData = userData.itemJson;
+        //             // Fetch clinical history
+        //             const clinicalHistoryResponse = await fetch(`${sessionStorage.urlEP}/api/Generics/v1/GetUserClinicStory?uDocument=${inputUserId}`);
 
-                    const clinicalHistoryData = await clinicalHistoryResponse.json();
-                    totalTratamientos = clinicalHistoryData.itemJson.length;
-                    if (totalTratamientos === 0) {
-                        buttonPDF.style.display = "none";
-                        Swal.fire({
-                            title: 'Info',
-                            text: 'El usuario ingresado no tiene historial clínica.',
-                            icon: 'info',
-                            confirmButtonText: 'Aceptar',
-                            confirmButtonColor: '#008dc9',
+        //             const clinicalHistoryData = await clinicalHistoryResponse.json();
+        //             totalTratamientos = clinicalHistoryData.itemJson.length;
+        //             if (totalTratamientos === 0) {
+        //                 buttonPDF.style.display = "none";
+        //                 Swal.fire({
+        //                     title: 'Info',
+        //                     text: 'El usuario ingresado no tiene historial clínica.',
+        //                     icon: 'info',
+        //                     confirmButtonText: 'Aceptar',
+        //                     confirmButtonColor: '#008dc9',
 
-                        });
+        //                 });
 
-                    } else if (clinicalHistoryData.codeStatus == 0) {
-                        let allClinicalHistory = [];
-                        let form = $('#questionsContainerForm');
+        //             } else if (clinicalHistoryData.codeStatus == 0) {
+        //                 let allClinicalHistory = [];
+        //                 let form = $('#questionsContainerForm');
+        //                 form.empty();
+        //                 clinicalHistoryData.itemJson.forEach(item => {
+        //                     item = JSON.parse(item);
+        //                     allClinicalHistory = [...item];
+        //                     console.log('allClinicalHistory: ', allClinicalHistory);
+        //                     processClinicalHistoryData(allClinicalHistory);
+        //                     buttonPDF.style.display = "block";
+        //                     tratamientoID++;
+        //                 });
+        //                 // Process clinical history data and populate the form
+
+        //             } else {
+        //                 Swal.fire({
+        //                     title: 'Info',
+        //                     text: clinicalHistoryData.messageStatus,
+        //                     icon: 'info',
+        //                     confirmButtonText: 'Aceptar',
+        //                     confirmButtonColor: '#008dc9',
+
+        //                 });
+        //             }
+        //         }
+
+        //     } catch (error) {
+        //         mostrarMensajeError('Error al obtener detalles del usuario o historial clínico.');
+        //     }
+        // }
+        function loadUserClinicalHistory(inputUserId) {
+            $.ajax({
+                url: sessionStorage.urlEP + `/api/Generics/v1/GetUserClinicStory?uDocument=${inputUserId}`,
+                type: 'GET',
+                contentType: "application/json",
+                dataType: 'json',
+                async: false,
+                success: function (response) {
+                    totalTratamientos = response.itemJson.length;
+                    let buttonPDF = document.getElementById("pdfButton");
+                    let form = $('#questionsContainerForm');
+                    //debugger;
+                    if (response.codeStatus == 0) {
+                        getAppoinmentData(inputUserId);
                         form.empty();
-                        clinicalHistoryData.itemJson.forEach(item => {
-                            item = JSON.parse(item);
-                            allClinicalHistory = [...item];
-                            //console.log('allClinicalHistory: ', allClinicalHistory);
-                            processClinicalHistoryData(allClinicalHistory);
-                            buttonPDF.style.display = "block";
-                            tratamientoID++;
-                        });
-                        // Process clinical history data and populate the form
-
-                    } else {
+                        if (response.itemJson.length > 0) {
+                            $("#clinicalHistoryModal").modal("show");
+                            let citas = response.itemJson
+                            citas.map(item => {
+                                if (item) {
+                                    item = JSON.parse(item)
+                                    allClinicalHistory = [...item]
+                                    //debugger;
+                                    processClinicalHistoryData(allClinicalHistory);
+                                    tratamientoID++;
+                                }
+                            })
+                            console.log(allClinicalHistory)
+                        } else {
+                            Swal.fire({
+                                title: 'info',
+                                text: 'No se encontraron registros',
+                                icon: 'error',
+                                confirmButtonText: 'Aceptar'
+                            })
+                        }
+                    }
+                    else if (response.codeStatus == -1) {
                         Swal.fire({
-                            title: 'Info',
-                            text: clinicalHistoryData.messageStatus,
-                            icon: 'info',
-                            confirmButtonText: 'Aceptar',
-                            confirmButtonColor: '#008dc9',
-
-                        });
+                            title: 'Error',
+                            text: response.messageStatus,
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar'
+                        })
                     }
                 }
-
-            } catch (error) {
-                mostrarMensajeError('Error al obtener detalles del usuario o historial clínico.');
-            }
+            })
         }
 
         function processClinicalHistoryData(allClinicalHistory) {
@@ -439,18 +487,18 @@
             let container = $('<div class="container"></div>').append(row);
             container.append('<hr>');
 
-            if (tratamientoID < totalTratamientos) {
-                let tratamientoID2 = tratamientoID + 1;
-                let MostrarFechaCita = appointmentDates[tratamientoID2][3];
-                let MostrarDoctorCita = appointmentDates[tratamientoID2][1];
-                let MostrarMotivoCita = appointmentDates[tratamientoID2][2];
-                container.append(`<h6>#${tratamientoID2} | Fecha de la Consulta: ${MostrarFechaCita} | Doctor: ${MostrarDoctorCita} | Motivo: ${MostrarMotivoCita} </h6>`);
-                form.append(container);
-            }
-            else {
-                form.append(container);
-            }
-
+            // if (tratamientoID < totalTratamientos) {
+            //     let tratamientoID2 = tratamientoID + 1;
+            //     let MostrarFechaCita = appointmentDates[tratamientoID2][3];
+            //     let MostrarDoctorCita = appointmentDates[tratamientoID2][1];
+            //     let MostrarMotivoCita = appointmentDates[tratamientoID2][2];
+            //     container.append(`<h6>#${tratamientoID2} | Fecha de la Consulta: ${MostrarFechaCita} | Doctor: ${MostrarDoctorCita} | Motivo: ${MostrarMotivoCita} </h6>`);
+            //     form.append(container);
+            // }
+            // else {
+            //     form.append(container);
+            // }
+            form.append(container);
             populatePatientInfo();
         }
 

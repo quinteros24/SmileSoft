@@ -618,7 +618,7 @@
                             inputValidator: (value) => {
                                 return new Promise((resolve) => {
                                     if (value > 0) {
-                                        //console.log(value)
+                                        console.log(value)
 
                                         // alert(value);
                                         //resolve(value); // Si se selecciona un estado, resolvemos con ese valor
@@ -653,7 +653,9 @@
                 async: false,
                 success: function ({ itemJson, codeStatus }) {
                     if (codeStatus == 0) {
-                        structure = JSON.parse(itemJson);
+                        //structure = JSON.parse(itemJson);
+                        let structureObject = JSON.parse(itemJson);
+                        structure = structureObject.data;
                     }
                     else if (response.codeStatus == -1) {
                         Swal.fire({
@@ -799,15 +801,11 @@
         }
 
         function saveHistoryForm(form, citaID) {
+            form = '{"data": ' + JSON.stringify(form) + '}'; //NO EDITAR ESTA ESTRUCTURA A MENOS QUE SE VAYA A AJUSTAR EL SERVICIO
             $.ajax({
-                // url: sessionStorage.urlEP + `/api/Generics/v1/SetUsersClinicStoryFormat?uIDPetition=${uIDPetition}`,
-                // type: 'GET',
-                // data: { 'aID': citaID, 'jsonObject': JSON.stringify(form) },
-                // contentType: "application/json",
-                // dataType: 'json',
-                url: sessionStorage.urlEP + `/api/Generics/v1/SetUsersClinicStoryFormat?uIDPetition=${uIDPetition}`,
+                url: sessionStorage.urlEP + `/api/Generics/v1/SetUsersClinicStoryFormat?uIDPetition=${uIDPetition}&aID=${citaID}`,
                 type: 'POST',
-                data: { 'aID': citaID, 'jsonObject': JSON.stringify(form) },
+                data: JSON.stringify(form),
                 contentType: "application/json",
                 dataType: 'json',
                 success: function (response) {
