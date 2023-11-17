@@ -482,3 +482,25 @@ div.dataTables_wrapper div.dataTables_filter input {
             margin-top: 9px;
         }
 }
+
+#blobQuestion{
+    max-width: 200px;
+    max-height: 200px;
+}
+.blobQuestion{
+    max-width: 200px;
+    max-height: 200px;
+}
+
+@media print {
+    body {
+        visibility: hidden;
+    }
+
+    #imprimir {
+        visibility: visible;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}

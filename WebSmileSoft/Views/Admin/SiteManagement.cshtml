@@ -387,8 +387,9 @@
 
         let structure = [];
         function getUsersClinicStoryFormat() {
+            //debugger;
             $.ajax({
-                url: `${sessionStorage.urlEP}/api/Generics/v1/GetUsersClinicStoryFormat?oID=1`,
+                url: sessionStorage.urlEP + '/api/Generics/v1/GetUsersClinicStoryFormat?oID=1',
                 type: 'GET',
                 dataType: 'json',
                 contentType: 'application/json',
@@ -400,7 +401,7 @@
                         //console.log("response.itemJson: ", response.itemJson);
                         structure = [];
                         let structureObject = JSON.parse(response.itemJson);
-                        structure = structureObject.data;
+                        structure = structureObject;
                         //console.log('Structure Json respond: ', structure);
                         //console.log('Structure Json respond Long: ', structure.length);
                     } else if (response.codeStatus == -1) {
@@ -418,12 +419,37 @@
                 }
             });
         }
+        // function getUsersClinicStoryFormat() {
+        //     return new Promise((resolve, reject) => {
+        //         $.ajax({
+        //             url: sessionStorage.urlEP + '/api/Generics/v1/GetUsersClinicStoryFormat?oID=1',
+        //             type: 'GET',
+        //             dataType: 'json',
+        //             contentType: 'application/json',
+        //             success: function (response) {
+        //                 if (response.codeStatus == 0) {
+        //                     let structureObject = JSON.parse(response.itemJson);
+        //                     console.log('Structure Json respond: ', structureObject.data);
+        //                     let structure = structureObject.data;
+        //                     console.log('Structure Json respond Long: ', structure.length);
+        //                     resolve(structure);
+        //                 } else if (response.codeStatus == -1) {
+        //                     reject(response.messageStatus);
+        //                 }
+        //             },
+        //             error: function (error) {
+        //                 reject(error);
+        //             }
+        //         });
+        //     });
+        // }
 
         getUsersClinicStoryFormat();
 
 
         let finalStructure = [];
-
+        console.log('Structure Json respond: ', structure);
+        console.log('Structure Json respond Long: ', structure.length);
         structure.length && drawQuestions(true)
 
         $("#question-type").change(function () {
@@ -438,13 +464,13 @@
 
         $("#add-option").click(function () {
             $("#options-container").append(`
-                                                                                                                                                                                                                                               <div class="input-group mb-2">
-                                                                                                                                                                                                                                               <input type="text" class="form-control option-input mx-1" placeholder="Nombre de la opción">
-                                                                                                                                                                                                                                               <div class="input-group-append">
-                                                                                                                                                                                                                                                   <button class="btn btn-danger remove-option" type="button">-</button>
-                                                                                                                                                                                                                                               </div>
-                                                                                                                                                                                                                                               </div>
-                                                                                                                                                                                                                                            `);
+                        <div class="input-group mb-2">
+                        <input type="text" class="form-control option-input mx-1" placeholder="Nombre de la opción">
+                        <div class="input-group-append">
+                            <button class="btn btn-danger remove-option" type="button">-</button>
+                        </div>
+                        </div>
+                     `);
         });
         $(document).on("click", ".remove-option", function () {
             $(this).closest(".input-group").remove();
@@ -564,22 +590,33 @@
             form.empty();
 
             finalStructure = [];
- 
+
             struct.forEach(function (question, index) {
                 ////console.log('Index:', index);
                 question.id = index + 1;
                 let questionContainer = $(`<div class="question-${question.id}"></div>`);
                 ////console.log('Index Question: ', question.id);
                 if (question.type in questionTypes) {
-                    let inputElement = questionTypes[question.type](question);
-                    finalStructure.push(question);
+                    //si el tipo de pregunta es fileUpload no incluir el boton de eliminar
+                    if (question.type == 'fileUpload') {
+                        let inputElement = questionTypes[question.type](question);
+                        finalStructure.push(question);
 
-                    questionContainer.append(inputElement);
+                        questionContainer.append(inputElement);
 
-                    // Insert the "Eliminar" button below the input element
-                    questionContainer.append(`<div class="d-flex justify-content-end"><button type="button" class="btn btn-danger btn-sm mb-2" onclick="deleteQuestion(${question.id})">Eliminar</button></div><hr/>`);
+                        form.append(questionContainer);
+                        return;
+                    } else {
+                        let inputElement = questionTypes[question.type](question);
+                        finalStructure.push(question);
 
-                    form.append(questionContainer);
+                        questionContainer.append(inputElement);
+
+                        // Insert the "Eliminar" button below the input element
+                        questionContainer.append(`<div class="d-flex justify-content-end"><button type="button" class="btn btn-danger btn-sm mb-2" onclick="deleteQuestion(${question.id})">Eliminar</button></div><hr/>`);
+
+                        form.append(questionContainer);
+                    }
                 } else {
                     console.error('Tipo de pregunta no válido: ' + question.type);
                 }
@@ -1005,10 +1042,10 @@
                         info: 'Mostrando pagina ' + cpage + ' de ' + paginas + ' ',
                     },
                 });
-                
+
             }
 
-            
+
 
 
             $(document).ready(() => {

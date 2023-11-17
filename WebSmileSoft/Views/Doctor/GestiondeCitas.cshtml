@@ -23,6 +23,68 @@
         </div> *@
 
     </div>
+    <hr />
+    <!-- Formulario para Agendar Cita -->
+    <div class="card mt-4">
+        <div class="card-header text-bg-primary fs-6">
+            Agendar Cita
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="col-md-3 mb-2">
+                    <div class="form-group">
+                        <label for="userDocument">Documento del Usuario</label>
+                        <input type="text" class="form-control" id="userDocument" name="userDocument" placeholder="Documento del Paciente" required>
+                        <button type="button" class="btn btn-primary mt-2" onclick="fngetUserData();">Buscar</button>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="fecha">Fecha</label>
+                            <input type="date" class="form-control datepicker" id="fecha" name="fecha" placeholder="YYYY-MM-DD" required>
+                        </div>
+                    </div><div class="col-md-3">
+                        <div class="form-group">
+                            <label for="hora">Hora</label>
+                            <input type="time" class="form-control timePicker" id="cHora" name="Hora"
+                                   min="08:00" max="20:00" step="3600" required>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <!-- Selector Doctores Disponibles -->
+                        <div class="form-group">
+                            <label for="selEspecialidad">Especialidad</label>
+                            <select class="form-control" id="selEspecialidad" name="RequesanAppointment" onchange="fncheckDoctor(this)" required>
+                                <option value="0">Seleccionar Especialidad</option>
+                                <option value="1">Odontología general</option>
+                                <option value="2">Endodoncia</option>
+                                <option value="3">Cirugía oral</option>
+                                <option value="4">Ortodoncia</option>
+                                <option value="5">Odontopediatría</option>
+                                <option value="6">Periodoncia</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="cDoctor" class="form-label mb-0">Doctor</label>
+                            <select class="form-control" id="cDoctor" name="RequesanAppointment" disabled>
+                                <option value="0">Seleccionar Doctor</option>
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <label for="mensaje" class="form-label">Motivo:</label>
+                    <textarea class="form-control" id="mensaje" name="mensaje" rows="2"></textarea>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="SolicitarCitaPaciente();">Agendar Cita</button>
+            </form>
+        </div>
+    </div>
 </div>
 
 
@@ -55,7 +117,254 @@
 
 
 @section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#loadingScreen").show();
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById("fecha").setAttribute("min", today);
+            $('.datepicker').datepicker({
+                todayHighlight: true,
+                language: 'es'
+            });
+        });
+        function fncheckDoctor(e) { var t = e.value; 0 == t ? document.getElementById("cDoctor").disabled = !0 : (fngetDoctors(t), document.getElementById("cDoctor").disabled = !1) } function obtenerFechaActualSinUTC(e) { return new Date(e.getTime() - 6e4 * e.getTimezoneOffset()).toISOString().split("T")[0] } $("#fecha").on("change", (function () { validarFecha() }));
+        // const fechaActualSinUTC = obtenerFechaActualSinUTC();
+        ////console.log(fechaActualSinUTC);
+        function validarFecha() { const e = obtenerFechaActualSinUTC(new Date); console.log(e); const o = obtenerFechaActualSinUTC(new Date(document.getElementById("fecha").value + "T05:00:00Z")); console.log(o), o < e && (Swal.fire({ icon: "info", title: "Oops...", text: "La fecha no puede ser menor que hoy.", confirmButtonColor: "#008dc9" }), document.getElementById("fecha").value = "") }
+        $('#cHora').on('focusout', function () {
+            let value = $(this).val();
+            value = value.substring(0, value.indexOf(':'));
+            this.value = value + ':00';
+        });
 
+        function validarHora() {
+            const horaIngresada = document.getElementById("cHora").value;
+            const horaActual = new Date().getUTCHours();
+            const fechaHoraActualMasDosHoras = new Date();
+            fechaHoraActualMasDosHoras.setUTCHours(fechaHoraActualMasDosHoras.getUTCHours() + 2);
+
+            if (horaIngresada < horaActual || horaIngresada < "08:00" || horaIngresada > "16:00" || horaIngresada > fechaHoraActualMasDosHoras.getUTCHours()) {
+                //alert("La hora debe estar entre las 08:00 y las 17:00 y no puede ser menor que 2 horas desde ahora.");
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Oops...',
+                    text: 'La hora debe estar entre las 08:00 AM y las 4:00 PM y puede ser maximo 2 horas antes de la cita.',
+                    confirmButtonColor: '#008dc9'
+                })
+                document.getElementById("cHora").value = ""; // Limpia el campo de hora
+            }
+        }
+
+        $("#cHora").on("change", function () {
+            validarHora();
+        });
+
+
+        function fngetDoctors(spID) {
+            $.ajax({
+                type: 'GET',
+                url: '@ViewBag.urlEndPoint' + '/api/Generics/v1/GetDoctors?spID=' + spID, // Ruta para crear o actualizar usuarios
+                contentType: 'application/json',
+                success: function (response) {
+                    var select = document.getElementById("cDoctor");
+                    select.options.length = 0;
+                    var option = document.createElement("option");
+                    option.value = 0;
+                    option.text = "Seleccionar Doctor";
+                    select.appendChild(option);
+                    for (var i = 0; i < response.length; i++) {
+                        var option = document.createElement("option");
+                        option.value = response[i].value;
+                        option.text = response[i].text;
+                        select.appendChild(option);
+                    }
+
+                },
+                error: function (error) {
+                    // Manejar errores de la solicitud AJAX
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Se presento un error al obtener la información',
+                        confirmButtonColor: '#008dc9'
+                    })
+                }
+            });
+        }
+
+        function showTimePicker() {
+            document.getElementById('timePicker').style.display = 'block';
+        }
+
+        function setSelectedTime() {
+            const selectedHour = document.getElementById('hour').value;
+            document.getElementById('cHora').value = selectedHour + ':00';
+            document.getElementById('timePicker').style.display = 'none';
+        }
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+
+        });
+
+        let userData = [];
+
+        function fngetUserData() {
+            $.ajax({
+                type: 'GET',
+                url: '@ViewBag.urlEndPoint' + '/api/Users/v1/GetUserDetails?uDocument=' + document.getElementById("userDocument").value.trim(), // Ruta para crear o actualizar usuarios
+                contentType: 'application/json',
+                success: function (response) {
+                    //console.log(response);
+                    if (response.codeStatus === '0') {
+                        // Registro exitoso, puedes redirigir al usuario o mostrar un mensaje de éxito
+                        //alert('Usuario registrado con éxito.');
+                        if (response.itemJson == null) {
+                            Swal.fire({
+                                icon: 'info',
+                                title: 'Oops...',
+                                text: 'El usuario no existe.',
+                                confirmButtonColor: '#008dc9'
+                            })
+                            return;
+                        } else {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Usuario encontrado ',
+                                text: response.itemJson.uName,
+                                confirmButtonColor: '#008dc9',
+                                allowOutsideClick: false,
+                                allowEscapeKey: false,
+                            });
+                            console.log("userdata servicio: ", response.itemJson);
+                            userData = response.itemJson;
+                        }
+                    }
+                    else if (response.codeStatus === '-1') {
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'Oops...',
+                            text: response.messageStatus,
+                            confirmButtonColor: '#008dc9'
+                        })
+                    }
+                }
+            });
+        }
+
+        function SolicitarCitaPaciente() {
+
+            //Datos de la Cita
+            let date = document.getElementById("fecha").value.trim();
+            let time = document.getElementById("cHora").value.trim() + ':00';
+            let doctor = document.getElementById("cDoctor").value.trim();
+            let message = document.getElementById("mensaje").value.trim();
+            let userDocument = document.getElementById("userDocument").value.trim();
+            //fngetUserData();
+            console.log("userdata: ", userData);
+            let data = {
+
+                oID: 1,
+                uID: userData.uID,
+                utID: 3,
+                uName: userData.uName,
+                ulastName: userData.ulastName,
+                uDocument: userData.uDocument,
+                dtID: userData.dtID,
+                uBirthDate: userData.uBirthDate,
+                gID: userData.gID,
+                //Datos de Contacto
+                uEmailAddress: userData.uEmailAddress,
+                uCellphone: userData.uCellphone,
+
+
+                //Datos de la Cita
+                asID: 0,
+                aID: 0,
+                aDate: date,
+                aTime: time,
+                dID: parseInt(doctor),
+                aDescription: message
+
+            };
+            // si el campo userDocument esta vacio mostrar una alerta
+            if (userDocument === "") {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Oops...',
+                    text: 'Por favor ingrese el documento del paciente.',
+                    confirmButtonColor: '#008dc9'
+                })
+                return;
+            } else if (data.uID === "") {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Oops...',
+                    text: 'No se a encontrado al usuario.',
+                    confirmButtonColor: '#008dc9'
+                })
+                return;
+            } else if (data.aDate == "" || data.aTime == "" || data.dID == 0 || data.aDescription == "") {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Oops...',
+                    text: 'Por favor ingrese todos los datos.',
+                    confirmButtonColor: '#008dc9'
+                })
+                return;
+            } else if (data.dID == 0) {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Oops...',
+                    text: 'Por favor seleccione una Especialidad y un doctor.',
+                    confirmButtonColor: '#008dc9'
+                })
+                return;
+            } else {
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@ViewBag.urlEndPoint' + '/api/Appointments/v1/SetAppointment', // Ruta para crear o actualizar usuarios
+                    data: JSON.stringify(data),
+                    contentType: 'application/json',
+                    success: function (response) {
+                        //console.log(response.OutputCodeError);
+                        if (response.codeStatus === '0') {
+                            // Registro exitoso, puedes redirigir al usuario o mostrar un mensaje de éxito
+                            //alert('Usuario registrado con éxito.');
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Cita Solicitada con éxito',
+                                confirmButtonColor: '#008dc9',
+                                allowOutsideClick: false,
+                                allowEscapeKey: false,
+                            })
+                            location.reload();
+                        } else if (response.codeStatus === '-1') {
+                            Swal.fire({
+                                icon: 'info',
+                                title: 'Oops...',
+                                text: response.messageStatus,
+                                confirmButtonColor: '#008dc9'
+                            })
+                        }
+                    },
+                    error: function (error) {
+                        // Manejar errores de la solicitud AJAX
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Se presento un error al guardar la información',
+                            confirmButtonColor: '#008dc9'
+                        })
+                    }
+                });
+            }
+        }
+
+
+
+
+    </script>
     <script>
         let userRole = sessionStorage.getItem('userRole');
         if (userRole !== '2' && userRole !== '1') {
@@ -320,6 +629,7 @@
                     });
 
                 });
+
             },
             error: function (error) {
                 //console.log('Error al obtener los detalles del usuario.');
