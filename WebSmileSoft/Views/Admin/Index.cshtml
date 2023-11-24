@@ -618,7 +618,7 @@
                             inputValidator: (value) => {
                                 return new Promise((resolve) => {
                                     if (value > 0) {
-                                        //console.log(value)
+                                        console.log(value)
 
                                         // alert(value);
                                         //resolve(value); // Si se selecciona un estado, resolvemos con ese valor
@@ -653,7 +653,9 @@
                 async: false,
                 success: function ({ itemJson, codeStatus }) {
                     if (codeStatus == 0) {
-                        structure = JSON.parse(itemJson);
+                        //structure = JSON.parse(itemJson);
+                        let structureObject = JSON.parse(itemJson);
+                        structure = structureObject;
                     }
                     else if (response.codeStatus == -1) {
                         Swal.fire({
@@ -765,11 +767,11 @@
                     console.error('Tipo de pregunta no válido: ' + question.type);
                 }
             });
-            form.css({
-                'display': 'grid',
-                'grid-template-columns': '1fr 1fr',
-                'grid-gap': '10px'
-            });
+            // form.css({
+            //     'display': 'grid',
+            //     'grid-template-columns': '1fr 1fr',
+            //     'grid-gap': '10px'
+            // });
             Swal.fire({
                 title: 'Agregar historia clínica',
                 confirmButtonText: 'Confirmar',
@@ -835,8 +837,8 @@
                 },
                 error: function (response) {
                     Swal.fire({
-                        title: response,
-                        text: 'Ocurrio un error intente nuevamente.',
+                        title: 'Ocurrio un error intente nuevamente',
+                        text: 'Revisa los campos del Tratamiento',
                         icon: 'info',
                         confirmButtonText: 'Aceptar',
                         confirmButtonColor: '#008dc9'

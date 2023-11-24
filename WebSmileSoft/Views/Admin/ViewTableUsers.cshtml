@@ -171,7 +171,7 @@
                             ];
                             dataSet.push(rowData);
                         });
-
+                        let selectRol = 0;
                         // Inicializa o actualiza el DataTable con los datos procesados
                         table = $('#example').DataTable({
                             columns: [
@@ -197,9 +197,16 @@
                                     orderable: false, // Para desactivar la ordenación en esta columna
                                     data: null, // Usaremos la columna "Acciones" solo para botones
                                     defaultContent: '<div class="row" style="width: 9rem;"> <button class="btn btn-primary btn-sm  col-12 col-sm-6 col-md-3" id="btnEditar" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" title="Editar Usuario"><i class="fas fa-edit"></i></button> ' +
-                                        '<button class="btn btn-danger btn-sm password-button  col-12 col-sm-6 col-md-3" id="btnPassword" data-toggle="modal" data-target="#passwordModal" data-toggle="tooltip" title="Cambiar contraseña" > <i class="fa-solid fa-lock"></i></button > ' +
+                                        '<button class="btn btn-danger btn-sm password-button col-12 col-sm-6 col-md-3" id="btnPassword" data-toggle="modal" data-target="#passwordModal" data-toggle="tooltip" title="Cambiar contraseña" > <i class="fa-solid fa-lock"></i></button > ' +
                                         '<button class="btn btn-primary btn-sm  col-12 col-sm-6 col-md-3" id="btnClinicalHistory" data-toggle="modal" data-target="#clinicalHistoryModal" data-toggle="tooltip" title="Ver Tratamientos del Paciente" > <i class="fa-solid fa-clipboard"></i></button >' +
-                                        '<button class="btn btn-success btn-sm deactivate-button  col-12 col-sm-6 col-md-3" id="btnDesactivar" data-toggle="modal" data-target="#deactivateModal" data-toggle="tooltip" title="Desactivar o Activar Usuario" > <i class="fas fa-ban"> </i></button > </div>'
+                                        '<button class="btn btn-success btn-sm deactivate-button  col-12 col-sm-6 col-md-3" id="btnDesactivar" data-toggle="modal" data-target="#deactivateModal" data-toggle="tooltip" title="Desactivar o Activar Usuario" > <i class="fas fa-ban"> </i></button ></div>'
+                                },
+                                {
+                                    title: 'Citas',
+                                    orderable: false, // Para desactivar la ordenación en esta columna
+                                    visible: false,
+                                    data: null, // Usaremos la columna "Acciones" solo para botones
+                                    defaultContent: '<div class="row text-center" style="width: 9rem;"><button class="btn btn-warning btn-sm Agendar-Cita  col-12 col-sm-6 col-md-3" id="Agendar-Cita" data-toggle="modal" data-target="#deactivateModal" data-toggle="tooltip" title="Agendar Cita" > <i class="fa-regular fa-calendar-days"></i></button > </div> '
                                 }
                             ],
                             //responsive: true,
@@ -258,6 +265,15 @@
                                 }
                                 if (rol != 'Pacientes') {
                                     $(row).find('#btnClinicalHistory').hide();
+                                    //ocultar boton Agendar-Cita
+                                    $(row).find('#Agendar-Cita').hide();
+                                    //Ocultar la columna de Citas
+                                    selectRol = 0;
+                                }
+                                if (rol == 'Pacientes') {
+                                    //mostrar la columna de Citas
+                                    selectRol = 3;
+
                                 }
                                 if (BlockStatus === 'Desbloqueado') {
                                     //Ocular el boton de desbloquear
@@ -267,10 +283,15 @@
                                     //Cambiar color del boton a primary
                                     $(row).find('#btnActivar').removeClass('btn-primary').addClass('btn-success');
                                 }
+
                             }
                         });
                         Swal.close();
-
+                        // if (selectRol == 3) {
+                        //     table.column(13).visible(true);
+                        // } else {
+                        //     table.column(13).visible(false);
+                        // }
                         //Editar Usuario --> Funcionando a Medias, No cambia Usuarios a Doctores
                         table.column(12).nodes().to$().find('#btnEditar').click(function () {
                             // Maneja la acción del botón aqui
@@ -694,7 +715,8 @@
                                                         title: 'Contraseña Actualizada',
                                                         text: 'La contraseña del usuario ' + userNameEdit + ' se actualizó correctamente',
                                                         icon: 'success',
-                                                        confirmButtonText: 'Aceptar'
+                                                        confirmButtonText: 'Aceptar',
+                                                        confirmButtonColor: '#008dc9'
                                                     }).then((result) => {
                                                         if (result.isConfirmed) {
                                                             verusers(uRol);
@@ -817,6 +839,11 @@
                                         let container = $('<div class="mb-4"></div>').append(`<p class="text-primary m-0 fw-bold">${question.name}</p>`, options)
 
                                         return container
+                                    },
+                                    'fileUpload': function (question) {
+                                        let img = $(`<img src="${question.value}" class="img-fluid blobQuestion" id="${question.id}" title="blobTreatment">`);
+                                        let container = $('<div class="mb-4"></div>').append(`<p class="text-primary m-0 fw-bold">${question.name}</p>`)
+                                        return container
                                     }
                                 };
 
@@ -849,6 +876,10 @@
                                         questionContainer.append(inputElement);
                                     } else if (question.type === 'multiple') {
                                         let inputElement = questionTypes.multiple(question);
+                                        finalStructure.push(question);
+                                        questionContainer.append(inputElement);
+                                    } else if (question.tyoe === 'fileUpload') {
+                                        let inputElement = questionTypes.fileUpload(question);
                                         finalStructure.push(question);
                                         questionContainer.append(inputElement);
                                     } else {
@@ -894,7 +925,9 @@
                                     title: 'Usuario Desbloqueado',
                                     text: 'El usuario ' + data[3] + ' se desbloqueó correctamente',
                                     icon: 'success',
-                                    confirmButtonText: 'Aceptar'
+                                    confirmButtonText: 'Aceptar',
+                                    confirmButtonColor: '#008dc9'
+
                                 }).then((result) => {
                                     if (result.isConfirmed) {
                                         verusers(userRol);
@@ -912,7 +945,90 @@
                             });
 
                         });
+                        //modal cuando den clic en el boton para agendar citas
+                        table.column(13).nodes().to$().find('#Agendar-Cita').click(function () {
+                            let data = table.row($(this).parents('tr')).data();
+                            let documento = data[9];
+                            let loginName = data[3];
+                            console.log('Documento ' + documento);
 
+                            //     //Datos de la Cita
+                            //     asID: 0,
+                            //     aID: 0,
+                            //     aDate: date,
+                            //     aTime: time,
+                            //     dID: parseInt(doctor),
+                            //     aDescription: message
+                            //Hacer un Swal para obtener los datos de la cita
+                            Swal.fire({
+                                title: 'Agendar Cita a: ' + loginName,
+                                html:
+                                    '<div class="row">' +
+                                    '<div class="col-6">' +
+                                    '<label for="fecha">Fecha</label>' +
+                                    '<input type="date" id="fecha" class="form-control datepicker" placeholder="YYYY-MM-DD" required>' +
+                                    '</div>' +
+                                    '<div class="col-6">' +
+                                    '<label for="hora">Hora</label>' +
+                                    '<input type="time" id="hora" class="form-control" min="08:00" max="20:00" step="3600" required>' +
+                                    '</div>' +
+                                    '<div class="col-12">' +
+                                    '<label for="selEspecialidad">Especialidad</label>' +
+                                    '<select id="selEspecialidad" class="form-control" required>' +
+                                    '<option value="0">Seleccionar Especialidad</option>' +
+                                    '<option value="1">Odontología general</option>' +
+                                    '<option value="2">Endodoncia</option>' +
+                                    '<option value="3">Cirugía oral</option>' +
+                                    '<option value="4">Ortodoncia</option>' +
+                                    '<option value="5">Odontopediatría</option>' +
+                                    '<option value="6">Periodoncia</option>' +
+                                    '</select>' +
+                                    '</div>' +
+                                    '<div class="col-12">' +
+                                    '<label for="motivo">Motivo</label>' +
+                                    '<textarea id="motivo" class="form-control" required></textarea>' +
+                                    '</div>' +
+                                    '</div>',
+                                confirmButtonText: 'Agendar',
+                                confirmButtonColor: '#008dc9',
+                                focusConfirm: false,
+                                width: '50%',
+                                preConfirm: () => {
+                                    const date = Swal.getPopup().querySelector('#fecha').value
+                                    const time = Swal.getPopup().querySelector('#hora').value
+                                    const doctor = Swal.getPopup().querySelector('#selEspecialidad').value
+                                    const message = Swal.getPopup().querySelector('#motivo').value
+                                    // no permitir que el selector #fecha puedan elegir una fecha menor a la de hoy
+                                    let today = new Date();
+                                    let dd = today.getDate();
+                                    let mm = today.getMonth() + 1; //January is 0!
+                                    let yyyy = today.getFullYear();
+                                    if (dd < 10) {
+                                        dd = '0' + dd;
+                                    }
+                                    if (mm < 10) {
+                                        mm = '0' + mm;
+                                    }
+                                    today = yyyy + '-' + mm + '-' + dd;
+                                    document.getElementById("fecha").setAttribute("min", today);
+                                    //hacer la validacion
+                                    if (date < today) {
+                                        Swal.showValidationMessage(`La fecha no puede ser menor a la de hoy`)
+                                    }
+                                    if (!date || !time || !doctor || !message) {
+                                        Swal.showValidationMessage(`Por favor, ingrese todos los campos`)
+                                    }
+                                    return { date: date, time: time, doctor: doctor, message: message }
+                                }
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    Swal.fire({
+                                        title: `${result.value.date} ${result.value.time} ${result.value.doctor} ${result.value.message}`
+                                    })
+                                }
+                            })
+
+                        });
                     }
                 });
             } else {
@@ -1161,6 +1277,84 @@
             $('[data-toggle="tooltip"]').tooltip();
         });
 
+        //Validar Inputs Cita
+        function fncheckDoctor(e) { var t = e.value; 0 == t ? document.getElementById("Doctor").disabled = !0 : (fngetDoctors(t), document.getElementById("Doctor").disabled = !1) } function obtenerFechaActualSinUTC(e) { return new Date(e.getTime() - 6e4 * e.getTimezoneOffset()).toISOString().split("T")[0] } $("#fecha").on("change", (function () { validarFecha() }));
+        // const fechaActualSinUTC = obtenerFechaActualSinUTC();
+        ////console.log(fechaActualSinUTC);
+        function validarFecha() { const e = obtenerFechaActualSinUTC(new Date); console.log(e); const o = obtenerFechaActualSinUTC(new Date(document.getElementById("fecha").value + "T05:00:00Z")); console.log(o), o < e && (Swal.fire({ icon: "info", title: "Oops...", text: "La fecha no puede ser menor que hoy.", confirmButtonColor: "#008dc9" }), document.getElementById("fecha").value = "") }
+        $('#hora').on('focusout', function () {
+            let value = $(this).val();
+            value = value.substring(0, value.indexOf(':'));
+            this.value = value + ':00';
+        });
+
+        function validarHora() {
+            const horaIngresada = document.getElementById("hora").value;
+            const horaActual = new Date().getUTCHours();
+            const fechaHoraActualMasDosHoras = new Date();
+            fechaHoraActualMasDosHoras.setUTCHours(fechaHoraActualMasDosHoras.getUTCHours() + 2);
+
+            if (horaIngresada < horaActual || horaIngresada < "08:00" || horaIngresada > "16:00" || horaIngresada > fechaHoraActualMasDosHoras.getUTCHours()) {
+                //alert("La hora debe estar entre las 08:00 y las 17:00 y no puede ser menor que 2 horas desde ahora.");
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Oops...',
+                    text: 'La hora debe estar entre las 08:00 AM y las 4:00 PM y puede ser maximo 2 horas antes de la cita.',
+                    confirmButtonColor: '#008dc9'
+                })
+                document.getElementById("cHora").value = ""; // Limpia el campo de hora
+            }
+        }
+
+        $("#hora").on("change", function () {
+            validarHora();
+        });
+
+
+        function fngetDoctors(spID) {
+            $.ajax({
+                type: 'GET',
+                url: '@ViewBag.urlEndPoint' + '/api/Generics/v1/GetDoctors?spID=' + spID, // Ruta para crear o actualizar usuarios
+                contentType: 'application/json',
+                success: function (response) {
+                    var select = document.getElementById("cDoctor");
+                    select.options.length = 0;
+                    var option = document.createElement("option");
+                    option.value = 0;
+                    option.text = "Seleccionar Doctor";
+                    select.appendChild(option);
+                    for (var i = 0; i < response.length; i++) {
+                        var option = document.createElement("option");
+                        option.value = response[i].value;
+                        option.text = response[i].text;
+                        select.appendChild(option);
+                    }
+
+                },
+                error: function (error) {
+                    // Manejar errores de la solicitud AJAX
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Se presento un error al obtener la información',
+                        confirmButtonColor: '#008dc9'
+                    })
+                }
+            });
+        }
+
+        function showTimePicker() {
+            document.getElementById('timePicker').style.display = 'block';
+        }
+        // $('.datepicker').datepicker({
+        //     todayHighlight: true,
+        //     language: 'es'
+        // });
+        function setSelectedTime() {
+            const selectedHour = document.getElementById('hora').value;
+            document.getElementById('hora').value = selectedHour + ':00';
+            document.getElementById('timePicker').style.display = 'none';
+        }
     </script>
     <script>
         function generateUsername() { const e = (document.getElementById("nombres").value + "." + document.getElementById("apellidos").value).toLowerCase().replace(/\s/g, "") + (Math.floor(999 * Math.random()) + 1); document.getElementById("usuario").value = e }

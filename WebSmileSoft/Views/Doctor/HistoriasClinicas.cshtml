@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <!-- Panel de búsqueda de pacientes -->
             @* <div id="findIcon" onmouseenter="showDiv()" style="display: none">
-                <i class="fa-solid fa-magnifying-glass text-primary fa-sm"> </i><span> Buscar Historia Clinica del Paciente</span>
+            <i class="fa-solid fa-magnifying-glass text-primary fa-sm"> </i><span> Buscar Historia Clinica del Paciente</span>
             </div> *@
             <div class="card" id="myDiv" @* onmouseleave="hideDiv()" onmouseenter="showDiv()" *@>
                 <div class="card">
@@ -13,13 +13,13 @@
                         <h5 class="card-title">Buscar Historia Clinica</h5>
                         <form>
                             <div class="row">
-                                <div class="col-3 mb-1 form-floating">
-                                <input type="text" class="form-control" placeholder="Documento del Paciente" id="userIdInput">
-                                    <label for="userIdInput">Documento del Paciente</label>
-                            </div>
-                            <div class="col-2">
-                                <button type="button" class="btn btn-primary" id="buscarButton">Buscar</button>
-                            </div>
+                                <div class="col-3 mb-1 ">
+                                    <input type="text" class="form-control" placeholder="Documento del Paciente" id="userIdInput">
+                                    @* <label for="userIdInput">Documento del Paciente</label> *@
+                                </div>
+                                <div class="col-2">
+                                    <button type="button" class="btn btn-primary" id="buscarButton">Buscar</button>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -104,6 +104,7 @@
                                     <h6>Historial tratamientos</h6>
                                     <div id="questionsContainer">
                                         <form id="questionsContainerForm"></form>
+                                        @* <img src="https://smilesoftblobs.blob.core.windows.net/smilesoftimages/cita128_20231114215010.jpg" class="img-fluid" id="blobQuestion" title="blobTreatment"> *@
                                     </div>
                                 </div>
                             </div>
@@ -115,11 +116,11 @@
         </div>
         <div class="row" id="pdfButton" style="display:none;">
             <div class="col-6 col-md-3 col-sm-2">
-                <a href="javascript:generarPDF()" class="button btn btn-primary btn-sm">
-                <i class="fas fa-file-pdf fa-xl"></i> Generar PDF
+                <input type="button" class="button btn btn-primary btn-sm me-2" onclick="printDiv()" value="Imprimir" />
+                <a href="#" class="button btn btn-primary btn-sm " style="display:none;">
+                    <i class="fas fa-file-pdf fa-xl"></i> Generar PDF
                 </a>
             </div>
-
         </div>
     </div>
 </div>
@@ -145,6 +146,11 @@
                 $("#imprimir").addClass('shadow');
             });
         };
+
+        function printDiv() {
+            window.print();
+        }
+
     </script>
 
     <script>
@@ -240,22 +246,23 @@
                         ////console.log("ROW Data : ", rowData);
                         appointmentDates = dataSet;
                     });
-                    appointmentDates = dataSet;
+                    //appointmentDates = dataSet;
                 }
             });
         }
-        let tratamientoID = 1;
+        let tratamientoID = 0;
         let totalTratamientos = 0;
-        //console.log("Apoinment Dates: ", appointmentDates);
-        // Call the function to populate patient information
+        console.log("Apoinment Dates: ", appointmentDates);
+        //Call the function to populate patient information
         async function loadUserClinicalHistory(inputUserId) {
             try {
                 getAppoinmentData(inputUserId);
                 // Fetch user details
-                const userResponse = await fetch(`${sessionStorage.urlEP}/api/Users/v1/GetUserDetails?uDocument=${inputUserId}`);
-                const userData = await userResponse.json();
-                //console.log('userData in async function: ', userData)
-                //console.log("Userdata Json:", userData.itemJson);
+                let userResponse = await fetch(`${sessionStorage.urlEP}/api/Users/v1/GetUserDetails?uDocument=${inputUserId}`);
+                let userData = await userResponse.json();
+                //debugger;
+                console.log('userData in async function: ', userData)
+                console.log("Userdata Json:", userData.itemJson);
                 let buttonPDF = document.getElementById("pdfButton");
 
                 if (userData.itemJson === null) {
@@ -279,8 +286,9 @@
                     patientData = userData.itemJson;
                     // Fetch clinical history
                     const clinicalHistoryResponse = await fetch(`${sessionStorage.urlEP}/api/Generics/v1/GetUserClinicStory?uDocument=${inputUserId}`);
-
+                    console.log('clinicalHistoryResponse: ', clinicalHistoryResponse);
                     const clinicalHistoryData = await clinicalHistoryResponse.json();
+                    console.log('clinicalHistoryData: ', clinicalHistoryData.itemJson.length);
                     totalTratamientos = clinicalHistoryData.itemJson.length;
                     if (totalTratamientos === 0) {
                         buttonPDF.style.display = "none";
@@ -289,16 +297,19 @@
                             text: 'El usuario ingresado no tiene historial clínica.',
                             icon: 'info',
                             confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9',
+
                         });
 
-                    }else if (clinicalHistoryData.codeStatus == 0) {
+                    } else if (clinicalHistoryData.codeStatus == 0) {
+                        buttonPDF.style.display = "block";
                         let allClinicalHistory = [];
                         let form = $('#questionsContainerForm');
                         form.empty();
                         clinicalHistoryData.itemJson.forEach(item => {
                             item = JSON.parse(item);
                             allClinicalHistory = [...item];
-                            //console.log('allClinicalHistory: ', allClinicalHistory);
+                            console.log('allClinicalHistory: ', allClinicalHistory);
                             processClinicalHistoryData(allClinicalHistory);
                             buttonPDF.style.display = "block";
                             tratamientoID++;
@@ -311,6 +322,8 @@
                             text: clinicalHistoryData.messageStatus,
                             icon: 'info',
                             confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#008dc9',
+
                         });
                     }
                 }
@@ -319,6 +332,54 @@
                 mostrarMensajeError('Error al obtener detalles del usuario o historial clínico.');
             }
         }
+        // function loadUserClinicalHistory(inputUserId) {
+        //     $.ajax({
+        //         url: sessionStorage.urlEP + `/api/Generics/v1/GetUserClinicStory?uDocument=${inputUserId}`,
+        //         type: 'GET',
+        //         contentType: "application/json",
+        //         dataType: 'json',
+        //         async: false,
+        //         success: function (response) {
+        //             totalTratamientos = response.itemJson.length;
+        //             let buttonPDF = document.getElementById("pdfButton");
+        //             let form = $('#questionsContainerForm');
+        //             //debugger;
+        //             if (response.codeStatus == 0) {
+        //                 getAppoinmentData(inputUserId);
+        //                 form.empty();
+        //                 if (response.itemJson.length > 0) {
+        //                     $("#clinicalHistoryModal").modal("show");
+        //                     let citas = response.itemJson
+        //                     citas.map(item => {
+        //                         if (item) {
+        //                             item = JSON.parse(item)
+        //                             allClinicalHistory = [...item]
+        //                             //debugger;
+        //                             processClinicalHistoryData(allClinicalHistory);
+        //                             tratamientoID++;
+        //                         }
+        //                     })
+        //                     console.log(allClinicalHistory)
+        //                 } else {
+        //                     Swal.fire({
+        //                         title: 'info',
+        //                         text: 'No se encontraron registros',
+        //                         icon: 'error',
+        //                         confirmButtonText: 'Aceptar'
+        //                     })
+        //                 }
+        //             }
+        //             else if (response.codeStatus == -1) {
+        //                 Swal.fire({
+        //                     title: 'Error',
+        //                     text: response.messageStatus,
+        //                     icon: 'error',
+        //                     confirmButtonText: 'Aceptar'
+        //                 })
+        //             }
+        //         }
+        //     })
+        // }
 
         function processClinicalHistoryData(allClinicalHistory) {
             let questionTypes = {
@@ -365,6 +426,14 @@
                     let container = $('<div class="mb-4"></div>').append(`<p class="text-primary m-0 fw-bold">${question.name}</p>`, options)
 
                     return container
+                },
+                'fileUpload': function (question) {
+                    //insertar un div con un img para mostrar la imagen
+                    //<img src="https://smilesoftblobs.blob.core.windows.net/smilesoftimages/cita128_20231114215010.jpg" class="img-fluid" id="blobQuestion" title="blobTreatment">
+                    let img = $(`<img src="${question.value}" class="img-fluid blobQuestion" id="${question.id}" title="blobTreatment">`);
+                    let container = $('<div class="mb-4"></div>').append(`<p class="text-primary m-0 fw-bold">Imagen Adjunta al ${question.name}</p>`, img)
+
+                    return container
                 }
             };
             let form = $('#questionsContainerForm');
@@ -378,6 +447,7 @@
 
             allClinicalHistory.forEach(function (question, index) {
                 question.id = index + 1;
+                
 
                 if (!question.type || !question.name) {
                     console.error('Question is missing type or name:', question);
@@ -398,7 +468,12 @@
                     let inputElement = questionTypes.multiple(question);
                     finalStructure.push(question);
                     questionContainer.append(inputElement);
-                } else {
+                } else if (question.type === 'fileUpload') {
+                    let inputElement = questionTypes.fileUpload(question);
+                    finalStructure.push(question);
+                    questionContainer.append(inputElement);
+                }
+                else {
                     console.error('Tipo de pregunta no válido: ' + question.type);
                 }
 
@@ -420,61 +495,28 @@
             let row = $('<div class="row"></div>').append(column1, column2, column3);
             let container = $('<div class="container"></div>').append(row);
             container.append('<hr>');
-            ////console.log('Tratamiento ID: ', tratamientoID);
-            ////console.log('Total Tratamientos: ', totalTratamientos);
-            if (tratamientoID < totalTratamientos) {
-                let tratamientoID2 = tratamientoID + 1;
-                let MostrarFechaCita = appointmentDates[tratamientoID2][3];
-                let MostrarDoctorCita = appointmentDates[tratamientoID2][1];
-                let MostrarMotivoCita = appointmentDates[tratamientoID2][2];
-                container.append(`<h6>#${tratamientoID2} | Fecha de la Consulta: ${MostrarFechaCita} | Doctor: ${MostrarDoctorCita} | Motivo: ${MostrarMotivoCita} </h6>`);
-                form.append(container);
-            }
-            else {
-                form.append(container);
-            }
+            
 
-            // After populating the form, you can call the function to populate patient info
+            // if (tratamientoID < totalTratamientos) {
+            //     let tratamientoID2 = tratamientoID + 1;
+            //     let MostrarFechaCita = appointmentDates[tratamientoID2][3];
+            //     let MostrarDoctorCita = appointmentDates[tratamientoID2][1];
+            //     let MostrarMotivoCita = appointmentDates[tratamientoID2][2];
+            //     container.append(`<h6>#${tratamientoID2} | Fecha de la Consulta: ${MostrarFechaCita} | Doctor: ${MostrarDoctorCita} | Motivo: ${MostrarMotivoCita} </h6>`);
+            //     form.append(container);
+            // }
+            // else {
+            //     form.append(container);
+            // }
+            form.append(container);
             populatePatientInfo();
         }
-
 
         $("#buscarButton").on("click", function () {
             let userId = $("#userIdInput").val().trim(); // Get the user ID from the input field
             loadUserClinicalHistory(userId);
-            // let buttonPDF = document.getElementById("pdfButton");
-            // buttonPDF.style.display = "block";
         });
 
-        let timer; // Variable to store the timer
 
-        // function showDiv() {
-        //     let div = document.getElementById("myDiv");
-        //     div.style.display = "block"; // Show the div
-        //     let icon = document.getElementById("findIcon");
-        //     icon.style.display = "none";
-        //     clearTimeout(timer); // Clear any previous hide timer
-        // }
-
-        // function hideDiv() {
-        //     let div = document.getElementById("myDiv");
-        //     let icon = document.getElementById("findIcon");
-
-        //     // Set a delay of 2 seconds (2000 milliseconds) before hiding the div
-        //     timer = setTimeout(function () {
-        //         icon.style.display = "block";
-        //         div.style.display = "none"; // Hide the div after the delay
-        //     }, 2000);
-        // }
-        // //Disable pdf button when the windows is below 1024px
-        // $(window).resize(function () {
-        //     if ($(window).width() < 1024) {
-
-        //         $('#pdfButton').hide();
-        //     }
-        //     else {
-        //         $('#pdfButton').show();
-        //     }
-        // });
     </script>
     }
